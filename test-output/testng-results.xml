@@ -1,658 +1,255 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<testng-results ignored="0" total="9" passed="9" failed="0" skipped="0">
+<testng-results retried="2" ignored="2" total="5" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-03-18T18:09:43 IST" name="Default suite" finished-at="2026-03-18T18:12:29 IST" duration-ms="166502">
+  <suite started-at="2026-03-19T18:08:10 IST" name="Default suite" finished-at="2026-03-19T18:11:15 IST" duration-ms="185154">
     <groups>
     </groups>
-    <test started-at="2026-03-18T18:09:43 IST" name="Default test" finished-at="2026-03-18T18:12:29 IST" duration-ms="166502">
-      <class name="tests.MasterTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:09:44 IST" name="setup" finished-at="2026-03-18T18:09:52 IST" duration-ms="8106" status="PASS">
+    <test started-at="2026-03-19T18:08:10 IST" name="Default test" finished-at="2026-03-19T18:11:15 IST" duration-ms="185154">
+      <class name="tests.RegistrationTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.RegistrationTests@7c729a55]" started-at="2026-03-19T18:08:10 IST" name="setup" finished-at="2026-03-19T18:08:49 IST" duration-ms="39632" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="runTests(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:09:52 IST" name="runTests" data-provider="testdata" finished-at="2026-03-18T18:09:56 IST" duration-ms="3552" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[TC_01]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Login]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Valid Login]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[safwan.shaikh+016@11axis.com]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[Pbdev@123]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[login]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[success]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[P0]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Y]]>
-              </value>
-            </param>
-          </params>
+        <test-method is-config="true" signature="initRegistrationPage()[pri:0, instance:tests.RegistrationTests@7c729a55]" started-at="2026-03-19T18:08:49 IST" name="initRegistrationPage" finished-at="2026-03-19T18:08:50 IST" duration-ms="880" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- runTests -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:09:56 IST" name="tearDown" finished-at="2026-03-18T18:09:56 IST" duration-ms="495" status="PASS">
+        </test-method> <!-- initRegistrationPage -->
+        <test-method retried="true" signature="verifyDuplicateEmailRegistration()[pri:5, instance:tests.RegistrationTests@7c729a55]" started-at="2026-03-19T18:08:50 IST" name="verifyDuplicateEmailRegistration" finished-at="2026-03-19T18:09:24 IST" duration-ms="33873" status="SKIP">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for visibility of element found by By.xpath: //div[normalize-space()='Terms and Conditions']
+(tried for 15 seconds with 500 milliseconds interval)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\SAFWAN~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52838}, goog:processID: 14212, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52838/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: ed1b66ab4168aad64dc4e5d85bbf2a72]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element found by By.xpath: //div[normalize-space()='Terms and Conditions']
+(tried for 15 seconds with 500 milliseconds interval)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\SAFWAN~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52838}, goog:processID: 14212, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52838/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: ed1b66ab4168aad64dc4e5d85bbf2a72
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:85)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:233)
+at utils.WaitUtils.waitForElementVisible(WaitUtils.java:35)
+at base.BasePage.jsClick(BasePage.java:113)
+at pages.RegistrationPage.acceptTerms(RegistrationPage.java:98)
+at pages.RegistrationPage.registerUser(RegistrationPage.java:117)
+at tests.RegistrationTests.verifyDuplicateEmailRegistration(RegistrationTests.java:103)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyDuplicateEmailRegistration -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.RegistrationTests@7c729a55]" started-at="2026-03-19T18:09:24 IST" name="tearDown" finished-at="2026-03-19T18:09:25 IST" duration-ms="767" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:09:56 IST" name="setup" finished-at="2026-03-18T18:10:02 IST" duration-ms="5918" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.RegistrationTests@7c729a55]" started-at="2026-03-19T18:09:25 IST" name="setup" finished-at="2026-03-19T18:09:58 IST" duration-ms="33253" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="runTests(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:10:02 IST" name="runTests" data-provider="testdata" finished-at="2026-03-18T18:10:06 IST" duration-ms="3278" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[TC_02]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Login]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Invalid Password]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[safwan.shaikh+016@11axis.com]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[Pbdev@1234]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[login]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[error]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[P0]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Y]]>
-              </value>
-            </param>
-          </params>
+        <test-method is-config="true" signature="initRegistrationPage()[pri:0, instance:tests.RegistrationTests@7c729a55]" started-at="2026-03-19T18:09:58 IST" name="initRegistrationPage" finished-at="2026-03-19T18:09:59 IST" duration-ms="870" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- runTests -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:10:06 IST" name="tearDown" finished-at="2026-03-18T18:10:06 IST" duration-ms="392" status="PASS">
+        </test-method> <!-- initRegistrationPage -->
+        <test-method retried="true" signature="verifyDuplicateEmailRegistration()[pri:5, instance:tests.RegistrationTests@7c729a55]" started-at="2026-03-19T18:09:59 IST" name="verifyDuplicateEmailRegistration" finished-at="2026-03-19T18:10:31 IST" duration-ms="32266" status="SKIP">
+          <exception class="org.openqa.selenium.WebDriverException">
+            <message>
+              <![CDATA[target frame detached
+  (failed to check if window was closed: disconnected: Unable to receive message from renderer)
+  (Session info: chrome=145.0.7632.160) (error code: "target frame detached")
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [d935a3f5bab4529e31aab81dd43529ab, findElement {using=xpath, value=//div[normalize-space()='Terms and Conditions']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\SAFWAN~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60079}, goog:processID: 18192, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60079/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d935a3f5bab4529e31aab81dd43529ab]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.WebDriverException: target frame detached
+  (failed to check if window was closed: disconnected: Unable to receive message from renderer)
+  (Session info: chrome=145.0.7632.160) (error code: "target frame detached")
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [d935a3f5bab4529e31aab81dd43529ab, findElement {using=xpath, value=//div[normalize-space()='Terms and Conditions']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\SAFWAN~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60079}, goog:processID: 18192, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60079/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d935a3f5bab4529e31aab81dd43529ab
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:172)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:604)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:427)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:421)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:222)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:215)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:209)
+at utils.WaitUtils.waitForElementVisible(WaitUtils.java:35)
+at base.BasePage.jsClick(BasePage.java:113)
+at pages.RegistrationPage.acceptTerms(RegistrationPage.java:98)
+at pages.RegistrationPage.registerUser(RegistrationPage.java:117)
+at tests.RegistrationTests.verifyDuplicateEmailRegistration(RegistrationTests.java:103)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.WebDriverException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyDuplicateEmailRegistration -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.RegistrationTests@7c729a55]" started-at="2026-03-19T18:10:31 IST" name="tearDown" finished-at="2026-03-19T18:10:32 IST" duration-ms="424" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:10:06 IST" name="setup" finished-at="2026-03-18T18:10:12 IST" duration-ms="6332" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.RegistrationTests@7c729a55]" started-at="2026-03-19T18:10:32 IST" name="setup" finished-at="2026-03-19T18:10:50 IST" duration-ms="18052" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="runTests(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:10:12 IST" name="runTests" data-provider="testdata" finished-at="2026-03-18T18:10:14 IST" duration-ms="1693" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[TC_03]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Login]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Empty Fields]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[login]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[validation]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[P0]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Y]]>
-              </value>
-            </param>
-          </params>
+        <test-method is-config="true" signature="initRegistrationPage()[pri:0, instance:tests.RegistrationTests@7c729a55]" started-at="2026-03-19T18:10:50 IST" name="initRegistrationPage" finished-at="2026-03-19T18:10:51 IST" duration-ms="846" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- runTests -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:10:14 IST" name="tearDown" finished-at="2026-03-18T18:10:14 IST" duration-ms="379" status="PASS">
+        </test-method> <!-- initRegistrationPage -->
+        <test-method signature="verifyDuplicateEmailRegistration()[pri:5, instance:tests.RegistrationTests@7c729a55]" started-at="2026-03-19T18:10:51 IST" name="verifyDuplicateEmailRegistration" finished-at="2026-03-19T18:11:15 IST" duration-ms="24130" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchSessionException">
+            <message>
+              <![CDATA[invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=145.0.7632.160)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [099b0fc8ba63f76e31828102891ad87e, findElement {using=xpath, value=//div[normalize-space()='Terms and Conditions']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\SAFWAN~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59941}, goog:processID: 1736, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59941/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 099b0fc8ba63f76e31828102891ad87e]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.NoSuchSessionException: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=145.0.7632.160)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [099b0fc8ba63f76e31828102891ad87e, findElement {using=xpath, value=//div[normalize-space()='Terms and Conditions']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\SAFWAN~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59941}, goog:processID: 1736, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59941/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 099b0fc8ba63f76e31828102891ad87e
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:604)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:427)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:421)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:222)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:215)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:209)
+at utils.WaitUtils.waitForElementVisible(WaitUtils.java:35)
+at base.BasePage.jsClick(BasePage.java:113)
+at pages.RegistrationPage.acceptTerms(RegistrationPage.java:98)
+at pages.RegistrationPage.registerUser(RegistrationPage.java:117)
+at tests.RegistrationTests.verifyDuplicateEmailRegistration(RegistrationTests.java:103)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.NoSuchSessionException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:10:14 IST" name="setup" finished-at="2026-03-18T18:10:21 IST" duration-ms="6391" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="runTests(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:10:21 IST" name="runTests" data-provider="testdata" finished-at="2026-03-18T18:10:33 IST" duration-ms="12626" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[TC_04]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Player]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Play Audio]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[play]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[playing]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[P0]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Y]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runTests -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:10:33 IST" name="tearDown" finished-at="2026-03-18T18:10:34 IST" duration-ms="472" status="PASS">
+        </test-method> <!-- verifyDuplicateEmailRegistration -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.RegistrationTests@7c729a55]" started-at="2026-03-19T18:11:15 IST" name="tearDown" finished-at="2026-03-19T18:11:15 IST" duration-ms="30" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:10:34 IST" name="setup" finished-at="2026-03-18T18:10:40 IST" duration-ms="6235" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="runTests(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:10:40 IST" name="runTests" data-provider="testdata" finished-at="2026-03-18T18:10:52 IST" duration-ms="12033" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[TC_05]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Player]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Pause Audio]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[pause]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[paused]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[P0]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Y]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runTests -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:10:52 IST" name="tearDown" finished-at="2026-03-18T18:10:53 IST" duration-ms="519" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:10:53 IST" name="setup" finished-at="2026-03-18T18:10:56 IST" duration-ms="3253" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="runTests(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:10:56 IST" name="runTests" data-provider="testdata" finished-at="2026-03-18T18:11:09 IST" duration-ms="12723" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[TC_06]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Player]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Play Pause Resume Audio Flow]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[play_pause_resume]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[success]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[P0]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Y]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runTests -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:11:09 IST" name="tearDown" finished-at="2026-03-18T18:11:09 IST" duration-ms="570" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:11:09 IST" name="setup" finished-at="2026-03-18T18:11:16 IST" duration-ms="6557" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="runTests(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:11:16 IST" name="runTests" data-provider="testdata" finished-at="2026-03-18T18:11:28 IST" duration-ms="12539" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[TC_07]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Player]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Forward Audio]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[forward]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[success]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[P0]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Y]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runTests -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:11:28 IST" name="tearDown" finished-at="2026-03-18T18:11:29 IST" duration-ms="477" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:11:29 IST" name="setup" finished-at="2026-03-18T18:11:35 IST" duration-ms="6054" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="runTests(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:11:35 IST" name="runTests" data-provider="testdata" finished-at="2026-03-18T18:11:48 IST" duration-ms="12988" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[TC_08]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Player]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Backward Audio]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[backward]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[success]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[P0]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Y]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runTests -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:11:48 IST" name="tearDown" finished-at="2026-03-18T18:11:48 IST" duration-ms="547" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:11:48 IST" name="setup" finished-at="2026-03-18T18:12:17 IST" duration-ms="28323" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="runTests(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:12:17 IST" name="runTests" data-provider="testdata" finished-at="2026-03-18T18:12:29 IST" duration-ms="12074" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[TC_09]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[Player]]>
-              </value>
-            </param>
-            <param index="2">
-              <value>
-                <![CDATA[Player Load]]>
-              </value>
-            </param>
-            <param index="3">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="4">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="5">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="6">
-              <value>
-                <![CDATA[NA]]>
-              </value>
-            </param>
-            <param index="7">
-              <value>
-                <![CDATA[load]]>
-              </value>
-            </param>
-            <param index="8">
-              <value>
-                <![CDATA[success]]>
-              </value>
-            </param>
-            <param index="9">
-              <value>
-                <![CDATA[P0]]>
-              </value>
-            </param>
-            <param index="10">
-              <value>
-                <![CDATA[Y]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- runTests -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.MasterTest@6aba2b86]" started-at="2026-03-18T18:12:29 IST" name="tearDown" finished-at="2026-03-18T18:12:29 IST" duration-ms="480" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- tests.MasterTest -->
-=======
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
-  <reporter-output>
-  </reporter-output>
-  <suite started-at="2026-03-18T15:29:17 IST" name="Default suite" finished-at="2026-03-18T15:30:50 IST" duration-ms="92484">
-    <groups>
-    </groups>
-    <test started-at="2026-03-18T15:29:17 IST" name="Default test" finished-at="2026-03-18T15:30:50 IST" duration-ms="92484">
-      <class name="tests.TC_072_VerifyAudioPausePlay">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.TC_072_VerifyAudioPausePlay@5fdcaa40]" started-at="2026-03-18T15:29:17 IST" name="setup" finished-at="2026-03-18T15:29:38 IST" duration-ms="21075" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="verifyAudioPausePlay()[pri:0, instance:tests.TC_072_VerifyAudioPausePlay@5fdcaa40]" started-at="2026-03-18T15:29:38 IST" name="verifyAudioPausePlay" description="Verify audio can be played, paused, and resumed successfully" finished-at="2026-03-18T15:30:49 IST" duration-ms="70708" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyAudioPausePlay -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.TC_072_VerifyAudioPausePlay@5fdcaa40]" started-at="2026-03-18T15:30:49 IST" name="tearDown" finished-at="2026-03-18T15:30:50 IST" duration-ms="641" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- tests.TC_072_VerifyAudioPausePlay -->
->>>>>>> c0a5be4f0074aea2f4efcbafd6365ab3d80a23ab
+      </class> <!-- tests.RegistrationTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

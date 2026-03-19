@@ -3,23 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-<<<<<<< HEAD
-      <class name="tests.MasterTest">
-=======
-      <class name="tests.TC_072_verifyAudioPausePlay">
->>>>>>> c0a5be4f0074aea2f4efcbafd6365ab3d80a23ab
+      <class name="tests.RegistrationTests">
         <methods>
-          <include name="verifyAudioPausePlay"/>
           <include name="setup"/>
           <include name="tearDown"/>
-<<<<<<< HEAD
-          <include name="runTests" invocation-numbers="5 8"/>
+          <include name="verifyDuplicateEmailRegistration"/>
+          <include name="initRegistrationPage"/>
         </methods>
-      </class> <!-- tests.MasterTest -->
-=======
-        </methods>
-      </class> <!-- tests.TC_072_verifyAudioPausePlay -->
->>>>>>> c0a5be4f0074aea2f4efcbafd6365ab3d80a23ab
+      </class> <!-- tests.RegistrationTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

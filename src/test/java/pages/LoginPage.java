@@ -1,88 +1,97 @@
 package pages;
 
-<<<<<<< HEAD
-import java.time.Duration;
-=======
->>>>>>> c0a5be4f0074aea2f4efcbafd6365ab3d80a23ab
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-<<<<<<< HEAD
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import base.BasePage;
-=======
->>>>>>> c0a5be4f0074aea2f4efcbafd6365ab3d80a23ab
 
 /**
- * Professional Page Object for the Login page. Locators are preserved exactly
- * as in the original file.
+ * Page object for the login page and related validations.
  */
 public class LoginPage extends BasePage {
 
 	private static final Logger LOGGER = Logger.getLogger(LoginPage.class.getName());
 
+	private static final By LOGIN_BUTTON_HOME = By.xpath(
+			"(//div[@class='css-g5y9jx r-1i6wzkk r-lrvibr r-1loqt21 r-1otgn73 r-1awozwy r-9oks40 r-1tw7wh r-eu3ka r-1777fci r-uhung1 r-3o4zer'])[1]");
+	private static final By EMAIL_FIELD = By.xpath("//input[@placeholder='Email']");
+	private static final By PASSWORD_FIELD = By.xpath("//input[@placeholder='Password']");
+	private static final By RESET_EMAIL_FIELD = By.xpath("//input[@placeholder='Enter your email']");
+	private static final By LOGIN_BUTTON = By.xpath("//div[@class='css-146c3p1'][normalize-space()='Login']");
+	private static final By SUCCESSFUL_LOGIN_MESSAGE = By.xpath("//div[@data-testid='toastText1']");
+	private static final By NEXT_BUTTON = By.xpath("//div[contains(text(),'Next')]");
+	private static final By ERROR_MESSAGE = By.xpath(
+			"//div[@data-testid='toastText1' or contains(@class,'toast') or contains(@class,'alert') or contains(@class,'error')]");
+	private static final By INVALID_CREDENTIALS_MESSAGE = By
+			.xpath("//div[@data-testid='toastText1' and contains(text(),'Invalid credentials.')]");
+	private static final By USER_NOT_FOUND_MESSAGE = By
+			.xpath("//div[@data-testid='toastText1' and contains(text(),'User not found.')]");
+	private static final By OTP_SENT_MESSAGE = By
+			.xpath("//div[@data-testid='toastText1' and contains(text(),'OTP sent to your registered email.')]");
+	private static final By RESET_INVALID_EMAIL_MESSAGE = By.xpath(
+			"//div[@data-testid='toastText1' and contains(text(),'No account found with this email or mobile number.')]");
+	private static final By EMPTY_EMAIL_MESSAGE = By.xpath(
+			"//div[contains(@class,'css-146c3p1') and normalize-space()='Email is required.']");
+	private static final By EMPTY_PASSWORD_MESSAGE = By
+			.xpath("//div[contains(@class,'css-146c3p1') and normalize-space()='Password is Required']");
+	private static final By PASSWORD_SPECIAL_CHARACTER_MESSAGE = By.xpath(
+			"//div[contains(@class,'css-146c3p1') and contains(text(),'Password must include exactly one special character')]");
+	private static final By USER_ROLE = By.xpath("//div[contains(@class,'role')]");
+	private static final By REMEMBER_ME_CHECKBOX = By.xpath(
+			"//div[contains(@class,'r-15d164r') and .//div[normalize-space()='Remember me']]//div[@tabindex='0']");
+	private static final By FORGOT_PASSWORD_LINK = By.xpath(
+			"//*[normalize-space()='Forgot password ?' or normalize-space()='Forgot Password ?' or normalize-space()='Forgot password?' or normalize-space()='Forgot Password?']");
+	private static final By LOGIN_TEXT_BUTTON = By.xpath("//span[normalize-space()='Login']");
+	private static final By TERMS_AND_CONDITIONS_LINK = By.xpath("//span[normalize-space()='Terms and Conditions']");
+	private static final By PRIVACY_POLICY_LINK = By.xpath("//span[normalize-space()='Privacy Policy.'] | //span[normalize-space()='Privacy Policy']");
+	private static final By REGISTER_BUTTON = By.xpath("//span[contains(text(),'Register')]");
+	private static final By REGISTRATION_EMAIL_FIELD = By.xpath("//input[@placeholder='Enter your email']");
+	private static final By REGISTRATION_NEXT_BUTTON = By.xpath(
+			"//div[@tabindex='0' and .//div[normalize-space()='Next']]");
+	private static final By REGISTRATION_TERMS_TEXT = By.xpath(
+			"//div[contains(.,'By signing up, you agree to our')]");
+	private static final By GOOGLE_LOGIN_BUTTON = By.xpath(
+			"//div[@tabindex='0' and .//img[contains(@src,'ic_google')]] | //img[contains(@src,'ic_google')]");
+	private static final By GENERIC_MESSAGE = By.xpath(
+			"//div[contains(@class,'message') or contains(@class,'alert') or contains(@class,'toast') or contains(@class,'error') or contains(@class,'success')]");
+
 	public LoginPage(WebDriver driver) {
 		super(driver);
 	}
-
-	// ---------------- Locators (unchanged) ----------------
-	private static final By LOGIN_BUTTON_HOME = By.xpath(
-			"(//div[@class='css-g5y9jx r-1i6wzkk r-lrvibr r-1loqt21 r-1otgn73 r-1awozwy r-9oks40 r-1tw7wh r-eu3ka r-1777fci r-uhung1 r-3o4zer'])[1]");
-
-	private static final By EMAIL_FIELD = By.xpath("(//input[@placeholder='Email'])");
-
-	private static final By PASSWORD_FIELD = By.xpath("//input[@placeholder='Password']");
-
-	private static final By LOGIN_BUTTON = By.xpath("//div[@class='css-146c3p1'][normalize-space()='Login']");
-
-	private static final By SUCCESSFUL_LOGIN_MESSAGE = By.xpath("//div[@data-testid='toastText1']");
-
-	private static final By NEXT_BUTTON = By.xpath("//div[contains(text(),'Next')]");
-
-	private static final By ERROR_MESSAGE = By
-<<<<<<< HEAD
-			.xpath("//div[@data-testid='toastText1'][contains(text(),'Invalid credentials.')]");
-=======
-			.xpath("//div[@class='css-g5y9jx r-1habvwh r-13awgt0 r-1777fci r-1kti4dy']");
->>>>>>> c0a5be4f0074aea2f4efcbafd6365ab3d80a23ab
-
-	private static final By EMPTY_FIELD_MESSAGE = By
-			.xpath("//div[@class='css-146c3p1'][normalize-space()='Email is required.']");
-
-	// Role displayed after login
-	private static final By USER_ROLE = By.xpath("//div[contains(@class,'role')]");
-
-<<<<<<< HEAD
-	private static final By MESSAGE = By
-			.xpath("//div[contains(@class,'message') or contains(@class,'alert') or contains(@class,'toast')]");
-
-=======
->>>>>>> c0a5be4f0074aea2f4efcbafd6365ab3d80a23ab
-	// ---------------- Actions ----------------
 
 	public void openLogin() {
 		click(LOGIN_BUTTON_HOME);
 	}
 
 	public void enterEmail(String email) {
-		type(EMAIL_FIELD, email);
+		type(EMAIL_FIELD, email == null ? "" : email);
 	}
 
 	public void enterPassword(String password) {
-		type(PASSWORD_FIELD, password);
+		type(PASSWORD_FIELD, password == null ? "" : password);
+	}
+
+	public void enterResetEmail(String email) {
+		type(RESET_EMAIL_FIELD, email == null ? "" : email);
+	}
+
+	public void pastePassword(String password) {
+		enterPassword(password);
 	}
 
 	public void clickLogin() {
 		click(LOGIN_BUTTON);
 	}
 
-	public void waitForSuccessfulLoginMessage() {
-		wait.waitForElementVisible(SUCCESSFUL_LOGIN_MESSAGE);
+	public void doubleClickLogin() {
+		click(LOGIN_BUTTON);
+		click(LOGIN_BUTTON);
 	}
 
 	public void loginUser(String email, String password) {
@@ -91,12 +100,43 @@ public class LoginPage extends BasePage {
 		clickLogin();
 	}
 
-	// Capture role
+	public void submitWithEnter() {
+		wait.waitForElementVisible(PASSWORD_FIELD).sendKeys(Keys.ENTER);
+	}
+
+	public boolean isEmailFieldDisplayed() {
+		return isDisplayed(EMAIL_FIELD);
+	}
+
+	public boolean isPasswordFieldDisplayed() {
+		return isDisplayed(PASSWORD_FIELD);
+	}
+
+	public boolean isLoginButtonDisplayed() {
+		return isDisplayed(LOGIN_BUTTON);
+	}
+
+	public String getPasswordFieldType() {
+		return getAttribute(PASSWORD_FIELD, "type");
+	}
+
+	public String getEmailFieldValue() {
+		return getAttribute(EMAIL_FIELD, "value").trim();
+	}
+
+	public String getPasswordFieldValue() {
+		return getAttribute(PASSWORD_FIELD, "value");
+	}
+
+	public String getCurrentUrl() {
+		return driver.getCurrentUrl();
+	}
+
 	public String getLoggedInRole() {
 		try {
 			WebElement el = wait.waitForElementVisible(USER_ROLE);
-			String role = el.getText();
-			LOGGER.log(Level.INFO, "Logged In Role: {0}", role);
+			String role = el.getText().trim();
+			LOGGER.log(Level.INFO, "Logged in role: {0}", role);
 			return role;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Unable to read logged in role: {0}", e.getMessage());
@@ -104,109 +144,199 @@ public class LoginPage extends BasePage {
 		}
 	}
 
-	// Invalid User or Password error message
 	public String getErrorMessage() {
-		try {
-			WebElement el = wait.waitForElementVisible(ERROR_MESSAGE);
-			String error = el.getText();
-			LOGGER.log(Level.INFO, "Error Message: {0}", error);
-			return error;
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Error message not found: {0}", e.getMessage());
-			return "";
-		}
+		return getMessage(ERROR_MESSAGE);
 	}
 
-	// Empty fields validation message
+	public String getInvalidCredentialsMessage() {
+		return getMessage(INVALID_CREDENTIALS_MESSAGE);
+	}
+
+	public String getUserNotFoundMessage() {
+		return getMessage(USER_NOT_FOUND_MESSAGE);
+	}
+
+	public String getOtpSentMessage() {
+		return getMessage(OTP_SENT_MESSAGE);
+	}
+
+	public String getResetInvalidEmailMessage() {
+		return getMessage(RESET_INVALID_EMAIL_MESSAGE);
+	}
+
 	public String getEmptyFieldMessage() {
-		try {
-			WebElement el = wait.waitForElementVisible(EMPTY_FIELD_MESSAGE);
-			String message = el.getText();
-			LOGGER.log(Level.INFO, "Validation Message: {0}", message);
-			return message;
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Empty field message not found: {0}", e.getMessage());
-			return "";
+		String emailMessage = getMessage(EMPTY_EMAIL_MESSAGE);
+		if (!emailMessage.isEmpty()) {
+			return emailMessage;
 		}
+		return getMessage(EMPTY_PASSWORD_MESSAGE);
 	}
 
-	// Capture Login Success Message
+	public String getEmailRequiredMessage() {
+		return getMessage(EMPTY_EMAIL_MESSAGE);
+	}
+
+	public String getPasswordRequiredMessage() {
+		return getMessage(EMPTY_PASSWORD_MESSAGE);
+	}
+
+	public String getPasswordSpecialCharacterMessage() {
+		return getMessage(PASSWORD_SPECIAL_CHARACTER_MESSAGE);
+	}
+
 	public String getLoginSuccessMessage() {
+		return getMessage(SUCCESSFUL_LOGIN_MESSAGE);
+	}
+
+	public String getLoginMessage() {
+		String message = getMessage(GENERIC_MESSAGE);
+		if (!message.isEmpty()) {
+			return message;
+		}
+		return getLoginSuccessMessage();
+	}
+
+	public void clickNextAfterLogin() {
 		try {
-<<<<<<< HEAD
-			// Wait until text is actually present (IMPORTANT)
-			WebElement el = wait.waitForElementVisible(SUCCESSFUL_LOGIN_MESSAGE);
-
-			String message = el.getText().trim();
-
-			LOGGER.log(Level.INFO, "Login Success Message: {0}", message);
-
-			return message;
-
+			wait.waitForElementVisible(NEXT_BUTTON);
+			click(NEXT_BUTTON);
 		} catch (Exception e) {
-			LOGGER.log(Level.WARNING, "Login success message not found or empty: {0}", e.getMessage());
-=======
-			WebElement el = wait.waitForElementVisible(SUCCESSFUL_LOGIN_MESSAGE);
-			String message = el.getText();
-			LOGGER.log(Level.INFO, "Login Success Message: {0}", message);
-			return message;
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Login success message not found: {0}", e.getMessage());
->>>>>>> c0a5be4f0074aea2f4efcbafd6365ab3d80a23ab
-			return "";
+			LOGGER.log(Level.FINE, "Next button not shown after login: {0}", e.getMessage());
 		}
 	}
 
-	// Click Next button after login
-	public void clickNextAfterLogin() {
-		wait.waitForElementVisible(NEXT_BUTTON);
+	public boolean isResetEmailFieldDisplayed() {
+		return isDisplayed(RESET_EMAIL_FIELD);
+	}
+
+	public void clickNextButton() {
 		click(NEXT_BUTTON);
 	}
 
-<<<<<<< HEAD
-=======
-	// Check if login success
->>>>>>> c0a5be4f0074aea2f4efcbafd6365ab3d80a23ab
+	public void submitResetPasswordRequest(String email) {
+		enterResetEmail(email);
+		clickNextButton();
+	}
+
 	public boolean isLoginSuccessful() {
 		return !getLoginSuccessMessage().isEmpty();
 	}
 
-<<<<<<< HEAD
-=======
-	// Check if error displayed
->>>>>>> c0a5be4f0074aea2f4efcbafd6365ab3d80a23ab
 	public boolean isErrorDisplayed() {
 		return !getErrorMessage().isEmpty();
 	}
 
-<<<<<<< HEAD
 	public boolean isEmptyFieldValidationDisplayed() {
-		return !getEmptyFieldMessage().isEmpty();
+		return !getEmailRequiredMessage().isEmpty() && !getPasswordRequiredMessage().isEmpty();
 	}
 
-	public String getLoginMessage() {
+	public boolean isRememberMeAvailable() {
+		return isElementPresent(REMEMBER_ME_CHECKBOX);
+	}
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	public void clickRememberMe() {
+		jsClick(REMEMBER_ME_CHECKBOX);
+	}
 
-		By messageLocator = By.xpath("//div[contains(@class,'message') or " + "contains(@class,'alert') or "
-				+ "contains(@class,'toast') or " + "contains(@class,'error') or " + "contains(@class,'success')]");
+	public boolean isForgotPasswordAvailable() {
+		return isElementPresent(FORGOT_PASSWORD_LINK);
+	}
 
+	public void clickForgotPassword() {
+		click(FORGOT_PASSWORD_LINK);
+	}
+
+	public boolean isLoginTextButtonAvailable() {
+		return isElementPresent(LOGIN_TEXT_BUTTON);
+	}
+
+	public void clickLoginTextButton() {
+		click(LOGIN_TEXT_BUTTON);
+	}
+
+	public boolean isTermsAndConditionsAvailable() {
+		return isElementPresent(TERMS_AND_CONDITIONS_LINK);
+	}
+
+	public void clickTermsAndConditions() {
+		click(TERMS_AND_CONDITIONS_LINK);
+	}
+
+	public boolean isPrivacyPolicyAvailable() {
+		return isElementPresent(PRIVACY_POLICY_LINK);
+	}
+
+	public void clickPrivacyPolicy() {
+		click(PRIVACY_POLICY_LINK);
+	}
+
+	public boolean isRegisterButtonAvailable() {
+		return isElementPresent(REGISTER_BUTTON);
+	}
+
+	public void clickRegister() {
+		jsClick(REGISTER_BUTTON);
+	}
+
+	public boolean isRegistrationEmailFieldDisplayed() {
+		return isDisplayed(REGISTRATION_EMAIL_FIELD);
+	}
+
+	public boolean isRegistrationNextButtonDisplayed() {
+		return isDisplayed(REGISTRATION_NEXT_BUTTON);
+	}
+
+	public boolean isRegistrationTermsTextDisplayed() {
+		return isDisplayed(REGISTRATION_TERMS_TEXT);
+	}
+
+	public boolean isRegistrationScreenDisplayed() {
+		return isRegistrationEmailFieldDisplayed() || isRegistrationNextButtonDisplayed()
+				|| isRegistrationTermsTextDisplayed();
+	}
+
+	public boolean isGoogleLoginAvailable() {
+		return isElementPresent(GOOGLE_LOGIN_BUTTON);
+	}
+
+	public void clickGoogleLogin() {
+		jsClick(GOOGLE_LOGIN_BUTTON);
+	}
+
+	public void refreshPage() {
+		driver.navigate().refresh();
+	}
+
+	public void navigateBack() {
+		driver.navigate().back();
+	}
+
+	public boolean hasAnyToastOrValidationMessage() {
+		return !getLoginMessage().isEmpty() || !getEmailRequiredMessage().isEmpty() || !getPasswordRequiredMessage().isEmpty();
+	}
+
+	public boolean isOnLoginPage() {
+		return isEmailFieldDisplayed() && isPasswordFieldDisplayed();
+	}
+
+	private String getMessage(By locator) {
 		try {
-			WebElement message = wait.until(ExpectedConditions.visibilityOfElementLocated(messageLocator));
-
-			String text = message.getText().trim();
-			System.out.println("Captured Message: " + text);
-
-			return text;
-
+			WebElement el = wait.waitForElementVisible(locator);
+			String message = el.getText().trim();
+			LOGGER.log(Level.INFO, "Captured login message: {0}", message);
+			return message;
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Message not found for locator {0}: {1}", new Object[] { locator, e.getMessage() });
 			return "";
 		}
 	}
-=======
-	// Check empty validation
-	public boolean isEmptyFieldValidationDisplayed() {
-		return !getEmptyFieldMessage().isEmpty();
+
+	private boolean isElementPresent(By locator) {
+		try {
+			List<WebElement> elements = driver.findElements(locator);
+			return elements.stream().anyMatch(WebElement::isDisplayed);
+		} catch (Exception e) {
+			return false;
+		}
 	}
->>>>>>> c0a5be4f0074aea2f4efcbafd6365ab3d80a23ab
 }
