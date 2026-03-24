@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Default_suite" class="navigator-link">
-              <span class="suite-name border-failed">Default suite</span>
+              <span class="suite-name border-passed">Default suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\Safwan Shaikh\AppData\Local\Temp\testng-eclipse--2096945274\testng-customsuite.xml</span>
+                    <span>C:\Users\safwan\AppData\Local\Temp\testng-eclipse-846248791\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -60,7 +60,7 @@
                 </li>
                 <li>
                   <a href="#" panel-name="group-Default_suite" class="navigator-link ">
-                    <span>0 groups</span>
+                    <span>1 group</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,40 +92,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">3 methods, 1 failed,  2 skipped,  </span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Default_suite" class="hide-methods failed suite-Default_suite"> (hide)</a> <!-- hide-methods failed suite-Default_suite -->
-                      <a href="#" panel-name="suite-Default_suite" class="show-methods failed suite-Default_suite"> (show)</a> <!-- show-methods failed suite-Default_suite -->
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
                     </span>
-                    <div class="method-list-content failed suite-Default_suite">
+                    <div class="method-list-content passed suite-Default_suite">
                       <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.RegistrationTests" class="method navigator-link" hash-for-method="verifyDuplicateEmailRegistration">verifyDuplicateEmailRegistration</a> <!-- method navigator-link -->
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.RegistrationTests" class="method navigator-link" hash-for-method="verifyDatabaseLatency">verifyDatabaseLatency</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content failed suite-Default_suite -->
-                  </li>
-                  <li>
-                    <span class="method-list-title skipped">Retried methods</span>
-                    <span class="show-or-hide-methods skipped">
-                      <a href="#" panel-name="suite-Default_suite" class="hide-methods skipped suite-Default_suite"> (hide)</a> <!-- hide-methods skipped suite-Default_suite -->
-                      <a href="#" panel-name="suite-Default_suite" class="show-methods skipped suite-Default_suite"> (show)</a> <!-- show-methods skipped suite-Default_suite -->
-                    </span>
-                    <div class="method-list-content skipped suite-Default_suite">
-                      <span>
-                        <img src="skipped.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.RegistrationTests" class="method navigator-link" hash-for-method="verifyDuplicateEmailRegistration">verifyDuplicateEmailRegistration</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="skipped.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.RegistrationTests" class="method navigator-link" hash-for-method="verifyDuplicateEmailRegistration">verifyDuplicateEmailRegistration</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content skipped suite-Default_suite -->
+                    </div> <!-- method-list-content passed suite-Default_suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -137,201 +118,25 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Default_suite" class="panel Default_suite">
-          <div class="suite-Default_suite-class-failed">
+          <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
+              <img src="passed.png"/>
               <span class="class-name">tests.RegistrationTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="verifyDuplicateEmailRegistration">
-                  </a> <!-- verifyDuplicateEmailRegistration -->
-                  <span class="method-name">verifyDuplicateEmailRegistration</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchSessionException: invalid session id: session deleted as the browser has closed the connection
-from disconnected: not connected to DevTools
-  (Session info: chrome=145.0.7632.160)
-Build info: version: &apos;4.41.0&apos;, revision: &apos;9fc754f&apos;
-System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;25.0.2&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [099b0fc8ba63f76e31828102891ad87e, findElement {using=xpath, value=//div[normalize-space()=&apos;Terms and Conditions&apos;]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\SAFWAN~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59941}, goog:processID: 1736, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59941/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 099b0fc8ba63f76e31828102891ad87e
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:604)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:427)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:421)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:222)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:215)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:209)
-	at utils.WaitUtils.waitForElementVisible(WaitUtils.java:35)
-	at base.BasePage.jsClick(BasePage.java:113)
-	at pages.RegistrationPage.acceptTerms(RegistrationPage.java:98)
-	at pages.RegistrationPage.registerUser(RegistrationPage.java:117)
-	at tests.RegistrationTests.verifyDuplicateEmailRegistration(RegistrationTests.java:103)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-	at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at org.testng.TestRunner.privateRun(TestRunner.java:819)
-	at org.testng.TestRunner.run(TestRunner.java:619)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-	at org.testng.TestNG.runSuites(TestNG.java:1134)
-	at org.testng.TestNG.run(TestNG.java:1101)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-
-</div> <!-- stack-trace -->
+                  <a name="verifyDatabaseLatency">
+                  </a> <!-- verifyDatabaseLatency -->
+                  <span class="method-name">verifyDatabaseLatency</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-failed -->
-          <div class="suite-Default_suite-class-skipped">
-            <div class="main-panel-header rounded-window-top">
-              <img src="skipped.png"/>
-              <span class="class-name">tests.RegistrationTests</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="verifyDuplicateEmailRegistration">
-                  </a> <!-- verifyDuplicateEmailRegistration -->
-                  <span class="method-name">verifyDuplicateEmailRegistration</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element found by By.xpath: //div[normalize-space()=&apos;Terms and Conditions&apos;]
-(tried for 15 seconds with 500 milliseconds interval)
-Build info: version: &apos;4.41.0&apos;, revision: &apos;9fc754f&apos;
-System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;25.0.2&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\SAFWAN~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52838}, goog:processID: 14212, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:52838/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: ed1b66ab4168aad64dc4e5d85bbf2a72
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:85)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:233)
-	at utils.WaitUtils.waitForElementVisible(WaitUtils.java:35)
-	at base.BasePage.jsClick(BasePage.java:113)
-	at pages.RegistrationPage.acceptTerms(RegistrationPage.java:98)
-	at pages.RegistrationPage.registerUser(RegistrationPage.java:117)
-	at tests.RegistrationTests.verifyDuplicateEmailRegistration(RegistrationTests.java:103)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at org.testng.TestRunner.privateRun(TestRunner.java:819)
-	at org.testng.TestRunner.run(TestRunner.java:619)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-	at org.testng.TestNG.runSuites(TestNG.java:1134)
-	at org.testng.TestNG.run(TestNG.java:1101)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="verifyDuplicateEmailRegistration">
-                  </a> <!-- verifyDuplicateEmailRegistration -->
-                  <span class="method-name">verifyDuplicateEmailRegistration</span>
-                  <div class="stack-trace">org.openqa.selenium.WebDriverException: target frame detached
-  (failed to check if window was closed: disconnected: Unable to receive message from renderer)
-  (Session info: chrome=145.0.7632.160) (error code: &quot;target frame detached&quot;)
-Build info: version: &apos;4.41.0&apos;, revision: &apos;9fc754f&apos;
-System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;25.0.2&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [d935a3f5bab4529e31aab81dd43529ab, findElement {using=xpath, value=//div[normalize-space()=&apos;Terms and Conditions&apos;]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 145.0.7632.160, chrome: {chromedriverVersion: 145.0.7632.117 (de4e5d6e13b..., userDataDir: C:\Users\SAFWAN~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60079}, goog:processID: 18192, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60079/devtoo..., se:cdpVersion: 145.0.7632.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: d935a3f5bab4529e31aab81dd43529ab
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:172)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:604)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:427)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:421)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:222)
-	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:215)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:209)
-	at utils.WaitUtils.waitForElementVisible(WaitUtils.java:35)
-	at base.BasePage.jsClick(BasePage.java:113)
-	at pages.RegistrationPage.acceptTerms(RegistrationPage.java:98)
-	at pages.RegistrationPage.registerUser(RegistrationPage.java:117)
-	at tests.RegistrationTests.verifyDuplicateEmailRegistration(RegistrationTests.java:103)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-	at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at org.testng.TestRunner.privateRun(TestRunner.java:819)
-	at org.testng.TestRunner.run(TestRunner.java:619)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-	at org.testng.TestNG.runSuites(TestNG.java:1134)
-	at org.testng.TestNG.run(TestNG.java:1101)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-skipped -->
+          </div> <!-- suite-Default_suite-class-passed -->
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\Safwan Shaikh\AppData\Local\Temp\testng-eclipse--2096945274\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\safwan\AppData\Local\Temp\testng-eclipse-846248791\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -342,7 +147,7 @@ Session ID: d935a3f5bab4529e31aab81dd43529ab
     &lt;classes&gt;
       &lt;class name=&quot;tests.RegistrationTests&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;verifyDuplicateEmailRegistration&quot;/&gt;
+          &lt;include name=&quot;verifyDatabaseLatency&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- tests.RegistrationTests --&gt;
     &lt;/classes&gt;
@@ -368,6 +173,14 @@ Session ID: d935a3f5bab4529e31aab81dd43529ab
             <span class="header-content">Groups for Default suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="test-group">
+              <span class="test-group-name">edge</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">verifyDatabaseLatency</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="times-Default_suite" class="panel">
@@ -384,24 +197,16 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(3);
+data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'verifyDuplicateEmailRegistration')
+data.setCell(0, 1, 'verifyDatabaseLatency')
 data.setCell(0, 2, 'tests.RegistrationTests')
-data.setCell(0, 3, 33873);
-data.setCell(1, 0, 1)
-data.setCell(1, 1, 'verifyDuplicateEmailRegistration')
-data.setCell(1, 2, 'tests.RegistrationTests')
-data.setCell(1, 3, 32266);
-data.setCell(2, 0, 2)
-data.setCell(2, 1, 'verifyDuplicateEmailRegistration')
-data.setCell(2, 2, 'tests.RegistrationTests')
-data.setCell(2, 3, 24130);
+data.setCell(0, 3, 33546);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 33 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -416,21 +221,181 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">5 ignored methods</span>
+            <span class="header-content">85 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
               <span class="ignored-class-name">tests.RegistrationTests</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">verifyRegisterButtonOpensRegistration</span>
+                <span class="ignored-method-name">verifyConfirmPasswordMatch</span>
                 <br/>
-                <span class="ignored-method-name">verifyAllMandatoryFieldWarnings</span>
+                <span class="ignored-method-name">verifyRoleSelectAdmin</span>
                 <br/>
-                <span class="ignored-method-name">verifySuccessfulRegistration</span>
+                <span class="ignored-method-name">verifyPasswordTrailingSpace</span>
                 <br/>
-                <span class="ignored-method-name">verifyEmailMandatory</span>
+                <span class="ignored-method-name">verifyNameEmoji</span>
                 <br/>
-                <span class="ignored-method-name">verifyTermsValidation</span>
+                <span class="ignored-method-name">verifyNameWithNumbers</span>
+                <br/>
+                <span class="ignored-method-name">verifyNameUnicode</span>
+                <br/>
+                <span class="ignored-method-name">verifyEnterKeySubmit</span>
+                <br/>
+                <span class="ignored-method-name">verifyNewsletterStorePreference</span>
+                <br/>
+                <span class="ignored-method-name">verifyUppercaseEmail</span>
+                <br/>
+                <span class="ignored-method-name">verifyEmailMissingDomain</span>
+                <br/>
+                <span class="ignored-method-name">verifyBrowserRefresh</span>
+                <br/>
+                <span class="ignored-method-name">verifyMobileView</span>
+                <br/>
+                <span class="ignored-method-name">verifyNameLeadingSpace</span>
+                <br/>
+                <span class="ignored-method-name">verifyTermsModal</span>
+                <br/>
+                <span class="ignored-method-name">verifyNameSqlInjection</span>
+                <br/>
+                <span class="ignored-method-name">verifyPasswordOnlyLetters</span>
+                <br/>
+                <span class="ignored-method-name">verifyUsernameMinLength</span>
+                <br/>
+                <span class="ignored-method-name">verifyTabletView</span>
+                <br/>
+                <span class="ignored-method-name">verifyUsernameSpecialCharacters</span>
+                <br/>
+                <span class="ignored-method-name">verifyAutofillBrowser</span>
+                <br/>
+                <span class="ignored-method-name">verifyIncognitoRegistration</span>
+                <br/>
+                <span class="ignored-method-name">verifyDuplicateEmailRegistration</span>
+                <br/>
+                <span class="ignored-method-name">verifyPasswordSpecialCharacters</span>
+                <br/>
+                <span class="ignored-method-name">verifyPasswordOnlyNumbers</span>
+                <br/>
+                <span class="ignored-method-name">verifyEmailXssInjection</span>
+                <br/>
+                <span class="ignored-method-name">verifyEmailTrailingSpace</span>
+                <br/>
+                <span class="ignored-method-name">verifyRoleDropdownUi</span>
+                <br/>
+                <span class="ignored-method-name">verifyTermsLink</span>
+                <br/>
+                <span class="ignored-method-name">verifyUsernameEmoji</span>
+                <br/>
+                <span class="ignored-method-name">verifyFieldMaxLength</span>
+                <br/>
+                <span class="ignored-method-name">verifyTabNavigation</span>
+                <br/>
+                <span class="ignored-method-name">verifyUsernameValid</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisterWithCookiesCleared</span>
+                <br/>
+                <span class="ignored-method-name">verifyEdgeBrowserRegistration</span>
+                <br/>
+                <span class="ignored-method-name">verifyRoleSelectUser</span>
+                <br/>
+                <span class="ignored-method-name">verifyChromeBrowserRegistration</span>
+                <br/>
+                <span class="ignored-method-name">verifyEmptyFormValidation</span>
+                <br/>
+                <span class="ignored-method-name">verifyActivationEmail</span>
+                <br/>
+                <span class="ignored-method-name">verifyPasswordWithSpaces</span>
+                <br/>
+                <span class="ignored-method-name">verifyEmailWithSubdomain</span>
+                <br/>
+                <span class="ignored-method-name">verifyTermsUnchecked</span>
+                <br/>
+                <span class="ignored-method-name">verifyPasswordCopyPaste</span>
+                <br/>
+                <span class="ignored-method-name">verifyPasswordMaxLength</span>
+                <br/>
+                <span class="ignored-method-name">verifyActivationLink</span>
+                <br/>
+                <span class="ignored-method-name">verifyResendActivation</span>
+                <br/>
+                <span class="ignored-method-name">verifyNameSpecialCharacters</span>
+                <br/>
+                <span class="ignored-method-name">verifyConfirmPasswordMismatch</span>
+                <br/>
+                <span class="ignored-method-name">verifyBackButton</span>
+                <br/>
+                <span class="ignored-method-name">verifyNameValid</span>
+                <br/>
+                <span class="ignored-method-name">verifyApiFailureHandling</span>
+                <br/>
+                <span class="ignored-method-name">verifyNewsletterChecked</span>
+                <br/>
+                <span class="ignored-method-name">verifyEmailMultipleAt</span>
+                <br/>
+                <span class="ignored-method-name">verifyRegisterJsDisabled</span>
+                <br/>
+                <span class="ignored-method-name">verifyNameXssInjection</span>
+                <br/>
+                <span class="ignored-method-name">verifyPasswordValid</span>
+                <br/>
+                <span class="ignored-method-name">verifyFirefoxBrowserRegistration</span>
+                <br/>
+                <span class="ignored-method-name">verifySessionTimeout</span>
+                <br/>
+                <span class="ignored-method-name">verifyEmojiInputFields</span>
+                <br/>
+                <span class="ignored-method-name">verifyRoleNotSelected</span>
+                <br/>
+                <span class="ignored-method-name">verifyConfirmPasswordEmpty</span>
+                <br/>
+                <span class="ignored-method-name">verifyNewsletterUnchecked</span>
+                <br/>
+                <span class="ignored-method-name">verifyTermsChecked</span>
+                <br/>
+                <span class="ignored-method-name">verifyNameMultipleSpaces</span>
+                <br/>
+                <span class="ignored-method-name">verifyConfirmPasswordCaseSensitivity</span>
+                <br/>
+                <span class="ignored-method-name">verifyEmailLeadingSpace</span>
+                <br/>
+                <span class="ignored-method-name">verifyDuplicateUsernameRegistration</span>
+                <br/>
+                <span class="ignored-method-name">verifyDoubleClickSubmit</span>
+                <br/>
+                <span class="ignored-method-name">verifyEmailValid</span>
+                <br/>
+                <span class="ignored-method-name">verifyValidRegistration</span>
+                <br/>
+                <span class="ignored-method-name">verifyFieldMinLength</span>
+                <br/>
+                <span class="ignored-method-name">verifyAccessibilityScreenReader</span>
+                <br/>
+                <span class="ignored-method-name">verifyNetworkDisconnect</span>
+                <br/>
+                <span class="ignored-method-name">verifyConfirmPasswordWithSpaces</span>
+                <br/>
+                <span class="ignored-method-name">verifyRateLimiting</span>
+                <br/>
+                <span class="ignored-method-name">verifySlowNetworkRegistration</span>
+                <br/>
+                <span class="ignored-method-name">verifyHtmlInjection</span>
+                <br/>
+                <span class="ignored-method-name">verifyUsernameMaxLength</span>
+                <br/>
+                <span class="ignored-method-name">verifyUsernameUnicode</span>
+                <br/>
+                <span class="ignored-method-name">verifyEmailMissingAt</span>
+                <br/>
+                <span class="ignored-method-name">verifyRoleSelectCreator</span>
+                <br/>
+                <span class="ignored-method-name">verifyNameTrailingSpace</span>
+                <br/>
+                <span class="ignored-method-name">verifyEmailSqlInjection</span>
+                <br/>
+                <span class="ignored-method-name">verifyPasswordMinLength</span>
+                <br/>
+                <span class="ignored-method-name">verifyPasswordLeadingSpace</span>
+                <br/>
+                <span class="ignored-method-name">verifyUsernameWithSpaces</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -449,49 +414,15 @@ return data;
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
                 <span class="method-name">initRegistrationPage</span>
-                <span class="method-start">39632 ms</span>
+                <span class="method-start">23121 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">verifyDuplicateEmailRegistration</span>
-                <span class="method-start">40513 ms</span>
+                <span class="method-name">verifyDatabaseLatency</span>
+                <span class="method-start">24208 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">74412 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">setup</span>
-                <span class="method-start">75179 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="configuration-method before">
-                <span class="method-name">initRegistrationPage</span>
-                <span class="method-start">108437 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <span class="method-name">verifyDuplicateEmailRegistration</span>
-                <span class="method-start">109308 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">141598 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">setup</span>
-                <span class="method-start">142022 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="configuration-method before">
-                <span class="method-name">initRegistrationPage</span>
-                <span class="method-start">160076 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">verifyDuplicateEmailRegistration</span>
-                <span class="method-start">160922 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">185082 ms</span>
+                <span class="method-start">57770 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

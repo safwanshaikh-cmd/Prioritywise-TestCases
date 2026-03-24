@@ -1,12 +1,17 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="SonarPlay Automation Suite" verbose="1">
+<suite name="SonarPlay Registration Positive Suite" verbose="1">
 	<listeners>
 		<listener class-name="listeners.TestListener" />
 		<listener class-name="listeners.RetryListener" />
 	</listeners>
 
-	<test name="Registration Module Tests">
+	<test name="Registration Positive Scenarios">
+		<groups>
+			<run>
+				<include name="positive" />
+			</run>
+		</groups>
 		<classes>
 			<class name="tests.RegistrationTests" />
 		</classes>
