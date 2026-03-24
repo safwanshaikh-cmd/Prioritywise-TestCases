@@ -31,11 +31,85 @@ public class LoginTests extends BaseTest {
 		return ConfigReader.getProperty("login.validPassword");
 	}
 
+	private String getInactiveEmail() {
+		return ConfigReader.getProperty("login.inactiveEmail", "");
+	}
+
+	private String getInactivePassword() {
+		return ConfigReader.getProperty("login.inactivePassword", "");
+	}
+
+	private String getInactiveMessageFragment() {
+		return ConfigReader.getProperty("login.inactiveMessage", "inactive");
+	}
+
 	private void skipIfValidCredentialsMissing() {
 		if (getConfiguredEmail() == null || getConfiguredEmail().isBlank() || getConfiguredPassword() == null
 				|| getConfiguredPassword().isBlank()) {
 			throw new SkipException(
 					"Set login.validEmail and login.validPassword in config.properties to run this test.");
+		}
+	}
+
+	private void skipIfInactiveCredentialsMissing() {
+		if (getInactiveEmail().isBlank() || getInactivePassword().isBlank()) {
+			throw new SkipException(
+					"Set login.inactiveEmail and login.inactivePassword in config.properties to run inactive-user tests.");
+		}
+	}
+
+	private void assertInactiveUserBlocked(String email, String password, String context) {
+		login.loginUser(email, password);
+		String message = login.printAndCaptureLoginMessage(context);
+		Assert.assertFalse(login.isLoginSuccessful(), context + " should not log in successfully.");
+		Assert.assertFalse(message.isBlank(), context + " should show an authentication response.");
+		Assert.assertTrue(message.toLowerCase().contains(getInactiveMessageFragment().toLowerCase())
+				|| message.toLowerCase().contains("invalid") || message.toLowerCase().contains("not found"),
+				context + " should show an inactive-account or safe rejection message. Actual message: " + message);
+	}
+
+	private void ensureValidCredentialsConfigured() {
+		skipIfValidCredentialsMissing();
+	}
+
+	private void ensureRememberMeAvailable() {
+		if (!login.isRememberMeAvailable()) {
+			throw new SkipException("Remember Me checkbox is not identifiable on the current login page.");
+		}
+	}
+
+	private void openForgotPasswordFlow() {
+		if (!login.isForgotPasswordAvailable()) {
+			throw new SkipException("Forgot Password link is not identifiable on the current login page.");
+		}
+		login.openForgotPasswordFlow();
+		Assert.assertTrue(login.isResetEmailFieldDisplayed(),
+				"Reset password email field should be displayed after clicking Forgot password");
+	}
+
+	private void ensureRegisterAvailable() {
+		if (!login.isRegisterButtonAvailable()) {
+			throw new SkipException("Register button is not identifiable on the current login page.");
+		}
+	}
+
+	private void assertLoginSucceeds(String email, String password, String context) {
+		login.loginUser(email, password);
+		Assert.assertTrue(login.isLoginSuccessful(),
+				context + " should log in successfully. Message: " + login.printAndCaptureLoginMessage(context));
+	}
+
+	private void assertLoginRejected(String email, String password, String context, String... expectedFragments) {
+		login.loginUser(email, password);
+		String message = login.printAndCaptureLoginMessage(context);
+		Assert.assertFalse(login.isLoginSuccessful(), context + " should not log in successfully.");
+		if (expectedFragments == null || expectedFragments.length == 0) {
+			return;
+		}
+		String normalizedMessage = message.toLowerCase();
+		for (String fragment : expectedFragments) {
+			Assert.assertTrue(normalizedMessage.contains(fragment.toLowerCase()),
+					context + " should show feedback containing '" + fragment + "'. Actual message: " + message);
 		}
 	}
 
@@ -60,9 +134,9 @@ public class LoginTests extends BaseTest {
 	@Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyEmptyFieldsValidation() {
 		login.clickLogin();
-		Assert.assertEquals(login.getEmailRequiredMessage(), "Email is required.",
+		Assert.assertEquals(login.getEmailRequiredMessage(), login.getExpectedEmailRequiredText(),
 				"Email validation message should appear when email is blank");
-		Assert.assertEquals(login.getPasswordRequiredMessage(), "Password is Required",
+		Assert.assertEquals(login.getPasswordRequiredMessage(), login.getExpectedPasswordRequiredText(),
 				"Password validation message should appear when password is blank");
 	}
 
@@ -70,7 +144,7 @@ public class LoginTests extends BaseTest {
 	public void verifyEmptyEmailValidation() {
 		login.enterPassword("Password@123");
 		login.clickLogin();
-		Assert.assertEquals(login.getEmailRequiredMessage(), "Email is required.",
+		Assert.assertEquals(login.getEmailRequiredMessage(), login.getExpectedEmailRequiredText(),
 				"Email validation message should appear when email is blank");
 	}
 
@@ -78,22 +152,21 @@ public class LoginTests extends BaseTest {
 	public void verifyEmptyPasswordValidation() {
 		login.enterEmail(getConfiguredEmail());
 		login.clickLogin();
-		Assert.assertEquals(login.getPasswordRequiredMessage(), "Password is Required",
+		Assert.assertEquals(login.getPasswordRequiredMessage(), login.getExpectedPasswordRequiredText(),
 				"Password validation message should appear when password is blank");
 	}
 
 	@Test(priority = 6, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyInvalidPassword() {
-		String email = ConfigReader.getProperty("login.validEmail");
-		login.loginUser(email, "Wrong@123");
-		Assert.assertEquals(login.getInvalidCredentialsMessage(), "Invalid credentials.",
+		assertLoginRejected(getConfiguredEmail(), "Wrong@123", "Invalid password", "invalid");
+		Assert.assertEquals(login.getInvalidCredentialsMessage(), login.getExpectedInvalidCredentialsText(),
 				"Expected 'Invalid credentials.' toast for invalid password");
 	}
 
 	@Test(priority = 7, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyUnregisteredUserCannotLogin() {
-		login.loginUser("Safwan.shaikh+099@11axis.com", "Password@123");
-		Assert.assertEquals(login.getUserNotFoundMessage(), "User not found.",
+		assertLoginRejected("Safwan.shaikh+099@11axis.com", "Password@123", "Unregistered user login", "user");
+		Assert.assertEquals(login.getUserNotFoundMessage(), login.getExpectedUserNotFoundText(),
 				"Expected 'User not found.' toast for an unregistered user");
 	}
 
@@ -105,25 +178,20 @@ public class LoginTests extends BaseTest {
 
 	@Test(priority = 9, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyEmailWithLeadingSpace() {
-		skipIfValidCredentialsMissing();
-		login.loginUser(" " + getConfiguredEmail(), getConfiguredPassword());
-		Assert.assertTrue(login.isLoginSuccessful(),
-				"Login should succeed because the application trims leading spaces in email");
+		ensureValidCredentialsConfigured();
+		assertLoginSucceeds(" " + getConfiguredEmail(), getConfiguredPassword(), "Email with leading space");
 	}
 
 	@Test(priority = 10, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyEmailWithTrailingSpace() {
-		skipIfValidCredentialsMissing();
-		login.loginUser(getConfiguredEmail() + " ", getConfiguredPassword());
-		Assert.assertTrue(login.isLoginSuccessful(),
-				"Login should succeed because the application trims trailing spaces in email");
+		ensureValidCredentialsConfigured();
+		assertLoginSucceeds(getConfiguredEmail() + " ", getConfiguredPassword(), "Email with trailing space");
 	}
 
 	@Test(priority = 11, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyUppercaseEmailLogin() {
-		skipIfValidCredentialsMissing();
-		login.loginUser(getConfiguredEmail().toUpperCase(), getConfiguredPassword());
-		Assert.assertFalse(login.getLoginSuccessMessage().isEmpty(), "Login should succeed for uppercase email input");
+		ensureValidCredentialsConfigured();
+		assertLoginSucceeds(getConfiguredEmail().toUpperCase(), getConfiguredPassword(), "Uppercase email login");
 	}
 
 	@Test(priority = 12, retryAnalyzer = RetryAnalyzer.class)
@@ -140,20 +208,17 @@ public class LoginTests extends BaseTest {
 
 	@Test(priority = 14, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyPasswordWithSpaces() {
-		skipIfValidCredentialsMissing();
-		login.loginUser(getConfiguredEmail(), " " + getConfiguredPassword() + " ");
-		Assert.assertTrue(login.isLoginSuccessful(),
-				"Login should succeed because the application trims password spaces");
+		ensureValidCredentialsConfigured();
+		assertLoginSucceeds(getConfiguredEmail(), " " + getConfiguredPassword() + " ", "Password with spaces");
 	}
 
 	@Test(priority = 15, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyPasswordCopyPaste() {
-		skipIfValidCredentialsMissing();
+		ensureValidCredentialsConfigured();
 		login.enterEmail(getConfiguredEmail());
 		login.pastePassword(getConfiguredPassword());
 		login.clickLogin();
-		Assert.assertFalse(login.getLoginSuccessMessage().isEmpty(),
-				"Login should succeed when password is pasted into the field");
+		Assert.assertTrue(login.isLoginSuccessful(), "Login should succeed when password is pasted into the field");
 	}
 
 	@Test(priority = 16, retryAnalyzer = RetryAnalyzer.class)
@@ -164,32 +229,24 @@ public class LoginTests extends BaseTest {
 
 	@Test(priority = 17, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyRememberMeChecked() {
-		if (!login.isRememberMeAvailable()) {
-			throw new SkipException("Remember Me checkbox is not identifiable on the current login page.");
-		}
+		ensureRememberMeAvailable();
 		login.clickRememberMe();
 		Assert.assertTrue(login.isRememberMeAvailable(), "Remember Me option should be available for login.");
 	}
 
 	@Test(priority = 18, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyRememberMeUnchecked() {
-		if (!login.isRememberMeAvailable()) {
-			throw new SkipException("Remember Me checkbox is not identifiable on the current login page.");
-		}
+		ensureRememberMeAvailable();
 		Assert.assertTrue(login.isRememberMeAvailable(), "Remember Me option should be available for login.");
 	}
 
 	@Test(priority = 19, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyBrowserRestart() {
-		skipIfValidCredentialsMissing();
-
-		if (!login.isRememberMeAvailable()) {
-			throw new SkipException("Remember Me checkbox is not identifiable on the current login page.");
-		}
+		ensureValidCredentialsConfigured();
+		ensureRememberMeAvailable();
 
 		login.clickRememberMe();
-		login.loginUser(getConfiguredEmail(), getConfiguredPassword());
-		Assert.assertTrue(login.isLoginSuccessful(), "Initial login should succeed before browser restart.");
+		assertLoginSucceeds(getConfiguredEmail(), getConfiguredPassword(), "Remember me initial login");
 		login.clickNextAfterLogin();
 
 		DriverFactory.quitDriver();
@@ -212,13 +269,7 @@ public class LoginTests extends BaseTest {
 
 	@Test(priority = 20, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyForgotPasswordLink() {
-		if (login.isLoginTextButtonAvailable()) {
-			login.clickLoginTextButton();
-		}
-		if (!login.isForgotPasswordAvailable()) {
-			throw new SkipException("Forgot Password link is not identifiable on the current login page.");
-		}
-		login.clickForgotPassword();
+		openForgotPasswordFlow();
 		Assert.assertTrue(
 				login.getCurrentUrl().toLowerCase().contains("forgot")
 						|| login.getCurrentUrl().toLowerCase().contains("reset"),
@@ -227,28 +278,18 @@ public class LoginTests extends BaseTest {
 
 	@Test(priority = 21, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyResetWithValidEmail() {
-		skipIfValidCredentialsMissing();
-		if (!login.isForgotPasswordAvailable()) {
-			throw new SkipException("Forgot Password link is not identifiable on the current login page.");
-		}
-		login.clickForgotPassword();
-		Assert.assertTrue(login.isResetEmailFieldDisplayed(),
-				"Reset password email field should be displayed after clicking Forgot password");
+		ensureValidCredentialsConfigured();
+		openForgotPasswordFlow();
 		login.submitResetPasswordRequest(getConfiguredEmail());
-		Assert.assertEquals(login.getOtpSentMessage(), "OTP sent to your registered email.",
+		Assert.assertEquals(login.getOtpSentMessage(), login.getExpectedOtpSentText(),
 				"Valid reset request should stop at the OTP-sent confirmation step");
 	}
 
 	@Test(priority = 22, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyResetWithInvalidEmail() {
-		if (!login.isForgotPasswordAvailable()) {
-			throw new SkipException("Forgot Password link is not identifiable on the current login page.");
-		}
-		login.clickForgotPassword();
-		Assert.assertTrue(login.isResetEmailFieldDisplayed(),
-				"Reset password email field should be displayed after clicking Forgot password");
+		openForgotPasswordFlow();
 		login.submitResetPasswordRequest("unknownuser@example.com");
-		Assert.assertEquals(login.getResetInvalidEmailMessage(), "No account found with this email or mobile number.",
+		Assert.assertEquals(login.getResetInvalidEmailMessage(), login.getExpectedResetInvalidEmailText(),
 				"Invalid reset request should show the exact account-not-found message");
 	}
 
@@ -286,18 +327,14 @@ public class LoginTests extends BaseTest {
 
 	@Test(priority = 25, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyRegisterButton() {
-		if (!login.isRegisterButtonAvailable()) {
-			throw new SkipException("Register button is not identifiable on the current login page.");
-		}
+		ensureRegisterAvailable();
 		login.clickRegister();
 		Assert.assertTrue(login.isRegistrationScreenDisplayed(), "Register button should open the registration screen");
 	}
 
 	@Test(priority = 26, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyRegisterUrlValidation() {
-		if (!login.isRegisterButtonAvailable()) {
-			throw new SkipException("Register button is not identifiable on the current login page.");
-		}
+		ensureRegisterAvailable();
 		login.clickRegister();
 		String currentUrl = login.getCurrentUrl().toLowerCase();
 		Assert.assertTrue(currentUrl.contains("register") || currentUrl.contains("signup"),
@@ -349,7 +386,7 @@ public class LoginTests extends BaseTest {
 
 	@Test(priority = 30, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyDoubleClickLogin() {
-		skipIfValidCredentialsMissing();
+		ensureValidCredentialsConfigured();
 		login.enterEmail(getConfiguredEmail());
 		login.enterPassword(getConfiguredPassword());
 		login.doubleClickLogin();
@@ -379,8 +416,8 @@ public class LoginTests extends BaseTest {
 
 	@Test(priority = 34, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyBrowserBackAfterLogin() {
-		skipIfValidCredentialsMissing();
-		login.loginUser(getConfiguredEmail(), getConfiguredPassword());
+		ensureValidCredentialsConfigured();
+		assertLoginSucceeds(getConfiguredEmail(), getConfiguredPassword(), "Browser back after login");
 		login.clickNextAfterLogin();
 		login.navigateBack();
 		Assert.assertFalse(login.isOnLoginPage() && login.isLoginButtonDisplayed(),
@@ -389,20 +426,29 @@ public class LoginTests extends BaseTest {
 
 	@Test(priority = 35, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyValidLogin() {
-
-		String email = getConfiguredEmail();
-		String password = getConfiguredPassword();
-
-		if (email == null || email.isBlank() || password == null || password.isBlank()) {
-			throw new SkipException(
-					"Set login.validEmail and login.validPassword in config.properties to run valid login.");
-		}
-
-		login.loginUser(email, password);
-
-		String successMsg = login.getLoginSuccessMessage();
-		Assert.assertTrue(!successMsg.isEmpty(), "Login failed - success message not displayed");
-
+		ensureValidCredentialsConfigured();
+		assertLoginSucceeds(getConfiguredEmail(), getConfiguredPassword(), "Valid login");
 		login.clickNextAfterLogin();
 	}
+
+	@Test(priority = 36, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyInactiveUserCannotLogin() {
+		skipIfInactiveCredentialsMissing();
+		assertInactiveUserBlocked(getInactiveEmail(), getInactivePassword(), "Inactive user login");
+	}
+
+	@Test(priority = 37, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyInactiveUserWithUppercaseEmailCannotLogin() {
+		skipIfInactiveCredentialsMissing();
+		assertInactiveUserBlocked(getInactiveEmail().toUpperCase(), getInactivePassword(),
+				"Inactive user login with uppercase email");
+	}
+
+	@Test(priority = 38, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyInactiveUserWithTrimmedEmailCannotLogin() {
+		skipIfInactiveCredentialsMissing();
+		assertInactiveUserBlocked(" " + getInactiveEmail() + " ", getInactivePassword(),
+				"Inactive user login with surrounding spaces");
+	}
+
 }

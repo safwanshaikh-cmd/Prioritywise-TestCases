@@ -15,12 +15,12 @@ public class PlayerTests extends BaseTest {
 	private PlayerPage player;
 
 	// 🔥 COMMON SETUP (removes duplication)
-	@BeforeMethod
+	@BeforeMethod(alwaysRun = true)
 	public void setup() {
+		super.setup();
 		dashboard = new DashboardPage(driver);
 		player = new PlayerPage(driver);
 
-		dashboard.acceptCookiesIfPresent();
 		dashboard.openAnyBook();
 		player.waitForPlayerBar();
 	}

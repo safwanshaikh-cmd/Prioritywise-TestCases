@@ -63,7 +63,19 @@ public class BasePage {
 		try {
 			WebElement element = wait.waitForElementVisible(locator);
 			element.clear();
-			element.sendKeys(text);
+			if (containsNonBmpCharacters(text)) {
+				((JavascriptExecutor) driver).executeScript(
+						"const el = arguments[0];"
+								+ "const value = arguments[1] == null ? '' : arguments[1];"
+								+ "el.focus();"
+								+ "el.value = value;"
+								+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
+								+ "el.dispatchEvent(new Event('change', { bubbles: true }));"
+								+ "el.blur();",
+						element, text);
+			} else {
+				element.sendKeys(text);
+			}
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Typing failed for {0}: {1}", new Object[] { locator, e.getMessage() });
 			takeScreenshot("type_failure");
@@ -156,5 +168,18 @@ public class BasePage {
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Screenshot failed: {0}", e.getMessage());
 		}
+	}
+
+	private boolean containsNonBmpCharacters(String text) {
+		if (text == null || text.isEmpty()) {
+			return false;
+		}
+
+		for (int i = 0; i < text.length(); i++) {
+			if (Character.isSurrogate(text.charAt(i))) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

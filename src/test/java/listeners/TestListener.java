@@ -1,5 +1,6 @@
 package listeners;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,6 +23,33 @@ public class TestListener implements ITestListener {
 	private static final Logger LOGGER = Logger.getLogger(TestListener.class.getName());
 	private static final ExtentReports extent = ExtentManager.getInstance();
 	private static final ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+
+	public static void logInfo(String message) {
+		ExtentTest currentTest = test.get();
+		if (currentTest != null && message != null && !message.isBlank()) {
+			currentTest.info(message);
+		}
+	}
+
+	public static void logMessages(String title, List<String> messages) {
+		ExtentTest currentTest = test.get();
+		if (currentTest == null) {
+			return;
+		}
+
+		String header = title == null || title.isBlank() ? "Messages" : title;
+		if (messages == null || messages.isEmpty()) {
+			currentTest.info(header + ": none");
+			return;
+		}
+
+		currentTest.info(header);
+		for (String message : messages) {
+			if (message != null && !message.isBlank()) {
+				currentTest.info(message);
+			}
+		}
+	}
 
 	@Override
 	public void onTestStart(ITestResult result) {
