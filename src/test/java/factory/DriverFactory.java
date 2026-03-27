@@ -1,7 +1,11 @@
 package factory;
 
 import java.io.File;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -24,6 +28,9 @@ import java.util.logging.Logger;
 public class DriverFactory {
 
 	private static final Logger LOGGER = Logger.getLogger(DriverFactory.class.getName());
+	private static final int DEFAULT_WINDOW_WIDTH = 1920;
+	private static final int DEFAULT_WINDOW_HEIGHT = 1080;
+	private static final String DEFAULT_WINDOW_SIZE = DEFAULT_WINDOW_WIDTH + "," + DEFAULT_WINDOW_HEIGHT;
 
 	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
@@ -50,57 +57,26 @@ public class DriverFactory {
 
 		String browser = browserOverride == null || browserOverride.isBlank() ? ConfigReader.getProperty("browser")
 				: browserOverride;
-		String headless = ConfigReader.getProperty("headless");
+		boolean headless = ConfigReader.getBoolean("headless", false);
 
 		try {
 			switch (browser.toLowerCase()) {
 
 			case "chrome":
 				WebDriverManager.chromedriver().setup();
-
-				ChromeOptions chromeOptions = new ChromeOptions();
-
-				if ("true".equalsIgnoreCase(headless)) {
-					chromeOptions.addArguments("--headless=new");
-				}
-
-				if (incognito) {
-					chromeOptions.addArguments("--incognito");
-				}
-
-				chromeOptions.addArguments("--start-maximized");
-				chromeOptions.addArguments("--disable-notifications");
-
-				driver.set(new ChromeDriver(chromeOptions));
-				LOGGER.info(incognito ? "Chrome browser launched in incognito mode" : "Chrome browser launched");
+				driver.set(new ChromeDriver(buildChromeOptions(headless, incognito)));
+				logBrowserLaunch("Chrome", headless, incognito ? "incognito" : "standard");
 				break;
 
 			case "edge":
 				WebDriverManager.edgedriver().setup();
-
-				EdgeOptions edgeOptions = new EdgeOptions();
-
-				if ("true".equalsIgnoreCase(headless)) {
-					edgeOptions.addArguments("--headless=new");
-				}
-
-				if (incognito) {
-					edgeOptions.addArguments("--inprivate");
-				}
-
-				driver.set(new EdgeDriver(edgeOptions));
-				LOGGER.info(incognito ? "Edge browser launched in InPrivate mode" : "Edge browser launched");
+				driver.set(new EdgeDriver(buildEdgeOptions(headless, incognito)));
+				logBrowserLaunch("Edge", headless, incognito ? "InPrivate" : "standard");
 				break;
 
 			case "firefox":
 				WebDriverManager.firefoxdriver().setup();
-
-				FirefoxOptions firefoxOptions = new FirefoxOptions();
-
-				if ("true".equalsIgnoreCase(headless)) {
-					firefoxOptions.addArguments("--headless");
-				}
-
+				FirefoxOptions firefoxOptions = buildFirefoxOptions(headless, incognito);
 				String firefoxBinary = ConfigReader.getProperty("firefox.binary", "");
 				if (firefoxBinary != null && !firefoxBinary.isBlank()) {
 					File binaryFile = new File(firefoxBinary);
@@ -125,14 +101,17 @@ public class DriverFactory {
 					}
 					throw e;
 				}
-				LOGGER.info(incognito ? "Firefox browser launched in private mode" : "Firefox browser launched");
+				logBrowserLaunch("Firefox", headless, incognito ? "private" : "standard");
 				break;
 
 			default:
 				LOGGER.warning("Invalid browser specified. Defaulting to Chrome.");
 				WebDriverManager.chromedriver().setup();
-				driver.set(new ChromeDriver());
+				driver.set(new ChromeDriver(buildChromeOptions(headless, incognito)));
+				logBrowserLaunch("Chrome", headless, incognito ? "incognito" : "standard");
 			}
+
+			configureBrowserSession(driver.get(), headless);
 
 		} catch (Exception e) {
 			if (e instanceof SkipException skipException) {
@@ -143,6 +122,105 @@ public class DriverFactory {
 		}
 
 		return driver.get();
+	}
+
+	private static ChromeOptions buildChromeOptions(boolean headless, boolean incognito) {
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments(getChromiumArguments(headless));
+		options.addArguments("--disable-notifications");
+
+		if (incognito) {
+			options.addArguments("--incognito");
+		}
+
+		return options;
+	}
+
+	private static EdgeOptions buildEdgeOptions(boolean headless, boolean incognito) {
+		EdgeOptions options = new EdgeOptions();
+		options.addArguments(getChromiumArguments(headless));
+		options.addArguments("--disable-notifications");
+
+		if (incognito) {
+			options.addArguments("--inprivate");
+		}
+
+		return options;
+	}
+
+	private static FirefoxOptions buildFirefoxOptions(boolean headless, boolean incognito) {
+		FirefoxOptions options = new FirefoxOptions();
+
+		if (headless) {
+			options.addArguments("--headless");
+		}
+
+		options.addArguments("--width=" + ConfigReader.getInt("window.width", DEFAULT_WINDOW_WIDTH));
+		options.addArguments("--height=" + ConfigReader.getInt("window.height", DEFAULT_WINDOW_HEIGHT));
+
+		if (incognito) {
+			options.addArguments("-private");
+		}
+
+		return options;
+	}
+
+	private static List<String> getChromiumArguments(boolean headless) {
+		List<String> arguments = new ArrayList<>();
+		arguments.add("--disable-gpu");
+		arguments.add("--no-sandbox");
+		arguments.add("--window-size=" + getWindowSizeArgument());
+
+		if (headless) {
+			arguments.add("--headless=new");
+		}
+
+		return arguments;
+	}
+
+	private static void configureBrowserSession(WebDriver webDriver, boolean headless) {
+		if (webDriver == null) {
+			return;
+		}
+
+		try {
+			webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(ConfigReader.getInt("pageLoadTimeout", 30)));
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Unable to set page load timeout: {0}", e.getMessage());
+		}
+
+		try {
+			if (headless) {
+				webDriver.manage().window().setSize(new Dimension(getWindowWidth(), getWindowHeight()));
+			} else {
+				webDriver.manage().window().maximize();
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Unable to apply preferred window state: {0}", e.getMessage());
+			try {
+				webDriver.manage().window().setSize(new Dimension(getWindowWidth(), getWindowHeight()));
+			} catch (Exception resizeException) {
+				LOGGER.log(Level.FINE, "Unable to resize browser window: {0}", resizeException.getMessage());
+			}
+		}
+	}
+
+	private static void logBrowserLaunch(String browserName, boolean headless, String mode) {
+		LOGGER.info(String.format("%s browser launched in %s mode (%s). Window size: %dx%d", browserName,
+				headless ? "headless" : "UI", mode, getWindowWidth(), getWindowHeight()));
+	}
+
+	private static int getWindowWidth() {
+		return ConfigReader.getInt("window.width", DEFAULT_WINDOW_WIDTH);
+	}
+
+	private static int getWindowHeight() {
+		return ConfigReader.getInt("window.height", DEFAULT_WINDOW_HEIGHT);
+	}
+
+	private static String getWindowSizeArgument() {
+		String configuredSize = ConfigReader.getProperty("window.size", DEFAULT_WINDOW_SIZE);
+		return configuredSize == null || configuredSize.isBlank() ? DEFAULT_WINDOW_SIZE : configuredSize;
 	}
 
 	/**

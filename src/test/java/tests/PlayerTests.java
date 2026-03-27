@@ -94,4 +94,42 @@ public class PlayerTests extends BaseTest {
 
 		Assert.assertTrue(true, "Player loaded successfully");
 	}
+
+	@Test(priority = 7, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyNextChapterPlayback() {
+		player.clickPlayAudio();
+		player.waitForAudioToStart();
+		player.waitForPlayControlsReady();
+
+		player.clickNextChapter();
+		player.waitForPlayControlsReady();
+
+		Assert.assertTrue(player.isPlayerResponsive(), "Player should remain responsive after next chapter navigation");
+	}
+
+	@Test(priority = 8, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyPreviousChapterPlayback() {
+		player.clickPlayAudio();
+		player.waitForAudioToStart();
+		player.waitForPlayControlsReady();
+
+		player.clickPreviousChapter();
+		player.waitForPlayControlsReady();
+
+		Assert.assertTrue(player.isPlayerResponsive(),
+				"Player should remain responsive after previous chapter navigation");
+	}
+
+	@Test(priority = 9, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyPreviousOnFirstChapterHandledGracefully() {
+		player.clickPlayAudio();
+		player.waitForAudioToStart();
+		player.waitForPlayControlsReady();
+
+		player.clickPreviousChapter();
+		player.waitForPlayControlsReady();
+
+		Assert.assertTrue(player.isPlayerResponsive(),
+				"Player should remain stable when previous is clicked on the first chapter");
+	}
 }

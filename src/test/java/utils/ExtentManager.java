@@ -24,7 +24,7 @@ public class ExtentManager {
 				String reportDir = "reports";
 				Files.createDirectories(Path.of(reportDir));
 
-				String reportPath = reportDir + "/LoginReport.html";
+				String reportPath = reportDir + "/AutomationReport.html";
 
 				ExtentSparkReporter reporter = new ExtentSparkReporter(reportPath);
 				reporter.config().setReportName("SonarPlay Automation Report");

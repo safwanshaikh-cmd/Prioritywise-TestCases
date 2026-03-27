@@ -41,6 +41,7 @@ public class BasePage {
 		while (attempts < 2) {
 			try {
 				WebElement element = wait.waitForElementClickable(locator);
+				scrollIntoView(element);
 				element.click();
 				return;
 			} catch (Exception e) {
@@ -62,6 +63,7 @@ public class BasePage {
 
 		try {
 			WebElement element = wait.waitForElementVisible(locator);
+			scrollIntoView(element);
 			element.clear();
 			if (containsNonBmpCharacters(text)) {
 				((JavascriptExecutor) driver).executeScript(
@@ -113,7 +115,7 @@ public class BasePage {
 	public void scrollToElement(By locator) {
 		try {
 			WebElement element = wait.waitForElementVisible(locator);
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
+			scrollIntoView(element);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Scroll failed for {0}: {1}", new Object[] { locator, e.getMessage() });
 		}
@@ -123,6 +125,7 @@ public class BasePage {
 	public void jsClick(By locator) {
 		try {
 			WebElement element = wait.waitForElementVisible(locator);
+			scrollIntoView(element);
 			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "JS click failed for {0}: {1}", new Object[] { locator, e.getMessage() });
@@ -158,7 +161,9 @@ public class BasePage {
 
 	// 🔥 NEW: Explicit wait click (force wait)
 	public void safeClick(By locator) {
-		wait.waitForElementClickable(locator).click();
+		WebElement element = wait.waitForElementClickable(locator);
+		scrollIntoView(element);
+		element.click();
 	}
 
 	// 🔥 Screenshot helper
@@ -181,5 +186,10 @@ public class BasePage {
 			}
 		}
 		return false;
+	}
+
+	private void scrollIntoView(WebElement element) {
+		((JavascriptExecutor) driver).executeScript(
+				"arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
 	}
 }

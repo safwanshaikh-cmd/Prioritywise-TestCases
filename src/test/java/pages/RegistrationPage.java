@@ -1,5 +1,6 @@
 package pages;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -17,6 +18,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import base.BasePage;
 import listeners.TestListener;
+import utils.ConfigReader;
 
 /**
  * Page object that models the SonarPlay registration flow.
@@ -27,6 +29,11 @@ public class RegistrationPage extends BasePage {
 
 	private static final By HOME_LOGIN_BUTTON = By.xpath(
 			"(//div[@class='css-g5y9jx r-1i6wzkk r-lrvibr r-1loqt21 r-1otgn73 r-1awozwy r-9oks40 r-1tw7wh r-eu3ka r-1777fci r-uhung1 r-3o4zer'])[1]");
+	private static final By LOGIN_ENTRY_BUTTON = By.xpath(
+			"//span[normalize-space()='Login']"
+					+ " | //div[normalize-space()='Login']"
+					+ " | //button[normalize-space()='Login']"
+					+ " | //*[@tabindex='0' and (.//span[normalize-space()='Login'] or .//div[normalize-space()='Login'])]");
 	private static final By REGISTER_LINK = By.xpath("//span[contains(text(),'Register')]");
 	private static final By NAME_FIELD = By.xpath("//input[@placeholder='Name']");
 	private static final By USERNAME_FIELD = By.xpath("//input[@placeholder='Username']");
@@ -72,11 +79,48 @@ public class RegistrationPage extends BasePage {
 	}
 
 	public void openLogin() {
-		click(HOME_LOGIN_BUTTON);
+		new DashboardPage(driver).acceptCookiesIfPresent();
+
+		if (new LoginPage(driver).isOnLoginPage()) {
+			return;
+		}
+
+		if (clickVisibleLoginEntry(LOGIN_ENTRY_BUTTON)) {
+			return;
+		}
+
+		if (clickVisibleLoginEntry(HOME_LOGIN_BUTTON)) {
+			return;
+		}
+
+		if (openDirectRoute("/login") || openDirectRoute("/signin") || openDirectRoute("/sign-in")
+				|| openDirectRoute("/auth/login")) {
+			return;
+		}
+
+		throw new IllegalStateException("Unable to locate a visible Login entry point on the current page.");
 	}
 
 	public void openRegistration() {
-		jsClick(REGISTER_LINK);
+		if (isRegistrationScreenDisplayed()) {
+			return;
+		}
+
+		try {
+			jsClick(REGISTER_LINK);
+			if (isRegistrationScreenDisplayed()) {
+				return;
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Register link click failed, trying direct routes: {0}", e.getMessage());
+		}
+
+		if (openDirectRoute("/register") || openDirectRoute("/signup") || openDirectRoute("/sign-up")
+				|| openDirectRoute("/auth/register")) {
+			return;
+		}
+
+		throw new IllegalStateException("Unable to open the registration page from the current state.");
 	}
 
 	public boolean isRegistrationScreenDisplayed() {
@@ -1171,6 +1215,50 @@ public void acceptTerms() {
 			return false;
 		}
 		return driver.getPageSource().toLowerCase(Locale.ENGLISH).contains(text.toLowerCase(Locale.ENGLISH));
+	}
+
+	private boolean clickVisibleLoginEntry(By locator) {
+		try {
+			for (WebElement element : driver.findElements(locator)) {
+				if (!element.isDisplayed()) {
+					continue;
+				}
+
+				((JavascriptExecutor) driver).executeScript(
+						"arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
+				try {
+					element.click();
+				} catch (Exception e) {
+					((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+				}
+				return true;
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Unable to click login entry for locator {0}: {1}",
+					new Object[] { locator, e.getMessage() });
+		}
+		return false;
+	}
+
+	private boolean openDirectRoute(String path) {
+		String configuredUrl = ConfigReader.getProperty("url", "");
+		if (configuredUrl.isBlank()) {
+			return false;
+		}
+
+		try {
+			driver.get(buildCandidateUrl(configuredUrl, path));
+			return new LoginPage(driver).isOnLoginPage() || isRegistrationScreenDisplayed()
+					|| driver.getCurrentUrl().toLowerCase(Locale.ENGLISH).contains(path.replace("/", ""));
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Direct route failed for {0}: {1}", new Object[] { path, e.getMessage() });
+			return false;
+		}
+	}
+
+	private String buildCandidateUrl(String baseUrl, String candidatePath) {
+		URI uri = URI.create(baseUrl);
+		return uri.getScheme() + "://" + uri.getAuthority() + candidatePath;
 	}
 
 	private String firstNonBlank(String... values) {

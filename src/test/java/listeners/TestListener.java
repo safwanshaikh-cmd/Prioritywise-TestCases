@@ -53,20 +53,21 @@ public class TestListener implements ITestListener {
 
 	@Override
 	public void onTestStart(ITestResult result) {
-		ExtentTest extentTest = extent.createTest(result.getMethod().getMethodName());
+		String testName = buildTestName(result);
+		ExtentTest extentTest = extent.createTest(testName);
 		test.set(extentTest);
-		LOGGER.info("STARTED: " + result.getMethod().getMethodName());
+		LOGGER.info("STARTED: " + testName);
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		test.get().pass("Test Passed");
-		LOGGER.info("PASSED: " + result.getMethod().getMethodName());
+		LOGGER.info("PASSED: " + buildTestName(result));
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		LOGGER.severe("FAILED: " + result.getMethod().getMethodName());
+		LOGGER.severe("FAILED: " + buildTestName(result));
 		test.get().fail(result.getThrowable());
 
 		try {
@@ -82,7 +83,13 @@ public class TestListener implements ITestListener {
 	@Override
 	public void onTestSkipped(ITestResult result) {
 		test.get().skip("Test Skipped");
-		LOGGER.warning("SKIPPED: " + result.getMethod().getMethodName());
+		if (result.getThrowable() != null) {
+			test.get().skip(result.getThrowable());
+			LOGGER.log(Level.WARNING, "SKIPPED: {0} | Reason: {1}",
+					new Object[] { buildTestName(result), result.getThrowable().getMessage() });
+		} else {
+			LOGGER.warning("SKIPPED: " + buildTestName(result));
+		}
 	}
 
 	@Override
@@ -94,5 +101,29 @@ public class TestListener implements ITestListener {
 	public void onFinish(ITestContext context) {
 		extent.flush();
 		LOGGER.info("===== Test Execution Completed =====");
+	}
+
+	private String buildTestName(ITestResult result) {
+		String className = result.getTestClass() == null ? "" : result.getTestClass().getRealClass().getSimpleName();
+		String methodName = result.getMethod() == null ? "unknown" : result.getMethod().getMethodName();
+		String baseName = className.isBlank() ? methodName : className + "." + methodName;
+
+		Object[] parameters = result.getParameters();
+		if ("MasterTest".equals(className) && parameters != null && parameters.length >= 3) {
+			String tcId = valueOf(parameters[0]);
+			String scenario = valueOf(parameters[2]);
+			if (!tcId.isBlank() && !scenario.isBlank()) {
+				return baseName + " [" + tcId + " - " + scenario + "]";
+			}
+			if (!tcId.isBlank()) {
+				return baseName + " [" + tcId + "]";
+			}
+		}
+
+		return baseName;
+	}
+
+	private String valueOf(Object value) {
+		return value == null ? "" : String.valueOf(value).trim();
 	}
 }

@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\safwan\AppData\Local\Temp\testng-eclipse-846248791\testng-customsuite.xml</span>
+                    <span>C:\Users\safwan\AppData\Local\Temp\testng-eclipse-1012128975\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.RegistrationTests" class="method navigator-link" hash-for-method="verifyDatabaseLatency">verifyDatabaseLatency</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="tests.RegistrationTests" class="method navigator-link" hash-for-method="verifyValidRegistration">verifyValidRegistration</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -126,9 +126,9 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="verifyDatabaseLatency">
-                  </a> <!-- verifyDatabaseLatency -->
-                  <span class="method-name">verifyDatabaseLatency</span>
+                  <a name="verifyValidRegistration">
+                  </a> <!-- verifyValidRegistration -->
+                  <span class="method-name">verifyValidRegistration</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -136,7 +136,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\safwan\AppData\Local\Temp\testng-eclipse-846248791\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\safwan\AppData\Local\Temp\testng-eclipse-1012128975\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -147,7 +147,7 @@
     &lt;classes&gt;
       &lt;class name=&quot;tests.RegistrationTests&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;verifyDatabaseLatency&quot;/&gt;
+          &lt;include name=&quot;verifyValidRegistration&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- tests.RegistrationTests --&gt;
     &lt;/classes&gt;
@@ -174,10 +174,10 @@
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="test-group">
-              <span class="test-group-name">edge</span>
+              <span class="test-group-name">positive</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">verifyDatabaseLatency</span>
+                <span class="method-in-group-name">verifyValidRegistration</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -199,14 +199,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'verifyDatabaseLatency')
+data.setCell(0, 1, 'verifyValidRegistration')
 data.setCell(0, 2, 'tests.RegistrationTests')
-data.setCell(0, 3, 33546);
+data.setCell(0, 3, 48291);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 33 seconds</span>
+              <span class="suite-total-time">Total running time: 48 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -246,6 +246,8 @@ return data;
                 <span class="ignored-method-name">verifyUppercaseEmail</span>
                 <br/>
                 <span class="ignored-method-name">verifyEmailMissingDomain</span>
+                <br/>
+                <span class="ignored-method-name">verifyDatabaseLatency</span>
                 <br/>
                 <span class="ignored-method-name">verifyBrowserRefresh</span>
                 <br/>
@@ -363,8 +365,6 @@ return data;
                 <br/>
                 <span class="ignored-method-name">verifyEmailValid</span>
                 <br/>
-                <span class="ignored-method-name">verifyValidRegistration</span>
-                <br/>
                 <span class="ignored-method-name">verifyFieldMinLength</span>
                 <br/>
                 <span class="ignored-method-name">verifyAccessibilityScreenReader</span>
@@ -414,15 +414,15 @@ return data;
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
                 <span class="method-name">initRegistrationPage</span>
-                <span class="method-start">23121 ms</span>
+                <span class="method-start">17526 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">verifyDatabaseLatency</span>
-                <span class="method-start">24208 ms</span>
+                <span class="method-name">verifyValidRegistration</span>
+                <span class="method-start">82922 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">57770 ms</span>
+                <span class="method-start">131220 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

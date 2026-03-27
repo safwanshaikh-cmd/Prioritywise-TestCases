@@ -21,7 +21,10 @@ public class DashboardPage extends BasePage {
 
 	private static final Logger LOGGER = Logger.getLogger(DashboardPage.class.getName());
 	private static final By BOOK_IMAGES = By.xpath("//img[contains(@src,'sonarplay')]");
-	private static final By COOKIE_ACCEPT_BUTTON = By.xpath("//button[contains(text(),'Accept Cookies')]");
+	private static final By COOKIE_ACCEPT_BUTTON = By.xpath(
+			"//button[contains(normalize-space(.),'Accept Cookies')]"
+					+ " | //div[@tabindex='0' and contains(normalize-space(.),'Accept Cookies')]"
+					+ " | //*[@role='button' and contains(normalize-space(.),'Accept Cookies')]");
 	private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(10);
 	private static final Duration SHORT_TIMEOUT = Duration.ofSeconds(3);
 
@@ -55,10 +58,16 @@ public class DashboardPage extends BasePage {
 	public void acceptCookiesIfPresent() {
 		try {
 			WebDriverWait shortWait = new WebDriverWait(driver, SHORT_TIMEOUT);
-			WebElement acceptButton = shortWait.until(ExpectedConditions.presenceOfElementLocated(COOKIE_ACCEPT_BUTTON));
+			WebElement acceptButton = shortWait.until(ExpectedConditions.visibilityOfElementLocated(COOKIE_ACCEPT_BUTTON));
 
 			if (acceptButton.isDisplayed()) {
-				acceptButton.click();
+				((JavascriptExecutor) driver).executeScript(
+						"arguments[0].scrollIntoView({block:'center', inline:'nearest'});", acceptButton);
+				try {
+					acceptButton.click();
+				} catch (Exception e) {
+					((JavascriptExecutor) driver).executeScript("arguments[0].click();", acceptButton);
+				}
 				LOGGER.info("Cookie consent accepted.");
 			}
 		} catch (Exception e) {

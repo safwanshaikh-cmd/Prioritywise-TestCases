@@ -33,6 +33,15 @@ public class PaymentPage extends BasePage {
 		LOGGER.info("Razorpay option selected");
 	}
 
+	public boolean isPaymentPageLoaded() {
+		try {
+			return wait.waitForElementVisible(RAZORPAY_BTN).isDisplayed();
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Payment page is not loaded: {0}", e.getMessage());
+			return false;
+		}
+	}
+
 	public void enterCardDetails(String card, String expiry, String cvv) {
 		type(CARD_NUMBER, card);
 		type(EXPIRY_DATE, expiry);
@@ -46,6 +55,21 @@ public class PaymentPage extends BasePage {
 	public void makePayment(String card, String expiry, String cvv) {
 		enterCardDetails(card, expiry, cvv);
 		clickPay();
+	}
+
+	public void refreshPaymentPage() {
+		driver.navigate().refresh();
+		LOGGER.info("Payment page refreshed");
+	}
+
+	public boolean isPaymentPageStableAfterRefresh() {
+		try {
+			refreshPaymentPage();
+			return isPaymentPageLoaded() || driver.getCurrentUrl().toLowerCase().contains("payment");
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Payment page was not stable after refresh: {0}", e.getMessage());
+			return false;
+		}
 	}
 
 	public boolean isPaymentFailed() {

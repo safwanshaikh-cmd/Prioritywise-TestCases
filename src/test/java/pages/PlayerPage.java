@@ -103,6 +103,17 @@ public class PlayerPage extends BasePage {
 		wait.until(driver -> isAudioPaused());
 	}
 
+	public void waitForPlayControlsReady() {
+		wait.until(ExpectedConditions.or(ExpectedConditions.presenceOfElementLocated(PLAY_AUDIO_BTN),
+				ExpectedConditions.presenceOfElementLocated(PAUSE_PLAY_BTN),
+				ExpectedConditions.presenceOfElementLocated(FILE_EXAMPLE_MP3)));
+	}
+
+	public boolean isPlayerResponsive() {
+		return driver.findElements(PLAY_AUDIO_BTN).size() > 0 || driver.findElements(PAUSE_PLAY_BTN).size() > 0
+				|| driver.findElements(FILE_EXAMPLE_MP3).size() > 0;
+	}
+
 	// ================= FORWARD / BACKWARD =================
 
 	/**
@@ -123,6 +134,18 @@ public class PlayerPage extends BasePage {
 
 		scrollIntoView(backward);
 		clickWithJS(backward);
+	}
+
+	public void clickNextChapter() {
+		WebElement nextChapter = wait.until(ExpectedConditions.presenceOfElementLocated(FORWARD_BTN));
+		scrollIntoView(nextChapter);
+		clickWithJS(nextChapter);
+	}
+
+	public void clickPreviousChapter() {
+		WebElement previousChapter = wait.until(ExpectedConditions.presenceOfElementLocated(BACKWARD_BTN));
+		scrollIntoView(previousChapter);
+		clickWithJS(previousChapter);
 	}
 
 	/**

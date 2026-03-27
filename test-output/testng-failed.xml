@@ -6,9 +6,16 @@
       <class name="tests.RegistrationTests">
         <methods>
           <include name="setup"/>
+          <include name="verifyNameWithNumbers"/>
+          <include name="verifyFirefoxBrowserRegistration"/>
+          <include name="verifyDuplicateUsernameRegistration"/>
           <include name="tearDown"/>
+          <include name="verifyEdgeBrowserRegistration"/>
           <include name="initRegistrationPage"/>
-          <include name="verifyEmojiInputFields"/>
+          <include name="verifyUsernameSpecialCharacters"/>
+          <include name="verifyUsernameWithSpaces"/>
+          <include name="verifyNewsletterStorePreference"/>
+          <include name="verifyConfirmPasswordWithSpaces"/>
         </methods>
       </class> <!-- tests.RegistrationTests -->
     </classes>

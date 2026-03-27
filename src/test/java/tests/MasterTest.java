@@ -9,6 +9,7 @@ import dataprovider.TestDataProvider;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.PlayerPage;
+import utils.ConfigReader;
 
 /**
  * Master Test Class - Executes all modules based on Excel data
@@ -18,6 +19,8 @@ public class MasterTest extends BaseTest {
 	@Test(dataProvider = "testdata", dataProviderClass = TestDataProvider.class)
 	public void runTests(String tcId, String module, String scenario, String email, String password, String card,
 			String expiry, String action, String expected, String priority, String run) {
+
+		resetApplicationState();
 
 		LoginPage login = new LoginPage(driver);
 		DashboardPage dashboard = new DashboardPage(driver);
@@ -55,6 +58,19 @@ public class MasterTest extends BaseTest {
 		} catch (Exception e) {
 			logError("Test Failed: " + tcId + " | Error: " + e.getMessage());
 			throw e;
+		}
+	}
+
+	private void resetApplicationState() {
+		String url = ConfigReader.getProperty("url");
+		if (url != null && !url.isBlank()) {
+			driver.get(url);
+		}
+
+		try {
+			new DashboardPage(driver).acceptCookiesIfPresent();
+		} catch (Exception e) {
+			log("Cookie consent not present during reset.");
 		}
 	}
 
