@@ -66,4 +66,18 @@ public class ConfigReader {
 			return defaultValue;
 		}
 	}
+
+	/**
+	 * Force reload properties from file (useful when config is updated during tests)
+	 */
+	public static void reload() {
+		try (FileInputStream fis = new FileInputStream(CONFIG_PATH)) {
+			prop.clear();
+			prop.load(fis);
+			LOGGER.log(Level.INFO, "Configuration reloaded from: {0}", CONFIG_PATH);
+		} catch (IOException e) {
+			LOGGER.log(Level.WARNING, "Unable to reload configuration from {0}: {1}",
+					new Object[] { CONFIG_PATH, e.getMessage() });
+		}
+	}
 }

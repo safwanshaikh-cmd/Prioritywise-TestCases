@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn clean:*)",
+      "Bash(sed -i '882s/0/-1/' /mnt/c/Users/safwan/eclipse-workspace-Prioritywise-TestCases/src/test/java/tests/DashboardTests.java)",
+      "Bash(sed -i '883s/0/-1/' /mnt/c/Users/safwan/eclipse-workspace-Prioritywise-TestCases/src/test/java/tests/DashboardTests.java)",
+      "Bash(sed -i 's/normalNetwork\\\\.put\\(\"\"downloadThroughput\"\", 0\\);/normalNetwork.put\\(\"\"downloadThroughput\"\", -1\\);/g' /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/src/test/java/tests/DashboardTests.java)",
+      "Bash(sed -i 's/normalNetwork\\\\.put\\(\"\"uploadThroughput\"\", 0\\);/normalNetwork.put\\(\"\"uploadThroughput\"\", -1\\);/g' /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/src/test/java/tests/DashboardTests.java)",
+      "Bash(sed -i '838,894d' /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/src/test/java/tests/DashboardTests.java)",
+      "Bash(sed -i '838r /tmp/cdp_fix.txt' /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/src/test/java/tests/DashboardTests.java)",
+      "Bash(sed -i '100,103d' /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/src/test/java/pages/DashboardPage.java)",
+      "Bash(sed -i '100a\\\\\tprivate static final By LOGOUT_BUTTON = By.cssSelector\\(\"\"[data-testid=''''button_logout'''']\"\"\\);' /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/src/test/java/pages/DashboardPage.java)",
+      "Bash(sed -i '100,102d' src/test/java/pages/DashboardPage.java)",
+      "Bash(sed -i '99r /tmp/fix_logout.txt' src/test/java/pages/DashboardPage.java)",
+      "Bash(sed -i '489,498d' src/test/java/pages/DashboardPage.java)",
+      "Bash(sed -i '488r /tmp/update_logout.txt' src/test/java/pages/DashboardPage.java)"
+    ]
+  }
+}

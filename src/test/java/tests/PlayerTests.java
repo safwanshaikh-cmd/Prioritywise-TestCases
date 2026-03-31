@@ -4,20 +4,39 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.SkipException;
 
 import pages.DashboardPage;
+import pages.LoginPage;
 import pages.PlayerPage;
 import listeners.RetryAnalyzer;
+import utils.ConfigReader;
 
 public class PlayerTests extends BaseTest {
 
 	private DashboardPage dashboard;
 	private PlayerPage player;
+	private LoginPage login;
 
 	// 🔥 COMMON SETUP (removes duplication)
 	@BeforeMethod(alwaysRun = true)
 	public void setup() {
 		super.setup();
+
+		// Login first before accessing books
+		String email = ConfigReader.getProperty("login.validEmail");
+		String password = ConfigReader.getProperty("login.validPassword");
+
+		if (email == null || email.isBlank() || password == null || password.isBlank()) {
+			throw new SkipException(
+					"Set login.validEmail and login.validPassword in config.properties to run player tests. Books require login to access.");
+		}
+
+		login = new LoginPage(driver);
+		login.openLogin();
+		login.loginUser(email, password);
+		login.clickNextAfterLogin();
+
 		dashboard = new DashboardPage(driver);
 		player = new PlayerPage(driver);
 

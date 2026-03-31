@@ -2,31 +2,35 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-03-27T10:51:05 GST" name="Default suite" finished-at="2026-03-27T10:53:17 GST" duration-ms="131912">
+  <suite started-at="2026-03-31T16:10:04 GST" name="Default suite" finished-at="2026-03-31T16:11:32 GST" duration-ms="87791">
     <groups>
-      <group name="positive">
-        <method signature="RegistrationTests.verifyValidRegistration()[pri:1, instance:tests.RegistrationTests@3d34d211]" name="verifyValidRegistration" class="tests.RegistrationTests"/>
-      </group> <!-- positive -->
     </groups>
-    <test started-at="2026-03-27T10:51:05 GST" name="Default test" finished-at="2026-03-27T10:53:17 GST" duration-ms="131912">
-      <class name="tests.RegistrationTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.RegistrationTests@3d34d211]" started-at="2026-03-27T10:51:05 GST" name="setup" finished-at="2026-03-27T10:51:23 GST" duration-ms="17523" status="PASS">
+    <test started-at="2026-03-31T16:10:04 GST" name="Default test" finished-at="2026-03-31T16:11:32 GST" duration-ms="87791">
+      <class name="tests.ConsumerCategoriesTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerCategoriesTests@4116aac9]" started-at="2026-03-31T16:10:05 GST" name="setup" finished-at="2026-03-31T16:10:18 GST" duration-ms="13630" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="initRegistrationPage()[pri:0, instance:tests.RegistrationTests@3d34d211]" started-at="2026-03-27T10:51:23 GST" name="initRegistrationPage" finished-at="2026-03-27T10:52:28 GST" duration-ms="65395" status="PASS">
+        <test-method is-config="true" signature="setup(java.lang.reflect.Method)[pri:0, instance:tests.ConsumerCategoriesTests@4116aac9]" started-at="2026-03-31T16:10:18 GST" name="setup" finished-at="2026-03-31T16:11:26 GST" duration-ms="67669" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void tests.ConsumerCategoriesTests.verifyClickingCategoryOpensCategoryPage()]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- initRegistrationPage -->
-        <test-method signature="verifyValidRegistration()[pri:1, instance:tests.RegistrationTests@3d34d211]" started-at="2026-03-27T10:52:28 GST" name="verifyValidRegistration" finished-at="2026-03-27T10:53:16 GST" duration-ms="48291" status="PASS">
+        </test-method> <!-- setup -->
+        <test-method signature="verifyClickingCategoryOpensCategoryPage()[pri:160, instance:tests.ConsumerCategoriesTests@4116aac9]" started-at="2026-03-31T16:11:26 GST" name="verifyClickingCategoryOpensCategoryPage" finished-at="2026-03-31T16:11:32 GST" duration-ms="5769" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyValidRegistration -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.RegistrationTests@3d34d211]" started-at="2026-03-27T10:53:16 GST" name="tearDown" finished-at="2026-03-27T10:53:17 GST" duration-ms="419" status="PASS">
+        </test-method> <!-- verifyClickingCategoryOpensCategoryPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerCategoriesTests@4116aac9]" started-at="2026-03-31T16:11:32 GST" name="tearDown" finished-at="2026-03-31T16:11:32 GST" duration-ms="540" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- tests.RegistrationTests -->
+      </class> <!-- tests.ConsumerCategoriesTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

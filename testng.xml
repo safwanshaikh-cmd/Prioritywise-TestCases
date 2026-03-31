@@ -1,14 +1,12 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-
-<suite name="SonarPlay Automation Suite" verbose="1">
-	<listeners>
-		<listener class-name="listeners.TestListener" />
-		<listener class-name="listeners.RetryListener" />
-	</listeners>
-
-	<test name="Registration Module Tests">
+<suite name="Dashboard Suite">
+	<test name="Dashboard Tests">
 		<classes>
-			<class name="tests.RegistrationTests" />
+			<class name="tests.DashboardTests">
+				<methods>
+					<include name="verifyRecentlyPlayedVisible" />
+				</methods>
+			</class>
 		</classes>
 	</test>
 </suite>

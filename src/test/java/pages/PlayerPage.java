@@ -15,7 +15,6 @@ import base.BasePage;
 public class PlayerPage extends BasePage {
 
 	private final WebDriverWait wait;
-	
 
 	// ================= LOCATORS =================
 

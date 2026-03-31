@@ -14,6 +14,7 @@ import factory.DriverFactory;
 import listeners.RetryAnalyzer;
 import pages.DashboardPage;
 import pages.LoginPage;
+import pages.PlayerPage;
 import utils.ConfigReader;
 
 /**
@@ -29,6 +30,31 @@ public class LoginTests extends BaseTest {
 
 	private String getConfiguredPassword() {
 		return ConfigReader.getProperty("login.validPassword");
+	}
+
+	// Helper methods for different account types
+	private String getConsumerEmail() {
+		return ConfigReader.getProperty("consumer.email", getConfiguredEmail());
+	}
+
+	private String getConsumerPassword() {
+		return ConfigReader.getProperty("consumer.password", getConfiguredPassword());
+	}
+
+	private String getUploaderEmail() {
+		return ConfigReader.getProperty("uploader.email", getConfiguredEmail());
+	}
+
+	private String getUploaderPassword() {
+		return ConfigReader.getProperty("uploader.password", getConfiguredPassword());
+	}
+
+	private String getAdminEmail() {
+		return ConfigReader.getProperty("admin.email", getConfiguredEmail());
+	}
+
+	private String getAdminPassword() {
+		return ConfigReader.getProperty("admin.password", getConfiguredPassword());
 	}
 
 	private void skipIfValidCredentialsMissing() {
@@ -405,4 +431,5 @@ public class LoginTests extends BaseTest {
 
 		login.clickNextAfterLogin();
 	}
+
 }

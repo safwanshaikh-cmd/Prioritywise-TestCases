@@ -22,20 +22,16 @@ public class LoginPage extends BasePage {
 	private static final Logger LOGGER = Logger.getLogger(LoginPage.class.getName());
 
 	private static final By LOGIN_BUTTON_HOME = By.xpath(
-			"(//div[@class='css-g5y9jx r-1i6wzkk r-lrvibr r-1loqt21 r-1otgn73 r-1awozwy r-9oks40 r-1tw7wh r-eu3ka r-1777fci r-uhung1 r-3o4zer'])[1]");
-	private static final By LOGIN_ENTRY_BUTTON = By.xpath(
-			"//span[normalize-space()='Login']"
-					+ " | //div[normalize-space()='Login']"
-					+ " | //button[normalize-space()='Login']"
-					+ " | //*[@tabindex='0' and (.//span[normalize-space()='Login'] or .//div[normalize-space()='Login'])]");
-	private static final By MENU_BUTTON = By.xpath(
-			"//button[@aria-label='Menu' or @aria-label='menu' or @aria-label='Open menu']"
+			"//span[normalize-space()='Login'] | //div[normalize-space()='Login'] | //button[normalize-space()='Login']");
+	private static final By LOGIN_ENTRY_BUTTON = By.xpath("//span[normalize-space()='Login']"
+			+ " | //div[normalize-space()='Login']" + " | //button[normalize-space()='Login']"
+			+ " | //*[@tabindex='0' and (.//span[normalize-space()='Login'] or .//div[normalize-space()='Login'])]");
+	private static final By MENU_BUTTON = By
+			.xpath("//button[@aria-label='Menu' or @aria-label='menu' or @aria-label='Open menu']"
 					+ " | //*[@role='button' and (@aria-label='Menu' or @aria-label='menu' or @aria-label='Open menu')]"
 					+ " | //*[@tabindex='0' and (@aria-label='Menu' or @aria-label='menu' or @aria-label='Open menu')]");
-	private static final By LEFT_NAV_MENU_BUTTON = By.xpath(
-			"(//button[.//*[name()='svg']])[1]"
-					+ " | (//*[@role='button'][.//*[name()='svg']])[1]"
-					+ " | (//*[@tabindex='0'][.//*[name()='svg']])[1]");
+	private static final By LEFT_NAV_MENU_BUTTON = By.xpath("(//button[.//*[name()='svg']])[1]"
+			+ " | (//*[@role='button'][.//*[name()='svg']])[1]" + " | (//*[@tabindex='0'][.//*[name()='svg']])[1]");
 	private static final By EMAIL_FIELD = By.xpath("//input[@placeholder='Email']");
 	private static final By PASSWORD_FIELD = By.xpath("//input[@placeholder='Password']");
 	private static final By RESET_EMAIL_FIELD = By.xpath("//input[@placeholder='Enter your email']");
@@ -88,6 +84,10 @@ public class LoginPage extends BasePage {
 			return;
 		}
 
+		if (openLoginViaDirectRoute()) {
+			return;
+		}
+
 		if (clickIfVisible(LOGIN_TEXT_BUTTON)) {
 			return;
 		}
@@ -102,14 +102,6 @@ public class LoginPage extends BasePage {
 
 		if (clickIfVisible(LEFT_NAV_MENU_BUTTON)
 				&& (clickIfVisible(LOGIN_TEXT_BUTTON) || clickIfVisible(LOGIN_ENTRY_BUTTON))) {
-			return;
-		}
-
-		if (clickIfVisible(LOGIN_BUTTON_HOME)) {
-			return;
-		}
-
-		if (openLoginViaDirectRoute()) {
 			return;
 		}
 
@@ -413,8 +405,8 @@ public class LoginPage extends BasePage {
 
 	private void scrollIntoView(WebElement element) {
 		try {
-			((JavascriptExecutor) driver).executeScript(
-					"arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
+			((JavascriptExecutor) driver)
+					.executeScript("arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Unable to scroll login element into view: {0}", e.getMessage());
 		}
