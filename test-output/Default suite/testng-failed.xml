@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.DashboardTests">
+      <class name="tests.HeaderFooterTests">
         <methods>
           <include name="setup"/>
+          <include name="verifyClickingLogoRedirectsToDashboard"/>
           <include name="tearDown"/>
-          <include name="verifyDashboardUnderSlowNetwork"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- tests.DashboardTests -->
+      </class> <!-- tests.HeaderFooterTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
