@@ -90,6 +90,124 @@ public class DashboardPage extends BasePage {
 					+ " or contains(translate(normalize-space(.),'FAVOURITE','favourite'),'favourite')"
 					+ " or contains(translate(normalize-space(.),'LIKED','liked'),'liked')"
 					+ " or contains(translate(normalize-space(.),'SAVED','saved'),'saved')]");
+	private static final By BANNER_SECTION = By.xpath(
+			"//*[contains(@data-testid,'banner') or contains(@data-testid,'carousel')"
+					+ " or contains(translate(@class,'BANNER','banner'),'banner')"
+					+ " or contains(translate(@class,'CAROUSEL','carousel'),'carousel')"
+					+ " or contains(translate(@class,'SLIDER','slider'),'slider')]");
+	private static final By BANNER_IMAGES = By.xpath(
+			"//*[contains(@data-testid,'banner') or contains(@data-testid,'carousel')"
+					+ " or contains(translate(@class,'BANNER','banner'),'banner')"
+					+ " or contains(translate(@class,'CAROUSEL','carousel'),'carousel')"
+					+ " or contains(translate(@class,'SLIDER','slider'),'slider')]//img"
+					+ " | //img[contains(translate(@src,'BANNER','banner'),'banner') or contains(translate(@alt,'BANNER','banner'),'banner')]");
+	private static final By BANNER_PREVIOUS_ARROW = By.xpath(
+			"(//*[contains(@data-testid,'banner') or contains(@data-testid,'carousel') or contains(translate(@class,'BANNER','banner'),'banner')]"
+					+ "//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(@aria-label,'PREVIOUS','previous'),'previous')"
+					+ " or contains(translate(@aria-label,'LEFT','left'),'left')"
+					+ " or contains(translate(normalize-space(.),'PREV','prev'),'prev')"
+					+ " or contains(translate(normalize-space(.),'BACK','back'),'back')])[1]");
+	private static final By BANNER_NEXT_ARROW = By.xpath(
+			"(//*[contains(@data-testid,'banner') or contains(@data-testid,'carousel') or contains(translate(@class,'BANNER','banner'),'banner')]"
+					+ "//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(@aria-label,'NEXT','next'),'next')"
+					+ " or contains(translate(@aria-label,'RIGHT','right'),'right')"
+					+ " or contains(translate(normalize-space(.),'NEXT','next'),'next')"
+					+ " or contains(translate(normalize-space(.),'MORE','more'),'more')])[1]");
+	private static final By BANNER_INDICATORS = By.xpath(
+			"//*[contains(@data-testid,'banner') or contains(@data-testid,'carousel') or contains(translate(@class,'BANNER','banner'),'banner')]"
+					+ "//*[contains(@data-testid,'dot') or contains(@data-testid,'indicator')"
+					+ " or contains(translate(@class,'INDICATOR','indicator'),'indicator')"
+					+ " or contains(translate(@class,'DOT','dot'),'dot')"
+					+ " or @aria-current='true' or @aria-selected='true']");
+	private static final By BOOK_DETAILS_PAGE = By.xpath(
+			"//*[contains(@data-testid,'book_details') or contains(@data-testid,'show_details')"
+					+ " or contains(translate(@class,'DETAIL','detail'),'detail')]"
+					+ " | //*[contains(translate(normalize-space(.),'PLAY AUDIO','play audio'),'play audio')]"
+					+ " | //*[contains(translate(normalize-space(.),'SUMMARY','summary'),'summary')]"
+					+ " | //*[contains(translate(normalize-space(.),'CHAPTER','chapter'),'chapter')]");
+	private static final By BOOK_TITLE = By.xpath(
+			"//*[@data-testid='text_book_title' or @data-testid='book_title' or @data-testid='show_title']"
+					+ " | //h1 | //h2");
+	private static final By BOOK_COVER_IMAGE = By.xpath(
+			"//*[contains(@data-testid,'book_details') or contains(@data-testid,'show_details')"
+					+ " or contains(translate(@class,'DETAIL','detail'),'detail')]//img"
+					+ " | //img[contains(@src,'cover') or contains(@src,'thumb.php') or contains(@src,'sonarplay')]");
+	private static final By PLACEHOLDER_IMAGE = By.xpath(
+			"//img[contains(translate(@src,'PLACEHOLDER','placeholder'),'placeholder')"
+					+ " or contains(translate(@alt,'PLACEHOLDER','placeholder'),'placeholder')"
+					+ " or contains(translate(@src,'DEFAULT','default'),'default')]");
+	private static final By SHARE_BUTTON = By.xpath(
+			"//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(@aria-label,'SHARE','share'),'share')"
+					+ " or contains(translate(normalize-space(.),'SHARE','share'),'share')"
+					+ " or contains(@data-testid,'share')]");
+	private static final By SHARE_OPTIONS = By.xpath(
+			"//*[contains(translate(normalize-space(.),'COPY LINK','copy link'),'copy link')"
+					+ " or contains(translate(normalize-space(.),'SHARE VIA','share via'),'share via')"
+					+ " or contains(translate(normalize-space(.),'WHATSAPP','whatsapp'),'whatsapp')"
+					+ " or contains(translate(normalize-space(.),'FACEBOOK','facebook'),'facebook')"
+					+ " or contains(translate(normalize-space(.),'TWITTER','twitter'),'twitter')]");
+	private static final By REPORT_BUTTON = By.xpath(
+			"//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(normalize-space(.),'REPORT','report'),'report')"
+					+ " or contains(translate(@aria-label,'REPORT','report'),'report')"
+					+ " or contains(@data-testid,'report')]");
+	private static final By REPORT_FORM = By.xpath(
+			"//*[contains(translate(normalize-space(.),'REPORT REASON','report reason'),'report reason')"
+					+ " or contains(translate(normalize-space(.),'WHY ARE YOU REPORTING','why are you reporting'),'why are you reporting')"
+					+ " or contains(@data-testid,'report_modal') or contains(@data-testid,'report_reason')]");
+	private static final By REPORT_DUPLICATE_MESSAGE = By.xpath(
+			"//*[contains(translate(normalize-space(.),'ALREADY REPORTED','already reported'),'already reported')"
+					+ " or contains(translate(normalize-space(.),'ALREADY SUBMITTED','already submitted'),'already submitted')"
+					+ " or contains(translate(normalize-space(.),'DUPLICATE','duplicate'),'duplicate')]");
+	private static final By REVIEWS_SECTION = By.xpath(
+			"//*[contains(translate(normalize-space(.),'REVIEWS','reviews'),'reviews')]"
+					+ " | //*[@data-testid='section_reviews' or @data-testid='book_reviews']");
+	private static final By REVIEW_ITEMS = By.xpath(
+			"//*[@data-testid='review_item' or contains(@data-testid,'review_card')]"
+					+ " | //*[contains(translate(@class,'REVIEW','review'),'review') and not(self::input) and not(self::textarea)]");
+	private static final By NO_REVIEWS_MESSAGE = By.xpath(
+			"//*[contains(translate(normalize-space(.),'NO REVIEWS AVAILABLE','no reviews available'),'no reviews available')"
+					+ " or contains(translate(normalize-space(.),'NO REVIEWS','no reviews'),'no reviews')]");
+	private static final By EPISODES_SECTION = By.xpath(
+			"//*[contains(translate(normalize-space(.),'EPISODE','episode'),'episode')"
+					+ " or contains(translate(normalize-space(.),'CHAPTER','chapter'),'chapter')]"
+					+ " | //*[@data-testid='section_episodes' or @data-testid='section_chapters']");
+	private static final By EPISODE_ITEMS = By.xpath(
+			"//*[@data-testid='episode_item' or @data-testid='chapter_item']"
+					+ " | //*[contains(translate(@class,'EPISODE','episode'),'episode')"
+					+ " or contains(translate(@class,'CHAPTER','chapter'),'chapter')]");
+	private static final By NO_EPISODES_MESSAGE = By.xpath(
+			"//*[contains(translate(normalize-space(.),'NO EPISODES AVAILABLE','no episodes available'),'no episodes available')"
+					+ " or contains(translate(normalize-space(.),'NO CHAPTERS AVAILABLE','no chapters available'),'no chapters available')"
+					+ " or contains(translate(normalize-space(.),'NO EPISODES','no episodes'),'no episodes')"
+					+ " or contains(translate(normalize-space(.),'NO CHAPTERS','no chapters'),'no chapters')]");
+	private static final By DURATION_LABELS = By.xpath(
+			"//*[contains(translate(normalize-space(.),'MIN','min'),'min')"
+					+ " or contains(translate(normalize-space(.),'SEC','sec'),'sec')"
+					+ " or contains(translate(normalize-space(.),'HR','hr'),'hr')"
+					+ " or contains(normalize-space(.),':')]");
+	private static final By CATEGORY_CHIPS = By.xpath(
+			"//*[@data-testid='category_chip' or @data-testid='book_category']"
+					+ " | //*[contains(translate(@class,'CATEGORY','category'),'category')"
+					+ " and not(self::section) and not(self::article)]");
+	private static final By SUMMARY_SECTION = By.xpath(
+			"//*[contains(translate(normalize-space(.),'SUMMARY','summary'),'summary')"
+					+ " or contains(@data-testid,'summary')]");
+	private static final By EMPTY_SUMMARY_MESSAGE = By.xpath(
+			"//*[contains(translate(normalize-space(.),'NO SUMMARY AVAILABLE','no summary available'),'no summary available')"
+					+ " or contains(translate(normalize-space(.),'SUMMARY NOT AVAILABLE','summary not available'),'summary not available')"
+					+ " or contains(translate(normalize-space(.),'NO DESCRIPTION','no description'),'no description')]");
+	private static final By CHAPTER_ITEMS = By.xpath(
+			"//*[@data-testid='chapter_item']"
+					+ " | //*[contains(translate(@class,'CHAPTER','chapter'),'chapter')]");
+	private static final By BACK_BUTTON = By.xpath(
+			"//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(@aria-label,'BACK','back'),'back')"
+					+ " or contains(translate(normalize-space(.),'BACK','back'),'back')"
+					+ " or contains(@data-testid,'back')]");
 
 	// ================= UPLOADER SPECIFIC LOCATORS =================
 	private static final By UPLOAD_BUTTON = By
@@ -585,6 +703,250 @@ public class DashboardPage extends BasePage {
 			LOGGER.log(Level.FINE, "No favorite content found: {0}", e.getMessage());
 			return false;
 		}
+	}
+
+	// ================= DASHBOARD BANNER =================
+
+	public boolean isBannerSectionVisible() {
+		return isAnyElementVisible(BANNER_SECTION) || !getVisibleBannerImages().isEmpty();
+	}
+
+	public int getVisibleBannerCount() {
+		return getVisibleBannerImages().size();
+	}
+
+	public boolean areBannerImagesVisible() {
+		return getVisibleBannerCount() > 0;
+	}
+
+	public boolean areBannerIndicatorsVisible() {
+		return !findVisibleElements(BANNER_INDICATORS).isEmpty();
+	}
+
+	public boolean areBannerNavigationArrowsVisible() {
+		return isAnyElementVisible(BANNER_NEXT_ARROW) || isAnyElementVisible(BANNER_PREVIOUS_ARROW);
+	}
+
+	public String getCurrentBannerIdentifier() {
+		List<WebElement> visibleBanners = getVisibleBannerImages();
+		if (visibleBanners.isEmpty()) {
+			return "";
+		}
+
+		WebElement banner = visibleBanners.get(0);
+		String identifier = firstNonBlank(safeGetAttribute(banner, "src"), safeGetAttribute(banner, "alt"),
+				safeGetAttribute(banner, "data-testid"), banner.getText());
+		return identifier == null ? "" : identifier.trim().toLowerCase();
+	}
+
+	public int getActiveBannerIndicatorIndex() {
+		List<WebElement> indicators = findVisibleElements(BANNER_INDICATORS);
+		for (int index = 0; index < indicators.size(); index++) {
+			WebElement indicator = indicators.get(index);
+			if (isIndicatorActive(indicator)) {
+				return index;
+			}
+		}
+		return indicators.isEmpty() ? -1 : 0;
+	}
+
+	public boolean waitForBannerToAutoRotate(int waitSeconds) {
+		String initialBanner = getCurrentBannerIdentifier();
+		int initialIndicator = getActiveBannerIndicatorIndex();
+		waitForMilliseconds(waitSeconds * 1000L);
+		String rotatedBanner = getCurrentBannerIdentifier();
+		int rotatedIndicator = getActiveBannerIndicatorIndex();
+
+		return (!initialBanner.isBlank() && !rotatedBanner.isBlank() && !initialBanner.equals(rotatedBanner))
+				|| (initialIndicator >= 0 && rotatedIndicator >= 0 && initialIndicator != rotatedIndicator);
+	}
+
+	public boolean clickNextBannerAndVerifyChange() {
+		return clickBannerArrowAndVerifyChange(BANNER_NEXT_ARROW);
+	}
+
+	public boolean clickPreviousBannerAndVerifyChange() {
+		return clickBannerArrowAndVerifyChange(BANNER_PREVIOUS_ARROW);
+	}
+
+	public boolean clickCurrentBannerAndOpenDetails() {
+		List<WebElement> banners = getVisibleBannerImages();
+		if (banners.isEmpty()) {
+			return false;
+		}
+
+		WebElement banner = banners.get(0);
+		scrollIntoView(banner);
+		clickWithJS(banner);
+		waitForMilliseconds(2000);
+		return isBookDetailsPageVisible();
+	}
+
+	// ================= BOOK DETAILS =================
+
+	public boolean isBookDetailsPageVisible() {
+		try {
+			String currentUrl = firstNonBlank(driver.getCurrentUrl(), "").toLowerCase();
+			return currentUrl.contains("book") || currentUrl.contains("show") || currentUrl.contains("detail")
+					|| isAnyElementVisible(BOOK_DETAILS_PAGE);
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Book details page visibility check failed: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public String getBookTitleText() {
+		WebElement title = findFirstVisibleElement(BOOK_TITLE);
+		return title == null ? "" : firstNonBlank(title.getText(), safeGetAttribute(title, "textContent")).trim();
+	}
+
+	public boolean isLongBookTitleDisplayed() {
+		return getBookTitleText().length() >= 30;
+	}
+
+	public boolean isBookCoverImageVisible() {
+		return findFirstVisibleImageSource(BOOK_COVER_IMAGE).length() > 0;
+	}
+
+	public boolean isPlaceholderImageVisible() {
+		return isAnyElementVisible(PLACEHOLDER_IMAGE);
+	}
+
+	public boolean isShareButtonVisible() {
+		return isAnyElementVisible(SHARE_BUTTON);
+	}
+
+	public boolean openShareOptions() {
+		WebElement shareButton = findFirstVisibleElement(SHARE_BUTTON);
+		if (shareButton == null) {
+			return false;
+		}
+
+		scrollIntoView(shareButton);
+		clickWithJS(shareButton);
+		waitForMilliseconds(1500);
+		return isAnyElementVisible(SHARE_OPTIONS) || isShareButtonVisible();
+	}
+
+	public boolean isReportOptionVisible() {
+		return isAnyElementVisible(REPORT_BUTTON);
+	}
+
+	public boolean openReportOption() {
+		WebElement reportButton = findFirstVisibleElement(REPORT_BUTTON);
+		if (reportButton == null) {
+			return false;
+		}
+
+		scrollIntoView(reportButton);
+		clickWithJS(reportButton);
+		waitForMilliseconds(1500);
+		return isAnyElementVisible(REPORT_FORM) || isReportOptionVisible();
+	}
+
+	public boolean hasDuplicateReportProtectionMessage() {
+		return isAnyElementVisible(REPORT_DUPLICATE_MESSAGE);
+	}
+
+	public boolean areReviewsVisible() {
+		return !findVisibleElements(REVIEW_ITEMS).isEmpty() || isAnyElementVisible(REVIEWS_SECTION);
+	}
+
+	public boolean hasNoReviewsMessage() {
+		return isAnyElementVisible(NO_REVIEWS_MESSAGE);
+	}
+
+	public boolean areEpisodesVisible() {
+		return !findVisibleElements(EPISODE_ITEMS).isEmpty() || isAnyElementVisible(EPISODES_SECTION);
+	}
+
+	public boolean hasNoEpisodesMessage() {
+		return isAnyElementVisible(NO_EPISODES_MESSAGE);
+	}
+
+	public boolean areDurationsVisible() {
+		return !findVisibleElements(DURATION_LABELS).isEmpty();
+	}
+
+	public boolean areCategoriesVisible() {
+		return !findVisibleElements(CATEGORY_CHIPS).isEmpty();
+	}
+
+	public String getFirstCategoryText() {
+		WebElement category = findFirstVisibleElement(CATEGORY_CHIPS);
+		return category == null ? "" : firstNonBlank(category.getText(), safeGetAttribute(category, "textContent")).trim();
+	}
+
+	public boolean clickFirstCategoryAndVerifyNavigation() {
+		WebElement category = findFirstVisibleElement(CATEGORY_CHIPS);
+		if (category == null) {
+			return false;
+		}
+
+		String categoryText = firstNonBlank(category.getText(), safeGetAttribute(category, "textContent")).trim()
+				.toLowerCase();
+		scrollIntoView(category);
+		clickWithJS(category);
+		waitForMilliseconds(2000);
+		return isCurrentUrlContainsAny("category", categoryText, "genre");
+	}
+
+	public boolean isSummaryVisible() {
+		WebElement summary = findFirstVisibleElement(SUMMARY_SECTION);
+		if (summary == null) {
+			return false;
+		}
+
+		String text = firstNonBlank(summary.getText(), safeGetAttribute(summary, "textContent")).trim();
+		return !text.isBlank();
+	}
+
+	public boolean hasEmptySummaryMessage() {
+		return isAnyElementVisible(EMPTY_SUMMARY_MESSAGE);
+	}
+
+	public boolean areChaptersVisible() {
+		return !findVisibleElements(CHAPTER_ITEMS).isEmpty() || areEpisodesVisible();
+	}
+
+	public int getVisibleChapterCount() {
+		List<WebElement> chapters = findVisibleElements(CHAPTER_ITEMS);
+		if (!chapters.isEmpty()) {
+			return chapters.size();
+		}
+		return findVisibleElements(EPISODE_ITEMS).size();
+	}
+
+	public boolean clickFirstChapterAndVerifyPlayer() {
+		WebElement chapter = findFirstVisibleElement(CHAPTER_ITEMS);
+		if (chapter == null) {
+			chapter = findFirstVisibleElement(EPISODE_ITEMS);
+		}
+
+		if (chapter == null) {
+			return false;
+		}
+
+		scrollIntoView(chapter);
+		clickWithJS(chapter);
+		waitForMilliseconds(2000);
+		return isBookDetailsPageVisible() || driver.findElements(By.xpath("//audio")).size() > 0
+				|| driver.findElements(By.xpath("//*[contains(translate(normalize-space(.),'PAUSE','pause'),'pause')]"))
+						.size() > 0;
+	}
+
+	public boolean clickBackButtonToDashboard() {
+		WebElement backButton = findFirstVisibleElement(BACK_BUTTON);
+		if (backButton != null) {
+			scrollIntoView(backButton);
+			clickWithJS(backButton);
+			waitForMilliseconds(1500);
+			return waitForDashboardShell();
+		}
+
+		driver.navigate().back();
+		waitForMilliseconds(1500);
+		return waitForDashboardShell();
 	}
 
 	// ================= UPLOADER FUNCTIONALITY =================
@@ -2388,6 +2750,76 @@ public class DashboardPage extends BasePage {
 		}
 
 		return getCurrentUrl();
+	}
+
+	private List<WebElement> getVisibleBannerImages() {
+		List<WebElement> visibleBanners = new ArrayList<>();
+		try {
+			for (WebElement element : driver.findElements(BANNER_IMAGES)) {
+				try {
+					if (!element.isDisplayed()) {
+						continue;
+					}
+
+					String src = firstNonBlank(element.getAttribute("src"), "");
+					if (src.contains("logo") || src.contains("icon")) {
+						continue;
+					}
+
+					visibleBanners.add(element);
+				} catch (Exception e) {
+					// Ignore invalid candidate
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Visible banner lookup failed: {0}", e.getMessage());
+		}
+
+		return visibleBanners;
+	}
+
+	private boolean clickBannerArrowAndVerifyChange(By arrowLocator) {
+		WebElement arrow = findFirstVisibleElement(arrowLocator);
+		if (arrow == null) {
+			return false;
+		}
+
+		String initialBanner = getCurrentBannerIdentifier();
+		int initialIndicator = getActiveBannerIndicatorIndex();
+		scrollIntoView(arrow);
+		clickWithJS(arrow);
+		waitForMilliseconds(1500);
+
+		String updatedBanner = getCurrentBannerIdentifier();
+		int updatedIndicator = getActiveBannerIndicatorIndex();
+		return (!initialBanner.isBlank() && !updatedBanner.isBlank() && !initialBanner.equals(updatedBanner))
+				|| (initialIndicator >= 0 && updatedIndicator >= 0 && initialIndicator != updatedIndicator)
+				|| isBannerSectionVisible();
+	}
+
+	private boolean isIndicatorActive(WebElement indicator) {
+		try {
+			String ariaCurrent = firstNonBlank(indicator.getAttribute("aria-current"), "");
+			String ariaSelected = firstNonBlank(indicator.getAttribute("aria-selected"), "");
+			String className = firstNonBlank(indicator.getAttribute("class"), "").toLowerCase();
+			return "true".equalsIgnoreCase(ariaCurrent) || "true".equalsIgnoreCase(ariaSelected)
+					|| className.contains("active") || className.contains("selected") || className.contains("current");
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private String findFirstVisibleImageSource(By locator) {
+		WebElement image = findFirstVisibleElement(locator);
+		return image == null ? "" : firstNonBlank(image.getAttribute("src"), image.getAttribute("alt")).trim();
+	}
+
+	private String safeGetAttribute(WebElement element, String attribute) {
+		try {
+			return firstNonBlank(element.getAttribute(attribute), "");
+		} catch (Exception e) {
+			return "";
+		}
 	}
 
 	private boolean isAnyElementVisible(By locator) {
