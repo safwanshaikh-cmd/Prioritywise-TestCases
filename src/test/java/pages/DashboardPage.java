@@ -56,6 +56,32 @@ public class DashboardPage extends BasePage {
 	private static final By SEARCH_BUTTON = By
 			.xpath("//button[contains(@aria-label,'search') or @type='submit' or contains(.,'Search')]"
 					+ " | //*[@role='button' and contains(.,'Search')]");
+	private static final By SEARCH_RESULT_ITEMS = By.xpath(
+			"//div[contains(@style,'gap: 10px')]//div[@tabindex='0'][.//img[contains(@src,'thumb.php') or contains(@src,'sonarplay')]]"
+					+ " | //img[contains(@src,'thumb.php')]/ancestor::*[@tabindex='0'][1]"
+					+ " | //img[contains(@src,'sonarplay')]/ancestor::*[@tabindex='0'][1]");
+	private static final By SEARCH_RESULT_IMAGES = By.xpath(
+			"//div[contains(@style,'gap: 10px')]//img[contains(@src,'thumb.php')]"
+					+ " | //img[contains(@src,'thumb.php')]");
+	private static final By SEARCH_SUGGESTIONS = By.xpath(
+			"//*[@role='listbox' or @role='option' or contains(@aria-label,'suggest')"
+					+ " or contains(@class,'suggest') or contains(@data-testid,'suggest')]"
+					+ " | //div[@tabindex='0'][.//img[contains(@src,'thumb.php') or contains(@src,'sonarplay')]]");
+	private static final By SEARCH_CLEAR_BUTTON = By.xpath(
+			"//*[self::button or self::div or self::span]"
+					+ "[contains(translate(@aria-label,'CLEAR','clear'),'clear')"
+					+ " or contains(translate(@data-testid,'CLEAR','clear'),'clear')"
+					+ " or contains(translate(normalize-space(.),'CLEAR','clear'),'clear')]");
+	private static final By SEARCH_VALIDATION_MESSAGE = By.xpath(
+			"//*[contains(translate(normalize-space(.),'REQUIRED','required'),'required')"
+					+ " or contains(translate(normalize-space(.),'ENTER SEARCH','enter search'),'enter search')"
+					+ " or contains(translate(normalize-space(.),'PLEASE ENTER','please enter'),'please enter')"
+					+ " or contains(translate(normalize-space(.),'TYPE SOMETHING','type something'),'type something')]");
+	private static final By SEARCH_RESULTS_COUNT_LABEL = By.xpath(
+			"//*[contains(translate(normalize-space(.),'RESULTS','results'),'results')"
+					+ " and (contains(translate(normalize-space(.),'BOOK','book'),'book')"
+					+ " or contains(translate(normalize-space(.),'SHOW','show'),'show')"
+					+ " or contains(translate(normalize-space(.),'FOUND','found'),'found'))]");
 	private static final By PLAYLIST_WIDGET = By
 			.xpath("//*[contains(translate(normalize-space(.),'PLAYLIST','playlist'),'playlist')"
 					+ " or contains(@href,'playlist')]");
@@ -431,7 +457,18 @@ public class DashboardPage extends BasePage {
 			pageWait.until(ExpectedConditions.visibilityOf(searchInput));
 
 			searchInput.clear();
-			searchInput.sendKeys(keyword);
+			if (containsNonBmpCharacters(keyword)) {
+				((JavascriptExecutor) driver).executeScript(
+						"const el = arguments[0];"
+								+ "const value = arguments[1] == null ? '' : arguments[1];"
+								+ "el.focus();"
+								+ "el.value = value;"
+								+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
+								+ "el.dispatchEvent(new Event('change', { bubbles: true }));",
+						searchInput, keyword);
+			} else {
+				searchInput.sendKeys(keyword);
+			}
 			LOGGER.info("Entered search keyword: " + keyword);
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to enter search keyword: {0}", e.getMessage());
@@ -446,6 +483,7 @@ public class DashboardPage extends BasePage {
 				WebElement searchInput = driver.findElement(SEARCH_INPUT);
 				searchInput.sendKeys(Keys.ENTER);
 				LOGGER.info("Pressed Enter in search field");
+				waitForSearchCompletion();
 				return;
 			} catch (Exception e) {
 				LOGGER.fine("Could not press Enter: " + e.getMessage());
@@ -457,6 +495,7 @@ public class DashboardPage extends BasePage {
 				if (button.isDisplayed()) {
 					clickWithJS(button);
 					LOGGER.info("Clicked search button");
+					waitForSearchCompletion();
 					return;
 				}
 			}
@@ -470,11 +509,8 @@ public class DashboardPage extends BasePage {
 
 	public boolean areSearchResultsDisplayed() {
 		try {
-			// Wait for results to load
-			waitForMilliseconds(2000);
-
-			// Check if any content/book images are visible after search
-			int bookCount = driver.findElements(BOOK_IMAGES).size();
+			waitForSearchCompletion();
+			int bookCount = getVisibleSearchResultCount();
 			LOGGER.info("Found " + bookCount + " books after search");
 
 			return bookCount > 0;
@@ -2061,7 +2097,156 @@ public class DashboardPage extends BasePage {
 	}
 
 	public boolean hasNoSearchResultsMessage() {
+		waitForSearchCompletion();
 		return isAnyElementVisible(NO_SEARCH_RESULTS_MESSAGE);
+	}
+
+	public String getNoSearchResultsMessage() {
+		waitForSearchCompletion();
+		try {
+			WebElement message = findFirstVisibleElement(NO_SEARCH_RESULTS_MESSAGE);
+			return message == null ? "" : firstNonBlank(message.getText());
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "No search results message text not available: {0}", e.getMessage());
+			return "";
+		}
+	}
+
+	public void submitSearch(String keyword) {
+		enterSearchKeyword(keyword);
+		clickSearchButton();
+	}
+
+	public void pressEnterInSearchField() {
+		try {
+			WebElement searchInput = pageWait.until(ExpectedConditions.visibilityOfElementLocated(SEARCH_INPUT));
+			searchInput.sendKeys(Keys.ENTER);
+			waitForSearchCompletion();
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to submit search with Enter: {0}", e.getMessage());
+			throw e;
+		}
+	}
+
+	public void typeSearchKeywordWithoutSubmitting(String keyword) {
+		enterSearchKeyword(keyword);
+		waitForMilliseconds(1000);
+	}
+
+	public void clearSearchField() {
+		try {
+			WebElement searchInput = pageWait.until(ExpectedConditions.visibilityOfElementLocated(SEARCH_INPUT));
+			searchInput.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+			searchInput.sendKeys(Keys.DELETE);
+
+			String currentValue = firstNonBlank(searchInput.getAttribute("value"), searchInput.getDomProperty("value"));
+			if (currentValue != null && !currentValue.isBlank()) {
+				searchInput.clear();
+			}
+
+			if (!getSearchInputValue().isBlank()) {
+				WebElement clearButton = findFirstVisibleElement(SEARCH_CLEAR_BUTTON);
+				if (clearButton != null) {
+					clickWithJS(clearButton);
+					waitForMilliseconds(500);
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to clear search field: {0}", e.getMessage());
+			throw e;
+		}
+	}
+
+	public String getSearchPlaceholderText() {
+		try {
+			WebElement searchInput = pageWait.until(ExpectedConditions.visibilityOfElementLocated(SEARCH_INPUT));
+			return firstNonBlank(searchInput.getAttribute("placeholder"));
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Search placeholder text not available: {0}", e.getMessage());
+			return "";
+		}
+	}
+
+	public boolean hasSearchValidationMessage() {
+		return isAnyElementVisible(SEARCH_VALIDATION_MESSAGE);
+	}
+
+	public boolean hasSearchSuggestions() {
+		try {
+			waitForMilliseconds(1000);
+			return !findVisibleElements(SEARCH_SUGGESTIONS).isEmpty();
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Search suggestions not visible: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public int getVisibleSearchResultCount() {
+		waitForSearchCompletion();
+		return getVisibleSearchResultElements().size();
+	}
+
+	public boolean hasSearchResultsCountLabel() {
+		return isAnyElementVisible(SEARCH_RESULTS_COUNT_LABEL);
+	}
+
+	public void printVisibleSearchResults() {
+		List<WebElement> results = getVisibleSearchResultElements();
+		if (results.isEmpty()) {
+			if (hasNoSearchResultsMessage()) {
+				LOGGER.info("Search listing: no matches found.");
+			} else if (hasSearchValidationMessage()) {
+				LOGGER.info("Search listing: validation message displayed instead of results.");
+			} else {
+				LOGGER.info("Search listing: no visible results were detected.");
+			}
+			return;
+		}
+
+		LOGGER.info("Search listing count: " + results.size());
+		for (int index = 0; index < results.size(); index++) {
+			WebElement result = results.get(index);
+			try {
+				String text = firstNonBlank(result.getText(), result.getAttribute("aria-label"), result.getAttribute("title"),
+						result.getAttribute("alt"));
+				if ((text == null || text.isBlank()) && "img".equalsIgnoreCase(result.getTagName())) {
+					text = firstNonBlank(result.getAttribute("src"), result.getAttribute("alt"));
+				}
+				if (text == null || text.isBlank()) {
+					text = firstNonBlank(result.getAttribute("src"), result.getAttribute("href"), "<no readable label>");
+				}
+				LOGGER.info(String.format("Search result %d: %s", index + 1, text));
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Unable to print search result {0}: {1}",
+						new Object[] { index + 1, e.getMessage() });
+			}
+		}
+	}
+
+	public boolean clickFirstSearchResult() {
+		List<WebElement> results = getVisibleSearchResultElements();
+		if (results.isEmpty()) {
+			LOGGER.fine("No visible search result available to click.");
+			return false;
+		}
+
+		String startingUrl = getCurrentUrl();
+		WebElement firstResult = results.get(0);
+		scrollIntoView(firstResult);
+		clickWithJS(firstResult);
+		waitForMilliseconds(2000);
+
+		return isShowDetailsVisible1() || !startingUrl.equals(getCurrentUrl());
+	}
+
+	public boolean isSearchPageActive() {
+		String currentUrl = getCurrentUrl();
+		return currentUrl.contains("search") || currentUrl.contains("web_search");
+	}
+
+	public boolean isSearchInputTrimmed() {
+		String value = getSearchInputValue();
+		return value.equals(value.trim());
 	}
 
 	public boolean isNotificationIconVisible() {
@@ -2258,6 +2443,40 @@ public class DashboardPage extends BasePage {
 		return visibleElements;
 	}
 
+	private void waitForSearchCompletion() {
+		try {
+			new WebDriverWait(driver, Duration.ofSeconds(10)).until(webDriver -> {
+				boolean hasResults = !getVisibleSearchResultElements().isEmpty();
+				boolean hasNoResults = driver.findElements(NO_SEARCH_RESULTS_MESSAGE).stream().anyMatch(element -> {
+					try {
+						return element.isDisplayed();
+					} catch (Exception e) {
+						return false;
+					}
+				});
+				boolean validationVisible = driver.findElements(SEARCH_VALIDATION_MESSAGE).stream().anyMatch(element -> {
+					try {
+						return element.isDisplayed();
+					} catch (Exception e) {
+						return false;
+					}
+				});
+				return hasResults || hasNoResults || validationVisible;
+			});
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Search completion wait finished without a visible outcome: {0}", e.getMessage());
+		}
+	}
+
+	private List<WebElement> getVisibleSearchResultElements() {
+		List<WebElement> results = findVisibleElements(SEARCH_RESULT_ITEMS);
+		if (!results.isEmpty()) {
+			return results;
+		}
+
+		return findVisibleElements(SEARCH_RESULT_IMAGES);
+	}
+
 	private void scrollToPageTop() {
 		try {
 			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
@@ -2353,6 +2572,19 @@ public class DashboardPage extends BasePage {
 			}
 		}
 		return "";
+	}
+
+	private boolean containsNonBmpCharacters(String text) {
+		if (text == null || text.isEmpty()) {
+			return false;
+		}
+
+		for (int index = 0; index < text.length(); index++) {
+			if (Character.isSurrogate(text.charAt(index))) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// ============================================================
