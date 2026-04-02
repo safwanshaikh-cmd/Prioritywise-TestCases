@@ -6,9 +6,9 @@
       <class name="tests.HeaderFooterTests">
         <methods>
           <include name="setup"/>
-          <include name="verifyClickingLogoRedirectsToDashboard"/>
           <include name="tearDown"/>
           <include name="setup"/>
+          <include name="verifyBehaviorWhenFooterLinkIsBroken"/>
         </methods>
       </class> <!-- tests.HeaderFooterTests -->
     </classes>

@@ -20,7 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import base.BasePage;
 
 /**
- * Page object representing the dashboard.
+ * Page object representing the dashboard page of the application. Contains methods to interact with various elements
  */
 public class DashboardPage extends BasePage {
 
@@ -96,6 +96,11 @@ public class DashboardPage extends BasePage {
 					+ " | //button[contains(@aria-label,'delete')]");
 
 	private static final By LOGOUT_BUTTON = By.cssSelector("[data-testid='button_logout']");
+	private static final By LOGOUT_CONFIRM_YES_BUTTON = By.xpath(
+			"//*[self::button or @role='button' or @tabindex='0']"
+					+ "[normalize-space()='Yes' or normalize-space()='YES'"
+					+ " or contains(translate(normalize-space(.),'YES','yes'),'yes')"
+					+ " or contains(translate(@aria-label,'YES','yes'),'yes')]");
 	private static final By ADMIN_DASHBOARD = By
 			.xpath("//*[contains(translate(normalize-space(.),'ADMIN DASHBOARD','admin dashboard'),'admin dashboard')"
 					+ " or contains(translate(normalize-space(.),'ADMIN PANEL','admin panel'),'admin panel')]");
@@ -140,10 +145,6 @@ public class DashboardPage extends BasePage {
 	private static final By NO_NOTIFICATIONS_MESSAGE = By.xpath(
 			"//*[contains(translate(normalize-space(.),'NO NOTIFICATIONS AVAILABLE','no notifications available'),'no notifications available')"
 					+ " or contains(translate(normalize-space(.),'NO NOTIFICATIONS','no notifications'),'no notifications')]");
-	private static final By LANGUAGE_SELECTOR = By
-			.xpath("//*[contains(@data-testid,'language') or contains(@aria-label,'Language')"
-					+ " or contains(@aria-label,'language')"
-					+ " or contains(translate(normalize-space(.),'LANGUAGE','language'),'language')]");
 	private static final By THEME_TOGGLE = By.xpath(
 			"//*[contains(@data-testid,'theme') or contains(@aria-label,'theme')" + " or contains(@aria-label,'Theme')"
 					+ " or contains(translate(normalize-space(.),'DARK MODE','dark mode'),'dark mode')"
@@ -160,32 +161,56 @@ public class DashboardPage extends BasePage {
 					+ " or contains(translate(normalize-space(.),'PROFILE','profile'),'profile')"
 					+ " or contains(translate(normalize-space(.),'SETTINGS','settings'),'settings')]");
 	private static final By FOOTER_SECTION = By.xpath(
-			"//footer | //*[(self::div or self::section) and (.//a[contains(translate(normalize-space(.),'PRIVACY','privacy'),'privacy')"
+			"//footer"
+					+ " | //*[(self::div or self::section) and (contains(@class,'footer') or contains(@id,'footer')"
+					+ " or .//a[contains(translate(normalize-space(.),'PRIVACY','privacy'),'privacy')]"
 					+ " or .//a[contains(translate(normalize-space(.),'TERMS','terms'),'terms')]"
-					+ " or .//a[contains(translate(normalize-space(.),'CONTACT','contact'),'contact')])]");
+					+ " or .//a[contains(translate(normalize-space(.),'CONTACT','contact'),'contact')]"
+					+ " or .//*[@tabindex='0' and contains(translate(normalize-space(.),'PRIVACY','privacy'),'privacy')]"
+					+ " or .//*[@tabindex='0' and contains(translate(normalize-space(.),'TERMS','terms'),'terms')]"
+					+ " or .//*[@tabindex='0' and contains(translate(normalize-space(.),'CONTACT','contact'),'contact')]"
+					+ " or .//a[contains(@href,'privacy')] or .//a[contains(@href,'terms')] or .//a[contains(@href,'contact')]"
+					+ " or .//a[contains(@href,'facebook')] or .//a[contains(@href,'instagram')]"
+					+ " or .//a[contains(@href,'twitter')] or .//a[contains(@href,'x.com')]"
+					+ " or .//*[@tabindex='0' and (.//img[contains(@src,'insta')] or .//img[contains(@src,'facebook')]"
+					+ " or contains(normalize-space(.),''))])]");
 	private static final By FOOTER_LINKS = By.xpath("//footer//a | //footer//*[@role='link']"
 			+ " | //a[contains(translate(normalize-space(.),'PRIVACY','privacy'),'privacy')]"
 			+ " | //a[contains(translate(normalize-space(.),'TERMS','terms'),'terms')]"
-			+ " | //a[contains(translate(normalize-space(.),'CONTACT','contact'),'contact')]");
+			+ " | //a[contains(translate(normalize-space(.),'CONTACT','contact'),'contact')]"
+			+ " | //a[contains(@href,'privacy')] | //a[contains(@href,'terms')] | //a[contains(@href,'contact')]"
+			+ " | //a[contains(@href,'facebook')] | //a[contains(@href,'instagram')]"
+			+ " | //a[contains(@href,'twitter')] | //a[contains(@href,'x.com')]"
+			+ " | //*[@tabindex='0' and contains(translate(normalize-space(.),'PRIVACY','privacy'),'privacy')]"
+			+ " | //*[@tabindex='0' and contains(translate(normalize-space(.),'TERMS','terms'),'terms')]"
+			+ " | //*[@tabindex='0' and contains(translate(normalize-space(.),'CONTACT','contact'),'contact')]"
+			+ " | //*[@tabindex='0' and contains(translate(normalize-space(.),'ABOUT US','about us'),'about us')]"
+			+ " | //*[@tabindex='0' and (.//img[contains(@src,'insta')] or .//img[contains(@src,'facebook')]"
+			+ " or contains(normalize-space(.),''))]");
 	private static final By PRIVACY_POLICY_LINK = By
 			.xpath("//a[contains(translate(normalize-space(.),'PRIVACY','privacy'),'privacy')]"
-					+ " | //*[@role='link' and contains(translate(normalize-space(.),'PRIVACY','privacy'),'privacy')]");
+					+ " | //*[@role='link' and contains(translate(normalize-space(.),'PRIVACY','privacy'),'privacy')]"
+					+ " | //*[@tabindex='0' and contains(translate(normalize-space(.),'PRIVACY POLICY','privacy policy'),'privacy policy')]");
 	private static final By TERMS_AND_CONDITIONS_LINK = By
 			.xpath("//a[contains(translate(normalize-space(.),'TERMS','terms'),'terms')]"
-					+ " | //*[@role='link' and contains(translate(normalize-space(.),'TERMS','terms'),'terms')]");
+					+ " | //*[@role='link' and contains(translate(normalize-space(.),'TERMS','terms'),'terms')]"
+					+ " | //*[@tabindex='0' and contains(translate(normalize-space(.),'TERMS AND CONDITIONS','terms and conditions'),'terms and conditions')]");
 	private static final By CONTACT_US_LINK = By
 			.xpath("//a[contains(translate(normalize-space(.),'CONTACT','contact'),'contact')]"
-					+ " | //*[@role='link' and contains(translate(normalize-space(.),'CONTACT','contact'),'contact')]");
+					+ " | //*[@role='link' and contains(translate(normalize-space(.),'CONTACT','contact'),'contact')]"
+					+ " | //*[@tabindex='0' and contains(translate(normalize-space(.),'CONTACT US','contact us'),'contact us')]");
 	private static final By FACEBOOK_LINK = By.xpath(
 			"//a[contains(@href,'facebook') or contains(translate(normalize-space(.),'FACEBOOK','facebook'),'facebook')]"
-					+ " | //*[@role='link' and contains(@href,'facebook')]");
+					+ " | //*[@role='link' and contains(@href,'facebook')]"
+					+ " | //*[@tabindex='0' and (contains(normalize-space(.),'') or .//img[contains(@src,'facebook')])]");
 	private static final By TWITTER_LINK = By.xpath("//a[contains(@href,'twitter') or contains(@href,'x.com')"
 			+ " or contains(translate(normalize-space(.),'TWITTER','twitter'),'twitter')"
 			+ " or normalize-space(.)='X']"
 			+ " | //*[@role='link' and (contains(@href,'twitter') or contains(@href,'x.com'))]");
 	private static final By INSTAGRAM_LINK = By.xpath(
 			"//a[contains(@href,'instagram') or contains(translate(normalize-space(.),'INSTAGRAM','instagram'),'instagram')]"
-					+ " | //*[@role='link' and contains(@href,'instagram')]");
+					+ " | //*[@role='link' and contains(@href,'instagram')]"
+					+ " | //*[@tabindex='0' and .//img[contains(@src,'insta')]]");
 
 	private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(10);
 	private static final Duration SHORT_TIMEOUT = Duration.ofSeconds(3);
@@ -555,17 +580,31 @@ public class DashboardPage extends BasePage {
 	}
 
 	// Hamburger menu locators and methods
-	private static final By HAMBURGER_MENU = By.xpath("//img[contains(@src,'ic_menu') and @draggable='false']");
+	private static final By HAMBURGER_MENU = By.xpath(
+			"//button[@aria-label='Menu' or @aria-label='menu' or @aria-label='Open menu']"
+					+ " | //*[@role='button' and (@aria-label='Menu' or @aria-label='menu' or @aria-label='Open menu')]"
+					+ " | //img[contains(@src,'ic_menu') and @draggable='false']"
+					+ " | //header//*[self::img or self::div or self::button][contains(@class,'menu') or contains(@src,'menu')][1]"
+					+ " | (//*[self::button or self::div][@tabindex='0' and .//*[contains(@src,'menu') or contains(@class,'menu')]])[1]");
 
 	public void clickHamburgerMenu() {
 		try {
-			WebElement menu = pageWait.until(ExpectedConditions.presenceOfElementLocated(HAMBURGER_MENU));
+			WebElement menu = pageWait.until(ExpectedConditions.visibilityOfElementLocated(HAMBURGER_MENU));
+			scrollIntoView(menu);
 			clickWithJS(menu);
 			LOGGER.info("Hamburger menu clicked");
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click hamburger menu: {0}", e.getMessage());
 			throw e;
 		}
+	}
+
+	public boolean isHamburgerMenuVisible() {
+		return isAnyElementVisible(HAMBURGER_MENU);
+	}
+
+	public boolean isLogoutButtonVisible() {
+		return isAnyElementVisible(LOGOUT_BUTTON);
 	}
 
 	public void clickLogout() {
@@ -580,9 +619,39 @@ public class DashboardPage extends BasePage {
 			WebElement logoutBtn = pageWait.until(ExpectedConditions.elementToBeClickable(LOGOUT_BUTTON));
 			clickWithJS(logoutBtn);
 			LOGGER.info("Clicked logout button");
+
+			waitForMilliseconds(500);
+			clickLogoutConfirmationIfPresent();
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click logout button: {0}", e.getMessage());
 			throw e;
+		}
+	}
+
+	private void clickLogoutConfirmationIfPresent() {
+		try {
+			List<WebElement> yesButtons = driver.findElements(LOGOUT_CONFIRM_YES_BUTTON);
+			for (WebElement yesButton : yesButtons) {
+				try {
+					if (!yesButton.isDisplayed()) {
+						continue;
+					}
+
+					scrollIntoView(yesButton);
+					try {
+						yesButton.click();
+					} catch (Exception e) {
+						clickWithJS(yesButton);
+					}
+					LOGGER.info("Clicked logout confirmation Yes button");
+					waitForMilliseconds(500);
+					return;
+				} catch (Exception e) {
+					// Try next visible candidate
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Logout confirmation dialog not present: {0}", e.getMessage());
 		}
 	}
 
@@ -2017,95 +2086,8 @@ public class DashboardPage extends BasePage {
 		return isAnyElementVisible(NO_NOTIFICATIONS_MESSAGE);
 	}
 
-	public boolean isLanguageSelectorVisible() {
-		return isAnyElementVisible(LANGUAGE_SELECTOR);
-	}
-
-	public void openLanguageSelector() {
-		WebElement languageSelector = findFirstVisibleElement(LANGUAGE_SELECTOR);
-		if (languageSelector == null) {
-			throw new IllegalStateException("Language selector is not visible.");
-		}
-
-		clickWithJS(languageSelector);
-		waitForMilliseconds(1000);
-	}
-
-	public boolean selectLanguage(String language) {
-		if (language == null || language.isBlank()) {
-			return false;
-		}
-
-		try {
-			openLanguageSelector();
-			By languageOption = By.xpath("//*[normalize-space()='" + language + "']"
-					+ " | //*[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'"
-					+ language.toLowerCase() + "')]");
-			WebElement option = findFirstVisibleElement(languageOption);
-			if (option == null) {
-				return false;
-			}
-
-			clickWithJS(option);
-			waitForMilliseconds(1500);
-			return true;
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Language selection failed for {0}: {1}", new Object[] { language, e.getMessage() });
-			return false;
-		}
-	}
-
-	public String getLanguageState() {
-		try {
-			String htmlLang = ((String) ((JavascriptExecutor) driver)
-					.executeScript("return document.documentElement.lang || document.body.lang || '';")).trim();
-			if (!htmlLang.isBlank()) {
-				return htmlLang.toLowerCase();
-			}
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "HTML language state unavailable: {0}", e.getMessage());
-		}
-
-		try {
-			WebElement languageSelector = findFirstVisibleElement(LANGUAGE_SELECTOR);
-			if (languageSelector != null) {
-				String text = languageSelector.getText().trim();
-				if (!text.isBlank()) {
-					return text.toLowerCase();
-				}
-			}
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Language selector text unavailable: {0}", e.getMessage());
-		}
-
-		return "";
-	}
-
 	public boolean isThemeToggleVisible() {
 		return isAnyElementVisible(THEME_TOGGLE);
-	}
-
-	public void toggleTheme() {
-		WebElement themeToggle = findFirstVisibleElement(THEME_TOGGLE);
-		if (themeToggle == null) {
-			throw new IllegalStateException("Theme toggle is not visible.");
-		}
-
-		clickWithJS(themeToggle);
-		waitForMilliseconds(1500);
-	}
-
-	public String getThemeState() {
-		try {
-			Object state = ((JavascriptExecutor) driver).executeScript("const html=document.documentElement;"
-					+ "const body=document.body;"
-					+ "const localTheme=window.localStorage.getItem('theme') || window.localStorage.getItem('colorTheme') || '';"
-					+ "return [localTheme, html.getAttribute('data-theme') || '', body.getAttribute('data-theme') || '', html.className || '', body.className || ''].join(' ').toLowerCase();");
-			return state == null ? "" : state.toString();
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Theme state unavailable: {0}", e.getMessage());
-			return "";
-		}
 	}
 
 	public boolean isProfileIconVisible() {
@@ -2130,8 +2112,19 @@ public class DashboardPage extends BasePage {
 
 	public void scrollToFooter() {
 		try {
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
-			waitForMilliseconds(1000);
+			long previousHeight = -1L;
+			for (int attempt = 0; attempt < 6; attempt++) {
+				long currentHeight = ((Number) ((JavascriptExecutor) driver)
+						.executeScript("return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);"))
+						.longValue();
+				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, arguments[0]);", currentHeight);
+				waitForMilliseconds(800);
+
+				if (currentHeight == previousHeight) {
+					break;
+				}
+				previousHeight = currentHeight;
+			}
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to scroll to footer: {0}", e.getMessage());
 		}
@@ -2139,6 +2132,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean isFooterVisible() {
 		scrollToFooter();
+		waitForMilliseconds(500);
 		return isAnyElementVisible(FOOTER_SECTION) || getVisibleFooterLinksCount() > 0;
 	}
 
@@ -2179,6 +2173,36 @@ public class DashboardPage extends BasePage {
 
 	public String openInstagramLink() {
 		return clickElementAndCaptureUrl(INSTAGRAM_LINK);
+	}
+
+	public String openBrokenFooterLink() {
+		WebElement element = findFirstVisibleElement(PRIVACY_POLICY_LINK);
+		if (element == null) {
+			throw new IllegalStateException("A footer link is required to simulate a broken destination.");
+		}
+
+		String brokenPath = "/broken-footer-link-automation";
+		List<String> windowHandlesBeforeClick = new ArrayList<>(driver.getWindowHandles());
+		scrollIntoView(element);
+		((JavascriptExecutor) driver).executeScript(
+				"const el = arguments[0];"
+						+ "const brokenUrl = window.location.origin + arguments[1];"
+						+ "if (el.tagName === 'A') { el.setAttribute('href', brokenUrl); el.setAttribute('target', '_self'); }"
+						+ "el.onclick = function(event) {"
+						+ "  if (event) { event.preventDefault(); event.stopPropagation(); }"
+						+ "  window.location.href = brokenUrl;"
+						+ "  return false;"
+						+ "};",
+				element, brokenPath);
+		clickWithJS(element);
+		waitForMilliseconds(2000);
+
+		List<String> windowHandlesAfterClick = new ArrayList<>(driver.getWindowHandles());
+		if (windowHandlesAfterClick.size() > windowHandlesBeforeClick.size()) {
+			driver.switchTo().window(windowHandlesAfterClick.get(windowHandlesAfterClick.size() - 1));
+		}
+
+		return getCurrentUrl();
 	}
 
 	private boolean isAnyElementVisible(By locator) {

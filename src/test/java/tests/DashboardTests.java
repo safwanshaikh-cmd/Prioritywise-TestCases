@@ -16,7 +16,6 @@ import pages.CreatorSettingsPage;
 import pages.DashboardPage;
 import pages.ForCreatorPage;
 import pages.LoginPage;
-import pages.PlayerPage;
 import utils.ConfigReader;
 
 /**
