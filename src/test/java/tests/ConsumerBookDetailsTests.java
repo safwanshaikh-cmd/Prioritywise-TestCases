@@ -475,27 +475,46 @@ public class ConsumerBookDetailsTests extends BaseTest {
 
 	@Test(priority = 311, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyCategoriesAppearCorrectly() {
-		if (!openBookDetailsFromDashboard()) {
+		waitForDashboardReady();
+
+		if (!dashboard.navigateToCategory("Art")) {
+			logOptionalUnavailable("Art category is not available on the current dashboard state.");
 			return;
 		}
 
-		Assert.assertTrue(dashboard.areCategoriesVisible(),
-				"Categories should display correctly on the book details page.");
+		TestWaitHelper.mediumWait();
+
+		Assert.assertTrue(dashboard.hasCategoryContent(),
+				"Art category page should show at least one visible book before opening details.");
+
+		try {
+			dashboard.openAnyBookFromCategoryPage();
+			TestWaitHelper.mediumWait();
+		} catch (Exception e) {
+			Assert.fail("Unable to open a book from the Art category: " + e.getMessage());
+		}
+
+		Assert.assertTrue(dashboard.isBookDetailsPageVisible(),
+				"Opening a book from the Art category should navigate to book details.");
+		Assert.assertTrue(dashboard.getAllCategoryTexts().stream().anyMatch(category -> "art".equalsIgnoreCase(category)),
+				"Art category should be displayed on the opened book details page.");
 	}
 
 	@Test(priority = 312, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyClickingCategoryNavigatesToCategoryPage() {
-		if (!openBookDetailsFromDashboard()) {
+		waitForDashboardReady();
+
+		// Try to click on a category from the dashboard (not from book details)
+		if (!dashboard.navigateToCategory("Art")) {
+			logOptionalUnavailable("Art category is not available on the current dashboard state.");
 			return;
 		}
 
-		if (!dashboard.areCategoriesVisible()) {
-			logOptionalUnavailable("Categories are not visible for the current book details page.");
-			return;
-		}
+		TestWaitHelper.mediumWait();
 
-		Assert.assertTrue(dashboard.clickFirstCategoryAndVerifyNavigation(),
-				"Clicking a category should navigate to a category-related page.");
+		// Verify that we successfully navigated to a category page
+		Assert.assertTrue(dashboard.hasCategoryContent(),
+				"Comedy category page should be displayed with content after clicking the category.");
 	}
 
 	@Test(priority = 313, retryAnalyzer = RetryAnalyzer.class)
@@ -584,7 +603,13 @@ public class ConsumerBookDetailsTests extends BaseTest {
 			return;
 		}
 
-		Assert.assertTrue(dashboard.openReportOption(), "Report action should open report options or form.");
+		// Report book as inappropriate content
+		Assert.assertTrue(dashboard.reportInappropriateContent(),
+				"Report flow should complete successfully: click Inappropriate Content → Submit → Show confirmation");
+
+		// Click Continue Listening to dismiss the confirmation
+		Assert.assertTrue(dashboard.clickContinueListeningAfterReport(),
+				"Continue Listening button should be present after report submission.");
 	}
 
 	@Test(priority = 320, retryAnalyzer = RetryAnalyzer.class)
@@ -598,12 +623,20 @@ public class ConsumerBookDetailsTests extends BaseTest {
 			return;
 		}
 
-		boolean firstOpen = dashboard.openReportOption();
-		boolean secondState = dashboard.openReportOption();
+		// Try to report the same book again
+		boolean alreadyReported = dashboard.hasAlreadyReportedMessage();
 
-		Assert.assertTrue(firstOpen || secondState || dashboard.hasDuplicateReportProtectionMessage()
-				|| dashboard.isBookDetailsPageVisible(),
-				"Duplicate report attempts should be prevented or handled without breaking the page.");
+		if (!alreadyReported) {
+			// If not already reported, try reporting again
+			dashboard.reportInappropriateContent();
+		}
+
+		// Verify that duplicate report is handled gracefully
+		boolean confirmationVisible = dashboard.hasAlreadyReportedMessage();
+		boolean canContinue = dashboard.clickContinueListeningAfterReport();
+
+		Assert.assertTrue(confirmationVisible || canContinue || dashboard.isBookDetailsPageVisible(),
+				"Duplicate report attempts should show confirmation message or allow continuation without breaking the page.");
 	}
 
 	@Test(priority = 321, retryAnalyzer = RetryAnalyzer.class)

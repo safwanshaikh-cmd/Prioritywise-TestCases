@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-04-03T14:47:20 GST" name="Default suite" finished-at="2026-04-03T14:49:08 GST" duration-ms="107969">
+  <suite started-at="2026-04-03T16:02:07 GST" name="Default suite" finished-at="2026-04-03T16:04:02 GST" duration-ms="114818">
     <groups>
     </groups>
-    <test started-at="2026-04-03T14:47:20 GST" name="Default test" finished-at="2026-04-03T14:49:08 GST" duration-ms="107969">
+    <test started-at="2026-04-03T16:02:07 GST" name="Default test" finished-at="2026-04-03T16:04:02 GST" duration-ms="114818">
       <class name="tests.ConsumerBookDetailsTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T14:47:20 GST" name="setup" finished-at="2026-04-03T14:47:34 GST" duration-ms="13792" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T16:02:07 GST" name="setup" finished-at="2026-04-03T16:02:20 GST" duration-ms="12268" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="initConsumerBookDetailsPage()[pri:0, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T14:47:34 GST" name="initConsumerBookDetailsPage" finished-at="2026-04-03T14:48:18 GST" duration-ms="43939" status="PASS">
+        <test-method is-config="true" signature="initConsumerBookDetailsPage()[pri:0, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T16:02:20 GST" name="initConsumerBookDetailsPage" finished-at="2026-04-03T16:03:04 GST" duration-ms="44637" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initConsumerBookDetailsPage -->
-        <test-method signature="verifyUserCanUnlikeABook()[pri:310, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T14:48:18 GST" name="verifyUserCanUnlikeABook" finished-at="2026-04-03T14:49:07 GST" duration-ms="49533" status="PASS">
+        <test-method signature="verifyBackNavigationReturnsToDashboard()[pri:321, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T16:03:04 GST" name="verifyBackNavigationReturnsToDashboard" finished-at="2026-04-03T16:04:02 GST" duration-ms="57304" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyUserCanUnlikeABook -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T14:49:07 GST" name="tearDown" finished-at="2026-04-03T14:49:08 GST" duration-ms="550" status="PASS">
+        </test-method> <!-- verifyBackNavigationReturnsToDashboard -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T16:04:02 GST" name="tearDown" finished-at="2026-04-03T16:04:02 GST" duration-ms="452" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
