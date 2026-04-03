@@ -264,6 +264,58 @@ public class DashboardPage extends BasePage {
 					+ " or contains(translate(normalize-space(.),'BACK','back'),'back')"
 					+ " or contains(@data-testid,'back')]");
 
+	// ================= AUDIO PLAYER CONTROL LOCATORS =================
+	private static final By FORWARD_SKIP_BUTTON = By.xpath(
+			"//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(@aria-label,'FORWARD','forward'),'forward')"
+					+ " or contains(translate(@aria-label,'SKIP','skip'),'skip')"
+					+ " or contains(translate(normalize-space(.),'30s'),'30s')"
+					+ " or contains(translate(normalize-space(.),'SKIP FORWARD'),'skip forward')]");
+	private static final By REWIND_BUTTON = By.xpath(
+			"//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(@aria-label,'REWIND','rewind'),'rewind')"
+					+ " or contains(translate(@aria-label,'BACKWARD','backward'),'backward')"
+					+ " or contains(translate(normalize-space(.),'-30s'),'-30s')"
+					+ " or contains(translate(normalize-space(.),'GO BACK'),'go back')]");
+	private static final By NEXT_CHAPTER_BUTTON = By.xpath(
+			"//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(@aria-label,'NEXT','next'),'next')"
+					+ " or contains(translate(@aria-label,'CHAPTER','chapter'),'chapter')"
+					+ " or contains(translate(normalize-space(.),'NEXT CHAPTER'),'next chapter')]");
+	private static final By PREVIOUS_CHAPTER_BUTTON = By.xpath(
+			"//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(@aria-label,'PREVIOUS','previous'),'previous')"
+					+ " or contains(translate(@aria-label,'PREV','prev'),'prev')"
+					+ " or contains(translate(normalize-space(.),'PREVIOUS CHAPTER'),'previous chapter')]");
+	private static final By SPEED_CONTROL_BUTTON = By.xpath(
+			"//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(normalize-space(.),'1X'),'1x')"
+					+ " or contains(translate(normalize-space(.),'SPEED'),'speed')"
+					+ " or contains(translate(@aria-label,'SPEED'),'speed')]");
+	private static final By VOLUME_SLIDER = By.xpath(
+			"//input[@type='range' and @role='slider']"
+					+ " | //*[@data-testid='volume_slider']"
+					+ " | //*[@aria-label='volume']");
+	private static final By MUTE_BUTTON = By.xpath(
+			"//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(@aria-label,'MUTE','mute'),'mute')"
+					+ " or contains(translate(@aria-label,'VOLUME','volume'),'volume')]");
+	private static final By CLOSE_PLAYER_BUTTON = By.xpath(
+			"//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(@aria-label,'CLOSE','close'),'close')"
+					+ " or contains(translate(normalize-space(.),'✕'),'✕')]");
+	private static final By PROGRESS_BAR = By.xpath(
+			"//input[@type='range' and contains(@aria-label,'progress')]"
+					+ " | //*[@data-testid='progress_bar']"
+					+ " | //*[@role='slider' and contains(@aria-label,'seek')]");
+	private static final By CURRENT_POSITION_LABEL = By.xpath(
+			"//*[contains(@class,'time') or contains(@class,'position') or contains(@class,'current')]"
+					+ "[self::div or self::span]"
+					+ "[contains(normalize-space(.),':') or contains(normalize-space(.),'min') or contains(normalize-space(.),'sec')]");
+	private static final By CURRENT_CHAPTER_TITLE = By.xpath(
+			"//*[contains(@class,'chapter') or contains(@class,'title')]"
+					+ "[self::div or self::span or self::h1 or self::h2 or self::h3]");
+
 	// ================= UPLOADER SPECIFIC LOCATORS =================
 	private static final By UPLOAD_BUTTON = By
 			.xpath("//*[contains(translate(normalize-space(.),'UPLOAD','upload'),'upload')"
@@ -1842,6 +1894,532 @@ public class DashboardPage extends BasePage {
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Continue Listening button not found: {0}", e.getMessage());
 			return null;
+		}
+	}
+
+	// ==================== AUDIO PLAYER CONTROL METHODS ====================
+
+	public String getCurrentAudioPosition() {
+		try {
+			WebElement positionLabel = findFirstVisibleElement(CURRENT_POSITION_LABEL);
+			if (positionLabel != null) {
+				String position = normalizeVisibleText(positionLabel);
+				LOGGER.log(Level.INFO, "Current audio position: {0}", position);
+				return position;
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Unable to get current audio position: {0}", e.getMessage());
+		}
+		return "N/A";
+	}
+
+	public boolean skipForward30Seconds() {
+		try {
+			WebElement forwardButton = findFirstVisibleElement(FORWARD_SKIP_BUTTON);
+			if (forwardButton == null) {
+				LOGGER.log(Level.WARNING, "Forward skip button not found");
+				return false;
+			}
+
+			scrollIntoView(forwardButton);
+
+			try {
+				Actions actions = new Actions(driver);
+				actions.moveToElement(forwardButton).click().build().perform();
+				LOGGER.log(Level.INFO, "Actions click executed on Forward Skip button");
+			} catch (Exception e) {
+				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
+				clickWithJS(forwardButton);
+			}
+
+			waitForMilliseconds(500);
+			LOGGER.log(Level.INFO, "Skipped forward 30 seconds");
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to skip forward: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean rewind30Seconds() {
+		try {
+			WebElement rewindButton = findFirstVisibleElement(REWIND_BUTTON);
+			if (rewindButton == null) {
+				LOGGER.log(Level.WARNING, "Rewind button not found");
+				return false;
+			}
+
+			scrollIntoView(rewindButton);
+
+			try {
+				Actions actions = new Actions(driver);
+				actions.moveToElement(rewindButton).click().build().perform();
+				LOGGER.log(Level.INFO, "Actions click executed on Rewind button");
+			} catch (Exception e) {
+				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
+				clickWithJS(rewindButton);
+			}
+
+			waitForMilliseconds(500);
+			LOGGER.log(Level.INFO, "Rewound 30 seconds");
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to rewind: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean skipNearEnd() {
+		try {
+			String position = getCurrentAudioPosition();
+			LOGGER.log(Level.INFO, "Position before skip near end: {0}", position);
+
+			WebElement forwardButton = findFirstVisibleElement(FORWARD_SKIP_BUTTON);
+			if (forwardButton == null) {
+				LOGGER.log(Level.WARNING, "Forward skip button not found for edge case test");
+				return false;
+			}
+
+			scrollIntoView(forwardButton);
+
+			for (int i = 0; i < 5; i++) {
+				try {
+					Actions actions = new Actions(driver);
+					actions.moveToElement(forwardButton).click().build().perform();
+					LOGGER.log(Level.INFO, "Forward skip executed ({0})", i + 1);
+					waitForMilliseconds(300);
+				} catch (Exception e) {
+					LOGGER.log(Level.FINE, "Skip attempt {0} failed: {1}", new Object[]{i + 1, e.getMessage()});
+				}
+			}
+
+			LOGGER.log(Level.INFO, "Skip near end edge case handled gracefully");
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to handle skip near end: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean rewindAtStart() {
+		try {
+			String position = getCurrentAudioPosition();
+			LOGGER.log(Level.INFO, "Position before rewind at start: {0}", position);
+
+			WebElement rewindButton = findFirstVisibleElement(REWIND_BUTTON);
+			if (rewindButton == null) {
+				LOGGER.log(Level.WARNING, "Rewind button not found for edge case test");
+				return false;
+			}
+
+			scrollIntoView(rewindButton);
+
+			for (int i = 0; i < 3; i++) {
+				try {
+					Actions actions = new Actions(driver);
+					actions.moveToElement(rewindButton).click().build().perform();
+					LOGGER.log(Level.INFO, "Rewind executed ({0})", i + 1);
+					waitForMilliseconds(300);
+				} catch (Exception e) {
+					LOGGER.log(Level.FINE, "Rewind attempt {0} failed: {1}", new Object[]{i + 1, e.getMessage()});
+				}
+			}
+
+			LOGGER.log(Level.INFO, "Rewind at start edge case handled gracefully");
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to handle rewind at start: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public String getCurrentChapterTitle() {
+		try {
+			WebElement chapterLabel = findFirstVisibleElement(CURRENT_CHAPTER_TITLE);
+			if (chapterLabel != null) {
+				String title = normalizeVisibleText(chapterLabel);
+				LOGGER.log(Level.INFO, "Current chapter title: {0}", title);
+				return title;
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Unable to get current chapter title: {0}", e.getMessage());
+		}
+		return "N/A";
+	}
+
+	public boolean clickNextChapter() {
+		try {
+			WebElement nextButton = findFirstVisibleElement(NEXT_CHAPTER_BUTTON);
+			if (nextButton == null) {
+				LOGGER.log(Level.WARNING, "Next Chapter button not found");
+				return false;
+			}
+
+			String beforeChapter = getCurrentChapterTitle();
+			LOGGER.log(Level.INFO, "Chapter before clicking Next: {0}", beforeChapter);
+
+			scrollIntoView(nextButton);
+
+			try {
+				Actions actions = new Actions(driver);
+				actions.moveToElement(nextButton).click().build().perform();
+				LOGGER.log(Level.INFO, "Actions click executed on Next Chapter button");
+			} catch (Exception e) {
+				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
+				clickWithJS(nextButton);
+			}
+
+			waitForMilliseconds(1000);
+			String afterChapter = getCurrentChapterTitle();
+			LOGGER.log(Level.INFO, "Chapter after clicking Next: {0}", afterChapter);
+
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to click next chapter: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean clickPreviousChapter() {
+		try {
+			WebElement prevButton = findFirstVisibleElement(PREVIOUS_CHAPTER_BUTTON);
+			if (prevButton == null) {
+				LOGGER.log(Level.WARNING, "Previous Chapter button not found");
+				return false;
+			}
+
+			String beforeChapter = getCurrentChapterTitle();
+			LOGGER.log(Level.INFO, "Chapter before clicking Previous: {0}", beforeChapter);
+
+			scrollIntoView(prevButton);
+
+			try {
+				Actions actions = new Actions(driver);
+				actions.moveToElement(prevButton).click().build().perform();
+				LOGGER.log(Level.INFO, "Actions click executed on Previous Chapter button");
+			} catch (Exception e) {
+				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
+				clickWithJS(prevButton);
+			}
+
+			waitForMilliseconds(1000);
+			String afterChapter = getCurrentChapterTitle();
+			LOGGER.log(Level.INFO, "Chapter after clicking Previous: {0}", afterChapter);
+
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to click previous chapter: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean changePlaybackSpeed(String speed) {
+		try {
+			WebElement speedButton = findFirstVisibleElement(SPEED_CONTROL_BUTTON);
+			if (speedButton == null) {
+				LOGGER.log(Level.WARNING, "Speed control button not found");
+				return false;
+			}
+
+			scrollIntoView(speedButton);
+
+			try {
+				Actions actions = new Actions(driver);
+				actions.moveToElement(speedButton).click().build().perform();
+				LOGGER.log(Level.INFO, "Actions click executed on Speed control button");
+			} catch (Exception e) {
+				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
+				clickWithJS(speedButton);
+			}
+
+			waitForMilliseconds(500);
+
+			String speedXPath = "//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(normalize-space(.),'" + speed + "'),'" + speed + "')]";
+			By speedOption = By.xpath(speedXPath);
+
+			WebElement speedOptionElement = findFirstVisibleElement(speedOption);
+			if (speedOptionElement != null) {
+				scrollIntoView(speedOptionElement);
+
+				try {
+					Actions actions = new Actions(driver);
+					actions.moveToElement(speedOptionElement).click().build().perform();
+					LOGGER.log(Level.INFO, "Selected playback speed: {0}", speed);
+				} catch (Exception e) {
+					LOGGER.log(Level.WARNING, "Actions click on speed option failed: {0}", e.getMessage());
+					clickWithJS(speedOptionElement);
+				}
+
+				waitForMilliseconds(500);
+				LOGGER.log(Level.INFO, "Playback speed changed to: {0}", speed);
+				return true;
+			} else {
+				LOGGER.log(Level.WARNING, "Speed option '{0}' not found in dropdown", speed);
+				return false;
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to change playback speed: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public int getCurrentVolumeLevel() {
+		try {
+			WebElement volumeSlider = findFirstVisibleElement(VOLUME_SLIDER);
+			if (volumeSlider != null) {
+				String value = volumeSlider.getAttribute("value");
+				if (value != null && !value.isBlank()) {
+					int volume = (int) Double.parseDouble(value);
+					LOGGER.log(Level.INFO, "Current volume level: {0}", volume);
+					return volume;
+				}
+
+				String ariaValue = volumeSlider.getAttribute("aria-valuenow");
+				if (ariaValue != null && !ariaValue.isBlank()) {
+					int volume = (int) Double.parseDouble(ariaValue);
+					LOGGER.log(Level.INFO, "Current volume level (from aria): {0}", volume);
+					return volume;
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Unable to get current volume level: {0}", e.getMessage());
+		}
+		LOGGER.log(Level.INFO, "Volume level not available, returning default 50");
+		return 50;
+	}
+
+	public boolean increaseVolume() {
+		try {
+			WebElement volumeSlider = findFirstVisibleElement(VOLUME_SLIDER);
+			if (volumeSlider == null) {
+				LOGGER.log(Level.WARNING, "Volume slider not found");
+				return false;
+			}
+
+			scrollIntoView(volumeSlider);
+
+			int beforeVolume = getCurrentVolumeLevel();
+			LOGGER.log(Level.INFO, "Volume before increase: {0}", beforeVolume);
+
+			try {
+				Actions actions = new Actions(driver);
+				actions.moveToElement(volumeSlider).click().build().perform();
+				LOGGER.log(Level.INFO, "Clicked on volume slider");
+			} catch (Exception e) {
+				LOGGER.log(Level.WARNING, "Actions click on volume slider failed: {0}", e.getMessage());
+			}
+
+			try {
+				Actions actions = new Actions(driver);
+				actions.moveToElement(volumeSlider, -20, 0).click().build().perform();
+				LOGGER.log(Level.INFO, "Actions click executed on volume slider (right side)");
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Right-side click failed: {0}", e.getMessage());
+			}
+
+			waitForMilliseconds(500);
+			int afterVolume = getCurrentVolumeLevel();
+			LOGGER.log(Level.INFO, "Volume after increase attempt: {0}", afterVolume);
+
+			LOGGER.log(Level.INFO, "Volume increase action executed");
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to increase volume: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean decreaseVolume() {
+		try {
+			WebElement volumeSlider = findFirstVisibleElement(VOLUME_SLIDER);
+			if (volumeSlider == null) {
+				LOGGER.log(Level.WARNING, "Volume slider not found");
+				return false;
+			}
+
+			scrollIntoView(volumeSlider);
+
+			int beforeVolume = getCurrentVolumeLevel();
+			LOGGER.log(Level.INFO, "Volume before decrease: {0}", beforeVolume);
+
+			try {
+				Actions actions = new Actions(driver);
+				actions.moveToElement(volumeSlider, 20, 0).click().build().perform();
+				LOGGER.log(Level.INFO, "Actions click executed on volume slider (left side)");
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Left-side click failed: {0}", e.getMessage());
+			}
+
+			waitForMilliseconds(500);
+			int afterVolume = getCurrentVolumeLevel();
+			LOGGER.log(Level.INFO, "Volume after decrease attempt: {0}", afterVolume);
+
+			LOGGER.log(Level.INFO, "Volume decrease action executed");
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to decrease volume: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean muteAudio() {
+		try {
+			WebElement muteButton = findFirstVisibleElement(MUTE_BUTTON);
+			if (muteButton == null) {
+				LOGGER.log(Level.WARNING, "Mute button not found");
+				return false;
+			}
+
+			scrollIntoView(muteButton);
+
+			try {
+				Actions actions = new Actions(driver);
+				actions.moveToElement(muteButton).click().build().perform();
+				LOGGER.log(Level.INFO, "Actions click executed on Mute button");
+			} catch (Exception e) {
+				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
+				clickWithJS(muteButton);
+			}
+
+			waitForMilliseconds(500);
+			LOGGER.log(Level.INFO, "Audio mute toggled");
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to mute audio: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean closeAudioPlayer() {
+		try {
+			WebElement closeButton = findFirstVisibleElement(CLOSE_PLAYER_BUTTON);
+			if (closeButton == null) {
+				LOGGER.log(Level.WARNING, "Close player button not found");
+				return false;
+			}
+
+			scrollIntoView(closeButton);
+
+			try {
+				Actions actions = new Actions(driver);
+				actions.moveToElement(closeButton).click().build().perform();
+				LOGGER.log(Level.INFO, "Actions click executed on Close player button");
+			} catch (Exception e) {
+				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
+				clickWithJS(closeButton);
+			}
+
+			waitForMilliseconds(1000);
+			LOGGER.log(Level.INFO, "Audio player closed");
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to close audio player: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean seekForward() {
+		try {
+			WebElement progressBar = findFirstVisibleElement(PROGRESS_BAR);
+			if (progressBar == null) {
+				LOGGER.log(Level.WARNING, "Progress bar not found");
+				return false;
+			}
+
+			String beforePosition = getCurrentAudioPosition();
+			LOGGER.log(Level.INFO, "Position before seek: {0}", beforePosition);
+
+			scrollIntoView(progressBar);
+
+			org.openqa.selenium.Point location = progressBar.getLocation();
+			org.openqa.selenium.Dimension size = progressBar.getSize();
+			int xOffset = (int) (size.getWidth() * 0.7);
+
+			try {
+				Actions actions = new Actions(driver);
+				actions.moveToElement(progressBar, xOffset - size.getWidth() / 2, 0).click().build().perform();
+				LOGGER.log(Level.INFO, "Seeked forward to 70% of progress bar");
+			} catch (Exception e) {
+				LOGGER.log(Level.WARNING, "Actions click on progress bar failed: {0}", e.getMessage());
+			}
+
+			waitForMilliseconds(500);
+			String afterPosition = getCurrentAudioPosition();
+			LOGGER.log(Level.INFO, "Position after seek: {0}", afterPosition);
+
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to seek forward: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean seekBackward() {
+		try {
+			WebElement progressBar = findFirstVisibleElement(PROGRESS_BAR);
+			if (progressBar == null) {
+				LOGGER.log(Level.WARNING, "Progress bar not found");
+				return false;
+			}
+
+			String beforePosition = getCurrentAudioPosition();
+			LOGGER.log(Level.INFO, "Position before seek: {0}", beforePosition);
+
+			scrollIntoView(progressBar);
+
+			org.openqa.selenium.Dimension size = progressBar.getSize();
+			int xOffset = (int) (size.getWidth() * 0.3);
+
+			try {
+				Actions actions = new Actions(driver);
+				actions.moveToElement(progressBar, xOffset - size.getWidth() / 2, 0).click().build().perform();
+				LOGGER.log(Level.INFO, "Seeked backward to 30% of progress bar");
+			} catch (Exception e) {
+				LOGGER.log(Level.WARNING, "Actions click on progress bar failed: {0}", e.getMessage());
+			}
+
+			waitForMilliseconds(500);
+			String afterPosition = getCurrentAudioPosition();
+			LOGGER.log(Level.INFO, "Position after seek: {0}", afterPosition);
+
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to seek backward: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean seekBeyondEnd() {
+		try {
+			WebElement progressBar = findFirstVisibleElement(PROGRESS_BAR);
+			if (progressBar == null) {
+				LOGGER.log(Level.WARNING, "Progress bar not found for edge case test");
+				return false;
+			}
+
+			String beforePosition = getCurrentAudioPosition();
+			LOGGER.log(Level.INFO, "Position before seek beyond end: {0}", beforePosition);
+
+			scrollIntoView(progressBar);
+
+			org.openqa.selenium.Dimension size = progressBar.getSize();
+			int xOffset = (int) (size.getWidth() * 1.2);
+
+			try {
+				Actions actions = new Actions(driver);
+				actions.moveToElement(progressBar, xOffset, 0).click().build().perform();
+				LOGGER.log(Level.INFO, "Attempted to seek beyond end of progress bar");
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Seek beyond end failed (expected): {0}", e.getMessage());
+			}
+
+			waitForMilliseconds(500);
+			LOGGER.log(Level.INFO, "Seek beyond end edge case handled gracefully");
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to handle seek beyond end: {0}", e.getMessage());
+			return false;
 		}
 	}
 

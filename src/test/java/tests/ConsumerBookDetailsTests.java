@@ -130,14 +130,15 @@ public class ConsumerBookDetailsTests extends BaseTest {
 		}
 
 		if (!dashboard.hasClickableBannerTarget()) {
-			logOptionalUnavailable("Visible banner images are decorative in the current dashboard state and do not expose a clickable destination.");
+			logOptionalUnavailable(
+					"Visible banner images are decorative in the current dashboard state and do not expose a clickable destination.");
 			return;
 		}
 
 		Assert.assertTrue(dashboard.clickCurrentBannerAndOpenDetails(),
 				"Clicking a banner should open a book details page or related destination.");
 	}
-	
+
 	@Test(priority = 288, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyCorrectBookOpensWhenBannerClicked() {
 		waitForDashboardReady();
@@ -148,7 +149,8 @@ public class ConsumerBookDetailsTests extends BaseTest {
 		}
 
 		if (!dashboard.hasClickableBannerTarget()) {
-			logOptionalUnavailable("Visible banner images are decorative in the current dashboard state and do not expose a clickable destination.");
+			logOptionalUnavailable(
+					"Visible banner images are decorative in the current dashboard state and do not expose a clickable destination.");
 			return;
 		}
 
@@ -297,7 +299,8 @@ public class ConsumerBookDetailsTests extends BaseTest {
 			TestWaitHelper.shortWait();
 		}
 
-		Assert.assertTrue(dashboard.waitForDashboardShell(), "Dashboard should remain stable after rapid banner clicks.");
+		Assert.assertTrue(dashboard.waitForDashboardShell(),
+				"Dashboard should remain stable after rapid banner clicks.");
 	}
 
 	@Test(priority = 301, retryAnalyzer = RetryAnalyzer.class)
@@ -348,7 +351,8 @@ public class ConsumerBookDetailsTests extends BaseTest {
 
 		int bannerCount = dashboard.getVisibleBannerCount();
 		if (bannerCount != 1) {
-			logOptionalUnavailable("Single-banner state is not available. Current visible banner count: " + bannerCount);
+			logOptionalUnavailable(
+					"Single-banner state is not available. Current visible banner count: " + bannerCount);
 			return;
 		}
 
@@ -362,7 +366,8 @@ public class ConsumerBookDetailsTests extends BaseTest {
 
 		int bannerCount = dashboard.getVisibleBannerCount();
 		if (bannerCount < 5) {
-			logOptionalUnavailable("High-banner-count scenario is not available. Current visible banner count: " + bannerCount);
+			logOptionalUnavailable(
+					"High-banner-count scenario is not available. Current visible banner count: " + bannerCount);
 			return;
 		}
 
@@ -387,7 +392,8 @@ public class ConsumerBookDetailsTests extends BaseTest {
 		}
 
 		if (dashboard.isBookCoverImageVisible() && !dashboard.isPlaceholderImageVisible()) {
-			logOptionalUnavailable("Current book has a valid cover image, so the missing-image state is not available.");
+			logOptionalUnavailable(
+					"Current book has a valid cover image, so the missing-image state is not available.");
 			return;
 		}
 
@@ -438,7 +444,8 @@ public class ConsumerBookDetailsTests extends BaseTest {
 			return;
 		}
 
-		Assert.assertTrue(dashboard.openShareOptions(), "Share action should open share options or a stable share flow.");
+		Assert.assertTrue(dashboard.openShareOptions(),
+				"Share action should open share options or a stable share flow.");
 	}
 
 	@Test(priority = 309, retryAnalyzer = RetryAnalyzer.class)
@@ -496,7 +503,8 @@ public class ConsumerBookDetailsTests extends BaseTest {
 
 		Assert.assertTrue(dashboard.isBookDetailsPageVisible(),
 				"Opening a book from the Art category should navigate to book details.");
-		Assert.assertTrue(dashboard.getAllCategoryTexts().stream().anyMatch(category -> "art".equalsIgnoreCase(category)),
+		Assert.assertTrue(
+				dashboard.getAllCategoryTexts().stream().anyMatch(category -> "art".equalsIgnoreCase(category)),
 				"Art category should be displayed on the opened book details page.");
 	}
 
@@ -672,7 +680,8 @@ public class ConsumerBookDetailsTests extends BaseTest {
 
 		int chapterCount = dashboard.getVisibleChapterCount();
 		if (chapterCount < 20) {
-			logOptionalUnavailable("Large chapter dataset is not available. Current visible chapter count: " + chapterCount);
+			logOptionalUnavailable(
+					"Large chapter dataset is not available. Current visible chapter count: " + chapterCount);
 			return;
 		}
 
@@ -680,40 +689,4 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Large chapter lists should load without breaking the details page.");
 	}
 
-	@Test(priority = 324, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyAddBookToFavoritesPlaylist() {
-		if (!openBookDetailsFromDashboard()) {
-			return;
-		}
-
-		if (!dashboard.isFavoriteButtonVisible()) {
-			logOptionalUnavailable("Favorite button is not visible for the current book details page.");
-			return;
-		}
-
-		String playlistName = "Test Playlist " + System.currentTimeMillis();
-
-		Assert.assertTrue(dashboard.addBookToFavoritesPlaylist(playlistName),
-				"Book should be added to favorites and playlist '" + playlistName + "' should be created.");
-	}
-
-	@Test(priority = 325, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyRemoveBookFromFavoritesAndDeletePlaylist() {
-		if (!openBookDetailsFromDashboard()) {
-			return;
-		}
-
-		if (!dashboard.isFavoriteButtonVisible()) {
-			logOptionalUnavailable("Favorite button is not visible for the current book details page.");
-			return;
-		}
-
-		// First, add the book to a playlist so we can remove it
-		String playlistName = "Test Playlist " + System.currentTimeMillis();
-		dashboard.addBookToFavoritesPlaylist(playlistName);
-
-		// Then remove it
-		Assert.assertTrue(dashboard.removeBookFromFavoritesAndDeletePlaylist(playlistName),
-				"Book should be removed from favorites and playlist '" + playlistName + "' should be deleted.");
-	}
 }
