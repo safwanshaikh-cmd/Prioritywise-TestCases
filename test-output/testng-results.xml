@@ -2,35 +2,28 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-04-02T14:24:57 GST" name="Default suite" finished-at="2026-04-02T14:26:45 GST" duration-ms="107598">
+  <suite started-at="2026-04-03T14:47:20 GST" name="Default suite" finished-at="2026-04-03T14:49:08 GST" duration-ms="107969">
     <groups>
     </groups>
-    <test started-at="2026-04-02T14:24:57 GST" name="Default test" finished-at="2026-04-02T14:26:45 GST" duration-ms="107598">
-      <class name="tests.SearchTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@367ffa75]" started-at="2026-04-02T14:24:57 GST" name="setup" finished-at="2026-04-02T14:25:10 GST" duration-ms="13128" status="PASS">
+    <test started-at="2026-04-03T14:47:20 GST" name="Default test" finished-at="2026-04-03T14:49:08 GST" duration-ms="107969">
+      <class name="tests.ConsumerBookDetailsTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T14:47:20 GST" name="setup" finished-at="2026-04-03T14:47:34 GST" duration-ms="13792" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="setup(java.lang.reflect.Method)[pri:0, instance:tests.SearchTests@367ffa75]" started-at="2026-04-02T14:25:10 GST" name="setup" finished-at="2026-04-02T14:26:18 GST" duration-ms="68052" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void tests.SearchTests.verifySearchByAuthorName()]]>
-              </value>
-            </param>
-          </params>
+        <test-method is-config="true" signature="initConsumerBookDetailsPage()[pri:0, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T14:47:34 GST" name="initConsumerBookDetailsPage" finished-at="2026-04-03T14:48:18 GST" duration-ms="43939" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="verifySearchByAuthorName()[pri:262, instance:tests.SearchTests@367ffa75]" started-at="2026-04-02T14:26:18 GST" name="verifySearchByAuthorName" finished-at="2026-04-02T14:26:44 GST" duration-ms="25576" status="PASS">
+        </test-method> <!-- initConsumerBookDetailsPage -->
+        <test-method signature="verifyUserCanUnlikeABook()[pri:310, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T14:48:18 GST" name="verifyUserCanUnlikeABook" finished-at="2026-04-03T14:49:07 GST" duration-ms="49533" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifySearchByAuthorName -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@367ffa75]" started-at="2026-04-02T14:26:44 GST" name="tearDown" finished-at="2026-04-02T14:26:45 GST" duration-ms="504" status="PASS">
+        </test-method> <!-- verifyUserCanUnlikeABook -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T14:49:07 GST" name="tearDown" finished-at="2026-04-03T14:49:08 GST" duration-ms="550" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- tests.SearchTests -->
+      </class> <!-- tests.ConsumerBookDetailsTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

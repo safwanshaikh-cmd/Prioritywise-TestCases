@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\safwan\AppData\Local\Temp\testng-eclipse--1821084704\testng-customsuite.xml</span>
+                    <span>C:\Users\safwan\AppData\Local\Temp\testng-eclipse-2060377635\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="verifySearchByAuthorName">verifySearchByAuthorName</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="tests.ConsumerBookDetailsTests" class="method navigator-link" hash-for-method="verifyUserCanUnlikeABook">verifyUserCanUnlikeABook</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -121,14 +121,14 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">tests.SearchTests</span>
+              <span class="class-name">tests.ConsumerBookDetailsTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="verifySearchByAuthorName">
-                  </a> <!-- verifySearchByAuthorName -->
-                  <span class="method-name">verifySearchByAuthorName</span>
+                  <a name="verifyUserCanUnlikeABook">
+                  </a> <!-- verifyUserCanUnlikeABook -->
+                  <span class="method-name">verifyUserCanUnlikeABook</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -136,7 +136,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\safwan\AppData\Local\Temp\testng-eclipse--1821084704\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\safwan\AppData\Local\Temp\testng-eclipse-2060377635\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -145,11 +145,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;tests.SearchTests&quot;&gt;
+      &lt;class name=&quot;tests.ConsumerBookDetailsTests&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;verifySearchByAuthorName&quot;/&gt;
+          &lt;include name=&quot;verifyUserCanUnlikeABook&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- tests.SearchTests --&gt;
+      &lt;/class&gt; &lt;!-- tests.ConsumerBookDetailsTests --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -191,14 +191,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'verifySearchByAuthorName')
-data.setCell(0, 2, 'tests.SearchTests')
-data.setCell(0, 3, 25576);
+data.setCell(0, 1, 'verifyUserCanUnlikeABook')
+data.setCell(0, 2, 'tests.ConsumerBookDetailsTests')
+data.setCell(0, 3, 49533);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 25 seconds</span>
+              <span class="suite-total-time">Total running time: 49 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -213,77 +213,93 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">33 ignored methods</span>
+            <span class="header-content">41 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">tests.SearchTests</span>
+              <span class="ignored-class-name">tests.ConsumerBookDetailsTests</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">verifySearchFieldProtectedFromScriptInjection</span>
+                <span class="ignored-method-name">verifySystemStabilityWhenBannersClickedRapidly</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchReturnsMultipleResultsForCommonKeyword</span>
+                <span class="ignored-method-name">verifyBackNavigationReturnsToDashboard</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchByKeyword</span>
+                <span class="ignored-method-name">verifyBookSummaryDisplayedOnBookDetailsPage</span>
                 <br/>
-                <span class="ignored-method-name">verifyUnsupportedCharactersSearch</span>
+                <span class="ignored-method-name">verifySystemHandlesManyBannersSmoothly</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchIconClickTriggersSearch</span>
+                <span class="ignored-method-name">verifyBannerImagesScrollAutomatically</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchBookByFullName</span>
+                <span class="ignored-method-name">verifyBannerImagesAreVisibleOnDashboard</span>
                 <br/>
-                <span class="ignored-method-name">verifyVeryLongSearchText</span>
+                <span class="ignored-method-name">verifyDuplicateReportHandling</span>
                 <br/>
-                <span class="ignored-method-name">verifyUserCanOpenBookFromSearchResults</span>
+                <span class="ignored-method-name">verifyClickingBannerOpensCorrespondingBookDetails</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchWorksWithEnterKey</span>
+                <span class="ignored-method-name">verifyRemoveBookFromFavoritesAndDeletePlaylist</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchBookByPartialName</span>
+                <span class="ignored-method-name">verifySystemBehaviorWhenBookImageMissing</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchFieldProtectedFromSqlInjection</span>
+                <span class="ignored-method-name">verifyUserCanLikeABook</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchFieldProtectedFromUrlInjection</span>
+                <span class="ignored-method-name">verifyBookReviewsDisplayedOnBookDetailsPage</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchBarVisibility</span>
+                <span class="ignored-method-name">verifyBehaviorWhenNoBannersExist</span>
                 <br/>
-                <span class="ignored-method-name">verifyMinimumCharacterSearch</span>
+                <span class="ignored-method-name">verifyUiWhenNoChaptersAvailable</span>
                 <br/>
-                <span class="ignored-method-name">verifyLongTextSearch</span>
+                <span class="ignored-method-name">verifyRatingInformationDisplayedOnBookDetailsPage</span>
                 <br/>
-                <span class="ignored-method-name">verifyUserCanClearSearchField</span>
+                <span class="ignored-method-name">verifyChapterDurationDisplay</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchResultsCountDisplayed</span>
+                <span class="ignored-method-name">verifyAssignedCategoriesDisplayedOnBookDetailsPage</span>
                 <br/>
-                <span class="ignored-method-name">verifyNumericSearch</span>
+                <span class="ignored-method-name">verifyReportOptionWorks</span>
                 <br/>
-                <span class="ignored-method-name">verifyMaximumCharacterLimitSearch</span>
+                <span class="ignored-method-name">verifyUiPerformanceWithManyChapters</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchResponseTime</span>
+                <span class="ignored-method-name">verifyCorrectBookOpensWhenBannerClicked</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchNonExistingBook</span>
+                <span class="ignored-method-name">verifyUiWhenSummaryIsMissing</span>
                 <br/>
-                <span class="ignored-method-name">verifyLargeDataSearchPerformance</span>
+                <span class="ignored-method-name">verifyBannerLoadsCorrectlyOnSlowNetwork</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchFieldPreventsHtmlInjection</span>
+                <span class="ignored-method-name">verifyAudioStartsWhenClickingPlayAudio</span>
                 <br/>
-                <span class="ignored-method-name">verifyBlankSpaceSearch</span>
+                <span class="ignored-method-name">verifyUserCanPausePlayingAudio</span>
                 <br/>
-                <span class="ignored-method-name">verifyRapidSearchQueries</span>
+                <span class="ignored-method-name">verifyAddBookToFavoritesPlaylist</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchWithSpecialLanguageCharacters</span>
+                <span class="ignored-method-name">verifyUserCanAccessReportOption</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchWithSpaces</span>
+                <span class="ignored-method-name">verifyUiWithLongBookTitles</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchAutoSuggestionsAppearWhileTyping</span>
+                <span class="ignored-method-name">verifyUserCanManuallyScrollBanners</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchIsCaseInsensitive</span>
+                <span class="ignored-method-name">verifyBookCoverImageLoadsProperly</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchWithSpecialCharacters</span>
+                <span class="ignored-method-name">verifySummaryContentLoads</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchPlaceholderTextVisible</span>
+                <span class="ignored-method-name">verifyChapterStartsPlayingWhenClicked</span>
                 <br/>
-                <span class="ignored-method-name">verifySearchWithMixedCharacters</span>
+                <span class="ignored-method-name">verifyShareButtonFunctionality</span>
                 <br/>
-                <span class="ignored-method-name">verifyEmptySearch</span>
+                <span class="ignored-method-name">verifyScrollingWorksWithOnlyOneBanner</span>
+                <br/>
+                <span class="ignored-method-name">verifyChapterListLoadsCorrectly</span>
+                <br/>
+                <span class="ignored-method-name">verifyCategoriesAppearCorrectly</span>
+                <br/>
+                <span class="ignored-method-name">verifyBehaviorWhenNoReviewsExist</span>
+                <br/>
+                <span class="ignored-method-name">verifyDurationDisplayedForEpisodesOrBook</span>
+                <br/>
+                <span class="ignored-method-name">verifyClickingCategoryNavigatesToCategoryPage</span>
+                <br/>
+                <span class="ignored-method-name">verifyEpisodesListDisplayedOnBookDetailsPage</span>
+                <br/>
+                <span class="ignored-method-name">verifyBehaviorWhenNoEpisodesExist</span>
+                <br/>
+                <span class="ignored-method-name">verifyAvailableChaptersListedOnBookDetailsPage</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -295,22 +311,22 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">tests.SearchTests</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">tests.ConsumerBookDetailsTests</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setup</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
-                <span class="method-name">setup(public void tests.SearchTests.verifySearchByAuthorName())</span>
-                <span class="method-start">13130 ms</span>
+                <span class="method-name">initConsumerBookDetailsPage</span>
+                <span class="method-start">13793 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">verifySearchByAuthorName</span>
-                <span class="method-start">81183 ms</span>
+                <span class="method-name">verifyUserCanUnlikeABook</span>
+                <span class="method-start">57732 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">106773 ms</span>
+                <span class="method-start">107279 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

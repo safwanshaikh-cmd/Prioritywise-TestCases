@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.SearchTests">
+      <class name="tests.ConsumerBookDetailsTests">
         <methods>
           <include name="setup"/>
+          <include name="initConsumerBookDetailsPage"/>
           <include name="tearDown"/>
-          <include name="setup"/>
-          <include name="verifySearchBookByFullName"/>
+          <include name="verifyUserCanLikeABook"/>
         </methods>
-      </class> <!-- tests.SearchTests -->
+      </class> <!-- tests.ConsumerBookDetailsTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

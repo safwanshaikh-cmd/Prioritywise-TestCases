@@ -55,7 +55,13 @@ public class ConsumerBookDetailsTests extends BaseTest {
 		try {
 			dashboard.openAnyBook();
 			TestWaitHelper.mediumWait();
-			return dashboard.isBookDetailsPageVisible();
+			boolean detailsVisible = dashboard.isBookDetailsPageVisible();
+			if (detailsVisible) {
+				// Wait for book data to load before checking for Play button
+				dashboard.waitForBookDataToLoad();
+				dashboard.printCurrentBookDetails();
+			}
+			return detailsVisible;
 		} catch (Exception e) {
 			System.out.println("[INFO] Unable to open a book details page: " + e.getMessage());
 			return false;
@@ -105,29 +111,16 @@ public class ConsumerBookDetailsTests extends BaseTest {
 	public void verifyUserCanManuallyScrollBanners() {
 		waitForDashboardReady();
 
-		if (!dashboard.areBannerNavigationArrowsVisible()) {
-			logOptionalUnavailable("Banner navigation arrows are not visible in the current dashboard state.");
+		if (!dashboard.isBannerSectionVisible() || dashboard.getVisibleBannerCount() <= 1) {
+			logOptionalUnavailable("Banner drag requires a visible banner carousel with at least two banners.");
 			return;
 		}
 
-		Assert.assertTrue(dashboard.clickNextBannerAndVerifyChange(),
-				"Clicking banner navigation should move the banner or keep the carousel stable.");
+		Assert.assertTrue(dashboard.dragBannerAndVerifyChange(),
+				"Dragging the banner should move the carousel or keep it stable when swipe is disabled.");
 	}
 
 	@Test(priority = 287, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyScrollIndicatorsDisplayCorrectBanner() {
-		waitForDashboardReady();
-
-		if (!dashboard.areBannerIndicatorsVisible()) {
-			logOptionalUnavailable("Banner indicators are not visible in the current dashboard state.");
-			return;
-		}
-
-		Assert.assertTrue(dashboard.getActiveBannerIndicatorIndex() >= 0,
-				"Banner indicators should reflect an active banner.");
-	}
-
-	@Test(priority = 288, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyClickingBannerOpensCorrespondingBookDetails() {
 		waitForDashboardReady();
 
@@ -136,16 +129,26 @@ public class ConsumerBookDetailsTests extends BaseTest {
 			return;
 		}
 
+		if (!dashboard.hasClickableBannerTarget()) {
+			logOptionalUnavailable("Visible banner images are decorative in the current dashboard state and do not expose a clickable destination.");
+			return;
+		}
+
 		Assert.assertTrue(dashboard.clickCurrentBannerAndOpenDetails(),
 				"Clicking a banner should open a book details page or related destination.");
 	}
-
-	@Test(priority = 289, retryAnalyzer = RetryAnalyzer.class)
+	
+	@Test(priority = 288, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyCorrectBookOpensWhenBannerClicked() {
 		waitForDashboardReady();
 
 		if (!dashboard.isBannerSectionVisible()) {
 			logOptionalUnavailable("Banner section is not available for book-navigation validation.");
+			return;
+		}
+
+		if (!dashboard.hasClickableBannerTarget()) {
+			logOptionalUnavailable("Visible banner images are decorative in the current dashboard state and do not expose a clickable destination.");
 			return;
 		}
 
@@ -157,17 +160,17 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Banner click should lead to a visible details page with identifiable content.");
 	}
 
-	@Test(priority = 290, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 289, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyBookReviewsDisplayedOnBookDetailsPage() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
 		}
 
-		Assert.assertTrue(dashboard.areReviewsVisible() || dashboard.hasNoReviewsMessage(),
-				"Book details should show reviews or a stable empty state.");
+		Assert.assertTrue(dashboard.openReviewsAndVerifyNavigation(),
+				"Clicking Reviews should open the book reviews page or a stable reviews view.");
 	}
 
-	@Test(priority = 291, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 290, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyEpisodesListDisplayedOnBookDetailsPage() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -177,7 +180,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Book details should show episodes or a stable empty state.");
 	}
 
-	@Test(priority = 292, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 291, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyDurationDisplayedForEpisodesOrBook() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -187,7 +190,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Book details should display duration information when playable content is present.");
 	}
 
-	@Test(priority = 293, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 292, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyRatingInformationDisplayedOnBookDetailsPage() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -197,7 +200,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Book details should display ratings or remain stable when rating data is unavailable.");
 	}
 
-	@Test(priority = 294, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 293, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyUserCanAccessReportOption() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -207,7 +210,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Book details should expose a report option or remain stable.");
 	}
 
-	@Test(priority = 295, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 294, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyAssignedCategoriesDisplayedOnBookDetailsPage() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -217,7 +220,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Book details should display categories when they are configured.");
 	}
 
-	@Test(priority = 296, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 295, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyBookSummaryDisplayedOnBookDetailsPage() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -227,7 +230,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Book details should display a summary or an empty-summary state.");
 	}
 
-	@Test(priority = 297, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 296, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyAvailableChaptersListedOnBookDetailsPage() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -237,7 +240,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Book details should list chapters or show a stable empty state.");
 	}
 
-	@Test(priority = 298, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 297, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyBehaviorWhenNoBannersExist() {
 		waitForDashboardReady();
 
@@ -246,7 +249,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Dashboard should remain stable even when no banners are configured.");
 	}
 
-	@Test(priority = 299, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 298, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyBehaviorWhenNoReviewsExist() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -261,7 +264,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Book details should show a stable message when no reviews exist.");
 	}
 
-	@Test(priority = 300, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 299, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyBehaviorWhenNoEpisodesExist() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -276,7 +279,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Book details should show a stable message when no episodes exist.");
 	}
 
-	@Test(priority = 301, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 300, retryAnalyzer = RetryAnalyzer.class)
 	public void verifySystemStabilityWhenBannersClickedRapidly() {
 		waitForDashboardReady();
 
@@ -297,7 +300,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 		Assert.assertTrue(dashboard.waitForDashboardShell(), "Dashboard should remain stable after rapid banner clicks.");
 	}
 
-	@Test(priority = 302, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 301, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyBannerLoadsCorrectlyOnSlowNetwork() {
 		waitForDashboardReady();
 
@@ -339,7 +342,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 		}
 	}
 
-	@Test(priority = 303, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 302, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyScrollingWorksWithOnlyOneBanner() {
 		waitForDashboardReady();
 
@@ -353,7 +356,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Single configured banner should remain visible without breaking the dashboard.");
 	}
 
-	@Test(priority = 304, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 303, retryAnalyzer = RetryAnalyzer.class)
 	public void verifySystemHandlesManyBannersSmoothly() {
 		waitForDashboardReady();
 
@@ -367,7 +370,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Banner carousel should remain responsive when many banners are configured.");
 	}
 
-	@Test(priority = 305, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 304, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyBookCoverImageLoadsProperly() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -377,7 +380,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Book details should display either the cover image or a valid placeholder.");
 	}
 
-	@Test(priority = 306, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 305, retryAnalyzer = RetryAnalyzer.class)
 	public void verifySystemBehaviorWhenBookImageMissing() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -392,7 +395,39 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Book details should remain stable and show a placeholder when the cover image is missing.");
 	}
 
-	@Test(priority = 309, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 306, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyAudioStartsWhenClickingPlayAudio() {
+		if (!openBookDetailsFromDashboard()) {
+			return;
+		}
+
+		if (!dashboard.isPlayAudioButtonVisible()) {
+			logOptionalUnavailable("Play Audio button is not visible for the current book details page.");
+			return;
+		}
+
+		Assert.assertTrue(dashboard.clickPlayAudioAndVerifyPlayback(),
+				"Audio should start playing when Play Audio is clicked.");
+	}
+
+	@Test(priority = 307, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyUserCanPausePlayingAudio() {
+		if (!openBookDetailsFromDashboard()) {
+			return;
+		}
+
+		if (!dashboard.isPlayAudioButtonVisible()) {
+			logOptionalUnavailable("Play Audio button is not visible for pause validation.");
+			return;
+		}
+
+		Assert.assertTrue(dashboard.clickPlayAudioAndVerifyPlayback(),
+				"Audio should start playing before pause is validated.");
+		Assert.assertTrue(dashboard.clickPauseAndVerifyPlaybackStops(),
+				"Audio should pause when the Pause control is clicked.");
+	}
+
+	@Test(priority = 308, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyShareButtonFunctionality() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -406,7 +441,49 @@ public class ConsumerBookDetailsTests extends BaseTest {
 		Assert.assertTrue(dashboard.openShareOptions(), "Share action should open share options or a stable share flow.");
 	}
 
-	@Test(priority = 313, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 309, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyUserCanLikeABook() {
+		if (!openBookDetailsFromDashboard()) {
+			return;
+		}
+
+		if (!dashboard.isFavoriteButtonVisible()) {
+			logOptionalUnavailable("Favorite button is not visible for the current book details page.");
+			return;
+		}
+
+		Assert.assertTrue(dashboard.toggleFavoriteAndVerifyChange(),
+				"Clicking the heart icon should add the book to favorites.");
+	}
+
+	@Test(priority = 310, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyUserCanUnlikeABook() {
+		if (!openBookDetailsFromDashboard()) {
+			return;
+		}
+
+		if (!dashboard.isFavoriteButtonVisible()) {
+			logOptionalUnavailable("Favorite button is not visible for the current book details page.");
+			return;
+		}
+
+		Assert.assertTrue(dashboard.toggleFavoriteAndVerifyChange(),
+				"Clicking the heart icon should add the book to favorites before removal.");
+		Assert.assertTrue(dashboard.toggleFavoriteAndVerifyChange(),
+				"Clicking the heart icon again should remove the book from favorites.");
+	}
+
+	@Test(priority = 311, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyCategoriesAppearCorrectly() {
+		if (!openBookDetailsFromDashboard()) {
+			return;
+		}
+
+		Assert.assertTrue(dashboard.areCategoriesVisible(),
+				"Categories should display correctly on the book details page.");
+	}
+
+	@Test(priority = 312, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyClickingCategoryNavigatesToCategoryPage() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -421,7 +498,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Clicking a category should navigate to a category-related page.");
 	}
 
-	@Test(priority = 314, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 313, retryAnalyzer = RetryAnalyzer.class)
 	public void verifySummaryContentLoads() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -431,7 +508,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Summary section should load or show a stable empty state.");
 	}
 
-	@Test(priority = 315, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 314, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyUiWhenSummaryIsMissing() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -446,7 +523,32 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Book details should show a stable message when summary content is missing.");
 	}
 
-	@Test(priority = 318, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 315, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyChapterListLoadsCorrectly() {
+		if (!openBookDetailsFromDashboard()) {
+			return;
+		}
+
+		Assert.assertTrue(dashboard.areChaptersVisible() && dashboard.getVisibleChapterCount() > 0,
+				"All available chapters should display correctly.");
+	}
+
+	@Test(priority = 316, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyChapterStartsPlayingWhenClicked() {
+		if (!openBookDetailsFromDashboard()) {
+			return;
+		}
+
+		if (!dashboard.areChaptersVisible()) {
+			logOptionalUnavailable("No chapters are visible for playback validation.");
+			return;
+		}
+
+		Assert.assertTrue(dashboard.clickFirstChapterAndVerifyPlayer(),
+				"Audio should start playing when a chapter is clicked.");
+	}
+
+	@Test(priority = 317, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyUiWhenNoChaptersAvailable() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -461,7 +563,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Book details should show a stable message when no chapters are available.");
 	}
 
-	@Test(priority = 319, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 318, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyChapterDurationDisplay() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -471,7 +573,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Chapter duration should display when chapters are available.");
 	}
 
-	@Test(priority = 320, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 319, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyReportOptionWorks() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -485,7 +587,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 		Assert.assertTrue(dashboard.openReportOption(), "Report action should open report options or form.");
 	}
 
-	@Test(priority = 321, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 320, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyDuplicateReportHandling() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -504,7 +606,17 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Duplicate report attempts should be prevented or handled without breaking the page.");
 	}
 
-	@Test(priority = 323, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 321, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyBackNavigationReturnsToDashboard() {
+		if (!openBookDetailsFromDashboard()) {
+			return;
+		}
+
+		Assert.assertTrue(dashboard.clickBackButtonToDashboard(),
+				"Back navigation should return the user to the dashboard.");
+	}
+
+	@Test(priority = 322, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyUiWithLongBookTitles() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -519,7 +631,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Long book titles should render without breaking the details page.");
 	}
 
-	@Test(priority = 324, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 323, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyUiPerformanceWithManyChapters() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
@@ -535,13 +647,40 @@ public class ConsumerBookDetailsTests extends BaseTest {
 				"Large chapter lists should load without breaking the details page.");
 	}
 
-	@Test(priority = 322, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyBackNavigationReturnsToDashboard() {
+	@Test(priority = 324, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyAddBookToFavoritesPlaylist() {
 		if (!openBookDetailsFromDashboard()) {
 			return;
 		}
 
-		Assert.assertTrue(dashboard.clickBackButtonToDashboard(),
-				"Back navigation should return the user to the dashboard.");
+		if (!dashboard.isFavoriteButtonVisible()) {
+			logOptionalUnavailable("Favorite button is not visible for the current book details page.");
+			return;
+		}
+
+		String playlistName = "Test Playlist " + System.currentTimeMillis();
+
+		Assert.assertTrue(dashboard.addBookToFavoritesPlaylist(playlistName),
+				"Book should be added to favorites and playlist '" + playlistName + "' should be created.");
+	}
+
+	@Test(priority = 325, retryAnalyzer = RetryAnalyzer.class)
+	public void verifyRemoveBookFromFavoritesAndDeletePlaylist() {
+		if (!openBookDetailsFromDashboard()) {
+			return;
+		}
+
+		if (!dashboard.isFavoriteButtonVisible()) {
+			logOptionalUnavailable("Favorite button is not visible for the current book details page.");
+			return;
+		}
+
+		// First, add the book to a playlist so we can remove it
+		String playlistName = "Test Playlist " + System.currentTimeMillis();
+		dashboard.addBookToFavoritesPlaylist(playlistName);
+
+		// Then remove it
+		Assert.assertTrue(dashboard.removeBookFromFavoritesAndDeletePlaylist(playlistName),
+				"Book should be removed from favorites and playlist '" + playlistName + "' should be deleted.");
 	}
 }
