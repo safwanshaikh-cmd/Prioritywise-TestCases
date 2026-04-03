@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\safwan\AppData\Local\Temp\testng-eclipse--1734197445\testng-customsuite.xml</span>
+                    <span>C:\Users\safwan\AppData\Local\Temp\testng-eclipse--1474676425\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.ConsumerBookDetailsTests" class="method navigator-link" hash-for-method="verifyAddBookToFavoritesPlaylist">verifyAddBookToFavoritesPlaylist</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="tests.AudioPlayerTests" class="method navigator-link" hash-for-method="verifyAudioResumesFromPausedPosition">verifyAudioResumesFromPausedPosition</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -121,14 +121,14 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">tests.ConsumerBookDetailsTests</span>
+              <span class="class-name">tests.AudioPlayerTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="verifyAddBookToFavoritesPlaylist">
-                  </a> <!-- verifyAddBookToFavoritesPlaylist -->
-                  <span class="method-name">verifyAddBookToFavoritesPlaylist</span>
+                  <a name="verifyAudioResumesFromPausedPosition">
+                  </a> <!-- verifyAudioResumesFromPausedPosition -->
+                  <span class="method-name">verifyAudioResumesFromPausedPosition</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -136,7 +136,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\safwan\AppData\Local\Temp\testng-eclipse--1734197445\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\safwan\AppData\Local\Temp\testng-eclipse--1474676425\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -145,11 +145,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;tests.ConsumerBookDetailsTests&quot;&gt;
+      &lt;class name=&quot;tests.AudioPlayerTests&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;verifyAddBookToFavoritesPlaylist&quot;/&gt;
+          &lt;include name=&quot;verifyAudioResumesFromPausedPosition&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- tests.ConsumerBookDetailsTests --&gt;
+      &lt;/class&gt; &lt;!-- tests.AudioPlayerTests --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -191,9 +191,9 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'verifyAddBookToFavoritesPlaylist')
-data.setCell(0, 2, 'tests.ConsumerBookDetailsTests')
-data.setCell(0, 3, 62180);
+data.setCell(0, 1, 'verifyAudioResumesFromPausedPosition')
+data.setCell(0, 2, 'tests.AudioPlayerTests')
+data.setCell(0, 3, 84128);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
@@ -213,93 +213,49 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">41 ignored methods</span>
+            <span class="header-content">19 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">tests.ConsumerBookDetailsTests</span>
+              <span class="ignored-class-name">tests.AudioPlayerTests</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">verifySystemStabilityWhenBannersClickedRapidly</span>
+                <span class="ignored-method-name">verifyForwardButtonBehaviorNearAudioEnd</span>
                 <br/>
-                <span class="ignored-method-name">verifyBackNavigationReturnsToDashboard</span>
+                <span class="ignored-method-name">verifyRewindBehaviorAtAudioStart</span>
                 <br/>
-                <span class="ignored-method-name">verifyBookSummaryDisplayedOnBookDetailsPage</span>
+                <span class="ignored-method-name">verifyPreviousChapterNavigation</span>
                 <br/>
-                <span class="ignored-method-name">verifySystemHandlesManyBannersSmoothly</span>
+                <span class="ignored-method-name">verifyUserCanMuteAudio</span>
                 <br/>
-                <span class="ignored-method-name">verifyBannerImagesScrollAutomatically</span>
+                <span class="ignored-method-name">verifyVolumeSliderDecreasesAudioLevel</span>
                 <br/>
-                <span class="ignored-method-name">verifyBannerImagesAreVisibleOnDashboard</span>
+                <span class="ignored-method-name">verifyUserCanSeekForwardViaProgressBar</span>
                 <br/>
-                <span class="ignored-method-name">verifyDuplicateReportHandling</span>
+                <span class="ignored-method-name">verifyClickingNextChapterPlaysNextChapter</span>
                 <br/>
-                <span class="ignored-method-name">verifyClickingBannerOpensCorrespondingBookDetails</span>
+                <span class="ignored-method-name">verifyVolumeSliderIncreasesAudioLevel</span>
                 <br/>
-                <span class="ignored-method-name">verifyRemoveBookFromFavoritesAndDeletePlaylist</span>
+                <span class="ignored-method-name">verifyUserCanSeekBackwardViaProgressBar</span>
                 <br/>
-                <span class="ignored-method-name">verifySystemBehaviorWhenBookImageMissing</span>
+                <span class="ignored-method-name">verifySeekBehaviorWhenDraggedBeyondAudioLength</span>
                 <br/>
-                <span class="ignored-method-name">verifyUserCanLikeABook</span>
+                <span class="ignored-method-name">verifyUserCanChangePlaybackSpeed</span>
                 <br/>
-                <span class="ignored-method-name">verifyBookReviewsDisplayedOnBookDetailsPage</span>
+                <span class="ignored-method-name">verifyUserCanSkipForward30Seconds</span>
                 <br/>
-                <span class="ignored-method-name">verifyBehaviorWhenNoBannersExist</span>
+                <span class="ignored-method-name">verifyUserCanRewind30Seconds</span>
                 <br/>
-                <span class="ignored-method-name">verifyUiWhenNoChaptersAvailable</span>
+                <span class="ignored-method-name">verifyMaximumSpeedSelection</span>
                 <br/>
-                <span class="ignored-method-name">verifyRatingInformationDisplayedOnBookDetailsPage</span>
+                <span class="ignored-method-name">verifyAudioStartsWhenClickingPlayButton</span>
                 <br/>
-                <span class="ignored-method-name">verifyChapterDurationDisplay</span>
+                <span class="ignored-method-name">verifyPreviousButtonBehaviorOnFirstChapter</span>
                 <br/>
-                <span class="ignored-method-name">verifyAssignedCategoriesDisplayedOnBookDetailsPage</span>
+                <span class="ignored-method-name">verifyClickingXClosesAudioPlayer</span>
                 <br/>
-                <span class="ignored-method-name">verifyReportOptionWorks</span>
+                <span class="ignored-method-name">verifyAudioPausesWhenPauseButtonClicked</span>
                 <br/>
-                <span class="ignored-method-name">verifyUiPerformanceWithManyChapters</span>
-                <br/>
-                <span class="ignored-method-name">verifyCorrectBookOpensWhenBannerClicked</span>
-                <br/>
-                <span class="ignored-method-name">verifyUiWhenSummaryIsMissing</span>
-                <br/>
-                <span class="ignored-method-name">verifyBannerLoadsCorrectlyOnSlowNetwork</span>
-                <br/>
-                <span class="ignored-method-name">verifyAudioStartsWhenClickingPlayAudio</span>
-                <br/>
-                <span class="ignored-method-name">verifyUserCanPausePlayingAudio</span>
-                <br/>
-                <span class="ignored-method-name">verifyUserCanAccessReportOption</span>
-                <br/>
-                <span class="ignored-method-name">verifyUiWithLongBookTitles</span>
-                <br/>
-                <span class="ignored-method-name">verifyUserCanUnlikeABook</span>
-                <br/>
-                <span class="ignored-method-name">verifyUserCanManuallyScrollBanners</span>
-                <br/>
-                <span class="ignored-method-name">verifyBookCoverImageLoadsProperly</span>
-                <br/>
-                <span class="ignored-method-name">verifySummaryContentLoads</span>
-                <br/>
-                <span class="ignored-method-name">verifyChapterStartsPlayingWhenClicked</span>
-                <br/>
-                <span class="ignored-method-name">verifyShareButtonFunctionality</span>
-                <br/>
-                <span class="ignored-method-name">verifyScrollingWorksWithOnlyOneBanner</span>
-                <br/>
-                <span class="ignored-method-name">verifyChapterListLoadsCorrectly</span>
-                <br/>
-                <span class="ignored-method-name">verifyCategoriesAppearCorrectly</span>
-                <br/>
-                <span class="ignored-method-name">verifyBehaviorWhenNoReviewsExist</span>
-                <br/>
-                <span class="ignored-method-name">verifyDurationDisplayedForEpisodesOrBook</span>
-                <br/>
-                <span class="ignored-method-name">verifyClickingCategoryNavigatesToCategoryPage</span>
-                <br/>
-                <span class="ignored-method-name">verifyEpisodesListDisplayedOnBookDetailsPage</span>
-                <br/>
-                <span class="ignored-method-name">verifyBehaviorWhenNoEpisodesExist</span>
-                <br/>
-                <span class="ignored-method-name">verifyAvailableChaptersListedOnBookDetailsPage</span>
+                <span class="ignored-method-name">verifyMinimumSpeedSelection</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -311,22 +267,22 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">tests.ConsumerBookDetailsTests</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">tests.AudioPlayerTests</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setup</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="configuration-method before">
-                <span class="method-name">initConsumerBookDetailsPage</span>
-                <span class="method-start">12537 ms</span>
+                <span class="method-name">initAudioPlayerTests</span>
+                <span class="method-start">14811 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">verifyAddBookToFavoritesPlaylist</span>
-                <span class="method-start">56752 ms</span>
+                <span class="method-name">verifyAudioResumesFromPausedPosition</span>
+                <span class="method-start">58906 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">118943 ms</span>
+                <span class="method-start">143049 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

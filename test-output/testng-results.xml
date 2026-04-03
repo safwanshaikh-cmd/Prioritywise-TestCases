@@ -2,28 +2,28 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-04-03T16:05:21 GST" name="Default suite" finished-at="2026-04-03T16:07:20 GST" duration-ms="119681">
+  <suite started-at="2026-04-03T16:50:24 GST" name="Default suite" finished-at="2026-04-03T16:52:47 GST" duration-ms="143692">
     <groups>
     </groups>
-    <test started-at="2026-04-03T16:05:21 GST" name="Default test" finished-at="2026-04-03T16:07:20 GST" duration-ms="119681">
-      <class name="tests.ConsumerBookDetailsTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T16:05:21 GST" name="setup" finished-at="2026-04-03T16:05:33 GST" duration-ms="12537" status="PASS">
+    <test started-at="2026-04-03T16:50:24 GST" name="Default test" finished-at="2026-04-03T16:52:47 GST" duration-ms="143692">
+      <class name="tests.AudioPlayerTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@4116aac9]" started-at="2026-04-03T16:50:24 GST" name="setup" finished-at="2026-04-03T16:50:39 GST" duration-ms="14809" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="initConsumerBookDetailsPage()[pri:0, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T16:05:33 GST" name="initConsumerBookDetailsPage" finished-at="2026-04-03T16:06:18 GST" duration-ms="44215" status="PASS">
+        <test-method is-config="true" signature="initAudioPlayerTests()[pri:0, instance:tests.AudioPlayerTests@4116aac9]" started-at="2026-04-03T16:50:39 GST" name="initAudioPlayerTests" finished-at="2026-04-03T16:51:23 GST" duration-ms="44095" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- initConsumerBookDetailsPage -->
-        <test-method signature="verifyAddBookToFavoritesPlaylist()[pri:324, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T16:06:18 GST" name="verifyAddBookToFavoritesPlaylist" finished-at="2026-04-03T16:07:20 GST" duration-ms="62180" status="PASS">
+        </test-method> <!-- initAudioPlayerTests -->
+        <test-method signature="verifyAudioResumesFromPausedPosition()[pri:326, instance:tests.AudioPlayerTests@4116aac9]" started-at="2026-04-03T16:51:23 GST" name="verifyAudioResumesFromPausedPosition" finished-at="2026-04-03T16:52:47 GST" duration-ms="84128" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyAddBookToFavoritesPlaylist -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@367ffa75]" started-at="2026-04-03T16:07:20 GST" name="tearDown" finished-at="2026-04-03T16:07:20 GST" duration-ms="547" status="PASS">
+        </test-method> <!-- verifyAudioResumesFromPausedPosition -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@4116aac9]" started-at="2026-04-03T16:52:47 GST" name="tearDown" finished-at="2026-04-03T16:52:47 GST" duration-ms="481" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- tests.ConsumerBookDetailsTests -->
+      </class> <!-- tests.AudioPlayerTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

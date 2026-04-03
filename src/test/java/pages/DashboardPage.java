@@ -1899,9 +1899,63 @@ public class DashboardPage extends BasePage {
 
 	// ==================== AUDIO PLAYER CONTROL METHODS ====================
 
+	// Helper methods for audio player controls
+
+	private WebElement safeFindAudioElement(By locator) {
+		try {
+			return pageWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		} catch (org.openqa.selenium.TimeoutException e) {
+			LOGGER.log(Level.FINE, "Audio element not found: {0} - {1}", new Object[]{locator, e.getMessage()});
+			return null;
+		}
+	}
+
+	private WebElement safeWaitForClickable(By locator) {
+		try {
+			return pageWait.until(ExpectedConditions.elementToBeClickable(locator));
+		} catch (org.openqa.selenium.TimeoutException e) {
+			LOGGER.log(Level.FINE, "Audio element not clickable: {0} - {1}", new Object[]{locator, e.getMessage()});
+			return null;
+		}
+	}
+
+	private void safeJsClick(WebElement element) {
+		if (element == null) {
+			return;
+		}
+		try {
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+			LOGGER.log(Level.FINE, "JS click executed successfully");
+		} catch (org.openqa.selenium.JavascriptException e) {
+			LOGGER.log(Level.FINE, "JS click failed: {0}", e.getMessage());
+			try {
+				element.click();
+				LOGGER.log(Level.FINE, "Fallback click executed");
+			} catch (Exception ex) {
+				LOGGER.log(Level.FINE, "Fallback click failed: {0}", ex.getMessage());
+			}
+		}
+	}
+
+	private void safeActionsClick(WebElement element) {
+		if (element == null) {
+			return;
+		}
+		try {
+			scrollIntoView(element);
+			Actions actions = new Actions(driver);
+			actions.moveToElement(element).click().build().perform();
+			LOGGER.log(Level.FINE, "Actions click executed successfully");
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Actions click failed: {0}", e.getMessage());
+			safeJsClick(element);
+		}
+	}
+
 	public String getCurrentAudioPosition() {
 		try {
-			WebElement positionLabel = findFirstVisibleElement(CURRENT_POSITION_LABEL);
+			WebElement positionLabel = safeFindAudioElement(CURRENT_POSITION_LABEL);
 			if (positionLabel != null) {
 				String position = normalizeVisibleText(positionLabel);
 				LOGGER.log(Level.INFO, "Current audio position: {0}", position);
@@ -1915,24 +1969,13 @@ public class DashboardPage extends BasePage {
 
 	public boolean skipForward30Seconds() {
 		try {
-			WebElement forwardButton = findFirstVisibleElement(FORWARD_SKIP_BUTTON);
+			WebElement forwardButton = safeWaitForClickable(FORWARD_SKIP_BUTTON);
 			if (forwardButton == null) {
-				LOGGER.log(Level.WARNING, "Forward skip button not found");
+				LOGGER.log(Level.WARNING, "Forward skip button not found or not clickable");
 				return false;
 			}
 
-			scrollIntoView(forwardButton);
-
-			try {
-				Actions actions = new Actions(driver);
-				actions.moveToElement(forwardButton).click().build().perform();
-				LOGGER.log(Level.INFO, "Actions click executed on Forward Skip button");
-			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
-				clickWithJS(forwardButton);
-			}
-
-			waitForMilliseconds(500);
+			safeActionsClick(forwardButton);
 			LOGGER.log(Level.INFO, "Skipped forward 30 seconds");
 			return true;
 		} catch (Exception e) {
@@ -1943,24 +1986,13 @@ public class DashboardPage extends BasePage {
 
 	public boolean rewind30Seconds() {
 		try {
-			WebElement rewindButton = findFirstVisibleElement(REWIND_BUTTON);
+			WebElement rewindButton = safeWaitForClickable(REWIND_BUTTON);
 			if (rewindButton == null) {
-				LOGGER.log(Level.WARNING, "Rewind button not found");
+				LOGGER.log(Level.WARNING, "Rewind button not found or not clickable");
 				return false;
 			}
 
-			scrollIntoView(rewindButton);
-
-			try {
-				Actions actions = new Actions(driver);
-				actions.moveToElement(rewindButton).click().build().perform();
-				LOGGER.log(Level.INFO, "Actions click executed on Rewind button");
-			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
-				clickWithJS(rewindButton);
-			}
-
-			waitForMilliseconds(500);
+			safeActionsClick(rewindButton);
 			LOGGER.log(Level.INFO, "Rewound 30 seconds");
 			return true;
 		} catch (Exception e) {
@@ -1974,22 +2006,20 @@ public class DashboardPage extends BasePage {
 			String position = getCurrentAudioPosition();
 			LOGGER.log(Level.INFO, "Position before skip near end: {0}", position);
 
-			WebElement forwardButton = findFirstVisibleElement(FORWARD_SKIP_BUTTON);
+			WebElement forwardButton = safeWaitForClickable(FORWARD_SKIP_BUTTON);
 			if (forwardButton == null) {
 				LOGGER.log(Level.WARNING, "Forward skip button not found for edge case test");
 				return false;
 			}
 
-			scrollIntoView(forwardButton);
-
 			for (int i = 0; i < 5; i++) {
-				try {
-					Actions actions = new Actions(driver);
-					actions.moveToElement(forwardButton).click().build().perform();
+				WebElement button = safeWaitForClickable(FORWARD_SKIP_BUTTON);
+				if (button != null) {
+					safeJsClick(button);
 					LOGGER.log(Level.INFO, "Forward skip executed ({0})", i + 1);
 					waitForMilliseconds(300);
-				} catch (Exception e) {
-					LOGGER.log(Level.FINE, "Skip attempt {0} failed: {1}", new Object[]{i + 1, e.getMessage()});
+				} else {
+					LOGGER.log(Level.FINE, "Skip attempt {0} failed: button not found", i + 1);
 				}
 			}
 
@@ -2006,22 +2036,20 @@ public class DashboardPage extends BasePage {
 			String position = getCurrentAudioPosition();
 			LOGGER.log(Level.INFO, "Position before rewind at start: {0}", position);
 
-			WebElement rewindButton = findFirstVisibleElement(REWIND_BUTTON);
+			WebElement rewindButton = safeWaitForClickable(REWIND_BUTTON);
 			if (rewindButton == null) {
 				LOGGER.log(Level.WARNING, "Rewind button not found for edge case test");
 				return false;
 			}
 
-			scrollIntoView(rewindButton);
-
 			for (int i = 0; i < 3; i++) {
-				try {
-					Actions actions = new Actions(driver);
-					actions.moveToElement(rewindButton).click().build().perform();
+				WebElement button = safeWaitForClickable(REWIND_BUTTON);
+				if (button != null) {
+					safeJsClick(button);
 					LOGGER.log(Level.INFO, "Rewind executed ({0})", i + 1);
 					waitForMilliseconds(300);
-				} catch (Exception e) {
-					LOGGER.log(Level.FINE, "Rewind attempt {0} failed: {1}", new Object[]{i + 1, e.getMessage()});
+				} else {
+					LOGGER.log(Level.FINE, "Rewind attempt {0} failed: button not found", i + 1);
 				}
 			}
 
@@ -2035,7 +2063,7 @@ public class DashboardPage extends BasePage {
 
 	public String getCurrentChapterTitle() {
 		try {
-			WebElement chapterLabel = findFirstVisibleElement(CURRENT_CHAPTER_TITLE);
+			WebElement chapterLabel = safeFindAudioElement(CURRENT_CHAPTER_TITLE);
 			if (chapterLabel != null) {
 				String title = normalizeVisibleText(chapterLabel);
 				LOGGER.log(Level.INFO, "Current chapter title: {0}", title);
@@ -2049,27 +2077,18 @@ public class DashboardPage extends BasePage {
 
 	public boolean clickNextChapter() {
 		try {
-			WebElement nextButton = findFirstVisibleElement(NEXT_CHAPTER_BUTTON);
+			WebElement nextButton = safeWaitForClickable(NEXT_CHAPTER_BUTTON);
 			if (nextButton == null) {
-				LOGGER.log(Level.WARNING, "Next Chapter button not found");
+				LOGGER.log(Level.WARNING, "Next Chapter button not found or not clickable");
 				return false;
 			}
 
 			String beforeChapter = getCurrentChapterTitle();
 			LOGGER.log(Level.INFO, "Chapter before clicking Next: {0}", beforeChapter);
 
-			scrollIntoView(nextButton);
-
-			try {
-				Actions actions = new Actions(driver);
-				actions.moveToElement(nextButton).click().build().perform();
-				LOGGER.log(Level.INFO, "Actions click executed on Next Chapter button");
-			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
-				clickWithJS(nextButton);
-			}
-
+			safeActionsClick(nextButton);
 			waitForMilliseconds(1000);
+
 			String afterChapter = getCurrentChapterTitle();
 			LOGGER.log(Level.INFO, "Chapter after clicking Next: {0}", afterChapter);
 
@@ -2082,27 +2101,18 @@ public class DashboardPage extends BasePage {
 
 	public boolean clickPreviousChapter() {
 		try {
-			WebElement prevButton = findFirstVisibleElement(PREVIOUS_CHAPTER_BUTTON);
+			WebElement prevButton = safeWaitForClickable(PREVIOUS_CHAPTER_BUTTON);
 			if (prevButton == null) {
-				LOGGER.log(Level.WARNING, "Previous Chapter button not found");
+				LOGGER.log(Level.WARNING, "Previous Chapter button not found or not clickable");
 				return false;
 			}
 
 			String beforeChapter = getCurrentChapterTitle();
 			LOGGER.log(Level.INFO, "Chapter before clicking Previous: {0}", beforeChapter);
 
-			scrollIntoView(prevButton);
-
-			try {
-				Actions actions = new Actions(driver);
-				actions.moveToElement(prevButton).click().build().perform();
-				LOGGER.log(Level.INFO, "Actions click executed on Previous Chapter button");
-			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
-				clickWithJS(prevButton);
-			}
-
+			safeActionsClick(prevButton);
 			waitForMilliseconds(1000);
+
 			String afterChapter = getCurrentChapterTitle();
 			LOGGER.log(Level.INFO, "Chapter after clicking Previous: {0}", afterChapter);
 
@@ -2115,42 +2125,22 @@ public class DashboardPage extends BasePage {
 
 	public boolean changePlaybackSpeed(String speed) {
 		try {
-			WebElement speedButton = findFirstVisibleElement(SPEED_CONTROL_BUTTON);
+			WebElement speedButton = safeWaitForClickable(SPEED_CONTROL_BUTTON);
 			if (speedButton == null) {
-				LOGGER.log(Level.WARNING, "Speed control button not found");
+				LOGGER.log(Level.WARNING, "Speed control button not found or not clickable");
 				return false;
 			}
 
-			scrollIntoView(speedButton);
-
-			try {
-				Actions actions = new Actions(driver);
-				actions.moveToElement(speedButton).click().build().perform();
-				LOGGER.log(Level.INFO, "Actions click executed on Speed control button");
-			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
-				clickWithJS(speedButton);
-			}
-
+			safeActionsClick(speedButton);
 			waitForMilliseconds(500);
 
 			String speedXPath = "//*[self::button or @role='button' or @tabindex='0']"
 					+ "[contains(translate(normalize-space(.),'" + speed + "'),'" + speed + "')]";
 			By speedOption = By.xpath(speedXPath);
 
-			WebElement speedOptionElement = findFirstVisibleElement(speedOption);
+			WebElement speedOptionElement = safeWaitForClickable(speedOption);
 			if (speedOptionElement != null) {
-				scrollIntoView(speedOptionElement);
-
-				try {
-					Actions actions = new Actions(driver);
-					actions.moveToElement(speedOptionElement).click().build().perform();
-					LOGGER.log(Level.INFO, "Selected playback speed: {0}", speed);
-				} catch (Exception e) {
-					LOGGER.log(Level.WARNING, "Actions click on speed option failed: {0}", e.getMessage());
-					clickWithJS(speedOptionElement);
-				}
-
+				safeActionsClick(speedOptionElement);
 				waitForMilliseconds(500);
 				LOGGER.log(Level.INFO, "Playback speed changed to: {0}", speed);
 				return true;
@@ -2166,7 +2156,7 @@ public class DashboardPage extends BasePage {
 
 	public int getCurrentVolumeLevel() {
 		try {
-			WebElement volumeSlider = findFirstVisibleElement(VOLUME_SLIDER);
+			WebElement volumeSlider = safeFindAudioElement(VOLUME_SLIDER);
 			if (volumeSlider != null) {
 				String value = volumeSlider.getAttribute("value");
 				if (value != null && !value.isBlank()) {
@@ -2191,7 +2181,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean increaseVolume() {
 		try {
-			WebElement volumeSlider = findFirstVisibleElement(VOLUME_SLIDER);
+			WebElement volumeSlider = safeFindAudioElement(VOLUME_SLIDER);
 			if (volumeSlider == null) {
 				LOGGER.log(Level.WARNING, "Volume slider not found");
 				return false;
@@ -2202,13 +2192,7 @@ public class DashboardPage extends BasePage {
 			int beforeVolume = getCurrentVolumeLevel();
 			LOGGER.log(Level.INFO, "Volume before increase: {0}", beforeVolume);
 
-			try {
-				Actions actions = new Actions(driver);
-				actions.moveToElement(volumeSlider).click().build().perform();
-				LOGGER.log(Level.INFO, "Clicked on volume slider");
-			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Actions click on volume slider failed: {0}", e.getMessage());
-			}
+			safeJsClick(volumeSlider);
 
 			try {
 				Actions actions = new Actions(driver);
@@ -2232,7 +2216,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean decreaseVolume() {
 		try {
-			WebElement volumeSlider = findFirstVisibleElement(VOLUME_SLIDER);
+			WebElement volumeSlider = safeFindAudioElement(VOLUME_SLIDER);
 			if (volumeSlider == null) {
 				LOGGER.log(Level.WARNING, "Volume slider not found");
 				return false;
@@ -2265,24 +2249,13 @@ public class DashboardPage extends BasePage {
 
 	public boolean muteAudio() {
 		try {
-			WebElement muteButton = findFirstVisibleElement(MUTE_BUTTON);
+			WebElement muteButton = safeWaitForClickable(MUTE_BUTTON);
 			if (muteButton == null) {
-				LOGGER.log(Level.WARNING, "Mute button not found");
+				LOGGER.log(Level.WARNING, "Mute button not found or not clickable");
 				return false;
 			}
 
-			scrollIntoView(muteButton);
-
-			try {
-				Actions actions = new Actions(driver);
-				actions.moveToElement(muteButton).click().build().perform();
-				LOGGER.log(Level.INFO, "Actions click executed on Mute button");
-			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
-				clickWithJS(muteButton);
-			}
-
-			waitForMilliseconds(500);
+			safeActionsClick(muteButton);
 			LOGGER.log(Level.INFO, "Audio mute toggled");
 			return true;
 		} catch (Exception e) {
@@ -2301,15 +2274,7 @@ public class DashboardPage extends BasePage {
 
 			scrollIntoView(closeButton);
 
-			try {
-				Actions actions = new Actions(driver);
-				actions.moveToElement(closeButton).click().build().perform();
-				LOGGER.log(Level.INFO, "Actions click executed on Close player button");
-			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Actions click failed: {0}", e.getMessage());
-				clickWithJS(closeButton);
-			}
-
+			safeActionsClick(closeButton);
 			waitForMilliseconds(1000);
 			LOGGER.log(Level.INFO, "Audio player closed");
 			return true;
@@ -2321,7 +2286,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean seekForward() {
 		try {
-			WebElement progressBar = findFirstVisibleElement(PROGRESS_BAR);
+			WebElement progressBar = safeFindAudioElement(PROGRESS_BAR);
 			if (progressBar == null) {
 				LOGGER.log(Level.WARNING, "Progress bar not found");
 				return false;
@@ -2357,7 +2322,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean seekBackward() {
 		try {
-			WebElement progressBar = findFirstVisibleElement(PROGRESS_BAR);
+			WebElement progressBar = safeFindAudioElement(PROGRESS_BAR);
 			if (progressBar == null) {
 				LOGGER.log(Level.WARNING, "Progress bar not found");
 				return false;
@@ -2365,8 +2330,6 @@ public class DashboardPage extends BasePage {
 
 			String beforePosition = getCurrentAudioPosition();
 			LOGGER.log(Level.INFO, "Position before seek: {0}", beforePosition);
-
-			scrollIntoView(progressBar);
 
 			org.openqa.selenium.Dimension size = progressBar.getSize();
 			int xOffset = (int) (size.getWidth() * 0.3);
@@ -2392,7 +2355,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean seekBeyondEnd() {
 		try {
-			WebElement progressBar = findFirstVisibleElement(PROGRESS_BAR);
+			WebElement progressBar = safeFindAudioElement(PROGRESS_BAR);
 			if (progressBar == null) {
 				LOGGER.log(Level.WARNING, "Progress bar not found for edge case test");
 				return false;
