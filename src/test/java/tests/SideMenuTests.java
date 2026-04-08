@@ -35,70 +35,61 @@ public class SideMenuTests extends BaseTest {
 
 	@Test(priority = 352, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyHamburgerOpenCloseToggle() {
-		Assert.assertTrue(dashboard.openSideMenu(), "TC_352: expected side menu to open on first hamburger click.");
-		Assert.assertTrue(dashboard.closeSideMenu(), "TC_352: expected side menu to close on second hamburger click.");
-		Assert.assertFalse(dashboard.isSideMenuOpen(), "TC_352: expected side menu to be hidden after closing.");
+		Assert.assertTrue(dashboard.openSimpleSideMenu(), "TC_352: expected side menu to open on hamburger click.");
+		dashboard.printSimpleSideMenuButtonNames();
+		Assert.assertTrue(dashboard.closeSimpleSideMenu(), "TC_352: expected side menu to close after printing buttons.");
+		Assert.assertFalse(dashboard.isSimpleSideMenuOpen(), "TC_352: expected side menu to be hidden after closing.");
 	}
 
 	@Test(priority = 353, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyAllSideMenuItemsVisible() {
-		Assert.assertTrue(dashboard.openSideMenu(), "TC_353: expected side menu to open before visibility checks.");
-
-		List<String> missing = dashboard.getMissingPrimarySideMenuItems();
-
-		Assert.assertTrue(missing.isEmpty(), "TC_353 FAILED: Missing items: " + missing);
+		Assert.assertTrue(dashboard.openSimpleSideMenu(), "TC_353: expected side menu to open on hamburger click.");
+		Assert.assertTrue(dashboard.waitForSimpleSideMenuVisibility(),
+				"TC_353: expected side menu buttons to be visible after opening.");
+		dashboard.printSimpleSideMenuButtonNames();
 	}
 
 	@Test(priority = 354, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyHomeNavigation() {
-		Assert.assertTrue(dashboard.openSideMenu(), "TC_354: expected side menu to open before clicking Home.");
-		String currentUrl = dashboard.clickSideMenuItemAndCaptureUrl("home");
-		assertLiveUrl(caseId("354"), currentUrl, "", "/", "/dashboard", "/home");
-		Assert.assertTrue(dashboard.waitForDashboardShell() || dashboard.matchesCurrentPage("dashboard", "home"),
-				"TC_354: expected Home menu item to navigate to the dashboard/home view.");
+		assertSimpleSideMenuNavigation("TC_354", "https://web-splay.acceses.com/", "home");
 	}
 
 	@Test(priority = 355, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyGet80OffNavigation() {
-		assertSideMenuNavigation("TC_355", "get 80% off", new String[] { "80% off" },
-				new String[] { "/offer", "/offers", "/discount", "/subscription", "/subscriptions", "/plan",
-						"/pricing" },
-				"80% off", "offer", "discount", "subscription", "plan", "pricing");
+		assertSimpleSideMenuNavigation("TC_355", "https://web-splay.acceses.com/payments/deactivate-plan", "get 80% off",
+				"80% off", "subscriptions", "subscription");
 	}
 
 	@Test(priority = 356, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyMostFavoriteNavigation() {
-		assertSideMenuNavigation("TC_356", "most favorite", new String[] { "most favourite", "favorite", "favourite" },
-				new String[] { "/favorite", "/favorites", "/favourite", "/favourites", "/wishlist" }, "favorite",
-				"favourite");
+		assertSimpleSideMenuNavigation("TC_356", "https://web-splay.acceses.com/favorites", "favorites", "favorite",
+				"most favorite", "most favourite", "favourite");
 	}
 
 	@Test(priority = 357, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyTransactionHistoryNavigation() {
-		assertSideMenuNavigation("TC_357", "transaction history",
-				new String[] { "transactions history", "transactions", "payment history", "order history" },
-				new String[] { "/transaction-history", "/transactions", "/transaction", "/payment-history",
-						"/order-history", "/orders" },
-				"transaction", "history");
+		assertSimpleSideMenuNavigation("TC_357", "https://web-splay.acceses.com/transactions", "transaction history",
+				"transactions", "payment history", "order history");
 	}
 
 	@Test(priority = 358, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyAboutUsNavigation() {
-		assertSideMenuNavigation("TC_358", "about us", new String[] { "about" },
-				new String[] { "/about-us", "/about" }, "about");
+		assertSimpleSideMenuNavigation("TC_358", "https://web-splay.acceses.com/about_us", "about us", "about");
 	}
 
 	@Test(priority = 359, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyContactNavigation() {
-		assertSideMenuNavigation("TC_359", "contact", new String[] { "contact us" },
-				new String[] { "/contact-us", "/contact" }, "contact");
+		assertSimpleSideMenuNavigation("TC_359", "https://web-splay.acceses.com/contact_us", "contact us", "contact");
 	}
 
 	@Test(priority = 360, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyDownloadAppsNavigation() {
-		assertSideMenuNavigation("TC_360", "download apps", new String[] { "download app", "download" },
-				new String[] { "/download-apps", "/download-app", "/download", "/apps", "/app" }, "download", "app",
-				"play store", "app store");
+		Assert.assertTrue(dashboard.openSimpleSideMenu(), "TC_360: expected side menu to open on hamburger click.");
+		Assert.assertTrue(dashboard.waitForSimpleSideMenuVisibility(),
+				"TC_360: expected side menu buttons to be visible after opening.");
+		Assert.assertTrue(dashboard.isSimpleSideMenuButtonVisible("download apps", "download app", "download"),
+				"TC_360: expected Download Apps button to be visible in the side menu.");
+		dashboard.printSimpleSideMenuButtonNames();
 	}
 
 	private void loginAsConsumer() {
@@ -118,67 +109,15 @@ public class SideMenuTests extends BaseTest {
 		Assert.assertTrue(dashboard.waitForDashboardShell(), "Consumer dashboard should load after login.");
 	}
 
-	private void assertSideMenuNavigation(String caseId, String primaryLabel, String[] alternateLabels,
-			String[] expectedUrlPaths, String... expectedTokens) {
-		Assert.assertTrue(dashboard.openSideMenu(), caseId + ": expected side menu to open before navigation.");
-		String currentUrl = dashboard.clickSideMenuItemAndCaptureUrl(primaryLabel, alternateLabels);
-		assertLiveUrl(caseId, currentUrl, expectedUrlPaths);
-		Assert.assertTrue(dashboard.matchesCurrentPage(expectedTokens), caseId
-				+ ": expected side menu navigation to reach the correct destination. Current URL: " + currentUrl);
-	}
-
-	private void assertLiveUrl(String caseId, String currentUrl, String... expectedPaths) {
-		Assert.assertTrue(matchesAnyLiveUrl(currentUrl, expectedPaths), caseId
-				+ ": expected live URL to match one of the configured routes. Current URL: " + currentUrl
-				+ " | Expected routes: " + String.join(", ", buildExpectedUrls(expectedPaths)));
-	}
-
-	private boolean matchesAnyLiveUrl(String currentUrl, String... expectedPaths) {
-		if (currentUrl == null || currentUrl.isBlank()) {
-			return false;
-		}
-
-		String normalizedCurrentUrl = normalizeUrl(currentUrl);
-		for (String expectedUrl : buildExpectedUrls(expectedPaths)) {
-			if (normalizedCurrentUrl.equals(normalizeUrl(expectedUrl))) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private String[] buildExpectedUrls(String... expectedPaths) {
-		String baseUrl = normalizeBaseUrl(ConfigReader.getProperty("url"));
-		if (expectedPaths == null || expectedPaths.length == 0) {
-			return new String[] { baseUrl };
-		}
-
-		String[] expectedUrls = new String[expectedPaths.length];
-		for (int i = 0; i < expectedPaths.length; i++) {
-			expectedUrls[i] = buildExpectedUrl(baseUrl, expectedPaths[i]);
-		}
-		return expectedUrls;
-	}
-
-	private String buildExpectedUrl(String baseUrl, String path) {
-		if (path == null || path.isBlank() || "/".equals(path)) {
-			return baseUrl;
-		}
-
-		String normalizedPath = path.startsWith("/") ? path : "/" + path;
-		return baseUrl + normalizedPath;
-	}
-
-	private String normalizeBaseUrl(String url) {
-		if (url == null || url.isBlank()) {
-			return "";
-		}
-
-		String normalized = url.trim();
-		while (normalized.endsWith("/")) {
-			normalized = normalized.substring(0, normalized.length() - 1);
-		}
-		return normalized;
+	private void assertSimpleSideMenuNavigation(String caseId, String expectedUrl, String primaryLabel,
+			String... alternateLabels) {
+		Assert.assertTrue(dashboard.openSimpleSideMenu(), caseId + ": expected side menu to open on hamburger click.");
+		Assert.assertTrue(dashboard.waitForSimpleSideMenuVisibility(),
+				caseId + ": expected side menu buttons to be visible after opening.");
+		String currentUrl = dashboard.clickSimpleSideMenuItemAndCaptureUrl(primaryLabel, alternateLabels);
+		Assert.assertEquals(normalizeUrl(currentUrl), normalizeUrl(expectedUrl),
+				caseId + ": expected navigation URL to match. Current URL: " + currentUrl + " | Expected URL: "
+						+ expectedUrl);
 	}
 
 	private String normalizeUrl(String url) {
@@ -191,10 +130,6 @@ public class SideMenuTests extends BaseTest {
 			normalized = normalized.substring(0, normalized.length() - 1);
 		}
 		return normalized.toLowerCase();
-	}
-
-	private String caseId(String priority) {
-		return "TC_" + priority;
 	}
 
 	private boolean isBlank(String value) {

@@ -2741,6 +2741,13 @@ public class DashboardPage extends BasePage {
 					+ " | //img[contains(@src,'ic_menu') and @draggable='false']"
 					+ " | //header//*[self::img or self::div or self::button][contains(@class,'menu') or contains(@src,'menu')][1]"
 					+ " | (//*[self::button or self::div][@tabindex='0' and .//*[contains(@src,'menu') or contains(@class,'menu')]])[1]");
+	private static final By SIDE_MENU_OVERLAY = By.cssSelector("[data-testid='pressable_close_sidebar']");
+	private static final By SIDE_MENU_CONTENT = By.cssSelector("[data-testid='view_sidebar_content']");
+	private static final By SIDE_MENU_SCROLL_VIEW = By.cssSelector("[data-testid='scrollview_sidebar']");
+	private static final By SIDE_MENU_BUTTON_LABELS = By.xpath(
+			"//*[@data-testid='view_sidebar_content']//*[@data-testid='button_eighty_percent_off']//*[self::div or self::span][normalize-space()]"
+			+ " | //*[@data-testid='view_sidebar_menu_items']//*[self::div or self::span][normalize-space()]"
+			+ " | //*[@data-testid='view_sidebar_footer']//*[self::div or self::span][normalize-space()]");
 	private static final By SIDE_MENU_HEADER = By.xpath("//*[@data-testid='view_sidebar_header']");
 	private static final String[] PRIMARY_SIDE_MENU_LABELS = new String[] { "home", "get 80% off", "80% off",
 			"most favorite", "most favourite", "transaction history", "about us", "contact", "contact us",
@@ -2776,6 +2783,20 @@ public class DashboardPage extends BasePage {
 
 	public boolean isHamburgerMenuVisible() {
 		return isAnyElementVisible(HAMBURGER_MENU);
+	}
+
+	public boolean openSimpleSideMenu() {
+		try {
+			WebElement menu = new WebDriverWait(driver, Duration.ofSeconds(10))
+					.until(ExpectedConditions.visibilityOfElementLocated(HAMBURGER_MENU));
+			scrollIntoView(menu);
+			clickWithJS(menu);
+			waitForMilliseconds(800);
+			return waitForSimpleSideMenuVisibility();
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Simple side menu open failed: {0}", e.getMessage());
+			return false;
+		}
 	}
 
 	public boolean openSideMenu() {
@@ -2896,6 +2917,209 @@ public class DashboardPage extends BasePage {
 		} catch (Exception e) {
 			LOGGER.warning("Side menu items did not load");
 			return false;
+		}
+	}
+
+	public boolean waitForSimpleSideMenuVisibility() {
+		try {
+			new WebDriverWait(driver, Duration.ofSeconds(10))
+					.until(ExpectedConditions.visibilityOfElementLocated(SIDE_MENU_OVERLAY));
+			new WebDriverWait(driver, Duration.ofSeconds(10))
+					.until(ExpectedConditions.visibilityOfElementLocated(SIDE_MENU_CONTENT));
+			new WebDriverWait(driver, Duration.ofSeconds(10))
+					.until(ExpectedConditions.visibilityOfElementLocated(SIDE_MENU_SCROLL_VIEW));
+			waitForMilliseconds(800);
+			return isAnyElementVisible(SIDE_MENU_CONTENT) || isAnyElementVisible(SIDE_MENU_OVERLAY);
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Simple side menu visibility wait failed: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean isSimpleSideMenuOpen() {
+		return isAnyElementVisible(SIDE_MENU_OVERLAY) || isAnyElementVisible(SIDE_MENU_CONTENT);
+	}
+
+	public List<String> getSimpleSideMenuButtonNames() {
+		List<String> names = new ArrayList<>();
+		List<By> candidateLocators = Arrays.asList(SIDE_MENU_BUTTON_LABELS,
+				By.xpath("//*[@data-testid='button_menu_home']//*[normalize-space()]"
+						+ " | //*[@data-testid='button_eighty_percent_off']//*[normalize-space()]"
+						+ " | //*[@data-testid='button_menu_transactions']//*[normalize-space()]"
+						+ " | //*[@data-testid='button_menu_contact']//*[normalize-space()]"
+						+ " | //*[@data-testid='button_menu_download_app']//*[normalize-space()]"
+						+ " | //*[@data-testid='button_logout']//*[normalize-space()]"));
+		for (By locator : candidateLocators) {
+			for (WebElement element : driver.findElements(locator)) {
+			try {
+				if (!element.isDisplayed()) {
+					continue;
+				}
+				String text = normalizeVisibleText(element);
+				if (text.isBlank() || text.length() > 80 || names.contains(text)) {
+					continue;
+				}
+				names.add(text);
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Unable to read side menu label: {0}", e.getMessage());
+			}
+			}
+			if (!names.isEmpty()) {
+				break;
+			}
+		}
+		return names;
+	}
+
+	public void printSimpleSideMenuButtonNames() {
+		List<String> names = getSimpleSideMenuButtonNames();
+		System.out.println("=== Side Menu Buttons ===");
+		if (names.isEmpty()) {
+			System.out.println("No side menu buttons found.");
+		} else {
+			for (String name : names) {
+				System.out.println(name);
+			}
+		}
+		System.out.println("=========================");
+	}
+
+	public boolean isSimpleSideMenuButtonVisible(String primaryLabel, String... alternateLabels) {
+		return findSimpleSideMenuItem(primaryLabel, alternateLabels) != null;
+	}
+
+	public String clickSimpleSideMenuItemAndCaptureUrl(String primaryLabel, String... alternateLabels) {
+		WebElement item = findSimpleSideMenuItem(primaryLabel, alternateLabels);
+		if (item == null) {
+			throw new IllegalStateException("Simple side menu item is not visible: " + primaryLabel);
+		}
+
+		String startingUrl = getCurrentUrl();
+		List<String> windowHandlesBeforeClick = new ArrayList<>(driver.getWindowHandles());
+		scrollIntoView(item);
+		clickWithJS(item);
+
+		try {
+			new WebDriverWait(driver, Duration.ofSeconds(10)).until(webDriver -> {
+				List<String> windowHandlesAfterClick = new ArrayList<>(webDriver.getWindowHandles());
+				if (windowHandlesAfterClick.size() > windowHandlesBeforeClick.size()) {
+					return true;
+				}
+				String currentUrl = getCurrentUrl();
+				return !currentUrl.equals(startingUrl) || !isSimpleSideMenuOpen();
+			});
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Simple side menu navigation wait finished without a strong URL transition: {0}",
+					e.getMessage());
+		}
+
+		List<String> windowHandlesAfterClick = new ArrayList<>(driver.getWindowHandles());
+		if (windowHandlesAfterClick.size() > windowHandlesBeforeClick.size()) {
+			driver.switchTo().window(windowHandlesAfterClick.get(windowHandlesAfterClick.size() - 1));
+		}
+
+		return getCurrentUrl();
+	}
+
+	public boolean closeSimpleSideMenu() {
+		try {
+			WebElement overlay = new WebDriverWait(driver, Duration.ofSeconds(5))
+					.until(ExpectedConditions.visibilityOfElementLocated(SIDE_MENU_OVERLAY));
+
+			try {
+				Rectangle rect = overlay.getRect();
+				int xOffset = Math.max((rect.getWidth() / 2) - 40, 20);
+				int yOffset = 0;
+				new Actions(driver).moveToElement(overlay, xOffset, yOffset).click().perform();
+				waitForMilliseconds(700);
+				if (waitForSimpleSideMenuClosed()) {
+					return true;
+				}
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Overlay screen click failed: {0}", e.getMessage());
+			}
+
+			try {
+				Object clicked = ((JavascriptExecutor) driver).executeScript(
+						"const overlay = arguments[0];"
+								+ "if (!overlay) return false;"
+								+ "const rect = overlay.getBoundingClientRect();"
+								+ "const x = Math.max(rect.left + rect.width - 60, rect.left + 20);"
+								+ "const y = rect.top + Math.max(Math.floor(rect.height / 2), 20);"
+								+ "const target = document.elementFromPoint(x, y) || overlay;"
+								+ "['pointerdown','mousedown','mouseup','click'].forEach((type) => {"
+								+ "  target.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, clientX: x, clientY: y }));"
+								+ "});"
+								+ "return true;",
+						overlay);
+				if (Boolean.TRUE.equals(clicked)) {
+					waitForMilliseconds(700);
+					return waitForSimpleSideMenuClosed();
+				}
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Overlay JS screen click failed: {0}", e.getMessage());
+			}
+
+			clickWithJS(overlay);
+			waitForMilliseconds(500);
+			return waitForSimpleSideMenuClosed();
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Simple side menu close failed: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	private boolean waitForSimpleSideMenuClosed() {
+		try {
+			new WebDriverWait(driver, Duration.ofSeconds(5)).until(d -> !isSimpleSideMenuOpen());
+			waitForMilliseconds(400);
+			return !isSimpleSideMenuOpen();
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Simple side menu close wait failed: {0}", e.getMessage());
+			return !isSimpleSideMenuOpen();
+		}
+	}
+
+	private WebElement findSimpleSideMenuItem(String primaryLabel, String... alternateLabels) {
+		List<String> labels = new ArrayList<>();
+		if (primaryLabel != null && !primaryLabel.isBlank()) {
+			labels.add(primaryLabel.toLowerCase());
+		}
+		for (String label : alternateLabels) {
+			if (label != null && !label.isBlank()) {
+				labels.add(label.toLowerCase());
+			}
+		}
+
+		if (labels.isEmpty()) {
+			return null;
+		}
+
+		try {
+			WebElement sidebarContent = new WebDriverWait(driver, Duration.ofSeconds(5))
+					.until(ExpectedConditions.visibilityOfElementLocated(SIDE_MENU_CONTENT));
+			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
+					+ "const labels = arguments[1];"
+					+ "const isVisible = (element) => {"
+					+ "  if (!element) return false;"
+					+ "  const style = window.getComputedStyle(element);"
+					+ "  const rect = element.getBoundingClientRect();"
+					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+					+ "    && rect.width > 0 && rect.height > 0;"
+					+ "};"
+					+ "const textOf = (element) => [element.innerText, element.textContent,"
+					+ "  element.getAttribute('data-testid'), element.getAttribute('aria-label')]"
+					+ "  .filter(Boolean).join(' ').toLowerCase();"
+					+ "const clickable = Array.from(root.querySelectorAll('[data-testid^=\"button_\"],[tabindex=\"0\"],a,button,[role=\"button\"],[role=\"link\"]'))"
+					+ "  .filter(isVisible)"
+					+ "  .filter((element) => labels.some((label) => textOf(element).includes(label)));"
+					+ "clickable.sort((left, right) => textOf(right).length - textOf(left).length);"
+					+ "return clickable[0] || null;", sidebarContent, labels);
+			return result instanceof WebElement ? (WebElement) result : null;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Unable to find simple side menu item {0}: {1}",
+					new Object[] { primaryLabel, e.getMessage() });
+			return null;
 		}
 	}
 
