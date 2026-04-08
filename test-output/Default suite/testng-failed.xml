@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.SideMenuTests">
+      <class name="tests.RoleAccessTests">
         <methods>
           <include name="setup"/>
           <include name="tearDown"/>
-          <include name="verifyContactNavigation"/>
+          <include name="verifyConsumerBlockedFromCreatorUrl"/>
           <include name="initPagesAndLogin"/>
         </methods>
-      </class> <!-- tests.SideMenuTests -->
+      </class> <!-- tests.RoleAccessTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

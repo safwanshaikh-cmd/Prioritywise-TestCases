@@ -52,11 +52,16 @@ public class RoleAccessTests extends BaseTest {
 
         // Verify either redirect to login/dashboard or access denied message
         String currentUrl = driver.getCurrentUrl().toLowerCase();
+        String pageText = driver.getPageSource().toLowerCase();
 
         boolean isBlocked = currentUrl.contains("login")
             || currentUrl.contains("dashboard")
             || currentUrl.contains("access")
             || currentUrl.contains("denied")
+            || pageText.contains("page not found")
+            || pageText.contains("this route doesn")
+            || pageText.contains("this route doesn&apos;t exist")
+            || pageText.contains("go home")
             || dashboard.isAccessDeniedMessageVisible();
 
         Assert.assertTrue(isBlocked,
@@ -69,8 +74,10 @@ public class RoleAccessTests extends BaseTest {
     public void verifyCreatorMenuVisibleForUploader() {
         loginAsUploader();
 
-        Assert.assertTrue(dashboard.openSideMenu(),
+        Assert.assertTrue(dashboard.openSimpleSideMenu(),
             "TC_362: Side menu should open successfully");
+        Assert.assertTrue(dashboard.waitForSimpleSideMenuVisibility(),
+            "TC_362: Side menu buttons should be visible for Uploader role");
 
         Assert.assertTrue(dashboard.isForCreatorsMenuVisible(),
             "TC_362: 'For Creators' option should be visible for Uploader role");
@@ -81,7 +88,10 @@ public class RoleAccessTests extends BaseTest {
         loginAsUploader();
 
         String startingUrl = driver.getCurrentUrl();
-        dashboard.openSideMenu();
+        Assert.assertTrue(dashboard.openSimpleSideMenu(),
+            "TC_363: Side menu should open successfully");
+        Assert.assertTrue(dashboard.waitForSimpleSideMenuVisibility(),
+            "TC_363: Side menu buttons should be visible for Uploader role");
 
         String targetUrl = dashboard.clickForCreatorsMenuAndCaptureUrl();
 

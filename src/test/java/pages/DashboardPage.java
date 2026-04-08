@@ -3287,11 +3287,16 @@ public class DashboardPage extends BasePage {
 	 * @return true if "For Creators" menu item is visible, false otherwise
 	 */
 	public boolean isForCreatorsMenuVisible() {
-		if (!isSideMenuOpen()) {
+		if (!isSideMenuOpen() && !isSimpleSideMenuOpen()) {
 			return false;
 		}
 
-		return isSideMenuItemVisible("for creators", "for creator", "creators", "creator");
+		if (isSimpleSideMenuButtonVisible("for creators", "for creator", "creators", "creator", "upload content")) {
+			return true;
+		}
+
+		return isSideMenuItemVisible("for creators", "for creator", "creators", "creator", "For Creators",
+				"upload content");
 	}
 
 	/**
@@ -3301,7 +3306,12 @@ public class DashboardPage extends BasePage {
 	 * @return URL after navigation, or empty string if navigation failed
 	 */
 	public String clickForCreatorsMenuAndCaptureUrl() {
-		return clickSideMenuItemAndCaptureUrl("for creators", "for creator", "creators", "creator");
+		if (isSimpleSideMenuOpen()) {
+			return clickSimpleSideMenuItemAndCaptureUrl("for creators", "for creator", "creators", "creator",
+					"upload content");
+		}
+		return clickSideMenuItemAndCaptureUrl("for creators", "for creator", "creators", "creator",
+				"upload content");
 	}
 
 	/**
