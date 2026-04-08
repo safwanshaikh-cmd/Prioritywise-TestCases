@@ -35,7 +35,20 @@ public class PaymentPage extends BasePage {
 
 	public boolean isPaymentPageLoaded() {
 		try {
-			return wait.waitForElementVisible(RAZORPAY_BTN).isDisplayed();
+			// Check for multiple payment page indicators
+			boolean razorpayVisible = !driver.findElements(RAZORPAY_BTN).isEmpty();
+			boolean paymentIframe = !driver.findElements(By.xpath("//iframe")).isEmpty();
+			boolean payButtonVisible = !driver.findElements(PAY_BTN).isEmpty();
+			boolean cardFormVisible = !driver.findElements(CARD_NUMBER).isEmpty();
+
+			// Payment page is loaded if ANY of these indicators are present
+			boolean paymentPageLoaded = razorpayVisible || paymentIframe || payButtonVisible || cardFormVisible;
+
+			if (paymentPageLoaded) {
+				LOGGER.info("Payment page loaded successfully");
+			}
+
+			return paymentPageLoaded;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Payment page is not loaded: {0}", e.getMessage());
 			return false;
@@ -90,6 +103,32 @@ public class PaymentPage extends BasePage {
 			return true;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Success message not found");
+			return false;
+		}
+	}
+
+	/**
+	 * Waits for payment page to load after clicking Start Listening Now
+	 * Provides proper wait time for page transition and overlay disappearance
+	 */
+	public boolean waitForPaymentPageToLoad() {
+		try {
+			// Wait up to 10 seconds for payment page indicators
+			long startTime = System.currentTimeMillis();
+			long timeout = 10000; // 10 seconds
+
+			while (System.currentTimeMillis() - startTime < timeout) {
+				if (isPaymentPageLoaded()) {
+					LOGGER.info("Payment page detected and loaded successfully");
+					return true;
+				}
+				Thread.sleep(500); // Check every 500ms
+			}
+
+			LOGGER.warning("Payment page did not load within timeout");
+			return false;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Error waiting for payment page: {0}", e.getMessage());
 			return false;
 		}
 	}

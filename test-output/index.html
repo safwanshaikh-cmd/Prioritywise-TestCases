@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\Safwan Shaikh\AppData\Local\Temp\testng-eclipse-1642173652\testng-customsuite.xml</span>
+                    <span>C:\Users\safwan\AppData\Local\Temp\testng-eclipse--628431366\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.RoleAccessTests" class="method navigator-link" hash-for-method="verifyConsumerBlockedFromCreatorUrl">verifyConsumerBlockedFromCreatorUrl</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="tests.PaymentTests" class="method navigator-link" hash-for-method="verifyBackNavigationFromPayment">verifyBackNavigationFromPayment</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -121,16 +121,16 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">tests.RoleAccessTests</span>
+              <span class="class-name">tests.PaymentTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="verifyConsumerBlockedFromCreatorUrl">
-                  </a> <!-- verifyConsumerBlockedFromCreatorUrl -->
-                  <span class="method-name">verifyConsumerBlockedFromCreatorUrl</span>
+                  <a name="verifyBackNavigationFromPayment">
+                  </a> <!-- verifyBackNavigationFromPayment -->
+                  <span class="method-name">verifyBackNavigationFromPayment</span>
                   <em>
-(TC_364: Verify Consumer blocked from Creator page via direct URL)                  </em>
+(TC_382: Verify back button from payment page)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -138,7 +138,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\Safwan Shaikh\AppData\Local\Temp\testng-eclipse-1642173652\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\safwan\AppData\Local\Temp\testng-eclipse--628431366\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -147,11 +147,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;tests.RoleAccessTests&quot;&gt;
+      &lt;class name=&quot;tests.PaymentTests&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;verifyConsumerBlockedFromCreatorUrl&quot;/&gt;
+          &lt;include name=&quot;verifyBackNavigationFromPayment&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- tests.RoleAccessTests --&gt;
+      &lt;/class&gt; &lt;!-- tests.PaymentTests --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -193,14 +193,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'verifyConsumerBlockedFromCreatorUrl')
-data.setCell(0, 2, 'tests.RoleAccessTests')
-data.setCell(0, 3, 46749);
+data.setCell(0, 1, 'verifyBackNavigationFromPayment')
+data.setCell(0, 2, 'tests.PaymentTests')
+data.setCell(0, 3, 61608);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 46 seconds</span>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -215,17 +215,27 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">3 ignored methods</span>
+            <span class="header-content">8 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">tests.RoleAccessTests</span>
+              <span class="ignored-class-name">tests.PaymentTests</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">verifyCreatorMenuVisibleForUploader</span>
+                <span class="ignored-method-name">verifyPaymentGatewayURL</span>
                 <br/>
-                <span class="ignored-method-name">verifyCreatorMenuNotVisibleForConsumer</span>
+                <span class="ignored-method-name">verifySuccessfulPaymentFlow</span>
                 <br/>
-                <span class="ignored-method-name">verifyUploaderCanAccessCreatorPage</span>
+                <span class="ignored-method-name">verifyValidPayment</span>
+                <br/>
+                <span class="ignored-method-name">verifyPaymentFailureHandling</span>
+                <br/>
+                <span class="ignored-method-name">verifyPaymentPageHandlesDelayedLoad</span>
+                <br/>
+                <span class="ignored-method-name">verifyPaymentPageRefresh</span>
+                <br/>
+                <span class="ignored-method-name">verifyPaymentGatewayLoads</span>
+                <br/>
+                <span class="ignored-method-name">verifyInvalidPayment</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -237,22 +247,18 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">tests.RoleAccessTests</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">tests.PaymentTests</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setup</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
-              <div class="configuration-method before">
-                <span class="method-name">initPagesAndLogin</span>
-                <span class="method-start">11993 ms</span>
-              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">verifyConsumerBlockedFromCreatorUrl</span>
-                <span class="method-start">12038 ms</span>
+                <span class="method-name">verifyBackNavigationFromPayment</span>
+                <span class="method-start">11616 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">58807 ms</span>
+                <span class="method-start">73237 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

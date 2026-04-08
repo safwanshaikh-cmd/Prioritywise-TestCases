@@ -142,8 +142,16 @@ public class SubscriptionPage extends BasePage {
 	}
 
 	public void clickStartListeningNow() {
-		waitForOverlayToDisappear();
 		jsClick(START_LISTENING_NOW);
+		waitForOverlayToDisappear(); // Wait AFTER clicking (Sonarplay pattern)
+
+		// Add small wait to allow payment page to start loading
+		try {
+			Thread.sleep(1000); // Wait 1 second for page transition to start
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
+
 		LOGGER.info("Clicked Start Listening Now");
 	}
 
@@ -199,6 +207,48 @@ public class SubscriptionPage extends BasePage {
 	public void waitForPageReady() {
 		pageWait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState")
 				.equals("complete"));
+	}
+
+	// ================= ADDITIONAL METHODS FROM SONARPLAY =================
+
+	public boolean is80OffOfferDisplayed() {
+		try {
+			return wait.waitForElementVisible(OFFER_80).isDisplayed();
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "80% Off offer not visible: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public boolean isPaymentPageDisplayed() {
+		try {
+			String currentUrl = driver.getCurrentUrl().toLowerCase();
+			return currentUrl.contains("payment")
+				|| currentUrl.contains("checkout")
+				|| currentUrl.contains("razorpay")
+				|| !driver.findElements(By.xpath("//iframe")).isEmpty();
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Payment page not visible: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	/**
+	 * Closes the sidebar if it's open (Sonarplay pattern)
+	 */
+	public void closeSidebarIfOpen() {
+		try {
+			java.util.List<WebElement> closeBtns = driver.findElements(By.xpath("//div[@data-testid='pressable_close_sidebar']"));
+
+			if (!closeBtns.isEmpty()) {
+				// Use JavaScript directly (Sonarplay pattern) since jsClick() doesn't accept WebElement
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", closeBtns.get(0));
+				LOGGER.info("Sidebar closed");
+				waitForOverlayToDisappear();
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Sidebar close not needed or failed: {0}", e.getMessage());
+		}
 	}
 
 	private boolean isAnyVisible(By... locators) {

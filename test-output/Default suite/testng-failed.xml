@@ -3,14 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.RoleAccessTests">
+      <class name="tests.PaymentTests">
         <methods>
           <include name="setup"/>
           <include name="tearDown"/>
-          <include name="verifyConsumerBlockedFromCreatorUrl"/>
-          <include name="initPagesAndLogin"/>
+          <include name="verifyPaymentGatewayLoads"/>
         </methods>
-      </class> <!-- tests.RoleAccessTests -->
+      </class> <!-- tests.PaymentTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

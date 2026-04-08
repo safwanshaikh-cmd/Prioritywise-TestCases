@@ -5048,6 +5048,25 @@ public class DashboardPage extends BasePage {
 		return isAnyElementVisible(THEME_TOGGLE);
 	}
 
+	public boolean clickThemeToggle() {
+		try {
+			WebElement themeToggle = findFirstVisibleElement(THEME_TOGGLE);
+			if (themeToggle != null) {
+				scrollIntoView(themeToggle);
+				clickWithJS(themeToggle);
+				waitForMilliseconds(500);
+				LOGGER.info("Theme toggle button clicked successfully");
+				return true;
+			} else {
+				LOGGER.warning("Theme toggle button not found");
+				return false;
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to click theme toggle: {0}", e.getMessage());
+			return false;
+		}
+	}
+
 	public boolean isProfileIconVisible() {
 		return isAnyElementVisible(PROFILE_ICON) || isAnyElementVisible(HAMBURGER_MENU);
 	}
