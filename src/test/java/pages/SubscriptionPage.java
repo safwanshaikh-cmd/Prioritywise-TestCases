@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import base.BasePage;
@@ -218,6 +219,122 @@ public class SubscriptionPage extends BasePage {
 			wait.waitForElementInvisible(OVERLAY);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Overlay not present or already gone: {0}", e.getMessage());
+		}
+	}
+
+	// ============================================================
+	// SUBSCRIPTION CANCELLATION METHODS
+	// ============================================================
+
+	private static final By CANCEL_PLAN_BUTTON = By.xpath(
+			"//*[self::button or @role='button' or @tabindex='0']"
+			+ "[contains(translate(normalize-space(.), 'CANCEL', 'cancel'), 'cancel')]"
+			+ "[contains(translate(normalize-space(.), 'PLAN', 'plan'), 'plan') or contains(translate(normalize-space(.), 'SUBSCRIPTION', 'subscription'), 'subscription')]");
+
+	private static final By CANCEL_CONFIRMATION_DIALOG = By.xpath(
+			"//*[contains(translate(normalize-space(.), 'CANCEL', 'cancel'), 'cancel')]"
+			+ "[contains(translate(normalize-space(.), 'PLAN', 'plan'), 'plan') or contains(translate(normalize-space(.), 'SUBSCRIPTION', 'subscription'), 'subscription')]"
+			+ "[ancestor::*[contains(@class, 'modal') or contains(@class, 'dialog') or contains(@role, 'dialog')]]");
+
+	private static final By CONFIRM_CANCEL_BUTTON = By.xpath(
+			"//*[self::button or @role='button']"
+			+ "[contains(translate(normalize-space(.), 'YES', 'yes'), 'yes')"
+			+ " or contains(translate(normalize-space(.), 'CONFIRM', 'confirm'), 'confirm')]"
+			+ "[ancestor::*[contains(@class, 'modal') or contains(@class, 'dialog') or contains(@role, 'dialog')]]");
+
+	private static final By DECLINE_CANCEL_BUTTON = By.xpath(
+			"//*[self::button or @role='button']"
+			+ "[contains(translate(normalize-space(.), 'NO', 'no'), 'no')"
+			+ " or contains(translate(normalize-space(.), 'KEEP', 'keep'), 'keep')]"
+			+ "[ancestor::*[contains(@class, 'modal') or contains(@class, 'dialog') or contains(@role, 'dialog')]]");
+
+	private static final By LOGOUT_MENU_ITEM = By.xpath(
+			"//*[normalize-space()='Logout' or normalize-space()='Log Out']"
+			+ " | //*[@tabindex='0' and contains(normalize-space(.), 'Logout')]");
+
+	/**
+	 * Cancel the active subscription plan.
+	 * This method initiates cancellation and confirms it.
+	 */
+	public void cancelPlan() {
+		waitForOverlayToDisappear();
+
+		if (isDisplayed(CANCEL_PLAN_BUTTON)) {
+			jsClick(CANCEL_PLAN_BUTTON);
+			LOGGER.info("Cancel plan button clicked");
+
+			// Wait for confirmation dialog and click confirm
+			try {
+				WebElement confirmBtn = pageWait.until(ExpectedConditions.elementToBeClickable(CONFIRM_CANCEL_BUTTON));
+				scrollIntoView(confirmBtn);
+				confirmBtn.click();
+				LOGGER.info("Cancellation confirmed");
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Confirmation dialog not present: {0}", e.getMessage());
+			}
+		} else {
+			LOGGER.log(Level.WARNING, "Cancel plan button not found - plan may already be cancelled");
+		}
+	}
+
+	/**
+	 * Initiate plan cancellation without confirming.
+	 * Used to test the confirmation dialog behavior.
+	 *
+	 * @return true if confirmation dialog appeared, false otherwise
+	 */
+	public boolean initiatePlanCancellation() {
+		waitForOverlayToDisappear();
+
+		if (isDisplayed(CANCEL_PLAN_BUTTON)) {
+			jsClick(CANCEL_PLAN_BUTTON);
+			LOGGER.info("Cancel plan button clicked (initiation only)");
+
+			// Check for confirmation dialog
+			try {
+				WebElement dialog = pageWait.until(ExpectedConditions.visibilityOfElementLocated(CANCEL_CONFIRMATION_DIALOG));
+				boolean hasDialog = dialog != null && dialog.isDisplayed();
+				LOGGER.log(Level.INFO, "Confirmation dialog present: {0}", hasDialog);
+				return hasDialog;
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Confirmation dialog not found: {0}", e.getMessage());
+				return false;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Decline the plan cancellation by clicking No/Keep button.
+	 */
+	public void declineCancellation() {
+		waitForOverlayToDisappear();
+
+		try {
+			WebElement declineBtn = pageWait.until(ExpectedConditions.elementToBeClickable(DECLINE_CANCEL_BUTTON));
+			scrollIntoView(declineBtn);
+			declineBtn.click();
+			LOGGER.info("Cancellation declined");
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Decline button not found: {0}", e.getMessage());
+		}
+	}
+
+	/**
+	 * Click logout menu item from hamburger menu.
+	 */
+	public void clickLogoutMenuItem() {
+		waitForOverlayToDisappear();
+
+		try {
+			WebElement logoutBtn = pageWait.until(ExpectedConditions.elementToBeClickable(LOGOUT_MENU_ITEM));
+			scrollIntoView(logoutBtn);
+			jsClick((By) logoutBtn);
+			LOGGER.info("Logout menu item clicked");
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to click logout menu item: {.out.println(e.getMessage()");
+			throw e;
 		}
 	}
 }

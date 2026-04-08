@@ -179,7 +179,7 @@ public class PlayerPage extends BasePage {
 	/**
 	 * Scroll element into view before interaction.
 	 */
-	private void scrollIntoView(WebElement element) {
+	private void scrollIntoView(By element) {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
 	}
 }

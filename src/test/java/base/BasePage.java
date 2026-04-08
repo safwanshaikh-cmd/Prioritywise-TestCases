@@ -122,13 +122,13 @@ public class BasePage {
 	}
 
 	// 🔥 JS click
-	public void jsClick(By locator) {
+	public void jsClick(By logoutBtn) {
 		try {
-			WebElement element = wait.waitForElementVisible(locator);
+			WebElement element = wait.waitForElementVisible(logoutBtn);
 			scrollIntoView(element);
 			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 		} catch (Exception e) {
-			LOGGER.log(Level.SEVERE, "JS click failed for {0}: {1}", new Object[] { locator, e.getMessage() });
+			LOGGER.log(Level.SEVERE, "JS click failed for {0}: {1}", new Object[] { logoutBtn, e.getMessage() });
 			takeScreenshot("jsclick_failure");
 			throw e;
 		}
@@ -188,7 +188,7 @@ public class BasePage {
 		return false;
 	}
 
-	private void scrollIntoView(WebElement element) {
+	public void scrollIntoView(WebElement element) {
 		((JavascriptExecutor) driver).executeScript(
 				"arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
 	}

@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -2743,7 +2744,23 @@ public class DashboardPage extends BasePage {
 	private static final By SIDE_MENU_HEADER = By.xpath("//*[@data-testid='view_sidebar_header']");
 	private static final String[] PRIMARY_SIDE_MENU_LABELS = new String[] { "home", "get 80% off", "80% off",
 			"most favorite", "most favourite", "transaction history", "about us", "contact", "contact us",
-			"download apps", "download app", "logout" };
+			"download apps", "download app", "for creators", "for creator", "creators", "creator", "logout" };
+
+	private static final By FOR_CREATORS_MENU_ITEM = By.xpath(
+			"//*[normalize-space()='For Creators' or normalize-space()='For Creator']"
+			+ " | //*[@tabindex='0' and (contains(normalize-space(.), 'For Creators') or contains(normalize-space(.), 'For Creator'))]");
+
+	private static final By ACCESS_DENIED_MESSAGE = By.xpath(
+			"//*[contains(translate(normalize-space(.), 'ACCESS DENIED', 'access denied'), 'access denied')]"
+			+ " |//*[contains(translate(normalize-space(.), 'NOT AUTHORIZED', 'not authorized'), 'not authorized')]"
+			+ " |//*[contains(translate(normalize-space(.), 'UNAUTHORIZED', 'unauthorized'), 'unauthorized')]"
+			+ " |//*[contains(translate(normalize-space(.), 'YOU DON', 'you don') and contains(translate(normalize-space(.), 'HAVE ACCESS', 'have access'))]");
+
+	private static final By CREATOR_PAGE_INDICATORS = By.xpath(
+			"//*[contains(@data-testid, 'creator') or contains(@class, 'creator')]"
+			+ " | //*[contains(translate(normalize-space(.), 'DASHBOARD', 'dashboard'), 'dashboard') and contains(translate(normalize-space(.), 'CREATOR', 'creator'), 'creator')]"
+			+ " | //*[contains(translate(normalize-space(.), 'MY CONTENT', 'my content'), 'my content')]"
+			+ " | //*[contains(translate(normalize-space(.), 'UPLOAD', 'upload'), 'upload') and contains(translate(normalize-space(.), 'CONTENT', 'content'), 'content')]");
 
 	public void clickHamburgerMenu() {
 		try {
@@ -2789,8 +2806,11 @@ public class DashboardPage extends BasePage {
 			return true;
 		}
 
-		if (toggleHamburgerMenuWithFallback() && waitForSideMenuState(false, Duration.ofSeconds(5))) {
-			return true;
+		if (toggleHamburgerMenuWithFallback(true)) {
+			waitForSideMenuClosed(Duration.ofSeconds(2));
+			if (!isSideMenuOpen()) {
+				return true;
+			}
 		}
 
 		WebElement sidebarCloseTarget = findSidebarCloseTarget();
@@ -2798,7 +2818,8 @@ public class DashboardPage extends BasePage {
 			try {
 				scrollIntoView(sidebarCloseTarget);
 				clickWithJS(sidebarCloseTarget);
-				if (waitForSideMenuState(false, Duration.ofSeconds(5))) {
+				waitForSideMenuClosed(Duration.ofSeconds(2));
+				if (!isSideMenuOpen()) {
 					return true;
 				}
 			} catch (Exception e) {
@@ -2807,12 +2828,13 @@ public class DashboardPage extends BasePage {
 			}
 		}
 
-		WebElement menuButton = findFirstVisibleElement(HAMBURGER_MENU);
+		WebElement menuButton = findHamburgerToggleOutsideSideMenu();
 		if (menuButton != null) {
 			try {
 				scrollIntoView(menuButton);
 				clickWithJS(menuButton);
-				if (waitForSideMenuState(false, Duration.ofSeconds(5))) {
+				waitForSideMenuClosed(Duration.ofSeconds(2));
+				if (!isSideMenuOpen()) {
 					return true;
 				}
 			} catch (Exception e) {
@@ -2826,8 +2848,16 @@ public class DashboardPage extends BasePage {
 			LOGGER.log(Level.FINE, "Escape key fallback for side menu close failed: {0}", e.getMessage());
 		}
 
-		if (waitForSideMenuState(false, Duration.ofSeconds(3))) {
+		waitForSideMenuClosed(Duration.ofSeconds(2));
+		if (!isSideMenuOpen()) {
 			return true;
+		}
+
+		if (clickOutsideSideMenu()) {
+			waitForSideMenuClosed(Duration.ofSeconds(2));
+			if (!isSideMenuOpen()) {
+				return true;
+			}
 		}
 
 		try {
@@ -2836,7 +2866,8 @@ public class DashboardPage extends BasePage {
 			LOGGER.log(Level.FINE, "Body-click fallback for side menu close failed: {0}", e.getMessage());
 		}
 
-		return waitForSideMenuState(false, Duration.ofSeconds(3));
+		waitForSideMenuClosed(Duration.ofSeconds(2));
+		return !isSideMenuOpen();
 	}
 
 	public boolean isSideMenuOpen() {
@@ -2880,7 +2911,8 @@ public class DashboardPage extends BasePage {
 		if (!isSideMenuItemVisible("most favorite", "most favourite", "favorite", "Favourites")) {
 			missingItems.add("Most Favorite");
 		}
-		if (!isSideMenuItemVisible("transaction history", "transactions", "payment history")) {
+		if (!isSideMenuItemVisible("transaction history", "transactions history", "transactions", "payment history",
+				"order history")) {
 			missingItems.add("Transaction History");
 		}
 		if (!isSideMenuItemVisible("about us", "about")) {
@@ -3017,6 +3049,72 @@ public class DashboardPage extends BasePage {
 			}
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Logout confirmation dialog not present: {0}", e.getMessage());
+		}
+	}
+
+	// ============================================================
+	// CREATOR MENU METHODS
+	// ============================================================
+
+	/**
+	 * Check if "For Creators" menu item is visible in the side menu.
+	 * This is used for role-based access control verification.
+	 *
+	 * @return true if "For Creators" menu item is visible, false otherwise
+	 */
+	public boolean isForCreatorsMenuVisible() {
+		if (!isSideMenuOpen()) {
+			return false;
+		}
+
+		return isSideMenuItemVisible("for creators", "for creator", "creators", "creator");
+	}
+
+	/**
+	 * Click "For Creators" menu item and capture the resulting URL.
+	 * Used for testing role-based navigation to creator dashboard.
+	 *
+	 * @return URL after navigation, or empty string if navigation failed
+	 */
+	public String clickForCreatorsMenuAndCaptureUrl() {
+		return clickSideMenuItemAndCaptureUrl("for creators", "for creator", "creators", "creator");
+	}
+
+	/**
+	 * Check if user is on the creator/dashboard page.
+	 * Uses URL and page indicators to verify.
+	 *
+	 * @return true if on creator page, false otherwise
+	 */
+	public boolean isOnCreatorPage() {
+		String currentUrl = driver.getCurrentUrl().toLowerCase();
+		if (currentUrl.contains("creator") || currentUrl.contains("for-creator")) {
+			return true;
+		}
+
+		// Check for creator page indicators
+		try {
+			return !driver.findElements(CREATOR_PAGE_INDICATORS).isEmpty()
+					&& driver.findElements(CREATOR_PAGE_INDICATORS).stream().anyMatch(WebElement::isDisplayed);
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Creator page indicators not found: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	/**
+	 * Check if access denied message is visible.
+	 * Used to verify blocked access via direct URL.
+	 *
+	 * @return true if access denied message is displayed, false otherwise
+	 */
+	public boolean isAccessDeniedMessageVisible() {
+		try {
+			return !driver.findElements(ACCESS_DENIED_MESSAGE).isEmpty()
+					&& driver.findElements(ACCESS_DENIED_MESSAGE).stream().anyMatch(WebElement::isDisplayed);
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Access denied message not found: {0}", e.getMessage());
+			return false;
 		}
 	}
 
@@ -3206,7 +3304,7 @@ public class DashboardPage extends BasePage {
 		}
 	}
 
-	private void scrollIntoView(WebElement element) {
+	private void scrollIntoView(By element) {
 		try {
 			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
 		} catch (Exception e) {
@@ -5349,6 +5447,26 @@ public class DashboardPage extends BasePage {
 		}
 	}
 
+	private boolean waitForSideMenuClosed(Duration timeout) {
+		try {
+			new WebDriverWait(driver, timeout).until(webDriver -> !isSideMenuOpen());
+			waitForMilliseconds(300);
+			return !isSideMenuOpen();
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Side menu close wait did not finish cleanly: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	private boolean hasAnyVisiblePrimarySideMenuItems() {
+		for (String label : PRIMARY_SIDE_MENU_LABELS) {
+			if (isSideMenuItemVisible(label)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private WebElement findSideMenuPanelByVisibleLabels() {
 		try {
 			Object result = ((JavascriptExecutor) driver).executeScript("const labels = arguments[0];"
@@ -5422,7 +5540,10 @@ public class DashboardPage extends BasePage {
 		try {
 			WebElement explicitHeader = findFirstVisibleElement(SIDE_MENU_HEADER);
 			if (explicitHeader != null) {
-				return explicitHeader;
+				WebElement resolvedContainer = resolveSideMenuContainerFromHeader(explicitHeader);
+				if (resolvedContainer != null) {
+					return resolvedContainer;
+				}
 			}
 
 			Object result = ((JavascriptExecutor) driver).executeScript("const labels = arguments[0];"
@@ -5541,7 +5662,7 @@ public class DashboardPage extends BasePage {
 		try {
 			WebElement sidebarHeader = findFirstVisibleElement(SIDE_MENU_HEADER);
 			if (sidebarHeader == null) {
-				return null;
+				return findCloseButtonWithinSideMenu();
 			}
 
 			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
@@ -5570,16 +5691,153 @@ public class DashboardPage extends BasePage {
 					+ "  if (rect.width < 16 || rect.height < 16) continue;" + "  return candidate;" + "}"
 					+ "return null;", sidebarHeader);
 
-			return result instanceof WebElement ? (WebElement) result : null;
+			if (result instanceof WebElement) {
+				return (WebElement) result;
+			}
+
+			return findCloseButtonWithinSideMenu();
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Sidebar close target lookup failed: {0}", e.getMessage());
+			return findCloseButtonWithinSideMenu();
+		}
+	}
+
+	private WebElement findCloseButtonWithinSideMenu() {
+		try {
+			WebElement menuPanel = findVisibleSideMenuPanel();
+			if (menuPanel == null) {
+				return null;
+			}
+
+			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
+					+ "const isVisible = (element) => {" + "  if (!element) return false;"
+					+ "  const style = window.getComputedStyle(element);" + "  const rect = element.getBoundingClientRect();"
+					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+					+ "    && rect.width > 0 && rect.height > 0;" + "};"
+					+ "const textOf = (element) => [element.innerText, element.textContent, element.getAttribute('aria-label'),"
+					+ "  element.getAttribute('data-testid'), element.getAttribute('class')]"
+					+ "  .filter(Boolean).join(' ').toLowerCase();"
+					+ "const candidates = Array.from(root.querySelectorAll('button,[role=\"button\"],[tabindex],img,div,span'))"
+					+ "  .filter(isVisible);" + "for (const candidate of candidates) {"
+					+ "  const text = textOf(candidate);"
+					+ "  if (text.includes('close') || text.includes('back') || text.includes('dismiss')"
+					+ "      || text.includes('cancel') || text.includes('arrow-left') || text.includes('chevron-left')) {"
+					+ "    return candidate;" + "  }" + "}" + "return null;", menuPanel);
+
+			return result instanceof WebElement ? (WebElement) result : null;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "In-panel close target lookup failed: {0}", e.getMessage());
 			return null;
 		}
 	}
 
-	private boolean toggleHamburgerMenuWithFallback() {
+	private WebElement findHamburgerToggleOutsideSideMenu() {
 		try {
-			WebElement visibleMenuButton = findFirstVisibleElement(HAMBURGER_MENU);
+			WebElement menuPanel = findVisibleSideMenuPanel();
+			Object result = ((JavascriptExecutor) driver).executeScript("const panel = arguments[0];"
+					+ "const selectors = [" + "\"button[aria-label='Menu']\"," + "\"button[aria-label='menu']\","
+					+ "\"button[aria-label='Open menu']\"," + "\"[role='button'][aria-label='Menu']\","
+					+ "\"[role='button'][aria-label='menu']\"," + "\"img[src*='ic_menu']\","
+					+ "\"header [class*='menu']\"," + "\"header [src*='menu']\"" + "];"
+					+ "const isVisible = (element) => {" + "  if (!element) return false;"
+					+ "  const style = window.getComputedStyle(element);" + "  const rect = element.getBoundingClientRect();"
+					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+					+ "    && rect.width > 0 && rect.height > 0;" + "};"
+					+ "for (const selector of selectors) {" + "  const elements = Array.from(document.querySelectorAll(selector))"
+					+ "    .filter(isVisible)" + "    .filter((element) => !panel || !panel.contains(element));"
+					+ "  if (elements.length) return elements[0];" + "}" + "return null;", menuPanel);
+
+			return result instanceof WebElement ? (WebElement) result : findFirstVisibleElement(HAMBURGER_MENU);
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Outside side menu hamburger lookup failed: {0}", e.getMessage());
+			return findFirstVisibleElement(HAMBURGER_MENU);
+		}
+	}
+
+	public boolean clickOutsideSideMenu() {
+		try {
+			WebElement menuPanel = findVisibleSideMenuPanel();
+			if (menuPanel == null) {
+				return false;
+			}
+
+			Rectangle rect = menuPanel.getRect();
+			WebElement viewportRoot = driver.findElement(By.tagName("html"));
+			Rectangle viewportRect = viewportRoot.getRect();
+			int viewportWidth = driver.manage().window().getSize().getWidth();
+			int clickX = Math.min(Math.max(rect.getX() + rect.getWidth() + 30, 10), Math.max(10, viewportWidth - 10));
+			int clickY = Math.max(rect.getY() + Math.min(rect.getHeight() / 2, 220), 10);
+			int offsetX = clickX - (viewportRect.getX() + (viewportRect.getWidth() / 2));
+			int offsetY = clickY - (viewportRect.getY() + (viewportRect.getHeight() / 2));
+
+			new Actions(driver).moveToElement(viewportRoot, offsetX, offsetY).click().perform();
+			LOGGER.info("Clicked outside the side menu using Actions viewport offsets");
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Actions outside side menu click failed: {0}", e.getMessage());
+		}
+
+		try {
+			WebElement menuPanel = findVisibleSideMenuPanel();
+			Object clicked = ((JavascriptExecutor) driver).executeScript("const panel = arguments[0];"
+					+ "if (!panel) return false;" + "const rect = panel.getBoundingClientRect();"
+					+ "const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 0;"
+					+ "const x = Math.min(Math.max(5, Math.floor(rect.right + 20)), Math.max(5, viewportWidth - 5));"
+					+ "const y = Math.max(5, Math.floor(rect.top + Math.min(rect.height / 2, 200)));"
+					+ "const target = document.elementFromPoint(x, y) || document.body;"
+					+ "if (typeof target.click === 'function') { target.click(); return true; }"
+					+ "['pointerdown','mousedown','mouseup','click'].forEach((type) => {"
+					+ "  target.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, clientX: x, clientY: y }));"
+					+ "});" + "return true;", menuPanel);
+			return Boolean.TRUE.equals(clicked);
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "JavaScript outside side menu click fallback failed: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	private WebElement resolveSideMenuContainerFromHeader(WebElement headerElement) {
+		try {
+			Object result = ((JavascriptExecutor) driver).executeScript("const header = arguments[0];"
+					+ "if (!header) return null;"
+					+ "const labels = arguments[1];"
+					+ "const isVisible = (element) => {"
+					+ "  if (!element) return false;"
+					+ "  const style = window.getComputedStyle(element);"
+					+ "  const rect = element.getBoundingClientRect();"
+					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+					+ "    && rect.width > 0 && rect.height > 0;"
+					+ "};"
+					+ "const textOf = (element) => [element.innerText, element.textContent,"
+					+ "  element.getAttribute('aria-label'), element.getAttribute('data-testid'),"
+					+ "  element.getAttribute('class')].filter(Boolean).join(' ').toLowerCase();"
+					+ "let current = header;"
+					+ "let hops = 0;"
+					+ "while (current && hops < 8) {"
+					+ "  if (isVisible(current)) {"
+					+ "    const text = textOf(current);"
+					+ "    const labelHits = labels.filter((label) => text.includes(label)).length;"
+					+ "    const rect = current.getBoundingClientRect();"
+					+ "    if (labelHits >= 3 || (rect.width >= 220 && rect.height >= 300)) {"
+					+ "      return current;"
+					+ "    }"
+					+ "  }"
+					+ "  current = current.parentElement;"
+					+ "  hops++;"
+					+ "}"
+					+ "return header.parentElement || header;", headerElement, Arrays.asList(PRIMARY_SIDE_MENU_LABELS));
+
+			return result instanceof WebElement ? (WebElement) result : headerElement;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Side menu container resolution from header failed: {0}", e.getMessage());
+			return headerElement;
+		}
+	}
+
+	private boolean toggleHamburgerMenuWithFallback(boolean preferOutsideSideMenu) {
+		try {
+			WebElement visibleMenuButton = preferOutsideSideMenu ? findHamburgerToggleOutsideSideMenu()
+					: findFirstVisibleElement(HAMBURGER_MENU);
 			if (visibleMenuButton != null) {
 				scrollIntoView(visibleMenuButton);
 				clickWithJS(visibleMenuButton);
@@ -5591,19 +5849,21 @@ public class DashboardPage extends BasePage {
 		}
 
 		try {
+			WebElement menuPanel = preferOutsideSideMenu ? findVisibleSideMenuPanel() : null;
 			Object clicked = ((JavascriptExecutor) driver)
-					.executeScript("const selectors = [" + "\"button[aria-label='Menu']\","
-							+ "\"button[aria-label='menu']\"," + "\"button[aria-label='Open menu']\","
-							+ "\"[role='button'][aria-label='Menu']\"," + "\"[role='button'][aria-label='menu']\","
+					.executeScript("const panel = arguments[0];" + "const selectors = [" + "\"button[aria-label='Menu']\","
+							+ "\"button[aria-label='menu']\"," + "\"button[aria-label='Open menu']\"," 
+							+ "\"[role='button'][aria-label='Menu']\"," + "\"[role='button'][aria-label='menu']\"," 
 							+ "\"img[src*='ic_menu']\"," + "\"header [class*='menu']\"," + "\"header [src*='menu']\""
 							+ "];" + "const isRenderable = (element) => {" + "  if (!element) return false;"
 							+ "  const style = window.getComputedStyle(element);"
 							+ "  const rect = element.getBoundingClientRect();"
 							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
 							+ "    && rect.width > 0 && rect.height > 0;" + "};" + "for (const selector of selectors) {"
-							+ "  const elements = Array.from(document.querySelectorAll(selector)).filter(isRenderable);"
+							+ "  const elements = Array.from(document.querySelectorAll(selector)).filter(isRenderable)"
+							+ "    .filter((element) => !panel || !panel.contains(element));"
 							+ "  if (!elements.length) continue;" + "  const target = elements[0];"
-							+ "  target.click();" + "  return true;" + "}" + "return false;");
+							+ "  target.click();" + "  return true;" + "}" + "return false;", menuPanel);
 			if (Boolean.TRUE.equals(clicked)) {
 				LOGGER.info("Hamburger menu toggle clicked via JavaScript fallback");
 				return true;

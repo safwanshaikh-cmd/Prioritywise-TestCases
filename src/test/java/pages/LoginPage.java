@@ -412,7 +412,7 @@ public class LoginPage extends BasePage {
 		return false;
 	}
 
-	private void scrollIntoView(WebElement element) {
+	private void scrollIntoView(By element) {
 		try {
 			((JavascriptExecutor) driver)
 					.executeScript("arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);

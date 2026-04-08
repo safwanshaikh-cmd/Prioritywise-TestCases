@@ -1448,7 +1448,7 @@ public class AudioPlayerPage extends BasePage {
 		}
 	}
 
-	private void scrollIntoView(WebElement element) {
+	private void scrollIntoView(By element) {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
 	}
 
