@@ -18,7 +18,7 @@ public class PlayerTests extends BaseTest {
 	private PlayerPage player;
 	private LoginPage login;
 
-	// 🔥 COMMON SETUP (removes duplication)
+	// ðŸ”¥ COMMON SETUP (removes duplication)
 	@BeforeMethod(alwaysRun = true)
 	public void setup() {
 		super.setup();
@@ -51,7 +51,7 @@ public class PlayerTests extends BaseTest {
 		player.clickPlayAudio();
 		player.waitForAudioToStart();
 
-		Assert.assertTrue(player.isAudioPlaying(), "❌ Audio did not start playing");
+		Assert.assertTrue(player.isAudioPlaying(), "âŒ Audio did not start playing");
 	}
 
 	// ================= PAUSE =================
@@ -64,7 +64,7 @@ public class PlayerTests extends BaseTest {
 		player.clickPausePlay();
 		player.waitForAudioToPause();
 
-		Assert.assertTrue(player.isAudioPaused(), "❌ Pause functionality failed");
+		Assert.assertTrue(player.isAudioPaused(), "âŒ Pause functionality failed");
 	}
 
 	// ================= RESUME =================
@@ -80,7 +80,7 @@ public class PlayerTests extends BaseTest {
 		player.clickPausePlay();
 		player.waitForAudioToStart();
 
-		Assert.assertTrue(player.isAudioPlaying(), "❌ Resume functionality failed");
+		Assert.assertTrue(player.isAudioPlaying(), "âŒ Resume functionality failed");
 	}
 
 	// ================= TC_07 =================

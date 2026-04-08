@@ -3,14 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.ConsumerBookDetailsTests">
+      <class name="tests.SmokeTest">
         <methods>
           <include name="setup"/>
-          <include name="initConsumerBookDetailsPage"/>
+          <include name="tearDownSmokeTest"/>
           <include name="tearDown"/>
-          <include name="verifyUserCanLikeABook"/>
+          <include name="smokeVerifyNavigation"/>
+          <include name="setUpSmokeTest"/>
         </methods>
-      </class> <!-- tests.ConsumerBookDetailsTests -->
+      </class> <!-- tests.SmokeTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

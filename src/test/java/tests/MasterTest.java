@@ -97,7 +97,6 @@ public class MasterTest extends BaseTest {
 			break;
 
 		case "play_pause_resume":
-
 			player.clickPlayAudio();
 			player.waitForAudioToStart();
 

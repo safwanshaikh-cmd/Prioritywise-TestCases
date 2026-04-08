@@ -14,7 +14,6 @@ import factory.DriverFactory;
 import listeners.RetryAnalyzer;
 import pages.DashboardPage;
 import pages.LoginPage;
-import pages.PlayerPage;
 import utils.ConfigReader;
 
 /**

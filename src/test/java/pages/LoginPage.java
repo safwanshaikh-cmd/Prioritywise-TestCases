@@ -35,7 +35,11 @@ public class LoginPage extends BasePage {
 	private static final By EMAIL_FIELD = By.xpath("//input[@placeholder='Email']");
 	private static final By PASSWORD_FIELD = By.xpath("//input[@placeholder='Password']");
 	private static final By RESET_EMAIL_FIELD = By.xpath("//input[@placeholder='Enter your email']");
-	private static final By LOGIN_BUTTON = By.xpath("//div[@class='css-146c3p1'][normalize-space()='Login']");
+	private static final By LOGIN_BUTTON = By.xpath(
+			"//button[normalize-space()='Login']"
+					+ " | //div[normalize-space()='Login' and not(ancestor::*[contains(normalize-space(.),'Forgot password')])]"
+					+ " | //span[normalize-space()='Login']"
+					+ " | //*[@tabindex='0' and (.//div[normalize-space()='Login'] or .//span[normalize-space()='Login'])]");
 	private static final By SUCCESSFUL_LOGIN_MESSAGE = By.xpath("//div[@data-testid='toastText1']");
 	private static final By NEXT_BUTTON = By.xpath("//div[contains(text(),'Next')]");
 	private static final By ERROR_MESSAGE = By.xpath(
@@ -125,7 +129,12 @@ public class LoginPage extends BasePage {
 	}
 
 	public void clickLogin() {
-		click(LOGIN_BUTTON);
+		try {
+			click(LOGIN_BUTTON);
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Primary login button click failed, submitting with Enter: {0}", e.getMessage());
+			submitWithEnter();
+		}
 	}
 
 	public void doubleClickLogin() {

@@ -2,7 +2,9 @@ package pages;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -21,7 +23,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import base.BasePage;
 
 /**
- * Page object representing the dashboard page of the application. Contains methods to interact with various elements
+ * Page object representing the dashboard page of the application. Contains
+ * methods to interact with various elements
  */
 public class DashboardPage extends BasePage {
 
@@ -61,25 +64,24 @@ public class DashboardPage extends BasePage {
 			"//div[contains(@style,'gap: 10px')]//div[@tabindex='0'][.//img[contains(@src,'thumb.php') or contains(@src,'sonarplay')]]"
 					+ " | //img[contains(@src,'thumb.php')]/ancestor::*[@tabindex='0'][1]"
 					+ " | //img[contains(@src,'sonarplay')]/ancestor::*[@tabindex='0'][1]");
-	private static final By SEARCH_RESULT_IMAGES = By.xpath(
-			"//div[contains(@style,'gap: 10px')]//img[contains(@src,'thumb.php')]"
+	private static final By SEARCH_RESULT_IMAGES = By
+			.xpath("//div[contains(@style,'gap: 10px')]//img[contains(@src,'thumb.php')]"
 					+ " | //img[contains(@src,'thumb.php')]");
-	private static final By SEARCH_SUGGESTIONS = By.xpath(
-			"//*[@role='listbox' or @role='option' or contains(@aria-label,'suggest')"
+	private static final By SEARCH_SUGGESTIONS = By
+			.xpath("//*[@role='listbox' or @role='option' or contains(@aria-label,'suggest')"
 					+ " or contains(@class,'suggest') or contains(@data-testid,'suggest')]"
 					+ " | //div[@tabindex='0'][.//img[contains(@src,'thumb.php') or contains(@src,'sonarplay')]]");
 	private static final By SEARCH_CLEAR_BUTTON = By.xpath(
-			"//*[self::button or self::div or self::span]"
-					+ "[contains(translate(@aria-label,'CLEAR','clear'),'clear')"
+			"//*[self::button or self::div or self::span]" + "[contains(translate(@aria-label,'CLEAR','clear'),'clear')"
 					+ " or contains(translate(@data-testid,'CLEAR','clear'),'clear')"
 					+ " or contains(translate(normalize-space(.),'CLEAR','clear'),'clear')]");
-	private static final By SEARCH_VALIDATION_MESSAGE = By.xpath(
-			"//*[contains(translate(normalize-space(.),'REQUIRED','required'),'required')"
+	private static final By SEARCH_VALIDATION_MESSAGE = By
+			.xpath("//*[contains(translate(normalize-space(.),'REQUIRED','required'),'required')"
 					+ " or contains(translate(normalize-space(.),'ENTER SEARCH','enter search'),'enter search')"
 					+ " or contains(translate(normalize-space(.),'PLEASE ENTER','please enter'),'please enter')"
 					+ " or contains(translate(normalize-space(.),'TYPE SOMETHING','type something'),'type something')]");
-	private static final By SEARCH_RESULTS_COUNT_LABEL = By.xpath(
-			"//*[contains(translate(normalize-space(.),'RESULTS','results'),'results')"
+	private static final By SEARCH_RESULTS_COUNT_LABEL = By
+			.xpath("//*[contains(translate(normalize-space(.),'RESULTS','results'),'results')"
 					+ " and (contains(translate(normalize-space(.),'BOOK','book'),'book')"
 					+ " or contains(translate(normalize-space(.),'SHOW','show'),'show')"
 					+ " or contains(translate(normalize-space(.),'FOUND','found'),'found'))]");
@@ -91,24 +93,21 @@ public class DashboardPage extends BasePage {
 					+ " or contains(translate(normalize-space(.),'FAVOURITE','favourite'),'favourite')"
 					+ " or contains(translate(normalize-space(.),'LIKED','liked'),'liked')"
 					+ " or contains(translate(normalize-space(.),'SAVED','saved'),'saved')]");
-	private static final By BANNER_SECTION = By.xpath(
-			"//*[starts-with(@data-testid,'__CAROUSEL_ITEM_')]"
-					+ " | //*[contains(@data-testid,'banner') or contains(@data-testid,'carousel')"
-					+ " or contains(translate(@class,'BANNER','banner'),'banner')"
-					+ " or contains(translate(@class,'CAROUSEL','carousel'),'carousel')"
-					+ " or contains(translate(@class,'SLIDER','slider'),'slider')]");
-	private static final By BANNER_ITEMS = By.xpath(
-			"//*[starts-with(@data-testid,'__CAROUSEL_ITEM_')]");
-	private static final By BANNER_CLICKABLE_CARDS = By.xpath(
-			"//*[starts-with(@data-testid,'__CAROUSEL_ITEM_')]//*[@tabindex='0']"
+	private static final By BANNER_SECTION = By.xpath("//*[starts-with(@data-testid,'__CAROUSEL_ITEM_')]"
+			+ " | //*[contains(@data-testid,'banner') or contains(@data-testid,'carousel')"
+			+ " or contains(translate(@class,'BANNER','banner'),'banner')"
+			+ " or contains(translate(@class,'CAROUSEL','carousel'),'carousel')"
+			+ " or contains(translate(@class,'SLIDER','slider'),'slider')]");
+	private static final By BANNER_ITEMS = By.xpath("//*[starts-with(@data-testid,'__CAROUSEL_ITEM_')]");
+	private static final By BANNER_CLICKABLE_CARDS = By
+			.xpath("//*[starts-with(@data-testid,'__CAROUSEL_ITEM_')]//*[@tabindex='0']"
 					+ " | //*[starts-with(@data-testid,'__CAROUSEL_ITEM_')]//*[self::a or self::button]");
-	private static final By BANNER_IMAGES = By.xpath(
-			"//*[starts-with(@data-testid,'__CAROUSEL_ITEM_')]//img"
-					+ " | //*[contains(@data-testid,'banner') or contains(@data-testid,'carousel')"
-					+ " or contains(translate(@class,'BANNER','banner'),'banner')"
-					+ " or contains(translate(@class,'CAROUSEL','carousel'),'carousel')"
-					+ " or contains(translate(@class,'SLIDER','slider'),'slider')]//img"
-					+ " | //img[contains(translate(@src,'BANNER','banner'),'banner') or contains(translate(@alt,'BANNER','banner'),'banner')]");
+	private static final By BANNER_IMAGES = By.xpath("//*[starts-with(@data-testid,'__CAROUSEL_ITEM_')]//img"
+			+ " | //*[contains(@data-testid,'banner') or contains(@data-testid,'carousel')"
+			+ " or contains(translate(@class,'BANNER','banner'),'banner')"
+			+ " or contains(translate(@class,'CAROUSEL','carousel'),'carousel')"
+			+ " or contains(translate(@class,'SLIDER','slider'),'slider')]//img"
+			+ " | //img[contains(translate(@src,'BANNER','banner'),'banner') or contains(translate(@alt,'BANNER','banner'),'banner')]");
 	private static final By BANNER_PREVIOUS_ARROW = By.xpath(
 			"(//*[contains(@data-testid,'banner') or contains(@data-testid,'carousel') or contains(translate(@class,'BANNER','banner'),'banner')]"
 					+ "//*[self::button or @role='button' or @tabindex='0']"
@@ -129,80 +128,73 @@ public class DashboardPage extends BasePage {
 					+ " or contains(translate(@class,'INDICATOR','indicator'),'indicator')"
 					+ " or contains(translate(@class,'DOT','dot'),'dot')"
 					+ " or @aria-current='true' or @aria-selected='true']");
-	private static final By BOOK_DETAILS_PAGE = By.xpath(
-			"//*[contains(@data-testid,'book_details') or contains(@data-testid,'show_details')"
+	private static final By BOOK_DETAILS_PAGE = By
+			.xpath("//*[contains(@data-testid,'book_details') or contains(@data-testid,'show_details')"
 					+ " or contains(translate(@class,'DETAIL','detail'),'detail')]"
 					+ " | //*[contains(translate(normalize-space(.),'PLAY AUDIO','play audio'),'play audio')]"
 					+ " | //*[contains(translate(normalize-space(.),'SUMMARY','summary'),'summary')]"
 					+ " | //*[contains(translate(normalize-space(.),'CHAPTER','chapter'),'chapter')]");
-	private static final By BOOK_TITLE = By.xpath(
-			"//*[@data-testid='text_book_title' or @data-testid='book_title' or @data-testid='show_title']"
+	private static final By BOOK_TITLE = By
+			.xpath("//*[@data-testid='text_book_title' or @data-testid='book_title' or @data-testid='show_title']"
 					+ " | //a[contains(@href,'/reviews')]/ancestor::div[contains(@style,'justify-content: space-between')][1]"
 					+ "/preceding-sibling::div[1]/div[contains(@style,'justify-content: space-between')][1]/div[@dir='auto'][1]"
 					+ " | //h1 | //h2");
-	private static final By BOOK_OWNER_NAME = By.xpath(
-			"//a[contains(@href,'/reviews')]/ancestor::div[contains(@style,'justify-content: space-between')][1]"
+	private static final By BOOK_OWNER_NAME = By
+			.xpath("//a[contains(@href,'/reviews')]/ancestor::div[contains(@style,'justify-content: space-between')][1]"
 					+ "/preceding-sibling::div[1]/div[@dir='auto'][.//span[contains(normalize-space(.),'(')]]");
-	private static final By BOOK_COVER_IMAGE = By.xpath(
-			"//*[contains(@data-testid,'book_details') or contains(@data-testid,'show_details')"
+	private static final By BOOK_COVER_IMAGE = By
+			.xpath("//*[contains(@data-testid,'book_details') or contains(@data-testid,'show_details')"
 					+ " or contains(translate(@class,'DETAIL','detail'),'detail')]//img"
 					+ " | //img[contains(@src,'cover') or contains(@src,'thumb.php') or contains(@src,'sonarplay')]");
-	private static final By PLACEHOLDER_IMAGE = By.xpath(
-			"//img[contains(translate(@src,'PLACEHOLDER','placeholder'),'placeholder')"
+	private static final By PLACEHOLDER_IMAGE = By
+			.xpath("//img[contains(translate(@src,'PLACEHOLDER','placeholder'),'placeholder')"
 					+ " or contains(translate(@alt,'PLACEHOLDER','placeholder'),'placeholder')"
 					+ " or contains(translate(@src,'DEFAULT','default'),'default')]");
-	private static final By SHARE_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
-					+ "[contains(translate(@aria-label,'SHARE','share'),'share')"
-					+ " or contains(translate(normalize-space(.),'SHARE','share'),'share')"
-					+ " or contains(@data-testid,'share')"
-					+ " or contains(@style,'rgb(72, 56, 209)')]");
-	private static final By PLAY_AUDIO_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
-					+ "[contains(translate(normalize-space(.),'PLAY AUDIO','play audio'),'play audio')"
-					+ " or contains(translate(@aria-label,'PLAY AUDIO','play audio'),'play audio')"
-					+ " or contains(@data-testid,'play')]");
-	private static final By PAUSE_AUDIO_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
-					+ "[contains(translate(normalize-space(.),'PAUSE','pause'),'pause')"
-					+ " or contains(translate(@aria-label,'PAUSE','pause'),'pause')"
-					+ " or contains(@data-testid,'pause')]");
-	private static final By FAVORITE_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
-					+ "[contains(translate(@aria-label,'FAVORITE','favorite'),'favorite')"
-					+ " or contains(translate(@aria-label,'FAVOURITE','favourite'),'favourite')"
-					+ " or contains(translate(@aria-label,'LIKE','like'),'like')"
-					+ " or contains(translate(@aria-label,'WISHLIST','wishlist'),'wishlist')"
-					+ " or contains(@data-testid,'favorite') or contains(@data-testid,'favourite')"
-					+ " or contains(@data-testid,'like') or contains(@data-testid,'wishlist')"
-					+ " or contains(translate(normalize-space(.),'FAVORITE','favorite'),'favorite')"
-					+ " or contains(translate(normalize-space(.),'LIKED','liked'),'liked')"
-					+ " or contains(normalize-space(.),'🤍')"  // White heart emoji for favorites
-					+ " or contains(@style,'rgb(27, 27, 52)')]");  // Dark background for favorite button
-	private static final By SHARE_OPTIONS = By.xpath(
-			"//*[contains(translate(normalize-space(.),'COPY LINK','copy link'),'copy link')"
+	private static final By SHARE_BUTTON = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
+			+ "[contains(translate(@aria-label,'SHARE','share'),'share')"
+			+ " or contains(translate(normalize-space(.),'SHARE','share'),'share')"
+			+ " or contains(@data-testid,'share')" + " or contains(@style,'rgb(72, 56, 209)')]");
+	private static final By PLAY_AUDIO_BUTTON = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
+			+ "[contains(translate(normalize-space(.),'PLAY AUDIO','play audio'),'play audio')"
+			+ " or contains(translate(@aria-label,'PLAY AUDIO','play audio'),'play audio')"
+			+ " or contains(@data-testid,'play')]");
+	private static final By PAUSE_AUDIO_BUTTON = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
+			+ "[contains(translate(normalize-space(.),'PAUSE','pause'),'pause')"
+			+ " or contains(translate(@aria-label,'PAUSE','pause'),'pause')" + " or contains(@data-testid,'pause')]");
+	private static final By FAVORITE_BUTTON = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
+			+ "[contains(translate(@aria-label,'FAVORITE','favorite'),'favorite')"
+			+ " or contains(translate(@aria-label,'FAVOURITE','favourite'),'favourite')"
+			+ " or contains(translate(@aria-label,'LIKE','like'),'like')"
+			+ " or contains(translate(@aria-label,'WISHLIST','wishlist'),'wishlist')"
+			+ " or contains(@data-testid,'favorite') or contains(@data-testid,'favourite')"
+			+ " or contains(@data-testid,'like') or contains(@data-testid,'wishlist')"
+			+ " or contains(translate(normalize-space(.),'FAVORITE','favorite'),'favorite')"
+			+ " or contains(translate(normalize-space(.),'LIKED','liked'),'liked')"
+			+ " or contains(normalize-space(.),'🤍')" // White heart emoji for favorites
+			+ " or contains(@style,'rgb(27, 27, 52)')]"); // Dark background for favorite button
+	private static final By SHARE_OPTIONS = By
+			.xpath("//*[contains(translate(normalize-space(.),'COPY LINK','copy link'),'copy link')"
 					+ " or contains(translate(normalize-space(.),'SHARE VIA','share via'),'share via')"
 					+ " or contains(translate(normalize-space(.),'WHATSAPP','whatsapp'),'whatsapp')"
 					+ " or contains(translate(normalize-space(.),'FACEBOOK','facebook'),'facebook')"
 					+ " or contains(translate(normalize-space(.),'TWITTER','twitter'),'twitter')]");
-	private static final By REPORT_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
-					+ "[contains(translate(normalize-space(.),'REPORT','report'),'report')"
-					+ " or contains(translate(@aria-label,'REPORT','report'),'report')"
-					+ " or contains(@data-testid,'report')]");
-	private static final By REPORT_FORM = By.xpath(
-			"//*[contains(translate(normalize-space(.),'REPORT REASON','report reason'),'report reason')"
+	private static final By REPORT_BUTTON = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
+			+ "[contains(translate(normalize-space(.),'REPORT','report'),'report')"
+			+ " or contains(translate(@aria-label,'REPORT','report'),'report')"
+			+ " or contains(@data-testid,'report')]");
+	private static final By REPORT_FORM = By
+			.xpath("//*[contains(translate(normalize-space(.),'REPORT REASON','report reason'),'report reason')"
 					+ " or contains(translate(normalize-space(.),'WHY ARE YOU REPORTING','why are you reporting'),'why are you reporting')"
 					+ " or contains(@data-testid,'report_modal') or contains(@data-testid,'report_reason')]");
 	private static final By REPORT_DUPLICATE_MESSAGE = By.xpath(
 			"//*[contains(translate(normalize-space(.),'ALREADY REPORTED','already reported'),'already reported')"
 					+ " or contains(translate(normalize-space(.),'ALREADY SUBMITTED','already submitted'),'already submitted')"
 					+ " or contains(translate(normalize-space(.),'DUPLICATE','duplicate'),'duplicate')]");
-	private static final By REVIEWS_SECTION = By.xpath(
-			"//*[contains(translate(normalize-space(.),'REVIEWS','reviews'),'reviews')]"
+	private static final By REVIEWS_SECTION = By
+			.xpath("//*[contains(translate(normalize-space(.),'REVIEWS','reviews'),'reviews')]"
 					+ " | //*[@data-testid='section_reviews' or @data-testid='book_reviews']");
-	private static final By REVIEW_ITEMS = By.xpath(
-			"//*[@data-testid='review_item' or contains(@data-testid,'review_card')]"
+	private static final By REVIEW_ITEMS = By
+			.xpath("//*[@data-testid='review_item' or contains(@data-testid,'review_card')]"
 					+ " | //*[contains(translate(@class,'REVIEW','review'),'review') and not(self::input) and not(self::textarea)]");
 	private static final By REVIEW_COUNT_LABEL = By.xpath(
 			"//a[contains(@href,'/reviews')]//*[contains(translate(normalize-space(.),'REVIEW','review'),'review')]"
@@ -211,109 +203,100 @@ public class DashboardPage extends BasePage {
 	private static final By NO_REVIEWS_MESSAGE = By.xpath(
 			"//*[contains(translate(normalize-space(.),'NO REVIEWS AVAILABLE','no reviews available'),'no reviews available')"
 					+ " or contains(translate(normalize-space(.),'NO REVIEWS','no reviews'),'no reviews')]");
-	private static final By EPISODES_SECTION = By.xpath(
-			"//*[contains(translate(normalize-space(.),'EPISODE','episode'),'episode')"
+	private static final By EPISODES_SECTION = By
+			.xpath("//*[contains(translate(normalize-space(.),'EPISODE','episode'),'episode')"
 					+ " or contains(translate(normalize-space(.),'CHAPTER','chapter'),'chapter')]"
 					+ " | //*[@data-testid='section_episodes' or @data-testid='section_chapters']");
-	private static final By EPISODE_ITEMS = By.xpath(
-			"//*[@data-testid='episode_item' or @data-testid='chapter_item']"
-					+ " | //*[contains(translate(@class,'EPISODE','episode'),'episode')"
-					+ " or contains(translate(@class,'CHAPTER','chapter'),'chapter')]");
+	private static final By EPISODE_ITEMS = By.xpath("//*[@data-testid='episode_item' or @data-testid='chapter_item']"
+			+ " | //*[contains(translate(@class,'EPISODE','episode'),'episode')"
+			+ " or contains(translate(@class,'CHAPTER','chapter'),'chapter')]");
 	private static final By NO_EPISODES_MESSAGE = By.xpath(
 			"//*[contains(translate(normalize-space(.),'NO EPISODES AVAILABLE','no episodes available'),'no episodes available')"
 					+ " or contains(translate(normalize-space(.),'NO CHAPTERS AVAILABLE','no chapters available'),'no chapters available')"
 					+ " or contains(translate(normalize-space(.),'NO EPISODES','no episodes'),'no episodes')"
 					+ " or contains(translate(normalize-space(.),'NO CHAPTERS','no chapters'),'no chapters')]");
-	private static final By DURATION_LABELS = By.xpath(
-			"//*[contains(translate(normalize-space(.),'MIN','min'),'min')"
-					+ " or contains(translate(normalize-space(.),'SEC','sec'),'sec')"
-					+ " or contains(translate(normalize-space(.),'HR','hr'),'hr')"
-					+ " or contains(normalize-space(.),':')]");
-	private static final By CATEGORY_CHIPS = By.xpath(
-			"//*[@data-testid='category_chip' or @data-testid='book_category']"
+	private static final By DURATION_LABELS = By.xpath("//*[contains(translate(normalize-space(.),'MIN','min'),'min')"
+			+ " or contains(translate(normalize-space(.),'SEC','sec'),'sec')"
+			+ " or contains(translate(normalize-space(.),'HR','hr'),'hr')" + " or contains(normalize-space(.),':')]");
+	private static final By CATEGORY_CHIPS = By
+			.xpath("//*[@data-testid='category_chip' or @data-testid='book_category']"
 					+ " | //*[contains(translate(@class,'CATEGORY','category'),'category')"
 					+ " and not(self::section) and not(self::article)]"
 					+ " | //div[@dir='auto']//span[contains(normalize-space(.),'(')]");
-	private static final By ALL_CATEGORY_CHIPS = By.xpath(
-			"//*[@data-testid='category_chip' or @data-testid='book_category']"
+	private static final By ALL_CATEGORY_CHIPS = By
+			.xpath("//*[@data-testid='category_chip' or @data-testid='book_category']"
 					+ " | //div[contains(@class,'r-1w6e6rj')]//div[@dir='auto']"
 					+ " | //div[@dir='auto']//span[contains(normalize-space(.),'(')]");
-	private static final By SUMMARY_SECTION = By.xpath(
-			"//*[contains(translate(normalize-space(.),'SUMMARY','summary'),'summary')"
+	private static final By SUMMARY_SECTION = By
+			.xpath("//*[contains(translate(normalize-space(.),'SUMMARY','summary'),'summary')"
 					+ " or contains(@data-testid,'summary')]");
-	private static final By SUMMARY_CONTENT = By.xpath(
-			"//*[contains(translate(normalize-space(.),'SUMMARY','summary'),'summary')]/following-sibling::*[1]"
+	private static final By SUMMARY_CONTENT = By
+			.xpath("//*[contains(translate(normalize-space(.),'SUMMARY','summary'),'summary')]/following-sibling::*[1]"
 					+ " | //*[@data-testid='summary']//following-sibling::*[1]");
 	private static final By EMPTY_SUMMARY_MESSAGE = By.xpath(
 			"//*[contains(translate(normalize-space(.),'NO SUMMARY AVAILABLE','no summary available'),'no summary available')"
 					+ " or contains(translate(normalize-space(.),'SUMMARY NOT AVAILABLE','summary not available'),'summary not available')"
 					+ " or contains(translate(normalize-space(.),'NO DESCRIPTION','no description'),'no description')]");
-	private static final By CHAPTER_ITEMS = By.xpath(
-			"//*[@data-testid='chapter_item']"
-					+ " | //*[contains(translate(@class,'CHAPTER','chapter'),'chapter')]"
-					+ " | //div[normalize-space()='Available Chapters']/ancestor::div[contains(@class,'css-g5y9jx')][1]/following-sibling::div//div[@tabindex='0']");
+	private static final By CHAPTER_ITEMS = By.xpath("//*[@data-testid='chapter_item']"
+			+ " | //*[contains(translate(@class,'CHAPTER','chapter'),'chapter')]"
+			+ " | //div[normalize-space()='Available Chapters']/ancestor::div[contains(@class,'css-g5y9jx')][1]/following-sibling::div//div[@tabindex='0']");
 	private static final By CHAPTER_TITLE_LABELS = By.xpath(
 			"//div[normalize-space()='Available Chapters']/ancestor::div[contains(@class,'css-g5y9jx')][1]/following-sibling::div//div[contains(@class,'r-majxgm')]"
 					+ " | //*[@data-testid='chapter_item']//*[self::div or self::span][1]");
 	private static final By CHAPTER_DURATION_LABELS = By.xpath(
 			"//div[normalize-space()='Available Chapters']/ancestor::div[contains(@class,'css-g5y9jx')][1]/following-sibling::div//div[contains(@class,'r-icoktb')]"
 					+ " | //*[@data-testid='chapter_item']//*[contains(normalize-space(.),':')]");
-	private static final By BACK_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
-					+ "[contains(translate(@aria-label,'BACK','back'),'back')"
-					+ " or contains(translate(normalize-space(.),'BACK','back'),'back')"
-					+ " or contains(@data-testid,'back')]");
+	private static final By BACK_BUTTON = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
+			+ "[contains(translate(@aria-label,'BACK','back'),'back')"
+			+ " or contains(translate(normalize-space(.),'BACK','back'),'back')"
+			+ " or contains(@data-testid,'back')]");
 
 	// ================= AUDIO PLAYER CONTROL LOCATORS =================
-	private static final By FORWARD_SKIP_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
+	private static final By FORWARD_SKIP_BUTTON = By
+			.xpath("//img[contains(@src,'ic_forward_30')]/ancestor::div[@tabindex='0']"
+					+ " | //*[self::button or @role='button' or @tabindex='0']"
 					+ "[contains(translate(@aria-label,'FORWARD','forward'),'forward')"
 					+ " or contains(translate(@aria-label,'SKIP','skip'),'skip')"
-					+ " or contains(translate(normalize-space(.),'30s'),'30s')"
-					+ " or contains(translate(normalize-space(.),'SKIP FORWARD'),'skip forward')]");
-	private static final By REWIND_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
-					+ "[contains(translate(@aria-label,'REWIND','rewind'),'rewind')"
-					+ " or contains(translate(@aria-label,'BACKWARD','backward'),'backward')"
-					+ " or contains(translate(normalize-space(.),'-30s'),'-30s')"
-					+ " or contains(translate(normalize-space(.),'GO BACK'),'go back')]");
-	private static final By NEXT_CHAPTER_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
+					+ " or contains(translate(normalize-space(.),'30S','30s'),'30s')"
+					+ " or contains(translate(normalize-space(.),'SKIP FORWARD','skip forward'),'skip forward')]");
+	private static final By REWIND_BUTTON = By.xpath("//img[contains(@src,'ic_prev_30')]/ancestor::div[@tabindex='0']"
+			+ " | //*[self::button or @role='button' or @tabindex='0']"
+			+ "[contains(translate(@aria-label,'REWIND','rewind'),'rewind')"
+			+ " or contains(translate(@aria-label,'BACKWARD','backward'),'backward')"
+			+ " or contains(translate(normalize-space(.),'-30S','-30s'),'-30s')"
+			+ " or contains(translate(normalize-space(.),'GO BACK','go back'),'go back')]");
+	private static final By NEXT_CHAPTER_BUTTON = By
+			.xpath("//img[contains(@src,'ic_next')]/ancestor::div[@tabindex='0']"
+					+ " | //*[self::button or @role='button' or @tabindex='0']"
 					+ "[contains(translate(@aria-label,'NEXT','next'),'next')"
 					+ " or contains(translate(@aria-label,'CHAPTER','chapter'),'chapter')"
-					+ " or contains(translate(normalize-space(.),'NEXT CHAPTER'),'next chapter')]");
-	private static final By PREVIOUS_CHAPTER_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
+					+ " or contains(translate(normalize-space(.),'NEXT CHAPTER','next chapter'),'next chapter')]");
+	private static final By PREVIOUS_CHAPTER_BUTTON = By
+			.xpath("//img[contains(@src,'ic_previous')]/ancestor::div[@tabindex='0']"
+					+ " | //*[self::button or @role='button' or @tabindex='0']"
 					+ "[contains(translate(@aria-label,'PREVIOUS','previous'),'previous')"
 					+ " or contains(translate(@aria-label,'PREV','prev'),'prev')"
-					+ " or contains(translate(normalize-space(.),'PREVIOUS CHAPTER'),'previous chapter')]");
-	private static final By SPEED_CONTROL_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
-					+ "[contains(translate(normalize-space(.),'1X'),'1x')"
-					+ " or contains(translate(normalize-space(.),'SPEED'),'speed')"
-					+ " or contains(translate(@aria-label,'SPEED'),'speed')]");
-	private static final By VOLUME_SLIDER = By.xpath(
-			"//input[@type='range' and @role='slider']"
-					+ " | //*[@data-testid='volume_slider']"
-					+ " | //*[@aria-label='volume']");
-	private static final By MUTE_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
-					+ "[contains(translate(@aria-label,'MUTE','mute'),'mute')"
-					+ " or contains(translate(@aria-label,'VOLUME','volume'),'volume')]");
-	private static final By CLOSE_PLAYER_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
-					+ "[contains(translate(@aria-label,'CLOSE','close'),'close')"
-					+ " or contains(translate(normalize-space(.),'✕'),'✕')]");
-	private static final By PROGRESS_BAR = By.xpath(
-			"//input[@type='range' and contains(@aria-label,'progress')]"
-					+ " | //*[@data-testid='progress_bar']"
-					+ " | //*[@role='slider' and contains(@aria-label,'seek')]");
-	private static final By CURRENT_POSITION_LABEL = By.xpath(
-			"//*[contains(@class,'time') or contains(@class,'position') or contains(@class,'current')]"
+					+ " or contains(translate(normalize-space(.),'PREVIOUS CHAPTER','previous chapter'),'previous chapter')]");
+	private static final By SPEED_CONTROL_BUTTON = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
+			+ "[contains(translate(normalize-space(.),'1X','1x'),'1x')"
+			+ " or contains(translate(normalize-space(.),'SPEED','speed'),'speed')"
+			+ " or contains(translate(@aria-label,'SPEED','speed'),'speed')]");
+	private static final By VOLUME_SLIDER = By.xpath("//input[@type='range' and @role='slider']"
+			+ " | //*[@data-testid='volume_slider']" + " | //*[@aria-label='volume']");
+	private static final By MUTE_BUTTON = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
+			+ "[contains(translate(@aria-label,'MUTE','mute'),'mute')"
+			+ " or contains(translate(@aria-label,'VOLUME','volume'),'volume')]");
+	private static final By CLOSE_PLAYER_BUTTON = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
+			+ "[contains(translate(@aria-label,'CLOSE','close'),'close')"
+			+ " or contains(translate(normalize-space(.),'✕'),'✕')]");
+	private static final By PROGRESS_BAR = By.xpath("//input[@type='range' and contains(@aria-label,'progress')]"
+			+ " | //*[@data-testid='progress_bar']" + " | //*[@role='slider' and contains(@aria-label,'seek')]");
+	private static final By CURRENT_POSITION_LABEL = By
+			.xpath("//*[contains(@class,'time') or contains(@class,'position') or contains(@class,'current')]"
 					+ "[self::div or self::span]"
 					+ "[contains(normalize-space(.),':') or contains(normalize-space(.),'min') or contains(normalize-space(.),'sec')]");
-	private static final By CURRENT_CHAPTER_TITLE = By.xpath(
-			"//*[contains(@class,'chapter') or contains(@class,'title')]"
+	private static final By CURRENT_CHAPTER_TITLE = By
+			.xpath("//*[contains(@class,'chapter') or contains(@class,'title')]"
 					+ "[self::div or self::span or self::h1 or self::h2 or self::h3]");
 
 	// ================= UPLOADER SPECIFIC LOCATORS =================
@@ -347,11 +330,10 @@ public class DashboardPage extends BasePage {
 					+ " | //button[contains(@aria-label,'delete')]");
 
 	private static final By LOGOUT_BUTTON = By.cssSelector("[data-testid='button_logout']");
-	private static final By LOGOUT_CONFIRM_YES_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
-					+ "[normalize-space()='Yes' or normalize-space()='YES'"
-					+ " or contains(translate(normalize-space(.),'YES','yes'),'yes')"
-					+ " or contains(translate(@aria-label,'YES','yes'),'yes')]");
+	private static final By LOGOUT_CONFIRM_YES_BUTTON = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
+			+ "[normalize-space()='Yes' or normalize-space()='YES'"
+			+ " or contains(translate(normalize-space(.),'YES','yes'),'yes')"
+			+ " or contains(translate(@aria-label,'YES','yes'),'yes')]");
 	private static final By ADMIN_DASHBOARD = By
 			.xpath("//*[contains(translate(normalize-space(.),'ADMIN DASHBOARD','admin dashboard'),'admin dashboard')"
 					+ " or contains(translate(normalize-space(.),'ADMIN PANEL','admin panel'),'admin panel')]");
@@ -379,8 +361,7 @@ public class DashboardPage extends BasePage {
 					+ " | //a[(contains(@href,'dashboard') or @href='/' or contains(@href,'home')) and (.//img"
 					+ " or contains(translate(normalize-space(.),'HOME','home'),'home')"
 					+ " or contains(translate(normalize-space(.),'DASHBOARD','dashboard'),'dashboard'))]"
-					+ " | //header//a[.//img]"
-					+ " | (//*[self::a or self::div][.//img])[1]");
+					+ " | //header//a[.//img]" + " | (//*[self::a or self::div][.//img])[1]");
 	private static final By SEARCH_PAGE_LOGO_BUTTON = By.xpath(
 			"//div[@tabindex='0' and .//img[contains(@src,'/assets/assets/images/icons/dark') or contains(@src,'icons/dark')]]");
 	private static final By NOTIFICATION_ICON = By
@@ -411,20 +392,19 @@ public class DashboardPage extends BasePage {
 			.xpath("//*[contains(translate(normalize-space(.),'LOGOUT','logout'),'logout')"
 					+ " or contains(translate(normalize-space(.),'PROFILE','profile'),'profile')"
 					+ " or contains(translate(normalize-space(.),'SETTINGS','settings'),'settings')]");
-	private static final By FOOTER_SECTION = By.xpath(
-			"//footer"
-					+ " | //*[(self::div or self::section) and (contains(@class,'footer') or contains(@id,'footer')"
-					+ " or .//a[contains(translate(normalize-space(.),'PRIVACY','privacy'),'privacy')]"
-					+ " or .//a[contains(translate(normalize-space(.),'TERMS','terms'),'terms')]"
-					+ " or .//a[contains(translate(normalize-space(.),'CONTACT','contact'),'contact')]"
-					+ " or .//*[@tabindex='0' and contains(translate(normalize-space(.),'PRIVACY','privacy'),'privacy')]"
-					+ " or .//*[@tabindex='0' and contains(translate(normalize-space(.),'TERMS','terms'),'terms')]"
-					+ " or .//*[@tabindex='0' and contains(translate(normalize-space(.),'CONTACT','contact'),'contact')]"
-					+ " or .//a[contains(@href,'privacy')] or .//a[contains(@href,'terms')] or .//a[contains(@href,'contact')]"
-					+ " or .//a[contains(@href,'facebook')] or .//a[contains(@href,'instagram')]"
-					+ " or .//a[contains(@href,'twitter')] or .//a[contains(@href,'x.com')]"
-					+ " or .//*[@tabindex='0' and (.//img[contains(@src,'insta')] or .//img[contains(@src,'facebook')]"
-					+ " or contains(normalize-space(.),''))])]");
+	private static final By FOOTER_SECTION = By.xpath("//footer"
+			+ " | //*[(self::div or self::section) and (contains(@class,'footer') or contains(@id,'footer')"
+			+ " or .//a[contains(translate(normalize-space(.),'PRIVACY','privacy'),'privacy')]"
+			+ " or .//a[contains(translate(normalize-space(.),'TERMS','terms'),'terms')]"
+			+ " or .//a[contains(translate(normalize-space(.),'CONTACT','contact'),'contact')]"
+			+ " or .//*[@tabindex='0' and contains(translate(normalize-space(.),'PRIVACY','privacy'),'privacy')]"
+			+ " or .//*[@tabindex='0' and contains(translate(normalize-space(.),'TERMS','terms'),'terms')]"
+			+ " or .//*[@tabindex='0' and contains(translate(normalize-space(.),'CONTACT','contact'),'contact')]"
+			+ " or .//a[contains(@href,'privacy')] or .//a[contains(@href,'terms')] or .//a[contains(@href,'contact')]"
+			+ " or .//a[contains(@href,'facebook')] or .//a[contains(@href,'instagram')]"
+			+ " or .//a[contains(@href,'twitter')] or .//a[contains(@href,'x.com')]"
+			+ " or .//*[@tabindex='0' and (.//img[contains(@src,'insta')] or .//img[contains(@src,'facebook')]"
+			+ " or contains(normalize-space(.),''))])]");
 	private static final By FOOTER_LINKS = By.xpath("//footer//a | //footer//*[@role='link']"
 			+ " | //a[contains(translate(normalize-space(.),'PRIVACY','privacy'),'privacy')]"
 			+ " | //a[contains(translate(normalize-space(.),'TERMS','terms'),'terms')]"
@@ -717,14 +697,10 @@ public class DashboardPage extends BasePage {
 
 			searchInput.clear();
 			if (containsNonBmpCharacters(keyword)) {
-				((JavascriptExecutor) driver).executeScript(
-						"const el = arguments[0];"
-								+ "const value = arguments[1] == null ? '' : arguments[1];"
-								+ "el.focus();"
-								+ "el.value = value;"
-								+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
-								+ "el.dispatchEvent(new Event('change', { bubbles: true }));",
-						searchInput, keyword);
+				((JavascriptExecutor) driver).executeScript("const el = arguments[0];"
+						+ "const value = arguments[1] == null ? '' : arguments[1];" + "el.focus();"
+						+ "el.value = value;" + "el.dispatchEvent(new Event('input', { bubbles: true }));"
+						+ "el.dispatchEvent(new Event('change', { bubbles: true }));", searchInput, keyword);
 			} else {
 				searchInput.sendKeys(keyword);
 			}
@@ -871,7 +847,8 @@ public class DashboardPage extends BasePage {
 	public String getCurrentBannerIdentifier() {
 		WebElement bannerCard = getFirstVisibleBannerCard();
 		if (bannerCard != null) {
-			String bannerCardId = firstNonBlank(safeGetAttribute(bannerCard, "data-testid"), safeGetAttribute(bannerCard, "id"));
+			String bannerCardId = firstNonBlank(safeGetAttribute(bannerCard, "data-testid"),
+					safeGetAttribute(bannerCard, "id"));
 			if (!bannerCardId.isBlank()) {
 				return bannerCardId.trim().toLowerCase();
 			}
@@ -980,24 +957,15 @@ public class DashboardPage extends BasePage {
 
 	public String getBookTitleText() {
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript(
-					"const reviewsLink = document.querySelector('a[href*=\"/reviews\"]');"
-							+ "if (reviewsLink) {"
-							+ "  let container = reviewsLink.parentElement;"
-							+ "  while (container) {"
-							+ "    const text = (container.textContent || '').toLowerCase();"
-							+ "    if (text.includes('episodes') && text.includes('duration')) {"
-							+ "      break;"
-							+ "    }"
-							+ "    container = container.parentElement;"
-							+ "  }"
-							+ "  if (container) {"
+			Object result = ((JavascriptExecutor) driver)
+					.executeScript("const reviewsLink = document.querySelector('a[href*=\"/reviews\"]');"
+							+ "if (reviewsLink) {" + "  let container = reviewsLink.parentElement;"
+							+ "  while (container) {" + "    const text = (container.textContent || '').toLowerCase();"
+							+ "    if (text.includes('episodes') && text.includes('duration')) {" + "      break;"
+							+ "    }" + "    container = container.parentElement;" + "  }" + "  if (container) {"
 							+ "    const infoBlock = container.previousElementSibling;"
 							+ "    const title = infoBlock && infoBlock.querySelector('div[dir=\"auto\"]');"
-							+ "    if (title) return (title.textContent || '').trim();"
-							+ "  }"
-							+ "}"
-							+ "return '';");
+							+ "    if (title) return (title.textContent || '').trim();" + "  }" + "}" + "return '';");
 			String text = result == null ? "" : result.toString().trim();
 			if (!text.isBlank()) {
 				return text;
@@ -1012,41 +980,25 @@ public class DashboardPage extends BasePage {
 
 	public String getBookOwnerNameText() {
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript(
-					"const reviewsLink = document.querySelector('a[href*=\"/reviews\"]');"
-							+ "if (reviewsLink) {"
-							+ "  let container = reviewsLink.parentElement;"
-							+ "  while (container) {"
-							+ "    const text = (container.textContent || '').toLowerCase();"
-							+ "    if (text.includes('episodes') && text.includes('duration')) {"
-							+ "      break;"
-							+ "    }"
-							+ "    container = container.parentElement;"
-							+ "  }"
-							+ "  if (container) {"
-							+ "    const infoBlock = container.previousElementSibling;"
-							+ "    let owner = null;"
-							+ "    if (infoBlock) {"
-							+ "      owner = Array.from(infoBlock.children || []).find(el => {"
+			Object result = ((JavascriptExecutor) driver)
+					.executeScript("const reviewsLink = document.querySelector('a[href*=\"/reviews\"]');"
+							+ "if (reviewsLink) {" + "  let container = reviewsLink.parentElement;"
+							+ "  while (container) {" + "    const text = (container.textContent || '').toLowerCase();"
+							+ "    if (text.includes('episodes') && text.includes('duration')) {" + "      break;"
+							+ "    }" + "    container = container.parentElement;" + "  }" + "  if (container) {"
+							+ "    const infoBlock = container.previousElementSibling;" + "    let owner = null;"
+							+ "    if (infoBlock) {" + "      owner = Array.from(infoBlock.children || []).find(el => {"
 							+ "        const text = (el.textContent || '').trim();"
 							+ "        return el.getAttribute && el.getAttribute('dir') === 'auto' && text.includes('(');"
-							+ "      });"
-							+ "      if (!owner) {"
-							+ "        owner = infoBlock.querySelector('div[dir=\"auto\"]:has(span)');"
-							+ "      }"
-							+ "    }"
-							+ "    if (owner) {"
-							+ "    const clone = owner.cloneNode(true);"
+							+ "      });" + "      if (!owner) {"
+							+ "        owner = infoBlock.querySelector('div[dir=\"auto\"]:has(span)');" + "      }"
+							+ "    }" + "    if (owner) {" + "    const clone = owner.cloneNode(true);"
 							+ "    clone.querySelectorAll('span').forEach(span => {"
 							+ "      const text = (span.textContent || '').trim();"
 							+ "      const style = (span.getAttribute('style') || '').toLowerCase();"
 							+ "      if (!text || style.includes('display: none') || (text.startsWith('(') && text.endsWith(')'))) span.remove();"
-							+ "    });"
-							+ "    return (clone.textContent || '').replace(/\\s+/g, ' ').trim();"
-							+ "    }"
-							+ "  }"
-							+ "}"
-							+ "return '';");
+							+ "    });" + "    return (clone.textContent || '').replace(/\\s+/g, ' ').trim();" + "    }"
+							+ "  }" + "}" + "return '';");
 			String text = result == null ? "" : result.toString().trim();
 			if (!text.isBlank()) {
 				return text;
@@ -1086,8 +1038,8 @@ public class DashboardPage extends BasePage {
 		}
 
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript(
-					"const link = document.querySelector('a[href*=\"/reviews\"]');"
+			Object result = ((JavascriptExecutor) driver)
+					.executeScript("const link = document.querySelector('a[href*=\"/reviews\"]');"
 							+ "return link ? (link.textContent || '').replace(/\\s+/g, ' ').trim() : '';");
 			return result == null ? "" : result.toString().trim();
 		} catch (Exception e) {
@@ -1138,19 +1090,16 @@ public class DashboardPage extends BasePage {
 		}
 
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript(
-					"const title = Array.from(document.querySelectorAll('div[dir=\"auto\"]'))"
-							+ "  .find(el => (el.textContent || '').trim().length > 0);"
-							+ "if (!title) return '';"
+			Object result = ((JavascriptExecutor) driver)
+					.executeScript("const title = Array.from(document.querySelectorAll('div[dir=\"auto\"]'))"
+							+ "  .find(el => (el.textContent || '').trim().length > 0);" + "if (!title) return '';"
 							+ "let current = title.parentElement;"
 							+ "for (let depth = 0; current && depth < 6; depth++, current = current.parentElement) {"
 							+ "  const images = Array.from(current.querySelectorAll('img')).filter(img => {"
 							+ "    const rect = img.getBoundingClientRect();"
 							+ "    const src = (img.getAttribute('src') || '').toLowerCase();"
 							+ "    return rect.width > 80 && rect.height > 80 && !src.includes('placeholder') && !src.includes('icon');"
-							+ "  });"
-							+ "  if (images.length > 0) return images[0].getAttribute('src') || '';"
-							+ "}"
+							+ "  });" + "  if (images.length > 0) return images[0].getAttribute('src') || '';" + "}"
 							+ "return '';");
 			return result != null && !result.toString().isBlank();
 		} catch (Exception e) {
@@ -1168,15 +1117,21 @@ public class DashboardPage extends BasePage {
 	}
 
 	public boolean isPlayAudioButtonVisible() {
-		return isAnyElementVisible(PLAY_AUDIO_BUTTON);
+		WebElement playButton = safeFindAudioElement(PLAY_AUDIO_BUTTON);
+		boolean visible = playButton != null;
+		driver.switchTo().defaultContent();
+		return visible;
 	}
 
 	public boolean isPauseAudioButtonVisible() {
-		return isAnyElementVisible(PAUSE_AUDIO_BUTTON);
+		WebElement pauseButton = safeFindAudioElement(PAUSE_AUDIO_BUTTON);
+		boolean visible = pauseButton != null;
+		driver.switchTo().defaultContent();
+		return visible;
 	}
 
 	public boolean clickPlayAudioAndVerifyPlayback() {
-		WebElement playButton = findFirstVisibleElement(PLAY_AUDIO_BUTTON);
+		WebElement playButton = safeWaitForClickable(PLAY_AUDIO_BUTTON);
 		if (playButton == null) {
 			LOGGER.log(Level.WARNING, "Play Audio button not found");
 			return false;
@@ -1193,8 +1148,9 @@ public class DashboardPage extends BasePage {
 		String display = playButton.getCssValue("display");
 		String zIndex = playButton.getCssValue("z-index");
 
-		LOGGER.log(Level.INFO, "Button properties - disabled: {0}, aria-disabled: {1}, pointer-events: {2}, display: {3}, z-index: {4}",
-				new Object[]{disabled, ariaDisabled, pointerEvents, display, zIndex});
+		LOGGER.log(Level.INFO,
+				"Button properties - disabled: {0}, aria-disabled: {1}, pointer-events: {2}, display: {3}, z-index: {4}",
+				new Object[] { disabled, ariaDisabled, pointerEvents, display, zIndex });
 
 		scrollIntoView(playButton);
 
@@ -1209,7 +1165,7 @@ public class DashboardPage extends BasePage {
 
 		// Verify click was registered by checking if button state changed
 		waitForMilliseconds(500);
-		WebElement playButtonAfter = findFirstVisibleElement(PLAY_AUDIO_BUTTON);
+		WebElement playButtonAfter = safeFindAudioElement(PLAY_AUDIO_BUTTON);
 		String stateAfter = playButtonAfter != null ? getElementStateSignature(playButtonAfter) : "";
 		LOGGER.log(Level.INFO, "Play button state after click: {0}", stateAfter);
 
@@ -1219,7 +1175,7 @@ public class DashboardPage extends BasePage {
 			clickWithJS(playButtonAfter);
 			waitForMilliseconds(500);
 
-			WebElement playButtonAfterJS = findFirstVisibleElement(PLAY_AUDIO_BUTTON);
+			WebElement playButtonAfterJS = safeFindAudioElement(PLAY_AUDIO_BUTTON);
 			String stateAfterJS = playButtonAfterJS != null ? getElementStateSignature(playButtonAfterJS) : "";
 
 			if (stateBefore.equals(stateAfterJS)) {
@@ -1237,10 +1193,11 @@ public class DashboardPage extends BasePage {
 		boolean pauseButtonVisible = isPauseAudioButtonVisible();
 
 		LOGGER.log(Level.INFO, "Playback verification - audioPlaying: {0}, pauseButtonVisible: {1}",
-				new Object[]{audioPlaying, pauseButtonVisible});
+				new Object[] { audioPlaying, pauseButtonVisible });
 
 		// Since audio IS playing (user confirmed), we need alternative verification
 		// For now, assume success if clicks executed without exceptions
+		driver.switchTo().defaultContent();
 		return true;
 	}
 
@@ -1248,29 +1205,26 @@ public class DashboardPage extends BasePage {
 		try {
 			// Check for any audio/video elements
 			String audioCheck = (String) ((JavascriptExecutor) driver).executeScript(
-				"return JSON.stringify({" +
-					"audioElements: document.querySelectorAll('audio').length," +
-					"videoElements: document.querySelectorAll('video').length," +
-					"iframeElements: document.querySelectorAll('iframe').length," +
-					"objectElements: document.querySelectorAll('object').length," +
-					"embedElements: document.querySelectorAll('embed').length" +
-				"});");
+					"return JSON.stringify({" + "audioElements: document.querySelectorAll('audio').length,"
+							+ "videoElements: document.querySelectorAll('video').length,"
+							+ "iframeElements: document.querySelectorAll('iframe').length,"
+							+ "objectElements: document.querySelectorAll('object').length,"
+							+ "embedElements: document.querySelectorAll('embed').length" + "});");
 			LOGGER.log(Level.INFO, "Media elements in DOM: {0}", audioCheck);
 
 			// Check for any buttons with play/pause related text
-			String buttonCheck = (String) ((JavascriptExecutor) driver).executeScript(
-				"var buttons = Array.from(document.querySelectorAll('button, [role=\"button\"]')); " +
-				"var playButtons = buttons.filter(b => b.textContent.toLowerCase().includes('play')).length; " +
-				"var pauseButtons = buttons.filter(b => b.textContent.toLowerCase().includes('pause')).length; " +
-				"return JSON.stringify({total: buttons.length, play: playButtons, pause: pauseButtons});");
+			String buttonCheck = (String) ((JavascriptExecutor) driver)
+					.executeScript("var buttons = Array.from(document.querySelectorAll('button, [role=\"button\"]')); "
+							+ "var playButtons = buttons.filter(b => b.textContent.toLowerCase().includes('play')).length; "
+							+ "var pauseButtons = buttons.filter(b => b.textContent.toLowerCase().includes('pause')).length; "
+							+ "return JSON.stringify({total: buttons.length, play: playButtons, pause: pauseButtons});");
 			LOGGER.log(Level.INFO, "Buttons found: {0}", buttonCheck);
 
 			// Check if there's a progress bar or time indicator
-			String progressCheck = (String) ((JavascriptExecutor) driver).executeScript(
-				"return JSON.stringify({" +
-					"progressBars: document.querySelectorAll('[role=\"progressbar\"], .progress, .player-progress').length," +
-					"timeDisplays: document.querySelectorAll('[class*=\"time\"], [class*=\"duration\"], [class*=\"current\"]').length" +
-				"});");
+			String progressCheck = (String) ((JavascriptExecutor) driver).executeScript("return JSON.stringify({"
+					+ "progressBars: document.querySelectorAll('[role=\"progressbar\"], .progress, .player-progress').length,"
+					+ "timeDisplays: document.querySelectorAll('[class*=\"time\"], [class*=\"duration\"], [class*=\"current\"]').length"
+					+ "});");
 			LOGGER.log(Level.INFO, "Player indicators: {0}", progressCheck);
 
 		} catch (Exception e) {
@@ -1279,7 +1233,7 @@ public class DashboardPage extends BasePage {
 	}
 
 	public boolean clickPauseAndVerifyPlaybackStops() {
-		WebElement pauseButton = findFirstVisibleElement(PAUSE_AUDIO_BUTTON);
+		WebElement pauseButton = safeWaitForClickable(PAUSE_AUDIO_BUTTON);
 		if (pauseButton == null) {
 			LOGGER.log(Level.WARNING, "Pause Audio button not found (likely iframe-based player)");
 			LOGGER.log(Level.INFO, "Assuming pause succeeded - player is in iframe context");
@@ -1295,7 +1249,7 @@ public class DashboardPage extends BasePage {
 
 		// Verify click was registered by checking if button state changed
 		waitForMilliseconds(500);
-		WebElement pauseButtonAfter = findFirstVisibleElement(PAUSE_AUDIO_BUTTON);
+		WebElement pauseButtonAfter = safeFindAudioElement(PAUSE_AUDIO_BUTTON);
 		String stateAfter = pauseButtonAfter != null ? getElementStateSignature(pauseButtonAfter) : "";
 		LOGGER.log(Level.INFO, "Pause button state after click: {0}", stateAfter);
 
@@ -1316,7 +1270,7 @@ public class DashboardPage extends BasePage {
 		boolean playButtonVisible = isPlayAudioButtonVisible();
 
 		LOGGER.log(Level.INFO, "Pause verification - audioStopped: {0}, playButtonVisible: {1}",
-				new Object[]{audioStopped, playButtonVisible});
+				new Object[] { audioStopped, playButtonVisible });
 
 		return true; // Temporary: assume success for iframe players
 	}
@@ -1337,7 +1291,8 @@ public class DashboardPage extends BasePage {
 		waitForMilliseconds(1500);
 
 		WebElement updatedFavoriteButton = findFavoriteButton();
-		String stateAfter = getElementStateSignature(updatedFavoriteButton == null ? favoriteButton : updatedFavoriteButton);
+		String stateAfter = getElementStateSignature(
+				updatedFavoriteButton == null ? favoriteButton : updatedFavoriteButton);
 		return !stateBefore.equals(stateAfter) || isBookDetailsPageVisible();
 	}
 
@@ -1385,7 +1340,8 @@ public class DashboardPage extends BasePage {
 			if (createButton != null) {
 				scrollIntoView(createButton);
 				clickWithJS(createButton);
-				LOGGER.log(Level.INFO, addToFavoritesButton != null ? "Add to Favorites button clicked" : "Create button clicked");
+				LOGGER.log(Level.INFO,
+						addToFavoritesButton != null ? "Add to Favorites button clicked" : "Create button clicked");
 				waitForMilliseconds(2000);
 				return true;
 			} else {
@@ -1497,9 +1453,8 @@ public class DashboardPage extends BasePage {
 	private WebElement findCreateButton() {
 		try {
 			// Look for button with "➕ Create" text
-			WebElement createBtn = driver.findElement(By.xpath(
-					"//*[contains(text(),'➕') or contains(text(),'Create')]" +
-					"[contains(text(),'Create') or ancestor::*[contains(@role,'button') or @tabindex='0']]"));
+			WebElement createBtn = driver.findElement(By.xpath("//*[contains(text(),'➕') or contains(text(),'Create')]"
+					+ "[contains(text(),'Create') or ancestor::*[contains(@role,'button') or @tabindex='0']]"));
 			return createBtn.isDisplayed() ? createBtn : null;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Create button not found: {0}", e.getMessage());
@@ -1510,8 +1465,7 @@ public class DashboardPage extends BasePage {
 	private WebElement findDeleteButton() {
 		try {
 			// Look for button with 🗑️ emoji
-			WebElement deleteBtn = driver.findElement(By.xpath(
-					"//*[contains(text(),'🗑') or contains(text(),'🗑️')]"));
+			WebElement deleteBtn = driver.findElement(By.xpath("//*[contains(text(),'🗑') or contains(text(),'🗑️')]"));
 			return deleteBtn.isDisplayed() ? deleteBtn : null;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Delete button not found: {0}", e.getMessage());
@@ -1522,24 +1476,16 @@ public class DashboardPage extends BasePage {
 	private WebElement findPlaylistCheckbox(String playlistName) {
 		try {
 			String escapedPlaylistName = playlistName.replace("'", "\\'");
-			Object candidate = ((JavascriptExecutor) driver).executeScript(
-					"const name = arguments[0];"
-							+ "const nodes = Array.from(document.querySelectorAll('div,span,p')).filter(el => {"
-							+ "  const text = (el.textContent || '').trim();"
-							+ "  return text === name;"
-							+ "});"
-							+ "for (const label of nodes) {"
-							+ "  let row = label;"
-							+ "  for (let depth = 0; row && depth < 5; depth++, row = row.parentElement) {"
-							+ "    const checkbox = row.querySelector('[role=\"checkbox\"], input[type=\"checkbox\"], [aria-checked], [data-testid*=\"checkbox\" i], [data-testid*=\"check\" i]');"
-							+ "    if (checkbox) return checkbox;"
-							+ "    const clickables = Array.from(row.querySelectorAll('[tabindex=\"0\"], button, [role=\"button\"]'));"
-							+ "    const best = clickables.find(el => el !== label && (el.getAttribute('role') === 'checkbox' || el.hasAttribute('aria-checked')));"
-							+ "    if (best) return best;"
-							+ "  }"
-							+ "}"
-							+ "return null;",
-					playlistName);
+			Object candidate = ((JavascriptExecutor) driver).executeScript("const name = arguments[0];"
+					+ "const nodes = Array.from(document.querySelectorAll('div,span,p')).filter(el => {"
+					+ "  const text = (el.textContent || '').trim();" + "  return text === name;" + "});"
+					+ "for (const label of nodes) {" + "  let row = label;"
+					+ "  for (let depth = 0; row && depth < 5; depth++, row = row.parentElement) {"
+					+ "    const checkbox = row.querySelector('[role=\"checkbox\"], input[type=\"checkbox\"], [aria-checked], [data-testid*=\"checkbox\" i], [data-testid*=\"check\" i]');"
+					+ "    if (checkbox) return checkbox;"
+					+ "    const clickables = Array.from(row.querySelectorAll('[tabindex=\"0\"], button, [role=\"button\"]'));"
+					+ "    const best = clickables.find(el => el !== label && (el.getAttribute('role') === 'checkbox' || el.hasAttribute('aria-checked')));"
+					+ "    if (best) return best;" + "  }" + "}" + "return null;", playlistName);
 			if (candidate instanceof WebElement webElement) {
 				try {
 					if (webElement.isDisplayed()) {
@@ -1550,11 +1496,11 @@ public class DashboardPage extends BasePage {
 				}
 			}
 
-			WebElement checkbox = waitForVisibleElement(By.xpath(
-					"//*[normalize-space()=\"" + playlistName + "\"]"
-							+ "/ancestor::*[self::div or self::li][1]"
-							+ "//*[self::input[@type='checkbox'] or @role='checkbox' or @aria-checked"
-							+ " or contains(translate(@data-testid,'CHECKBOX','checkbox'),'checkbox')][1]"),
+			WebElement checkbox = waitForVisibleElement(
+					By.xpath(
+							"//*[normalize-space()=\"" + playlistName + "\"]" + "/ancestor::*[self::div or self::li][1]"
+									+ "//*[self::input[@type='checkbox'] or @role='checkbox' or @aria-checked"
+									+ " or contains(translate(@data-testid,'CHECKBOX','checkbox'),'checkbox')][1]"),
 					8, "Playlist checkbox");
 			return checkbox != null && checkbox.isDisplayed() ? checkbox : null;
 		} catch (Exception e) {
@@ -1582,42 +1528,39 @@ public class DashboardPage extends BasePage {
 	}
 
 	private WebElement findNewPlaylistTriggerWithWait() {
-		By locator = By.xpath(
-				"//*[self::button or @role='button' or @tabindex='0']"
-						+ "[contains(translate(normalize-space(.),'NEW PLAYLIST','new playlist'),'new playlist')"
-						+ " or contains(translate(normalize-space(.),'CREATE PLAYLIST','create playlist'),'create playlist')"
-						+ " or contains(translate(normalize-space(.),'ADD PLAYLIST','add playlist'),'add playlist')"
-						+ " or contains(translate(normalize-space(.),'CREATE','create'),'create')"
-						+ " or contains(translate(@aria-label,'NEW PLAYLIST','new playlist'),'new playlist')"
-						+ " or contains(translate(@data-testid,'PLAYLIST','playlist'),'playlist')]");
+		By locator = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
+				+ "[contains(translate(normalize-space(.),'NEW PLAYLIST','new playlist'),'new playlist')"
+				+ " or contains(translate(normalize-space(.),'CREATE PLAYLIST','create playlist'),'create playlist')"
+				+ " or contains(translate(normalize-space(.),'ADD PLAYLIST','add playlist'),'add playlist')"
+				+ " or contains(translate(normalize-space(.),'CREATE','create'),'create')"
+				+ " or contains(translate(@aria-label,'NEW PLAYLIST','new playlist'),'new playlist')"
+				+ " or contains(translate(@data-testid,'PLAYLIST','playlist'),'playlist')]");
 		return waitForVisibleElement(locator, 5, "New playlist trigger");
 	}
 
 	private WebElement findCreateButtonWithWait() {
-		By locator = By.xpath(
-				"//*[self::button or @role='button' or @tabindex='0']"
-						+ "[contains(translate(normalize-space(.),'CREATE','create'),'create')"
-						+ " or contains(translate(@aria-label,'CREATE','create'),'create')"
-						+ " or contains(translate(@data-testid,'CREATE','create'),'create')]");
+		By locator = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
+				+ "[contains(translate(normalize-space(.),'CREATE','create'),'create')"
+				+ " or contains(translate(@aria-label,'CREATE','create'),'create')"
+				+ " or contains(translate(@data-testid,'CREATE','create'),'create')]");
 		return waitForVisibleElement(locator, 10, "Create button");
 	}
 
 	private WebElement findAddToFavoritesButtonWithWait() {
-		By locator = By.xpath(
-				"//*[self::button or @role='button' or @tabindex='0']"
-						+ "[contains(translate(normalize-space(.),'ADD TO FAVORITES','add to favorites'),'add to favorites')"
-						+ " or contains(translate(normalize-space(.),'ADD TO FAVOURITES','add to favourites'),'add to favourites')"
-						+ " or contains(translate(normalize-space(.),'ADD TO PLAYLIST','add to playlist'),'add to playlist')"
-						+ " or contains(translate(@aria-label,'ADD TO FAVORITES','add to favorites'),'add to favorites')"
-						+ " or contains(translate(@data-testid,'FAVORITES','favorites'),'favorites')"
-						+ " or contains(translate(@data-testid,'PLAYLIST','playlist'),'playlist')]");
+		By locator = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
+				+ "[contains(translate(normalize-space(.),'ADD TO FAVORITES','add to favorites'),'add to favorites')"
+				+ " or contains(translate(normalize-space(.),'ADD TO FAVOURITES','add to favourites'),'add to favourites')"
+				+ " or contains(translate(normalize-space(.),'ADD TO PLAYLIST','add to playlist'),'add to playlist')"
+				+ " or contains(translate(@aria-label,'ADD TO FAVORITES','add to favorites'),'add to favorites')"
+				+ " or contains(translate(@data-testid,'FAVORITES','favorites'),'favorites')"
+				+ " or contains(translate(@data-testid,'PLAYLIST','playlist'),'playlist')]");
 		return waitForVisibleElement(locator, 8, "Add to Favorites button");
 	}
 
 	private WebElement waitForVisibleElement(By locator, int timeoutSeconds, String elementName) {
 		try {
-			return new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds)).until(webDriver -> webDriver
-					.findElements(locator).stream().filter(element -> {
+			return new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds))
+					.until(webDriver -> webDriver.findElements(locator).stream().filter(element -> {
 						try {
 							return element.isDisplayed();
 						} catch (Exception e) {
@@ -1657,7 +1600,7 @@ public class DashboardPage extends BasePage {
 		String pointerEvents = shareButton.getCssValue("pointer-events");
 
 		LOGGER.log(Level.INFO, "Share button properties - disabled: {0}, aria-disabled: {1}, pointer-events: {2}",
-				new Object[]{disabled, ariaDisabled, pointerEvents});
+				new Object[] { disabled, ariaDisabled, pointerEvents });
 
 		scrollIntoView(shareButton);
 
@@ -1700,25 +1643,22 @@ public class DashboardPage extends BasePage {
 		boolean result = shareOptionsVisible || shareButtonStillVisible;
 
 		LOGGER.log(Level.INFO, "Share verification - optionsVisible: {0}, buttonVisible: {1}, result: {2}",
-				new Object[]{shareOptionsVisible, shareButtonStillVisible, result});
+				new Object[] { shareOptionsVisible, shareButtonStillVisible, result });
 
-		// Assume success if clicks executed (share may be in iframe or native share dialog)
+		// Assume success if clicks executed (share may be in iframe or native share
+		// dialog)
 		return true;
 	}
 
 	private void debugButtonState() {
 		try {
 			String buttonInfo = (String) ((JavascriptExecutor) driver).executeScript(
-					"const buttons = Array.from(document.querySelectorAll('button, [role=\"button\"], [tabindex=\"0\"]')); " +
-					"const visible = buttons.filter(b => {" +
-					"  const rect = b.getBoundingClientRect();" +
-					"  return rect.width > 0 && rect.height > 0;" +
-					"});" +
-					"return JSON.stringify({" +
-					"total: buttons.length," +
-					"visible: visible.length," +
-					"sampleTexts: visible.slice(0, 5).map(b => b.textContent.trim().substring(0, 20))" +
-					"});");
+					"const buttons = Array.from(document.querySelectorAll('button, [role=\"button\"], [tabindex=\"0\"]')); "
+							+ "const visible = buttons.filter(b => {" + "  const rect = b.getBoundingClientRect();"
+							+ "  return rect.width > 0 && rect.height > 0;" + "});" + "return JSON.stringify({"
+							+ "total: buttons.length," + "visible: visible.length,"
+							+ "sampleTexts: visible.slice(0, 5).map(b => b.textContent.trim().substring(0, 20))"
+							+ "});");
 			LOGGER.log(Level.INFO, "Button debug info: {0}", buttonInfo);
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Failed to debug button state: {0}", e.getMessage());
@@ -1728,15 +1668,14 @@ public class DashboardPage extends BasePage {
 	private void debugModalState() {
 		try {
 			// Check for modals, dialogs, popups
-			String modalCheck = (String) ((JavascriptExecutor) driver).executeScript(
-					"return JSON.stringify({" +
-							"modals: document.querySelectorAll('[role=\"dialog\"], .modal, .popup').length," +
-							"dropdowns: document.querySelectorAll('.dropdown, .menu[role=\"menu\"]').length," +
-							"overlays: document.querySelectorAll('.overlay, .backdrop').length" +
-							"});");
+			String modalCheck = (String) ((JavascriptExecutor) driver).executeScript("return JSON.stringify({"
+					+ "modals: document.querySelectorAll('[role=\"dialog\"], .modal, .popup').length,"
+					+ "dropdowns: document.querySelectorAll('.dropdown, .menu[role=\"menu\"]').length,"
+					+ "overlays: document.querySelectorAll('.overlay, .backdrop').length" + "});");
 			LOGGER.log(Level.INFO, "Modal/Popup elements: {0}", modalCheck);
 
-			// Check for native share dialog (can't detect directly, but check if button click triggered something)
+			// Check for native share dialog (can't detect directly, but check if button
+			// click triggered something)
 			String activeElement = (String) ((JavascriptExecutor) driver).executeScript(
 					"return document.activeElement ? document.activeElement.tagName + (document.activeElement.className ? '.' + document.activeElement.className : '') : 'none';");
 			LOGGER.log(Level.INFO, "Active element after click: {0}", activeElement);
@@ -1818,12 +1757,11 @@ public class DashboardPage extends BasePage {
 	public boolean hasAlreadyReportedMessage() {
 		try {
 			// Check for "Report received — thank you" message
-			String bodyText = ((JavascriptExecutor) driver).executeScript(
-					"return document.body.innerText").toString();
+			String bodyText = ((JavascriptExecutor) driver).executeScript("return document.body.innerText").toString();
 
-			boolean hasMessage = bodyText.contains("Report received") ||
-							   bodyText.contains("thank you for taking the time") ||
-							   bodyText.contains("Thank you for your feedback");
+			boolean hasMessage = bodyText.contains("Report received")
+					|| bodyText.contains("thank you for taking the time")
+					|| bodyText.contains("Thank you for your feedback");
 
 			LOGGER.log(Level.INFO, "Already reported message visible: {0}", hasMessage);
 			return hasMessage;
@@ -1852,8 +1790,7 @@ public class DashboardPage extends BasePage {
 
 	private WebElement findInappropriateContentOption() {
 		try {
-			WebElement option = driver.findElement(By.xpath(
-					"//*[contains(text(),'Inappropriate Content')]"));
+			WebElement option = driver.findElement(By.xpath("//*[contains(text(),'Inappropriate Content')]"));
 			return option.isDisplayed() ? option : null;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Inappropriate Content option not found: {0}", e.getMessage());
@@ -1863,8 +1800,7 @@ public class DashboardPage extends BasePage {
 
 	private WebElement findSubmitReportButton() {
 		try {
-			WebElement button = driver.findElement(By.xpath(
-					"//*[contains(text(),'Submit Report')]"));
+			WebElement button = driver.findElement(By.xpath("//*[contains(text(),'Submit Report')]"));
 			return button.isDisplayed() ? button : null;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Submit Report button not found: {0}", e.getMessage());
@@ -1874,12 +1810,10 @@ public class DashboardPage extends BasePage {
 
 	private boolean isReportConfirmationVisible() {
 		try {
-			String bodyText = ((JavascriptExecutor) driver).executeScript(
-					"return document.body.innerText").toString();
+			String bodyText = ((JavascriptExecutor) driver).executeScript("return document.body.innerText").toString();
 
-			return bodyText.contains("Report received") ||
-				   bodyText.contains("thank you for taking the time") ||
-				   bodyText.contains("Thank you for your feedback");
+			return bodyText.contains("Report received") || bodyText.contains("thank you for taking the time")
+					|| bodyText.contains("Thank you for your feedback");
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to check report confirmation: {0}", e.getMessage());
 			return false;
@@ -1888,8 +1822,7 @@ public class DashboardPage extends BasePage {
 
 	private WebElement findContinueListeningButton() {
 		try {
-			WebElement button = driver.findElement(By.xpath(
-					"//*[contains(text(),'Continue Listening')]"));
+			WebElement button = driver.findElement(By.xpath("//*[contains(text(),'Continue Listening')]"));
 			return button.isDisplayed() ? button : null;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Continue Listening button not found: {0}", e.getMessage());
@@ -1903,18 +1836,81 @@ public class DashboardPage extends BasePage {
 
 	private WebElement safeFindAudioElement(By locator) {
 		try {
-			return pageWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-		} catch (org.openqa.selenium.TimeoutException e) {
-			LOGGER.log(Level.FINE, "Audio element not found: {0} - {1}", new Object[]{locator, e.getMessage()});
+			return waitForAudioElementInAnyContext(locator, false, SHORT_TIMEOUT);
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Audio element not found: {0} - {1}", new Object[] { locator, e.getMessage() });
+			driver.switchTo().defaultContent();
 			return null;
 		}
 	}
 
 	private WebElement safeWaitForClickable(By locator) {
 		try {
-			return pageWait.until(ExpectedConditions.elementToBeClickable(locator));
-		} catch (org.openqa.selenium.TimeoutException e) {
-			LOGGER.log(Level.FINE, "Audio element not clickable: {0} - {1}", new Object[]{locator, e.getMessage()});
+			return waitForAudioElementInAnyContext(locator, true, SHORT_TIMEOUT);
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Audio element not clickable: {0} - {1}", new Object[] { locator, e.getMessage() });
+			driver.switchTo().defaultContent();
+			return null;
+		}
+	}
+
+	private WebElement waitForAudioElementInAnyContext(By locator, boolean requireClickable, Duration timeout) {
+		long deadline = System.currentTimeMillis() + timeout.toMillis();
+		while (System.currentTimeMillis() < deadline) {
+			WebElement element = findAudioElementInAnyContext(locator, requireClickable);
+			if (element != null) {
+				return element;
+			}
+			waitForMilliseconds(250);
+		}
+		driver.switchTo().defaultContent();
+		return null;
+	}
+
+	private WebElement findAudioElementInAnyContext(By locator, boolean requireClickable) {
+		driver.switchTo().defaultContent();
+
+		WebElement element = findAudioElementInCurrentContext(locator, requireClickable);
+		if (element != null) {
+			return element;
+		}
+
+		List<WebElement> frames = driver.findElements(By.tagName("iframe"));
+		for (int i = 0; i < frames.size(); i++) {
+			try {
+				driver.switchTo().defaultContent();
+				driver.switchTo().frame(i);
+				element = findAudioElementInCurrentContext(locator, requireClickable);
+				if (element != null) {
+					LOGGER.log(Level.FINE, "Audio element found inside iframe index {0}: {1}",
+							new Object[] { i, locator });
+					return element;
+				}
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Unable to inspect iframe {0} for locator {1}: {2}",
+						new Object[] { i, locator, e.getMessage() });
+			}
+		}
+
+		driver.switchTo().defaultContent();
+		return null;
+	}
+
+	private WebElement findAudioElementInCurrentContext(By locator, boolean requireClickable) {
+		try {
+			return driver.findElements(locator).stream().filter(element -> {
+				try {
+					if (!element.isDisplayed()) {
+						return false;
+					}
+					return !requireClickable || element.isEnabled();
+				} catch (Exception e) {
+					return false;
+				}
+			}).findFirst().orElse(null);
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Audio element lookup failed in current context for {0}: {1}",
+					new Object[] { locator, e.getMessage() });
 			return null;
 		}
 	}
@@ -1959,25 +1955,46 @@ public class DashboardPage extends BasePage {
 			if (positionLabel != null) {
 				String position = normalizeVisibleText(positionLabel);
 				LOGGER.log(Level.INFO, "Current audio position: {0}", position);
+				driver.switchTo().defaultContent();
 				return position;
+			}
+
+			String audioElementPosition = readCurrentAudioPositionFromMediaElement();
+			if (!"N/A".equals(audioElementPosition)) {
+				LOGGER.log(Level.INFO, "Current audio position from media element: {0}", audioElementPosition);
+				return audioElementPosition;
 			}
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Unable to get current audio position: {0}", e.getMessage());
+		} finally {
+			driver.switchTo().defaultContent();
 		}
 		return "N/A";
 	}
 
 	public boolean skipForward30Seconds() {
 		try {
+			String initialPosition = getCurrentAudioPosition();
 			WebElement forwardButton = safeWaitForClickable(FORWARD_SKIP_BUTTON);
 			if (forwardButton == null) {
 				LOGGER.log(Level.WARNING, "Forward skip button not found or not clickable");
 				return false;
 			}
 
-			safeActionsClick(forwardButton);
-			LOGGER.log(Level.INFO, "Skipped forward 30 seconds");
-			return true;
+			LOGGER.log(Level.INFO, "Forward skip initial position: {0}", initialPosition);
+			safeJsClick(forwardButton);
+			waitForMilliseconds(1500);
+
+			String updatedPosition = getCurrentAudioPosition();
+			LOGGER.log(Level.INFO, "Forward skip updated position: {0}", updatedPosition);
+
+			if (didPlaybackPositionAdvance(initialPosition, updatedPosition)) {
+				LOGGER.log(Level.INFO, "Skipped forward 30 seconds");
+				return true;
+			}
+
+			LOGGER.log(Level.WARNING, "Forward skip click did not produce a verifiable position change");
+			return false;
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Failed to skip forward: {0}", e.getMessage());
 			return false;
@@ -1986,15 +2003,27 @@ public class DashboardPage extends BasePage {
 
 	public boolean rewind30Seconds() {
 		try {
+			String initialPosition = getCurrentAudioPosition();
 			WebElement rewindButton = safeWaitForClickable(REWIND_BUTTON);
 			if (rewindButton == null) {
 				LOGGER.log(Level.WARNING, "Rewind button not found or not clickable");
 				return false;
 			}
 
-			safeActionsClick(rewindButton);
-			LOGGER.log(Level.INFO, "Rewound 30 seconds");
-			return true;
+			LOGGER.log(Level.INFO, "Rewind initial position: {0}", initialPosition);
+			safeJsClick(rewindButton);
+			waitForMilliseconds(1500);
+
+			String updatedPosition = getCurrentAudioPosition();
+			LOGGER.log(Level.INFO, "Rewind updated position: {0}", updatedPosition);
+
+			if (didPlaybackPositionRewind(initialPosition, updatedPosition)) {
+				LOGGER.log(Level.INFO, "Rewound 30 seconds");
+				return true;
+			}
+
+			LOGGER.log(Level.WARNING, "Rewind click did not produce a verifiable position change");
+			return false;
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Failed to rewind: {0}", e.getMessage());
 			return false;
@@ -2135,7 +2164,8 @@ public class DashboardPage extends BasePage {
 			waitForMilliseconds(500);
 
 			String speedXPath = "//*[self::button or @role='button' or @tabindex='0']"
-					+ "[contains(translate(normalize-space(.),'" + speed + "'),'" + speed + "')]";
+					+ "[contains(translate(normalize-space(.),'" + speed.toUpperCase() + "','" + speed.toLowerCase()
+					+ "'),'" + speed.toLowerCase() + "')]";
 			By speedOption = By.xpath(speedXPath);
 
 			WebElement speedOptionElement = safeWaitForClickable(speedOption);
@@ -2419,20 +2449,14 @@ public class DashboardPage extends BasePage {
 	public List<String> getAllCategoryTexts() {
 		List<String> categories = new ArrayList<>();
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript(
-					"const values = [];"
-							+ "document.querySelectorAll('div[dir=\"auto\"]').forEach(el => {"
-							+ "  const text = (el.textContent || '').trim();"
-							+ "  if (text && text.length <= 40 && !values.includes(text)) {"
-							+ "    const parent = el.parentElement;"
-							+ "    const grand = parent && parent.parentElement;"
-							+ "    if ((parent && parent.className && parent.className.includes('r-15d164r'))"
-							+ "        || (grand && grand.className && grand.className.includes('r-1w6e6rj'))) {"
-							+ "      values.push(text);"
-							+ "    }"
-							+ "  }"
-							+ "});"
-							+ "return values;");
+			Object result = ((JavascriptExecutor) driver).executeScript("const values = [];"
+					+ "document.querySelectorAll('div[dir=\"auto\"]').forEach(el => {"
+					+ "  const text = (el.textContent || '').trim();"
+					+ "  if (text && text.length <= 40 && !values.includes(text)) {"
+					+ "    const parent = el.parentElement;" + "    const grand = parent && parent.parentElement;"
+					+ "    if ((parent && parent.className && parent.className.includes('r-15d164r'))"
+					+ "        || (grand && grand.className && grand.className.includes('r-1w6e6rj'))) {"
+					+ "      values.push(text);" + "    }" + "  }" + "});" + "return values;");
 			if (result instanceof List<?> items) {
 				for (Object item : items) {
 					String text = item == null ? "" : item.toString().trim();
@@ -2506,14 +2530,15 @@ public class DashboardPage extends BasePage {
 		// Check if navigation occurred
 		boolean navigated = isCurrentUrlContainsAny("category", categoryText, "genre");
 		LOGGER.log(Level.INFO, "Navigation verification - category: {0}, navigated: {1}",
-				new Object[]{categoryText, navigated});
+				new Object[] { categoryText, navigated });
 
 		if (!navigated) {
 			LOGGER.log(Level.WARNING, "Category click might not have navigated. URL search terms: category, {0}, genre",
 					categoryText);
 		}
 
-		// Return true if click executed successfully (navigation might be handled differently)
+		// Return true if click executed successfully (navigation might be handled
+		// differently)
 		return true;
 	}
 
@@ -2600,11 +2625,14 @@ public class DashboardPage extends BasePage {
 		System.out.println("Owner Name: " + defaultIfBlank(getBookOwnerNameText(), "N/A"));
 		System.out.println("Categories: " + defaultIfBlank(String.join(", ", getAllCategoryTexts()), "N/A"));
 		System.out.println("Author/Category: " + defaultIfBlank(getBookAuthorAndCategoryText(), "N/A"));
-		System.out.println("Review: " + defaultIfBlank(getReviewCountText(), hasNoReviewsMessage() ? "No reviews" : "N/A"));
-		System.out.println("Episodes: " + defaultIfBlank(getEpisodeCountText(), areEpisodesVisible() ? "Available" : "N/A"));
+		System.out.println(
+				"Review: " + defaultIfBlank(getReviewCountText(), hasNoReviewsMessage() ? "No reviews" : "N/A"));
+		System.out.println(
+				"Episodes: " + defaultIfBlank(getEpisodeCountText(), areEpisodesVisible() ? "Available" : "N/A"));
 		System.out.println("Duration: " + defaultIfBlank(getDurationText(), "N/A"));
 		System.out.println("Share Button Visible: " + isShareButtonVisible());
-		System.out.println("Summary: " + defaultIfBlank(getSummaryText(), hasEmptySummaryMessage() ? "No summary available" : "N/A"));
+		System.out.println("Summary: "
+				+ defaultIfBlank(getSummaryText(), hasEmptySummaryMessage() ? "No summary available" : "N/A"));
 
 		List<String> chapters = getVisibleChapterDetails();
 		if (chapters.isEmpty()) {
@@ -2629,8 +2657,7 @@ public class DashboardPage extends BasePage {
 				boolean shareButtonVisible = isShareButtonVisible();
 
 				// If any data is loaded, consider it ready
-				if (!episodeText.isBlank() || !durationText.isBlank() ||
-					chaptersVisible || shareButtonVisible) {
+				if (!episodeText.isBlank() || !durationText.isBlank() || chaptersVisible || shareButtonVisible) {
 					LOGGER.log(Level.INFO, "Book data loaded after {0} ms", (i * 500));
 					return true;
 				}
@@ -2707,12 +2734,16 @@ public class DashboardPage extends BasePage {
 	}
 
 	// Hamburger menu locators and methods
-	private static final By HAMBURGER_MENU = By.xpath(
-			"//button[@aria-label='Menu' or @aria-label='menu' or @aria-label='Open menu']"
+	private static final By HAMBURGER_MENU = By
+			.xpath("//button[@aria-label='Menu' or @aria-label='menu' or @aria-label='Open menu']"
 					+ " | //*[@role='button' and (@aria-label='Menu' or @aria-label='menu' or @aria-label='Open menu')]"
 					+ " | //img[contains(@src,'ic_menu') and @draggable='false']"
 					+ " | //header//*[self::img or self::div or self::button][contains(@class,'menu') or contains(@src,'menu')][1]"
 					+ " | (//*[self::button or self::div][@tabindex='0' and .//*[contains(@src,'menu') or contains(@class,'menu')]])[1]");
+	private static final By SIDE_MENU_HEADER = By.xpath("//*[@data-testid='view_sidebar_header']");
+	private static final String[] PRIMARY_SIDE_MENU_LABELS = new String[] { "home", "get 80% off", "80% off",
+			"most favorite", "most favourite", "transaction history", "about us", "contact", "contact us",
+			"download apps", "download app", "logout" };
 
 	public void clickHamburgerMenu() {
 		try {
@@ -2728,6 +2759,213 @@ public class DashboardPage extends BasePage {
 
 	public boolean isHamburgerMenuVisible() {
 		return isAnyElementVisible(HAMBURGER_MENU);
+	}
+
+	public boolean openSideMenu() {
+		waitForPageReady();
+
+		if (isSideMenuOpen() && waitForSideMenuItemsLoaded()) {
+			return true;
+		}
+
+		clickHamburgerMenu(); // ✅ reuse your working click
+
+		return waitForSideMenuState(true, Duration.ofSeconds(5)) && waitForSideMenuItemsLoaded(); // ✅ KEY FIX
+	}
+
+	public boolean waitForSideMenuItemsLoaded() {
+		try {
+			return new WebDriverWait(driver, Duration.ofSeconds(8)).until(driver -> {
+				return isSideMenuItemVisible("home") || isSideMenuItemVisible("offer")
+						|| isSideMenuItemVisible("favorite") || isSideMenuItemVisible("transaction");
+			});
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean closeSideMenu() {
+		if (!isSideMenuOpen()) {
+			return true;
+		}
+
+		if (toggleHamburgerMenuWithFallback() && waitForSideMenuState(false, Duration.ofSeconds(5))) {
+			return true;
+		}
+
+		WebElement sidebarCloseTarget = findSidebarCloseTarget();
+		if (sidebarCloseTarget != null) {
+			try {
+				scrollIntoView(sidebarCloseTarget);
+				clickWithJS(sidebarCloseTarget);
+				if (waitForSideMenuState(false, Duration.ofSeconds(5))) {
+					return true;
+				}
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Sidebar header close click did not collapse the side menu: {0}",
+						e.getMessage());
+			}
+		}
+
+		WebElement menuButton = findFirstVisibleElement(HAMBURGER_MENU);
+		if (menuButton != null) {
+			try {
+				scrollIntoView(menuButton);
+				clickWithJS(menuButton);
+				if (waitForSideMenuState(false, Duration.ofSeconds(5))) {
+					return true;
+				}
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Hamburger close click did not collapse the side menu: {0}", e.getMessage());
+			}
+		}
+
+		try {
+			new Actions(driver).sendKeys(Keys.ESCAPE).perform();
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Escape key fallback for side menu close failed: {0}", e.getMessage());
+		}
+
+		if (waitForSideMenuState(false, Duration.ofSeconds(3))) {
+			return true;
+		}
+
+		try {
+			((JavascriptExecutor) driver).executeScript("document.body.click();");
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Body-click fallback for side menu close failed: {0}", e.getMessage());
+		}
+
+		return waitForSideMenuState(false, Duration.ofSeconds(3));
+	}
+
+	public boolean isSideMenuOpen() {
+		return findVisibleSideMenuPanel() != null;
+	}
+
+	public boolean isSideMenuItemVisible(String primaryLabel, String... alternateLabels) {
+		return findVisibleSideMenuItem(primaryLabel, alternateLabels) != null;
+	}
+
+	private static final By SIDE_MENU_ITEMS = By
+			.xpath("//*[self::a or self::div or self::button][@tabindex='0' or @role='button']");
+
+	public boolean waitForSideMenuItemsToLoad() {
+		try {
+			return new WebDriverWait(driver, Duration.ofSeconds(8)).until(d -> {
+				List<WebElement> items = d.findElements(SIDE_MENU_ITEMS);
+				return items.stream().anyMatch(e -> {
+					try {
+						return e.isDisplayed() && e.getText().trim().length() > 0;
+					} catch (Exception ex) {
+						return false;
+					}
+				});
+			});
+		} catch (Exception e) {
+			LOGGER.warning("Side menu items did not load");
+			return false;
+		}
+	}
+
+	public List<String> getMissingPrimarySideMenuItems() {
+		List<String> missingItems = new ArrayList<>();
+
+		if (!isSideMenuItemVisible("home")) {
+			missingItems.add("Home");
+		}
+		if (!isSideMenuItemVisible("get 80% off", "80% off", "Subscription")) {
+			missingItems.add("Get 80% Off");
+		}
+		if (!isSideMenuItemVisible("most favorite", "most favourite", "favorite", "Favourites")) {
+			missingItems.add("Most Favorite");
+		}
+		if (!isSideMenuItemVisible("transaction history", "transactions", "payment history")) {
+			missingItems.add("Transaction History");
+		}
+		if (!isSideMenuItemVisible("about us", "about")) {
+			missingItems.add("About Us");
+		}
+		if (!isSideMenuItemVisible("contact", "contact us")) {
+			missingItems.add("Contact");
+		}
+		if (!isSideMenuItemVisible("download apps", "download app", "download", "apps")) {
+			missingItems.add("Download Apps");
+		}
+
+		return missingItems;
+	}
+
+	public boolean waitForPrimarySideMenuItems() {
+		try {
+			return new WebDriverWait(driver, Duration.ofSeconds(5))
+					.until(d -> getMissingPrimarySideMenuItems().isEmpty());
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Primary side menu items did not fully render: {0}", e.getMessage());
+			return getMissingPrimarySideMenuItems().isEmpty();
+		}
+	}
+
+	public String clickSideMenuItemAndCaptureUrl(String primaryLabel, String... alternateLabels) {
+		if (!openSideMenu()) {
+			throw new IllegalStateException("Side menu did not open before clicking menu item: " + primaryLabel);
+		}
+
+		WebElement menuItem = findVisibleSideMenuItem(primaryLabel, alternateLabels);
+		if (menuItem == null) {
+			throw new IllegalStateException("Side menu item is not visible: " + primaryLabel);
+		}
+
+		WebElement clickTarget = resolveSideMenuClickableTarget(menuItem);
+		if (clickTarget == null) {
+			clickTarget = menuItem;
+		}
+
+		String startingUrl = getCurrentUrl();
+		List<String> windowHandlesBeforeClick = new ArrayList<>(driver.getWindowHandles());
+		scrollIntoView(clickTarget);
+		clickWithJS(clickTarget);
+
+		try {
+			new WebDriverWait(driver, Duration.ofSeconds(10)).until(webDriver -> {
+				List<String> windowHandlesAfterClick = new ArrayList<>(webDriver.getWindowHandles());
+				if (windowHandlesAfterClick.size() > windowHandlesBeforeClick.size()) {
+					return true;
+				}
+
+				String currentUrl = getCurrentUrl();
+				return !currentUrl.equals(startingUrl) || !isSideMenuOpen();
+			});
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Side menu navigation wait finished without a strong URL transition: {0}",
+					e.getMessage());
+		}
+
+		List<String> windowHandlesAfterClick = new ArrayList<>(driver.getWindowHandles());
+		if (windowHandlesAfterClick.size() > windowHandlesBeforeClick.size()) {
+			driver.switchTo().window(windowHandlesAfterClick.get(windowHandlesAfterClick.size() - 1));
+		}
+
+		waitForPageReady();
+		return getCurrentUrl();
+	}
+
+	public boolean hasVisibleText(String... tokens) {
+		try {
+			String bodyText = firstNonBlank(driver.findElement(By.tagName("body")).getText(), "").toLowerCase();
+			for (String token : tokens) {
+				if (token != null && !token.isBlank() && bodyText.contains(token.toLowerCase())) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Visible text lookup failed: {0}", e.getMessage());
+		}
+		return false;
+	}
+
+	public boolean matchesCurrentPage(String... tokens) {
+		return isCurrentUrlContainsAny(tokens) || hasVisibleText(tokens);
 	}
 
 	public boolean isLogoutButtonVisible() {
@@ -3023,11 +3261,10 @@ public class DashboardPage extends BasePage {
 			+ " | //*[contains(normalize-space(.),'view all') and contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'category')]"
 			+ " | //*[@data-testid='button_view_all_categories']");
 
-	private static final By BOOK_TITLES_IN_CATEGORY = By.xpath(
-			"//*[@data-testid='text_book_title']"
-					+ " | //*[contains(@class,'book')]//*[contains(@class,'title')]"
-					+ " | //div[@tabindex='0'][.//img[contains(@src,'thumb.php') or contains(@src,'cover') or contains(@src,'sonarplay')]]"
-					+ " | //img[contains(@src,'thumb.php') or contains(@src,'cover') or contains(@src,'sonarplay')]/ancestor::div[@tabindex='0'][1]");
+	private static final By BOOK_TITLES_IN_CATEGORY = By.xpath("//*[@data-testid='text_book_title']"
+			+ " | //*[contains(@class,'book')]//*[contains(@class,'title')]"
+			+ " | //div[@tabindex='0'][.//img[contains(@src,'thumb.php') or contains(@src,'cover') or contains(@src,'sonarplay')]]"
+			+ " | //img[contains(@src,'thumb.php') or contains(@src,'cover') or contains(@src,'sonarplay')]/ancestor::div[@tabindex='0'][1]");
 
 	public boolean isCategoriesSectionVisible() {
 		try {
@@ -3423,43 +3660,33 @@ public class DashboardPage extends BasePage {
 	// ================= CONSUMER TRENDING SHOWS SECTION =================
 
 	private static final By TRENDING_SECTION = By
-			.xpath("//*[contains(translate(normalize-space(.),'TRENDING','trending'),'trending')]"
-					+ " | //*[@data-testid='section_trending']" + " | //*[@data-testid='container_trending']"
-					+ " | //*[contains(@class,'trending')]");
+			.xpath("//*[@data-testid='section_trending' or @data-testid='container_trending']"
+					+ " | //*[@data-testid='text_trending_title']");
 
 	private static final By TRENDING_SHOW_ITEMS = By
-			.xpath("//*[@data-testid='container_trending_show']" + " | //*[@data-testid='card_trending']"
-					+ " | //*[contains(@class,'trending')]//*[contains(@class,'show') or contains(@class,'item')]");
+			.xpath("//*[@data-testid='container_trending_show' or @data-testid='card_trending']"
+					+ " | //*[@data-testid='section_trending']//*[@data-testid='container_trending_show' or @data-testid='card_trending']");
 
 	private static final By TRENDING_SHOW_NAMES = By
-			.xpath("//*[@data-testid='text_show_title']" + " | //*[@data-testid='text_trending_title']"
-					+ " | //*[contains(@class,'trending')]//*[contains(@class,'title')]");
+			.xpath("//*[@data-testid='container_trending_show']//*[@data-testid='text_show_title']"
+					+ " | //*[@data-testid='card_trending']//*[@data-testid='text_show_title']"
+					+ " | //*[@data-testid='text_show_title']");
 
 	private static final By VIEW_ALL_TRENDING = By
-			.xpath("//*[contains(text(),'Trending')]//following::div[text()='View All'][1]"
-					+ " | //div[@tabindex='0' and @class='css-g5y9jx r-1loqt21 r-1otgn73']"
-					+ "[.//div[@class='css-146c3p1' and text()='View All']]"
-					+ " | //*[contains(normalize-space(.),'view all') and contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'trending')]"
-					+ " | //*[@data-testid='button_view_all_trending']"
-					+ " | //*[contains(@class,'view_all') and contains(@class,'trending')]");
+			.xpath("//*[@data-testid='text_trending_view_all']" + " | //*[@data-testid='button_view_all_trending']"
+					+ " | //*[@data-testid='section_trending']//*[normalize-space()='View All']");
 
-	private static final By RELATED_SHOWS_SECTION = By
-			.xpath("//*[contains(translate(normalize-space(.),'RELATED SHOWS','related shows'),'related shows')]"
-					+ " | //*[@data-testid='section_related_shows']" + " | //*[contains(@class,'related')]");
-	private static final By VIEW_ALL_RELATED = By
-			.xpath("//*[contains(text(),'Related Shows')]//following::div[text()='View All'][1]"
-					+ " | //div[@tabindex='0' and @class='css-g5y9jx r-1loqt21 r-1otgn73'][.//div[@class='css-146c3p1' and text()='View All']]"
-					+ " | //*[contains(normalize-space(.),'view all') and contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'related')]"
-					+ " | //*[@data-testid='button_view_all_related']"
-					+ " | //*[contains(@class,'view_all') and contains(@class,'related')]");
+	private static final By RELATED_SHOWS_SECTION = By.xpath("//*[@data-testid='section_related_shows']"
+			+ " | //*[contains(translate(normalize-space(.),'RELATED SHOWS','related shows'),'related shows')]");
 
-	private static final By RELATED_SHOW_ITEM = By.xpath(".//*[contains(@class,'related') and contains(@class,'show')]"
-			+ " | .//*[@data-testid='card_related_show']" + " | .//*[contains(@class,'show_card')]");
+	private static final By VIEW_ALL_RELATED = By.xpath("//*[@data-testid='button_view_all_related']"
+			+ " | //*[@data-testid='section_related_shows']//*[normalize-space()='View All']");
 
-	private static final By NO_RELATED_SHOWS_MESSAGE = By
-			.xpath("//*[contains(text(),'No related') or contains(text(),'No shows')]"
-					+ " | //*[@data-testid='message_no_related_shows']"
-					+ " | //*[contains(@class,'no_related') and contains(@class,'message')]");
+	private static final By RELATED_SHOW_ITEM = By.xpath("//*[@data-testid='card_related_show']"
+			+ " | //*[@data-testid='section_related_shows']//*[@data-testid and contains(@data-testid,'card')]");
+
+	private static final By NO_RELATED_SHOWS_MESSAGE = By.xpath("//*[@data-testid='message_no_related_shows']"
+			+ " | //*[contains(translate(normalize-space(.),'NO RELATED SHOWS','no related shows'),'no related')]");
 
 	// ============================================================
 	// UPCOMING RELEASES SECTION
@@ -3552,13 +3779,23 @@ public class DashboardPage extends BasePage {
 			List<WebElement> shows = driver.findElements(TRENDING_SHOW_NAMES);
 			for (WebElement show : shows) {
 				try {
-					if (show.isDisplayed()) {
-						String name = show.getText().trim();
-						if (!name.isEmpty()) {
-							LOGGER.info("First trending show: " + name);
-							return name;
-						}
+					if (!show.isDisplayed()) {
+						continue;
 					}
+
+					String name = firstNonBlank(show.getText(), safeGetAttribute(show, "textContent")).trim();
+					if (name.isEmpty()) {
+						continue;
+					}
+
+					String normalized = name.toLowerCase();
+					if (normalized.equals("trending") || normalized.equals("trending shows")
+							|| normalized.equals("view all")) {
+						continue;
+					}
+
+					LOGGER.info("First trending show: " + name);
+					return name;
 				} catch (Exception e) {
 					// Continue
 				}
@@ -3572,10 +3809,47 @@ public class DashboardPage extends BasePage {
 
 	public void clickTrendingShow(String showName) {
 		try {
-			// Try multiple locators for trending shows
+			if (showName == null || showName.isBlank()) {
+				throw new IllegalArgumentException("Trending show name cannot be blank.");
+			}
+
+			if (showName.startsWith("Book_")) {
+				String bookId = showName.substring("Book_".length()).trim();
+				By imageLocator = By.xpath("//img[contains(@src,'thumb.php?bookid=" + bookId + "')]"
+						+ " | //img[contains(@src,'bookid=" + bookId + "')]");
+				List<WebElement> images = driver.findElements(imageLocator);
+				WebElement book = null;
+				for (WebElement image : images) {
+					try {
+						WebElement visibleContainer = resolveVisibleTrendingContainer(image);
+						if (visibleContainer != null) {
+							book = visibleContainer;
+							break;
+						}
+					} catch (Exception e) {
+						// Try next candidate
+					}
+				}
+				if (book == null) {
+					throw new IllegalStateException("No visible trending image found for " + showName);
+				}
+				book = resolveTrendingClickableAncestor(book);
+				scrollIntoView(book);
+				clickWithJS(book);
+				LOGGER.info("Clicked trending book by identifier: " + showName);
+				return;
+			}
+
+			String normalizedShowName = showName.trim().toLowerCase();
+			if (normalizedShowName.equals("trending") || normalizedShowName.equals("trending shows")
+					|| normalizedShowName.equals("view all")) {
+				throw new IllegalArgumentException("Invalid trending show name: " + showName);
+			}
+
 			By showLocator = By.xpath("//*[@data-testid='container_trending_show' or @data-testid='card_trending']"
-					+ "[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'"
-					+ showName.toLowerCase() + "')]");
+					+ "[.//*[@data-testid='text_show_title'"
+					+ " and contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'"
+					+ normalizedShowName + "')]]");
 			WebElement show = pageWait.until(ExpectedConditions.elementToBeClickable(showLocator));
 			scrollIntoView(show);
 			clickWithJS(show);
@@ -3607,22 +3881,40 @@ public class DashboardPage extends BasePage {
 
 	public List<String> getTrendingShowNames() {
 		try {
-			List<String> names = new ArrayList<>();
+			LinkedHashSet<String> names = new LinkedHashSet<>();
 			List<WebElement> shows = driver.findElements(TRENDING_SHOW_NAMES);
+
 			for (WebElement show : shows) {
 				try {
-					if (show.isDisplayed()) {
-						String name = show.getText().trim();
-						if (!name.isEmpty()) {
-							names.add(name);
-						}
+					if (!show.isDisplayed()) {
+						continue;
 					}
+
+					String name = firstNonBlank(show.getText(), safeGetAttribute(show, "textContent")).trim();
+					if (name.isEmpty()) {
+						continue;
+					}
+
+					String normalized = name.toLowerCase();
+					if (normalized.equals("trending") || normalized.equals("trending shows")
+							|| normalized.equals("view all")) {
+						continue;
+					}
+
+					names.add(name);
 				} catch (Exception e) {
 					// Continue
 				}
 			}
-			LOGGER.info("Trending shows count: " + names.size());
-			return names;
+
+			if (names.size() < 2) {
+				names.addAll(getTrendingBooksList());
+			}
+
+			List<String> result = new ArrayList<>(names);
+			LOGGER.info("Trending shows count: " + result.size());
+			LOGGER.info("Trending shows: " + result);
+			return result;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to get trending show names: {0}", e.getMessage());
 			return new ArrayList<>();
@@ -3637,32 +3929,77 @@ public class DashboardPage extends BasePage {
 	 */
 	public List<String> getTrendingBooksList() {
 		try {
-			List<String> titles = new ArrayList<>();
+			LinkedHashSet<String> titles = new LinkedHashSet<>();
+			List<WebElement> books = driver.findElements(By.xpath(
+					"//*[@data-testid='container_trending_show' or @data-testid='card_trending']//img[contains(@src,'bookid=')]"
+							+ " | //*[@data-testid='section_trending']//img[contains(@src,'bookid=')]"));
 
-			// Count by img src with bookid (reliable - works with empty alt)
-			List<WebElement> books = driver.findElements(By.xpath("//img[contains(@src,'thumb.php?bookid=')]"));
+			if (books.isEmpty()) {
+				books = driver.findElements(
+						By.xpath("//img[contains(@src,'thumb.php?bookid=')]" + " | //img[contains(@src,'bookid=')]"));
+			}
 
 			LOGGER.info("Total trending books/images found: " + books.size());
 
 			for (WebElement book : books) {
 				try {
+					WebElement visibleContainer = resolveVisibleTrendingContainer(book);
+					if (visibleContainer == null) {
+						continue;
+					}
 					String src = book.getAttribute("src");
-					// Extract bookid from URL: thumb.php?bookid=XXX&
 					if (src != null && src.contains("bookid=")) {
 						String bookId = src.substring(src.indexOf("bookid=") + 7);
 						bookId = bookId.contains("&") ? bookId.substring(0, bookId.indexOf("&")) : bookId;
-						titles.add("Book_" + bookId);
+						if (!bookId.isBlank()) {
+							titles.add("Book_" + bookId);
+						}
 					}
 				} catch (Exception e) {
 					// Skip this element
 				}
 			}
 
-			LOGGER.info("Trending books counted: " + titles.size());
-			return titles;
+			List<String> result = new ArrayList<>(titles);
+			LOGGER.info("Trending books counted: " + result.size());
+			return result;
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to get trending books list: {0}", e.getMessage());
 			return new ArrayList<>();
+		}
+	}
+
+	private WebElement resolveVisibleTrendingContainer(WebElement element) {
+		if (element == null) {
+			return null;
+		}
+		try {
+			Object candidate = ((JavascriptExecutor) driver).executeScript("let el = arguments[0];" + "while (el) {"
+					+ "  const rect = el.getBoundingClientRect();" + "  const style = window.getComputedStyle(el);"
+					+ "  const tabIndex = el.getAttribute('tabindex');"
+					+ "  const testId = el.getAttribute('data-testid') || '';"
+					+ "  const visible = rect.width > 0 && rect.height > 0 && style.display !== 'none' && style.visibility !== 'hidden';"
+					+ "  if (visible && (tabIndex !== null || testId.includes('trending') || testId.includes('card'))) {"
+					+ "    return el;" + "  }" + "  el = el.parentElement;" + "}" + "return null;", element);
+			return candidate instanceof WebElement ? (WebElement) candidate : null;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	private WebElement resolveTrendingClickableAncestor(WebElement element) {
+		if (element == null) {
+			return null;
+		}
+		try {
+			Object candidate = ((JavascriptExecutor) driver).executeScript("let el = arguments[0];" + "while (el) {"
+					+ "  const role = (el.getAttribute('role') || '').toLowerCase();"
+					+ "  const tabIndex = el.getAttribute('tabindex');"
+					+ "  if (el.tagName === 'A' || el.tagName === 'BUTTON' || role === 'button' || tabIndex !== null) {"
+					+ "    return el;" + "  }" + "  el = el.parentElement;" + "}" + "return arguments[0];", element);
+			return candidate instanceof WebElement ? (WebElement) candidate : element;
+		} catch (Exception e) {
+			return element;
 		}
 	}
 
@@ -3844,8 +4181,7 @@ public class DashboardPage extends BasePage {
 		try {
 			return driver.findElements(NO_RELATED_SHOWS_MESSAGE).stream().anyMatch(element -> {
 				try {
-					String text = element.getText().toLowerCase();
-					return element.isDisplayed() && (text.contains("no related") || text.contains("no show"));
+					return element.isDisplayed();
 				} catch (Exception e) {
 					return false;
 				}
@@ -4168,8 +4504,8 @@ public class DashboardPage extends BasePage {
 					}
 
 					String currentUrl = getCurrentUrl();
-					if (!currentUrl.equals(startingUrl)
-							&& (currentUrl.contains("dashboard") || currentUrl.contains("home") || !currentUrl.contains("web_search"))) {
+					if (!currentUrl.equals(startingUrl) && (currentUrl.contains("dashboard")
+							|| currentUrl.contains("home") || !currentUrl.contains("web_search"))) {
 						return currentUrl;
 					}
 				} catch (Exception e) {
@@ -4311,13 +4647,14 @@ public class DashboardPage extends BasePage {
 		for (int index = 0; index < results.size(); index++) {
 			WebElement result = results.get(index);
 			try {
-				String text = firstNonBlank(result.getText(), result.getAttribute("aria-label"), result.getAttribute("title"),
-						result.getAttribute("alt"));
+				String text = firstNonBlank(result.getText(), result.getAttribute("aria-label"),
+						result.getAttribute("title"), result.getAttribute("alt"));
 				if ((text == null || text.isBlank()) && "img".equalsIgnoreCase(result.getTagName())) {
 					text = firstNonBlank(result.getAttribute("src"), result.getAttribute("alt"));
 				}
 				if (text == null || text.isBlank()) {
-					text = firstNonBlank(result.getAttribute("src"), result.getAttribute("href"), "<no readable label>");
+					text = firstNonBlank(result.getAttribute("src"), result.getAttribute("href"),
+							"<no readable label>");
 				}
 				LOGGER.info(String.format("Search result %d: %s", index + 1, text));
 			} catch (Exception e) {
@@ -4403,8 +4740,8 @@ public class DashboardPage extends BasePage {
 		try {
 			long previousHeight = -1L;
 			for (int attempt = 0; attempt < 6; attempt++) {
-				long currentHeight = ((Number) ((JavascriptExecutor) driver)
-						.executeScript("return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);"))
+				long currentHeight = ((Number) ((JavascriptExecutor) driver).executeScript(
+						"return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);"))
 						.longValue();
 				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, arguments[0]);", currentHeight);
 				waitForMilliseconds(800);
@@ -4473,16 +4810,11 @@ public class DashboardPage extends BasePage {
 		String brokenPath = "/broken-footer-link-automation";
 		List<String> windowHandlesBeforeClick = new ArrayList<>(driver.getWindowHandles());
 		scrollIntoView(element);
-		((JavascriptExecutor) driver).executeScript(
-				"const el = arguments[0];"
-						+ "const brokenUrl = window.location.origin + arguments[1];"
-						+ "if (el.tagName === 'A') { el.setAttribute('href', brokenUrl); el.setAttribute('target', '_self'); }"
-						+ "el.onclick = function(event) {"
-						+ "  if (event) { event.preventDefault(); event.stopPropagation(); }"
-						+ "  window.location.href = brokenUrl;"
-						+ "  return false;"
-						+ "};",
-				element, brokenPath);
+		((JavascriptExecutor) driver).executeScript("const el = arguments[0];"
+				+ "const brokenUrl = window.location.origin + arguments[1];"
+				+ "if (el.tagName === 'A') { el.setAttribute('href', brokenUrl); el.setAttribute('target', '_self'); }"
+				+ "el.onclick = function(event) {" + "  if (event) { event.preventDefault(); event.stopPropagation(); }"
+				+ "  window.location.href = brokenUrl;" + "  return false;" + "};", element, brokenPath);
 		clickWithJS(element);
 		waitForMilliseconds(2000);
 
@@ -4593,22 +4925,15 @@ public class DashboardPage extends BasePage {
 		}
 
 		try {
-			Object candidate = ((JavascriptExecutor) driver).executeScript(
-					"let current = arguments[0];"
-							+ "while (current) {"
-							+ "  const tag = (current.tagName || '').toLowerCase();"
-							+ "  const role = (current.getAttribute('role') || '').toLowerCase();"
-							+ "  const onclick = current.getAttribute('onclick');"
-							+ "  const href = current.getAttribute('href');"
-							+ "  const tabIndex = current.getAttribute('tabindex');"
-							+ "  if (tag === 'a' || tag === 'button' || role === 'button' || role === 'link'"
-							+ "      || onclick || href || (tabIndex !== null && tabIndex !== '-1')) {"
-							+ "    return current;"
-							+ "  }"
-							+ "  current = current.parentElement;"
-							+ "}"
-							+ "return null;",
-					element);
+			Object candidate = ((JavascriptExecutor) driver).executeScript("let current = arguments[0];"
+					+ "while (current) {" + "  const tag = (current.tagName || '').toLowerCase();"
+					+ "  const role = (current.getAttribute('role') || '').toLowerCase();"
+					+ "  const onclick = current.getAttribute('onclick');"
+					+ "  const href = current.getAttribute('href');"
+					+ "  const tabIndex = current.getAttribute('tabindex');"
+					+ "  if (tag === 'a' || tag === 'button' || role === 'button' || role === 'link'"
+					+ "      || onclick || href || (tabIndex !== null && tabIndex !== '-1')) {" + "    return current;"
+					+ "  }" + "  current = current.parentElement;" + "}" + "return null;", element);
 
 			if (candidate instanceof WebElement webElement) {
 				try {
@@ -4636,8 +4961,8 @@ public class DashboardPage extends BasePage {
 			scrollIntoView(banner);
 			waitForMilliseconds(500);
 
-			WebElement interactionTarget = firstNonNull(getCenterPointInteractionTarget(banner), getClickableAncestor(banner),
-					banner);
+			WebElement interactionTarget = firstNonNull(getCenterPointInteractionTarget(banner),
+					getClickableAncestor(banner), banner);
 
 			try {
 				new Actions(driver).moveToElement(interactionTarget).pause(Duration.ofMillis(150)).click().perform();
@@ -4672,17 +4997,10 @@ public class DashboardPage extends BasePage {
 		}
 
 		try {
-			Object candidate = ((JavascriptExecutor) driver).executeScript(
-					"let current = arguments[0];"
-							+ "while (current) {"
-							+ "  const testId = current.getAttribute('data-testid') || '';"
-							+ "  if (testId.startsWith('__CAROUSEL_ITEM_')) {"
-							+ "    return current;"
-							+ "  }"
-							+ "  current = current.parentElement;"
-							+ "}"
-							+ "return null;",
-					element);
+			Object candidate = ((JavascriptExecutor) driver).executeScript("let current = arguments[0];"
+					+ "while (current) {" + "  const testId = current.getAttribute('data-testid') || '';"
+					+ "  if (testId.startsWith('__CAROUSEL_ITEM_')) {" + "    return current;" + "  }"
+					+ "  current = current.parentElement;" + "}" + "return null;", element);
 			return candidate instanceof WebElement webElement ? webElement : null;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Banner item container lookup failed: {0}", e.getMessage());
@@ -4696,31 +5014,24 @@ public class DashboardPage extends BasePage {
 		}
 
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript(
-					"const label = arguments[0].toLowerCase();"
-							+ "const nodes = Array.from(document.querySelectorAll('div,span,a')).filter(el => {"
-							+ "  const text = (el.textContent || '').trim().toLowerCase();"
-							+ "  const style = window.getComputedStyle(el);"
-							+ "  return text === label && style.display !== 'none' && style.visibility !== 'hidden';"
-							+ "});"
-							+ "for (const node of nodes) {"
-							+ "  let current = node.parentElement;"
-							+ "  for (let depth = 0; current && depth < 4; depth++, current = current.parentElement) {"
-							+ "    const texts = Array.from(current.querySelectorAll('div,span,a'))"
-							+ "      .map(el => (el.textContent || '').trim())"
-							+ "      .filter(Boolean);"
-							+ "    const candidate = texts.find(text => text.toLowerCase() !== label"
-							+ "      && text.toLowerCase() !== 'review' && text.toLowerCase() !== 'reviews'"
-							+ "      && text.toLowerCase() !== 'episodes' && text.toLowerCase() !== 'duration');"
-							+ "    if (candidate) return candidate;"
-							+ "  }"
-							+ "}"
-							+ "return '';",
-					labelText);
+			Object result = ((JavascriptExecutor) driver).executeScript("const label = arguments[0].toLowerCase();"
+					+ "const nodes = Array.from(document.querySelectorAll('div,span,a')).filter(el => {"
+					+ "  const text = (el.textContent || '').trim().toLowerCase();"
+					+ "  const style = window.getComputedStyle(el);"
+					+ "  return text === label && style.display !== 'none' && style.visibility !== 'hidden';" + "});"
+					+ "for (const node of nodes) {" + "  let current = node.parentElement;"
+					+ "  for (let depth = 0; current && depth < 4; depth++, current = current.parentElement) {"
+					+ "    const texts = Array.from(current.querySelectorAll('div,span,a'))"
+					+ "      .map(el => (el.textContent || '').trim())" + "      .filter(Boolean);"
+					+ "    const candidate = texts.find(text => text.toLowerCase() !== label"
+					+ "      && text.toLowerCase() !== 'review' && text.toLowerCase() !== 'reviews'"
+					+ "      && text.toLowerCase() !== 'episodes' && text.toLowerCase() !== 'duration');"
+					+ "    if (candidate) return candidate;" + "  }" + "}" + "return '';", labelText);
 
 			return result == null ? "" : result.toString().trim();
 		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Metric value lookup failed for {0}: {1}", new Object[] { labelText, e.getMessage() });
+			LOGGER.log(Level.FINE, "Metric value lookup failed for {0}: {1}",
+					new Object[] { labelText, e.getMessage() });
 			return "";
 		}
 	}
@@ -4733,12 +5044,10 @@ public class DashboardPage extends BasePage {
 							+ "  const style = window.getComputedStyle(el);"
 							+ "  return rect.width >= 45 && rect.width <= 55 && rect.height >= 45 && rect.height <= 55"
 							+ "    && style.borderRadius && style.backgroundColor && style.display !== 'none' && style.visibility !== 'hidden';"
-							+ "});"
-							+ "// Prioritize share button by purple background rgb(72, 56, 209)"
+							+ "});" + "// Prioritize share button by purple background rgb(72, 56, 209)"
 							+ "const shareButton = candidates.find(el => {"
 							+ "  const style = window.getComputedStyle(el);"
-							+ "  return style.backgroundColor === 'rgb(72, 56, 209)';"
-							+ "});"
+							+ "  return style.backgroundColor === 'rgb(72, 56, 209)';" + "});"
 							+ "return shareButton || candidates.find(el => (el.textContent || '').trim().length <= 2) || null;");
 			return result instanceof WebElement webElement ? webElement : null;
 		} catch (Exception e) {
@@ -4769,15 +5078,122 @@ public class DashboardPage extends BasePage {
 
 	private boolean isAudioPlaying() {
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript(
-					"const audio = document.querySelector('audio');"
-							+ "if (!audio) return false;"
-							+ "return !audio.paused || (!audio.ended && audio.currentTime > 0);");
-			return Boolean.TRUE.equals(result);
+			driver.switchTo().defaultContent();
+			if (isAudioPlayingInCurrentContext()) {
+				return true;
+			}
+
+			List<WebElement> frames = driver.findElements(By.tagName("iframe"));
+			for (int i = 0; i < frames.size(); i++) {
+				try {
+					driver.switchTo().defaultContent();
+					driver.switchTo().frame(i);
+					if (isAudioPlayingInCurrentContext()) {
+						LOGGER.log(Level.FINE, "Audio playback detected inside iframe index {0}", i);
+						return true;
+					}
+				} catch (Exception e) {
+					LOGGER.log(Level.FINE, "Audio playback check failed inside iframe {0}: {1}",
+							new Object[] { i, e.getMessage() });
+				}
+			}
+			return false;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Audio playback state lookup failed: {0}", e.getMessage());
 			return false;
+		} finally {
+			driver.switchTo().defaultContent();
 		}
+	}
+
+	private boolean isAudioPlayingInCurrentContext() {
+		Object result = ((JavascriptExecutor) driver).executeScript("const audio = document.querySelector('audio');"
+				+ "if (!audio) return false;" + "return !audio.paused || (!audio.ended && audio.currentTime > 0);");
+		return Boolean.TRUE.equals(result);
+	}
+
+	private String readCurrentAudioPositionFromMediaElement() {
+		try {
+			driver.switchTo().defaultContent();
+			String position = readCurrentAudioPositionInCurrentContext();
+			if (!"N/A".equals(position)) {
+				return position;
+			}
+
+			List<WebElement> frames = driver.findElements(By.tagName("iframe"));
+			for (int i = 0; i < frames.size(); i++) {
+				try {
+					driver.switchTo().defaultContent();
+					driver.switchTo().frame(i);
+					position = readCurrentAudioPositionInCurrentContext();
+					if (!"N/A".equals(position)) {
+						LOGGER.log(Level.FINE, "Audio position detected inside iframe index {0}: {1}",
+								new Object[] { i, position });
+						return position;
+					}
+				} catch (Exception e) {
+					LOGGER.log(Level.FINE, "Audio position lookup failed inside iframe {0}: {1}",
+							new Object[] { i, e.getMessage() });
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Unable to read audio position from media element: {0}", e.getMessage());
+		} finally {
+			driver.switchTo().defaultContent();
+		}
+
+		return "N/A";
+	}
+
+	private String readCurrentAudioPositionInCurrentContext() {
+		Object result = ((JavascriptExecutor) driver).executeScript("const audio = document.querySelector('audio');"
+				+ "if (!audio || Number.isNaN(audio.currentTime)) return null;"
+				+ "const totalSeconds = Math.floor(audio.currentTime);"
+				+ "const hours = Math.floor(totalSeconds / 3600);"
+				+ "const minutes = Math.floor((totalSeconds % 3600) / 60);" + "const seconds = totalSeconds % 60;"
+				+ "if (hours > 0) {"
+				+ "  return String(hours).padStart(2,'0') + ':' + String(minutes).padStart(2,'0') + ':' + String(seconds).padStart(2,'0');"
+				+ "}" + "return String(minutes).padStart(2,'0') + ':' + String(seconds).padStart(2,'0');");
+		return result == null ? "N/A" : result.toString();
+	}
+
+	private boolean didPlaybackPositionAdvance(String initialPosition, String updatedPosition) {
+		Integer initialSeconds = parsePlaybackPositionSeconds(initialPosition);
+		Integer updatedSeconds = parsePlaybackPositionSeconds(updatedPosition);
+		return initialSeconds != null && updatedSeconds != null && updatedSeconds > initialSeconds;
+	}
+
+	private boolean didPlaybackPositionRewind(String initialPosition, String updatedPosition) {
+		Integer initialSeconds = parsePlaybackPositionSeconds(initialPosition);
+		Integer updatedSeconds = parsePlaybackPositionSeconds(updatedPosition);
+		return initialSeconds != null && updatedSeconds != null && updatedSeconds < initialSeconds;
+	}
+
+	private Integer parsePlaybackPositionSeconds(String position) {
+		if (position == null) {
+			return null;
+		}
+
+		String normalized = position.trim();
+		if (normalized.isBlank() || "N/A".equalsIgnoreCase(normalized)) {
+			return null;
+		}
+
+		String[] parts = normalized.split(":");
+		try {
+			if (parts.length == 2) {
+				return Integer.parseInt(parts[0].trim()) * 60 + Integer.parseInt(parts[1].trim());
+			}
+			if (parts.length == 3) {
+				return Integer.parseInt(parts[0].trim()) * 3600 + Integer.parseInt(parts[1].trim()) * 60
+						+ Integer.parseInt(parts[2].trim());
+			}
+		} catch (NumberFormatException e) {
+			LOGGER.log(Level.FINE, "Unable to parse playback position {0}: {1}",
+					new Object[] { position, e.getMessage() });
+		}
+
+		return null;
 	}
 
 	private String getElementStateSignature(WebElement element) {
@@ -4795,7 +5211,8 @@ public class DashboardPage extends BasePage {
 			return "";
 		}
 
-		String text = firstNonBlank(element.getText(), safeGetAttribute(element, "textContent")).replace('\n', ' ').trim();
+		String text = firstNonBlank(element.getText(), safeGetAttribute(element, "textContent")).replace('\n', ' ')
+				.trim();
 		return text.replaceAll("\\s+", " ").trim();
 	}
 
@@ -4828,8 +5245,7 @@ public class DashboardPage extends BasePage {
 					"const rect = arguments[0].getBoundingClientRect();"
 							+ "const x = Math.floor(rect.left + (rect.width / 2));"
 							+ "const y = Math.floor(rect.top + (rect.height / 2));"
-							+ "let el = document.elementFromPoint(x, y);"
-							+ "while (el) {"
+							+ "let el = document.elementFromPoint(x, y);" + "while (el) {"
 							+ "  const tag = (el.tagName || '').toLowerCase();"
 							+ "  const role = (el.getAttribute('role') || '').toLowerCase();"
 							+ "  const href = el.getAttribute('href');"
@@ -4837,11 +5253,7 @@ public class DashboardPage extends BasePage {
 							+ "  const tabIndex = el.getAttribute('tabindex');"
 							+ "  if (tag === 'a' || tag === 'button' || role === 'button' || role === 'link'"
 							+ "      || href || onclick || (tabIndex !== null && tabIndex !== '-1')) {"
-							+ "    return el;"
-							+ "  }"
-							+ "  el = el.parentElement;"
-							+ "}"
-							+ "return arguments[0];",
+							+ "    return el;" + "  }" + "  el = el.parentElement;" + "}" + "return arguments[0];",
 					banner);
 
 			return candidate instanceof WebElement webElement ? webElement : null;
@@ -4926,6 +5338,283 @@ public class DashboardPage extends BasePage {
 		}
 	}
 
+	private boolean waitForSideMenuState(boolean shouldBeOpen, Duration timeout) {
+		try {
+			new WebDriverWait(driver, timeout).until(webDriver -> isSideMenuOpen() == shouldBeOpen);
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Side menu state did not reach {0}: {1}",
+					new Object[] { shouldBeOpen ? "open" : "closed", e.getMessage() });
+			return isSideMenuOpen() == shouldBeOpen;
+		}
+	}
+
+	private WebElement findSideMenuPanelByVisibleLabels() {
+		try {
+			Object result = ((JavascriptExecutor) driver).executeScript("const labels = arguments[0];"
+					+ "const uniqueMenuHints = ['80% off', 'transaction history', 'download apps', 'download app',"
+					+ "  'most favorite', 'most favourite', 'logout'];"
+					+ "const isVisible = (element) => {"
+					+ "  if (!element) return false;"
+					+ "  const style = window.getComputedStyle(element);"
+					+ "  const rect = element.getBoundingClientRect();"
+					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+					+ "    && rect.width > 0 && rect.height > 0"
+					+ "    && rect.bottom > 0 && rect.right > 0"
+					+ "    && rect.top < (window.innerHeight || document.documentElement.clientHeight)"
+					+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);"
+					+ "};"
+					+ "const textOf = (element) => [element.innerText, element.textContent,"
+					+ "  element.getAttribute('aria-label'), element.getAttribute('data-testid'),"
+					+ "  element.getAttribute('class')].filter(Boolean).join(' ').toLowerCase();"
+					+ "const matches = (text) => labels.filter((label) => text.includes(label));"
+					+ "const candidates = Array.from(document.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span,nav,aside'))"
+					+ "  .filter(isVisible)"
+					+ "  .map((element) => ({ element, labels: matches(textOf(element)) }))"
+					+ "  .filter((entry) => entry.labels.length > 0);"
+					+ "if (!candidates.length) return null;"
+					+ "const scoreNode = (node) => {"
+					+ "  if (!node || !isVisible(node)) return null;"
+					+ "  const descendants = candidates.filter((entry) => node.contains(entry.element));"
+					+ "  if (!descendants.length) return null;"
+					+ "  const labelSet = new Set();"
+					+ "  descendants.forEach((entry) => entry.labels.forEach((label) => labelSet.add(label)));"
+					+ "  const uniqueHintHits = Array.from(labelSet).filter((label) => uniqueMenuHints.includes(label)).length;"
+					+ "  const nodeText = textOf(node);"
+					+ "  const semanticBonus = node.tagName === 'NAV' || node.tagName === 'ASIDE'"
+					+ "    || nodeText.includes('menu') || nodeText.includes('drawer')"
+					+ "    || nodeText.includes('sidebar') || nodeText.includes('navigation') ? 1 : 0;"
+					+ "  return {"
+					+ "    node,"
+					+ "    distinctLabels: labelSet.size,"
+					+ "    uniqueHintHits,"
+					+ "    semanticBonus,"
+					+ "    depth: descendants.length"
+					+ "  };"
+					+ "};"
+					+ "const scored = [];"
+					+ "for (const candidate of candidates) {"
+					+ "  let current = candidate.element;"
+					+ "  let hops = 0;"
+					+ "  while (current && hops < 7) {"
+					+ "    const score = scoreNode(current);"
+					+ "    if (score && (score.distinctLabels >= 3 || (score.distinctLabels >= 2 && score.uniqueHintHits >= 1))) {"
+					+ "      scored.push(score);"
+					+ "    }"
+					+ "    current = current.parentElement;"
+					+ "    hops++;"
+					+ "  }"
+					+ "}"
+					+ "scored.sort((left, right) => right.distinctLabels - left.distinctLabels"
+					+ "  || right.uniqueHintHits - left.uniqueHintHits"
+					+ "  || right.semanticBonus - left.semanticBonus"
+					+ "  || right.depth - left.depth);"
+					+ "return scored.length ? scored[0].node : null;", Arrays.asList(PRIMARY_SIDE_MENU_LABELS));
+
+			return result instanceof WebElement ? (WebElement) result : null;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Side menu label-cluster lookup failed: {0}", e.getMessage());
+			return null;
+		}
+	}
+
+	private WebElement findVisibleSideMenuPanel() {
+		try {
+			WebElement explicitHeader = findFirstVisibleElement(SIDE_MENU_HEADER);
+			if (explicitHeader != null) {
+				return explicitHeader;
+			}
+
+			Object result = ((JavascriptExecutor) driver).executeScript("const labels = arguments[0];"
+					+ "const isVisible = (element) => {" + "  if (!element) return false;"
+					+ "  const style = window.getComputedStyle(element);"
+					+ "  const rect = element.getBoundingClientRect();"
+					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+					+ "    && rect.width > 0 && rect.height > 0" + "    && rect.bottom > 0 && rect.right > 0"
+					+ "    && rect.top < (window.innerHeight || document.documentElement.clientHeight)"
+					+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);" + "};"
+					+ "const metaText = (element) => [element.innerText, element.textContent,"
+					+ "  element.getAttribute('aria-label'), element.getAttribute('data-testid'),"
+					+ "  element.getAttribute('class')].filter(Boolean).join(' ').toLowerCase();"
+					+ "const score = (element) => {" + "  const text = metaText(element);"
+					+ "  return labels.reduce((sum, label) => sum + (text.includes(label) ? 1 : 0), 0);" + "};"
+					+ "const selectors = ['nav', '[role=\"navigation\"]', '[role=\"menu\"]',"
+					+ "  '[class*=\"menu\"]', '[class*=\"drawer\"]', '[class*=\"sidebar\"]',"
+					+ "  '[data-testid*=\"menu\"]', '[data-testid*=\"drawer\"]', '[data-testid*=\"sidebar\"]'];"
+					+ "const candidates = Array.from(document.querySelectorAll(selectors.join(',')))"
+					+ "  .filter(isVisible)" + "  .filter((element) => score(element) > 0)"
+					+ "  .sort((left, right) => score(right) - score(left));"
+					+ "if (candidates.length) return candidates[0];" + "const menuAncestor = (element) => {"
+					+ "  let current = element;" + "  while (current) {" + "    const text = metaText(current);"
+					+ "    if (current.tagName === 'NAV' || text.includes('menu') || text.includes('drawer')"
+					+ "      || text.includes('sidebar') || text.includes('navigation')) {"
+					+ "      return isVisible(current) ? current : null;" + "    }"
+					+ "    current = current.parentElement;" + "  }" + "  return null;" + "};"
+					+ "const matches = Array.from(document.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span'))"
+					+ "  .filter(isVisible)" + "  .filter((element) => score(element) > 0);"
+					+ "for (const match of matches) {" + "  const ancestor = menuAncestor(match);"
+					+ "  if (ancestor) return ancestor;" + "}" + "return null;",
+					Arrays.asList(PRIMARY_SIDE_MENU_LABELS));
+
+			if (result instanceof WebElement) {
+				return (WebElement) result;
+			}
+
+			return findSideMenuPanelByVisibleLabels();
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Side menu panel lookup failed: {0}", e.getMessage());
+			return findSideMenuPanelByVisibleLabels();
+		}
+	}
+
+	private WebElement findVisibleSideMenuItem(String primaryLabel, String... alternateLabels) {
+		List<String> labels = new ArrayList<>();
+		if (primaryLabel != null && !primaryLabel.isBlank()) {
+			labels.add(primaryLabel.toLowerCase());
+		}
+		for (String label : alternateLabels) {
+			if (label != null && !label.isBlank()) {
+				labels.add(label.toLowerCase());
+			}
+		}
+
+		if (labels.isEmpty()) {
+			return null;
+		}
+
+		try {
+			WebElement menuPanel = findVisibleSideMenuPanel();
+			if (menuPanel == null) {
+				return null;
+			}
+			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
+					+ "const labels = arguments[1];" + "const isVisible = (element) => {"
+					+ "  if (!element) return false;" + "  const style = window.getComputedStyle(element);"
+					+ "  const rect = element.getBoundingClientRect();"
+					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+					+ "    && rect.width > 0 && rect.height > 0" + "    && rect.bottom > 0 && rect.right > 0"
+					+ "    && rect.top < (window.innerHeight || document.documentElement.clientHeight)"
+					+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);" + "};"
+					+ "const textOf = (element) => [element.innerText, element.textContent,"
+					+ "  element.getAttribute('aria-label'), element.getAttribute('href'),"
+					+ "  element.getAttribute('data-testid'), element.getAttribute('class')]"
+					+ "  .filter(Boolean).join(' ').toLowerCase();" + "const matches = (element) => {"
+					+ "  const text = textOf(element);" + "  return labels.some((label) => text.includes(label));"
+					+ "};" + "const menuLike = (element) => {" + "  let current = element;" + "  while (current) {"
+					+ "    const text = textOf(current);"
+					+ "    if (current.tagName === 'NAV' || text.includes('menu') || text.includes('drawer')"
+					+ "      || text.includes('sidebar') || text.includes('navigation')) {" + "      return true;"
+					+ "    }" + "    current = current.parentElement;" + "  }" + "  return false;" + "};"
+					+ "const isClickable = (element) => element.tagName === 'A' || element.tagName === 'BUTTON'"
+					+ "  || element.getAttribute('role') === 'button' || element.getAttribute('role') === 'link'"
+					+ "  || element.hasAttribute('href') || element.hasAttribute('tabindex') || typeof element.onclick === 'function';"
+					+ "const candidates = Array.from(root.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span'))"
+					+ "  .filter(isVisible)" + "  .filter(matches);" + "candidates.sort((left, right) => {"
+					+ "  const leftScore = (menuLike(left) ? 100 : 0) + (isClickable(left) ? 10 : 0) + textOf(left).length;"
+					+ "  const rightScore = (menuLike(right) ? 100 : 0) + (isClickable(right) ? 10 : 0) + textOf(right).length;"
+					+ "  return rightScore - leftScore;" + "});" + "return candidates[0] || null;", menuPanel, labels);
+
+			return result instanceof WebElement ? (WebElement) result : null;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Side menu item lookup failed for {0}: {1}",
+					new Object[] { primaryLabel, e.getMessage() });
+			return null;
+		}
+	}
+
+	private WebElement resolveSideMenuClickableTarget(WebElement element) {
+		try {
+			Object result = ((JavascriptExecutor) driver).executeScript("let current = arguments[0];"
+					+ "while (current) {" + "  if (current.tagName === 'A' || current.tagName === 'BUTTON'"
+					+ "    || current.getAttribute('role') === 'button' || current.getAttribute('role') === 'link'"
+					+ "    || current.hasAttribute('href') || current.hasAttribute('tabindex')) {"
+					+ "    return current;" + "  }" + "  current = current.parentElement;" + "}"
+					+ "return arguments[0];", element);
+			return result instanceof WebElement ? (WebElement) result : element;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Failed to resolve clickable side menu target: {0}", e.getMessage());
+			return element;
+		}
+	}
+
+	private WebElement findSidebarCloseTarget() {
+		try {
+			WebElement sidebarHeader = findFirstVisibleElement(SIDE_MENU_HEADER);
+			if (sidebarHeader == null) {
+				return null;
+			}
+
+			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
+					+ "const isVisible = (element) => {" + "  if (!element) return false;"
+					+ "  const style = window.getComputedStyle(element);"
+					+ "  const rect = element.getBoundingClientRect();"
+					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+					+ "    && rect.width > 0 && rect.height > 0" + "    && rect.bottom > 0 && rect.right > 0"
+					+ "    && rect.top < (window.innerHeight || document.documentElement.clientHeight)"
+					+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);" + "};"
+					+ "const clickableAncestor = (element) => {" + "  let current = element;"
+					+ "  while (current && current !== root.parentElement) {"
+					+ "    if (current.tagName === 'A' || current.tagName === 'BUTTON'"
+					+ "      || current.getAttribute('role') === 'button' || current.hasAttribute('tabindex')"
+					+ "      || typeof current.onclick === 'function') {" + "      return current;" + "    }"
+					+ "    current = current.parentElement;" + "  }" + "  return null;" + "};"
+					+ "const candidates = Array.from(root.querySelectorAll('button,[role=\"button\"],[tabindex],img,div,span'))"
+					+ "  .filter(isVisible)" + "  .map((element) => clickableAncestor(element) || element)"
+					+ "  .filter((element, index, array) => array.indexOf(element) === index)"
+					+ "  .filter((element) => !root.contains(element) || element !== root);"
+					+ "candidates.sort((left, right) => {" + "  const leftRect = left.getBoundingClientRect();"
+					+ "  const rightRect = right.getBoundingClientRect();"
+					+ "  return rightRect.left - leftRect.left || leftRect.top - rightRect.top;" + "});"
+					+ "for (const candidate of candidates) {" + "  if (!isVisible(candidate)) continue;"
+					+ "  const rect = candidate.getBoundingClientRect();"
+					+ "  if (rect.width < 16 || rect.height < 16) continue;" + "  return candidate;" + "}"
+					+ "return null;", sidebarHeader);
+
+			return result instanceof WebElement ? (WebElement) result : null;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Sidebar close target lookup failed: {0}", e.getMessage());
+			return null;
+		}
+	}
+
+	private boolean toggleHamburgerMenuWithFallback() {
+		try {
+			WebElement visibleMenuButton = findFirstVisibleElement(HAMBURGER_MENU);
+			if (visibleMenuButton != null) {
+				scrollIntoView(visibleMenuButton);
+				clickWithJS(visibleMenuButton);
+				LOGGER.info("Hamburger menu toggle clicked");
+				return true;
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Visible hamburger toggle click failed: {0}", e.getMessage());
+		}
+
+		try {
+			Object clicked = ((JavascriptExecutor) driver)
+					.executeScript("const selectors = [" + "\"button[aria-label='Menu']\","
+							+ "\"button[aria-label='menu']\"," + "\"button[aria-label='Open menu']\","
+							+ "\"[role='button'][aria-label='Menu']\"," + "\"[role='button'][aria-label='menu']\","
+							+ "\"img[src*='ic_menu']\"," + "\"header [class*='menu']\"," + "\"header [src*='menu']\""
+							+ "];" + "const isRenderable = (element) => {" + "  if (!element) return false;"
+							+ "  const style = window.getComputedStyle(element);"
+							+ "  const rect = element.getBoundingClientRect();"
+							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+							+ "    && rect.width > 0 && rect.height > 0;" + "};" + "for (const selector of selectors) {"
+							+ "  const elements = Array.from(document.querySelectorAll(selector)).filter(isRenderable);"
+							+ "  if (!elements.length) continue;" + "  const target = elements[0];"
+							+ "  target.click();" + "  return true;" + "}" + "return false;");
+			if (Boolean.TRUE.equals(clicked)) {
+				LOGGER.info("Hamburger menu toggle clicked via JavaScript fallback");
+				return true;
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "JavaScript hamburger toggle fallback failed: {0}", e.getMessage());
+		}
+
+		return false;
+	}
+
 	private boolean isAnyElementVisible(By locator) {
 		try {
 			return driver.findElements(locator).stream().anyMatch(element -> {
@@ -4990,13 +5679,14 @@ public class DashboardPage extends BasePage {
 						return false;
 					}
 				});
-				boolean validationVisible = driver.findElements(SEARCH_VALIDATION_MESSAGE).stream().anyMatch(element -> {
-					try {
-						return element.isDisplayed();
-					} catch (Exception e) {
-						return false;
-					}
-				});
+				boolean validationVisible = driver.findElements(SEARCH_VALIDATION_MESSAGE).stream()
+						.anyMatch(element -> {
+							try {
+								return element.isDisplayed();
+							} catch (Exception e) {
+								return false;
+							}
+						});
 				return hasResults || hasNoResults || validationVisible;
 			});
 		} catch (Exception e) {
@@ -5026,53 +5716,25 @@ public class DashboardPage extends BasePage {
 		try {
 			scrollToPageTop();
 
-			Object navigationTriggered = ((JavascriptExecutor) driver).executeScript(
-					"const selectors = ["
-							+ "'header a[href=\"/\"]',"
-							+ "'header a[href*=\"home\"]',"
-							+ "'header a[href*=\"dashboard\"]',"
-							+ "'a[href=\"/\"]',"
-							+ "'a[href*=\"home\"]',"
-							+ "'a[href*=\"dashboard\"]',"
-							+ "'header img',"
-							+ "'img[alt*=\"logo\" i]',"
-							+ "'img[src*=\"logo\" i]'"
-							+ "];"
-							+ "const isVisible = (element) => {"
-							+ "  if (!element) return false;"
-							+ "  const rect = element.getBoundingClientRect();"
-							+ "  return rect.width > 0 && rect.height > 0;"
-							+ "};"
-							+ "const clickableAncestor = (element) => {"
-							+ "  let current = element;"
-							+ "  while (current) {"
-							+ "    if (current.tagName === 'A' || current.tagName === 'BUTTON' || current.onclick || current.getAttribute('role') === 'button') {"
-							+ "      return current;"
-							+ "    }"
-							+ "    current = current.parentElement;"
-							+ "  }"
-							+ "  return element;"
-							+ "};"
-							+ "for (const selector of selectors) {"
-							+ "  const elements = Array.from(document.querySelectorAll(selector)).filter(isVisible);"
-							+ "  elements.sort((a, b) => {"
-							+ "    const rectA = a.getBoundingClientRect();"
-							+ "    const rectB = b.getBoundingClientRect();"
-							+ "    return rectA.top - rectB.top || rectA.left - rectB.left;"
-							+ "  });"
-							+ "  for (const element of elements) {"
-							+ "    const target = clickableAncestor(element);"
-							+ "    if (!target) continue;"
-							+ "    const href = target.getAttribute('href');"
-							+ "    if (href && (href === '/' || href.includes('home') || href.includes('dashboard'))) {"
-							+ "      window.location.href = href;"
-							+ "      return true;"
-							+ "    }"
-							+ "    target.click();"
-							+ "    return true;"
-							+ "  }"
-							+ "}"
-							+ "return false;");
+			Object navigationTriggered = ((JavascriptExecutor) driver).executeScript("const selectors = ["
+					+ "'header a[href=\"/\"]'," + "'header a[href*=\"home\"]'," + "'header a[href*=\"dashboard\"]',"
+					+ "'a[href=\"/\"]'," + "'a[href*=\"home\"]'," + "'a[href*=\"dashboard\"]'," + "'header img',"
+					+ "'img[alt*=\"logo\" i]'," + "'img[src*=\"logo\" i]'" + "];" + "const isVisible = (element) => {"
+					+ "  if (!element) return false;" + "  const rect = element.getBoundingClientRect();"
+					+ "  return rect.width > 0 && rect.height > 0;" + "};" + "const clickableAncestor = (element) => {"
+					+ "  let current = element;" + "  while (current) {"
+					+ "    if (current.tagName === 'A' || current.tagName === 'BUTTON' || current.onclick || current.getAttribute('role') === 'button') {"
+					+ "      return current;" + "    }" + "    current = current.parentElement;" + "  }"
+					+ "  return element;" + "};" + "for (const selector of selectors) {"
+					+ "  const elements = Array.from(document.querySelectorAll(selector)).filter(isVisible);"
+					+ "  elements.sort((a, b) => {" + "    const rectA = a.getBoundingClientRect();"
+					+ "    const rectB = b.getBoundingClientRect();"
+					+ "    return rectA.top - rectB.top || rectA.left - rectB.left;" + "  });"
+					+ "  for (const element of elements) {" + "    const target = clickableAncestor(element);"
+					+ "    if (!target) continue;" + "    const href = target.getAttribute('href');"
+					+ "    if (href && (href === '/' || href.includes('home') || href.includes('dashboard'))) {"
+					+ "      window.location.href = href;" + "      return true;" + "    }" + "    target.click();"
+					+ "    return true;" + "  }" + "}" + "return false;");
 
 			waitForMilliseconds(2000);
 			return Boolean.TRUE.equals(navigationTriggered);

@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import base.BaseTest;
 import listeners.RetryAnalyzer;
+import pages.AudioPlayerPage;
 import pages.DashboardPage;
 import pages.LoginPage;
 import utils.ConfigReader;
@@ -23,6 +24,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 
 	private DashboardPage dashboard;
 	private LoginPage login;
+	private AudioPlayerPage audioPlayer;
 
 	private boolean isBlank(String value) {
 		return value == null || value.isBlank();
@@ -79,6 +81,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 
 		login = new LoginPage(driver);
 		dashboard = new DashboardPage(driver);
+		audioPlayer = new AudioPlayerPage(driver);
 
 		login.openLogin();
 		login.loginUser(getConsumerEmail(), getConsumerPassword());
@@ -407,12 +410,12 @@ public class ConsumerBookDetailsTests extends BaseTest {
 			return;
 		}
 
-		if (!dashboard.isPlayAudioButtonVisible()) {
+		if (!audioPlayer.isPlayButtonVisible()) {
 			logOptionalUnavailable("Play Audio button is not visible for the current book details page.");
 			return;
 		}
 
-		Assert.assertTrue(dashboard.clickPlayAudioAndVerifyPlayback(),
+		Assert.assertTrue(audioPlayer.validatePlay(),
 				"Audio should start playing when Play Audio is clicked.");
 	}
 
@@ -422,14 +425,14 @@ public class ConsumerBookDetailsTests extends BaseTest {
 			return;
 		}
 
-		if (!dashboard.isPlayAudioButtonVisible()) {
+		if (!audioPlayer.isPlayButtonVisible()) {
 			logOptionalUnavailable("Play Audio button is not visible for pause validation.");
 			return;
 		}
 
-		Assert.assertTrue(dashboard.clickPlayAudioAndVerifyPlayback(),
+		Assert.assertTrue(audioPlayer.validatePlay(),
 				"Audio should start playing before pause is validated.");
-		Assert.assertTrue(dashboard.clickPauseAndVerifyPlaybackStops(),
+		Assert.assertTrue(audioPlayer.validatePause(),
 				"Audio should pause when the Pause control is clicked.");
 	}
 
