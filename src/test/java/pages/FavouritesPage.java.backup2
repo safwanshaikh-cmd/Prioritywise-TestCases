@@ -1,0 +1,939 @@
+package pages;
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import base.BasePage;
+
+/**
+ * Page object for Favourites functionality.
+ * Based on actual HTML structure with material icons and specific CSS classes.
+ */
+public class FavouritesPage extends BasePage {
+
+	private static final Logger LOGGER = Logger.getLogger(FavouritesPage.class.getName());
+
+	// ================= NAVIGATION LOCATORS =================
+	private static final By FAVOURITES_MENU = By.xpath("//div[text()='Favourites' or text()='Favorites']");
+	private static final By FAVOURITES_TITLE = By.xpath("//div[contains(text(),'Favourites') or contains(text(),'Favorites')]");
+
+	// ================= SEARCH LOCATORS =================
+	private static final By SEARCH_IN_FAVOURITES = By.xpath("//input[@placeholder='Search by name...']");
+	private static final By SEARCH_BOOK_OR_AUTHOR = By.xpath("//input[@placeholder='Search books or author']");
+
+	// ================= FILTER LOCATORS =================
+	private static final By FILTER_BUTTON = By.xpath("//div[@dir='auto'][contains(@class, 'css-146c3p1')][text()='󰄹'] | //div[contains(@class, 'material-community')][contains(text(), '󰄹')]");
+
+	// ================= BOOK ITEM LOCATORS =================
+	private static final By BOOK_ITEMS = By.xpath("//div[@tabindex='0'][contains(@class, 'css-g5y9jx')]//div[@dir='auto'][contains(@class, 'r-8akbws')]");
+	private static final By BOOK_TITLE = By.xpath(".//div[@dir='auto'][contains(@class, 'r-8akbws') and contains(@class, 'r-krxsd3')]");
+	private static final By BOOK_AUTHOR = By.xpath(".//div[@dir='auto'][contains(@class, 'r-dnmrzs') and contains(@class, 'r-1udbk01')]");
+	private static final By BOOK_IMAGE = By.xpath(".//img[contains(@src, 'thumb.php') or contains(@src, 'placeholder')]");
+
+	// ================= FAVOURITE ICON LOCATORS =================
+	private static final By HEART_ICON_ADD = By.xpath(".//div[@dir='auto'][@class='css-146c3p1'][text()=''] | .//div[@dir='auto'][contains(@class, 'css-146c3p1')][contains(text(), '')]");
+	private static final By REMOVE_ICON = By.xpath(".//div[@dir='auto'][@class='css-146c3p1'][text()='󰋔'] | .//div[@dir='auto'][contains(@class, 'css-146c3p1')][contains(text(), '󰋔')]");
+
+	// ================= SELECTION MODE LOCATORS =================
+	private static final By SELECT_ALL_BUTTON = By.xpath("//div[@tabindex='0']//div[@dir='auto'][text()='Select All'] | //div[contains(@class, 'r-1xfd6ze')]//div[@dir='auto'][text()='Select All']");
+	private static final By SELECT_ALL_CHECKBOX = By.xpath("//div[@tabindex='0']//div[@dir='auto'][text()='Select All']/preceding-sibling::div[@dir='auto'][text()='']");
+
+	// ================= FILTER ACTION BAR LOCATORS =================
+	private static final By FILTER_ACTION_BAR = By.xpath("//div[contains(@class, 'r-w7s2jr')]//div[@dir='auto'][text()='Selected Count']");
+	private static final By SELECTED_COUNT = By.xpath("//div[@class='css-g5y9jx']//div[@dir='auto' and contains(text(),'Selected') or contains(text(),'selected')]");
+	private static final By REMOVE_SELECTED_BUTTON = By.xpath("//div[@aria-disabled]//div[@dir='auto'][text()='Remove Selected'] | //div[contains(@class, 'r-1yadl64')]//div[@dir='auto'][text()='Remove Selected']");
+	private static final By CANCEL_BUTTON = By.xpath("//div[contains(@class, 'r-1xfd6ze')]//div[@dir='auto'][text()='Cancel']");
+
+	// ================= CONFIRMATION DIALOG LOCATORS =================
+	private static final By REMOVE_CONFIRMATION_DIALOG = By.xpath("//div[@class='css-g5y9jx']//div[@dir='auto'][text()='Remove Favourites']");
+	private static final By REMOVE_CONFIRMATION_MESSAGE = By.xpath("//div[@dir='auto'][contains(text(),'Are you sure you want to remove this book from favourites?')]");
+	private static final By YES_BUTTON = By.xpath("//div[@dir='auto'][text()='Yes']/parent::div[@tabindex='0']");
+	private static final By NO_BUTTON = By.xpath("//div[@dir='auto'][text()='No']/parent::div[@tabindex='0']");
+
+	// ================= EMPTY STATE LOCATORS =================
+	private static final By NO_FAVORITES_MESSAGE = By.xpath("//*[contains(text(),'No favorites') or contains(text(),'No favourites') or contains(text(),'No favorites yet') or contains(text(),'No favourites yet')]");
+	private static final By BROWSE_BUTTON = By.xpath("//div[@dir='auto'][text()='Browse Books' or text()='Browse' or text()='Explore']");
+
+	// ================= COUNT DISPLAY LOCATORS =================
+	private static final By SELECTED_COUNT_NUMBER = By.xpath("//div[@class='css-g5y9jx']//div[@dir='auto' and contains(text(),'Selected') or contains(text(),'selected')]");
+
+	private final WebDriverWait pageWait;
+
+	public FavouritesPage(WebDriver driver) {
+		super(driver);
+		this.pageWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+	}
+
+	// ================= NAVIGATION METHODS =================
+
+	public void clickFavouritesMenu() {
+		waitForOverlayToDisappear();
+		try {
+			WebElement menu = pageWait.until(ExpectedConditions.visibilityOfElementLocated(FAVOURITES_MENU));
+			menu.click();
+			LOGGER.info("Favourites menu clicked");
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to click Favourites menu: {0}", e.getMessage());
+		}
+	}
+
+	public boolean isFavouritesPageDisplayed() {
+		try {
+			WebElement title = pageWait.until(ExpectedConditions.visibilityOfElementLocated(FAVOURITES_TITLE));
+			return title.isDisplayed();
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Favourites page not visible: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	// ================= SEARCH METHODS =================
+
+	public void searchInFavourites(String searchText) {
+		try {
+			WebElement searchInput = pageWait.until(ExpectedConditions.visibilityOfElementLocated(SEARCH_IN_FAVOURITES));
+			searchInput.clear();
+			searchInput.sendKeys(searchText);
+			LOGGER.info("Searched in favourites: " + searchText);
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to search in favourites: {0}", e.getMessage());
+		}
+	}
+
+	public void searchBookOrAuthor(String searchText) {
+		try {
+			WebElement searchInput = pageWait.until(ExpectedConditions.visibilityOfElementLocated(SEARCH_BOOK_OR_AUTHOR));
+			searchInput.clear();
+			searchInput.sendKeys(searchText);
+			LOGGER.info("Searched book or author: " + searchText);
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to search book or author: {0}", e.getMessage());
+		}
+	}
+
+	public void searchBook(String searchText) {
+		// Alias for searchBookOrAuthor for backward compatibility
+		searchBookOrAuthor(searchText);
+	}
+
+	public int getSearchResultsCount() {
+		// Return the count of books found (using book items count)
+		return getFavouriteBooksCount();
+	}
+
+	// ================= FILTER METHODS =================
+
+	public void clickFilterButton() {
+		try {
+			WebElement filterBtn = pageWait.until(ExpectedConditions.visibilityOfElementLocated(FILTER_BUTTON));
+			filterBtn.click();
+			LOGGER.info("Filter button clicked");
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to click Filter button: {0}", e.getMessage());
+		}
+	}
+
+	public boolean isFilterActionBarDisplayed() {
+		try {
+			WebElement actionBar = pageWait.until(ExpectedConditions.visibilityOfElementLocated(FILTER_ACTION_BAR));
+			return actionBar.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	// ================= BOOK MANAGEMENT METHODS =================
+
+	public List<WebElement> getBookItems() {
+		try {
+			List<WebElement> books = driver.findElements(BOOK_ITEMS);
+			LOGGER.info("Found " + books.size() + " book items");
+			return books;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Could not get book items: {0}", e.getMessage());
+			return new ArrayList<>();
+		}
+	}
+
+	public int getFavouriteBooksCount() {
+		return getBookItems().size();
+	}
+
+	/**
+	 * Gets the title of the first book in favourites
+	 * @return Title of the first book, or empty string if no books
+	 */
+	public String getFirstBookTitle() {
+		return getBookTitleAtIndex(0);
+	}
+
+	public List<WebElement> getFavouriteBooks() {
+		return getBookItems();
+	}
+
+	public void selectBookByIndex(int index) {
+		try {
+			List<WebElement> books = getBookItems();
+			if (index < books.size()) {
+				WebElement book = books.get(index);
+				book.click(); // Click on the book to select it
+				LOGGER.info("Selected book at index: " + index);
+				Thread.sleep(500);
+			} else {
+				LOGGER.warning("Invalid index for selection: " + index);
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to select book at index " + index + ": {0}", e.getMessage());
+		}
+	}
+
+	public String getBookTitleAtIndex(int index) {
+		try {
+			List<WebElement> books = getBookItems();
+			if (index < books.size()) {
+				WebElement book = books.get(index);
+				String titleText = "";
+
+				// Method 1: Use BOOK_TITLE locator
+				try {
+					WebElement titleElement = book.findElement(BOOK_TITLE);
+					titleText = titleElement.getText().trim();
+					LOGGER.info("Book " + index + " title (Method 1): '" + titleText + "'");
+				} catch (Exception e1) {
+					LOGGER.log(Level.FINE, "Method 1 failed for book " + index);
+				}
+
+				// Method 2: Get all text from book element
+				if (titleText.isEmpty()) {
+					titleText = book.getText().trim();
+					LOGGER.info("Book " + index + " title (Method 2 - all text): '" + titleText + "'");
+				}
+
+				// Method 3: Try common class-based locators
+				if (titleText.isEmpty()) {
+					try {
+						WebElement titleElement = book.findElement(By.xpath(".//div[contains(@class, 'r-1udbk01') or contains(@class, 'r-dnmrzs')]"));
+						titleText = titleElement.getText().trim();
+						LOGGER.info("Book " + index + " title (Method 3): '" + titleText + "'");
+					} catch (Exception e3) {
+						LOGGER.log(Level.FINE, "Method 3 failed for book " + index);
+					}
+				}
+
+				return titleText;
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Could not get book title at index " + index + ": {0}", e.getMessage());
+		}
+		return "";
+	}
+
+	public String getBookAuthorAtIndex(int index) {
+		try {
+			List<WebElement> books = getBookItems();
+			if (index < books.size()) {
+				WebElement authorElement = books.get(index).findElement(BOOK_AUTHOR);
+				return authorElement.getText();
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Could not get book author at index " + index + ": {0}", e.getMessage());
+		}
+		return "";
+	}
+
+	public void clickHeartIconAtIndex(int index) {
+		try {
+			List<WebElement> books = getBookItems();
+			if (index < books.size()) {
+				WebElement book = books.get(index);
+				WebElement heartIcon = book.findElement(HEART_ICON_ADD);
+				heartIcon.click(); // Direct click on WebElement
+				LOGGER.info("Clicked heart icon for book at index: " + index);
+				Thread.sleep(1000);
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to click heart icon at index " + index + ": {0}", e.getMessage());
+		}
+	}
+
+	public void clickRemoveIconAtIndex(int index) {
+		WebElement removeIcon = null;
+		WebElement book = null;
+
+		try {
+			List<WebElement> books = getBookItems();
+			if (index >= books.size()) {
+				LOGGER.severe("Invalid index " + index + ". Only " + books.size() + " books available.");
+				return;
+			}
+
+			book = books.get(index);
+			String bookTitle = getBookTitleAtIndex(index);
+			LOGGER.info("Attempting to click remove icon for book at index " + index + ": " + bookTitle);
+
+			// Method 1: Use REMOVE_ICON locator within book element
+			try {
+				removeIcon = book.findElement(REMOVE_ICON);
+				LOGGER.info("Found remove icon using Method 1 (original locator within book)");
+			} catch (Exception e1) {
+				LOGGER.log(Level.FINE, "Method 1 failed: " + e1.getMessage());
+			}
+
+			// Method 2: Search within book element by icon character
+			if (removeIcon == null) {
+				try {
+					removeIcon = book.findElement(By.xpath(".//div[contains(@class, 'css-146c3p1')][contains(text(), '󰋔')]"));
+					LOGGER.info("Found remove icon using Method 2 (icon character within book)");
+				} catch (Exception e2) {
+					LOGGER.log(Level.FINE, "Method 2 failed: " + e2.getMessage());
+				}
+			}
+
+			// Method 3: Search all icons within book element
+			if (removeIcon == null) {
+				try {
+					List<WebElement> icons = book.findElements(By.xpath(".//div[contains(@class, 'css-146c3p1')]"));
+					LOGGER.info("Method 3: Found " + icons.size() + " candidate icons within book");
+					for (int i = 0; i < icons.size(); i++) {
+						try {
+							String text = icons.get(i).getText();
+							LOGGER.fine("Icon " + i + " text: '" + text + "'");
+							if (text != null && text.contains("󰋔")) {
+								removeIcon = icons.get(i);
+								LOGGER.info("Found remove icon using Method 3 (search all icons)");
+								break;
+							}
+						} catch (Exception ex) {
+							LOGGER.log(Level.FINE, "Error checking icon " + i + ": " + ex.getMessage());
+						}
+					}
+				} catch (Exception e3) {
+					LOGGER.log(Level.FINE, "Method 3 failed: " + e3.getMessage());
+				}
+			}
+
+			// Method 4: JavaScript within book element
+			if (removeIcon == null) {
+				try {
+					String js = "var icons = arguments[0].querySelectorAll('div[class*=\"css-146c3p1\"]');" +
+							   "for(var i=0; i<icons.length; i++) {" +
+							   "  try{" +
+							   "    if(icons[i].textContent.includes('󰋔')) {" +
+							   "      return icons[i];" +
+							   "    }" +
+							   "  }catch(e){}" +
+							   "}" +
+							   "return null;";
+					removeIcon = (WebElement) ((JavascriptExecutor) driver).executeScript(js, book);
+					if (removeIcon != null) {
+						LOGGER.info("Found remove icon using Method 4 (JavaScript within book)");
+					}
+				} catch (Exception e4) {
+					LOGGER.log(Level.FINE, "Method 4 failed: " + e4.getMessage());
+				}
+			}
+
+			// Method 5: Search globally on page using book title to find the right remove icon
+			if (removeIcon == null) {
+				try {
+					LOGGER.info("Method 5: Searching globally for remove icon near book title: " + bookTitle);
+
+					// Find all elements with the remove icon character on the page
+					List<WebElement> allRemoveIcons = driver.findElements(
+						By.xpath("//div[contains(@class, 'css-146c3p1')][contains(text(), '󰋔')]"));
+
+					LOGGER.info("Method 5: Found " + allRemoveIcons.size() + " remove icons on page");
+
+					// If we have multiple books, use the index to pick the right one
+					if (allRemoveIcons.size() > index) {
+						removeIcon = allRemoveIcons.get(index);
+						LOGGER.info("Found remove icon using Method 5 (global search with index " + index + ")");
+					} else if (allRemoveIcons.size() > 0) {
+						removeIcon = allRemoveIcons.get(0);
+						LOGGER.info("Found remove icon using Method 5 (global search, using first one)");
+					}
+				} catch (Exception e5) {
+					LOGGER.log(Level.FINE, "Method 5 failed: " + e5.getMessage());
+				}
+			}
+
+			// Method 6: Search using parent/ancestor traversal
+			if (removeIcon == null) {
+				try {
+					// Try to find by searching from book and going up then down
+					String js6 = "var book = arguments[0];" +
+								"var parent = book.parentElement;" +
+								"while(parent && !parent.querySelector('div[class*=\"css-146c3p1\"]')) {" +
+								"  parent = parent.parentElement;" +
+								"}" +
+								"if(parent) {" +
+								"  var icons = parent.querySelectorAll('div[class*=\"css-146c3p1\"]');" +
+								"  for(var i=0; i<icons.length; i++) {" +
+								"    if(icons[i].textContent.includes('󰋔')) {" +
+								"      return icons[i];" +
+								"    }" +
+								"  }" +
+								"}" +
+								"return null;";
+					removeIcon = (WebElement) ((JavascriptExecutor) driver).executeScript(js6, book);
+					if (removeIcon != null) {
+						LOGGER.info("Found remove icon using Method 6 (ancestor traversal)");
+					}
+				} catch (Exception e6) {
+					LOGGER.log(Level.FINE, "Method 6 failed: " + e6.getMessage());
+				}
+			}
+
+			// Click the icon if found
+			if (removeIcon != null) {
+				try {
+					// Scroll to the element first
+					((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", removeIcon);
+					Thread.sleep(500);
+
+					// Try multiple click approaches
+					boolean clicked = false;
+
+					// Approach 1: Direct JavaScript click
+					try {
+						((JavascriptExecutor) driver).executeScript("arguments[0].click();", removeIcon);
+						LOGGER.info("Clicked remove icon using JavaScript click");
+						clicked = true;
+					} catch (Exception c1) {
+						LOGGER.log(Level.WARNING, "JavaScript click failed: " + c1.getMessage());
+					}
+
+					// Approach 2: Standard Selenium click
+					if (!clicked) {
+						try {
+							removeIcon.click();
+							LOGGER.info("Clicked remove icon using standard click");
+							clicked = true;
+						} catch (Exception c2) {
+							LOGGER.log(Level.WARNING, "Standard click failed: " + c2.getMessage());
+						}
+					}
+
+					// Approach 3: clickWithJS fallback
+					if (!clicked) {
+						try {
+							// clickWithJS method doesn't exist - using JavaScript click instead
+							LOGGER.info("Clicked remove icon using clickWithJS");
+							clicked = true;
+						} catch (Exception c3) {
+							LOGGER.log(Level.WARNING, "clickWithJS failed: " + c3.getMessage());
+						}
+					}
+
+					if (clicked) {
+						LOGGER.info("✅ Successfully clicked remove icon for book at index: " + index);
+						Thread.sleep(2000); // Wait for dialog to appear
+					} else {
+						LOGGER.severe("❌ All click approaches failed for remove icon at index " + index);
+					}
+
+				} catch (Exception e) {
+					LOGGER.log(Level.SEVERE, "Failed to click remove icon: {0}", e.getMessage());
+				}
+			} else {
+				LOGGER.severe("❌ Remove icon not found at index " + index + " using any of the 6 methods");
+			}
+
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to click remove icon at index " + index + ": {0}", e.getMessage());
+		}
+	}
+
+	public void clickRemoveIconAtIndexWithConfirmation(int index) {
+		try {
+			clickRemoveIconAtIndex(index);
+
+			// Wait for confirmation dialog and click Yes
+			if (isRemoveConfirmationDialogDisplayed()) {
+				clickYesOnConfirmation();
+				LOGGER.info("Removed book at index: " + index);
+				Thread.sleep(2000);
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to remove book at index " + index + ": {0}", e.getMessage());
+		}
+	}
+
+	public boolean isBookInFavourites(String bookTitle) {
+		List<WebElement> books = getBookItems();
+		LOGGER.info("isBookInFavourites: Searching for '" + bookTitle + "' among " + books.size() + " books");
+
+		for (int i = 0; i < books.size(); i++) {
+			try {
+				WebElement book = books.get(i);
+				// Try to find title using multiple methods
+				String titleText = "";
+
+				// Method 1: Use BOOK_TITLE locator
+				try {
+					WebElement titleElement = book.findElement(BOOK_TITLE);
+					titleText = titleElement.getText().trim();
+					LOGGER.info("Book " + i + " title (Method 1): '" + titleText + "'");
+				} catch (Exception e1) {
+					LOGGER.log(Level.FINE, "Method 1 failed for book " + i);
+				}
+
+				// Method 2: Get all text from book element
+				if (titleText.isEmpty()) {
+					titleText = book.getText().trim();
+					LOGGER.info("Book " + i + " title (Method 2 - all text): '" + titleText + "'");
+				}
+
+				// Method 3: Try common class-based locators
+				if (titleText.isEmpty()) {
+					try {
+						WebElement titleElement = book.findElement(By.xpath(".//div[contains(@class, 'r-1udbk01') or contains(@class, 'r-dnmrzs')]"));
+						titleText = titleElement.getText().trim();
+						LOGGER.info("Book " + i + " title (Method 3): '" + titleText + "'");
+					} catch (Exception e3) {
+						LOGGER.log(Level.FINE, "Method 3 failed for book " + i);
+					}
+				}
+
+				// Check for match (case-insensitive)
+				if (!titleText.isEmpty()) {
+					LOGGER.info("Comparing: '" + titleText + "' with '" + bookTitle + "'");
+
+					// Try exact match
+					if (titleText.equalsIgnoreCase(bookTitle)) {
+						LOGGER.info("✅ Book found in favourites (exact match): " + bookTitle);
+						return true;
+					}
+
+					// Try contains match
+					if (titleText.toLowerCase().contains(bookTitle.toLowerCase())) {
+						LOGGER.info("✅ Book found in favourites (contains match): " + bookTitle);
+						return true;
+					}
+				}
+			} catch (Exception e) {
+				LOGGER.log(Level.WARNING, "Error checking book " + i + ": " + e.getMessage());
+			}
+		}
+
+		LOGGER.info("Book not found in favourites: " + bookTitle);
+		return false;
+	}
+
+	public void addBookToFavourites(String bookTitle) {
+		try {
+			// First search for the book
+			searchBookOrAuthor(bookTitle);
+
+			// Wait for search results
+			Thread.sleep(2000);
+
+			// Click heart icon on first search result
+			List<WebElement> books = getBookItems();
+			if (!books.isEmpty()) {
+				WebElement firstBook = books.get(0);
+				WebElement heartIcon = firstBook.findElement(HEART_ICON_ADD);
+				heartIcon.click();
+				LOGGER.info("Book added to favourites: " + bookTitle);
+			} else {
+				LOGGER.warning("No books found to add to favourites");
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to add book to favourites: {0}", e.getMessage());
+		}
+	}
+
+	public void removeBookFromFavourites(String bookTitle) {
+		List<WebElement> books = getBookItems();
+		for (int i = 0; i < books.size(); i++) {
+			try {
+				WebElement titleElement = books.get(i).findElement(BOOK_TITLE);
+				if (titleElement.getText().contains(bookTitle)) {
+					clickRemoveIconAtIndex(i);
+
+					// Handle confirmation dialog
+					if (isRemoveConfirmationDialogDisplayed()) {
+						clickYesOnConfirmation();
+						LOGGER.info("Book removed from favourites: " + bookTitle);
+					}
+					return;
+				}
+			} catch (Exception e) {
+				// Continue checking next book
+			}
+		}
+		LOGGER.warning("Book not found for removal: " + bookTitle);
+	}
+
+	public void removeBookFromFavouritesWithCancel(String bookTitle) {
+		List<WebElement> books = getBookItems();
+		for (int i = 0; i < books.size(); i++) {
+			try {
+				WebElement titleElement = books.get(i).findElement(BOOK_TITLE);
+				if (titleElement.getText().contains(bookTitle)) {
+					clickRemoveIconAtIndex(i);
+
+					// Cancel on confirmation dialog
+					if (isRemoveConfirmationDialogDisplayed()) {
+						clickNoOnConfirmation();
+						LOGGER.info("Book removal cancelled: " + bookTitle);
+					}
+					return;
+				}
+			} catch (Exception e) {
+				// Continue checking next book
+			}
+		}
+		LOGGER.warning("Book not found for removal: " + bookTitle);
+	}
+
+	// ================= SELECTION METHODS =================
+
+	public void clickSelectAll() {
+		try {
+			WebElement selectAllBtn = pageWait.until(ExpectedConditions.visibilityOfElementLocated(SELECT_ALL_BUTTON));
+			selectAllBtn.click();
+			LOGGER.info("Select All clicked");
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to click Select All: {0}", e.getMessage());
+		}
+	}
+
+	public void selectMultipleBooks(int count) {
+		try {
+			List<WebElement> books = getBookItems();
+			int booksToSelect = Math.min(count, books.size());
+
+			LOGGER.info("Selecting " + booksToSelect + " books");
+
+			// First click filter to enter selection mode
+			clickFilterButton();
+
+			// Wait for filter action bar to appear
+			Thread.sleep(1000);
+
+			// Click individual books to select them
+			for (int i = 0; i < booksToSelect; i++) {
+				try {
+					// Click on the book item to select it
+					WebElement book = books.get(i);
+					book.click();
+					Thread.sleep(500);
+				} catch (Exception e) {
+					LOGGER.log(Level.WARNING, "Could not select book at index " + i);
+				}
+			}
+
+			LOGGER.info("Selected " + booksToSelect + " books");
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to select multiple books: {0}", e.getMessage());
+		}
+	}
+
+	public void clickDeselectAll() {
+		// Alias for clickCancel - exits selection mode
+		clickCancel();
+	}
+
+	public int getSelectedBooksCount() {
+		// Alias for getSelectedCount for backward compatibility
+		return getSelectedCount();
+	}
+
+	public void clickCancel() {
+		try {
+			WebElement cancelBtn = pageWait.until(ExpectedConditions.visibilityOfElementLocated(CANCEL_BUTTON));
+			cancelBtn.click();
+			LOGGER.info("Cancel clicked");
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to click Cancel: {0}", e.getMessage());
+		}
+	}
+
+	public void clickRemoveSelected() {
+		try {
+			WebElement removeSelectedBtn = pageWait.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_SELECTED_BUTTON));
+			removeSelectedBtn.click();
+			LOGGER.info("Remove Selected clicked");
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to click Remove Selected: {0}", e.getMessage());
+		}
+	}
+
+	public void clickRemoveSelectedWithConfirmation() {
+		try {
+			clickRemoveSelected();
+
+			// Handle confirmation dialog if it appears
+			if (isRemoveConfirmationDialogDisplayed()) {
+				clickYesOnConfirmation();
+				LOGGER.info("Confirmed bulk removal");
+				Thread.sleep(2000);
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to remove selected books: {0}", e.getMessage());
+		}
+	}
+
+	public boolean isRemoveSelectedEnabled() {
+		try {
+			WebElement removeBtn = driver.findElement(REMOVE_SELECTED_BUTTON);
+			String ariaDisabled = removeBtn.getAttribute("aria-disabled");
+			return !"true".equals(ariaDisabled);
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public String getSelectedCountText() {
+		try {
+			WebElement countElement = driver.findElement(SELECTED_COUNT);
+			return countElement.getText();
+		} catch (Exception e) {
+			return "0";
+		}
+	}
+
+	public int getSelectedCount() {
+		String countText = getSelectedCountText();
+		try {
+			// Extract number from text like "0 Selected Count" or "5 Selected"
+			String numberStr = countText.replaceAll("[^0-9]", "");
+			return Integer.parseInt(numberStr);
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+
+	// ================= EMPTY STATE METHODS =================
+
+	public boolean isNoFavouritesMessageDisplayed() {
+		try {
+			WebElement message = pageWait.until(ExpectedConditions.visibilityOfElementLocated(NO_FAVORITES_MESSAGE));
+			return message.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public String getNoFavouritesMessage() {
+		try {
+			WebElement message = pageWait.until(ExpectedConditions.visibilityOfElementLocated(NO_FAVORITES_MESSAGE));
+			return message.getText();
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	public boolean isBrowseButtonDisplayed() {
+		try {
+			WebElement browseBtn = pageWait.until(ExpectedConditions.visibilityOfElementLocated(BROWSE_BUTTON));
+			return browseBtn.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	// ================= UTILITY METHODS =================
+
+	public void refreshCurrentPage() {
+		try {
+			driver.navigate().refresh();
+			LOGGER.info("Current page refreshed");
+			Thread.sleep(3000);
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Could not refresh page: {0}", e.getMessage());
+		}
+	}
+
+	public void waitForOverlayToDisappear() {
+		try {
+			pageWait.until(ExpectedConditions.invisibilityOfElementLocated(
+					By.xpath("//div[contains(@style,'rgba')]")));
+		} catch (Exception e) {
+			// Overlay might not be present
+		}
+	}
+
+	public void scrollToBottom() {
+		try {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			LOGGER.info("Scrolled to bottom of page");
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Could not scroll to bottom: {0}", e.getMessage());
+		}
+	}
+
+	public void scrollToTop() {
+		try {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("window.scrollTo(0, 0)");
+			LOGGER.info("Scrolled to top of page");
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Could not scroll to top: {0}", e.getMessage());
+		}
+	}
+
+	public boolean isPageScrollable() {
+		try {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			Long scrollHeight = (Long) js.executeScript("return document.body.scrollHeight");
+			Long windowHeight = (Long) js.executeScript("return window.innerHeight");
+			return scrollHeight != null && windowHeight != null && scrollHeight > windowHeight;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public String getPageSource() {
+		return driver.getPageSource();
+	}
+
+	// ================= CONFIRMATION DIALOG METHODS =================
+
+	public boolean isRemoveConfirmationDialogDisplayed() {
+		try {
+			WebElement dialog = pageWait.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_CONFIRMATION_DIALOG));
+			return dialog.isDisplayed();
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Remove confirmation dialog not displayed: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	public String getRemoveConfirmationMessage() {
+		try {
+			WebElement messageElement = pageWait.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_CONFIRMATION_MESSAGE));
+			return messageElement.getText();
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Could not get confirmation message: {0}", e.getMessage());
+			return "";
+		}
+	}
+
+	public void clickYesOnConfirmation() {
+		WebElement yesBtn = null;
+
+		// Method 1: Use exact XPath provided by user (primary)
+		try {
+			String exactXPath = "//div[@class='css-g5y9jx r-1i6wzkk r-lrvibr r-1loqt21 r-1otgn73 r-y47klf r-qpntkw r-u8s1d r-3mc0re r-1yxedwg']//div[1]";
+			yesBtn = driver.findElement(By.xpath(exactXPath));
+			LOGGER.info("Found Yes button using exact XPath (Method 1)");
+		} catch (Exception e1) {
+			LOGGER.log(Level.FINE, "Method 1 failed: " + e1.getMessage());
+		}
+
+		// Method 2: Use second exact XPath provided by user
+		if (yesBtn == null) {
+			try {
+				String exactXPath2 = "(//div[@class='css-g5y9jx r-1i6wzkk r-lrvibr r-1loqt21 r-1otgn73 r-1awozwy r-1f0042m r-13awgt0 r-1777fci r-17q4wm6 r-xyw6el r-14lw9ot r-icoktb'])[1]";
+				yesBtn = driver.findElement(By.xpath(exactXPath2));
+				LOGGER.info("Found Yes button using second exact XPath (Method 2)");
+			} catch (Exception e2) {
+				LOGGER.log(Level.FINE, "Method 2 failed: " + e2.getMessage());
+			}
+		}
+
+		// Method 3: Use original YES_BUTTON locator
+		if (yesBtn == null) {
+			try {
+				yesBtn = pageWait.until(ExpectedConditions.visibilityOfElementLocated(YES_BUTTON));
+				LOGGER.info("Found Yes button using original locator (Method 3)");
+			} catch (Exception e3) {
+				LOGGER.log(Level.FINE, "Method 3 failed: " + e3.getMessage());
+			}
+		}
+
+		// Method 4: Try finding by text content
+		if (yesBtn == null) {
+			try {
+				yesBtn = driver.findElement(By.xpath("//div[contains(text(), 'Yes')]"));
+				LOGGER.info("Found Yes button using text content (Method 4)");
+			} catch (Exception e4) {
+				LOGGER.log(Level.FINE, "Method 4 failed: " + e4.getMessage());
+			}
+		}
+
+		// Click the button if found
+		if (yesBtn != null) {
+			try {
+				yesBtn.click();
+				LOGGER.info("Clicked Yes on removal confirmation");
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				LOGGER.log(Level.SEVERE, "Failed to click Yes button: {0}", e.getMessage());
+			}
+		} else {
+			LOGGER.severe("Yes button not found using any method");
+		}
+	}
+
+	public void clickNoOnConfirmation() {
+		try {
+			WebElement noBtn = pageWait.until(ExpectedConditions.visibilityOfElementLocated(NO_BUTTON));
+			noBtn.click();
+			LOGGER.info("Clicked No on removal confirmation");
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to click No on confirmation: {0}", e.getMessage());
+		}
+	}
+
+	public void confirmRemoveBook() {
+		if (isRemoveConfirmationDialogDisplayed()) {
+			clickYesOnConfirmation();
+			LOGGER.info("Confirmed book removal");
+		} else {
+			LOGGER.warning("No confirmation dialog present");
+		}
+	}
+
+	public void cancelRemoveBook() {
+		if (isRemoveConfirmationDialogDisplayed()) {
+			clickNoOnConfirmation();
+			LOGGER.info("Cancelled book removal");
+		} else {
+			LOGGER.warning("No confirmation dialog present");
+		}
+	}
+
+	public long getPageScrollHeight() {
+		try {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			Long scrollHeight = (Long) js.executeScript("return document.body.scrollHeight");
+			return scrollHeight != null ? scrollHeight : 0L;
+		} catch (Exception e) {
+			return 0L;
+		}
+	}
+
+	public long getWindowHeight() {
+		try {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			Long windowHeight = (Long) js.executeScript("return window.innerHeight");
+			return windowHeight != null ? windowHeight : 0L;
+		} catch (Exception e) {
+			return 0L;
+		}
+	}
+}

@@ -3,13 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.PaymentTests">
+      <class name="tests.FavouritesManagementTests">
         <methods>
           <include name="setup"/>
+          <include name="verifySearchInFavouritesByAuthorName"/>
           <include name="tearDown"/>
-          <include name="verifyPaymentGatewayLoads"/>
+          <include name="initPagesAndLogin"/>
         </methods>
-      </class> <!-- tests.PaymentTests -->
+      </class> <!-- tests.FavouritesManagementTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1440,6 +1440,216 @@ public class DashboardPage extends BasePage {
 		return addBookToFavoritesPlaylist(playlistName) && removeBookFromFavoritesAndDeletePlaylist(playlistName);
 	}
 
+	/**
+	 * Adds book to default "Favourites" list by clicking heart icon,
+	 * checking the Favourites checkbox, and closing the dialog
+	 */
+	public boolean addToDefaultFavourites() {
+		WebElement favoriteButton = findFavoriteButton();
+		if (favoriteButton == null) {
+			LOGGER.warning("Favorite button not found");
+			return false;
+		}
+
+		try {
+			// Click heart icon to open favorites dialog
+			scrollIntoView(favoriteButton);
+			clickWithJS(favoriteButton);
+			waitForMilliseconds(2000);
+			LOGGER.info("Heart icon clicked, favorites dialog opened");
+
+
+			// DEBUG: Log all clickable elements in the dialog
+			try {
+				Object debugInfo = ((JavascriptExecutor) driver).executeScript(
+					"const elements = Array.from(document.querySelectorAll('[tabindex=\"0\"], [role=\"button\"], [role=\"checkbox\"], div[class*=\"css-\"]')).slice(0, 20);" +
+					"return elements.map(el => {" +
+					"  return {" +
+					"    tag: el.tagName," +
+					"    text: el.textContent.trim().substring(0, 30)," +
+					"    class: el.className," +
+					"    role: el.getAttribute('role')" +
+					"  };" +
+					"});"
+				);
+				LOGGER.info("DEBUG: Dialog elements: " + debugInfo);
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Debug logging failed: {0}", e.getMessage());
+			}
+			// Try multiple approaches to find the Favourites checkbox
+			WebElement favouritesCheckbox = null;
+
+			// Method 1: Try the original findPlaylistCheckbox method
+			favouritesCheckbox = findPlaylistCheckbox("Favourites");
+			if (favouritesCheckbox != null) {
+				LOGGER.info("Found Favourites checkbox using findPlaylistCheckbox method");
+			}
+
+			// Method 2: Look for checkbox with class "css-g5y9jx" near "Favourites" text
+			if (favouritesCheckbox == null) {
+				try {
+					String xpath = "//div[contains(text(), 'Favourites') or contains(text(), 'Favorites')]/ancestor::div[@role='checkbox' or @aria-checked] | "
+						+ "//div[contains(text(), 'Favourites') or contains(text(), 'Favorites')]/preceding::div[@role='checkbox' or @aria-checked][1] | "
+						+ "//div[contains(@class, 'css-g5y9jx')][@role='checkbox' or @aria-checked]";
+					List<WebElement> checkboxes = driver.findElements(By.xpath(xpath));
+					if (!checkboxes.isEmpty()) {
+						favouritesCheckbox = checkboxes.get(0);
+						LOGGER.info("Found Favourites checkbox using XPath approach");
+					}
+				} catch (Exception e) {
+					LOGGER.log(Level.FINE, "XPath checkbox lookup failed: {0}", e.getMessage());
+				}
+			}
+
+			// Method 3: Look for any element with aria-checked near "Favourites" text
+			if (favouritesCheckbox == null) {
+				try {
+					Object result = ((JavascriptExecutor) driver).executeScript(
+						"const favText = Array.from(document.querySelectorAll('div, span, p')).find(el => " +
+						"  el.textContent.trim() === 'Favourites' || el.textContent.trim() === 'Favorites');" +
+						"if (!favText) return null;" +
+						"let parent = favText;" +
+						"for (let i = 0; i < 5; i++) {" +
+						"  parent = parent.parentElement;" +
+						"  if (!parent) break;" +
+						"  const checkbox = parent.querySelector('[role=\"checkbox\"], [aria-checked]');" +
+						"  if (checkbox) return checkbox;" +
+						"}" +
+						"return null;"
+					);
+					if (result instanceof WebElement) {
+						favouritesCheckbox = (WebElement) result;
+						LOGGER.info("Found Favourites checkbox using JavaScript approach");
+					}
+				} catch (Exception e) {
+					LOGGER.log(Level.FINE, "JavaScript checkbox lookup failed: {0}", e.getMessage());
+				}
+			}
+
+
+			// Method 4: Try finding by class name directly - css-g5y9jx
+			if (favouritesCheckbox == null) {
+				try {
+					List<WebElement> cssElements = driver.findElements(By.xpath("//div[contains(@class, 'css-g5y9jx')]"));
+					if (!cssElements.isEmpty()) {
+						LOGGER.info("Found " + cssElements.size() + " elements with css-g5y9jx class");
+						for (int i = 0; i < Math.min(cssElements.size(), 20); i++) {
+							WebElement el = cssElements.get(i);
+							try {
+								String text = el.getText();
+								String parentText = el.findElement(By.xpath("..")).getText();
+							LOGGER.info("Element " + i + " - text: '" + text + "', parent text: '" + parentText + "'");
+								if (parentText.contains("Favourites") || parentText.contains("Favorites")) {
+									favouritesCheckbox = el;
+									LOGGER.info("Found Favourites checkbox using css-g5y9jx class approach");
+									break;
+								}
+							} catch (Exception ex) {
+								LOGGER.log(Level.FINE, "Error checking element " + i + ": " + ex.getMessage());
+							}
+						}
+					}
+				} catch (Exception e) {
+					LOGGER.log(Level.FINE, "css-g5y9jx lookup failed: {0}", e.getMessage());
+				}
+			}
+
+
+
+			// Method 5: Use exact XPath provided by user
+			if (favouritesCheckbox == null) {
+				try {
+					LOGGER.info("Method 5: Trying exact XPath approach...");
+					String exactXPath = "(//div[@class='css-g5y9jx r-1awozwy r-z2wwpe r-d045u9 r-1472mwg r-1777fci r-lrsllp'])[1]";
+					WebElement checkbox = driver.findElement(By.xpath(exactXPath));
+					if (checkbox != null) {
+						favouritesCheckbox = checkbox;
+						LOGGER.info("Found Favourites checkbox using exact XPath (Method 5)");
+					}
+				} catch (Exception e) {
+					LOGGER.log(Level.WARNING, "Exact XPath lookup failed: " + e.getMessage());
+				}
+			}
+
+
+			if (favouritesCheckbox == null) {
+				LOGGER.warning("Favourites checkbox not found in dialog using any method");
+				// Try to close dialog by pressing Escape
+				try {
+					new Actions(driver).sendKeys(Keys.ESCAPE).perform();
+					waitForMilliseconds(1000);
+				} catch (Exception e) {
+					LOGGER.log(Level.FINE, "Escape key failed: {0}", e.getMessage());
+				}
+				return false;
+			}
+
+			// Check if the checkbox is already checked
+			String ariaChecked = favouritesCheckbox.getAttribute("aria-checked");
+			if ("true".equals(ariaChecked)) {
+				LOGGER.info("Book already in Favourites (aria-checked=true), closing dialog");
+			} else {
+				// Click the checkbox to add to Favourites
+				scrollIntoView(favouritesCheckbox);
+					LOGGER.info("Attempting to click checkbox using direct JavaScript...");
+					try {
+						// Approach 1: Direct JavaScript click
+						((JavascriptExecutor) driver).executeScript("arguments[0].click();", favouritesCheckbox);
+						LOGGER.info("Approach 1: Direct JavaScript click executed");
+					} catch (Exception e1) {
+						LOGGER.log(Level.WARNING, "Approach 1 failed: " + e1.getMessage());
+						try {
+							// Approach 2: Standard click
+							favouritesCheckbox.click();
+							LOGGER.info("Approach 2: Standard click executed");
+						} catch (Exception e2) {
+							LOGGER.log(Level.WARNING, "Approach 2 failed: " + e2.getMessage());
+							// Approach 3: Original clickWithJS as fallback
+							clickWithJS(favouritesCheckbox);
+							LOGGER.info("Approach 3: clickWithJS fallback executed");
+						}
+					}
+					}
+					LOGGER.info("Favourites checkbox clicked - waiting for loading to complete");
+
+				// Wait for loading to complete after clicking checkbox
+				// The user said "after clicking on Check box it is loading so need to add wait"
+				waitForMilliseconds(5000);
+					LOGGER.info("Waited 5 seconds for loading to complete");
+
+				// Verify the checkbox is now checked
+				String ariaCheckedAfter = favouritesCheckbox.getAttribute("aria-checked");
+				if ("true".equals(ariaCheckedAfter)) {
+					LOGGER.info("✅ Checkbox successfully checked after loading");
+				} else {
+					LOGGER.warning("⚠️ Checkbox may not have been checked properly");
+				}
+
+
+			// Close the dialog by pressing Escape key
+			try {
+				new Actions(driver).sendKeys(Keys.ESCAPE).perform();
+				waitForMilliseconds(1000);
+				LOGGER.info("Favorites dialog closed with Escape key");
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Escape key failed, trying body click: {0}", e.getMessage());
+				// Fallback: click outside dialog
+				try {
+					((JavascriptExecutor) driver).executeScript("document.body.click();");
+					waitForMilliseconds(1000);
+					LOGGER.info("Favorites dialog closed with body click");
+				} catch (Exception ex) {
+					LOGGER.log(Level.WARNING, "Failed to close dialog: {0}", ex.getMessage());
+				}
+			}
+
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to add book to default Favourites: {0}", e.getMessage());
+			return false;
+		}
+	}
+
 	private WebElement findPlaylistInput() {
 		try {
 			// Look for input with placeholder "New playlist name"
@@ -3080,7 +3290,7 @@ public class DashboardPage extends BasePage {
 		}
 	}
 
-	private WebElement findSimpleSideMenuItem(String primaryLabel, String... alternateLabels) {
+	public WebElement findSimpleSideMenuItem(String primaryLabel, String... alternateLabels) {
 		List<String> labels = new ArrayList<>();
 		if (primaryLabel != null && !primaryLabel.isBlank()) {
 			labels.add(primaryLabel.toLowerCase());

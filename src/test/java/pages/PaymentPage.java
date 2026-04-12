@@ -5,11 +5,13 @@ import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import base.BasePage;
 
 /**
  * Page object for the payment flow.
+ * Handles payment iframe switching for entering card details.
  */
 public class PaymentPage extends BasePage {
 
@@ -23,10 +25,40 @@ public class PaymentPage extends BasePage {
 	private static final By ERROR_MESSAGE = By.xpath("//*[contains(text(),'failed') or contains(text(),'declined')]");
 	private static final By SUCCESS_MESSAGE = By
 			.xpath("//*[contains(text(),'success') or contains(text(),'Payment successful')]");
+	private static final By PAYMENT_IFRAME = By.xpath("//iframe");
 
 	public PaymentPage(WebDriver driver) {
 		super(driver);
 	}
+
+	// ================= IFRAME HANDLING =================
+
+	/**
+	 * Switches to the payment iframe to enter card details
+	 */
+	public void switchToPaymentFrame() {
+		try {
+			WebElement iframe = wait.waitForElementVisible(PAYMENT_IFRAME);
+			driver.switchTo().frame(iframe);
+			LOGGER.info("Switched to payment iframe");
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to switch to payment iframe: {0}", e.getMessage());
+		}
+	}
+
+	/**
+	 * Switches back to default content after iframe operations
+	 */
+	public void switchToDefaultContent() {
+		try {
+			driver.switchTo().defaultContent();
+			LOGGER.info("Switched back to default content");
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Already in default content or failed to switch: {0}", e.getMessage());
+		}
+	}
+
+	// ================= PAYMENT ACTIONS =================
 
 	public void selectRazorpay() {
 		click(RAZORPAY_BTN);
@@ -56,17 +88,38 @@ public class PaymentPage extends BasePage {
 	}
 
 	public void enterCardDetails(String card, String expiry, String cvv) {
-		type(CARD_NUMBER, card);
-		type(EXPIRY_DATE, expiry);
-		type(CVV, cvv);
+		// Switch to payment iframe before entering details
+		switchToPaymentFrame();
+
+		try {
+			type(CARD_NUMBER, card);
+			type(EXPIRY_DATE, expiry);
+			type(CVV, cvv);
+			LOGGER.info("Card details entered in payment iframe");
+		} finally {
+			// Switch back to default content
+			switchToDefaultContent();
+		}
 	}
 
 	public void clickPay() {
-		click(PAY_BTN);
+		// Switch to payment iframe before clicking pay button
+		switchToPaymentFrame();
+
+		try {
+			click(PAY_BTN);
+			LOGGER.info("Pay button clicked in payment iframe");
+		} finally {
+			// Switch back to default content
+			switchToDefaultContent();
+		}
 	}
 
 	public void makePayment(String card, String expiry, String cvv) {
+		// Enter card details (handles iframe switching internally)
 		enterCardDetails(card, expiry, cvv);
+
+		// Click pay button (handles iframe switching internally)
 		clickPay();
 	}
 
@@ -87,22 +140,48 @@ public class PaymentPage extends BasePage {
 
 	public boolean isPaymentFailed() {
 		try {
-			wait.waitForElementVisible(ERROR_MESSAGE);
-			LOGGER.info("Payment failure message displayed");
-			return true;
+			// Check for error message in default content
+			boolean errorInDefault = !driver.findElements(ERROR_MESSAGE).isEmpty();
+			if (errorInDefault) {
+				LOGGER.info("Payment failure message displayed (default content)");
+				return true;
+			}
+
+			// Check for error message in payment iframe
+			switchToPaymentFrame();
+			try {
+				boolean errorInIframe = !driver.findElements(ERROR_MESSAGE).isEmpty();
+				LOGGER.info("Payment failure message displayed (payment iframe)");
+				return errorInIframe;
+			} finally {
+				switchToDefaultContent();
+			}
 		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Failure message not found");
+			LOGGER.log(Level.FINE, "Failure message not found: {0}", e.getMessage());
 			return false;
 		}
 	}
 
 	public boolean isPaymentSuccessful() {
 		try {
-			wait.waitForElementVisible(SUCCESS_MESSAGE);
-			LOGGER.info("Payment success message displayed");
-			return true;
+			// Check for success message in default content
+			boolean successInDefault = !driver.findElements(SUCCESS_MESSAGE).isEmpty();
+			if (successInDefault) {
+				LOGGER.info("Payment success message displayed (default content)");
+				return true;
+			}
+
+			// Check for success message in payment iframe
+			switchToPaymentFrame();
+			try {
+				boolean successInIframe = !driver.findElements(SUCCESS_MESSAGE).isEmpty();
+				LOGGER.info("Payment success message displayed (payment iframe)");
+				return successInIframe;
+			} finally {
+				switchToDefaultContent();
+			}
 		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Success message not found");
+			LOGGER.log(Level.FINE, "Success message not found: {0}", e.getMessage());
 			return false;
 		}
 	}

@@ -22,7 +22,27 @@
       "Read(//tmp/**)",
       "Bash(mvn test:*)",
       "Bash(export JAVA_HOME=\"/mnt/c/Program Files/Java/jdk-25.0.2\")",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(mvn test-compile:*)",
+      "Bash(mvn compile:*)",
+      "Bash(javac -version)",
+      "Bash(java -version)",
+      "Bash(export PATH=\"$JAVA_HOME/bin:$PATH\")",
+      "Read(//mnt/c/Program Files/**)",
+      "Read(//mnt/c/Program Files \\(x86\\)/**)",
+      "Bash(cmd.exe /c \"mvn -version\")",
+      "Bash(cmd.exe /c \"mvn test -Dtest=FavouritesManagementTests#verifyAddBookToFavourites\")",
+      "Bash(tee /tmp/test_output.log)",
+      "Bash(cmd.exe /c \"mvn test -Dtest=FavouritesManagementTests\")",
+      "Bash(tee /tmp/full_test_output.log)",
+      "Bash(cmd.exe /c \"mvn test -Dtest=FavouritesManagementTests#verifyEmptyFavouritesState,verifyAddBookToFavourites,verifyRemoveBookFromFavourites\")",
+      "Bash(tee /tmp/small_batch_test.log)",
+      "Bash(cmd.exe /c \"mvn test-compile\")",
+      "Bash(python /tmp/fix_tc406.py)",
+      "Bash(python3 /tmp/fix_tc406.py)",
+      "Bash(python2 /tmp/fix_tc406.py)",
+      "Bash(python3 /tmp/fix_dialog_wait.py2\n3)",
+      "Bash(python3 /tmp/fix_yes_click.py)"
     ]
   }
 }
