@@ -6,7 +6,7 @@
       <class name="tests.TransactionsTests">
         <methods>
           <include name="tearDown"/>
-          <include name="verifyFilterByStatusCompleted"/>
+          <include name="verifyMaxLengthTransactionId"/>
           <include name="setup"/>
         </methods>
       </class> <!-- tests.TransactionsTests -->
