@@ -21,7 +21,7 @@ import utils.ConfigReader;
 @Listeners({ TestListener.class, RetryListener.class })
 public class BaseTest {
 
-	private static final Logger LOGGER = Logger.getLogger(BaseTest.class.getName());
+	protected static final Logger LOGGER = Logger.getLogger(BaseTest.class.getName());
 
 	protected WebDriver driver;
 

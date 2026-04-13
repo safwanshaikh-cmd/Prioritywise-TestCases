@@ -17,7 +17,7 @@ import utils.WaitUtils;
  */
 public class BasePage {
 
-	private static final Logger LOGGER = Logger.getLogger(BasePage.class.getName());
+	protected static final Logger LOGGER = Logger.getLogger(BasePage.class.getName());
 
 	protected WebDriver driver;
 	protected WaitUtils wait;

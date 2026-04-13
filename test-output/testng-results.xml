@@ -1,36 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results retried="2" ignored="2" total="5" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-04-13T08:35:03 GST" name="Default suite" finished-at="2026-04-13T08:36:24 GST" duration-ms="80593">
+  <suite started-at="2026-04-13T12:32:13 GST" name="Default suite" finished-at="2026-04-13T12:36:40 GST" duration-ms="266324">
     <groups>
     </groups>
-    <test started-at="2026-04-13T08:35:03 GST" name="Default test" finished-at="2026-04-13T08:36:24 GST" duration-ms="80593">
-      <class name="tests.FavouritesManagementTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.FavouritesManagementTests@5bda8e08]" started-at="2026-04-13T08:35:04 GST" name="setup" finished-at="2026-04-13T08:35:18 GST" duration-ms="14357" status="PASS">
+    <test started-at="2026-04-13T12:32:13 GST" name="Default test" finished-at="2026-04-13T12:36:40 GST" duration-ms="266324">
+      <class name="tests.TransactionsTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.TransactionsTests@6ed3ccb2]" started-at="2026-04-13T12:32:14 GST" name="setup" finished-at="2026-04-13T12:32:28 GST" duration-ms="14104" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="initPagesAndLogin(java.lang.reflect.Method)[pri:0, instance:tests.FavouritesManagementTests@5bda8e08]" started-at="2026-04-13T08:35:18 GST" name="initPagesAndLogin" finished-at="2026-04-13T08:36:02 GST" duration-ms="44120" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void tests.FavouritesManagementTests.verifyUIConsistency()]]>
-              </value>
-            </param>
-          </params>
+        <test-method retried="true" signature="verifyFilterByStatusCompleted()[pri:431, instance:tests.TransactionsTests@6ed3ccb2]" started-at="2026-04-13T12:32:28 GST" name="verifyFilterByStatusCompleted" finished-at="2026-04-13T12:33:46 GST" duration-ms="78341" status="SKIP">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[TC_431: Should be able to retrieve transaction statuses expected [false] but found [true]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: TC_431: Should be able to retrieve transaction statuses expected [false] but found [true]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertFalse(Assert.java:79)
+at tests.TransactionsTests.verifyFilterByStatusCompleted(TransactionsTests.java:521)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- initPagesAndLogin -->
-        <test-method signature="verifyUIConsistency()[pri:418, instance:tests.FavouritesManagementTests@5bda8e08]" started-at="2026-04-13T08:36:02 GST" name="verifyUIConsistency" description="TC_418: Verify UI elements" finished-at="2026-04-13T08:36:23 GST" duration-ms="21403" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyUIConsistency -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.FavouritesManagementTests@5bda8e08]" started-at="2026-04-13T08:36:24 GST" name="tearDown" finished-at="2026-04-13T08:36:24 GST" duration-ms="541" status="PASS">
+        </test-method> <!-- verifyFilterByStatusCompleted -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.TransactionsTests@6ed3ccb2]" started-at="2026-04-13T12:33:46 GST" name="tearDown" finished-at="2026-04-13T12:33:47 GST" duration-ms="575" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- tests.FavouritesManagementTests -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.TransactionsTests@6ed3ccb2]" started-at="2026-04-13T12:33:47 GST" name="setup" finished-at="2026-04-13T12:33:56 GST" duration-ms="8883" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method retried="true" signature="verifyFilterByStatusCompleted()[pri:431, instance:tests.TransactionsTests@6ed3ccb2]" started-at="2026-04-13T12:33:56 GST" name="verifyFilterByStatusCompleted" finished-at="2026-04-13T12:35:15 GST" duration-ms="79176" status="SKIP">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[TC_431: Should be able to retrieve transaction statuses expected [false] but found [true]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: TC_431: Should be able to retrieve transaction statuses expected [false] but found [true]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertFalse(Assert.java:79)
+at tests.TransactionsTests.verifyFilterByStatusCompleted(TransactionsTests.java:521)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyFilterByStatusCompleted -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.TransactionsTests@6ed3ccb2]" started-at="2026-04-13T12:35:15 GST" name="tearDown" finished-at="2026-04-13T12:35:15 GST" duration-ms="505" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.TransactionsTests@6ed3ccb2]" started-at="2026-04-13T12:35:15 GST" name="setup" finished-at="2026-04-13T12:35:23 GST" duration-ms="7460" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="verifyFilterByStatusCompleted()[pri:431, instance:tests.TransactionsTests@6ed3ccb2]" started-at="2026-04-13T12:35:23 GST" name="verifyFilterByStatusCompleted" finished-at="2026-04-13T12:36:39 GST" duration-ms="76294" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[TC_431: Should be able to retrieve transaction statuses expected [false] but found [true]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: TC_431: Should be able to retrieve transaction statuses expected [false] but found [true]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertFalse(Assert.java:79)
+at tests.TransactionsTests.verifyFilterByStatusCompleted(TransactionsTests.java:521)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyFilterByStatusCompleted -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.TransactionsTests@6ed3ccb2]" started-at="2026-04-13T12:36:39 GST" name="tearDown" finished-at="2026-04-13T12:36:40 GST" duration-ms="466" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- tests.TransactionsTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
