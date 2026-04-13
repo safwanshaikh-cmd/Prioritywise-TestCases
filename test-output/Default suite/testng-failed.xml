@@ -6,9 +6,9 @@
       <class name="tests.FavouritesManagementTests">
         <methods>
           <include name="setup"/>
-          <include name="verifySearchInFavouritesByAuthorName"/>
           <include name="tearDown"/>
           <include name="initPagesAndLogin"/>
+          <include name="verifyGuestCannotAddFavourites"/>
         </methods>
       </class> <!-- tests.FavouritesManagementTests -->
     </classes>

@@ -325,8 +325,15 @@ public class FavouritesPage extends BasePage {
 			List<WebElement> books = getBookItems();
 			if (index < books.size()) {
 				WebElement book = books.get(index);
+				WebElement bookContainer = book;
 				try {
-					WebElement authorElement = book.findElement(BOOK_AUTHOR);
+					bookContainer = book.findElement(
+							By.xpath("./ancestor::div[@tabindex='0'][contains(@class,'css-g5y9jx')][1]"));
+				} catch (Exception ignored) {
+					// Fall back to the originally resolved element if no ancestor container is found.
+				}
+				try {
+					WebElement authorElement = bookContainer.findElement(BOOK_AUTHOR);
 					String authorText = authorElement.getText().trim();
 					if (!authorText.isEmpty()) {
 						return authorText;
@@ -335,7 +342,7 @@ public class FavouritesPage extends BasePage {
 					// Fall back to broader author extraction below.
 				}
 
-				List<WebElement> textNodes = book.findElements(By.xpath(".//div[@dir='auto']"));
+				List<WebElement> textNodes = bookContainer.findElements(By.xpath(".//div[@dir='auto']"));
 				List<String> texts = new ArrayList<>();
 				for (WebElement node : textNodes) {
 					String text = node.getText().trim();
