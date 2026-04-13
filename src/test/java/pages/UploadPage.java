@@ -3,6 +3,7 @@ package pages;
 import java.time.Duration;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,10 +19,14 @@ import base.BasePage;
  */
 public class UploadPage extends BasePage {
 
+	private static final Logger LOGGER = Logger.getLogger(UploadPage.class.getName());
 	private final WebDriverWait pageWait;
 
 	// Locators
-	private static final By UPLOAD_PAGE_HEADING = By.xpath("//h1[contains(text(), 'Upload') or contains(text(), 'upload')]");
+	private static final By UPLOAD_PAGE_READY = By.xpath(
+			"//*[@data-testid='input_book_title' or @data-testid='input_book_author' or @data-testid='input_book_summary']"
+					+ " | //*[contains(translate(normalize-space(.), 'UPLOAD CONTENT', 'upload content'), 'upload content')]"
+					+ " | //*[contains(translate(normalize-space(.), 'ADD BOOK', 'add book'), 'add book')]");
 
 	// Book upload form locators
 	private static final By BOOK_TITLE_INPUT = By.xpath("//input[@placeholder='Book Title' or @name='title' or contains(@aria-label, 'title')]");
@@ -29,7 +34,26 @@ public class UploadPage extends BasePage {
 	private static final By BOOK_CATEGORY_SELECT = By.xpath("//select[@name='category' or contains(@aria-label, 'category')] | //div[contains(@class, 'category')]");
 	private static final By BOOK_LANGUAGE_SELECT = By.xpath("//select[@name='language' or contains(@aria-label, 'language')] | //div[contains(@class, 'language')]");
 	private static final By COVER_IMAGE_UPLOAD = By.xpath("//input[@type='file' and @accept='image/*'] | //input[@name='cover' or contains(@aria-label, 'cover')]");
-	private static final By BOOK_FILE_UPLOAD = By.xpath("//input[@type='file' and @accept='.pdf,.mp3'] | //input[@name='file' or contains(@aria-label, 'file')]");
+	private static final By BOOK_FILE_UPLOAD = By.xpath(
+			"//input[@type='file' and (contains(translate(@accept,'PDFMP3AUDIO','pdfmp3audio'),'pdf')"
+					+ " or contains(translate(@accept,'PDFMP3AUDIO','pdfmp3audio'),'mp3')"
+					+ " or contains(translate(@accept,'PDFMP3AUDIO','pdfmp3audio'),'audio'))]"
+					+ " | //input[@type='file' and (contains(translate(@name,'FILEBOOKUPLOAD','filebookupload'),'file')"
+					+ " or contains(translate(@name,'FILEBOOKUPLOAD','filebookupload'),'book')"
+					+ " or contains(translate(@aria-label,'FILEBOOKUPLOAD','filebookupload'),'file')"
+					+ " or contains(translate(@aria-label,'FILEBOOKUPLOAD','filebookupload'),'book'))]");
+	private static final By GENERIC_FILE_INPUTS = By.cssSelector("input[type='file']");
+	private static final By BOOK_FILE_UPLOAD_TRIGGER = By.xpath(
+			"//*[self::div or self::button or self::span][@tabindex='0' or self::button]"
+					+ "[contains(translate(normalize-space(.),'UPLOAD FILEBOOK PDFMP3SELECT','upload filebook pdfmp3select'),'upload')"
+					+ " or contains(translate(normalize-space(.),'UPLOAD FILEBOOK PDFMP3SELECT','upload filebook pdfmp3select'),'book')"
+					+ " or contains(translate(normalize-space(.),'UPLOAD FILEBOOK PDFMP3SELECT','upload filebook pdfmp3select'),'pdf')"
+					+ " or contains(translate(normalize-space(.),'UPLOAD FILEBOOK PDFMP3SELECT','upload filebook pdfmp3select'),'mp3')"
+					+ " or contains(translate(normalize-space(.),'UPLOAD FILEBOOK PDFMP3SELECT','upload filebook pdfmp3select'),'file')]"
+					+ "[not(contains(translate(normalize-space(.),'PORTRAIT LANDSCAPE IMAGE COVER','portrait landscape image cover'),'portrait'))"
+					+ " and not(contains(translate(normalize-space(.),'PORTRAIT LANDSCAPE IMAGE COVER','portrait landscape image cover'),'landscape'))"
+					+ " and not(contains(translate(normalize-space(.),'PORTRAIT LANDSCAPE IMAGE COVER','portrait landscape image cover'),'image'))"
+					+ " and not(contains(translate(normalize-space(.),'PORTRAIT LANDSCAPE IMAGE COVER','portrait landscape image cover'),'cover'))]");
 	private static final By SUBMIT_BUTTON = By.xpath("//button[contains(text(), 'Submit') or contains(text(), 'Upload') or @type='submit']");
 	private static final By CANCEL_BUTTON = By.xpath("//button[contains(text(), 'Cancel') or contains(text(), 'Clear')]");
 
@@ -66,7 +90,7 @@ public class UploadPage extends BasePage {
 	 */
 	public boolean isUploadPageDisplayed() {
 		try {
-			return pageWait.until(ExpectedConditions.visibilityOfElementLocated(UPLOAD_PAGE_HEADING)).isDisplayed();
+			return pageWait.until(ExpectedConditions.visibilityOfElementLocated(UPLOAD_PAGE_READY)).isDisplayed();
 		} catch (Exception e) {
 			return false;
 		}
@@ -77,10 +101,10 @@ public class UploadPage extends BasePage {
 	 */
 	public void waitForUploadPageToLoad() {
 		try {
-			pageWait.until(ExpectedConditions.visibilityOfElementLocated(UPLOAD_PAGE_HEADING));
+			pageWait.until(ExpectedConditions.visibilityOfElementLocated(UPLOAD_PAGE_READY));
 			LOGGER.info("Upload page loaded successfully");
 		} catch (Exception e) {
-			LOGGER.warning("Upload page heading not found: " + e.getMessage());
+			LOGGER.warning("Upload page ready state not found: " + e.getMessage());
 		}
 	}
 
@@ -174,12 +198,94 @@ public class UploadPage extends BasePage {
 	 */
 	public void uploadBookFile(String filePath) {
 		try {
-			WebElement fileInput = driver.findElement(BOOK_FILE_UPLOAD);
+			WebElement fileInput = findBookFileInput();
 			fileInput.sendKeys(filePath);
 			LOGGER.info("Uploaded book file: " + filePath);
 			Thread.sleep(1000);
 		} catch (Exception e) {
 			LOGGER.severe("Failed to upload book file: " + e.getMessage());
+			throw new RuntimeException("Unable to upload book file: " + filePath, e);
+		}
+	}
+
+	private WebElement findBookFileInput() {
+		List<WebElement> directMatches = driver.findElements(BOOK_FILE_UPLOAD);
+		WebElement directInput = findUsableBookFileInput(directMatches);
+		if (directInput != null) {
+			return directInput;
+		}
+
+		List<WebElement> existingInputs = driver.findElements(GENERIC_FILE_INPUTS);
+		List<WebElement> triggers = driver.findElements(BOOK_FILE_UPLOAD_TRIGGER);
+		for (WebElement trigger : triggers) {
+			try {
+				if (!trigger.isDisplayed()) {
+					continue;
+				}
+				((org.openqa.selenium.JavascriptExecutor) driver)
+						.executeScript("arguments[0].scrollIntoView({block:'center'}); arguments[0].click();", trigger);
+				Thread.sleep(500);
+
+				List<WebElement> refreshedInputs = driver.findElements(GENERIC_FILE_INPUTS);
+				WebElement newInput = findNewestUsableBookFileInput(existingInputs, refreshedInputs);
+				if (newInput != null) {
+					return newInput;
+				}
+			} catch (Exception e) {
+				// Try the next trigger.
+			}
+		}
+
+		WebElement fallbackInput = findUsableBookFileInput(driver.findElements(GENERIC_FILE_INPUTS));
+		if (fallbackInput != null) {
+			return fallbackInput;
+		}
+
+		List<WebElement> allFileInputs = driver.findElements(GENERIC_FILE_INPUTS);
+		if (allFileInputs.size() >= 3) {
+			return allFileInputs.get(allFileInputs.size() - 1);
+		}
+
+		throw new org.openqa.selenium.NoSuchElementException("No suitable book file input was found on the upload form.");
+	}
+
+	private WebElement findNewestUsableBookFileInput(List<WebElement> previousInputs, List<WebElement> currentInputs) {
+		for (int i = currentInputs.size() - 1; i >= 0; i--) {
+			WebElement candidate = currentInputs.get(i);
+			if (!previousInputs.contains(candidate) && isUsableBookFileInput(candidate)) {
+				return candidate;
+			}
+		}
+		return null;
+	}
+
+	private WebElement findUsableBookFileInput(List<WebElement> candidates) {
+		for (int i = candidates.size() - 1; i >= 0; i--) {
+			WebElement candidate = candidates.get(i);
+			if (isUsableBookFileInput(candidate)) {
+				return candidate;
+			}
+		}
+		return null;
+	}
+
+	private boolean isUsableBookFileInput(WebElement input) {
+		try {
+			String accept = String.valueOf(input.getAttribute("accept")).toLowerCase();
+			String name = String.valueOf(input.getAttribute("name")).toLowerCase();
+			String ariaLabel = String.valueOf(input.getAttribute("aria-label")).toLowerCase();
+			String testId = String.valueOf(input.getAttribute("data-testid")).toLowerCase();
+			String id = String.valueOf(input.getAttribute("id")).toLowerCase();
+
+			boolean looksLikeImageOnly = accept.contains("image");
+			boolean looksLikeBookFile = accept.contains("pdf") || accept.contains("mp3") || accept.contains("audio")
+					|| name.contains("file") || name.contains("book") || ariaLabel.contains("file")
+					|| ariaLabel.contains("book") || testId.contains("file") || testId.contains("book")
+					|| id.contains("file") || id.contains("book") || id.contains("pdf") || id.contains("audio");
+
+			return !looksLikeImageOnly && looksLikeBookFile;
+		} catch (Exception e) {
+			return false;
 		}
 	}
 

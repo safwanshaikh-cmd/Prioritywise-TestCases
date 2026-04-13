@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.TransactionsTests">
+      <class name="tests.UploaderTests">
         <methods>
           <include name="tearDown"/>
-          <include name="verifyMaxLengthTransactionId"/>
           <include name="setup"/>
+          <include name="verifyMaxFileSizeValidation"/>
         </methods>
-      </class> <!-- tests.TransactionsTests -->
+      </class> <!-- tests.UploaderTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

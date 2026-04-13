@@ -3032,6 +3032,23 @@ public class DashboardPage extends BasePage {
 		}
 	}
 
+	public boolean waitForCreatorMenuItemsLoaded() {
+		try {
+			boolean loaded = new WebDriverWait(driver, Duration.ofSeconds(20)).until(webDriver -> {
+				if (!isSideMenuOpen() && !isSimpleSideMenuOpen()) {
+					return false;
+				}
+				return isForCreatorsMenuVisible();
+			});
+			LOGGER.info("Creator side menu items loaded");
+			return loaded;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Creator side menu item did not become visible. Visible menu labels: {0}",
+					getVisibleSideMenuLabels());
+			return false;
+		}
+	}
+
 	public boolean closeSideMenu() {
 		if (!isSideMenuOpen()) {
 			return true;
@@ -3196,6 +3213,13 @@ public class DashboardPage extends BasePage {
 
 	public boolean isSimpleSideMenuButtonVisible(String primaryLabel, String... alternateLabels) {
 		return findSimpleSideMenuItem(primaryLabel, alternateLabels) != null;
+	}
+
+	public List<String> getVisibleSideMenuLabels() {
+		if (isSimpleSideMenuOpen()) {
+			return getSimpleSideMenuButtonNames();
+		}
+		return getVisibleStandardSideMenuLabels();
 	}
 
 	public String clickSimpleSideMenuItemAndCaptureUrl(String primaryLabel, String... alternateLabels) {
@@ -6104,6 +6128,42 @@ public class DashboardPage extends BasePage {
 					new Object[] { primaryLabel, e.getMessage() });
 			return null;
 		}
+	}
+
+	private List<String> getVisibleStandardSideMenuLabels() {
+		List<String> names = new ArrayList<>();
+		try {
+			WebElement menuPanel = findVisibleSideMenuPanel();
+			if (menuPanel == null) {
+				return names;
+			}
+			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
+					+ "const isVisible = (element) => {"
+					+ "  if (!element) return false;"
+					+ "  const style = window.getComputedStyle(element);"
+					+ "  const rect = element.getBoundingClientRect();"
+					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+					+ "    && rect.width > 0 && rect.height > 0;"
+					+ "};"
+					+ "const textOf = (element) => (element.innerText || element.textContent || '').trim();"
+					+ "const values = Array.from(root.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span'))"
+					+ "  .filter(isVisible)"
+					+ "  .map(textOf)"
+					+ "  .map((text) => text.replace(/\\s+/g, ' ').trim())"
+					+ "  .filter((text) => text.length > 0 && text.length <= 80);"
+					+ "return Array.from(new Set(values)).slice(0, 25);",
+					menuPanel);
+			if (result instanceof List<?>) {
+				for (Object item : (List<?>) result) {
+					if (item != null) {
+						names.add(String.valueOf(item));
+					}
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Unable to capture standard side menu labels: {0}", e.getMessage());
+		}
+		return names;
 	}
 
 	private WebElement resolveSideMenuClickableTarget(WebElement element) {
