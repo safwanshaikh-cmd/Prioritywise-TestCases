@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results retried="2" ignored="2" total="5" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="0" skipped="1">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-04-13T17:23:06 GST" name="Default suite" finished-at="2026-04-13T17:27:29 GST" duration-ms="263274">
+  <suite started-at="2026-04-14T21:40:49 GST" name="Default suite" finished-at="2026-04-14T21:42:48 GST" duration-ms="118203">
     <groups>
     </groups>
-    <test started-at="2026-04-13T17:23:06 GST" name="Default test" finished-at="2026-04-13T17:27:29 GST" duration-ms="263274">
-      <class name="tests.UploaderTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.UploaderTests@55fe41ea]" started-at="2026-04-13T17:23:06 GST" name="setup" finished-at="2026-04-13T17:23:20 GST" duration-ms="13821" status="PASS">
+    <test started-at="2026-04-14T21:40:49 GST" name="Default test" finished-at="2026-04-14T21:42:48 GST" duration-ms="118203">
+      <class name="tests.ChapterTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@3b0090a4]" started-at="2026-04-14T21:40:50 GST" name="setup" finished-at="2026-04-14T21:41:02 GST" duration-ms="12668" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method retried="true" signature="verifyMaxFileSizeValidation()[pri:447, instance:tests.UploaderTests@55fe41ea]" started-at="2026-04-13T17:23:20 GST" name="verifyMaxFileSizeValidation" finished-at="2026-04-13T17:24:26 GST" duration-ms="66567" status="SKIP">
-          <exception class="java.nio.file.InvalidPathException">
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@3b0090a4]" started-at="2026-04-14T21:41:02 GST" name="setupPages" finished-at="2026-04-14T21:41:15 GST" duration-ms="12293" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method signature="verifyChapterEditScreenLoads()[pri:490, instance:tests.ChapterTests@3b0090a4]" started-at="2026-04-14T21:41:15 GST" name="verifyChapterEditScreenLoads" finished-at="2026-04-14T21:42:47 GST" duration-ms="92479" status="SKIP">
+          <exception class="org.testng.SkipException">
             <message>
-              <![CDATA[Illegal char <:> at index 58: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\C:UserssafwanDownloadspexels-zhangkaiyv-1138369.jpg]]>
+              <![CDATA[TC_490: Existing book does not meet chapter precondition. Required: 1, Actual: 0]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.nio.file.InvalidPathException: Illegal char <:> at index 58: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\C:UserssafwanDownloadspexels-zhangkaiyv-1138369.jpg
-at java.base/sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:204)
-at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:175)
-at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:77)
-at java.base/sun.nio.fs.WindowsPath.parse(WindowsPath.java:92)
-at java.base/sun.nio.fs.WindowsFileSystem.getPath(WindowsFileSystem.java:231)
-at java.base/java.nio.file.Path.of(Path.java:148)
-at java.base/java.nio.file.Paths.get(Paths.java:69)
-at tests.UploaderTests.resolveOptionalConfiguredPath(UploaderTests.java:60)
-at tests.UploaderTests.resolveLargeImagePath(UploaderTests.java:99)
-at tests.UploaderTests.verifyMaxFileSizeValidation(UploaderTests.java:399)
+              <![CDATA[org.testng.SkipException: TC_490: Existing book does not meet chapter precondition. Required: 1, Actual: 0
+at tests.ChapterTests.openExistingBookChapterSection(ChapterTests.java:286)
+at tests.ChapterTests.verifyChapterEditScreenLoads(ChapterTests.java:295)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
@@ -56,129 +52,15 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.nio.file.InvalidPathException -->
+          </exception> <!-- org.testng.SkipException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyMaxFileSizeValidation -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.UploaderTests@55fe41ea]" started-at="2026-04-13T17:24:26 GST" name="tearDown" finished-at="2026-04-13T17:24:27 GST" duration-ms="466" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.UploaderTests@55fe41ea]" started-at="2026-04-13T17:24:27 GST" name="setup" finished-at="2026-04-13T17:24:34 GST" duration-ms="7580" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method retried="true" signature="verifyMaxFileSizeValidation()[pri:447, instance:tests.UploaderTests@55fe41ea]" started-at="2026-04-13T17:24:34 GST" name="verifyMaxFileSizeValidation" finished-at="2026-04-13T17:26:12 GST" duration-ms="97618" status="SKIP">
-          <exception class="java.nio.file.InvalidPathException">
-            <message>
-              <![CDATA[Illegal char <:> at index 58: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\C:UserssafwanDownloadspexels-zhangkaiyv-1138369.jpg]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.nio.file.InvalidPathException: Illegal char <:> at index 58: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\C:UserssafwanDownloadspexels-zhangkaiyv-1138369.jpg
-at java.base/sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:204)
-at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:175)
-at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:77)
-at java.base/sun.nio.fs.WindowsPath.parse(WindowsPath.java:92)
-at java.base/sun.nio.fs.WindowsFileSystem.getPath(WindowsFileSystem.java:231)
-at java.base/java.nio.file.Path.of(Path.java:148)
-at java.base/java.nio.file.Paths.get(Paths.java:69)
-at tests.UploaderTests.resolveOptionalConfiguredPath(UploaderTests.java:60)
-at tests.UploaderTests.resolveLargeImagePath(UploaderTests.java:99)
-at tests.UploaderTests.verifyMaxFileSizeValidation(UploaderTests.java:399)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:819)
-at org.testng.TestRunner.run(TestRunner.java:619)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-at org.testng.TestNG.runSuites(TestNG.java:1134)
-at org.testng.TestNG.run(TestNG.java:1101)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.nio.file.InvalidPathException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyMaxFileSizeValidation -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.UploaderTests@55fe41ea]" started-at="2026-04-13T17:26:12 GST" name="tearDown" finished-at="2026-04-13T17:26:12 GST" duration-ms="580" status="PASS">
+        </test-method> <!-- verifyChapterEditScreenLoads -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@3b0090a4]" started-at="2026-04-14T21:42:47 GST" name="tearDown" finished-at="2026-04-14T21:42:48 GST" duration-ms="514" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.UploaderTests@55fe41ea]" started-at="2026-04-13T17:26:12 GST" name="setup" finished-at="2026-04-13T17:26:21 GST" duration-ms="8962" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="verifyMaxFileSizeValidation()[pri:447, instance:tests.UploaderTests@55fe41ea]" started-at="2026-04-13T17:26:21 GST" name="verifyMaxFileSizeValidation" finished-at="2026-04-13T17:27:28 GST" duration-ms="66635" status="FAIL">
-          <exception class="java.nio.file.InvalidPathException">
-            <message>
-              <![CDATA[Illegal char <:> at index 58: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\C:UserssafwanDownloadspexels-zhangkaiyv-1138369.jpg]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.nio.file.InvalidPathException: Illegal char <:> at index 58: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\C:UserssafwanDownloadspexels-zhangkaiyv-1138369.jpg
-at java.base/sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:204)
-at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:175)
-at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:77)
-at java.base/sun.nio.fs.WindowsPath.parse(WindowsPath.java:92)
-at java.base/sun.nio.fs.WindowsFileSystem.getPath(WindowsFileSystem.java:231)
-at java.base/java.nio.file.Path.of(Path.java:148)
-at java.base/java.nio.file.Paths.get(Paths.java:69)
-at tests.UploaderTests.resolveOptionalConfiguredPath(UploaderTests.java:60)
-at tests.UploaderTests.resolveLargeImagePath(UploaderTests.java:99)
-at tests.UploaderTests.verifyMaxFileSizeValidation(UploaderTests.java:399)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:819)
-at org.testng.TestRunner.run(TestRunner.java:619)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-at org.testng.TestNG.runSuites(TestNG.java:1134)
-at org.testng.TestNG.run(TestNG.java:1101)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.nio.file.InvalidPathException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyMaxFileSizeValidation -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.UploaderTests@55fe41ea]" started-at="2026-04-13T17:27:28 GST" name="tearDown" finished-at="2026-04-13T17:27:29 GST" duration-ms="496" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- tests.UploaderTests -->
+      </class> <!-- tests.ChapterTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

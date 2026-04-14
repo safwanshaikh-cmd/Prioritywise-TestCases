@@ -42,7 +42,21 @@
       "Bash(python3 /tmp/fix_tc406.py)",
       "Bash(python2 /tmp/fix_tc406.py)",
       "Bash(python3 /tmp/fix_dialog_wait.py2\n3)",
-      "Bash(python3 /tmp/fix_yes_click.py)"
+      "Bash(python3 /tmp/fix_yes_click.py)",
+      "Bash(javac -cp \"lib/*:target/classes:src/test/java\" -d target/classes src/test/java/tests/UploaderTests.java)",
+      "Bash(cat)",
+      "Bash(chmod +x /tmp/test_compile.sh)",
+      "Bash(/tmp/test_compile.sh)",
+      "Bash(chmod +x /tmp/comprehensive_fix.txt)",
+      "Bash(/tmp/comprehensive_fix.txt)",
+      "Bash(chmod +x /tmp/check_errors.sh)",
+      "Bash(/tmp/check_errors.sh)",
+      "Bash(chmod +x /tmp/find_errors.sh)",
+      "Bash(/tmp/find_errors.sh)",
+      "Bash(grep -E \"\\\\\".*,$\")",
+      "Bash(ls -la /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/src/test/java/tests/UploaderTests.java*)",
+      "Bash(ls:*)",
+      "Bash(python3 /tmp/replace_tc475_final.py)"
     ]
   }
 }

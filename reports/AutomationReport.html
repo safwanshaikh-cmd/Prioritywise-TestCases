@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">SonarPlay Automation Report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Apr 13, 2026 05:23:03 PM</span></a>
+<a href="#"><span class="badge badge-primary">Apr 14, 2026 09:40:48 PM</span></a>
 </li>
 </ul>
 </div>
@@ -71,7 +71,6 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
 <a class="dropdown-item" status="skip" href="#"><span>Skip</span><span class="status warning"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
@@ -85,9 +84,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">UploaderTests.verifyMaxFileSizeValidation</p>
+            <p class="name">ChapterTests.verifyChapterEditScreenLoads</p>
             <p class="text-sm">
-              <span>5:23:20 PM</span> / <span>00:01:06:582</span>
+              <span>9:41:15 PM</span> / <span>00:01:32:489</span>
               <span class="badge skip-bg log float-right">Skip</span>
             </p>
           </div>
@@ -95,10 +94,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-skip">UploaderTests.verifyMaxFileSizeValidation</h5>
-<span class='badge badge-success'>04.13.2026 5:23:20 PM</span>
-<span class='badge badge-danger'>04.13.2026 5:24:26 PM</span>
-<span class='badge badge-default'>00:01:06:582</span>
+<h5 class="test-status text-skip">ChapterTests.verifyChapterEditScreenLoads</h5>
+<span class='badge badge-success'>04.14.2026 9:41:15 PM</span>
+<span class='badge badge-danger'>04.14.2026 9:42:47 PM</span>
+<span class='badge badge-default'>00:01:32:489</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -111,201 +110,24 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log skip-bg">Skip</span></td>
-        <td>5:24:26 PM</td>
+        <td>9:42:47 PM</td>
         <td>
           Test Skipped
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log skip-bg">Skip</span></td>
-        <td>5:24:26 PM</td>
+        <td>9:42:47 PM</td>
         <td>
-          <textarea readonly class="code-block">java.nio.file.InvalidPathException: Illegal char <:> at index 58: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\C:UserssafwanDownloadspexels-zhangkaiyv-1138369.jpg
-	at java.base/sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:204)
-	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:175)
-	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:77)
-	at java.base/sun.nio.fs.WindowsPath.parse(WindowsPath.java:92)
-	at java.base/sun.nio.fs.WindowsFileSystem.getPath(WindowsFileSystem.java:231)
-	at java.base/java.nio.file.Path.of(Path.java:148)
-	at java.base/java.nio.file.Paths.get(Paths.java:69)
-	at tests.UploaderTests.resolveOptionalConfiguredPath(UploaderTests.java:60)
-	at tests.UploaderTests.resolveLargeImagePath(UploaderTests.java:99)
-	at tests.UploaderTests.verifyMaxFileSizeValidation(UploaderTests.java:399)
+          <textarea readonly class="code-block">org.testng.SkipException: TC_490: Existing book does not meet chapter precondition. Required: 1, Actual: 0
+	at tests.ChapterTests.openExistingBookChapterSection(ChapterTests.java:286)
+	at tests.ChapterTests.verifyChapterEditScreenLoads(ChapterTests.java:295)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
 	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
 	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
 	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at org.testng.TestRunner.privateRun(TestRunner.java:819)
-	at org.testng.TestRunner.run(TestRunner.java:619)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-	at org.testng.TestNG.runSuites(TestNG.java:1134)
-	at org.testng.TestNG.run(TestNG.java:1101)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</textarea>
-          
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="skip" test-id="2"
-          author=""
-          tag=""
-          device="">
-          <div class="test-detail">
-            <p class="name">UploaderTests.verifyMaxFileSizeValidation</p>
-            <p class="text-sm">
-              <span>5:24:34 PM</span> / <span>00:01:37:621</span>
-              <span class="badge skip-bg log float-right">Skip</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-skip">UploaderTests.verifyMaxFileSizeValidation</h5>
-<span class='badge badge-success'>04.13.2026 5:24:34 PM</span>
-<span class='badge badge-danger'>04.13.2026 5:26:12 PM</span>
-<span class='badge badge-default'>00:01:37:621</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
-<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
-<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
-<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
-</div>
-</div>
-</div><div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log skip-bg">Skip</span></td>
-        <td>5:26:12 PM</td>
-        <td>
-          Test Skipped
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log skip-bg">Skip</span></td>
-        <td>5:26:12 PM</td>
-        <td>
-          <textarea readonly class="code-block">java.nio.file.InvalidPathException: Illegal char <:> at index 58: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\C:UserssafwanDownloadspexels-zhangkaiyv-1138369.jpg
-	at java.base/sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:204)
-	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:175)
-	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:77)
-	at java.base/sun.nio.fs.WindowsPath.parse(WindowsPath.java:92)
-	at java.base/sun.nio.fs.WindowsFileSystem.getPath(WindowsFileSystem.java:231)
-	at java.base/java.nio.file.Path.of(Path.java:148)
-	at java.base/java.nio.file.Paths.get(Paths.java:69)
-	at tests.UploaderTests.resolveOptionalConfiguredPath(UploaderTests.java:60)
-	at tests.UploaderTests.resolveLargeImagePath(UploaderTests.java:99)
-	at tests.UploaderTests.verifyMaxFileSizeValidation(UploaderTests.java:399)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-	at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at org.testng.TestRunner.privateRun(TestRunner.java:819)
-	at org.testng.TestRunner.run(TestRunner.java:619)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-	at org.testng.TestNG.runSuites(TestNG.java:1134)
-	at org.testng.TestNG.run(TestNG.java:1101)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</textarea>
-          
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="fail" test-id="3"
-          author=""
-          tag=""
-          device="">
-          <div class="test-detail">
-            <p class="name">UploaderTests.verifyMaxFileSizeValidation</p>
-            <p class="text-sm">
-              <span>5:26:21 PM</span> / <span>00:01:06:886</span>
-              <span class="badge fail-bg log float-right">Fail</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-fail">UploaderTests.verifyMaxFileSizeValidation</h5>
-<span class='badge badge-success'>04.13.2026 5:26:21 PM</span>
-<span class='badge badge-danger'>04.13.2026 5:27:28 PM</span>
-<span class='badge badge-default'>00:01:06:886</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
-<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
-<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
-<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
-</div>
-</div>
-</div>    <div class="row mb-3"><div class="col-md-3">
-<img data-featherlight='reports/screenshots/verifyMaxFileSizeValidation_20260413_172728.png' src="reports/screenshots/verifyMaxFileSizeValidation_20260413_172728.png">
-    
-    </div></div>
-<div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log fail-bg">Fail</span></td>
-        <td>5:27:28 PM</td>
-        <td>
-          <textarea readonly class="code-block">java.nio.file.InvalidPathException: Illegal char <:> at index 58: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\C:UserssafwanDownloadspexels-zhangkaiyv-1138369.jpg
-	at java.base/sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:204)
-	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:175)
-	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:77)
-	at java.base/sun.nio.fs.WindowsPath.parse(WindowsPath.java:92)
-	at java.base/sun.nio.fs.WindowsFileSystem.getPath(WindowsFileSystem.java:231)
-	at java.base/java.nio.file.Path.of(Path.java:148)
-	at java.base/java.nio.file.Paths.get(Paths.java:69)
-	at tests.UploaderTests.resolveOptionalConfiguredPath(UploaderTests.java:60)
-	at tests.UploaderTests.resolveLargeImagePath(UploaderTests.java:99)
-	at tests.UploaderTests.verifyMaxFileSizeValidation(UploaderTests.java:399)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-	at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
 	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
 	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
 	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
@@ -355,17 +177,15 @@
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log badge-danger'>1</span>
-<span class='badge log badge-skip'>2</span>
+<span class='badge log badge-skip'>1</span>
 </span>
-<p class="name">java.nio.file.InvalidPathException</p>
-<p class="duration text-sm">3 tests</p>
+<p class="name">org.testng.SkipException</p>
+<p class="duration text-sm">1 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>java.nio.file.InvalidPathException</h4>
-<span status="fail" class='badge log badge-danger'>1 failed</span>
-<span status="skip" class='badge log badge-skip'>2 skipped</span>
+<h4>org.testng.SkipException</h4>
+<span status="skip" class='badge log badge-skip'>1 skipped</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -378,23 +198,9 @@
 <tbody>
 <tr class="tag-test-status" status="skip">
 <td><span class="badge log skip-bg">Skip</span></td>
-<td>17:23:20 PM</td>
+<td>21:41:15 PM</td>
 <td>
-<a href="#" class="linked" test-id='1' id='1'>UploaderTests.verifyMaxFileSizeValidation</a>
-</td>
-</tr>
-<tr class="tag-test-status" status="skip">
-<td><span class="badge log skip-bg">Skip</span></td>
-<td>17:24:34 PM</td>
-<td>
-<a href="#" class="linked" test-id='2' id='2'>UploaderTests.verifyMaxFileSizeValidation</a>
-</td>
-</tr>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>17:26:21 PM</td>
-<td>
-<a href="#" class="linked" test-id='3' id='3'>UploaderTests.verifyMaxFileSizeValidation</a>
+<a href="#" class="linked" test-id='1' id='1'>ChapterTests.verifyChapterEditScreenLoads</a>
 </td>
 </tr>
 </tbody>
@@ -414,13 +220,13 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Apr 13, 2026 05:23:03 PM</h3>
+<h3>Apr 14, 2026 09:40:48 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Apr 13, 2026 05:27:29 PM</h3>
+<h3>Apr 14, 2026 09:42:48 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -432,7 +238,7 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Tests Failed</p>
-<h3>1</h3>
+<h3>0</h3>
 </div></div>
 </div>
 </div>
@@ -453,8 +259,8 @@
 </small>
 </div>
 <div>
-<small data-tooltip='33%'><b>1</b> tests failed,
-<b>2</b> skipped, <b data-tooltip='0%'>0</b> others
+<small data-tooltip='0%'><b>0</b> tests failed,
+<b>1</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
 </div>
@@ -473,8 +279,8 @@
 <div class="card-footer">
 <div><small data-tooltip='0%'><b>0</b> events passed</small></div>
 <div>
-<small data-tooltip='20%'><b>1</b> events failed,
-<b data-tooltip='%'>4</b> others
+<small data-tooltip='0%'><b>0</b> events failed,
+<b data-tooltip='%'>2</b> others
 </small>
 </div>
 </div>
@@ -490,7 +296,7 @@
 </div></div>
 <script>
 var timeline = {
-"UploaderTests.verifyMaxFileSizeValidation":66.582,"UploaderTests.verifyMaxFileSizeValidation":97.621,"UploaderTests.verifyMaxFileSizeValidation":66.886
+"ChapterTests.verifyChapterEditScreenLoads":92.489
 };
 </script>
 <div class="row">
@@ -530,9 +336,9 @@ var timeline = {
 var statusGroup = {
 parentCount: 5,
 passParent: 0,
-failParent: 1,
+failParent: 0,
 warningParent: 0,
-skipParent: 2,
+skipParent: 1,
 childCount: 5,
 passChild: 0,
 failChild: 0,
@@ -547,9 +353,9 @@ skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
 passEvents: 0,
-failEvents: 1,
+failEvents: 0,
 warningEvents: 0,
-skipEvents: 4,
+skipEvents: 2,
 infoEvents: 0
 };
 </script>        </div>

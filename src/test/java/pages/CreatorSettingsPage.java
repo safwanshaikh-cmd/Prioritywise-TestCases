@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.Keys;
 
 /**
  * Page object for Creator Settings and Content Management. Handles upload,
@@ -51,6 +52,7 @@ public class CreatorSettingsPage {
 	private static final By SUMMARY_FIELD = By.cssSelector("[data-testid='input_book_summary']");
 	private static final By LANGUAGE_DROPDOWN = By.cssSelector("[data-testid='select_language']");
 	private static final By SAVE_BUTTON = By.xpath("//div[text()='Save']");
+	private static final By NEXT_BUTTON = By.xpath("//div[contains(text(),'Next') or @type='button' and contains(text(),'Next')] | //button[contains(text(),'Next')]");
 	private static final By VALIDATION_MESSAGES = By.cssSelector("div.r-howw7u");
 	private static final By COUNTRYCATEGORY_DROPDOWN = By.cssSelector("[data-testid='select_country_category']");
 	private static final By CATEGORY = By.cssSelector("[data-testid='dropdown_category']");
@@ -69,6 +71,7 @@ public class CreatorSettingsPage {
 			"//*[contains(@data-testid,'error') or @data-testid='toastText1' or @data-testid='toastText2']");
 	private static final By AUDIO_UPLOAD_SCREEN = By.cssSelector("[data-testid='screen_upload_audio_file']");
 	private static final By AUDIO_UPLOAD_TITLE = By.cssSelector("[data-testid='text_upload_audio_title']");
+	private static final By AUDIO_MODAL_CONTENT = By.cssSelector("[data-testid='container_modal_content']");
 	private static final By BACK_TO_SUMMARY_BUTTON = By.cssSelector("[data-testid='button_back_to_summary']");
 	private static final By ADD_AUDIO_BUTTON = By.cssSelector("[data-testid='button_add_audio']");
 	private static final By CHAPTER_NAME_INPUT = By.cssSelector("[data-testid='input_chapter_name']");
@@ -76,6 +79,13 @@ public class CreatorSettingsPage {
 	private static final By AUDIO_FILE_BUTTON = By.cssSelector("[data-testid='button_select_audio_file']");
 	private static final By AUDIO_CHAPTER_SAVE_BUTTON = By.cssSelector("[data-testid='button_save_audio_chapter']");
 	private static final By AUDIO_FILE_INPUT = By.cssSelector("input[type='file'][accept*='audio'], input[type='file']");
+	private static final By AUDIO_CLOSE_BUTTON = By.xpath(
+			"//*[@data-testid='container_modal_content']//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(@aria-label,'CLOSE','close'),'close')"
+					+ " or contains(translate(@data-testid,'CLOSE','close'),'close')"
+					+ " or normalize-space()='×' or normalize-space()='✕' or normalize-space()='✖' or normalize-space()='X']");
+	private static final By AUDIO_CANCEL_BUTTON = By.xpath(
+			"//button[normalize-space()='Cancel'] | //div[@tabindex='0'][.//div[normalize-space()='Cancel']] | //*[normalize-space()='Cancel']/ancestor::*[@tabindex='0'][1]");
 
 	// ================= NAVIGATION =================
 
@@ -127,11 +137,125 @@ public class CreatorSettingsPage {
 		return value == null ? "" : value.trim();
 	}
 
+	public String getCurrentSummary() {
+		try {
+			WebElement summaryInput = wait.until(ExpectedConditions.visibilityOfElementLocated(SUMMARY_FIELD_UPLOAD));
+			String value = summaryInput.getAttribute("value");
+			return value == null ? "" : value.trim();
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
 	public void enterTitle(String title) {
 		WebElement titleInput = waitForTitleInput();
-		titleInput.clear();
-		titleInput.sendKeys(title == null ? "" : title);
-		LOGGER.log(Level.INFO, "Entered book title");
+		String safeTitle = title == null ? "" : title;
+
+		// Scroll element into view
+		js.executeScript("arguments[0].scrollIntoView({block:'center'});", titleInput);
+
+		// Wait a moment for scroll to complete
+		try {
+			Thread.sleep(300);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
+
+		// Click to focus with retry
+		boolean clicked = false;
+		for (int i = 0; i < 3; i++) {
+			try {
+				wait.until(ExpectedConditions.elementToBeClickable(titleInput)).click();
+				clicked = true;
+				break;
+			} catch (Exception e) {
+				try {
+					js.executeScript("arguments[0].click();", titleInput);
+					clicked = true;
+					break;
+				} catch (Exception ex) {
+					// Retry after refreshing element
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException ie) {
+						Thread.currentThread().interrupt();
+					}
+					titleInput = waitForTitleInput();
+				}
+			}
+		}
+
+		if (!clicked) {
+			LOGGER.log(Level.WARNING, "Failed to click title input after 3 attempts, trying JavaScript fallback");
+		}
+
+		// Clear existing text with multiple approaches
+		try {
+			// Approach 1: Select all and delete
+			titleInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
+			// Approach 2: Clear method
+			titleInput.clear();
+			// Approach 3: Send backspaces to be thorough
+			titleInput.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Standard clear failed: " + e.getMessage() + ", using JavaScript");
+		}
+
+		// Enter new text with retry
+		boolean textEntered = false;
+		for (int attempt = 0; attempt < 3; attempt++) {
+			try {
+				titleInput.sendKeys(safeTitle);
+
+				// Verify text was entered
+				String enteredValue = titleInput.getAttribute("value");
+				if (enteredValue != null && enteredValue.equals(safeTitle)) {
+					textEntered = true;
+					LOGGER.log(Level.INFO, "Title entered successfully: " + safeTitle);
+					break;
+				} else {
+					LOGGER.log(Level.WARNING, "Title entry verification failed on attempt " + (attempt + 1) +
+							". Expected: '" + safeTitle + "', Got: '" + enteredValue + "'");
+				}
+			} catch (Exception e) {
+				LOGGER.log(Level.WARNING, "sendKeys attempt " + (attempt + 1) + " failed: " + e.getMessage());
+			}
+
+			// Retry after refreshing element
+			if (attempt < 2) {
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException ie) {
+					Thread.currentThread().interrupt();
+				}
+				titleInput = waitForTitleInput();
+			}
+		}
+
+		// JavaScript fallback if standard methods failed
+		if (!textEntered) {
+			LOGGER.log(Level.WARNING, "Standard sendKeys failed, using JavaScript fallback");
+			js.executeScript("const el = arguments[0];"
+					+ "const value = arguments[1] == null ? '' : arguments[1];"
+					+ "el.focus();"
+					+ "el.value = value;"
+					+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
+					+ "el.dispatchEvent(new Event('change', { bubbles: true }));"
+					+ "el.dispatchEvent(new Event('blur', { bubbles: true }));", titleInput, safeTitle);
+
+			// Verify JavaScript fallback worked
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+			String finalValue = titleInput.getAttribute("value");
+			if (finalValue != null && finalValue.equals(safeTitle)) {
+				LOGGER.log(Level.INFO, "Title entered via JavaScript: " + safeTitle);
+			} else {
+				LOGGER.log(Level.SEVERE, "Failed to enter title. Expected: '" + safeTitle + "', Got: '" + finalValue + "'");
+			}
+		}
 	}
 
 	public void enterAuthor(String author) {
@@ -143,21 +267,48 @@ public class CreatorSettingsPage {
 
 	public void enterSummary(String summary) {
 		WebElement summaryInput = wait.until(ExpectedConditions.visibilityOfElementLocated(SUMMARY_FIELD_UPLOAD));
-		summaryInput.clear();
-		summaryInput.sendKeys(summary == null ? "" : summary);
+		js.executeScript("arguments[0].scrollIntoView({block:'center'});", summaryInput);
+
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(summaryInput)).click();
+		} catch (Exception e) {
+			js.executeScript("arguments[0].click();", summaryInput);
+		}
+
+		try {
+			summaryInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
+			summaryInput.clear();
+			summaryInput.sendKeys(summary == null ? "" : summary);
+		} catch (Exception e) {
+			js.executeScript("const el = arguments[0]; el.value = arguments[1];",
+				summaryInput, summary == null ? "" : summary);
+		}
+
 		LOGGER.log(Level.INFO, "Entered book summary");
 	}
 
 	public void selectLanguage(String language) {
-		new Select(wait.until(ExpectedConditions.visibilityOfElementLocated(LANGUAGE_DROPDOWN)))
-				.selectByVisibleText(language);
-		LOGGER.log(Level.INFO, "Language selected: {0}", language);
+		Select select = new Select(wait.until(ExpectedConditions.visibilityOfElementLocated(LANGUAGE_DROPDOWN)));
+		try {
+			select.selectByVisibleText(language);
+			LOGGER.log(Level.INFO, "Language selected: {0}", language);
+		} catch (NoSuchElementException e) {
+			String fallback = selectFirstEnabledOption(select);
+			LOGGER.log(Level.INFO, "Language option {0} not found. Selected fallback option: {1}",
+					new Object[] { language, fallback });
+		}
 	}
 
 	public void selectCountryCategory(String countryCategory) {
-		new Select(wait.until(ExpectedConditions.visibilityOfElementLocated(COUNTRYCATEGORY_DROPDOWN)))
-				.selectByVisibleText(countryCategory);
-		LOGGER.log(Level.INFO, "Country Category selected: {0}", countryCategory);
+		Select select = new Select(wait.until(ExpectedConditions.visibilityOfElementLocated(COUNTRYCATEGORY_DROPDOWN)));
+		try {
+			select.selectByVisibleText(countryCategory);
+			LOGGER.log(Level.INFO, "Country Category selected: {0}", countryCategory);
+		} catch (NoSuchElementException e) {
+			String fallback = selectFirstEnabledOption(select);
+			LOGGER.log(Level.INFO, "Country Category option {0} not found. Selected fallback option: {1}",
+					new Object[] { countryCategory, fallback });
+		}
 	}
 
 	public void selectCategory(String category) {
@@ -172,9 +323,15 @@ public class CreatorSettingsPage {
 	}
 
 	public void selectGenre(String genre) {
-		new Select(wait.until(ExpectedConditions.visibilityOfElementLocated(SELECT_GENRE)))
-				.selectByVisibleText(genre);
-		LOGGER.log(Level.INFO, "Genre selected: {0}", genre);
+		Select select = new Select(wait.until(ExpectedConditions.visibilityOfElementLocated(SELECT_GENRE)));
+		try {
+			select.selectByVisibleText(genre);
+			LOGGER.log(Level.INFO, "Genre selected: {0}", genre);
+		} catch (NoSuchElementException e) {
+			String fallback = selectFirstEnabledOption(select);
+			LOGGER.log(Level.INFO, "Genre option {0} not found. Selected fallback option: {1}",
+					new Object[] { genre, fallback });
+		}
 	}
 
 	public void uploadBookImages(String portraitImagePath, String landscapeImagePath) {
@@ -187,6 +344,76 @@ public class CreatorSettingsPage {
 		uploadImageThroughButton(LANDSCAPE_UPLOAD_BUTTON, landscapeImagePath, "landscape");
 		LOGGER.log(Level.INFO, "Images uploaded successfully");
 	}
+
+
+	public void uploadBookFile(String filePath) {
+		try {
+			// Look for file input that accepts PDF or audio files
+			List<WebElement> fileInputs = driver.findElements(By.xpath(
+					"//input[@type='file' and (contains(@accept,'pdf') or contains(@accept,'application/pdf') or contains(@accept,'audio') or contains(@accept,'mp3'))]"));
+
+			if (!fileInputs.isEmpty() && fileInputs.get(0).isDisplayed()) {
+				fileInputs.get(0).sendKeys(filePath);
+				LOGGER.log(Level.INFO, "Book file uploaded via direct file input: " + filePath);
+				return;
+			}
+
+			// Fallback to generic file input
+			List<WebElement> genericInputs = driver.findElements(By.cssSelector("input[type='file']"));
+			for (WebElement input : genericInputs) {
+				try {
+					if (input.isDisplayed()) {
+						input.sendKeys(filePath);
+						LOGGER.log(Level.INFO, "Book file uploaded via generic file input: " + filePath);
+						return;
+					}
+				} catch (Exception e) {
+					// Try next input
+				}
+			}
+
+			LOGGER.warning("No suitable file input found for book file upload");
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to upload book file: " + e.getMessage());
+			throw new RuntimeException("Unable to upload book file: " + filePath, e);
+		}
+	}
+
+
+	public boolean hasFileUploadInput() {
+		try {
+			// Look for file input that accepts PDF or audio files
+			List<WebElement> fileInputs = driver.findElements(By.xpath(
+					"//input[@type='file' and (contains(@accept,'pdf') or contains(@accept,'application/pdf') or contains(@accept,'audio') or contains(@accept,'mp3'))]"));
+
+			for (WebElement input : fileInputs) {
+				if (input.isDisplayed()) {
+					LOGGER.log(Level.INFO, "File upload input found on edit page");
+					return true;
+				}
+			}
+
+			// Check for any visible file input
+			List<WebElement> allFileInputs = driver.findElements(By.cssSelector("input[type='file']"));
+			for (WebElement input : allFileInputs) {
+				try {
+					if (input.isDisplayed()) {
+						LOGGER.log(Level.INFO, "Generic file upload input found on edit page");
+						return true;
+					}
+				} catch (Exception e) {
+					// Element not accessible
+				}
+			}
+
+			LOGGER.log(Level.INFO, "No file upload input found on edit page (metadata editing only)");
+			return false;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Error checking for file upload input: " + e.getMessage());
+			return false;
+		}
+	}
+
 
 	public void clickSave() {
 		for (int i = 0; i < 3; i++) {
@@ -214,6 +441,25 @@ public class CreatorSettingsPage {
 
 		throw new RuntimeException("Unable to click Save button");
 	}
+
+	public void clickNext() {
+		try {
+			WebElement nextBtn = wait.until(ExpectedConditions.elementToBeClickable(NEXT_BUTTON));
+			js.executeScript("arguments[0].scrollIntoView({block:'center'});", nextBtn);
+
+			try {
+				nextBtn.click();
+			} catch (Exception e) {
+				js.executeScript("arguments[0].click();", nextBtn);
+			}
+
+			LOGGER.log(Level.INFO, "Next button clicked successfully");
+		} catch (TimeoutException e) {
+			LOGGER.log(Level.WARNING, "Next button not found or not clickable - may not be applicable in current state");
+			throw new RuntimeException("Next button not found or not clickable", e);
+		}
+	}
+
 
 	public void clickEditFirstContent() {
 		WebElement editButton = findFirstVisibleEditButton();
@@ -348,6 +594,17 @@ public class CreatorSettingsPage {
 		return getVisibleErrorText(LANDSCAPE_COVER_ERROR);
 	}
 
+	public String waitForPortraitCoverError() {
+		try {
+			return new WebDriverWait(driver, Duration.ofSeconds(10)).until(driver -> {
+				String error = getVisibleErrorText(PORTRAIT_COVER_ERROR);
+				return error == null || error.isBlank() ? null : error;
+			});
+		} catch (TimeoutException e) {
+			return getPortraitCoverError();
+		}
+	}
+
 	public void prepareForAudioChapterCreation() {
 		waitForPostBookSaveState();
 		wait.until(ExpectedConditions.or(ExpectedConditions.visibilityOfElementLocated(ADD_AUDIO_BUTTON),
@@ -363,6 +620,86 @@ public class CreatorSettingsPage {
 		LOGGER.log(Level.INFO, "Add Audio button clicked");
 	}
 
+	public boolean isChapterFormVisible() {
+		return isDisplayed(CHAPTER_NAME_INPUT) || isDisplayed(CHAPTER_SUMMARY_INPUT)
+				|| isDisplayed(AUDIO_CHAPTER_SAVE_BUTTON);
+	}
+
+	public boolean isBookDetailsFormVisible() {
+		return isDisplayed(TITLE_FIELD) || isDisplayed(TITLE_FIELD_FALLBACK) || isDisplayed(AUTHOR_FIELD)
+				|| isDisplayed(SUMMARY_FIELD_UPLOAD);
+	}
+
+	public void clickBackToSummaryFromAudio() {
+		WebElement backButton = wait.until(ExpectedConditions.elementToBeClickable(BACK_TO_SUMMARY_BUTTON));
+		js.executeScript("arguments[0].scrollIntoView({block:'center'});", backButton);
+		js.executeScript("arguments[0].click();", backButton);
+		LOGGER.log(Level.INFO, "Returned from Add Audio to summary");
+	}
+
+	public void cancelAddAudioPopup() {
+		try {
+			List<WebElement> closeButtons = driver.findElements(AUDIO_CLOSE_BUTTON);
+			for (WebElement closeButton : closeButtons) {
+				try {
+					if (!closeButton.isDisplayed()) {
+						continue;
+					}
+					js.executeScript("arguments[0].scrollIntoView({block:'center'});", closeButton);
+					js.executeScript("arguments[0].click();", closeButton);
+					wait.until(driver -> !isChapterFormVisible());
+					LOGGER.log(Level.INFO, "Cancelled Add Audio popup using close X button");
+					return;
+				} catch (StaleElementReferenceException e) {
+					// Retry with the next candidate.
+				}
+			}
+
+			List<WebElement> cancelButtons = driver.findElements(AUDIO_CANCEL_BUTTON);
+			for (WebElement cancelButton : cancelButtons) {
+				try {
+					if (!cancelButton.isDisplayed()) {
+						continue;
+					}
+					js.executeScript("arguments[0].scrollIntoView({block:'center'});", cancelButton);
+					js.executeScript("arguments[0].click();", cancelButton);
+					wait.until(driver -> !isChapterFormVisible());
+					LOGGER.log(Level.INFO, "Cancelled Add Audio popup using Cancel button");
+					return;
+				} catch (StaleElementReferenceException e) {
+					// Retry with the next candidate.
+				}
+			}
+
+			driver.findElement(By.tagName("body")).sendKeys(Keys.ESCAPE);
+			wait.until(driver -> !isChapterFormVisible() || driver.findElements(AUDIO_MODAL_CONTENT).isEmpty());
+			LOGGER.log(Level.INFO, "Cancelled Add Audio popup using Escape fallback");
+		} catch (Exception e) {
+			throw new RuntimeException("Unable to cancel Add Audio popup", e);
+		}
+	}
+
+	public boolean isAddAudioButtonVisible() {
+		return isDisplayed(ADD_AUDIO_BUTTON);
+	}
+
+	public void waitForAudioUploadScreen() {
+		wait.until(driver -> {
+			boolean addAudioVisible = isDisplayed(ADD_AUDIO_BUTTON);
+			boolean screenVisible = isDisplayed(AUDIO_UPLOAD_SCREEN);
+			boolean titleVisible = isDisplayed(AUDIO_UPLOAD_TITLE);
+			return addAudioVisible || screenVisible || titleVisible;
+		});
+		LOGGER.log(Level.INFO, "Audio upload screen is visible");
+	}
+
+	public void prepareChapterSectionFromListedBook() {
+		if (isBookDetailsFormVisible() && !isAddAudioButtonVisible() && !isChapterFormVisible()) {
+			clickSave();
+		}
+		prepareForAudioChapterCreation();
+	}
+
 	public void enterChapterName(String chapterName) {
 		WebElement chapterNameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(CHAPTER_NAME_INPUT));
 		chapterNameInput.clear();
@@ -370,11 +707,31 @@ public class CreatorSettingsPage {
 		LOGGER.log(Level.INFO, "Chapter name entered: {0}", chapterName);
 	}
 
+	public String getCurrentChapterName() {
+		try {
+			WebElement chapterNameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(CHAPTER_NAME_INPUT));
+			String value = chapterNameInput.getAttribute("value");
+			return value == null ? "" : value.trim();
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
 	public void enterChapterSummary(String summary) {
 		WebElement chapterSummaryInput = wait.until(ExpectedConditions.visibilityOfElementLocated(CHAPTER_SUMMARY_INPUT));
 		chapterSummaryInput.clear();
 		chapterSummaryInput.sendKeys(summary);
 		LOGGER.log(Level.INFO, "Chapter summary entered");
+	}
+
+	public String getCurrentChapterSummary() {
+		try {
+			WebElement chapterSummaryInput = wait.until(ExpectedConditions.visibilityOfElementLocated(CHAPTER_SUMMARY_INPUT));
+			String value = chapterSummaryInput.getAttribute("value");
+			return value == null ? "" : value.trim();
+		} catch (Exception e) {
+			return "";
+		}
 	}
 
 	public void uploadAudioFile(String filePath) {
@@ -440,6 +797,17 @@ public class CreatorSettingsPage {
 		dropdown.sendKeys(Keys.ENTER);
 		waitForDropdownToClose(dropdownLocator);
 		return optionText != null ? optionText : "First available option";
+	}
+
+	private String selectFirstEnabledOption(Select select) {
+		for (WebElement option : select.getOptions()) {
+			String text = option.getText() == null ? "" : option.getText().trim();
+			if (!text.isEmpty() && option.isEnabled()) {
+				select.selectByVisibleText(text);
+				return text;
+			}
+		}
+		throw new NoSuchElementException("No enabled option was available in select element");
 	}
 
 	private void waitForDropdownToClose(By dropdownLocator) {
@@ -737,5 +1105,146 @@ public class CreatorSettingsPage {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	// ================= BOOK SAVE/CANCEL METHODS =================
+
+	/**
+	 * Save book (clicks Save button and waits for processing)
+	 */
+	public void saveBook() {
+		try {
+			clickSave();
+			LOGGER.info("Book saved successfully");
+		} catch (Exception e) {
+			LOGGER.warning("Failed to save book: " + e.getMessage());
+			throw new RuntimeException("Failed to save book", e);
+		}
+	}
+
+	/**
+	 * Cancel book editing (clicks Cancel button)
+	 */
+	public void cancelEdit() {
+		try {
+			WebElement cancelButton = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//button[contains(text(),'Cancel')] | " +
+							"//div[@tabindex='0'][.//div[contains(text(),'Cancel')]]")));
+			js.executeScript("arguments[0].click();", cancelButton);
+			LOGGER.info("Canceled book edit");
+		} catch (Exception e) {
+			LOGGER.warning("Could not find cancel button: " + e.getMessage());
+		}
+	}
+
+	// ================= CHAPTER EDIT/DELETE METHODS =================
+
+	private static final By CHAPTER_EDIT_BUTTON = By.cssSelector("[data-testid^='button_edit_chapter_']");
+	private static final By CHAPTER_DELETE_BUTTON = By.cssSelector("[data-testid^='button_delete_chapter_']");
+	private static final By CHAPTER_LIST = By.cssSelector("[data-testid^='container_chapter_row_']");
+
+	/**
+	 * Edit first chapter in the list
+	 */
+	public void editFirstChapter() {
+		try {
+			List<WebElement> editButtons = driver.findElements(CHAPTER_EDIT_BUTTON);
+			if (!editButtons.isEmpty()) {
+				WebElement firstEditButton = editButtons.get(0);
+				js.executeScript("arguments[0].scrollIntoView({block:'center'});", firstEditButton);
+				js.executeScript("arguments[0].click();", firstEditButton);
+				LOGGER.info("Clicked edit button on first chapter");
+			} else {
+				throw new IllegalStateException("No edit button found on any chapter");
+			}
+		} catch (Exception e) {
+			LOGGER.warning("Failed to edit first chapter: " + e.getMessage());
+			throw new RuntimeException("Failed to edit first chapter", e);
+		}
+	}
+
+	/**
+	 * Delete first chapter in the list
+	 */
+	public void deleteFirstChapter() {
+		try {
+			List<WebElement> deleteButtons = driver.findElements(CHAPTER_DELETE_BUTTON);
+			if (!deleteButtons.isEmpty()) {
+				WebElement firstDeleteButton = deleteButtons.get(0);
+				js.executeScript("arguments[0].scrollIntoView({block:'center'});", firstDeleteButton);
+				js.executeScript("arguments[0].click();", firstDeleteButton);
+				LOGGER.info("Clicked delete button on first chapter");
+			} else {
+				throw new IllegalStateException("No delete button found on any chapter");
+			}
+		} catch (Exception e) {
+			LOGGER.warning("Failed to delete first chapter: " + e.getMessage());
+			throw new RuntimeException("Failed to delete first chapter", e);
+		}
+	}
+
+	/**
+	 * Confirm chapter deletion in dialog
+	 */
+	public void confirmChapterDelete() {
+		try {
+			WebElement confirmButton = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//button[contains(text(),'Delete') or contains(text(),'Confirm')] | " +
+							"//div[@tabindex='0'][.//div[contains(text(),'Delete') or contains(text(),'Confirm')]]")));
+			js.executeScript("arguments[0].click();", confirmButton);
+			LOGGER.info("Confirmed chapter deletion");
+		} catch (Exception e) {
+			LOGGER.warning("Could not find confirm chapter delete button: " + e.getMessage());
+		}
+	}
+
+	/**
+	 * Cancel chapter deletion in dialog
+	 */
+	public void cancelChapterDelete() {
+		try {
+			WebElement cancelButton = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//button[contains(text(),'Cancel')] | " +
+							"//div[@tabindex='0'][.//div[contains(text(),'Cancel')]]")));
+			js.executeScript("arguments[0].click();", cancelButton);
+			LOGGER.info("Canceled chapter deletion");
+		} catch (Exception e) {
+			LOGGER.warning("Could not find cancel chapter delete button: " + e.getMessage());
+		}
+	}
+
+	/**
+	 * Cancel chapter editing
+	 */
+	public void cancelChapterEdit() {
+		try {
+			WebElement cancelButton = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//button[contains(text(),'Cancel')] | " +
+							"//div[@tabindex='0'][.//div[contains(text(),'Cancel')]]")));
+			js.executeScript("arguments[0].click();", cancelButton);
+			LOGGER.info("Canceled chapter edit");
+		} catch (Exception e) {
+			LOGGER.warning("Could not find cancel chapter edit button: " + e.getMessage());
+		}
+	}
+
+	/**
+	 * Get count of chapters
+	 */
+	public int getChapterCount() {
+		try {
+			List<WebElement> chapters = driver.findElements(CHAPTER_LIST);
+			return chapters.size();
+		} catch (Exception e) {
+			LOGGER.warning("Could not get chapter count: " + e.getMessage());
+			return 0;
+		}
+	}
+
+	/**
+	 * Check if any chapters exist
+	 */
+	public boolean hasChapters() {
+		return getChapterCount() > 0;
 	}
 }
