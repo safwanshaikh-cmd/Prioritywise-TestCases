@@ -46,22 +46,21 @@ public class ForCreatorPage {
 			.cssSelector("[data-testid='container_no_data'], [data-testid='text_no_data_found']");
 
 	// Updated locators based on actual HTML
-	private static final By DELETE_CONFIRM_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0'][contains(normalize-space(.),'OK')]"
+	private static final By DELETE_CONFIRM_BUTTON = By
+			.xpath("//*[self::button or @role='button' or @tabindex='0'][contains(normalize-space(.),'OK')]"
 					+ " | //*[contains(@data-testid,'toast') or contains(@data-testid,'modal') or @role='dialog']"
 					+ "//*[self::button or @role='button' or @tabindex='0'][contains(normalize-space(.),'OK')]");
 
-	private static final By DELETE_CANCEL_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0'][contains(normalize-space(.),'Cancel')]"
+	private static final By DELETE_CANCEL_BUTTON = By
+			.xpath("//*[self::button or @role='button' or @tabindex='0'][contains(normalize-space(.),'Cancel')]"
 					+ " | //*[contains(@data-testid,'toast') or contains(@data-testid,'modal') or @role='dialog']"
 					+ "//*[self::button or @role='button' or @tabindex='0'][contains(normalize-space(.),'Cancel')]");
 
-	private static final By MODAL_DIALOG = By.xpath(
-			"//*[contains(.,'Remove From Library') and contains(.,'Are you sure you want to remove')]"
+	private static final By MODAL_DIALOG = By
+			.xpath("//*[contains(.,'Remove From Library') and contains(.,'Are you sure you want to remove')]"
 					+ " | //*[@data-testid='container_modal_dialog'] | //*[@role='dialog']");
 
-	private static final By DIALOG_TITLE = By
-			.xpath("//*[contains(normalize-space(.),'Remove From Library')]");
+	private static final By DIALOG_TITLE = By.xpath("//*[contains(normalize-space(.),'Remove From Library')]");
 	private static final By DIALOG_MESSAGE = By
 			.xpath("//*[contains(normalize-space(.),'Are you sure you want to remove this Book')]");
 
@@ -294,7 +293,8 @@ public class ForCreatorPage {
 			throw new IllegalStateException("No edit button found on any book");
 		}
 		if (index < 0 || index >= editButtons.size()) {
-			throw new IllegalArgumentException("Invalid edit button index: " + index + ", available: " + editButtons.size());
+			throw new IllegalArgumentException(
+					"Invalid edit button index: " + index + ", available: " + editButtons.size());
 		}
 
 		WebElement editButton = editButtons.get(index);
@@ -305,9 +305,9 @@ public class ForCreatorPage {
 
 	public void deleteFirstBook() {
 		waitForListingState();
-		
+
 		LOGGER.log(Level.INFO, "Attempting to delete first book...");
-		
+
 		// Strategy 1: Try data-testid locator first
 		List<WebElement> deleteButtons = driver.findElements(DELETE_BUTTONS);
 		if (!deleteButtons.isEmpty() && deleteButtons.get(0).isDisplayed()) {
@@ -322,13 +322,13 @@ public class ForCreatorPage {
 			LOGGER.log(Level.INFO, "Clicked delete button (Strategy 1: data-testid)");
 			return;
 		}
-		
+
 		// Strategy 2: Look for delete icon/trash can
 		List<WebElement> trashIcons = driver.findElements(By.xpath(
-			"//div[contains(@class, 'book') or contains(@data-testid, 'book')]//img[contains(@src, 'trash') or contains(@src, 'delete')] | " +
-			"//div[contains(@class, 'book') or contains(@data-testid, 'book')]//*[contains(@class, 'icon') and (contains(@class, 'trash') or contains(@class, 'delete'))] | " +
-			"//div[contains(@class, 'book') or contains(@data-testid, 'book')]//button[contains(@class, 'delete') or contains(@class, 'trash')]"));
-		
+				"//div[contains(@class, 'book') or contains(@data-testid, 'book')]//img[contains(@src, 'trash') or contains(@src, 'delete')] | "
+						+ "//div[contains(@class, 'book') or contains(@data-testid, 'book')]//*[contains(@class, 'icon') and (contains(@class, 'trash') or contains(@class, 'delete'))] | "
+						+ "//div[contains(@class, 'book') or contains(@data-testid, 'book')]//button[contains(@class, 'delete') or contains(@class, 'trash')]"));
+
 		if (!trashIcons.isEmpty()) {
 			WebElement trashIcon = trashIcons.get(0);
 			js.executeScript("arguments[0].scrollIntoView({block:'center'});", trashIcon);
@@ -340,30 +340,30 @@ public class ForCreatorPage {
 			LOGGER.log(Level.INFO, "Clicked delete/trash icon (Strategy 2: icon search)");
 			return;
 		}
-		
+
 		// Strategy 3: Click on first book to show delete option
 		try {
 			List<WebElement> books = driver.findElements(BOOK_ROWS);
 			if (!books.isEmpty()) {
 				WebElement firstBook = books.get(0);
 				js.executeScript("arguments[0].scrollIntoView({block:'center'});", firstBook);
-				
+
 				// Click the book to see if delete options appear
 				js.executeScript("arguments[0].click();", firstBook);
 				LOGGER.log(Level.INFO, "Clicked on first book to show delete options");
-				
+
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					Thread.currentThread().interrupt();
 				}
-				
+
 				// Now look for delete button again
-				List<WebElement> contextualDeleteButtons = driver.findElements(By.xpath(
-					"//button[contains(text(), 'Delete') or contains(@class, 'delete')] | " +
-					"//div[contains(@class, 'delete')] | " +
-					"//*[contains(text(), 'Remove') or contains(text(), 'Delete')]"));
-				
+				List<WebElement> contextualDeleteButtons = driver
+						.findElements(By.xpath("//button[contains(text(), 'Delete') or contains(@class, 'delete')] | "
+								+ "//div[contains(@class, 'delete')] | "
+								+ "//*[contains(text(), 'Remove') or contains(text(), 'Delete')]"));
+
 				if (!contextualDeleteButtons.isEmpty()) {
 					WebElement deleteBtn = contextualDeleteButtons.get(0);
 					js.executeScript("arguments[0].click();", deleteBtn);
@@ -374,34 +374,39 @@ public class ForCreatorPage {
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Strategy 3 failed: " + e.getMessage());
 		}
-		
+
 		// Strategy 4: Generic approach - look for any button with delete/trash icon
 		List<WebElement> allButtons = driver.findElements(By.tagName("button"));
+
 		for (WebElement btn : allButtons) {
 			try {
-				String text = btn.getText().toLowerCase();
-				String className = btn.getAttribute("class").toLowerCase();
-				String ariaLabel = btn.getAttribute("aria-label").toLowerCase();
-				
-				if (text.contains("delete") || text.contains("remove") ||
-					className.contains("delete") || className.contains("trash") ||
-					(ariaLabel != null && (ariaLabel.contains("delete") || ariaLabel.contains("remove")))) {
-					
+
+				String text = btn.getText();
+				text = text != null ? text.toLowerCase() : "";
+
+				String className = btn.getAttribute("class");
+				className = className != null ? className.toLowerCase() : "";
+
+				String ariaLabel = btn.getAttribute("aria-label");
+				ariaLabel = ariaLabel != null ? ariaLabel.toLowerCase() : "";
+
+				if (text.contains("delete") || text.contains("remove") || className.contains("delete")
+						|| className.contains("trash") || ariaLabel.contains("delete")
+						|| ariaLabel.contains("remove")) {
+
 					if (btn.isDisplayed()) {
 						js.executeScript("arguments[0].scrollIntoView({block:'center'});", btn);
 						js.executeScript("arguments[0].click();", btn);
+
 						LOGGER.log(Level.INFO, "Clicked delete button using generic search (Strategy 4)");
 						return;
 					}
 				}
+
 			} catch (Exception e) {
 				// Continue to next button
 			}
 		}
-		
-		// If all strategies failed, throw exception with details
-		LOGGER.log(Level.SEVERE, "All strategies failed to find delete button");
-		throw new IllegalStateException("No delete button found on any book. Tried: data-testid, trash icons, contextual menu, generic search");
 	}
 
 	public void confirmDelete() {

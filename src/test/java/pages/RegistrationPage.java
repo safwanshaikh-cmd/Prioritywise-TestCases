@@ -29,11 +29,9 @@ public class RegistrationPage extends BasePage {
 
 	private static final By HOME_LOGIN_BUTTON = By.xpath(
 			"(//div[@class='css-g5y9jx r-1i6wzkk r-lrvibr r-1loqt21 r-1otgn73 r-1awozwy r-9oks40 r-1tw7wh r-eu3ka r-1777fci r-uhung1 r-3o4zer'])[1]");
-	private static final By LOGIN_ENTRY_BUTTON = By.xpath(
-			"//span[normalize-space()='Login']"
-					+ " | //div[normalize-space()='Login']"
-					+ " | //button[normalize-space()='Login']"
-					+ " | //*[@tabindex='0' and (.//span[normalize-space()='Login'] or .//div[normalize-space()='Login'])]");
+	private static final By LOGIN_ENTRY_BUTTON = By.xpath("//span[normalize-space()='Login']"
+			+ " | //div[normalize-space()='Login']" + " | //button[normalize-space()='Login']"
+			+ " | //*[@tabindex='0' and (.//span[normalize-space()='Login'] or .//div[normalize-space()='Login'])]");
 	private static final By REGISTER_LINK = By.xpath("//span[contains(text(),'Register')]");
 	private static final By NAME_FIELD = By.xpath("//input[@placeholder='Name']");
 	private static final By USERNAME_FIELD = By.xpath("//input[@placeholder='Username']");
@@ -43,25 +41,23 @@ public class RegistrationPage extends BasePage {
 	private static final By ROLE_DROPDOWN = By.xpath(
 			"//div[@tabindex='0' and (.//*[normalize-space()='Select Role'] or .//*[normalize-space()='Consumer'] or .//*[normalize-space()='Uploader'] or .//*[normalize-space()='User'] or .//*[normalize-space()='Listener'] or .//*[normalize-space()='Creator'] or .//*[normalize-space()='Admin'])]");
 	private static final By TERMS_CHECKBOX = By.xpath("//*[@data-testid='termsCheckbox']");
-	private static final By TERMS_CHECKBOX_BOX = By.xpath(
-			"//*[@data-testid='termsCheckbox']//div[contains(@style,'width: 19px') and contains(@style,'height: 19px')][last()]");
+
 	private static final By TERMS_LABEL = By.xpath(
 			"//*[self::div or self::span][normalize-space()='Terms and Conditions' or normalize-space()='Terms & Conditions' or contains(normalize-space(.),'Terms and Conditions') or contains(normalize-space(.),'Terms & Conditions')]");
-	private static final By TERMS_LINK = By.xpath(
-			"//*[self::a or self::button or self::span or self::div]"
-					+ "[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'terms')]"
-					+ "[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'condition')]");
+	private static final By TERMS_LINK = By.xpath("//*[self::a or self::button or self::span or self::div]"
+			+ "[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'terms')]"
+			+ "[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'condition')]");
 	private static final By TERMS_CONTAINER = By.xpath(
 			"//*[contains(normalize-space(.),'Terms and Conditions')]/ancestor::*[@tabindex='0' or self::div][1]");
-	private static final By REGISTER_BUTTON = By.xpath(
-			"//div[@tabindex='0' and (.//div[normalize-space()='Register'] or normalize-space()='Register')]"
+	private static final By REGISTER_BUTTON = By
+			.xpath("//div[@tabindex='0' and (.//div[normalize-space()='Register'] or normalize-space()='Register')]"
 					+ " | //button[normalize-space()='Register']");
 	private static final By NEXT_BUTTON = By.xpath("//div[@tabindex='0' and .//div[normalize-space()='Next']]");
-	private static final By RESET_BUTTON = By.xpath(
-			"//div[@tabindex='0' and .//div[normalize-space()='Reset']] | //button[normalize-space()='Reset']");
+	private static final By RESET_BUTTON = By
+			.xpath("//div[@tabindex='0' and .//div[normalize-space()='Reset']] | //button[normalize-space()='Reset']");
 	private static final By NEWSLETTER_CHECKBOX = By.xpath("//*[@data-testid='newsletterCheckbox']");
-	private static final By CAPTCHA = By.xpath(
-			"//iframe[contains(@src,'recaptcha')] | //*[@id='captcha' or contains(@class,'captcha')]");
+	private static final By CAPTCHA = By
+			.xpath("//iframe[contains(@src,'recaptcha')] | //*[@id='captcha' or contains(@class,'captcha')]");
 	private static final By SUCCESS_MESSAGE = By.xpath(
 			"//div[@data-testid='toastText1' or contains(@class,'toast') or contains(@class,'alert')][contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'success') or contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'registered') or contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'otp')]");
 	private static final By GENERIC_FEEDBACK = By.xpath(
@@ -170,52 +166,48 @@ public class RegistrationPage extends BasePage {
 		click(ROLE_DROPDOWN);
 	}
 
-public void selectRole(String role) {
-    if (role != null && !role.isBlank()) {
-        openRoleDropdown();
-        wait.waitForSeconds(1);
-        if (clickDirectRoleOption(role)) {
-            return;
-        }
+	public void selectRole(String role) {
+		if (role != null && !role.isBlank()) {
+			openRoleDropdown();
+			wait.waitForSeconds(1);
+			if (clickDirectRoleOption(role)) {
+				return;
+			}
 
-        WebElement matchedOption = findMatchingRoleOption(role);
-        if (matchedOption != null) {
-            clickRoleOption(matchedOption);
-            return;
-        }
-    }
+			WebElement matchedOption = findMatchingRoleOption(role);
+			if (matchedOption != null) {
+				clickRoleOption(matchedOption);
+				return;
+			}
+		}
 
-    if (role == null || role.isBlank()) {
-        throw new IllegalArgumentException("Role cannot be null or empty");
-    }
+		if (role == null || role.isBlank()) {
+			throw new IllegalArgumentException("Role cannot be null or empty");
+		}
 
-    // Open dropdown
-    WebElement dropdown = wait.waitForElementClickable(ROLE_DROPDOWN);
-    dropdown.click();
+		// Open dropdown
+		WebElement dropdown = wait.waitForElementClickable(ROLE_DROPDOWN);
+		dropdown.click();
 
-    // Wait for options to render
-    wait.waitForSeconds(2);
+		// Wait for options to render
+		wait.waitForSeconds(2);
 
-    try {
-        // Try exact match first
-        By roleOption = By.xpath("//div[normalize-space()='" + role + "']");
-        WebElement option = wait.waitForElementClickable(roleOption);
-        option.click();
-    } catch (Exception e) {
+		try {
+			// Try exact match first
+			By roleOption = By.xpath("//div[normalize-space()='" + role + "']");
+			WebElement option = wait.waitForElementClickable(roleOption);
+			option.click();
+		} catch (Exception e) {
 
-        // Fallback → contains match
-        By fallback = By.xpath("//*[contains(text(),'" + role + "')]");
-        WebElement option = wait.waitForElementClickable(fallback);
+			// Fallback → contains match
+			By fallback = By.xpath("//*[contains(text(),'" + role + "')]");
+			WebElement option = wait.waitForElementClickable(fallback);
 
-        ((JavascriptExecutor) driver).executeScript(
-            "arguments[0].scrollIntoView(true);", option
-        );
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
 
-        ((JavascriptExecutor) driver).executeScript(
-            "arguments[0].click();", option
-        );
-    }
-}
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", option);
+		}
+	}
 
 	public boolean isRoleOptionAvailable(String role) {
 		if (role == null || role.isBlank()) {
@@ -282,58 +274,58 @@ public void selectRole(String role) {
 		}
 	}
 
-public void acceptTerms() {
-	try {
-		wait.waitForPageLoad();
-
-		WebElement checkbox = wait.waitForElementVisible(TERMS_CHECKBOX);
-		WebElement label = null;
-		WebElement container = null;
+	public void acceptTerms() {
 		try {
-			label = wait.waitForElementVisible(TERMS_LABEL);
-			container = findTermsContainer(label);
+			wait.waitForPageLoad();
+
+			WebElement checkbox = wait.waitForElementVisible(TERMS_CHECKBOX);
+			WebElement label = null;
+			WebElement container = null;
+			try {
+				label = wait.waitForElementVisible(TERMS_LABEL);
+				container = findTermsContainer(label);
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Terms label/container lookup failed: {0}", e.getMessage());
+			}
+
+			if (checkbox == null) {
+				throw new RuntimeException("Unable to find Terms checkbox element");
+			}
+
+			if (isTermsSelected(checkbox, container)) {
+				return;
+			}
+
+			clickTermsTarget(checkbox);
+			wait.waitForSeconds(1);
+			if (isTermsSelected(checkbox, container)) {
+				LOGGER.log(Level.INFO, "Terms checkbox clicked successfully");
+				return;
+			}
+
+			if (container != null) {
+				clickTermsTarget(container);
+				wait.waitForSeconds(1);
+				if (isTermsSelected(checkbox, container)) {
+					LOGGER.log(Level.INFO, "Terms checkbox selected via container click");
+					return;
+				}
+			}
+
+			if (label != null) {
+				clickTermsTarget(label);
+				wait.waitForSeconds(1);
+				if (isTermsSelected(checkbox, container)) {
+					LOGGER.log(Level.INFO, "Terms checkbox selected via label click");
+					return;
+				}
+			}
+
+			throw new RuntimeException("Terms checkbox was clicked but did not become selected");
 		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Terms label/container lookup failed: {0}", e.getMessage());
+			throw new RuntimeException("Unable to click Terms checkbox", e);
 		}
-
-		if (checkbox == null) {
-			throw new RuntimeException("Unable to find Terms checkbox element");
-		}
-
-		if (isTermsSelected(checkbox, container)) {
-			return;
-		}
-
-		clickTermsTarget(checkbox);
-		wait.waitForSeconds(1);
-		if (isTermsSelected(checkbox, container)) {
-			LOGGER.log(Level.INFO, "Terms checkbox clicked successfully");
-			return;
-		}
-
-		if (container != null) {
-			clickTermsTarget(container);
-			wait.waitForSeconds(1);
-			if (isTermsSelected(checkbox, container)) {
-				LOGGER.log(Level.INFO, "Terms checkbox selected via container click");
-				return;
-			}
-		}
-
-		if (label != null) {
-			clickTermsTarget(label);
-			wait.waitForSeconds(1);
-			if (isTermsSelected(checkbox, container)) {
-				LOGGER.log(Level.INFO, "Terms checkbox selected via label click");
-				return;
-			}
-		}
-
-		throw new RuntimeException("Terms checkbox was clicked but did not become selected");
-	} catch (Exception e) {
-		throw new RuntimeException("Unable to click Terms checkbox", e);
 	}
-}
 
 	public boolean isTermsLinkAvailable() {
 		return findVisibleElement(TERMS_LINK, TERMS_LABEL, TERMS_CONTAINER) != null;
@@ -442,9 +434,11 @@ public void acceptTerms() {
 		}
 
 		try {
-			String text = normalizeFeedbackText(firstNonBlank(element.getText(),
-					String.valueOf(((JavascriptExecutor) driver).executeScript(
-							"return (arguments[0].innerText || arguments[0].textContent || '').trim();", element))));
+			String text = normalizeFeedbackText(
+					firstNonBlank(element.getText(),
+							String.valueOf(((JavascriptExecutor) driver).executeScript(
+									"return (arguments[0].innerText || arguments[0].textContent || '').trim();",
+									element))));
 			String ariaLabel = firstNonBlank(element.getAttribute("aria-label")).toLowerCase(Locale.ENGLISH);
 			String role = firstNonBlank(element.getAttribute("role")).toLowerCase(Locale.ENGLISH);
 			String tagName = firstNonBlank(element.getTagName()).toLowerCase(Locale.ENGLISH);
@@ -469,7 +463,7 @@ public void acceptTerms() {
 		enterPassword(data.getPassword());
 		enterConfirmPassword(data.getConfirmPassword());
 
-    // ✅ FIXED ORDER
+		// ✅ FIXED ORDER
 		if (data.getRole() != null && !data.getRole().isBlank()) {
 			selectRole(data.getRole());
 		}
@@ -648,6 +642,7 @@ public void acceptTerms() {
 
 	public String findFeedbackMessage(String... fragments) {
 		List<String> messages = getAllVisibleFeedbackMessages();
+
 		if (fragments == null || fragments.length == 0) {
 			for (String message : messages) {
 				if (isMeaningfulFeedbackMessage(message)) {
@@ -661,23 +656,28 @@ public void acceptTerms() {
 			if (!isMeaningfulFeedbackMessage(message)) {
 				continue;
 			}
-			String normalizedMessage = message.toLowerCase(Locale.ENGLISH);
+
+			String normalizedMessage = message != null ? message.toLowerCase(Locale.ENGLISH) : "";
+
 			boolean matches = true;
+
 			for (String fragment : fragments) {
 				if (fragment != null && !fragment.isBlank() && !messageContainsFragment(normalizedMessage, fragment)) {
 					matches = false;
 					break;
 				}
 			}
+
 			if (matches) {
 				return message;
 			}
 		}
 
-		String pageSource = driver.getPageSource().toLowerCase(Locale.ENGLISH);
+		String pageSource = driver.getPageSource();
+		String safeSource = pageSource != null ? pageSource.toLowerCase(Locale.ENGLISH) : "";
+
 		for (String fragment : fragments) {
-			if (fragment != null && !fragment.isBlank()
-					&& pageSource.contains(fragment.toLowerCase(Locale.ENGLISH))) {
+			if (fragment != null && !fragment.isBlank() && safeSource.contains(fragment.toLowerCase(Locale.ENGLISH))) {
 				return fragment;
 			}
 		}
@@ -842,63 +842,6 @@ public void acceptTerms() {
 		}
 	}
 
-	private WebElement findTermsCheckbox(WebElement container, WebElement label) {
-		List<By> locators = new ArrayList<>();
-		locators.add(By.xpath("./preceding-sibling::div[contains(@class,'css-g5y9jx')][1]//div[@tabindex='0'][1]"));
-		locators.add(By.xpath("./preceding::div[@tabindex='0'][1]"));
-		locators.add(By.xpath(".//div[@tabindex='0'][1]"));
-		locators.add(By.xpath("./preceding-sibling::div[contains(@class,'css-g5y9jx')][1]//div[contains(@style,'width: 19px') and contains(@style,'height: 19px')][last()]"));
-		locators.add(By.xpath(".//div[contains(@style,'width: 19px') and contains(@style,'height: 19px')][last()]"));
-
-		if (container != null) {
-			for (By locator : locators) {
-				try {
-					WebElement candidate = container.findElement(locator);
-					if (candidate.isDisplayed()) {
-						return candidate;
-					}
-				} catch (Exception e) {
-					LOGGER.log(Level.FINE, "Terms checkbox lookup in container failed: {0}", e.getMessage());
-				}
-			}
-		}
-
-		if (label != null) {
-			for (By locator : locators) {
-				try {
-					WebElement candidate = label.findElement(locator);
-					if (candidate.isDisplayed()) {
-						return candidate;
-					}
-				} catch (Exception e) {
-					LOGGER.log(Level.FINE, "Terms checkbox lookup near label failed: {0}", e.getMessage());
-				}
-			}
-		}
-
-		for (WebElement candidate : driver.findElements(TERMS_CHECKBOX)) {
-			try {
-				if (candidate.isDisplayed()) {
-					return candidate;
-				}
-			} catch (Exception e) {
-				LOGGER.log(Level.FINE, "Fallback terms checkbox lookup failed: {0}", e.getMessage());
-			}
-		}
-
-		for (WebElement candidate : driver.findElements(TERMS_CHECKBOX_BOX)) {
-			try {
-				if (candidate.isDisplayed()) {
-					return candidate;
-				}
-			} catch (Exception e) {
-				LOGGER.log(Level.FINE, "Fallback terms checkbox box lookup failed: {0}", e.getMessage());
-			}
-		}
-
-		return null;
-	}
-
 	private void clickTermsTarget(WebElement target) {
 		if (target == null) {
 			return;
@@ -950,16 +893,15 @@ public void acceptTerms() {
 				if ("input".equalsIgnoreCase(checkbox.getTagName()) && checkbox.isSelected()) {
 					return true;
 				}
-				Object visualState = ((JavascriptExecutor) driver).executeScript(
-						"const el = arguments[0];"
-								+ "const hasImg = !!el.querySelector('img');"
+				Object visualState = ((JavascriptExecutor) driver)
+						.executeScript("const el = arguments[0];" + "const hasImg = !!el.querySelector('img');"
 								+ "const bgNode = el.querySelector('[style*=\\'background-image\\']');"
 								+ "const bgImg = bgNode ? window.getComputedStyle(bgNode).backgroundImage : '';"
-								+ "return {hasImg:hasImg,bgImg:bgImg};",
-						checkbox);
+								+ "return {hasImg:hasImg,bgImg:bgImg};", checkbox);
 				if (visualState instanceof Map<?, ?> state) {
 					String hasImg = firstNonBlank(String.valueOf(state.get("hasImg"))).toLowerCase(Locale.ENGLISH);
-					String backgroundImage = firstNonBlank(String.valueOf(state.get("bgImg"))).toLowerCase(Locale.ENGLISH);
+					String backgroundImage = firstNonBlank(String.valueOf(state.get("bgImg")))
+							.toLowerCase(Locale.ENGLISH);
 					if ("true".equals(hasImg) || (!backgroundImage.isBlank() && !backgroundImage.contains("none"))) {
 						return true;
 					}
@@ -1051,22 +993,6 @@ public void acceptTerms() {
 		}
 
 		return tokenMatch;
-	}
-
-	private WebElement findFirstUsableRoleOption() {
-		for (WebElement candidate : driver.findElements(GENERIC_ROLE_OPTIONS)) {
-			String candidateText = normalizeRoleText(candidate);
-			if (candidateText.isEmpty() || isNonRoleText(candidateText)) {
-				continue;
-			}
-
-			if (candidateText.contains("consumer") || candidateText.contains("uploader")
-					|| candidateText.contains("listener") || candidateText.contains("creator")
-					|| candidateText.contains("admin") || candidateText.contains("user")) {
-				return candidate;
-			}
-		}
-		return null;
 	}
 
 	private boolean clickDirectRoleOption(String role) {
@@ -1214,7 +1140,11 @@ public void acceptTerms() {
 		if (text == null || text.isBlank()) {
 			return false;
 		}
-		return driver.getPageSource().toLowerCase(Locale.ENGLISH).contains(text.toLowerCase(Locale.ENGLISH));
+
+		String pageSource = driver.getPageSource();
+		String safeSource = pageSource != null ? pageSource.toLowerCase(Locale.ENGLISH) : "";
+
+		return safeSource.contains(text.toLowerCase(Locale.ENGLISH));
 	}
 
 	private boolean clickVisibleLoginEntry(By locator) {
@@ -1224,8 +1154,8 @@ public void acceptTerms() {
 					continue;
 				}
 
-				((JavascriptExecutor) driver).executeScript(
-						"arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
+				((JavascriptExecutor) driver)
+						.executeScript("arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
 				try {
 					element.click();
 				} catch (Exception e) {
@@ -1248,8 +1178,13 @@ public void acceptTerms() {
 
 		try {
 			driver.get(buildCandidateUrl(configuredUrl, path));
+
+			String currentUrl = driver.getCurrentUrl();
+			String safeUrl = currentUrl != null ? currentUrl.toLowerCase(Locale.ENGLISH) : "";
+
 			return new LoginPage(driver).isOnLoginPage() || isRegistrationScreenDisplayed()
-					|| driver.getCurrentUrl().toLowerCase(Locale.ENGLISH).contains(path.replace("/", ""));
+					|| safeUrl.contains(path.replace("/", ""));
+
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Direct route failed for {0}: {1}", new Object[] { path, e.getMessage() });
 			return false;

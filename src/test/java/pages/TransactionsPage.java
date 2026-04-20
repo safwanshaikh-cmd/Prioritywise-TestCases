@@ -14,8 +14,8 @@ import base.BasePage;
 import utils.ConfigReader;
 
 /**
- * Page object for Transactions page.
- * Handles transaction-related operations like viewing, searching, and invoice download.
+ * Page object for Transactions page. Handles transaction-related operations
+ * like viewing, searching, and invoice download.
  */
 public class TransactionsPage extends BasePage {
 
@@ -23,8 +23,8 @@ public class TransactionsPage extends BasePage {
 
 	// Locators
 	private static final By TRANSACTIONS_SCREEN = By.cssSelector("[data-testid='screen_transactions']");
-	private static final By TRANSACTIONS_HEADER = By.xpath(
-			"//div[@data-testid='text_transaction_history' and normalize-space()='Transaction History']"
+	private static final By TRANSACTIONS_HEADER = By
+			.xpath("//div[@data-testid='text_transaction_history' and normalize-space()='Transaction History']"
 					+ " | //div[@data-testid='text_title' and normalize-space()='Transactions']"
 					+ " | //*[@data-testid='text_transaction_history']"
 					+ " | //*[contains(normalize-space(),'Transaction History')]"
@@ -32,8 +32,8 @@ public class TransactionsPage extends BasePage {
 	private static final By TRANSACTION_CARD = By.cssSelector("[data-testid='container_transaction_item']");
 	private static final By SUBSCRIPTION_TYPE = By.xpath(
 			"//*[@data-testid='container_transaction_item']//*[normalize-space()='Gold' or normalize-space()='Silver' or normalize-space()='Bronze' or contains(normalize-space(),'Month') or contains(normalize-space(),'payment')]");
-	private static final By DOWNLOAD_INVOICE = By.cssSelector(
-			"[data-testid='button_download_invoice'], [data-testid='text_download_invoice']");
+	private static final By DOWNLOAD_INVOICE = By
+			.cssSelector("[data-testid='button_download_invoice'], [data-testid='text_download_invoice']");
 	private static final By FILTER_OVERLAY = By.cssSelector("[data-testid='container_filter_overlay']");
 	private static final String FILTER_BUTTON = "//*[@data-testid='button_open_filter' or @data-testid='text_filter_button' or normalize-space()='Filter By']";
 	private static final String FILTER_POPUP = "//*[@data-testid='container_filter_overlay' or normalize-space()='Apply now' or normalize-space()='Successful' or normalize-space()='Cancelled' or normalize-space()='Refunded']";
@@ -69,9 +69,13 @@ public class TransactionsPage extends BasePage {
 	 */
 	public boolean isTransactionsPageDisplayed() {
 		try {
+			String currentUrl = driver.getCurrentUrl();
+			String safeUrl = currentUrl != null ? currentUrl.toLowerCase() : "";
+
 			return isAnyTransactionLocatorVisible(TRANSACTIONS_SCREEN, TRANSACTIONS_HEADER)
-					|| driver.getCurrentUrl().toLowerCase().contains("transaction")
+					|| safeUrl.contains("transaction")
 					|| isAnyTransactionLocatorVisible(TRANSACTIONS_HEADER, DOWNLOAD_INVOICE);
+
 		} catch (Exception e) {
 			return false;
 		}
@@ -116,7 +120,8 @@ public class TransactionsPage extends BasePage {
 			WebElement firstCard = getTransactionCards().get(0);
 			for (WebElement element : firstCard.findElements(By.xpath(".//div[normalize-space()]"))) {
 				String text = element.getText().trim();
-				if (text.equalsIgnoreCase("Gold") || text.equalsIgnoreCase("Silver") || text.equalsIgnoreCase("Bronze")) {
+				if (text.equalsIgnoreCase("Gold") || text.equalsIgnoreCase("Silver")
+						|| text.equalsIgnoreCase("Bronze")) {
 					return text;
 				}
 			}
@@ -269,7 +274,8 @@ public class TransactionsPage extends BasePage {
 	 */
 	public void searchTransaction(String transactionId) {
 		try {
-			WebElement searchInput = pageWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(SEARCH_INPUT)));
+			WebElement searchInput = pageWait
+					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(SEARCH_INPUT)));
 			searchInput.clear();
 			searchInput.sendKeys(transactionId);
 			LOGGER.info("Searched for transaction ID: " + transactionId);
@@ -284,7 +290,8 @@ public class TransactionsPage extends BasePage {
 	 */
 	public void clickSearchButton() {
 		try {
-			WebElement searchBtn = driver.findElement(By.xpath("//button[@type='submit' or contains(@class, 'search')]"));
+			WebElement searchBtn = driver
+					.findElement(By.xpath("//button[@type='submit' or contains(@class, 'search')]"));
 			searchBtn.click();
 			LOGGER.info("Clicked search button");
 			Thread.sleep(1000);

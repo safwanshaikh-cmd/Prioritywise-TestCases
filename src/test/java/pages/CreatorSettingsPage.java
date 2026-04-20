@@ -52,7 +52,8 @@ public class CreatorSettingsPage {
 	private static final By SUMMARY_FIELD = By.cssSelector("[data-testid='input_book_summary']");
 	private static final By LANGUAGE_DROPDOWN = By.cssSelector("[data-testid='select_language']");
 	private static final By SAVE_BUTTON = By.xpath("//div[text()='Save']");
-	private static final By NEXT_BUTTON = By.xpath("//div[contains(text(),'Next') or @type='button' and contains(text(),'Next')] | //button[contains(text(),'Next')]");
+	private static final By NEXT_BUTTON = By.xpath(
+			"//div[contains(text(),'Next') or @type='button' and contains(text(),'Next')] | //button[contains(text(),'Next')]");
 	private static final By VALIDATION_MESSAGES = By.cssSelector("div.r-howw7u");
 	private static final By COUNTRYCATEGORY_DROPDOWN = By.cssSelector("[data-testid='select_country_category']");
 	private static final By CATEGORY = By.cssSelector("[data-testid='dropdown_category']");
@@ -67,8 +68,8 @@ public class CreatorSettingsPage {
 			.cssSelector("input[type='file'][accept*='image'], input[accept*='image'], input[type='file']");
 	private static final By PORTRAIT_COVER_ERROR = By.cssSelector("[data-testid='text_portrait_cover_error']");
 	private static final By LANDSCAPE_COVER_ERROR = By.cssSelector("[data-testid='text_landscape_cover_error']");
-	private static final By WARNING_ELEMENTS = By.xpath(
-			"//*[contains(@data-testid,'error') or @data-testid='toastText1' or @data-testid='toastText2']");
+	private static final By WARNING_ELEMENTS = By
+			.xpath("//*[contains(@data-testid,'error') or @data-testid='toastText1' or @data-testid='toastText2']");
 	private static final By AUDIO_UPLOAD_SCREEN = By.cssSelector("[data-testid='screen_upload_audio_file']");
 	private static final By AUDIO_UPLOAD_TITLE = By.cssSelector("[data-testid='text_upload_audio_title']");
 	private static final By AUDIO_MODAL_CONTENT = By.cssSelector("[data-testid='container_modal_content']");
@@ -78,9 +79,10 @@ public class CreatorSettingsPage {
 	private static final By CHAPTER_SUMMARY_INPUT = By.cssSelector("[data-testid='input_chapter_summary']");
 	private static final By AUDIO_FILE_BUTTON = By.cssSelector("[data-testid='button_select_audio_file']");
 	private static final By AUDIO_CHAPTER_SAVE_BUTTON = By.cssSelector("[data-testid='button_save_audio_chapter']");
-	private static final By AUDIO_FILE_INPUT = By.cssSelector("input[type='file'][accept*='audio'], input[type='file']");
-	private static final By AUDIO_CLOSE_BUTTON = By.xpath(
-			"//*[@data-testid='container_modal_content']//*[self::button or @role='button' or @tabindex='0']"
+	private static final By AUDIO_FILE_INPUT = By
+			.cssSelector("input[type='file'][accept*='audio'], input[type='file']");
+	private static final By AUDIO_CLOSE_BUTTON = By
+			.xpath("//*[@data-testid='container_modal_content']//*[self::button or @role='button' or @tabindex='0']"
 					+ "[contains(translate(@aria-label,'CLOSE','close'),'close')"
 					+ " or contains(translate(@data-testid,'CLOSE','close'),'close')"
 					+ " or normalize-space()='×' or normalize-space()='✕' or normalize-space()='✖' or normalize-space()='X']");
@@ -90,9 +92,13 @@ public class CreatorSettingsPage {
 	// ================= NAVIGATION =================
 
 	public void clickHamburgerMenu() {
-		wait.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
+		wait.until(
+				driver -> "complete".equals(((JavascriptExecutor) driver).executeScript("return document.readyState")));
+
 		WebElement menu = wait.until(ExpectedConditions.presenceOfElementLocated(HAMBURGER_MENU));
+
 		js.executeScript("arguments[0].click();", menu);
+
 		LOGGER.log(Level.INFO, "Hamburger menu clicked successfully");
 	}
 
@@ -214,8 +220,8 @@ public class CreatorSettingsPage {
 					LOGGER.log(Level.INFO, "Title entered successfully: " + safeTitle);
 					break;
 				} else {
-					LOGGER.log(Level.WARNING, "Title entry verification failed on attempt " + (attempt + 1) +
-							". Expected: '" + safeTitle + "', Got: '" + enteredValue + "'");
+					LOGGER.log(Level.WARNING, "Title entry verification failed on attempt " + (attempt + 1)
+							+ ". Expected: '" + safeTitle + "', Got: '" + enteredValue + "'");
 				}
 			} catch (Exception e) {
 				LOGGER.log(Level.WARNING, "sendKeys attempt " + (attempt + 1) + " failed: " + e.getMessage());
@@ -235,11 +241,8 @@ public class CreatorSettingsPage {
 		// JavaScript fallback if standard methods failed
 		if (!textEntered) {
 			LOGGER.log(Level.WARNING, "Standard sendKeys failed, using JavaScript fallback");
-			js.executeScript("const el = arguments[0];"
-					+ "const value = arguments[1] == null ? '' : arguments[1];"
-					+ "el.focus();"
-					+ "el.value = value;"
-					+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
+			js.executeScript("const el = arguments[0];" + "const value = arguments[1] == null ? '' : arguments[1];"
+					+ "el.focus();" + "el.value = value;" + "el.dispatchEvent(new Event('input', { bubbles: true }));"
 					+ "el.dispatchEvent(new Event('change', { bubbles: true }));"
 					+ "el.dispatchEvent(new Event('blur', { bubbles: true }));", titleInput, safeTitle);
 
@@ -253,7 +256,8 @@ public class CreatorSettingsPage {
 			if (finalValue != null && finalValue.equals(safeTitle)) {
 				LOGGER.log(Level.INFO, "Title entered via JavaScript: " + safeTitle);
 			} else {
-				LOGGER.log(Level.SEVERE, "Failed to enter title. Expected: '" + safeTitle + "', Got: '" + finalValue + "'");
+				LOGGER.log(Level.SEVERE,
+						"Failed to enter title. Expected: '" + safeTitle + "', Got: '" + finalValue + "'");
 			}
 		}
 	}
@@ -282,8 +286,7 @@ public class CreatorSettingsPage {
 			if (safeSummary.length() > 4000) {
 				js.executeScript(
 						"const el = arguments[0]; const value = arguments[1];"
-								+ "if ('value' in el) { el.value = value; }"
-								+ "else { el.textContent = value; }"
+								+ "if ('value' in el) { el.value = value; }" + "else { el.textContent = value; }"
 								+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
 								+ "el.dispatchEvent(new Event('change', { bubbles: true }));",
 						summaryInput, safeSummary);
@@ -291,13 +294,10 @@ public class CreatorSettingsPage {
 				summaryInput.sendKeys(safeSummary);
 			}
 		} catch (Exception e) {
-			js.executeScript(
-					"const el = arguments[0]; const value = arguments[1];"
-							+ "if ('value' in el) { el.value = value; }"
-							+ "else { el.textContent = value; }"
-							+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
-							+ "el.dispatchEvent(new Event('change', { bubbles: true }));",
-					summaryInput, safeSummary);
+			js.executeScript("const el = arguments[0]; const value = arguments[1];"
+					+ "if ('value' in el) { el.value = value; }" + "else { el.textContent = value; }"
+					+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
+					+ "el.dispatchEvent(new Event('change', { bubbles: true }));", summaryInput, safeSummary);
 		}
 
 		LOGGER.log(Level.INFO, "Entered book summary");
@@ -328,7 +328,8 @@ public class CreatorSettingsPage {
 	}
 
 	public void selectCategory(String category) {
-		String selectedCategory = selectCustomDropdownOption(CATEGORY, category, "Select Category", CATEGORY_SEARCH_INPUT);
+		String selectedCategory = selectCustomDropdownOption(CATEGORY, category, "Select Category",
+				CATEGORY_SEARCH_INPUT);
 		LOGGER.log(Level.INFO, "Category selected: {0}", selectedCategory);
 	}
 
@@ -360,7 +361,6 @@ public class CreatorSettingsPage {
 		uploadImageThroughButton(LANDSCAPE_UPLOAD_BUTTON, landscapeImagePath, "landscape");
 		LOGGER.log(Level.INFO, "Images uploaded successfully");
 	}
-
 
 	public void uploadBookFile(String filePath) {
 		try {
@@ -395,7 +395,6 @@ public class CreatorSettingsPage {
 		}
 	}
 
-
 	public boolean hasFileUploadInput() {
 		try {
 			// Look for file input that accepts PDF or audio files
@@ -429,7 +428,6 @@ public class CreatorSettingsPage {
 			return false;
 		}
 	}
-
 
 	public void clickSave() {
 		for (int i = 0; i < 3; i++) {
@@ -471,11 +469,11 @@ public class CreatorSettingsPage {
 
 			LOGGER.log(Level.INFO, "Next button clicked successfully");
 		} catch (TimeoutException e) {
-			LOGGER.log(Level.WARNING, "Next button not found or not clickable - may not be applicable in current state");
+			LOGGER.log(Level.WARNING,
+					"Next button not found or not clickable - may not be applicable in current state");
 			throw new RuntimeException("Next button not found or not clickable", e);
 		}
 	}
-
 
 	public void clickEditFirstContent() {
 		WebElement editButton = findFirstVisibleEditButton();
@@ -763,7 +761,8 @@ public class CreatorSettingsPage {
 	}
 
 	public void enterChapterSummary(String summary) {
-		WebElement chapterSummaryInput = wait.until(ExpectedConditions.visibilityOfElementLocated(CHAPTER_SUMMARY_INPUT));
+		WebElement chapterSummaryInput = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(CHAPTER_SUMMARY_INPUT));
 		chapterSummaryInput.clear();
 		chapterSummaryInput.sendKeys(summary);
 		LOGGER.log(Level.INFO, "Chapter summary entered");
@@ -771,7 +770,8 @@ public class CreatorSettingsPage {
 
 	public String getCurrentChapterSummary() {
 		try {
-			WebElement chapterSummaryInput = wait.until(ExpectedConditions.visibilityOfElementLocated(CHAPTER_SUMMARY_INPUT));
+			WebElement chapterSummaryInput = wait
+					.until(ExpectedConditions.visibilityOfElementLocated(CHAPTER_SUMMARY_INPUT));
 			String value = chapterSummaryInput.getAttribute("value");
 			return value == null ? "" : value.trim();
 		} catch (Exception e) {
@@ -892,9 +892,6 @@ public class CreatorSettingsPage {
 			}
 
 			String text = candidate.getText();
-			if (text == null) {
-				continue;
-			}
 
 			String normalized = text.trim();
 			if (!normalized.isEmpty() && !normalized.contains(placeholderText) && !normalized.startsWith("Select ")) {
@@ -1172,9 +1169,9 @@ public class CreatorSettingsPage {
 	 */
 	public void cancelEdit() {
 		try {
-			WebElement cancelButton = wait.until(ExpectedConditions.elementToBeClickable(
-					By.xpath("//button[contains(text(),'Cancel')] | " +
-							"//div[@tabindex='0'][.//div[contains(text(),'Cancel')]]")));
+			WebElement cancelButton = wait
+					.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Cancel')] | "
+							+ "//div[@tabindex='0'][.//div[contains(text(),'Cancel')]]")));
 			js.executeScript("arguments[0].click();", cancelButton);
 			LOGGER.info("Canceled book edit");
 		} catch (Exception e) {
@@ -1184,25 +1181,21 @@ public class CreatorSettingsPage {
 
 	// ================= CHAPTER EDIT/DELETE METHODS =================
 
-	private static final By CHAPTER_EDIT_BUTTON = By.xpath(
-			"//*[@data-testid and contains(@data-testid,'chapter') and contains(@data-testid,'edit')]"
+	private static final By CHAPTER_EDIT_BUTTON = By
+			.xpath("//*[@data-testid and contains(@data-testid,'chapter') and contains(@data-testid,'edit')]"
 					+ " | //*[@data-testid and contains(@data-testid,'button_edit_uploaded_file_')]"
 					+ " | //*[@data-testid='screen_upload_audio_file']//*[self::button or @role='button' or @tabindex='0']"
 					+ "[normalize-space()='Edit' or .//*[normalize-space()='Edit']]");
-	private static final By CHAPTER_DELETE_BUTTON = By.xpath(
-			"//*[@data-testid and contains(@data-testid,'chapter') and contains(@data-testid,'delete')]"
+	private static final By CHAPTER_DELETE_BUTTON = By
+			.xpath("//*[@data-testid and contains(@data-testid,'chapter') and contains(@data-testid,'delete')]"
 					+ " | //*[@data-testid and contains(@data-testid,'button_delete_uploaded_file_')]"
 					+ " | //*[@data-testid='screen_upload_audio_file']//*[self::button or @role='button' or @tabindex='0']"
 					+ "[normalize-space()='Delete' or .//*[normalize-space()='Delete']]");
-	private static final By CHAPTER_LIST = By.xpath(
-			"//*[@data-testid and (contains(@data-testid,'chapter_row')"
-					+ " or contains(@data-testid,'chapter-row')"
-					+ " or contains(@data-testid,'chapter_item')"
-					+ " or contains(@data-testid,'chapter-item')"
-					+ " or contains(@data-testid,'chapter_card')"
-					+ " or contains(@data-testid,'chapter-card')"
-					+ " or contains(@data-testid,'container_chapter')"
-					+ " or contains(@data-testid,'uploaded_file'))]");
+	private static final By CHAPTER_LIST = By.xpath("//*[@data-testid and (contains(@data-testid,'chapter_row')"
+			+ " or contains(@data-testid,'chapter-row')" + " or contains(@data-testid,'chapter_item')"
+			+ " or contains(@data-testid,'chapter-item')" + " or contains(@data-testid,'chapter_card')"
+			+ " or contains(@data-testid,'chapter-card')" + " or contains(@data-testid,'container_chapter')"
+			+ " or contains(@data-testid,'uploaded_file'))]");
 
 	/**
 	 * Edit first chapter in the list
@@ -1264,8 +1257,8 @@ public class CreatorSettingsPage {
 			}
 
 			WebElement confirmButton = wait.until(ExpectedConditions.elementToBeClickable(
-					By.xpath("//button[contains(text(),'Delete') or contains(text(),'Confirm')] | " +
-							"//div[@tabindex='0'][.//div[contains(text(),'Delete') or contains(text(),'Confirm')]]")));
+					By.xpath("//button[contains(text(),'Delete') or contains(text(),'Confirm')] | "
+							+ "//div[@tabindex='0'][.//div[contains(text(),'Delete') or contains(text(),'Confirm')]]")));
 			js.executeScript("arguments[0].click();", confirmButton);
 			LOGGER.info("Confirmed chapter deletion");
 		} catch (Exception e) {
@@ -1287,9 +1280,9 @@ public class CreatorSettingsPage {
 				// Fall back to in-page cancel when no browser alert is present.
 			}
 
-			WebElement cancelButton = wait.until(ExpectedConditions.elementToBeClickable(
-					By.xpath("//button[contains(text(),'Cancel')] | " +
-							"//div[@tabindex='0'][.//div[contains(text(),'Cancel')]]")));
+			WebElement cancelButton = wait
+					.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Cancel')] | "
+							+ "//div[@tabindex='0'][.//div[contains(text(),'Cancel')]]")));
 			js.executeScript("arguments[0].click();", cancelButton);
 			LOGGER.info("Canceled chapter deletion");
 		} catch (Exception e) {
@@ -1302,9 +1295,9 @@ public class CreatorSettingsPage {
 	 */
 	public void cancelChapterEdit() {
 		try {
-			WebElement cancelButton = wait.until(ExpectedConditions.elementToBeClickable(
-					By.xpath("//button[contains(text(),'Cancel')] | " +
-							"//div[@tabindex='0'][.//div[contains(text(),'Cancel')]]")));
+			WebElement cancelButton = wait
+					.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Cancel')] | "
+							+ "//div[@tabindex='0'][.//div[contains(text(),'Cancel')]]")));
 			js.executeScript("arguments[0].click();", cancelButton);
 			LOGGER.info("Canceled chapter edit");
 		} catch (Exception e) {

@@ -461,7 +461,7 @@ public class DashboardPage extends BasePage {
 
 			for (WebElement book : books) {
 				if (isElementInViewport(book)) {
-					clickUsingJavaScript(book);
+					clickWithJS(book);
 					LOGGER.info("Successfully clicked a visible book from the carousel.");
 					return;
 				}
@@ -691,7 +691,8 @@ public class DashboardPage extends BasePage {
 		try {
 			LOGGER.info("Looking for search input...");
 			WebElement searchInput = pageWait.until(ExpectedConditions.presenceOfElementLocated(SEARCH_INPUT));
-			LOGGER.info("Search input found: " + searchInput.getAttribute("placeholder"));
+			LOGGER.info(
+					"Search input found: " + firstNonBlank(searchInput.getAttribute("placeholder"), "no placeholder"));
 
 			// Wait for input to be visible and clickable
 			pageWait.until(ExpectedConditions.visibilityOf(searchInput));
@@ -788,8 +789,12 @@ public class DashboardPage extends BasePage {
 	public boolean isPlaylistPageOpened() {
 		try {
 			waitForMilliseconds(1000);
-			String currentUrl = driver.getCurrentUrl().toLowerCase();
-			return currentUrl.contains("playlist");
+
+			String currentUrl = driver.getCurrentUrl();
+			String safeUrl = currentUrl != null ? currentUrl.toLowerCase() : "";
+
+			return safeUrl.contains("playlist");
+
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Playlist page not opened: {0}", e.getMessage());
 			return false;
@@ -880,12 +885,12 @@ public class DashboardPage extends BasePage {
 	public boolean waitForBannerToAutoRotate(int waitSeconds) {
 		String initialBanner = getCurrentBannerIdentifier();
 		int initialIndicator = getActiveBannerIndicatorIndex();
-		waitForMilliseconds(waitSeconds * 1000L);
-		String rotatedBanner = getCurrentBannerIdentifier();
-		int rotatedIndicator = getActiveBannerIndicatorIndex();
-
-		return (!initialBanner.isBlank() && !rotatedBanner.isBlank() && !initialBanner.equals(rotatedBanner))
-				|| (initialIndicator >= 0 && rotatedIndicator >= 0 && initialIndicator != rotatedIndicator);
+		return waitForStateChange(() -> {
+			String rotatedBanner = getCurrentBannerIdentifier();
+			int rotatedIndicator = getActiveBannerIndicatorIndex();
+			return (!initialBanner.isBlank() && !rotatedBanner.isBlank() && !initialBanner.equals(rotatedBanner))
+					|| (initialIndicator >= 0 && rotatedIndicator >= 0 && initialIndicator != rotatedIndicator);
+		}, Duration.ofSeconds(Math.max(1, waitSeconds)), "Banner auto-rotate");
 	}
 
 	public boolean clickNextBannerAndVerifyChange() {
@@ -910,17 +915,18 @@ public class DashboardPage extends BasePage {
 			int horizontalOffset = Math.max(60, dragTarget.getRect().getWidth() / 3);
 			new Actions(driver).moveToElement(dragTarget).clickAndHold().pause(Duration.ofMillis(250))
 					.moveByOffset(-horizontalOffset, 0).pause(Duration.ofMillis(250)).release().perform();
-			waitForMilliseconds(1500);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Banner drag interaction failed: {0}", e.getMessage());
 			return false;
 		}
 
-		String updatedBanner = getCurrentBannerIdentifier();
-		int updatedIndicator = getActiveBannerIndicatorIndex();
-		return (!initialBanner.isBlank() && !updatedBanner.isBlank() && !initialBanner.equals(updatedBanner))
-				|| (initialIndicator >= 0 && updatedIndicator >= 0 && initialIndicator != updatedIndicator)
-				|| isBannerSectionVisible();
+		return waitForStateChange(() -> {
+			String updatedBanner = getCurrentBannerIdentifier();
+			int updatedIndicator = getActiveBannerIndicatorIndex();
+			return (!initialBanner.isBlank() && !updatedBanner.isBlank() && !initialBanner.equals(updatedBanner))
+					|| (initialIndicator >= 0 && updatedIndicator >= 0 && initialIndicator != updatedIndicator)
+					|| isBannerSectionVisible();
+		}, Duration.ofSeconds(2), "Banner drag state");
 	}
 
 	public boolean clickCurrentBannerAndOpenDetails() {
@@ -1441,8 +1447,8 @@ public class DashboardPage extends BasePage {
 	}
 
 	/**
-	 * Adds book to default "Favourites" list by clicking heart icon,
-	 * checking the Favourites checkbox, and closing the dialog
+	 * Adds book to default "Favourites" list by clicking heart icon, checking the
+	 * Favourites checkbox, and closing the dialog
 	 */
 	public boolean addToDefaultFavourites() {
 		WebElement favoriteButton = findFavoriteButton();
@@ -1458,20 +1464,13 @@ public class DashboardPage extends BasePage {
 			waitForMilliseconds(2000);
 			LOGGER.info("Heart icon clicked, favorites dialog opened");
 
-
 			// DEBUG: Log all clickable elements in the dialog
 			try {
 				Object debugInfo = ((JavascriptExecutor) driver).executeScript(
-					"const elements = Array.from(document.querySelectorAll('[tabindex=\"0\"], [role=\"button\"], [role=\"checkbox\"], div[class*=\"css-\"]')).slice(0, 20);" +
-					"return elements.map(el => {" +
-					"  return {" +
-					"    tag: el.tagName," +
-					"    text: el.textContent.trim().substring(0, 30)," +
-					"    class: el.className," +
-					"    role: el.getAttribute('role')" +
-					"  };" +
-					"});"
-				);
+						"const elements = Array.from(document.querySelectorAll('[tabindex=\"0\"], [role=\"button\"], [role=\"checkbox\"], div[class*=\"css-\"]')).slice(0, 20);"
+								+ "return elements.map(el => {" + "  return {" + "    tag: el.tagName,"
+								+ "    text: el.textContent.trim().substring(0, 30)," + "    class: el.className,"
+								+ "    role: el.getAttribute('role')" + "  };" + "});");
 				LOGGER.info("DEBUG: Dialog elements: " + debugInfo);
 			} catch (Exception e) {
 				LOGGER.log(Level.FINE, "Debug logging failed: {0}", e.getMessage());
@@ -1489,8 +1488,8 @@ public class DashboardPage extends BasePage {
 			if (favouritesCheckbox == null) {
 				try {
 					String xpath = "//div[contains(text(), 'Favourites') or contains(text(), 'Favorites')]/ancestor::div[@role='checkbox' or @aria-checked] | "
-						+ "//div[contains(text(), 'Favourites') or contains(text(), 'Favorites')]/preceding::div[@role='checkbox' or @aria-checked][1] | "
-						+ "//div[contains(@class, 'css-g5y9jx')][@role='checkbox' or @aria-checked]";
+							+ "//div[contains(text(), 'Favourites') or contains(text(), 'Favorites')]/preceding::div[@role='checkbox' or @aria-checked][1] | "
+							+ "//div[contains(@class, 'css-g5y9jx')][@role='checkbox' or @aria-checked]";
 					List<WebElement> checkboxes = driver.findElements(By.xpath(xpath));
 					if (!checkboxes.isEmpty()) {
 						favouritesCheckbox = checkboxes.get(0);
@@ -1505,18 +1504,13 @@ public class DashboardPage extends BasePage {
 			if (favouritesCheckbox == null) {
 				try {
 					Object result = ((JavascriptExecutor) driver).executeScript(
-						"const favText = Array.from(document.querySelectorAll('div, span, p')).find(el => " +
-						"  el.textContent.trim() === 'Favourites' || el.textContent.trim() === 'Favorites');" +
-						"if (!favText) return null;" +
-						"let parent = favText;" +
-						"for (let i = 0; i < 5; i++) {" +
-						"  parent = parent.parentElement;" +
-						"  if (!parent) break;" +
-						"  const checkbox = parent.querySelector('[role=\"checkbox\"], [aria-checked]');" +
-						"  if (checkbox) return checkbox;" +
-						"}" +
-						"return null;"
-					);
+							"const favText = Array.from(document.querySelectorAll('div, span, p')).find(el => "
+									+ "  el.textContent.trim() === 'Favourites' || el.textContent.trim() === 'Favorites');"
+									+ "if (!favText) return null;" + "let parent = favText;"
+									+ "for (let i = 0; i < 5; i++) {" + "  parent = parent.parentElement;"
+									+ "  if (!parent) break;"
+									+ "  const checkbox = parent.querySelector('[role=\"checkbox\"], [aria-checked]');"
+									+ "  if (checkbox) return checkbox;" + "}" + "return null;");
 					if (result instanceof WebElement) {
 						favouritesCheckbox = (WebElement) result;
 						LOGGER.info("Found Favourites checkbox using JavaScript approach");
@@ -1526,19 +1520,20 @@ public class DashboardPage extends BasePage {
 				}
 			}
 
-
 			// Method 4: Try finding by class name directly - css-g5y9jx
 			if (favouritesCheckbox == null) {
 				try {
-					List<WebElement> cssElements = driver.findElements(By.xpath("//div[contains(@class, 'css-g5y9jx')]"));
+					List<WebElement> cssElements = driver
+							.findElements(By.xpath("//div[contains(@class, 'css-g5y9jx')]"));
 					if (!cssElements.isEmpty()) {
 						LOGGER.info("Found " + cssElements.size() + " elements with css-g5y9jx class");
 						for (int i = 0; i < Math.min(cssElements.size(), 20); i++) {
 							WebElement el = cssElements.get(i);
 							try {
-								String text = el.getText();
-								String parentText = el.findElement(By.xpath("..")).getText();
-							LOGGER.info("Element " + i + " - text: '" + text + "', parent text: '" + parentText + "'");
+								String text = firstNonBlank(el.getText(), "");
+								String parentText = firstNonBlank(el.findElement(By.xpath("..")).getText(), "");
+								LOGGER.info(
+										"Element " + i + " - text: '" + text + "', parent text: '" + parentText + "'");
 								if (parentText.contains("Favourites") || parentText.contains("Favorites")) {
 									favouritesCheckbox = el;
 									LOGGER.info("Found Favourites checkbox using css-g5y9jx class approach");
@@ -1554,8 +1549,6 @@ public class DashboardPage extends BasePage {
 				}
 			}
 
-
-
 			// Method 5: Use exact XPath provided by user
 			if (favouritesCheckbox == null) {
 				try {
@@ -1570,7 +1563,6 @@ public class DashboardPage extends BasePage {
 					LOGGER.log(Level.WARNING, "Exact XPath lookup failed: " + e.getMessage());
 				}
 			}
-
 
 			if (favouritesCheckbox == null) {
 				LOGGER.warning("Favourites checkbox not found in dialog using any method");
@@ -1591,40 +1583,39 @@ public class DashboardPage extends BasePage {
 			} else {
 				// Click the checkbox to add to Favourites
 				scrollIntoView(favouritesCheckbox);
-					LOGGER.info("Attempting to click checkbox using direct JavaScript...");
+				LOGGER.info("Attempting to click checkbox using direct JavaScript...");
+				try {
+					// Approach 1: Direct JavaScript click
+					((JavascriptExecutor) driver).executeScript("arguments[0].click();", favouritesCheckbox);
+					LOGGER.info("Approach 1: Direct JavaScript click executed");
+				} catch (Exception e1) {
+					LOGGER.log(Level.WARNING, "Approach 1 failed: " + e1.getMessage());
 					try {
-						// Approach 1: Direct JavaScript click
-						((JavascriptExecutor) driver).executeScript("arguments[0].click();", favouritesCheckbox);
-						LOGGER.info("Approach 1: Direct JavaScript click executed");
-					} catch (Exception e1) {
-						LOGGER.log(Level.WARNING, "Approach 1 failed: " + e1.getMessage());
-						try {
-							// Approach 2: Standard click
-							favouritesCheckbox.click();
-							LOGGER.info("Approach 2: Standard click executed");
-						} catch (Exception e2) {
-							LOGGER.log(Level.WARNING, "Approach 2 failed: " + e2.getMessage());
-							// Approach 3: Original clickWithJS as fallback
-							clickWithJS(favouritesCheckbox);
-							LOGGER.info("Approach 3: clickWithJS fallback executed");
-						}
+						// Approach 2: Standard click
+						favouritesCheckbox.click();
+						LOGGER.info("Approach 2: Standard click executed");
+					} catch (Exception e2) {
+						LOGGER.log(Level.WARNING, "Approach 2 failed: " + e2.getMessage());
+						// Approach 3: Original clickWithJS as fallback
+						clickWithJS(favouritesCheckbox);
+						LOGGER.info("Approach 3: clickWithJS fallback executed");
 					}
-					}
-					LOGGER.info("Favourites checkbox clicked - waiting for loading to complete");
-
-				// Wait for loading to complete after clicking checkbox
-				// The user said "after clicking on Check box it is loading so need to add wait"
-				waitForMilliseconds(5000);
-					LOGGER.info("Waited 5 seconds for loading to complete");
-
-				// Verify the checkbox is now checked
-				String ariaCheckedAfter = favouritesCheckbox.getAttribute("aria-checked");
-				if ("true".equals(ariaCheckedAfter)) {
-					LOGGER.info("✅ Checkbox successfully checked after loading");
-				} else {
-					LOGGER.warning("⚠️ Checkbox may not have been checked properly");
 				}
+			}
+			LOGGER.info("Favourites checkbox clicked - waiting for loading to complete");
 
+			// Wait for loading to complete after clicking checkbox
+			// The user said "after clicking on Check box it is loading so need to add wait"
+			waitForMilliseconds(5000);
+			LOGGER.info("Waited 5 seconds for loading to complete");
+
+			// Verify the checkbox is now checked
+			String ariaCheckedAfter = favouritesCheckbox.getAttribute("aria-checked");
+			if ("true".equals(ariaCheckedAfter)) {
+				LOGGER.info("✅ Checkbox successfully checked after loading");
+			} else {
+				LOGGER.warning("⚠️ Checkbox may not have been checked properly");
+			}
 
 			// Close the dialog by pressing Escape key
 			try {
@@ -1650,29 +1641,6 @@ public class DashboardPage extends BasePage {
 		}
 	}
 
-	private WebElement findPlaylistInput() {
-		try {
-			// Look for input with placeholder "New playlist name"
-			WebElement input = driver.findElement(By.xpath("//input[@placeholder='New playlist name']"));
-			return input.isDisplayed() ? input : null;
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Playlist input not found: {0}", e.getMessage());
-			return null;
-		}
-	}
-
-	private WebElement findCreateButton() {
-		try {
-			// Look for button with "➕ Create" text
-			WebElement createBtn = driver.findElement(By.xpath("//*[contains(text(),'➕') or contains(text(),'Create')]"
-					+ "[contains(text(),'Create') or ancestor::*[contains(@role,'button') or @tabindex='0']]"));
-			return createBtn.isDisplayed() ? createBtn : null;
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Create button not found: {0}", e.getMessage());
-			return null;
-		}
-	}
-
 	private WebElement findDeleteButton() {
 		try {
 			// Look for button with 🗑️ emoji
@@ -1686,7 +1654,7 @@ public class DashboardPage extends BasePage {
 
 	private WebElement findPlaylistCheckbox(String playlistName) {
 		try {
-			String escapedPlaylistName = playlistName.replace("'", "\\'");
+
 			Object candidate = ((JavascriptExecutor) driver).executeScript("const name = arguments[0];"
 					+ "const nodes = Array.from(document.querySelectorAll('div,span,p')).filter(el => {"
 					+ "  const text = (el.textContent || '').trim();" + "  return text === name;" + "});"
@@ -1967,8 +1935,9 @@ public class DashboardPage extends BasePage {
 
 	public boolean hasAlreadyReportedMessage() {
 		try {
-			// Check for "Report received — thank you" message
-			String bodyText = ((JavascriptExecutor) driver).executeScript("return document.body.innerText").toString();
+			Object result = ((JavascriptExecutor) driver).executeScript("return document.body.innerText");
+
+			String bodyText = result != null ? result.toString() : "";
 
 			boolean hasMessage = bodyText.contains("Report received")
 					|| bodyText.contains("thank you for taking the time")
@@ -1976,6 +1945,7 @@ public class DashboardPage extends BasePage {
 
 			LOGGER.log(Level.INFO, "Already reported message visible: {0}", hasMessage);
 			return hasMessage;
+
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Failed to check for already reported message: {0}", e.getMessage());
 			return false;
@@ -2021,10 +1991,13 @@ public class DashboardPage extends BasePage {
 
 	private boolean isReportConfirmationVisible() {
 		try {
-			String bodyText = ((JavascriptExecutor) driver).executeScript("return document.body.innerText").toString();
+			Object result = ((JavascriptExecutor) driver).executeScript("return document.body.innerText");
+
+			String bodyText = result != null ? result.toString() : "";
 
 			return bodyText.contains("Report received") || bodyText.contains("thank you for taking the time")
 					|| bodyText.contains("Thank you for your feedback");
+
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to check report confirmation: {0}", e.getMessage());
 			return false;
@@ -2066,16 +2039,14 @@ public class DashboardPage extends BasePage {
 	}
 
 	private WebElement waitForAudioElementInAnyContext(By locator, boolean requireClickable, Duration timeout) {
-		long deadline = System.currentTimeMillis() + timeout.toMillis();
-		while (System.currentTimeMillis() < deadline) {
-			WebElement element = findAudioElementInAnyContext(locator, requireClickable);
-			if (element != null) {
-				return element;
-			}
-			waitForMilliseconds(250);
+		try {
+			new WebDriverWait(driver, timeout)
+					.until(webDriver -> findAudioElementInAnyContext(locator, requireClickable) != null);
+			return findAudioElementInAnyContext(locator, requireClickable);
+		} catch (Exception e) {
+			driver.switchTo().defaultContent();
+			return null;
 		}
-		driver.switchTo().defaultContent();
-		return null;
 	}
 
 	private WebElement findAudioElementInAnyContext(By locator, boolean requireClickable) {
@@ -2160,6 +2131,56 @@ public class DashboardPage extends BasePage {
 		}
 	}
 
+	private boolean waitForAudioPositionChange(String beforePosition, Duration timeout) {
+		return waitForStateChange(() -> !Objects.equals(beforePosition, getCurrentAudioPosition()), timeout,
+				"Audio position change");
+	}
+
+	private boolean clickAudioControl(By locator, String missingMessage) {
+		WebElement control = safeWaitForClickable(locator);
+		if (control == null) {
+			LOGGER.warning(missingMessage);
+			return false;
+		}
+		safeActionsClick(control);
+		return true;
+	}
+
+	private void clickAudioControlRepeatedly(By locator, int attempts, long pauseMillis, String actionName) {
+		for (int i = 0; i < attempts; i++) {
+			WebElement button = safeWaitForClickable(locator);
+			if (button != null) {
+				safeJsClick(button);
+				LOGGER.log(Level.INFO, "{0} executed ({1})", new Object[] { actionName, i + 1 });
+				waitForMilliseconds(pauseMillis);
+			} else {
+				LOGGER.log(Level.FINE, "{0} attempt {1} failed: button not found", new Object[] { actionName, i + 1 });
+			}
+		}
+	}
+
+	private boolean clickAudioProgressBarAtRatio(double ratio, String actionLabel) {
+		WebElement progressBar = safeFindAudioElement(PROGRESS_BAR);
+		if (progressBar == null) {
+			LOGGER.warning("Progress bar not found");
+			return false;
+		}
+
+		scrollIntoView(progressBar);
+		org.openqa.selenium.Dimension size = progressBar.getSize();
+		int xOffset = (int) (size.getWidth() * ratio);
+
+		try {
+			Actions actions = new Actions(driver);
+			actions.moveToElement(progressBar, xOffset - size.getWidth() / 2, 0).click().build().perform();
+			LOGGER.log(Level.INFO, actionLabel);
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Actions click on progress bar failed: {0}", e.getMessage());
+			return false;
+		}
+	}
+
 	public String getCurrentAudioPosition() {
 		try {
 			WebElement positionLabel = safeFindAudioElement(CURRENT_POSITION_LABEL);
@@ -2186,15 +2207,12 @@ public class DashboardPage extends BasePage {
 	public boolean skipForward30Seconds() {
 		try {
 			String initialPosition = getCurrentAudioPosition();
-			WebElement forwardButton = safeWaitForClickable(FORWARD_SKIP_BUTTON);
-			if (forwardButton == null) {
-				LOGGER.log(Level.WARNING, "Forward skip button not found or not clickable");
+			if (!clickAudioControl(FORWARD_SKIP_BUTTON, "Forward skip button not found or not clickable")) {
 				return false;
 			}
 
 			LOGGER.log(Level.INFO, "Forward skip initial position: {0}", initialPosition);
-			safeJsClick(forwardButton);
-			waitForMilliseconds(1500);
+			waitForAudioPositionChange(initialPosition, Duration.ofSeconds(2));
 
 			String updatedPosition = getCurrentAudioPosition();
 			LOGGER.log(Level.INFO, "Forward skip updated position: {0}", updatedPosition);
@@ -2215,15 +2233,12 @@ public class DashboardPage extends BasePage {
 	public boolean rewind30Seconds() {
 		try {
 			String initialPosition = getCurrentAudioPosition();
-			WebElement rewindButton = safeWaitForClickable(REWIND_BUTTON);
-			if (rewindButton == null) {
-				LOGGER.log(Level.WARNING, "Rewind button not found or not clickable");
+			if (!clickAudioControl(REWIND_BUTTON, "Rewind button not found or not clickable")) {
 				return false;
 			}
 
 			LOGGER.log(Level.INFO, "Rewind initial position: {0}", initialPosition);
-			safeJsClick(rewindButton);
-			waitForMilliseconds(1500);
+			waitForAudioPositionChange(initialPosition, Duration.ofSeconds(2));
 
 			String updatedPosition = getCurrentAudioPosition();
 			LOGGER.log(Level.INFO, "Rewind updated position: {0}", updatedPosition);
@@ -2246,22 +2261,12 @@ public class DashboardPage extends BasePage {
 			String position = getCurrentAudioPosition();
 			LOGGER.log(Level.INFO, "Position before skip near end: {0}", position);
 
-			WebElement forwardButton = safeWaitForClickable(FORWARD_SKIP_BUTTON);
-			if (forwardButton == null) {
+			if (safeWaitForClickable(FORWARD_SKIP_BUTTON) == null) {
 				LOGGER.log(Level.WARNING, "Forward skip button not found for edge case test");
 				return false;
 			}
 
-			for (int i = 0; i < 5; i++) {
-				WebElement button = safeWaitForClickable(FORWARD_SKIP_BUTTON);
-				if (button != null) {
-					safeJsClick(button);
-					LOGGER.log(Level.INFO, "Forward skip executed ({0})", i + 1);
-					waitForMilliseconds(300);
-				} else {
-					LOGGER.log(Level.FINE, "Skip attempt {0} failed: button not found", i + 1);
-				}
-			}
+			clickAudioControlRepeatedly(FORWARD_SKIP_BUTTON, 5, 300, "Forward skip");
 
 			LOGGER.log(Level.INFO, "Skip near end edge case handled gracefully");
 			return true;
@@ -2276,22 +2281,12 @@ public class DashboardPage extends BasePage {
 			String position = getCurrentAudioPosition();
 			LOGGER.log(Level.INFO, "Position before rewind at start: {0}", position);
 
-			WebElement rewindButton = safeWaitForClickable(REWIND_BUTTON);
-			if (rewindButton == null) {
+			if (safeWaitForClickable(REWIND_BUTTON) == null) {
 				LOGGER.log(Level.WARNING, "Rewind button not found for edge case test");
 				return false;
 			}
 
-			for (int i = 0; i < 3; i++) {
-				WebElement button = safeWaitForClickable(REWIND_BUTTON);
-				if (button != null) {
-					safeJsClick(button);
-					LOGGER.log(Level.INFO, "Rewind executed ({0})", i + 1);
-					waitForMilliseconds(300);
-				} else {
-					LOGGER.log(Level.FINE, "Rewind attempt {0} failed: button not found", i + 1);
-				}
-			}
+			clickAudioControlRepeatedly(REWIND_BUTTON, 3, 300, "Rewind");
 
 			LOGGER.log(Level.INFO, "Rewind at start edge case handled gracefully");
 			return true;
@@ -2317,17 +2312,14 @@ public class DashboardPage extends BasePage {
 
 	public boolean clickNextChapter() {
 		try {
-			WebElement nextButton = safeWaitForClickable(NEXT_CHAPTER_BUTTON);
-			if (nextButton == null) {
-				LOGGER.log(Level.WARNING, "Next Chapter button not found or not clickable");
+			if (!clickAudioControl(NEXT_CHAPTER_BUTTON, "Next Chapter button not found or not clickable")) {
 				return false;
 			}
 
 			String beforeChapter = getCurrentChapterTitle();
 			LOGGER.log(Level.INFO, "Chapter before clicking Next: {0}", beforeChapter);
-
-			safeActionsClick(nextButton);
-			waitForMilliseconds(1000);
+			waitForStateChange(() -> !Objects.equals(beforeChapter, getCurrentChapterTitle()), Duration.ofSeconds(2),
+					"Next chapter change");
 
 			String afterChapter = getCurrentChapterTitle();
 			LOGGER.log(Level.INFO, "Chapter after clicking Next: {0}", afterChapter);
@@ -2341,17 +2333,14 @@ public class DashboardPage extends BasePage {
 
 	public boolean clickPreviousChapter() {
 		try {
-			WebElement prevButton = safeWaitForClickable(PREVIOUS_CHAPTER_BUTTON);
-			if (prevButton == null) {
-				LOGGER.log(Level.WARNING, "Previous Chapter button not found or not clickable");
+			if (!clickAudioControl(PREVIOUS_CHAPTER_BUTTON, "Previous Chapter button not found or not clickable")) {
 				return false;
 			}
 
 			String beforeChapter = getCurrentChapterTitle();
 			LOGGER.log(Level.INFO, "Chapter before clicking Previous: {0}", beforeChapter);
-
-			safeActionsClick(prevButton);
-			waitForMilliseconds(1000);
+			waitForStateChange(() -> !Objects.equals(beforeChapter, getCurrentChapterTitle()), Duration.ofSeconds(2),
+					"Previous chapter change");
 
 			String afterChapter = getCurrentChapterTitle();
 			LOGGER.log(Level.INFO, "Chapter after clicking Previous: {0}", afterChapter);
@@ -2365,14 +2354,9 @@ public class DashboardPage extends BasePage {
 
 	public boolean changePlaybackSpeed(String speed) {
 		try {
-			WebElement speedButton = safeWaitForClickable(SPEED_CONTROL_BUTTON);
-			if (speedButton == null) {
-				LOGGER.log(Level.WARNING, "Speed control button not found or not clickable");
+			if (!clickAudioControl(SPEED_CONTROL_BUTTON, "Speed control button not found or not clickable")) {
 				return false;
 			}
-
-			safeActionsClick(speedButton);
-			waitForMilliseconds(500);
 
 			String speedXPath = "//*[self::button or @role='button' or @tabindex='0']"
 					+ "[contains(translate(normalize-space(.),'" + speed.toUpperCase() + "','" + speed.toLowerCase()
@@ -2490,13 +2474,9 @@ public class DashboardPage extends BasePage {
 
 	public boolean muteAudio() {
 		try {
-			WebElement muteButton = safeWaitForClickable(MUTE_BUTTON);
-			if (muteButton == null) {
-				LOGGER.log(Level.WARNING, "Mute button not found or not clickable");
+			if (!clickAudioControl(MUTE_BUTTON, "Mute button not found or not clickable")) {
 				return false;
 			}
-
-			safeActionsClick(muteButton);
 			LOGGER.log(Level.INFO, "Audio mute toggled");
 			return true;
 		} catch (Exception e) {
@@ -2516,7 +2496,8 @@ public class DashboardPage extends BasePage {
 			scrollIntoView(closeButton);
 
 			safeActionsClick(closeButton);
-			waitForMilliseconds(1000);
+			waitForStateChange(() -> findFirstVisibleElement(CLOSE_PLAYER_BUTTON) == null, Duration.ofSeconds(2),
+					"Audio player close");
 			LOGGER.log(Level.INFO, "Audio player closed");
 			return true;
 		} catch (Exception e) {
@@ -2527,30 +2508,12 @@ public class DashboardPage extends BasePage {
 
 	public boolean seekForward() {
 		try {
-			WebElement progressBar = safeFindAudioElement(PROGRESS_BAR);
-			if (progressBar == null) {
-				LOGGER.log(Level.WARNING, "Progress bar not found");
-				return false;
-			}
-
 			String beforePosition = getCurrentAudioPosition();
 			LOGGER.log(Level.INFO, "Position before seek: {0}", beforePosition);
-
-			scrollIntoView(progressBar);
-
-			org.openqa.selenium.Point location = progressBar.getLocation();
-			org.openqa.selenium.Dimension size = progressBar.getSize();
-			int xOffset = (int) (size.getWidth() * 0.7);
-
-			try {
-				Actions actions = new Actions(driver);
-				actions.moveToElement(progressBar, xOffset - size.getWidth() / 2, 0).click().build().perform();
-				LOGGER.log(Level.INFO, "Seeked forward to 70% of progress bar");
-			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Actions click on progress bar failed: {0}", e.getMessage());
+			if (!clickAudioProgressBarAtRatio(0.7, "Seeked forward to 70% of progress bar")) {
+				return false;
 			}
-
-			waitForMilliseconds(500);
+			waitForAudioPositionChange(beforePosition, Duration.ofSeconds(1));
 			String afterPosition = getCurrentAudioPosition();
 			LOGGER.log(Level.INFO, "Position after seek: {0}", afterPosition);
 
@@ -2563,27 +2526,12 @@ public class DashboardPage extends BasePage {
 
 	public boolean seekBackward() {
 		try {
-			WebElement progressBar = safeFindAudioElement(PROGRESS_BAR);
-			if (progressBar == null) {
-				LOGGER.log(Level.WARNING, "Progress bar not found");
-				return false;
-			}
-
 			String beforePosition = getCurrentAudioPosition();
 			LOGGER.log(Level.INFO, "Position before seek: {0}", beforePosition);
-
-			org.openqa.selenium.Dimension size = progressBar.getSize();
-			int xOffset = (int) (size.getWidth() * 0.3);
-
-			try {
-				Actions actions = new Actions(driver);
-				actions.moveToElement(progressBar, xOffset - size.getWidth() / 2, 0).click().build().perform();
-				LOGGER.log(Level.INFO, "Seeked backward to 30% of progress bar");
-			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Actions click on progress bar failed: {0}", e.getMessage());
+			if (!clickAudioProgressBarAtRatio(0.3, "Seeked backward to 30% of progress bar")) {
+				return false;
 			}
-
-			waitForMilliseconds(500);
+			waitForAudioPositionChange(beforePosition, Duration.ofSeconds(1));
 			String afterPosition = getCurrentAudioPosition();
 			LOGGER.log(Level.INFO, "Position after seek: {0}", afterPosition);
 
@@ -2596,29 +2544,10 @@ public class DashboardPage extends BasePage {
 
 	public boolean seekBeyondEnd() {
 		try {
-			WebElement progressBar = safeFindAudioElement(PROGRESS_BAR);
-			if (progressBar == null) {
-				LOGGER.log(Level.WARNING, "Progress bar not found for edge case test");
-				return false;
-			}
-
 			String beforePosition = getCurrentAudioPosition();
 			LOGGER.log(Level.INFO, "Position before seek beyond end: {0}", beforePosition);
-
-			scrollIntoView(progressBar);
-
-			org.openqa.selenium.Dimension size = progressBar.getSize();
-			int xOffset = (int) (size.getWidth() * 1.2);
-
-			try {
-				Actions actions = new Actions(driver);
-				actions.moveToElement(progressBar, xOffset, 0).click().build().perform();
-				LOGGER.log(Level.INFO, "Attempted to seek beyond end of progress bar");
-			} catch (Exception e) {
-				LOGGER.log(Level.FINE, "Seek beyond end failed (expected): {0}", e.getMessage());
-			}
-
-			waitForMilliseconds(500);
+			clickAudioProgressBarAtRatio(1.2, "Attempted to seek beyond end of progress bar");
+			waitForAudioPositionChange(beforePosition, Duration.ofSeconds(1));
 			LOGGER.log(Level.INFO, "Seek beyond end edge case handled gracefully");
 			return true;
 		} catch (Exception e) {
@@ -2956,28 +2885,24 @@ public class DashboardPage extends BasePage {
 	private static final By SIDE_MENU_SCROLL_VIEW = By.cssSelector("[data-testid='scrollview_sidebar']");
 	private static final By SIDE_MENU_BUTTON_LABELS = By.xpath(
 			"//*[@data-testid='view_sidebar_content']//*[@data-testid='button_eighty_percent_off']//*[self::div or self::span][normalize-space()]"
-			+ " | //*[@data-testid='view_sidebar_menu_items']//*[self::div or self::span][normalize-space()]"
-			+ " | //*[@data-testid='view_sidebar_footer']//*[self::div or self::span][normalize-space()]");
+					+ " | //*[@data-testid='view_sidebar_menu_items']//*[self::div or self::span][normalize-space()]"
+					+ " | //*[@data-testid='view_sidebar_footer']//*[self::div or self::span][normalize-space()]");
 	private static final By SIDE_MENU_HEADER = By.xpath("//*[@data-testid='view_sidebar_header']");
 	private static final String[] PRIMARY_SIDE_MENU_LABELS = new String[] { "home", "get 80% off", "80% off",
 			"most favorite", "most favourite", "transaction history", "about us", "contact", "contact us",
 			"download apps", "download app", "for creators", "for creator", "creators", "creator", "logout" };
 
-	private static final By FOR_CREATORS_MENU_ITEM = By.xpath(
-			"//*[normalize-space()='For Creators' or normalize-space()='For Creator']"
-			+ " | //*[@tabindex='0' and (contains(normalize-space(.), 'For Creators') or contains(normalize-space(.), 'For Creator'))]");
+	private static final By ACCESS_DENIED_MESSAGE = By
+			.xpath("//*[contains(translate(normalize-space(.), 'ACCESS DENIED', 'access denied'), 'access denied')]"
+					+ " |//*[contains(translate(normalize-space(.), 'NOT AUTHORIZED', 'not authorized'), 'not authorized')]"
+					+ " |//*[contains(translate(normalize-space(.), 'UNAUTHORIZED', 'unauthorized'), 'unauthorized')]"
+					+ " |//*[contains(translate(normalize-space(.), 'YOU DON', 'you don') and contains(translate(normalize-space(.), 'HAVE ACCESS', 'have access'))]");
 
-	private static final By ACCESS_DENIED_MESSAGE = By.xpath(
-			"//*[contains(translate(normalize-space(.), 'ACCESS DENIED', 'access denied'), 'access denied')]"
-			+ " |//*[contains(translate(normalize-space(.), 'NOT AUTHORIZED', 'not authorized'), 'not authorized')]"
-			+ " |//*[contains(translate(normalize-space(.), 'UNAUTHORIZED', 'unauthorized'), 'unauthorized')]"
-			+ " |//*[contains(translate(normalize-space(.), 'YOU DON', 'you don') and contains(translate(normalize-space(.), 'HAVE ACCESS', 'have access'))]");
-
-	private static final By CREATOR_PAGE_INDICATORS = By.xpath(
-			"//*[contains(@data-testid, 'creator') or contains(@class, 'creator')]"
-			+ " | //*[contains(translate(normalize-space(.), 'DASHBOARD', 'dashboard'), 'dashboard') and contains(translate(normalize-space(.), 'CREATOR', 'creator'), 'creator')]"
-			+ " | //*[contains(translate(normalize-space(.), 'MY CONTENT', 'my content'), 'my content')]"
-			+ " | //*[contains(translate(normalize-space(.), 'UPLOAD', 'upload'), 'upload') and contains(translate(normalize-space(.), 'CONTENT', 'content'), 'content')]");
+	private static final By CREATOR_PAGE_INDICATORS = By
+			.xpath("//*[contains(@data-testid, 'creator') or contains(@class, 'creator')]"
+					+ " | //*[contains(translate(normalize-space(.), 'DASHBOARD', 'dashboard'), 'dashboard') and contains(translate(normalize-space(.), 'CREATOR', 'creator'), 'creator')]"
+					+ " | //*[contains(translate(normalize-space(.), 'MY CONTENT', 'my content'), 'my content')]"
+					+ " | //*[contains(translate(normalize-space(.), 'UPLOAD', 'upload'), 'upload') and contains(translate(normalize-space(.), 'CONTENT', 'content'), 'content')]");
 
 	public void clickHamburgerMenu() {
 		try {
@@ -3169,6 +3094,7 @@ public class DashboardPage extends BasePage {
 
 	public List<String> getSimpleSideMenuButtonNames() {
 		List<String> names = new ArrayList<>();
+		@SuppressWarnings("null")
 		List<By> candidateLocators = Arrays.asList(SIDE_MENU_BUTTON_LABELS,
 				By.xpath("//*[@data-testid='button_menu_home']//*[normalize-space()]"
 						+ " | //*[@data-testid='button_eighty_percent_off']//*[normalize-space()]"
@@ -3178,18 +3104,18 @@ public class DashboardPage extends BasePage {
 						+ " | //*[@data-testid='button_logout']//*[normalize-space()]"));
 		for (By locator : candidateLocators) {
 			for (WebElement element : driver.findElements(locator)) {
-			try {
-				if (!element.isDisplayed()) {
-					continue;
+				try {
+					if (!element.isDisplayed()) {
+						continue;
+					}
+					String text = normalizeVisibleText(element);
+					if (text.isBlank() || text.length() > 80 || names.contains(text)) {
+						continue;
+					}
+					names.add(text);
+				} catch (Exception e) {
+					LOGGER.log(Level.FINE, "Unable to read side menu label: {0}", e.getMessage());
 				}
-				String text = normalizeVisibleText(element);
-				if (text.isBlank() || text.length() > 80 || names.contains(text)) {
-					continue;
-				}
-				names.add(text);
-			} catch (Exception e) {
-				LOGGER.log(Level.FINE, "Unable to read side menu label: {0}", e.getMessage());
-			}
 			}
 			if (!names.isEmpty()) {
 				break;
@@ -3274,18 +3200,14 @@ public class DashboardPage extends BasePage {
 			}
 
 			try {
-				Object clicked = ((JavascriptExecutor) driver).executeScript(
-						"const overlay = arguments[0];"
-								+ "if (!overlay) return false;"
-								+ "const rect = overlay.getBoundingClientRect();"
-								+ "const x = Math.max(rect.left + rect.width - 60, rect.left + 20);"
-								+ "const y = rect.top + Math.max(Math.floor(rect.height / 2), 20);"
-								+ "const target = document.elementFromPoint(x, y) || overlay;"
-								+ "['pointerdown','mousedown','mouseup','click'].forEach((type) => {"
-								+ "  target.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, clientX: x, clientY: y }));"
-								+ "});"
-								+ "return true;",
-						overlay);
+				Object clicked = ((JavascriptExecutor) driver).executeScript("const overlay = arguments[0];"
+						+ "if (!overlay) return false;" + "const rect = overlay.getBoundingClientRect();"
+						+ "const x = Math.max(rect.left + rect.width - 60, rect.left + 20);"
+						+ "const y = rect.top + Math.max(Math.floor(rect.height / 2), 20);"
+						+ "const target = document.elementFromPoint(x, y) || overlay;"
+						+ "['pointerdown','mousedown','mouseup','click'].forEach((type) => {"
+						+ "  target.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, clientX: x, clientY: y }));"
+						+ "});" + "return true;", overlay);
 				if (Boolean.TRUE.equals(clicked)) {
 					waitForMilliseconds(700);
 					return waitForSimpleSideMenuClosed();
@@ -3333,14 +3255,11 @@ public class DashboardPage extends BasePage {
 			WebElement sidebarContent = new WebDriverWait(driver, Duration.ofSeconds(5))
 					.until(ExpectedConditions.visibilityOfElementLocated(SIDE_MENU_CONTENT));
 			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
-					+ "const labels = arguments[1];"
-					+ "const isVisible = (element) => {"
-					+ "  if (!element) return false;"
-					+ "  const style = window.getComputedStyle(element);"
+					+ "const labels = arguments[1];" + "const isVisible = (element) => {"
+					+ "  if (!element) return false;" + "  const style = window.getComputedStyle(element);"
 					+ "  const rect = element.getBoundingClientRect();"
 					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
-					+ "    && rect.width > 0 && rect.height > 0;"
-					+ "};"
+					+ "    && rect.width > 0 && rect.height > 0;" + "};"
 					+ "const textOf = (element) => [element.innerText, element.textContent,"
 					+ "  element.getAttribute('data-testid'), element.getAttribute('aria-label')]"
 					+ "  .filter(Boolean).join(' ').toLowerCase();"
@@ -3515,8 +3434,8 @@ public class DashboardPage extends BasePage {
 	// ============================================================
 
 	/**
-	 * Check if "For Creators" menu item is visible in the side menu.
-	 * This is used for role-based access control verification.
+	 * Check if "For Creators" menu item is visible in the side menu. This is used
+	 * for role-based access control verification.
 	 *
 	 * @return true if "For Creators" menu item is visible, false otherwise
 	 */
@@ -3534,8 +3453,8 @@ public class DashboardPage extends BasePage {
 	}
 
 	/**
-	 * Click "For Creators" menu item and capture the resulting URL.
-	 * Used for testing role-based navigation to creator dashboard.
+	 * Click "For Creators" menu item and capture the resulting URL. Used for
+	 * testing role-based navigation to creator dashboard.
 	 *
 	 * @return URL after navigation, or empty string if navigation failed
 	 */
@@ -3544,19 +3463,20 @@ public class DashboardPage extends BasePage {
 			return clickSimpleSideMenuItemAndCaptureUrl("for creators", "for creator", "creators", "creator",
 					"upload content");
 		}
-		return clickSideMenuItemAndCaptureUrl("for creators", "for creator", "creators", "creator",
-				"upload content");
+		return clickSideMenuItemAndCaptureUrl("for creators", "for creator", "creators", "creator", "upload content");
 	}
 
 	/**
-	 * Check if user is on the creator/dashboard page.
-	 * Uses URL and page indicators to verify.
+	 * Check if user is on the creator/dashboard page. Uses URL and page indicators
+	 * to verify.
 	 *
 	 * @return true if on creator page, false otherwise
 	 */
 	public boolean isOnCreatorPage() {
-		String currentUrl = driver.getCurrentUrl().toLowerCase();
-		if (currentUrl.contains("creator") || currentUrl.contains("for-creator")) {
+		String currentUrl = driver.getCurrentUrl();
+		String safeUrl = currentUrl != null ? currentUrl.toLowerCase() : "";
+
+		if (safeUrl.contains("creator") || safeUrl.contains("for-creator")) {
 			return true;
 		}
 
@@ -3571,15 +3491,14 @@ public class DashboardPage extends BasePage {
 	}
 
 	/**
-	 * Check if access denied message is visible.
-	 * Used to verify blocked access via direct URL.
+	 * Check if access denied message is visible. Used to verify blocked access via
+	 * direct URL.
 	 *
 	 * @return true if access denied message is displayed, false otherwise
 	 */
 	public boolean isAccessDeniedMessageVisible() {
 		try {
-			return !driver.findElements(ACCESS_DENIED_MESSAGE).isEmpty()
-					&& driver.findElements(ACCESS_DENIED_MESSAGE).stream().anyMatch(WebElement::isDisplayed);
+			return isAnyElementVisible(ACCESS_DENIED_MESSAGE);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Access denied message not found: {0}", e.getMessage());
 			return false;
@@ -3589,8 +3508,12 @@ public class DashboardPage extends BasePage {
 	public boolean isUploadPageOpened() {
 		try {
 			waitForMilliseconds(1000);
-			String currentUrl = driver.getCurrentUrl().toLowerCase();
-			return currentUrl.contains("upload") || driver.findElements(UPLOAD_PAGE).size() > 0;
+
+			String url = driver.getCurrentUrl();
+			String safeUrl = url != null ? url.toLowerCase() : "";
+
+			return safeUrl.contains("upload") || driver.findElements(UPLOAD_PAGE).size() > 0;
+
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Upload page not opened: {0}", e.getMessage());
 			return false;
@@ -3599,13 +3522,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean hasContentStats() {
 		try {
-			return driver.findElements(CONTENT_STATS).stream().anyMatch(element -> {
-				try {
-					return element.isDisplayed();
-				} catch (Exception e) {
-					return false;
-				}
-			});
+			return isAnyElementVisible(CONTENT_STATS);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Content stats not visible: {0}", e.getMessage());
 			return false;
@@ -3614,13 +3531,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean isAnalyticsSectionVisible() {
 		try {
-			return driver.findElements(ANALYTICS_SECTION).stream().anyMatch(element -> {
-				try {
-					return element.isDisplayed();
-				} catch (Exception e) {
-					return false;
-				}
-			});
+			return isAnyElementVisible(ANALYTICS_SECTION);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Analytics section not visible: {0}", e.getMessage());
 			return false;
@@ -3629,13 +3540,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean isDraftsSectionVisible() {
 		try {
-			return driver.findElements(DRAFTS_SECTION).stream().anyMatch(element -> {
-				try {
-					return element.isDisplayed();
-				} catch (Exception e) {
-					return false;
-				}
-			});
+			return isAnyElementVisible(DRAFTS_SECTION);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Drafts section not visible: {0}", e.getMessage());
 			return false;
@@ -3653,13 +3558,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean hasEditOption() {
 		try {
-			return driver.findElements(EDIT_OPTION).stream().anyMatch(element -> {
-				try {
-					return element.isDisplayed();
-				} catch (Exception e) {
-					return false;
-				}
-			});
+			return isAnyElementVisible(EDIT_OPTION);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Edit option not visible: {0}", e.getMessage());
 			return false;
@@ -3668,13 +3567,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean hasDeleteOption() {
 		try {
-			return driver.findElements(DELETE_OPTION).stream().anyMatch(element -> {
-				try {
-					return element.isDisplayed();
-				} catch (Exception e) {
-					return false;
-				}
-			});
+			return isAnyElementVisible(DELETE_OPTION);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Delete option not visible: {0}", e.getMessage());
 			return false;
@@ -3685,8 +3578,12 @@ public class DashboardPage extends BasePage {
 
 	public boolean isAdminDashboardLoaded() {
 		try {
-			return waitForDashboardShell() && (driver.findElements(ADMIN_DASHBOARD).size() > 0
-					|| driver.getCurrentUrl().toLowerCase().contains("admin"));
+			String url = driver.getCurrentUrl();
+			String safeUrl = url != null ? url.toLowerCase() : "";
+
+			return waitForDashboardShell()
+					&& (driver.findElements(ADMIN_DASHBOARD).size() > 0 || safeUrl.contains("admin"));
+
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Admin dashboard not loaded: {0}", e.getMessage());
 			return false;
@@ -3695,13 +3592,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean isUserManagementSectionVisible() {
 		try {
-			return driver.findElements(USER_MANAGEMENT).stream().anyMatch(element -> {
-				try {
-					return element.isDisplayed();
-				} catch (Exception e) {
-					return false;
-				}
-			});
+			return isAnyElementVisible(USER_MANAGEMENT);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "User management section not visible: {0}", e.getMessage());
 			return false;
@@ -3710,13 +3601,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean hasRoleManagementOption() {
 		try {
-			return driver.findElements(ROLE_MANAGEMENT).stream().anyMatch(element -> {
-				try {
-					return element.isDisplayed();
-				} catch (Exception e) {
-					return false;
-				}
-			});
+			return isAnyElementVisible(ROLE_MANAGEMENT);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Role management option not visible: {0}", e.getMessage());
 			return false;
@@ -3725,13 +3610,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean isContentModerationPanelVisible() {
 		try {
-			return driver.findElements(MODERATION_PANEL).stream().anyMatch(element -> {
-				try {
-					return element.isDisplayed();
-				} catch (Exception e) {
-					return false;
-				}
-			});
+			return isAnyElementVisible(MODERATION_PANEL);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Content moderation panel not visible: {0}", e.getMessage());
 			return false;
@@ -3740,13 +3619,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean hasPlatformAnalytics() {
 		try {
-			return driver.findElements(PLATFORM_ANALYTICS).stream().anyMatch(element -> {
-				try {
-					return element.isDisplayed();
-				} catch (Exception e) {
-					return false;
-				}
-			});
+			return isAnyElementVisible(PLATFORM_ANALYTICS);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Platform analytics not visible: {0}", e.getMessage());
 			return false;
@@ -3756,6 +3629,9 @@ public class DashboardPage extends BasePage {
 	// ================= HELPER METHODS =================
 
 	private void waitForMilliseconds(long millis) {
+		if (millis <= 0) {
+			return;
+		}
 		try {
 			Thread.sleep(millis);
 		} catch (InterruptedException ie) {
@@ -3765,35 +3641,34 @@ public class DashboardPage extends BasePage {
 	}
 
 	private void clickWithJS(WebElement element) {
+		if (element == null) {
+			return;
+		}
 		try {
+			scrollIntoView(element);
 			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to click with JS: {0}", e.getMessage());
 		}
 	}
 
-	private void scrollIntoView(By element) {
+	private void waitForBooksToLoad() {
 		try {
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
+			pageWait.until(ExpectedConditions.numberOfElementsToBeMoreThan(BOOK_IMAGES, 0));
 		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Failed to scroll into view: {0}", e.getMessage());
+			LOGGER.log(Level.FINE, "Books did not become visible within wait timeout: {0}", e.getMessage());
 		}
 	}
 
-	private void waitForBooksToLoad() {
-		pageWait.until(ExpectedConditions.numberOfElementsToBeMoreThan(BOOK_IMAGES, 0));
-	}
-
 	private boolean isElementInViewport(WebElement element) {
+		if (element == null) {
+			return false;
+		}
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		return (Boolean) js.executeScript("var rect = arguments[0].getBoundingClientRect();"
+		Object result = js.executeScript("var rect = arguments[0].getBoundingClientRect();"
 				+ "return (rect.top >= 0 && rect.left >= 0 && rect.bottom <= window.innerHeight && rect.right <= window.innerWidth);",
 				element);
-	}
-
-	private void clickUsingJavaScript(WebElement element) {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click();", element);
+		return Boolean.TRUE.equals(result);
 	}
 
 	// ================= CONSUMER CATEGORIES SECTION =================
@@ -3960,7 +3835,7 @@ public class DashboardPage extends BasePage {
 			WebElement category = pageWait.until(ExpectedConditions.elementToBeClickable(categoryLocator));
 			scrollIntoView(category);
 			clickWithJS(category);
-			LOGGER.info("Clicked category: " + categoryName);
+			LOGGER.info("Clicked category: " + (categoryName != null ? categoryName : "null"));
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click category {0}: {1}",
 					new Object[] { categoryName, e.getMessage() });
@@ -3981,20 +3856,8 @@ public class DashboardPage extends BasePage {
 
 	public boolean hasCategoryContent() {
 		try {
-			waitForMilliseconds(1000);
-			List<WebElement> books = driver.findElements(BOOK_TITLES_IN_CATEGORY);
-			return books.stream().anyMatch(el -> {
-				try {
-					if (!el.isDisplayed()) {
-						return false;
-					}
-					String text = firstNonBlank(el.getText(), safeGetAttribute(el, "textContent")).trim();
-					String src = safeGetAttribute(el, "src");
-					return !text.isBlank() || (!src.isBlank() && !src.toLowerCase().contains("placeholder"));
-				} catch (Exception e) {
-					return false;
-				}
-			});
+			waitForStateChange(this::hasVisibleCategoryBookContent, Duration.ofSeconds(1), "Category content");
+			return hasVisibleCategoryBookContent();
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to check category content: {0}", e.getMessage());
 			return false;
@@ -4006,19 +3869,9 @@ public class DashboardPage extends BasePage {
 	 */
 	public int getCategoryContentCount() {
 		try {
-			waitForMilliseconds(500);
 			List<WebElement> books = driver.findElements(BOOK_TITLES_IN_CATEGORY);
 			int count = (int) books.stream().filter(el -> {
-				try {
-					if (!el.isDisplayed()) {
-						return false;
-					}
-					String text = firstNonBlank(el.getText(), safeGetAttribute(el, "textContent")).trim();
-					String src = safeGetAttribute(el, "src");
-					return !text.isBlank() || (!src.isBlank() && !src.toLowerCase().contains("placeholder"));
-				} catch (Exception e) {
-					return false;
-				}
+				return isVisibleBookContentElement(el);
 			}).count();
 
 			LOGGER.info("Category content count: " + count);
@@ -4031,16 +3884,16 @@ public class DashboardPage extends BasePage {
 
 	public String findEmptyCategory() {
 		try {
-			// Store current URL
-			String currentUrl = driver.getCurrentUrl();
+			String originalUrl = driver.getCurrentUrl();
 
 			List<WebElement> categories = driver.findElements(CATEGORY_ITEMS);
+
 			for (WebElement category : categories) {
 				try {
 					if (category.isDisplayed()) {
+
 						String name = category.getText().trim();
 
-						// Click category to check
 						clickWithJS(category);
 						waitForMilliseconds(1500);
 
@@ -4049,30 +3902,29 @@ public class DashboardPage extends BasePage {
 							return name;
 						}
 
-						// Navigate back to categories list
 						driver.navigate().back();
 						waitForMilliseconds(1000);
 
-						// Refresh the category list since we navigated back
 						categories = driver.findElements(CATEGORY_ITEMS);
 					}
+
 				} catch (Exception e) {
-					// Try to navigate back if something went wrong
 					try {
 						driver.navigate().back();
 						waitForMilliseconds(1000);
-					} catch (Exception ex) {
-						// Ignore
+					} catch (Exception ignored) {
 					}
 				}
 			}
 
-			// If no empty category found, navigate back to original page
-			if (!driver.getCurrentUrl().equals(currentUrl)) {
+			// safe URL comparison
+			String currentUrl = driver.getCurrentUrl();
+			if (originalUrl != null && !originalUrl.equals(currentUrl)) {
 				driver.navigate().back();
 			}
 
 			return "";
+
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to find empty category: {0}", e.getMessage());
 			return "";
@@ -4142,7 +3994,7 @@ public class DashboardPage extends BasePage {
 			WebElement card = pageWait.until(ExpectedConditions.elementToBeClickable(cardLocator));
 			scrollIntoView(card);
 			clickWithJS(card);
-			LOGGER.info("Clicked category card: " + cardName);
+			LOGGER.info("Clicked category card: " + (cardName != null ? cardName : "null"));
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click category card {0}: {1}",
 					new Object[] { cardName, e.getMessage() });
@@ -4195,16 +4047,20 @@ public class DashboardPage extends BasePage {
 			WebElement section = driver.findElement(CATEGORIES_SECTION);
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 
-			Long initialScroll = (Long) js.executeScript("return arguments[0].scrollLeft;", section);
+			@SuppressWarnings("null")
+			Long initialScroll = ((Number) js.executeScript("return arguments[0].scrollLeft;", section)).longValue();
 
 			js.executeScript("arguments[0].scrollLeft += 300;", section);
 
 			waitForMilliseconds(500);
 
-			Long afterScroll = (Long) js.executeScript("return arguments[0].scrollLeft;", section);
+			@SuppressWarnings("null")
+			Long afterScroll = ((Number) js.executeScript("return arguments[0].scrollLeft;", section)).longValue();
 
 			LOGGER.info("Categories horizontal scroll: " + initialScroll + " -> " + afterScroll);
+
 			return !afterScroll.equals(initialScroll);
+
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to scroll categories: {0}", e.getMessage());
 			return false;
@@ -4402,7 +4258,7 @@ public class DashboardPage extends BasePage {
 				book = resolveTrendingClickableAncestor(book);
 				scrollIntoView(book);
 				clickWithJS(book);
-				LOGGER.info("Clicked trending book by identifier: " + showName);
+				LOGGER.info("Clicked trending book by identifier: " + (showName != null ? showName : "null"));
 				return;
 			}
 
@@ -4419,7 +4275,7 @@ public class DashboardPage extends BasePage {
 			WebElement show = pageWait.until(ExpectedConditions.elementToBeClickable(showLocator));
 			scrollIntoView(show);
 			clickWithJS(show);
-			LOGGER.info("Clicked trending show: " + showName);
+			LOGGER.info("Clicked trending show: " + (showName != null ? showName : "null"));
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click trending show {0}: {1}",
 					new Object[] { showName, e.getMessage() });
@@ -4429,16 +4285,16 @@ public class DashboardPage extends BasePage {
 
 	public boolean isShowDetailsVisible1() {
 		try {
-			waitForMilliseconds(1000);
-			String currentUrl = driver.getCurrentUrl().toLowerCase();
-			return currentUrl.contains("show") || currentUrl.contains("details")
-					|| driver.findElements(SHOW_DETAILS).stream().anyMatch(el -> {
-						try {
-							return el.isDisplayed();
-						} catch (Exception e) {
-							return false;
-						}
-					});
+			String url = driver.getCurrentUrl();
+			String safeUrl = url != null ? url.toLowerCase() : "";
+
+			boolean visible = safeUrl.contains("show") || safeUrl.contains("details")
+					|| driver.findElements(SHOW_DETAILS).stream().anyMatch(this::isDisplayedSafely);
+
+			waitForStateChange(() -> visible, Duration.ofSeconds(1), "Show details");
+
+			return visible;
+
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Show details not visible: {0}", e.getMessage());
 			return false;
@@ -4677,7 +4533,7 @@ public class DashboardPage extends BasePage {
 			WebElement show = pageWait.until(ExpectedConditions.elementToBeClickable(RELATED_SHOW_ITEM));
 			scrollIntoView(show);
 			clickWithJS(show);
-			LOGGER.info("Clicked on related show: " + showName);
+			LOGGER.info("Clicked on related show: " + (showName != null ? showName : "null"));
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click related show: {0}", e.getMessage());
 			throw e;
@@ -4805,7 +4661,7 @@ public class DashboardPage extends BasePage {
 			WebElement show = pageWait.until(ExpectedConditions.elementToBeClickable(UPCOMING_SHOW_ITEM));
 			scrollIntoView(show);
 			clickWithJS(show);
-			LOGGER.info("Clicked on upcoming show: " + showName);
+			LOGGER.info("Clicked on upcoming show: " + (showName != null ? showName : "null"));
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click upcoming show: {0}", e.getMessage());
 			throw e;
@@ -5136,7 +4992,7 @@ public class DashboardPage extends BasePage {
 
 	public void typeSearchKeywordWithoutSubmitting(String keyword) {
 		enterSearchKeyword(keyword);
-		waitForMilliseconds(1000);
+		waitForStateChange(() -> !getSearchInputValue().isBlank(), Duration.ofSeconds(1), "Search input value");
 	}
 
 	public void clearSearchField() {
@@ -5154,7 +5010,8 @@ public class DashboardPage extends BasePage {
 				WebElement clearButton = findFirstVisibleElement(SEARCH_CLEAR_BUTTON);
 				if (clearButton != null) {
 					clickWithJS(clearButton);
-					waitForMilliseconds(500);
+					waitForStateChange(() -> getSearchInputValue().isBlank(), Duration.ofSeconds(1),
+							"Search field clear");
 				}
 			}
 		} catch (Exception e) {
@@ -5179,8 +5036,8 @@ public class DashboardPage extends BasePage {
 
 	public boolean hasSearchSuggestions() {
 		try {
-			waitForMilliseconds(1000);
-			return !findVisibleElements(SEARCH_SUGGESTIONS).isEmpty();
+			return waitForStateChange(() -> !findVisibleElements(SEARCH_SUGGESTIONS).isEmpty(), Duration.ofSeconds(1),
+					"Search suggestions") || !findVisibleElements(SEARCH_SUGGESTIONS).isEmpty();
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Search suggestions not visible: {0}", e.getMessage());
 			return false;
@@ -5324,18 +5181,25 @@ public class DashboardPage extends BasePage {
 	public void scrollToFooter() {
 		try {
 			long previousHeight = -1L;
+
 			for (int attempt = 0; attempt < 6; attempt++) {
+
+				@SuppressWarnings("null")
 				long currentHeight = ((Number) ((JavascriptExecutor) driver).executeScript(
 						"return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);"))
 						.longValue();
+
 				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, arguments[0]);", currentHeight);
+
 				waitForMilliseconds(800);
 
 				if (currentHeight == previousHeight) {
 					break;
 				}
+
 				previousHeight = currentHeight;
 			}
+
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to scroll to footer: {0}", e.getMessage());
 		}
@@ -5401,7 +5265,7 @@ public class DashboardPage extends BasePage {
 				+ "el.onclick = function(event) {" + "  if (event) { event.preventDefault(); event.stopPropagation(); }"
 				+ "  window.location.href = brokenUrl;" + "  return false;" + "};", element, brokenPath);
 		clickWithJS(element);
-		waitForMilliseconds(2000);
+		waitForWindowCountToReachAtLeast(windowHandlesBeforeClick.size() + 1, Duration.ofSeconds(2));
 
 		List<String> windowHandlesAfterClick = new ArrayList<>(driver.getWindowHandles());
 		if (windowHandlesAfterClick.size() > windowHandlesBeforeClick.size()) {
@@ -5936,84 +5800,49 @@ public class DashboardPage extends BasePage {
 
 	private boolean waitForSideMenuClosed(Duration timeout) {
 		try {
-			new WebDriverWait(driver, timeout).until(webDriver -> !isSideMenuOpen());
-			waitForMilliseconds(300);
-			return !isSideMenuOpen();
+			return waitForStateChange(() -> !isSideMenuOpen(), timeout, "Side menu close") || !isSideMenuOpen();
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Side menu close wait did not finish cleanly: {0}", e.getMessage());
 			return false;
 		}
 	}
 
-	private boolean hasAnyVisiblePrimarySideMenuItems() {
-		for (String label : PRIMARY_SIDE_MENU_LABELS) {
-			if (isSideMenuItemVisible(label)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	private WebElement findSideMenuPanelByVisibleLabels() {
 		try {
 			Object result = ((JavascriptExecutor) driver).executeScript("const labels = arguments[0];"
 					+ "const uniqueMenuHints = ['80% off', 'transaction history', 'download apps', 'download app',"
-					+ "  'most favorite', 'most favourite', 'logout'];"
-					+ "const isVisible = (element) => {"
-					+ "  if (!element) return false;"
-					+ "  const style = window.getComputedStyle(element);"
+					+ "  'most favorite', 'most favourite', 'logout'];" + "const isVisible = (element) => {"
+					+ "  if (!element) return false;" + "  const style = window.getComputedStyle(element);"
 					+ "  const rect = element.getBoundingClientRect();"
 					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
-					+ "    && rect.width > 0 && rect.height > 0"
-					+ "    && rect.bottom > 0 && rect.right > 0"
+					+ "    && rect.width > 0 && rect.height > 0" + "    && rect.bottom > 0 && rect.right > 0"
 					+ "    && rect.top < (window.innerHeight || document.documentElement.clientHeight)"
-					+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);"
-					+ "};"
+					+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);" + "};"
 					+ "const textOf = (element) => [element.innerText, element.textContent,"
 					+ "  element.getAttribute('aria-label'), element.getAttribute('data-testid'),"
 					+ "  element.getAttribute('class')].filter(Boolean).join(' ').toLowerCase();"
 					+ "const matches = (text) => labels.filter((label) => text.includes(label));"
 					+ "const candidates = Array.from(document.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span,nav,aside'))"
-					+ "  .filter(isVisible)"
-					+ "  .map((element) => ({ element, labels: matches(textOf(element)) }))"
-					+ "  .filter((entry) => entry.labels.length > 0);"
-					+ "if (!candidates.length) return null;"
-					+ "const scoreNode = (node) => {"
-					+ "  if (!node || !isVisible(node)) return null;"
+					+ "  .filter(isVisible)" + "  .map((element) => ({ element, labels: matches(textOf(element)) }))"
+					+ "  .filter((entry) => entry.labels.length > 0);" + "if (!candidates.length) return null;"
+					+ "const scoreNode = (node) => {" + "  if (!node || !isVisible(node)) return null;"
 					+ "  const descendants = candidates.filter((entry) => node.contains(entry.element));"
-					+ "  if (!descendants.length) return null;"
-					+ "  const labelSet = new Set();"
+					+ "  if (!descendants.length) return null;" + "  const labelSet = new Set();"
 					+ "  descendants.forEach((entry) => entry.labels.forEach((label) => labelSet.add(label)));"
 					+ "  const uniqueHintHits = Array.from(labelSet).filter((label) => uniqueMenuHints.includes(label)).length;"
 					+ "  const nodeText = textOf(node);"
 					+ "  const semanticBonus = node.tagName === 'NAV' || node.tagName === 'ASIDE'"
 					+ "    || nodeText.includes('menu') || nodeText.includes('drawer')"
-					+ "    || nodeText.includes('sidebar') || nodeText.includes('navigation') ? 1 : 0;"
-					+ "  return {"
-					+ "    node,"
-					+ "    distinctLabels: labelSet.size,"
-					+ "    uniqueHintHits,"
-					+ "    semanticBonus,"
-					+ "    depth: descendants.length"
-					+ "  };"
-					+ "};"
-					+ "const scored = [];"
-					+ "for (const candidate of candidates) {"
-					+ "  let current = candidate.element;"
-					+ "  let hops = 0;"
-					+ "  while (current && hops < 7) {"
-					+ "    const score = scoreNode(current);"
+					+ "    || nodeText.includes('sidebar') || nodeText.includes('navigation') ? 1 : 0;" + "  return {"
+					+ "    node," + "    distinctLabels: labelSet.size," + "    uniqueHintHits," + "    semanticBonus,"
+					+ "    depth: descendants.length" + "  };" + "};" + "const scored = [];"
+					+ "for (const candidate of candidates) {" + "  let current = candidate.element;" + "  let hops = 0;"
+					+ "  while (current && hops < 7) {" + "    const score = scoreNode(current);"
 					+ "    if (score && (score.distinctLabels >= 3 || (score.distinctLabels >= 2 && score.uniqueHintHits >= 1))) {"
-					+ "      scored.push(score);"
-					+ "    }"
-					+ "    current = current.parentElement;"
-					+ "    hops++;"
-					+ "  }"
-					+ "}"
-					+ "scored.sort((left, right) => right.distinctLabels - left.distinctLabels"
+					+ "      scored.push(score);" + "    }" + "    current = current.parentElement;" + "    hops++;"
+					+ "  }" + "}" + "scored.sort((left, right) => right.distinctLabels - left.distinctLabels"
 					+ "  || right.uniqueHintHits - left.uniqueHintHits"
-					+ "  || right.semanticBonus - left.semanticBonus"
-					+ "  || right.depth - left.depth);"
+					+ "  || right.semanticBonus - left.semanticBonus" + "  || right.depth - left.depth);"
 					+ "return scored.length ? scored[0].node : null;", Arrays.asList(PRIMARY_SIDE_MENU_LABELS));
 
 			return result instanceof WebElement ? (WebElement) result : null;
@@ -6138,21 +5967,16 @@ public class DashboardPage extends BasePage {
 				return names;
 			}
 			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
-					+ "const isVisible = (element) => {"
-					+ "  if (!element) return false;"
+					+ "const isVisible = (element) => {" + "  if (!element) return false;"
 					+ "  const style = window.getComputedStyle(element);"
 					+ "  const rect = element.getBoundingClientRect();"
 					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
-					+ "    && rect.width > 0 && rect.height > 0;"
-					+ "};"
+					+ "    && rect.width > 0 && rect.height > 0;" + "};"
 					+ "const textOf = (element) => (element.innerText || element.textContent || '').trim();"
 					+ "const values = Array.from(root.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span'))"
-					+ "  .filter(isVisible)"
-					+ "  .map(textOf)"
-					+ "  .map((text) => text.replace(/\\s+/g, ' ').trim())"
+					+ "  .filter(isVisible)" + "  .map(textOf)" + "  .map((text) => text.replace(/\\s+/g, ' ').trim())"
 					+ "  .filter((text) => text.length > 0 && text.length <= 80);"
-					+ "return Array.from(new Set(values)).slice(0, 25);",
-					menuPanel);
+					+ "return Array.from(new Set(values)).slice(0, 25);", menuPanel);
 			if (result instanceof List<?>) {
 				for (Object item : (List<?>) result) {
 					if (item != null) {
@@ -6234,7 +6058,8 @@ public class DashboardPage extends BasePage {
 
 			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
 					+ "const isVisible = (element) => {" + "  if (!element) return false;"
-					+ "  const style = window.getComputedStyle(element);" + "  const rect = element.getBoundingClientRect();"
+					+ "  const style = window.getComputedStyle(element);"
+					+ "  const rect = element.getBoundingClientRect();"
 					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
 					+ "    && rect.width > 0 && rect.height > 0;" + "};"
 					+ "const textOf = (element) => [element.innerText, element.textContent, element.getAttribute('aria-label'),"
@@ -6257,18 +6082,20 @@ public class DashboardPage extends BasePage {
 	private WebElement findHamburgerToggleOutsideSideMenu() {
 		try {
 			WebElement menuPanel = findVisibleSideMenuPanel();
-			Object result = ((JavascriptExecutor) driver).executeScript("const panel = arguments[0];"
-					+ "const selectors = [" + "\"button[aria-label='Menu']\"," + "\"button[aria-label='menu']\","
-					+ "\"button[aria-label='Open menu']\"," + "\"[role='button'][aria-label='Menu']\","
-					+ "\"[role='button'][aria-label='menu']\"," + "\"img[src*='ic_menu']\","
-					+ "\"header [class*='menu']\"," + "\"header [src*='menu']\"" + "];"
-					+ "const isVisible = (element) => {" + "  if (!element) return false;"
-					+ "  const style = window.getComputedStyle(element);" + "  const rect = element.getBoundingClientRect();"
-					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
-					+ "    && rect.width > 0 && rect.height > 0;" + "};"
-					+ "for (const selector of selectors) {" + "  const elements = Array.from(document.querySelectorAll(selector))"
-					+ "    .filter(isVisible)" + "    .filter((element) => !panel || !panel.contains(element));"
-					+ "  if (elements.length) return elements[0];" + "}" + "return null;", menuPanel);
+			Object result = ((JavascriptExecutor) driver).executeScript(
+					"const panel = arguments[0];" + "const selectors = [" + "\"button[aria-label='Menu']\","
+							+ "\"button[aria-label='menu']\"," + "\"button[aria-label='Open menu']\","
+							+ "\"[role='button'][aria-label='Menu']\"," + "\"[role='button'][aria-label='menu']\","
+							+ "\"img[src*='ic_menu']\"," + "\"header [class*='menu']\"," + "\"header [src*='menu']\""
+							+ "];" + "const isVisible = (element) => {" + "  if (!element) return false;"
+							+ "  const style = window.getComputedStyle(element);"
+							+ "  const rect = element.getBoundingClientRect();"
+							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+							+ "    && rect.width > 0 && rect.height > 0;" + "};" + "for (const selector of selectors) {"
+							+ "  const elements = Array.from(document.querySelectorAll(selector))"
+							+ "    .filter(isVisible)" + "    .filter((element) => !panel || !panel.contains(element));"
+							+ "  if (elements.length) return elements[0];" + "}" + "return null;",
+					menuPanel);
 
 			return result instanceof WebElement ? (WebElement) result : findFirstVisibleElement(HAMBURGER_MENU);
 		} catch (Exception e) {
@@ -6321,34 +6148,24 @@ public class DashboardPage extends BasePage {
 
 	private WebElement resolveSideMenuContainerFromHeader(WebElement headerElement) {
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript("const header = arguments[0];"
-					+ "if (!header) return null;"
-					+ "const labels = arguments[1];"
-					+ "const isVisible = (element) => {"
-					+ "  if (!element) return false;"
-					+ "  const style = window.getComputedStyle(element);"
-					+ "  const rect = element.getBoundingClientRect();"
-					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
-					+ "    && rect.width > 0 && rect.height > 0;"
-					+ "};"
-					+ "const textOf = (element) => [element.innerText, element.textContent,"
-					+ "  element.getAttribute('aria-label'), element.getAttribute('data-testid'),"
-					+ "  element.getAttribute('class')].filter(Boolean).join(' ').toLowerCase();"
-					+ "let current = header;"
-					+ "let hops = 0;"
-					+ "while (current && hops < 8) {"
-					+ "  if (isVisible(current)) {"
-					+ "    const text = textOf(current);"
-					+ "    const labelHits = labels.filter((label) => text.includes(label)).length;"
-					+ "    const rect = current.getBoundingClientRect();"
-					+ "    if (labelHits >= 3 || (rect.width >= 220 && rect.height >= 300)) {"
-					+ "      return current;"
-					+ "    }"
-					+ "  }"
-					+ "  current = current.parentElement;"
-					+ "  hops++;"
-					+ "}"
-					+ "return header.parentElement || header;", headerElement, Arrays.asList(PRIMARY_SIDE_MENU_LABELS));
+			Object result = ((JavascriptExecutor) driver).executeScript(
+					"const header = arguments[0];" + "if (!header) return null;" + "const labels = arguments[1];"
+							+ "const isVisible = (element) => {" + "  if (!element) return false;"
+							+ "  const style = window.getComputedStyle(element);"
+							+ "  const rect = element.getBoundingClientRect();"
+							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+							+ "    && rect.width > 0 && rect.height > 0;" + "};"
+							+ "const textOf = (element) => [element.innerText, element.textContent,"
+							+ "  element.getAttribute('aria-label'), element.getAttribute('data-testid'),"
+							+ "  element.getAttribute('class')].filter(Boolean).join(' ').toLowerCase();"
+							+ "let current = header;" + "let hops = 0;" + "while (current && hops < 8) {"
+							+ "  if (isVisible(current)) {" + "    const text = textOf(current);"
+							+ "    const labelHits = labels.filter((label) => text.includes(label)).length;"
+							+ "    const rect = current.getBoundingClientRect();"
+							+ "    if (labelHits >= 3 || (rect.width >= 220 && rect.height >= 300)) {"
+							+ "      return current;" + "    }" + "  }" + "  current = current.parentElement;"
+							+ "  hops++;" + "}" + "return header.parentElement || header;",
+					headerElement, Arrays.asList(PRIMARY_SIDE_MENU_LABELS));
 
 			return result instanceof WebElement ? (WebElement) result : headerElement;
 		} catch (Exception e) {
@@ -6373,10 +6190,10 @@ public class DashboardPage extends BasePage {
 
 		try {
 			WebElement menuPanel = preferOutsideSideMenu ? findVisibleSideMenuPanel() : null;
-			Object clicked = ((JavascriptExecutor) driver)
-					.executeScript("const panel = arguments[0];" + "const selectors = [" + "\"button[aria-label='Menu']\","
-							+ "\"button[aria-label='menu']\"," + "\"button[aria-label='Open menu']\"," 
-							+ "\"[role='button'][aria-label='Menu']\"," + "\"[role='button'][aria-label='menu']\"," 
+			Object clicked = ((JavascriptExecutor) driver).executeScript(
+					"const panel = arguments[0];" + "const selectors = [" + "\"button[aria-label='Menu']\","
+							+ "\"button[aria-label='menu']\"," + "\"button[aria-label='Open menu']\","
+							+ "\"[role='button'][aria-label='Menu']\"," + "\"[role='button'][aria-label='menu']\","
 							+ "\"img[src*='ic_menu']\"," + "\"header [class*='menu']\"," + "\"header [src*='menu']\""
 							+ "];" + "const isRenderable = (element) => {" + "  if (!element) return false;"
 							+ "  const style = window.getComputedStyle(element);"
@@ -6386,7 +6203,8 @@ public class DashboardPage extends BasePage {
 							+ "  const elements = Array.from(document.querySelectorAll(selector)).filter(isRenderable)"
 							+ "    .filter((element) => !panel || !panel.contains(element));"
 							+ "  if (!elements.length) continue;" + "  const target = elements[0];"
-							+ "  target.click();" + "  return true;" + "}" + "return false;", menuPanel);
+							+ "  target.click();" + "  return true;" + "}" + "return false;",
+					menuPanel);
 			if (Boolean.TRUE.equals(clicked)) {
 				LOGGER.info("Hamburger menu toggle clicked via JavaScript fallback");
 				return true;
@@ -6451,6 +6269,31 @@ public class DashboardPage extends BasePage {
 		return visibleElements;
 	}
 
+	private boolean isDisplayedSafely(WebElement element) {
+		try {
+			return element != null && element.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private boolean isVisibleBookContentElement(WebElement element) {
+		try {
+			if (!isDisplayedSafely(element)) {
+				return false;
+			}
+			String text = firstNonBlank(element.getText(), safeGetAttribute(element, "textContent")).trim();
+			String src = safeGetAttribute(element, "src");
+			return !text.isBlank() || (!src.isBlank() && !src.toLowerCase().contains("placeholder"));
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	private boolean hasVisibleCategoryBookContent() {
+		return driver.findElements(BOOK_TITLES_IN_CATEGORY).stream().anyMatch(this::isVisibleBookContentElement);
+	}
+
 	private void waitForSearchCompletion() {
 		try {
 			new WebDriverWait(driver, Duration.ofSeconds(10)).until(webDriver -> {
@@ -6475,6 +6318,21 @@ public class DashboardPage extends BasePage {
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Search completion wait finished without a visible outcome: {0}", e.getMessage());
 		}
+	}
+
+	private boolean waitForStateChange(java.util.function.BooleanSupplier condition, Duration timeout, String label) {
+		try {
+			new WebDriverWait(driver, timeout).until(webDriver -> condition.getAsBoolean());
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "{0} wait did not finish cleanly: {1}", new Object[] { label, e.getMessage() });
+			return false;
+		}
+	}
+
+	private boolean waitForWindowCountToReachAtLeast(int expectedCount, Duration timeout) {
+		return waitForStateChange(() -> driver.getWindowHandles().size() >= expectedCount, timeout,
+				"Window count change");
 	}
 
 	private List<WebElement> getVisibleSearchResultElements() {
@@ -6593,7 +6451,8 @@ public class DashboardPage extends BasePage {
 	 */
 	public String getCurrentUrl() {
 		try {
-			return driver.getCurrentUrl().toLowerCase();
+			String url = driver.getCurrentUrl();
+			return url != null ? url.toLowerCase() : "";
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Failed to get current URL: {0}", e.getMessage());
 			return "";
@@ -6655,11 +6514,9 @@ public class DashboardPage extends BasePage {
 			clickCategory(categoryName);
 			LOGGER.log(Level.INFO, "Clicked on category: {0}", categoryName);
 
-			// Wait for navigation
-			waitForMilliseconds(3000);
-
-			// Verify navigation
-			boolean navigated = isCurrentUrlContainsAny("category", categoryName.toLowerCase());
+			boolean navigated = waitForStateChange(
+					() -> isCurrentUrlContainsAny("category", categoryName == null ? "" : categoryName.toLowerCase()),
+					Duration.ofSeconds(3), "Category navigation");
 			if (navigated) {
 				LOGGER.log(Level.INFO, "Successfully navigated to category: {0}", categoryName);
 			}
@@ -6680,10 +6537,9 @@ public class DashboardPage extends BasePage {
 	public boolean viewAllCategoriesAndVerify() {
 		try {
 			clickViewAllCategories();
-			waitForMilliseconds(3000);
-
-			// Verify navigation
-			boolean navigated = isCurrentUrlContainsAny("categories", "view_all", "category", "genre", "all");
+			boolean navigated = waitForStateChange(
+					() -> isCurrentUrlContainsAny("categories", "view_all", "category", "genre", "all"),
+					Duration.ofSeconds(3), "View all categories navigation");
 			if (navigated) {
 				LOGGER.info("Successfully navigated to categories page via View All");
 			}
@@ -6704,10 +6560,11 @@ public class DashboardPage extends BasePage {
 	public int clickCategoryAndGetContentCount(String categoryName) {
 		try {
 			clickCategory(categoryName);
-			waitForMilliseconds(3000);
+			waitForStateChange(this::hasCategoryContent, Duration.ofSeconds(3), "Category content load");
 
 			int count = getCategoryContentCount();
-			LOGGER.info("Category '" + categoryName + "' has " + count + " content items");
+			LOGGER.info("Category '" + (categoryName != null ? categoryName : "null") + "' has " + count
+					+ " content items");
 
 			return count;
 		} catch (Exception e) {
@@ -6720,7 +6577,9 @@ public class DashboardPage extends BasePage {
 	public boolean openCategoryCardAndVerify(String cardName) {
 		try {
 			clickCategoryCard(cardName);
-			waitForMilliseconds(3000);
+			waitForStateChange(
+					() -> isCurrentUrlContainsAny("category", cardName == null ? "" : cardName.toLowerCase()),
+					Duration.ofSeconds(3), "Category card navigation");
 			return isCurrentUrlContainsAny("category", cardName == null ? "" : cardName.toLowerCase());
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Failed to open category card {0}: {1}",
@@ -6741,10 +6600,9 @@ public class DashboardPage extends BasePage {
 	public boolean navigateToTrendingPage() {
 		try {
 			clickViewAllTrendingShows();
-			waitForMilliseconds(5000);
-
-			// Verify navigation
-			boolean navigated = isCurrentUrlContainsAny("trending", "shows", "view_all", "list");
+			boolean navigated = waitForStateChange(
+					() -> isCurrentUrlContainsAny("trending", "shows", "view_all", "list"), Duration.ofSeconds(5),
+					"Trending navigation");
 			if (navigated) {
 				LOGGER.info("Successfully navigated to trending page via View All");
 			}
@@ -6764,7 +6622,7 @@ public class DashboardPage extends BasePage {
 	public int getTrendingCountViaViewAll() {
 		try {
 			clickViewAllTrendingShows();
-			waitForMilliseconds(5000);
+			waitForStateChange(() -> !getTrendingBooksList().isEmpty(), Duration.ofSeconds(5), "Trending content load");
 
 			List<String> trendingItems = getTrendingBooksList();
 			int count = trendingItems.size();
@@ -6779,7 +6637,10 @@ public class DashboardPage extends BasePage {
 	public boolean openTrendingShowAndVerify(String showName) {
 		try {
 			clickTrendingShow(showName);
-			waitForMilliseconds(3000);
+			waitForStateChange(
+					() -> isShowDetailsVisible1() || isCurrentUrlContainsAny("show", "detail",
+							showName == null ? "" : showName.toLowerCase(), "trending"),
+					Duration.ofSeconds(3), "Trending show navigation");
 			return isShowDetailsVisible1() || isCurrentUrlContainsAny("show", "detail",
 					showName == null ? "" : showName.toLowerCase(), "trending");
 		} catch (Exception e) {

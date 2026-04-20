@@ -13,19 +13,14 @@ import listeners.RetryAnalyzer;
 import pages.DashboardPage;
 import pages.FavouritesPage;
 import pages.LoginPage;
-import pages.SubscriptionPage;
 import utils.ConfigReader;
 
 /**
  * Favourites Management Test Cases (TC_404 to TC_418)
  *
- * Test suite for favourites/favorites functionality including:
- * - Viewing empty favourites
- * - Adding/removing books from favourites
- * - Bulk selection and removal
- * - Search functionality
- * - Duplicate prevention
- * - Guest restrictions
+ * Test suite for favourites/favorites functionality including: - Viewing empty
+ * favourites - Adding/removing books from favourites - Bulk selection and
+ * removal - Search functionality - Duplicate prevention - Guest restrictions
  */
 public class FavouritesManagementTests extends BaseTest {
 
@@ -33,8 +28,8 @@ public class FavouritesManagementTests extends BaseTest {
 
 	private FavouritesPage favourites;
 	private DashboardPage dashboard;
-	private SubscriptionPage subscription;
 
+	@SuppressWarnings("null")
 	@BeforeMethod(alwaysRun = true)
 	public void initPagesAndLogin(Method method) {
 		ConfigReader.reload();
@@ -84,14 +79,13 @@ public class FavouritesManagementTests extends BaseTest {
 			System.out.println("Verification: Empty state should show message and Browse button");
 			System.out.println("========================================");
 
-			Assert.assertTrue(isNoFavouritesMessageDisplayed,
-					"TC_404: 'No favorites yet' message should be displayed");
+			Assert.assertTrue(isNoFavouritesMessageDisplayed, "TC_404: 'No favorites yet' message should be displayed");
 
-			Assert.assertTrue(isBrowseButtonDisplayed,
-					"TC_404: Browse button should be displayed");
+			Assert.assertTrue(isBrowseButtonDisplayed, "TC_404: Browse button should be displayed");
 
 			LOGGER.info("TC_404: ✅ Empty favourites state verified");
-			System.out.println("TC_404: ✅ Empty state displayed correctly. System behaved as expected with no deviations.");
+			System.out.println(
+					"TC_404: ✅ Empty state displayed correctly. System behaved as expected with no deviations.");
 		} else {
 			// Favourites list is not empty - books exist
 			System.out.println("Favourites list contains " + bookCount + " book(s)");
@@ -99,11 +93,11 @@ public class FavouritesManagementTests extends BaseTest {
 			System.out.println("Verification: Favourites list is accessible");
 			System.out.println("========================================");
 
-			Assert.assertTrue(bookCount >= 0,
-					"TC_404: Favourites list should be accessible");
+			Assert.assertTrue(bookCount >= 0, "TC_404: Favourites list should be accessible");
 
 			LOGGER.info("TC_404: ✅ Favourites list contains " + bookCount + " book(s)");
-			System.out.println("TC_404: ✅ Favourites list displayed with books. System behaved as expected with no deviations.");
+			System.out.println(
+					"TC_404: ✅ Favourites list displayed with books. System behaved as expected with no deviations.");
 		}
 
 		System.out.println("========================================");
@@ -152,8 +146,9 @@ public class FavouritesManagementTests extends BaseTest {
 
 		// Assert that the add operation was successful
 		Assert.assertTrue(addSuccess,
-			"TC_405: Failed to add book to favourites - checkbox may not have been found or clicked");
-		System.out.println("Step 4: Added book to favourites (clicked heart, checked Favourites checkbox, closed dialog)");
+				"TC_405: Failed to add book to favourites - checkbox may not have been found or clicked");
+		System.out.println(
+				"Step 4: Added book to favourites (clicked heart, checked Favourites checkbox, closed dialog)");
 		LOGGER.info("TC_405: Book added to Favourites with checkbox: " + bookTitle);
 
 		// Wait for action to complete
@@ -177,13 +172,12 @@ public class FavouritesManagementTests extends BaseTest {
 		System.out.println("Verification: Book should appear in favourites section");
 		System.out.println("========================================");
 
-			// Assert that the book is actually in the favourites list
-			Assert.assertTrue(isBookInFavourites,
+		// Assert that the book is actually in the favourites list
+		Assert.assertTrue(isBookInFavourites,
 				"TC_405: Book '" + bookTitle + "' should be in favourites section but was not found");
 
-			// Assert that there's at least one book in favourites
-			Assert.assertTrue(booksInFavourites > 0,
-				"TC_405: Favourites section should contain at least one book");
+		// Assert that there's at least one book in favourites
+		Assert.assertTrue(booksInFavourites > 0, "TC_405: Favourites section should contain at least one book");
 
 		LOGGER.info("TC_405: ✅ Test flow completed - searched, opened book, added to favourites");
 		LOGGER.info("TC_405: Expected Result: Book appears in favourites. System behaved as expected.");
@@ -194,7 +188,7 @@ public class FavouritesManagementTests extends BaseTest {
 
 	// ================= REMOVE FROM FAVOURITES TESTS =================
 
-		@Test(priority = 406, retryAnalyzer = RetryAnalyzer.class, description = "TC_406: Verify removal of book")
+	@Test(priority = 406, retryAnalyzer = RetryAnalyzer.class, description = "TC_406: Verify removal of book")
 	public void verifyRemoveBookFromFavourites() {
 		System.out.println("========================================");
 		System.out.println("TC_406: Remove Book from Favourites Test");
@@ -262,8 +256,7 @@ public class FavouritesManagementTests extends BaseTest {
 
 		int newCount = favourites.getFavouriteBooksCount();
 		System.out.println("New Favourites Count: " + newCount);
-		Assert.assertEquals(newCount, currentCount - 1,
-				"TC_406: Book count should decrease by 1 after removal");
+		Assert.assertEquals(newCount, currentCount - 1, "TC_406: Book count should decrease by 1 after removal");
 
 		boolean isBookStillPresent = favourites.isBookInFavourites(firstBookTitle);
 		Assert.assertFalse(isBookStillPresent,
@@ -328,8 +321,7 @@ public class FavouritesManagementTests extends BaseTest {
 		System.out.println("Verification: Matching results should be displayed");
 		System.out.println("========================================");
 
-		Assert.assertTrue(searchResultsCount > 0,
-				"TC_408: Search should display matching results");
+		Assert.assertTrue(searchResultsCount > 0, "TC_408: Search should display matching results");
 
 		LOGGER.info("TC_408: ✅ Search functionality working correctly");
 		LOGGER.info("TC_408: Expected Result: Matching results displayed. System behaved as expected.");
@@ -376,8 +368,7 @@ public class FavouritesManagementTests extends BaseTest {
 
 		boolean removeSelectedEnabled = favourites.isRemoveSelectedEnabled();
 		System.out.println("Remove Selected Enabled: " + removeSelectedEnabled);
-		Assert.assertTrue(removeSelectedEnabled,
-				"TC_409: Remove Selected should be enabled after selecting books");
+		Assert.assertTrue(removeSelectedEnabled, "TC_409: Remove Selected should be enabled after selecting books");
 
 		favourites.clickCancel();
 		int selectedCountAfterCancel = favourites.getSelectedBooksCount();
@@ -389,7 +380,8 @@ public class FavouritesManagementTests extends BaseTest {
 		System.out.println("========================================");
 
 		LOGGER.info("TC_409: ✅ Selection functionality verified");
-		LOGGER.info("TC_409: Selected count updated to " + selectedCount + " after choosing " + booksToSelect + " book(s)");
+		LOGGER.info(
+				"TC_409: Selected count updated to " + selectedCount + " after choosing " + booksToSelect + " book(s)");
 		LOGGER.info("TC_409: Expected Result: Selected count updates correctly. System behaved as expected.");
 
 		System.out.println("TC_409: ✅ Selection functionality works. System behaved as expected with no deviations.");
@@ -408,8 +400,7 @@ public class FavouritesManagementTests extends BaseTest {
 
 		System.out.println("Current Favourites Count: " + currentCount);
 
-		Assert.assertTrue(currentCount >= 2,
-				"TC_410: At least 2 favourite books are required to verify bulk removal");
+		Assert.assertTrue(currentCount >= 2, "TC_410: At least 2 favourite books are required to verify bulk removal");
 
 		int booksToRemove = Math.min(2, currentCount);
 		System.out.println("Books To Remove: " + booksToRemove);
@@ -445,13 +436,11 @@ public class FavouritesManagementTests extends BaseTest {
 
 		boolean confirmationAccepted = favourites.confirmRemovalViaYesButtonFast();
 		System.out.println("Bulk Removal Confirmed: " + confirmationAccepted);
-		Assert.assertTrue(confirmationAccepted,
-				"TC_410: Clicking Yes should confirm bulk removal");
+		Assert.assertTrue(confirmationAccepted, "TC_410: Clicking Yes should confirm bulk removal");
 
 		boolean toasterAppeared = favourites.waitForRemovalToaster(10);
 		System.out.println("Removal Toaster Appeared: " + toasterAppeared);
-		Assert.assertTrue(toasterAppeared,
-				"TC_410: Should show 'Removed from favourites' toaster after bulk removal");
+		Assert.assertTrue(toasterAppeared, "TC_410: Should show 'Removed from favourites' toaster after bulk removal");
 
 		try {
 			Thread.sleep(4000);
@@ -500,8 +489,7 @@ public class FavouritesManagementTests extends BaseTest {
 
 		favourites.clickFilterButton();
 		boolean isFilterActionBarDisplayed = favourites.isFilterActionBarDisplayed();
-		Assert.assertTrue(isFilterActionBarDisplayed,
-				"TC_411: Selection mode should open before using Select All");
+		Assert.assertTrue(isFilterActionBarDisplayed, "TC_411: Selection mode should open before using Select All");
 
 		favourites.clickSelectAll();
 		try {
@@ -529,8 +517,7 @@ public class FavouritesManagementTests extends BaseTest {
 		System.out.println("Verification: All selections should be cleared");
 		System.out.println("========================================");
 
-		Assert.assertTrue(selectedCountAfter < selectedCountBefore,
-				"TC_411: All selections should be cleared");
+		Assert.assertTrue(selectedCountAfter < selectedCountBefore, "TC_411: All selections should be cleared");
 
 		LOGGER.info("TC_411: ✅ Deselect all working correctly");
 		LOGGER.info("TC_411: Expected Result: All selections cleared. System behaved as expected.");
@@ -556,8 +543,7 @@ public class FavouritesManagementTests extends BaseTest {
 		favourites.clickFilterButton();
 		boolean isFilterActionBarDisplayed = favourites.isFilterActionBarDisplayed();
 		System.out.println("Selection Mode Visible: " + isFilterActionBarDisplayed);
-		Assert.assertTrue(isFilterActionBarDisplayed,
-				"TC_412: Selection mode should open before using Cancel");
+		Assert.assertTrue(isFilterActionBarDisplayed, "TC_412: Selection mode should open before using Cancel");
 
 		favourites.selectBookByCheckboxOverlay(0);
 		int selectedCountBefore = favourites.getSelectedBooksCount();
@@ -579,8 +565,7 @@ public class FavouritesManagementTests extends BaseTest {
 		System.out.println("Verification: Should exit selection mode");
 		System.out.println("========================================");
 
-		Assert.assertEquals(selectedCountAfter, 0,
-				"TC_412: Selected count should reset to 0 after clicking Cancel");
+		Assert.assertEquals(selectedCountAfter, 0, "TC_412: Selected count should reset to 0 after clicking Cancel");
 		Assert.assertFalse(isFilterActionBarStillDisplayed,
 				"TC_412: Filter action bar should close after clicking Cancel");
 
@@ -639,11 +624,13 @@ public class FavouritesManagementTests extends BaseTest {
 
 	@Test(priority = 415, retryAnalyzer = RetryAnalyzer.class, description = "TC_415: Verify guest user cannot add favourite without login")
 	public void verifyGuestCannotAddFavourites() {
+
 		System.out.println("========================================");
 		System.out.println("TC_415: Guest Add Without Login Test");
 		System.out.println("========================================");
 
 		navigateToHomePage();
+
 		String bookTitle = ConfigReader.getProperty("search.resultCountKeyword", "New-3");
 		System.out.println("Book Title: " + bookTitle);
 
@@ -652,19 +639,20 @@ public class FavouritesManagementTests extends BaseTest {
 
 		int searchResultsCount = dashboard.getVisibleSearchResultCount();
 		System.out.println("Search Results Count: " + searchResultsCount);
-		Assert.assertTrue(searchResultsCount > 0,
-				"TC_415: Guest user should be able to search books on the home page");
+
+		Assert.assertTrue(searchResultsCount > 0, "TC_415: Guest user should be able to search books on the home page");
 
 		boolean openedBookDetails = dashboard.clickFirstSearchResult();
 		System.out.println("Opened Book Details: " + openedBookDetails);
+
 		Assert.assertTrue(openedBookDetails,
 				"TC_415: Guest user should be able to open a searched book before attempting to add favourite");
 
 		boolean favoriteIconVisible = dashboard.isFavoriteButtonVisible();
 		System.out.println("Favorite Icon Visible: " + favoriteIconVisible);
+
 		if (!favoriteIconVisible) {
-			LOGGER.info("TC_415: Favorite icon is not available for the opened book. Marking test as passed for this case.");
-			System.out.println("TC_415: Favorite icon not available on this book, so guest restriction add flow is not applicable.");
+			LOGGER.info("TC_415: Favorite icon not available for this book. Skipping add-favourite validation.");
 			System.out.println("========================================");
 			return;
 		}
@@ -672,22 +660,26 @@ public class FavouritesManagementTests extends BaseTest {
 		boolean attemptedAddToFavourites = dashboard.addToDefaultFavourites();
 		System.out.println("Attempted Add To Favourites: " + attemptedAddToFavourites);
 
-		String currentUrl = driver.getCurrentUrl().toLowerCase();
+		String currentUrl = driver.getCurrentUrl();
+		String safeUrl = currentUrl != null ? currentUrl.toLowerCase() : "";
 
-		System.out.println("Current URL: " + currentUrl);
+		System.out.println("Current URL: " + safeUrl);
+
 		System.out.println("========================================");
 		System.out.println("Verification: Guest user should not be allowed to add favourite without login");
 		System.out.println("========================================");
 
-		Assert.assertTrue(attemptedAddToFavourites || currentUrl.contains("login") || currentUrl.contains("signin"),
-				"TC_415: Guest user should at least reach the add-to-favourite attempt flow");
-		Assert.assertTrue(currentUrl.contains("login") || currentUrl.contains("signin"),
+		boolean redirectedToAuth = safeUrl.contains("login") || safeUrl.contains("signin");
+
+		Assert.assertTrue(attemptedAddToFavourites || redirectedToAuth,
+				"TC_415: Guest user should at least reach restriction flow");
+
+		Assert.assertTrue(redirectedToAuth,
 				"TC_415: Guest user should be redirected to login page when trying to add favourite");
 
-		LOGGER.info("TC_415: ✅ Guest restriction working correctly");
-		LOGGER.info("TC_415: Expected Result: Guest is blocked and redirected to login.");
+		LOGGER.info("TC_415: Guest restriction working correctly");
 
-		System.out.println("TC_415: ✅ Redirect to login. System behaved as expected with no deviations.");
+		System.out.println("TC_415: Redirect to login. System behaved as expected.");
 		System.out.println("========================================");
 	}
 
@@ -720,7 +712,8 @@ public class FavouritesManagementTests extends BaseTest {
 		LOGGER.info("TC_413: ✅ Pagination/scroll working correctly");
 		LOGGER.info("TC_413: Expected Result: Smooth scrolling/pagination works. System behaved as expected.");
 
-		System.out.println("TC_413: ✅ Smooth scrolling/pagination works. System behaved as expected with no deviations.");
+		System.out
+				.println("TC_413: ✅ Smooth scrolling/pagination works. System behaved as expected with no deviations.");
 		System.out.println("========================================");
 	}
 
@@ -759,7 +752,7 @@ public class FavouritesManagementTests extends BaseTest {
 
 	@Test(priority = 417, retryAnalyzer = RetryAnalyzer.class, description = "TC_417: Verify max favourites limit")
 	public void verifyMaxFavouritesLimit() {
-		String bookTitle = ConfigReader.getProperty("search.keyword", "Book");
+
 		int maxLimit = 500; // As per test case
 
 		System.out.println("========================================");
@@ -780,8 +773,7 @@ public class FavouritesManagementTests extends BaseTest {
 		// Verify system doesn't exceed reasonable limits
 		// Note: Testing actual 500 limit would be time-consuming
 		// We verify the count is within reasonable bounds
-		Assert.assertTrue(currentCount <= maxLimit,
-				"TC_417: Current count should not exceed max limit of " + maxLimit);
+		Assert.assertTrue(currentCount <= maxLimit, "TC_417: Current count should not exceed max limit of " + maxLimit);
 
 		LOGGER.info("TC_417: ✅ Max limit handling verified");
 		LOGGER.info("TC_417: Expected Result: System handles max limit. System behaved as expected.");
@@ -813,11 +805,9 @@ public class FavouritesManagementTests extends BaseTest {
 		System.out.println("Verification: UI should match design");
 		System.out.println("========================================");
 
-		Assert.assertTrue(isPageTitleVisible,
-				"TC_418: Favourites page title should be visible");
+		Assert.assertTrue(isPageTitleVisible, "TC_418: Favourites page title should be visible");
 
-		Assert.assertTrue(hasUIElements,
-				"TC_418: UI elements should be present");
+		Assert.assertTrue(hasUIElements, "TC_418: UI elements should be present");
 
 		LOGGER.info("TC_418: ✅ UI consistency verified");
 		LOGGER.info("TC_418: Expected Result: UI matches design. System behaved as expected.");
@@ -837,7 +827,7 @@ public class FavouritesManagementTests extends BaseTest {
 
 		dashboard.openSimpleSideMenu();
 		favourites.clickFavouritesMenu();
-		//subscription.closeSidebarIfOpen();
+		// subscription.closeSidebarIfOpen();
 
 		LOGGER.info("Navigated to favourites page");
 	}
@@ -876,32 +866,30 @@ public class FavouritesManagementTests extends BaseTest {
 		LOGGER.info("Logged in as consumer");
 	}
 
-	private boolean isBlank(String value) {
-		return value == null || value.isBlank();
-	}
-
 	private boolean testPageScrollability() {
 		try {
-			// Get page height before scroll
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			Long scrollHeight = (Long) js.executeScript("return document.body.scrollHeight");
 
-			// Try scrolling down
+			Number scrollHeightObj = (Number) js.executeScript("return document.body.scrollHeight");
+
+			long scrollHeight = scrollHeightObj != null ? scrollHeightObj.longValue() : 0;
+
 			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-
-			// Wait a moment
 			Thread.sleep(1000);
 
-			// Scroll back up
 			js.executeScript("window.scrollTo(0, 0)");
 
-			// If scroll height is greater than window height, page is scrollable
-			Long windowHeight = (Long) js.executeScript("return window.innerHeight");
+			Number windowHeightObj = (Number) js.executeScript("return window.innerHeight");
+
+			long windowHeight = windowHeightObj != null ? windowHeightObj.longValue() : 0;
+
 			boolean isScrollable = scrollHeight > windowHeight;
 
-			LOGGER.info("Page scrollable: " + isScrollable + " (scrollHeight: " + scrollHeight + ", windowHeight: " + windowHeight + ")");
+			LOGGER.info("Page scrollable: " + isScrollable + " (scrollHeight: " + scrollHeight + ", windowHeight: "
+					+ windowHeight + ")");
 
 			return isScrollable;
+
 		} catch (Exception e) {
 			LOGGER.warning("Could not test scrollability: " + e.getMessage());
 			return false;
@@ -910,38 +898,38 @@ public class FavouritesManagementTests extends BaseTest {
 
 	private boolean verifyErrorHandlingElements() {
 		try {
-			// Check for common error message elements
-			// This verifies that the system has error handling in place
-			String pageSource = driver.getPageSource().toLowerCase();
+			String pageSource = driver.getPageSource();
+			String safeSource = pageSource != null ? pageSource.toLowerCase() : "";
 
-			boolean hasErrorHandling = pageSource.contains("error") ||
-					pageSource.contains("fail") ||
-					pageSource.contains("unable") ||
-					pageSource.contains("try again");
+			boolean hasErrorHandling = safeSource.contains("error") || safeSource.contains("fail")
+					|| safeSource.contains("unable") || safeSource.contains("try again");
 
 			LOGGER.info("Error handling elements present: " + hasErrorHandling);
 			return hasErrorHandling;
+
 		} catch (Exception e) {
 			LOGGER.warning("Could not verify error handling: " + e.getMessage());
 			return false;
 		}
+
 	}
 
 	private boolean verifyUIElementsPresent() {
 		try {
-			// Verify common UI elements are present
-			String pageSource = driver.getPageSource().toLowerCase();
+			String pageSource = driver.getPageSource();
+			String safeSource = pageSource != null ? pageSource.toLowerCase() : "";
 
-			// Check for buttons, menus, and other common UI elements
-			boolean hasButtons = pageSource.contains("button") || pageSource.contains("btn");
-			boolean hasMenus = pageSource.contains("menu") || pageSource.contains("nav");
-			boolean hasIcons = pageSource.contains("icon") || pageSource.contains("svg");
+			boolean hasButtons = safeSource.contains("button") || safeSource.contains("btn");
+			boolean hasMenus = safeSource.contains("menu") || safeSource.contains("nav");
+			boolean hasIcons = safeSource.contains("icon") || safeSource.contains("svg");
 
 			boolean hasUIElements = hasButtons && (hasMenus || hasIcons);
 
-			LOGGER.info("UI elements present - Buttons: " + hasButtons + ", Menus: " + hasMenus + ", Icons: " + hasIcons);
+			LOGGER.info(
+					"UI elements present - Buttons: " + hasButtons + ", Menus: " + hasMenus + ", Icons: " + hasIcons);
 
 			return hasUIElements;
+
 		} catch (Exception e) {
 			LOGGER.warning("Could not verify UI elements: " + e.getMessage());
 			return false;

@@ -62,8 +62,7 @@ public class AudioPlayerPage extends BasePage {
 	private static final By MUTE_BUTTON = By.xpath(
 			"//*[self::button or @role='button' or @tabindex='0'][contains(translate(@aria-label,'MUTE','mute'),'mute') or contains(translate(@aria-label,'VOLUME','volume'),'volume')]"
 					+ " | //div[normalize-space(.)='' and contains(@style,'font-family: material')]");
-	private static final By CLOSE_PLAYER_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0'][contains(translate(@aria-label,'CLOSE','close'),'close') or contains(normalize-space(.),'×') or contains(normalize-space(.),'✕')]");
+	//private static final By CLOSE_PLAYER_BUTTON = By.xpath("//*[self::button or @role='button' or @tabindex='0'][contains(translate(@aria-label,'CLOSE','close'),'close') or contains(normalize-space(.),'×') or contains(normalize-space(.),'✕')]");
 	private static final By PROGRESS_BAR = By.xpath("//input[@type='range']" + " | //*[@role='slider']"
 			+ " | //*[@data-testid='progress_bar']" + " | //*[@aria-label='Seek']" + " | //*[@aria-label='progress']");
 	private static final By CURRENT_POSITION_LABEL = By.xpath(
@@ -183,6 +182,32 @@ public class AudioPlayerPage extends BasePage {
 		String after = getCurrentTime();
 		LOGGER.log(Level.INFO, "After Play: {0}", after);
 		return started;
+	}
+
+	public boolean clickPlayButtonRapidly(int clickCount, long delayBetweenClicksMs) {
+		if (clickCount <= 0) {
+			return false;
+		}
+		if (!waitForPlayControlsReady()) {
+			LOGGER.warning("Play controls were not ready before rapid click validation.");
+			return false;
+		}
+		WebElement play = findPlayButton(true);
+		if (play == null) {
+			play = findPlayButton(false);
+		}
+		if (play == null) {
+			LOGGER.warning("Play Audio button was not found for rapid click validation.");
+			return false;
+		}
+
+		for (int i = 0; i < clickCount; i++) {
+			clickPlayButton(play);
+			if (delayBetweenClicksMs > 0 && i < clickCount - 1) {
+				sleep(delayBetweenClicksMs);
+			}
+		}
+		return true;
 	}
 
 	public boolean clickPlayAudio() {
@@ -513,7 +538,7 @@ public class AudioPlayerPage extends BasePage {
 		if (speedControl == null) {
 			return false;
 		}
-		double before = readPlaybackRate();
+		//double before = readPlaybackRate();
 		String beforeLabel = readSpeedIndicatorText(speedControl);
 		boolean changed = false;
 		if ("select".equalsIgnoreCase(speedControl.getTagName())) {
@@ -772,7 +797,7 @@ public class AudioPlayerPage extends BasePage {
 		return shouldAdvance ? after > before : after >= 0 && after < before;
 	}
 
-	private boolean validateSeek(double ratio, boolean shouldAdvance) {
+	/*private boolean validateSeek(double ratio, boolean shouldAdvance) {
 		if (!ensureAdvancedPlaybackReady()) {
 			return false;
 		}
@@ -786,7 +811,7 @@ public class AudioPlayerPage extends BasePage {
 		LOGGER.log(Level.INFO, "Seek: before={0}, after={1}",
 				new Object[] { formatSeconds(before), formatSeconds(after) });
 		return shouldAdvance ? after > before : after >= 0 && after < before;
-	}
+	}*/
 
 	private boolean ensurePlaybackStarted() {
 		if (hasConfirmedPlaybackStarted()) {
@@ -1010,7 +1035,7 @@ public class AudioPlayerPage extends BasePage {
 		return null;
 	}
 
-	private boolean isVisibleInDefaultContent(By locator) {
+	/*private boolean isVisibleInDefaultContent(By locator) {
 		try {
 			driver.switchTo().defaultContent();
 			for (WebElement element : driver.findElements(locator)) {
@@ -1024,7 +1049,7 @@ public class AudioPlayerPage extends BasePage {
 		} finally {
 			driver.switchTo().defaultContent();
 		}
-	}
+	}*/
 
 	private void clickElement(WebElement element) {
 		try {
@@ -1275,7 +1300,7 @@ public class AudioPlayerPage extends BasePage {
 		return Math.max(0, current - 0.25);
 	}
 
-	private boolean currentVolumeIsZero() {
+	/*private boolean currentVolumeIsZero() {
 		WebElement slider = findResolvedVisible(VOLUME_SLIDER, SHORT_TIMEOUT, false);
 		if (slider != null) {
 			return normalizePercent(readVolumeValue(slider)) == 0;
@@ -1283,7 +1308,7 @@ public class AudioPlayerPage extends BasePage {
 		Boolean muted = readBooleanFromAnyContext(
 				"const audio=document.querySelector('audio');if(!audio)return null;return audio.muted;");
 		return Boolean.TRUE.equals(muted);
-	}
+	}*/
 
 	private String readSpeedIndicatorText(WebElement speedControl) {
 		try {
@@ -1446,10 +1471,6 @@ public class AudioPlayerPage extends BasePage {
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
 		}
-	}
-
-	private void scrollIntoView(By element) {
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
 	}
 
 	private String extractTimeValue(String raw) {

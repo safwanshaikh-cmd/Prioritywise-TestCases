@@ -10,8 +10,8 @@ import org.openqa.selenium.WebElement;
 import base.BasePage;
 
 /**
- * Page object for the payment flow.
- * Handles payment iframe switching for entering card details.
+ * Page object for the payment flow. Handles payment iframe switching for
+ * entering card details.
  */
 public class PaymentPage extends BasePage {
 
@@ -131,7 +131,12 @@ public class PaymentPage extends BasePage {
 	public boolean isPaymentPageStableAfterRefresh() {
 		try {
 			refreshPaymentPage();
-			return isPaymentPageLoaded() || driver.getCurrentUrl().toLowerCase().contains("payment");
+
+			String currentUrl = driver.getCurrentUrl();
+			String safeUrl = currentUrl != null ? currentUrl.toLowerCase() : "";
+
+			return isPaymentPageLoaded() || safeUrl.contains("payment");
+
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Payment page was not stable after refresh: {0}", e.getMessage());
 			return false;
@@ -187,8 +192,8 @@ public class PaymentPage extends BasePage {
 	}
 
 	/**
-	 * Waits for payment page to load after clicking Start Listening Now
-	 * Provides proper wait time for page transition and overlay disappearance
+	 * Waits for payment page to load after clicking Start Listening Now Provides
+	 * proper wait time for page transition and overlay disappearance
 	 */
 	public boolean waitForPaymentPageToLoad() {
 		try {

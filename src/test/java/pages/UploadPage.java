@@ -2,7 +2,6 @@ package pages;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
@@ -14,8 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import base.BasePage;
 
 /**
- * Page object for Upload functionality.
- * Handles book upload, chapter upload, and related operations.
+ * Page object for Upload functionality. Handles book upload, chapter upload,
+ * and related operations.
  */
 public class UploadPage extends BasePage {
 
@@ -29,13 +28,18 @@ public class UploadPage extends BasePage {
 					+ " | //*[contains(translate(normalize-space(.), 'ADD BOOK', 'add book'), 'add book')]");
 
 	// Book upload form locators
-	private static final By BOOK_TITLE_INPUT = By.xpath("//input[@placeholder='Book Title' or @name='title' or contains(@aria-label, 'title')]");
-	private static final By BOOK_DESCRIPTION_INPUT = By.xpath("//textarea[@placeholder='Description' or @name='description' or contains(@aria-label, 'description')]");
-	private static final By BOOK_CATEGORY_SELECT = By.xpath("//select[@name='category' or contains(@aria-label, 'category')] | //div[contains(@class, 'category')]");
-	private static final By BOOK_LANGUAGE_SELECT = By.xpath("//select[@name='language' or contains(@aria-label, 'language')] | //div[contains(@class, 'language')]");
-	private static final By COVER_IMAGE_UPLOAD = By.xpath("//input[@type='file' and @accept='image/*'] | //input[@name='cover' or contains(@aria-label, 'cover')]");
-	private static final By BOOK_FILE_UPLOAD = By.xpath(
-			"//input[@type='file' and (contains(translate(@accept,'PDFMP3AUDIO','pdfmp3audio'),'pdf')"
+	private static final By BOOK_TITLE_INPUT = By
+			.xpath("//input[@placeholder='Book Title' or @name='title' or contains(@aria-label, 'title')]");
+	private static final By BOOK_DESCRIPTION_INPUT = By.xpath(
+			"//textarea[@placeholder='Description' or @name='description' or contains(@aria-label, 'description')]");
+	private static final By BOOK_CATEGORY_SELECT = By.xpath(
+			"//select[@name='category' or contains(@aria-label, 'category')] | //div[contains(@class, 'category')]");
+	private static final By BOOK_LANGUAGE_SELECT = By.xpath(
+			"//select[@name='language' or contains(@aria-label, 'language')] | //div[contains(@class, 'language')]");
+	private static final By COVER_IMAGE_UPLOAD = By.xpath(
+			"//input[@type='file' and @accept='image/*'] | //input[@name='cover' or contains(@aria-label, 'cover')]");
+	private static final By BOOK_FILE_UPLOAD = By
+			.xpath("//input[@type='file' and (contains(translate(@accept,'PDFMP3AUDIO','pdfmp3audio'),'pdf')"
 					+ " or contains(translate(@accept,'PDFMP3AUDIO','pdfmp3audio'),'mp3')"
 					+ " or contains(translate(@accept,'PDFMP3AUDIO','pdfmp3audio'),'audio'))]"
 					+ " | //input[@type='file' and (contains(translate(@name,'FILEBOOKUPLOAD','filebookupload'),'file')"
@@ -43,8 +47,8 @@ public class UploadPage extends BasePage {
 					+ " or contains(translate(@aria-label,'FILEBOOKUPLOAD','filebookupload'),'file')"
 					+ " or contains(translate(@aria-label,'FILEBOOKUPLOAD','filebookupload'),'book'))]");
 	private static final By GENERIC_FILE_INPUTS = By.cssSelector("input[type='file']");
-	private static final By BOOK_FILE_UPLOAD_TRIGGER = By.xpath(
-			"//*[self::div or self::button or self::span][@tabindex='0' or self::button]"
+	private static final By BOOK_FILE_UPLOAD_TRIGGER = By
+			.xpath("//*[self::div or self::button or self::span][@tabindex='0' or self::button]"
 					+ "[contains(translate(normalize-space(.),'UPLOAD FILEBOOK PDFMP3SELECT','upload filebook pdfmp3select'),'upload')"
 					+ " or contains(translate(normalize-space(.),'UPLOAD FILEBOOK PDFMP3SELECT','upload filebook pdfmp3select'),'book')"
 					+ " or contains(translate(normalize-space(.),'UPLOAD FILEBOOK PDFMP3SELECT','upload filebook pdfmp3select'),'pdf')"
@@ -54,33 +58,45 @@ public class UploadPage extends BasePage {
 					+ " and not(contains(translate(normalize-space(.),'PORTRAIT LANDSCAPE IMAGE COVER','portrait landscape image cover'),'landscape'))"
 					+ " and not(contains(translate(normalize-space(.),'PORTRAIT LANDSCAPE IMAGE COVER','portrait landscape image cover'),'image'))"
 					+ " and not(contains(translate(normalize-space(.),'PORTRAIT LANDSCAPE IMAGE COVER','portrait landscape image cover'),'cover'))]");
-	private static final By SUBMIT_BUTTON = By.xpath("//button[contains(text(), 'Submit') or contains(text(), 'Upload') or @type='submit']");
-	private static final By CANCEL_BUTTON = By.xpath("//button[contains(text(), 'Cancel') or contains(text(), 'Clear')]");
+	private static final By SUBMIT_BUTTON = By
+			.xpath("//button[contains(text(), 'Submit') or contains(text(), 'Upload') or @type='submit']");
+	private static final By CANCEL_BUTTON = By
+			.xpath("//button[contains(text(), 'Cancel') or contains(text(), 'Clear')]");
 
 	// Chapter upload form locators
-	private static final By CHAPTER_TITLE_INPUT = By.xpath("//input[@placeholder='Chapter Title' or @name='chapterTitle' or contains(@aria-label, 'chapter title')]");
-	private static final By CHAPTER_FILE_UPLOAD = By.xpath("//input[@type='file' and @accept='audio/*'] | //input[@name='chapterFile' or contains(@aria-label, 'chapter')]");
-	private static final By CHAPTER_SEQUENCE_INPUT = By.xpath("//input[@type='number' and @name='sequence' or contains(@aria-label, 'sequence')]");
+	private static final By CHAPTER_TITLE_INPUT = By.xpath(
+			"//input[@placeholder='Chapter Title' or @name='chapterTitle' or contains(@aria-label, 'chapter title')]");
+	private static final By CHAPTER_FILE_UPLOAD = By.xpath(
+			"//input[@type='file' and @accept='audio/*'] | //input[@name='chapterFile' or contains(@aria-label, 'chapter')]");
+	private static final By CHAPTER_SEQUENCE_INPUT = By
+			.xpath("//input[@type='number' and @name='sequence' or contains(@aria-label, 'sequence')]");
 
 	// Book listing locators
-	private static final By BOOK_LIST_CONTAINER = By.xpath("//div[contains(@class, 'book-list') or contains(@class, 'uploaded-books')]");
+
 	private static final By BOOK_CARD = By.xpath("//div[contains(@class, 'book') or contains(@class, 'item')]");
-	private static final By BOOK_TITLE_IN_CARD = By.xpath(".//*[contains(@class, 'title') or contains(@class, 'name')]");
-	private static final By BOOK_COVER_IMAGE = By.xpath(".//img[contains(@class, 'cover') or contains(@src, 'thumb')]");
-	private static final By DELETE_BOOK_BUTTON = By.xpath(".//button[contains(text(), 'Delete') or contains(@class, 'delete')]");
+	private static final By BOOK_TITLE_IN_CARD = By
+			.xpath(".//*[contains(@class, 'title') or contains(@class, 'name')]");
+
+	private static final By DELETE_BOOK_BUTTON = By
+			.xpath(".//button[contains(text(), 'Delete') or contains(@class, 'delete')]");
 
 	// Search and filter locators
-	private static final By SEARCH_INPUT = By.xpath("//input[@placeholder='Search' or @type='search' or contains(@placeholder, 'search')]");
-	private static final By CATEGORY_FILTER = By.xpath("//select[@name='categoryFilter'] | //div[contains(@class, 'filter') and contains(@class, 'category')]");
-	private static final By LANGUAGE_FILTER = By.xpath("//select[@name='languageFilter'] | //div[contains(@class, 'filter') and contains(@class, 'language')]");
-	private static final By CLEAR_FILTERS_BUTTON = By.xpath("//button[contains(text(), 'Clear') or contains(text(), 'Reset')]");
+	private static final By SEARCH_INPUT = By
+			.xpath("//input[@placeholder='Search' or @type='search' or contains(@placeholder, 'search')]");
+	private static final By CATEGORY_FILTER = By.xpath(
+			"//select[@name='categoryFilter'] | //div[contains(@class, 'filter') and contains(@class, 'category')]");
+	private static final By LANGUAGE_FILTER = By.xpath(
+			"//select[@name='languageFilter'] | //div[contains(@class, 'filter') and contains(@class, 'language')]");
+	private static final By CLEAR_FILTERS_BUTTON = By
+			.xpath("//button[contains(text(), 'Clear') or contains(text(), 'Reset')]");
 
 	// Validation message locators
 	private static final By ERROR_MESSAGE = By.xpath(
 			"//*[@data-testid='toastText1' or @data-testid='toastText2' or contains(@class, 'error') or contains(@class, 'invalid') or contains(@role, 'alert')]");
 	private static final By SUCCESS_MESSAGE = By.xpath(
 			"//*[@data-testid='toastText1' or @data-testid='toastText2' or contains(@data-testid,'toast') or contains(@class, 'success') or contains(@class, 'message')]");
-	private static final By NO_DATA_MESSAGE = By.xpath("//*[contains(text(), 'No data') or contains(text(), 'No results') or contains(text(), 'Not found')]");
+	private static final By NO_DATA_MESSAGE = By.xpath(
+			"//*[contains(text(), 'No data') or contains(text(), 'No results') or contains(text(), 'Not found')]");
 
 	public UploadPage(WebDriver driver) {
 		super(driver);
@@ -148,7 +164,8 @@ public class UploadPage extends BasePage {
 			WebElement categorySelect = driver.findElement(BOOK_CATEGORY_SELECT);
 			// Handle both dropdown and clickable selection
 			if (categorySelect.getTagName().equals("select")) {
-				org.openqa.selenium.support.ui.Select select = new org.openqa.selenium.support.ui.Select(categorySelect);
+				org.openqa.selenium.support.ui.Select select = new org.openqa.selenium.support.ui.Select(
+						categorySelect);
 				select.selectByVisibleText(category);
 			} else {
 				categorySelect.click();
@@ -168,7 +185,8 @@ public class UploadPage extends BasePage {
 		try {
 			WebElement languageSelect = driver.findElement(BOOK_LANGUAGE_SELECT);
 			if (languageSelect.getTagName().equals("select")) {
-				org.openqa.selenium.support.ui.Select select = new org.openqa.selenium.support.ui.Select(languageSelect);
+				org.openqa.selenium.support.ui.Select select = new org.openqa.selenium.support.ui.Select(
+						languageSelect);
 				select.selectByVisibleText(language);
 			} else {
 				languageSelect.click();
@@ -248,7 +266,8 @@ public class UploadPage extends BasePage {
 			return allFileInputs.get(allFileInputs.size() - 1);
 		}
 
-		throw new org.openqa.selenium.NoSuchElementException("No suitable book file input was found on the upload form.");
+		throw new org.openqa.selenium.NoSuchElementException(
+				"No suitable book file input was found on the upload form.");
 	}
 
 	private WebElement findNewestUsableBookFileInput(List<WebElement> previousInputs, List<WebElement> currentInputs) {
@@ -473,7 +492,8 @@ public class UploadPage extends BasePage {
 		try {
 			WebElement categoryFilter = driver.findElement(CATEGORY_FILTER);
 			if (categoryFilter.getTagName().equals("select")) {
-				org.openqa.selenium.support.ui.Select select = new org.openqa.selenium.support.ui.Select(categoryFilter);
+				org.openqa.selenium.support.ui.Select select = new org.openqa.selenium.support.ui.Select(
+						categoryFilter);
 				select.selectByVisibleText(category);
 			}
 			LOGGER.info("Selected category filter: " + category);
@@ -490,7 +510,8 @@ public class UploadPage extends BasePage {
 		try {
 			WebElement languageFilter = driver.findElement(LANGUAGE_FILTER);
 			if (languageFilter.getTagName().equals("select")) {
-				org.openqa.selenium.support.ui.Select select = new org.openqa.selenium.support.ui.Select(languageFilter);
+				org.openqa.selenium.support.ui.Select select = new org.openqa.selenium.support.ui.Select(
+						languageFilter);
 				select.selectByVisibleText(language);
 			}
 			LOGGER.info("Selected language filter: " + language);

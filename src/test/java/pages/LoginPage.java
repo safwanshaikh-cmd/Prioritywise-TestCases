@@ -21,8 +21,6 @@ public class LoginPage extends BasePage {
 
 	private static final Logger LOGGER = Logger.getLogger(LoginPage.class.getName());
 
-	private static final By LOGIN_BUTTON_HOME = By.xpath(
-			"//span[normalize-space()='Login'] | //div[normalize-space()='Login'] | //button[normalize-space()='Login']");
 	private static final By LOGIN_ENTRY_BUTTON = By.xpath("//span[normalize-space()='Login']"
 			+ " | //div[normalize-space()='Login']" + " | //button[normalize-space()='Login']"
 			+ " | //*[@tabindex='0' and (.//span[normalize-space()='Login'] or .//div[normalize-space()='Login'])]");
@@ -35,11 +33,10 @@ public class LoginPage extends BasePage {
 	private static final By EMAIL_FIELD = By.xpath("//input[@placeholder='Email']");
 	private static final By PASSWORD_FIELD = By.xpath("//input[@placeholder='Password']");
 	private static final By RESET_EMAIL_FIELD = By.xpath("//input[@placeholder='Enter your email']");
-	private static final By LOGIN_BUTTON = By.xpath(
-			"//button[normalize-space()='Login']"
-					+ " | //div[normalize-space()='Login' and not(ancestor::*[contains(normalize-space(.),'Forgot password')])]"
-					+ " | //span[normalize-space()='Login']"
-					+ " | //*[@tabindex='0' and (.//div[normalize-space()='Login'] or .//span[normalize-space()='Login'])]");
+	private static final By LOGIN_BUTTON = By.xpath("//button[normalize-space()='Login']"
+			+ " | //div[normalize-space()='Login' and not(ancestor::*[contains(normalize-space(.),'Forgot password')])]"
+			+ " | //span[normalize-space()='Login']"
+			+ " | //*[@tabindex='0' and (.//div[normalize-space()='Login'] or .//span[normalize-space()='Login'])]");
 	private static final By SUCCESSFUL_LOGIN_MESSAGE = By.xpath("//div[@data-testid='toastText1']");
 	private static final By NEXT_BUTTON = By.xpath("//div[contains(text(),'Next')]");
 	private static final By ERROR_MESSAGE = By.xpath(
@@ -410,15 +407,6 @@ public class LoginPage extends BasePage {
 					new Object[] { locator, e.getMessage() });
 		}
 		return false;
-	}
-
-	private void scrollIntoView(By element) {
-		try {
-			((JavascriptExecutor) driver)
-					.executeScript("arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Unable to scroll login element into view: {0}", e.getMessage());
-		}
 	}
 
 	private boolean openLoginViaDirectRoute() {

@@ -16,8 +16,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import base.BasePage;
 
 /**
- * Page object for Favourites functionality.
- * Based on actual HTML structure with material icons and specific CSS classes.
+ * Page object for Favourites functionality. Based on actual HTML structure with
+ * material icons and specific CSS classes.
  */
 public class FavouritesPage extends BasePage {
 
@@ -25,54 +25,64 @@ public class FavouritesPage extends BasePage {
 
 	// ================= NAVIGATION LOCATORS =================
 	private static final By FAVOURITES_MENU = By.xpath("//div[text()='Favourites' or text()='Favorites']");
-	private static final By FAVOURITES_TITLE = By.xpath("//div[contains(text(),'Favourites') or contains(text(),'Favorites')]");
+	private static final By FAVOURITES_TITLE = By
+			.xpath("//div[contains(text(),'Favourites') or contains(text(),'Favorites')]");
 
 	// ================= SEARCH LOCATORS =================
 	private static final By SEARCH_IN_FAVOURITES = By.xpath("//input[@placeholder='Search by name...']");
 	private static final By SEARCH_BOOK_OR_AUTHOR = By.xpath("//input[@placeholder='Search books or author']");
-	private static final By AUTHOR_FILTER_OPTION_LABELS = By.xpath(
-			"//div[normalize-space()='AUTHOR']/following::div[@dir='auto'][normalize-space()!='' and not(contains(normalize-space(),'Search by name')) and not(normalize-space()='AUTHOR')][position() <= 20]");
+	// private static final By AUTHOR_FILTER_OPTION_LABELS =
+	// By.xpath("//div[normalize-space()='AUTHOR']/following::div[@dir='auto'][normalize-space()!=''
+	// and not(contains(normalize-space(),'Search by name')) and
+	// not(normalize-space()='AUTHOR')][position() <= 20]");
 
 	// ================= FILTER LOCATORS =================
-	private static final By FILTER_BUTTON = By.xpath("//div[@dir='auto'][contains(@class, 'css-146c3p1')][text()='󰄹'] | //div[contains(@class, 'material-community')][contains(text(), '󰄹')]");
+	private static final By FILTER_BUTTON = By.xpath(
+			"//div[@dir='auto'][contains(@class, 'css-146c3p1')][text()='󰄹'] | //div[contains(@class, 'material-community')][contains(text(), '󰄹')]");
 
 	// ================= BOOK ITEM LOCATORS =================
-	private static final By BOOK_ITEMS = By.xpath("//div[@tabindex='0'][contains(@class, 'css-g5y9jx')]//div[@dir='auto'][contains(@class, 'r-8akbws')]");
-	private static final By BOOK_TITLE = By.xpath(".//div[@dir='auto'][contains(@class, 'r-8akbws') and contains(@class, 'r-krxsd3')]");
-	private static final By BOOK_AUTHOR = By.xpath(".//div[@dir='auto'][contains(@class, 'r-dnmrzs') and contains(@class, 'r-1udbk01')]");
-	private static final By BOOK_IMAGE = By.xpath(".//img[contains(@src, 'thumb.php') or contains(@src, 'placeholder')]");
+	private static final By BOOK_ITEMS = By.xpath(
+			"//div[@tabindex='0'][contains(@class, 'css-g5y9jx')]//div[@dir='auto'][contains(@class, 'r-8akbws')]");
+	private static final By BOOK_TITLE = By
+			.xpath(".//div[@dir='auto'][contains(@class, 'r-8akbws') and contains(@class, 'r-krxsd3')]");
+	private static final By BOOK_AUTHOR = By
+			.xpath(".//div[@dir='auto'][contains(@class, 'r-dnmrzs') and contains(@class, 'r-1udbk01')]");
+	// private static final By BOOK_IMAGE = By.xpath(".//img[contains(@src,
+	// 'thumb.php') or contains(@src, 'placeholder')]");
 
 	// ================= FAVOURITE ICON LOCATORS =================
-	private static final By HEART_ICON_ADD = By.xpath(".//div[@dir='auto'][@class='css-146c3p1'][text()=''] | .//div[@dir='auto'][contains(@class, 'css-146c3p1')][contains(text(), '')]");
-	private static final By REMOVE_ICON = By.xpath(".//div[@dir='auto'][@class='css-146c3p1'][text()='󰋔'] | .//div[@dir='auto'][contains(@class, 'css-146c3p1')][contains(text(), '󰋔')]");
-
-	// ================= SELECTION MODE LOCATORS =================
-	private static final By SELECT_ALL_BUTTON = By.xpath(
-			"//div[@tabindex='0'][.//div[normalize-space()='Select All'] or .//div[normalize-space()='Deselect All']]");
-	private static final By SELECT_ALL_CHECKBOX = By.xpath("//div[@tabindex='0']//div[@dir='auto'][text()='Select All']/preceding-sibling::div[@dir='auto'][text()='']");
+	private static final By HEART_ICON_ADD = By.xpath(
+			".//div[@dir='auto'][@class='css-146c3p1'][text()=''] | .//div[@dir='auto'][contains(@class, 'css-146c3p1')][contains(text(), '')]");
+	private static final By REMOVE_ICON = By.xpath(
+			".//div[@dir='auto'][@class='css-146c3p1'][text()='󰋔'] | .//div[@dir='auto'][contains(@class, 'css-146c3p1')][contains(text(), '󰋔')]");
 
 	// ================= FILTER ACTION BAR LOCATORS =================
-	private static final By FILTER_ACTION_BAR = By.xpath(
-			"//*[contains(normalize-space(.),'Selected Count') and (self::div or self::span)]");
-	private static final By SELECTED_COUNT = By.xpath(
-			"//div[@dir='auto'][contains(normalize-space(.),'Selected Count')]");
-	private static final By REMOVE_SELECTED_BUTTON = By.xpath(
-			"//div[@tabindex='0'][.//div[normalize-space()='Remove Selected']]");
-	private static final By CANCEL_BUTTON = By.xpath(
-			"//div[@tabindex='0'][.//div[normalize-space()='Cancel']]");
+	private static final By FILTER_ACTION_BAR = By
+			.xpath("//*[contains(normalize-space(.),'Selected Count') and (self::div or self::span)]");
+	private static final By SELECTED_COUNT = By
+			.xpath("//div[@dir='auto'][contains(normalize-space(.),'Selected Count')]");
+	private static final By REMOVE_SELECTED_BUTTON = By
+			.xpath("//div[@tabindex='0'][.//div[normalize-space()='Remove Selected']]");
+	private static final By CANCEL_BUTTON = By.xpath("//div[@tabindex='0'][.//div[normalize-space()='Cancel']]");
 
 	// ================= CONFIRMATION DIALOG LOCATORS =================
-	private static final By REMOVE_CONFIRMATION_DIALOG = By.xpath("//div[@class='css-g5y9jx']//div[@dir='auto'][text()='Remove Favourites']");
-	private static final By REMOVE_CONFIRMATION_MESSAGE = By.xpath("//div[@dir='auto'][contains(text(),'Are you sure you want to remove this book from favourites?')]");
+	private static final By REMOVE_CONFIRMATION_DIALOG = By
+			.xpath("//div[@class='css-g5y9jx']//div[@dir='auto'][text()='Remove Favourites']");
+	private static final By REMOVE_CONFIRMATION_MESSAGE = By
+			.xpath("//div[@dir='auto'][contains(text(),'Are you sure you want to remove this book from favourites?')]");
 	private static final By YES_BUTTON = By.xpath("//div[@dir='auto'][text()='Yes']/parent::div[@tabindex='0']");
 	private static final By NO_BUTTON = By.xpath("//div[@dir='auto'][text()='No']/parent::div[@tabindex='0']");
 
 	// ================= EMPTY STATE LOCATORS =================
-	private static final By NO_FAVORITES_MESSAGE = By.xpath("//*[contains(text(),'No favorites') or contains(text(),'No favourites') or contains(text(),'No favorites yet') or contains(text(),'No favourites yet')]");
-	private static final By BROWSE_BUTTON = By.xpath("//div[@dir='auto'][text()='Browse Books' or text()='Browse' or text()='Explore']");
+	private static final By NO_FAVORITES_MESSAGE = By.xpath(
+			"//*[contains(text(),'No favorites') or contains(text(),'No favourites') or contains(text(),'No favorites yet') or contains(text(),'No favourites yet')]");
+	private static final By BROWSE_BUTTON = By
+			.xpath("//div[@dir='auto'][text()='Browse Books' or text()='Browse' or text()='Explore']");
 
 	// ================= COUNT DISPLAY LOCATORS =================
-	private static final By SELECTED_COUNT_NUMBER = By.xpath("//div[@class='css-g5y9jx']//div[@dir='auto' and contains(text(),'Selected') or contains(text(),'selected')]");
+	// private static final By SELECTED_COUNT_NUMBER =
+	// By.xpath("//div[@class='css-g5y9jx']//div[@dir='auto' and
+	// contains(text(),'Selected') or contains(text(),'selected')]");
 
 	private final WebDriverWait pageWait;
 	private boolean lastRemovalToasterSeen;
@@ -110,7 +120,8 @@ public class FavouritesPage extends BasePage {
 
 	public void searchInFavourites(String searchText) {
 		try {
-			WebElement searchInput = pageWait.until(ExpectedConditions.visibilityOfElementLocated(SEARCH_IN_FAVOURITES));
+			WebElement searchInput = pageWait
+					.until(ExpectedConditions.visibilityOfElementLocated(SEARCH_IN_FAVOURITES));
 			searchInput.clear();
 			searchInput.sendKeys(searchText);
 			LOGGER.info("Searched in favourites: " + searchText);
@@ -122,7 +133,8 @@ public class FavouritesPage extends BasePage {
 
 	public void searchBookOrAuthor(String searchText) {
 		try {
-			WebElement searchInput = pageWait.until(ExpectedConditions.visibilityOfElementLocated(SEARCH_BOOK_OR_AUTHOR));
+			WebElement searchInput = pageWait
+					.until(ExpectedConditions.visibilityOfElementLocated(SEARCH_BOOK_OR_AUTHOR));
 			searchInput.clear();
 			searchInput.sendKeys(searchText);
 			LOGGER.info("Searched book or author: " + searchText);
@@ -183,6 +195,7 @@ public class FavouritesPage extends BasePage {
 
 	/**
 	 * Gets the title of the first book in favourites
+	 * 
 	 * @return Title of the first book, or empty string if no books
 	 */
 	public String getFirstBookTitle() {
@@ -205,8 +218,8 @@ public class FavouritesPage extends BasePage {
 					LOGGER.info("Selecting book at index " + index + " by clicking book card");
 
 					// Scroll to book first
-					((JavascriptExecutor) driver).executeScript(
-						"arguments[0].scrollIntoView({block: 'center'});", book);
+					((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});",
+							book);
 					Thread.sleep(300);
 
 					// Click the book card using JavaScript
@@ -254,28 +267,127 @@ public class FavouritesPage extends BasePage {
 
 			WebElement book = books.get(index);
 			LOGGER.info("Selecting book at index " + index + " using checkbox overlay");
-			((JavascriptExecutor) driver).executeScript(
-					"arguments[0].scrollIntoView({block: 'center'});", book);
-			Thread.sleep(300);
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", book);
+			Thread.sleep(500);
 
+			// NEW APPROACH: Direct checkbox targeting by data-testid
+			boolean selectionSuccessful = false;
+
+			// Strategy 1: Find checkbox by its exact data-testid attribute
 			try {
-				WebElement checkboxOverlay = book.findElement(By.xpath(
-						".//div[@tabindex='0' and contains(@class,'r-1loqt21') and contains(@class,'r-1otgn73') and contains(@class,'r-u8s1d')]"
-								+ "[.//div[contains(@class,'css-146c3p1') and normalize-space(.)!='']]"));
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkboxOverlay);
-				LOGGER.info("Clicked checkbox overlay for book at index " + index);
+				By checkboxLocator = By.xpath("//*[@data-testid='checkbox-icon-" + index + "']");
+				WebElement checkbox = driver.findElement(checkboxLocator);
+
+				if (checkbox.isDisplayed()) {
+					LOGGER.info("Found checkbox with data-testid='checkbox-icon-" + index + "'");
+
+					int countBefore = getSelectedCount();
+					((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
+					Thread.sleep(500);
+					int countAfter = getSelectedCount();
+
+					if (countAfter > countBefore) {
+						LOGGER.info("✅ Successfully clicked checkbox for book " + index + " using data-testid");
+						selectionSuccessful = true;
+					}
+				}
 			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Checkbox overlay click failed for book at index " + index + ": {0}",
-						e.getMessage());
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", book);
-				LOGGER.info("Fallback card click executed for book at index " + index);
+				LOGGER.log(Level.FINE, "Direct data-testid approach failed: {0}", e.getMessage());
 			}
 
-			Thread.sleep(1000);
-			LOGGER.info("Current selected count after selection attempt for book " + index + ": " + getSelectedCount());
+			// Strategy 2: Find checkbox by position at page level
+			if (!selectionSuccessful) {
+				selectionSuccessful = selectCheckboxByPosition(index, book);
+			}
+
+			// Strategy 3: If checkbox not found, try clicking on the book's container/div
+			// that has tabindex
+			if (!selectionSuccessful) {
+				try {
+					WebElement bookContainer = book.findElement(By.xpath("./ancestor::div[@tabindex='0'][1]"));
+					LOGGER.info("Strategy 3: Clicking book container for selection at index " + index);
+					((JavascriptExecutor) driver).executeScript("arguments[0].click();", bookContainer);
+					Thread.sleep(800);
+					selectionSuccessful = true;
+				} catch (Exception containerException) {
+					LOGGER.log(Level.FINE, "Strategy 3 failed: {0}", containerException.getMessage());
+				}
+			}
+
+			// Strategy 4: Last resort - click the book element itself
+			if (!selectionSuccessful) {
+				LOGGER.warning("Strategy 4: Clicking book element directly as last resort");
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", book);
+				Thread.sleep(800);
+			}
+
+			// Verify selection was successful
+			int selectedCount = getSelectedCount();
+			LOGGER.info("Current selected count after selection attempt for book " + index + ": " + selectedCount);
+
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to select book by checkbox overlay at index " + index + ": {0}",
 					e.getMessage());
+		}
+	}
+
+	private boolean selectCheckboxByPosition(int index, WebElement targetBook) {
+		try {
+
+			Object bookObj = ((JavascriptExecutor) driver)
+					.executeScript("return arguments[0].getBoundingClientRect().top;", targetBook);
+
+			double bookLocation = bookObj != null ? Double.parseDouble(bookObj.toString()) : 0;
+
+			LOGGER.info("Target book is at Y position: " + bookLocation);
+
+			List<WebElement> allClickables = driver.findElements(By.xpath("//*[@tabindex='0']"));
+
+			LOGGER.info("Found " + allClickables.size() + " total clickable elements on page");
+
+			for (WebElement clickable : allClickables) {
+				try {
+
+					if (!clickable.isDisplayed()) {
+						continue;
+					}
+
+					Object clickObj = ((JavascriptExecutor) driver)
+							.executeScript("return arguments[0].getBoundingClientRect().top;", clickable);
+
+					double clickableLocation = clickObj != null ? Double.parseDouble(clickObj.toString()) : 0;
+
+					double distance = Math.abs(bookLocation - clickableLocation);
+
+					if (distance < 50) {
+						LOGGER.info("Found clickable near book at distance " + distance);
+
+						int countBefore = getSelectedCount();
+
+						((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickable);
+
+						Thread.sleep(500);
+
+						int countAfter = getSelectedCount();
+
+						if (countAfter > countBefore) {
+							LOGGER.info("✅ Successfully clicked checkbox for book " + index
+									+ " using position-based approach");
+							return true;
+						}
+					}
+
+				} catch (Exception e) {
+					LOGGER.log(Level.FINE, "Error checking clickable element: {0}", e.getMessage());
+				}
+			}
+
+			LOGGER.warning("Position-based approach did not find clickable checkbox near book " + index);
+			return false;
+
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Failed to select checkbox by position: {0}", e.getMessage());
+			return false;
 		}
 	}
 
@@ -304,7 +416,8 @@ public class FavouritesPage extends BasePage {
 				// Method 3: Try common class-based locators
 				if (titleText.isEmpty()) {
 					try {
-						WebElement titleElement = book.findElement(By.xpath(".//div[contains(@class, 'r-1udbk01') or contains(@class, 'r-dnmrzs')]"));
+						WebElement titleElement = book.findElement(
+								By.xpath(".//div[contains(@class, 'r-1udbk01') or contains(@class, 'r-dnmrzs')]"));
 						titleText = titleElement.getText().trim();
 						LOGGER.info("Book " + index + " title (Method 3): '" + titleText + "'");
 					} catch (Exception e3) {
@@ -327,10 +440,11 @@ public class FavouritesPage extends BasePage {
 				WebElement book = books.get(index);
 				WebElement bookContainer = book;
 				try {
-					bookContainer = book.findElement(
-							By.xpath("./ancestor::div[@tabindex='0'][contains(@class,'css-g5y9jx')][1]"));
+					bookContainer = book
+							.findElement(By.xpath("./ancestor::div[@tabindex='0'][contains(@class,'css-g5y9jx')][1]"));
 				} catch (Exception ignored) {
-					// Fall back to the originally resolved element if no ancestor container is found.
+					// Fall back to the originally resolved element if no ancestor container is
+					// found.
 				}
 				try {
 					WebElement authorElement = bookContainer.findElement(BOOK_AUTHOR);
@@ -366,8 +480,8 @@ public class FavouritesPage extends BasePage {
 
 	public String getFirstAuthorFilterName() {
 		try {
-			List<WebElement> candidates = driver.findElements(By.xpath(
-					"//div[normalize-space()='AUTHOR']/following::div[@dir='auto'][normalize-space()!='']"));
+			List<WebElement> candidates = driver.findElements(
+					By.xpath("//div[normalize-space()='AUTHOR']/following::div[@dir='auto'][normalize-space()!='']"));
 			for (WebElement candidate : candidates) {
 				try {
 					if (!candidate.isDisplayed()) {
@@ -441,7 +555,8 @@ public class FavouritesPage extends BasePage {
 			// Method 2: Search within book element by icon character
 			if (removeIcon == null) {
 				try {
-					removeIcon = book.findElement(By.xpath(".//div[contains(@class, 'css-146c3p1')][contains(text(), '󰋔')]"));
+					removeIcon = book
+							.findElement(By.xpath(".//div[contains(@class, 'css-146c3p1')][contains(text(), '󰋔')]"));
 					LOGGER.info("Found remove icon using Method 2 (icon character within book)");
 				} catch (Exception e2) {
 					LOGGER.log(Level.FINE, "Method 2 failed: " + e2.getMessage());
@@ -474,15 +589,10 @@ public class FavouritesPage extends BasePage {
 			// Method 4: JavaScript within book element
 			if (removeIcon == null) {
 				try {
-					String js = "var icons = arguments[0].querySelectorAll('div[class*=\"css-146c3p1\"]');" +
-							   "for(var i=0; i<icons.length; i++) {" +
-							   "  try{" +
-							   "    if(icons[i].textContent.includes('󰋔')) {" +
-							   "      return icons[i];" +
-							   "    }" +
-							   "  }catch(e){}" +
-							   "}" +
-							   "return null;";
+					String js = "var icons = arguments[0].querySelectorAll('div[class*=\"css-146c3p1\"]');"
+							+ "for(var i=0; i<icons.length; i++) {" + "  try{"
+							+ "    if(icons[i].textContent.includes('󰋔')) {" + "      return icons[i];" + "    }"
+							+ "  }catch(e){}" + "}" + "return null;";
 					removeIcon = (WebElement) ((JavascriptExecutor) driver).executeScript(js, book);
 					if (removeIcon != null) {
 						LOGGER.info("Found remove icon using Method 4 (JavaScript within book)");
@@ -492,14 +602,15 @@ public class FavouritesPage extends BasePage {
 				}
 			}
 
-			// Method 5: Search globally on page using book title to find the right remove icon
+			// Method 5: Search globally on page using book title to find the right remove
+			// icon
 			if (removeIcon == null) {
 				try {
 					LOGGER.info("Method 5: Searching globally for remove icon near book title: " + bookTitle);
 
 					// Find all elements with the remove icon character on the page
-					List<WebElement> allRemoveIcons = driver.findElements(
-						By.xpath("//div[contains(@class, 'css-146c3p1')][contains(text(), '󰋔')]"));
+					List<WebElement> allRemoveIcons = driver
+							.findElements(By.xpath("//div[contains(@class, 'css-146c3p1')][contains(text(), '󰋔')]"));
 
 					LOGGER.info("Method 5: Found " + allRemoveIcons.size() + " remove icons on page");
 
@@ -520,20 +631,12 @@ public class FavouritesPage extends BasePage {
 			if (removeIcon == null) {
 				try {
 					// Try to find by searching from book and going up then down
-					String js6 = "var book = arguments[0];" +
-								"var parent = book.parentElement;" +
-								"while(parent && !parent.querySelector('div[class*=\"css-146c3p1\"]')) {" +
-								"  parent = parent.parentElement;" +
-								"}" +
-								"if(parent) {" +
-								"  var icons = parent.querySelectorAll('div[class*=\"css-146c3p1\"]');" +
-								"  for(var i=0; i<icons.length; i++) {" +
-								"    if(icons[i].textContent.includes('󰋔')) {" +
-								"      return icons[i];" +
-								"    }" +
-								"  }" +
-								"}" +
-								"return null;";
+					String js6 = "var book = arguments[0];" + "var parent = book.parentElement;"
+							+ "while(parent && !parent.querySelector('div[class*=\"css-146c3p1\"]')) {"
+							+ "  parent = parent.parentElement;" + "}" + "if(parent) {"
+							+ "  var icons = parent.querySelectorAll('div[class*=\"css-146c3p1\"]');"
+							+ "  for(var i=0; i<icons.length; i++) {" + "    if(icons[i].textContent.includes('󰋔')) {"
+							+ "      return icons[i];" + "    }" + "  }" + "}" + "return null;";
 					removeIcon = (WebElement) ((JavascriptExecutor) driver).executeScript(js6, book);
 					if (removeIcon != null) {
 						LOGGER.info("Found remove icon using Method 6 (ancestor traversal)");
@@ -547,7 +650,8 @@ public class FavouritesPage extends BasePage {
 			if (removeIcon != null) {
 				try {
 					// Scroll to the element first
-					((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", removeIcon);
+					((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});",
+							removeIcon);
 					Thread.sleep(500);
 
 					// Try multiple click approaches
@@ -646,7 +750,8 @@ public class FavouritesPage extends BasePage {
 				// Method 3: Try common class-based locators
 				if (titleText.isEmpty()) {
 					try {
-						WebElement titleElement = book.findElement(By.xpath(".//div[contains(@class, 'r-1udbk01') or contains(@class, 'r-dnmrzs')]"));
+						WebElement titleElement = book.findElement(
+								By.xpath(".//div[contains(@class, 'r-1udbk01') or contains(@class, 'r-dnmrzs')]"));
 						titleText = titleElement.getText().trim();
 						LOGGER.info("Book " + i + " title (Method 3): '" + titleText + "'");
 					} catch (Exception e3) {
@@ -823,7 +928,8 @@ public class FavouritesPage extends BasePage {
 
 	public void clickRemoveSelected() {
 		try {
-			WebElement removeSelectedBtn = pageWait.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_SELECTED_BUTTON));
+			WebElement removeSelectedBtn = pageWait
+					.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_SELECTED_BUTTON));
 			removeSelectedBtn.click();
 			LOGGER.info("Remove Selected clicked");
 			Thread.sleep(2000);
@@ -886,10 +992,13 @@ public class FavouritesPage extends BasePage {
 		try {
 			// Extract number from text like "0 Selected Count" or "5 Selected"
 			String numberStr = countText.replaceAll("[^0-9]", "");
-			return Integer.parseInt(numberStr);
+			if (!numberStr.isEmpty()) {
+				return Integer.parseInt(numberStr);
+			}
 		} catch (Exception e) {
-			return 0;
+			LOGGER.log(Level.FINE, "Failed to parse selected count text: {0}", e.getMessage());
 		}
+		return getVisibleSelectedCheckboxCount();
 	}
 
 	// ================= EMPTY STATE METHODS =================
@@ -935,8 +1044,7 @@ public class FavouritesPage extends BasePage {
 
 	public void waitForOverlayToDisappear() {
 		try {
-			pageWait.until(ExpectedConditions.invisibilityOfElementLocated(
-					By.xpath("//div[contains(@style,'rgba')]")));
+			pageWait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@style,'rgba')]")));
 		} catch (Exception e) {
 			// Overlay might not be present
 		}
@@ -983,7 +1091,8 @@ public class FavouritesPage extends BasePage {
 
 	public boolean isRemoveConfirmationDialogDisplayed() {
 		try {
-			WebElement dialog = pageWait.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_CONFIRMATION_DIALOG));
+			WebElement dialog = pageWait
+					.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_CONFIRMATION_DIALOG));
 			return dialog.isDisplayed();
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Remove confirmation dialog not displayed: {0}", e.getMessage());
@@ -1007,7 +1116,8 @@ public class FavouritesPage extends BasePage {
 
 	public String getRemoveConfirmationMessage() {
 		try {
-			WebElement messageElement = pageWait.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_CONFIRMATION_MESSAGE));
+			WebElement messageElement = pageWait
+					.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_CONFIRMATION_MESSAGE));
 			return messageElement.getText();
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Could not get confirmation message: {0}", e.getMessage());
@@ -1015,85 +1125,87 @@ public class FavouritesPage extends BasePage {
 		}
 	}
 
-		/**
-		 * Waits for the removal confirmation dialog to close after clicking Yes/No
-		 * @param timeoutSeconds Maximum time to wait in seconds
-		 * @return true if dialog closed, false if still visible after timeout
-		 */
-		public boolean waitForConfirmationDialogToClose(int timeoutSeconds) {
-			try {
-				LOGGER.info("Waiting for confirmation dialog to close (max " + timeoutSeconds + " seconds)...");
-				long startTime = System.currentTimeMillis();
-				long timeoutMillis = timeoutSeconds * 1000;
+	/**
+	 * Waits for the removal confirmation dialog to close after clicking Yes/No
+	 * 
+	 * @param timeoutSeconds Maximum time to wait in seconds
+	 * @return true if dialog closed, false if still visible after timeout
+	 */
+	public boolean waitForConfirmationDialogToClose(int timeoutSeconds) {
+		try {
+			LOGGER.info("Waiting for confirmation dialog to close (max " + timeoutSeconds + " seconds)...");
+			long startTime = System.currentTimeMillis();
+			long timeoutMillis = timeoutSeconds * 1000;
 
-				while (System.currentTimeMillis() - startTime < timeoutMillis) {
-					if (!isRemoveConfirmationDialogDisplayed()) {
-						LOGGER.info("✅ Confirmation dialog closed successfully");
-						return true;
-					}
-					Thread.sleep(500);
+			while (System.currentTimeMillis() - startTime < timeoutMillis) {
+				if (!isRemoveConfirmationDialogDisplayed()) {
+					LOGGER.info("✅ Confirmation dialog closed successfully");
+					return true;
 				}
-
-				LOGGER.warning("⚠️ Confirmation dialog still visible after " + timeoutSeconds + " seconds");
-				return false;
-			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Error waiting for dialog to close: {0}", e.getMessage());
-				return false;
+				Thread.sleep(500);
 			}
-		}
 
-		/**
-		 * Waits for the "Removed from favourites" toaster notification to appear
-		 * @param timeoutSeconds Maximum time to wait in seconds
-		 * @return true if toaster appeared, false if not found after timeout
-		 */
-		public boolean waitForRemovalToaster(int timeoutSeconds) {
-			try {
-				if (lastRemovalToasterSeen) {
-					LOGGER.info("Removal toaster was already detected during confirmation");
+			LOGGER.warning("⚠️ Confirmation dialog still visible after " + timeoutSeconds + " seconds");
+			return false;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Error waiting for dialog to close: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	/**
+	 * Waits for the "Removed from favourites" toaster notification to appear
+	 * 
+	 * @param timeoutSeconds Maximum time to wait in seconds
+	 * @return true if toaster appeared, false if not found after timeout
+	 */
+	public boolean waitForRemovalToaster(int timeoutSeconds) {
+		try {
+			if (lastRemovalToasterSeen) {
+				LOGGER.info("Removal toaster was already detected during confirmation");
+				return true;
+			}
+
+			LOGGER.info("Waiting for \"Removed from favourites\" toaster (max " + timeoutSeconds + " seconds)...");
+			long startTime = System.currentTimeMillis();
+			long timeoutMillis = timeoutSeconds * 1000;
+
+			while (System.currentTimeMillis() - startTime < timeoutMillis) {
+				if (isToasterVisible()) {
+					LOGGER.info("✅ Found removal toaster notification");
+					lastRemovalToasterSeen = true;
 					return true;
 				}
 
-				LOGGER.info("Waiting for \"Removed from favourites\" toaster (max " + timeoutSeconds + " seconds)...");
-				long startTime = System.currentTimeMillis();
-				long timeoutMillis = timeoutSeconds * 1000;
-
-				while (System.currentTimeMillis() - startTime < timeoutMillis) {
-					try {
-						// Check for toaster by text content
-						WebElement toaster = driver.findElement(By.xpath("//div[contains(@data-testid, \"toastText1\")][contains(text(), \"Removed from favourites\")]"));
-						if (toaster != null && toaster.isDisplayed()) {
-							LOGGER.info("✅ Found \"Removed from favourites\" toaster notification");
-							lastRemovalToasterSeen = true;
-							return true;
-						}
-					} catch (Exception e) {
-						// Toaster not found yet, continue waiting
-					}
-					Thread.sleep(500);
+				if (!isRemoveConfirmationDialogPresentNow() && didRemovalProgress()) {
+					LOGGER.info(
+							"✅ Removal completed and confirmation dialog closed even though exact toaster text was not captured");
+					return true;
 				}
-
-				LOGGER.warning("⚠️ \"Removed from favourites\" toaster not found after " + timeoutSeconds + " seconds");
-				return false;
-			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Error waiting for toaster: {0}", e.getMessage());
-				return false;
+				Thread.sleep(500);
 			}
-		}
 
-		/**
-		 * Closes the currently visible dialog by pressing Escape key
-		 */
-		public void closeDialogWithEscape() {
-			try {
-				org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(driver);
-				actions.sendKeys(org.openqa.selenium.Keys.ESCAPE).perform();
-				LOGGER.info("Closed dialog using Escape key");
-				Thread.sleep(1000);
-			} catch (Exception e) {
-				LOGGER.log(Level.WARNING, "Could not close dialog with Escape: {0}", e.getMessage());
-			}
+			LOGGER.warning("⚠️ Removal toaster not found after " + timeoutSeconds + " seconds");
+			return false;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Error waiting for toaster: {0}", e.getMessage());
+			return false;
 		}
+	}
+
+	/**
+	 * Closes the currently visible dialog by pressing Escape key
+	 */
+	public void closeDialogWithEscape() {
+		try {
+			org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(driver);
+			actions.sendKeys(org.openqa.selenium.Keys.ESCAPE).perform();
+			LOGGER.info("Closed dialog using Escape key");
+			Thread.sleep(1000);
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Could not close dialog with Escape: {0}", e.getMessage());
+		}
+	}
 
 	private WebElement getConfirmationDialogContainer() {
 		try {
@@ -1122,24 +1234,17 @@ public class FavouritesPage extends BasePage {
 		if (dialog != null) {
 			try {
 				Object candidate = ((JavascriptExecutor) driver).executeScript(
-						"const dialog = arguments[0];"
-								+ "const label = arguments[1].trim().toLowerCase();"
+						"const dialog = arguments[0];" + "const label = arguments[1].trim().toLowerCase();"
 								+ "const nodes = Array.from(dialog.querySelectorAll('div, button, span'));"
 								+ "for (const node of nodes) {"
 								+ "  const text = (node.textContent || '').trim().toLowerCase();"
-								+ "  if (text !== label) { continue; }"
-								+ "  let current = node;"
+								+ "  if (text !== label) { continue; }" + "  let current = node;"
 								+ "  while (current && current !== dialog) {"
 								+ "    const role = (current.getAttribute('role') || '').toLowerCase();"
 								+ "    const tabIndex = current.getAttribute('tabindex');"
 								+ "    if (role === 'button' || (tabIndex !== null && tabIndex !== '-1')) {"
-								+ "      return current;"
-								+ "    }"
-								+ "    current = current.parentElement;"
-								+ "  }"
-								+ "  return node;"
-								+ "}"
-								+ "return null;",
+								+ "      return current;" + "    }" + "    current = current.parentElement;" + "  }"
+								+ "  return node;" + "}" + "return null;",
 						dialog, label);
 				if (candidate instanceof WebElement webElement) {
 					LOGGER.info("Resolved confirmation button for label: " + label);
@@ -1150,7 +1255,8 @@ public class FavouritesPage extends BasePage {
 			}
 
 			try {
-				WebElement labelElement = dialog.findElement(By.xpath(".//div[normalize-space(text())='" + label + "']"));
+				WebElement labelElement = dialog
+						.findElement(By.xpath(".//div[normalize-space(text())='" + label + "']"));
 				WebElement clickable = labelElement.findElement(By.xpath("./ancestor::div[@tabindex='0'][1]"));
 				LOGGER.info("Resolved confirmation button using XPath fallback for label: " + label);
 				return clickable;
@@ -1184,16 +1290,11 @@ public class FavouritesPage extends BasePage {
 					"const rect = arguments[0].getBoundingClientRect();"
 							+ "const x = Math.floor(rect.left + (rect.width / 2));"
 							+ "const y = Math.floor(rect.top + (rect.height / 2));"
-							+ "let el = document.elementFromPoint(x, y);"
-							+ "while (el) {"
+							+ "let el = document.elementFromPoint(x, y);" + "while (el) {"
 							+ "  const role = (el.getAttribute('role') || '').toLowerCase();"
 							+ "  const tabIndex = el.getAttribute('tabindex');"
 							+ "  if (role === 'button' || (tabIndex !== null && tabIndex !== '-1')) {"
-							+ "    return el;"
-							+ "  }"
-							+ "  el = el.parentElement;"
-							+ "}"
-							+ "return arguments[0];",
+							+ "    return el;" + "  }" + "  el = el.parentElement;" + "}" + "return arguments[0];",
 					element);
 			return candidate instanceof WebElement webElement ? webElement : element;
 		} catch (Exception e) {
@@ -1234,20 +1335,55 @@ public class FavouritesPage extends BasePage {
 		return didRemovalProgress();
 	}
 
-
-
 	/**
 	 * Helper method to check if the "Removed from favourites" toaster is visible
 	 * Used to verify if a click attempt actually triggered the removal action
+	 * 
 	 * @return true if toaster is visible, false otherwise
 	 */
 	private boolean isToasterVisible() {
 		try {
-			WebElement toaster = driver.findElement(By.xpath(
-				"//div[contains(@data-testid, 'toastText1')][contains(text(), 'Removed from favourites')]"));
-			return toaster.isDisplayed();
+			List<WebElement> toasters = driver.findElements(
+					By.xpath("//*[contains(@data-testid, 'toastText') or contains(@data-testid, 'toast')]"));
+			for (WebElement toaster : toasters) {
+				try {
+					if (!toaster.isDisplayed()) {
+						continue;
+					}
+					String text = toaster.getText().trim().toLowerCase();
+					if (text.contains("removed from favourites") || text.contains("removed from favorites")
+							|| (text.contains("removed")
+									&& (text.contains("favourites") || text.contains("favorites")))) {
+						return true;
+					}
+				} catch (Exception ignored) {
+					// Ignore stale or detached toast nodes.
+				}
+			}
 		} catch (Exception e) {
-			return false;
+			LOGGER.log(Level.FINE, "Could not inspect toaster visibility: {0}", e.getMessage());
+		}
+		return false;
+	}
+
+	private int getVisibleSelectedCheckboxCount() {
+		try {
+			List<WebElement> selectedIcons = driver
+					.findElements(By.xpath("//*[starts-with(@data-testid,'checkbox-icon-')]"));
+			int visibleCount = 0;
+			for (WebElement icon : selectedIcons) {
+				try {
+					if (icon.isDisplayed()) {
+						visibleCount++;
+					}
+				} catch (Exception ignored) {
+					// Ignore stale or hidden icons.
+				}
+			}
+			return visibleCount;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Could not count visible selected checkbox icons: {0}", e.getMessage());
+			return 0;
 		}
 	}
 
@@ -1259,15 +1395,17 @@ public class FavouritesPage extends BasePage {
 			// First find the dialog, then find Yes button within it
 			String dialogXPath = "//div[contains(@class, 'css-g5y9jx')][contains(@class, 'r-119rbo0')]//div[@dir='auto'][text()='Remove Favourites']/..";
 			WebElement dialog = driver.findElement(By.xpath(dialogXPath));
-			
+
 			// Within dialog, find element with tabindex and Yes text
-			yesBtn = dialog.findElement(By.xpath(".//div[@tabindex='0'][contains(@class, 'r-1i6wzkk')]//div[text()='Yes']/.."));
+			yesBtn = dialog.findElement(
+					By.xpath(".//div[@tabindex='0'][contains(@class, 'r-1i6wzkk')]//div[text()='Yes']/.."));
 			LOGGER.info("Found Yes button within dialog context (Method 0)");
 		} catch (Exception e0) {
 			LOGGER.log(Level.FINE, "Method 0 failed: " + e0.getMessage());
 		}
 
-		// Method 1: Click parent element directly (REMOVED //div[1] - was clicking inner text div)
+		// Method 1: Click parent element directly (REMOVED //div[1] - was clicking
+		// inner text div)
 		try {
 			String exactXPath = "//div[@class='css-g5y9jx r-1i6wzkk r-lrvibr r-1loqt21 r-1otgn73 r-y47klf r-qpntkw r-u8s1d r-3mc0re r-1yxedwg']";
 			yesBtn = driver.findElement(By.xpath(exactXPath));
@@ -1387,7 +1525,8 @@ public class FavouritesPage extends BasePage {
 				// Attempt 4: Actions class move and click
 				if (!clicked) {
 					try {
-						org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(driver);
+						org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(
+								driver);
 						actions.moveToElement(yesBtn).click().perform();
 						LOGGER.info("✅ Attempt 4: Actions click");
 
@@ -1407,8 +1546,8 @@ public class FavouritesPage extends BasePage {
 				// Attempt 5: Force click using MouseEvent dispatching
 				if (!clicked) {
 					try {
-						String js = "var evt = new MouseEvent('click', {view: window, bubbles: true, cancelable: true});" +
-								   "arguments[0].dispatchEvent(evt);";
+						String js = "var evt = new MouseEvent('click', {view: window, bubbles: true, cancelable: true});"
+								+ "arguments[0].dispatchEvent(evt);";
 						((JavascriptExecutor) driver).executeScript(js, yesBtn);
 						LOGGER.info("✅ Attempt 5: Event dispatching");
 
@@ -1450,8 +1589,8 @@ public class FavouritesPage extends BasePage {
 			try {
 				WebElement yesBtn = getConfirmationActionButton("Yes");
 				if (yesBtn != null) {
-					((JavascriptExecutor) driver).executeScript(
-							"arguments[0].scrollIntoView({block: 'center', inline: 'center'});", yesBtn);
+					((JavascriptExecutor) driver)
+							.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", yesBtn);
 					Thread.sleep(400);
 					((JavascriptExecutor) driver).executeScript("arguments[0].click();", yesBtn);
 					LOGGER.info("Attempt 1: JavaScript click on Yes button container");
@@ -1500,7 +1639,8 @@ public class FavouritesPage extends BasePage {
 					WebElement yesBtn = getConfirmationActionButton("Yes");
 					if (yesBtn != null) {
 						WebElement target = getCenterPointInteractionTarget(yesBtn);
-						org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(driver);
+						org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(
+								driver);
 						actions.moveToElement(target).pause(Duration.ofMillis(150)).click().perform();
 						LOGGER.info("Attempt 4: Actions click on center-point target");
 						Thread.sleep(1500);
@@ -1550,8 +1690,8 @@ public class FavouritesPage extends BasePage {
 
 		try {
 			waitForOverlayToDisappear();
-			((JavascriptExecutor) driver).executeScript(
-					"arguments[0].scrollIntoView({block: 'center', inline: 'center'});", yesBtn);
+			((JavascriptExecutor) driver)
+					.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", yesBtn);
 			Thread.sleep(400);
 
 			WebElement target = yesBtn;

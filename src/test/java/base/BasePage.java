@@ -55,6 +55,11 @@ public class BasePage {
 		jsClick(locator);
 	}
 
+	public String getSafeUrl() {
+		String url = driver.getCurrentUrl();
+		return url != null ? url.toLowerCase() : "";
+	}
+
 	// 🔥 Type with logging
 	public void type(By locator, String text) {
 		if (locator == null) {
@@ -67,13 +72,10 @@ public class BasePage {
 			element.clear();
 			if (containsNonBmpCharacters(text)) {
 				((JavascriptExecutor) driver).executeScript(
-						"const el = arguments[0];"
-								+ "const value = arguments[1] == null ? '' : arguments[1];"
-								+ "el.focus();"
-								+ "el.value = value;"
+						"const el = arguments[0];" + "const value = arguments[1] == null ? '' : arguments[1];"
+								+ "el.focus();" + "el.value = value;"
 								+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
-								+ "el.dispatchEvent(new Event('change', { bubbles: true }));"
-								+ "el.blur();",
+								+ "el.dispatchEvent(new Event('change', { bubbles: true }));" + "el.blur();",
 						element, text);
 			} else {
 				element.sendKeys(text);
@@ -189,7 +191,7 @@ public class BasePage {
 	}
 
 	public void scrollIntoView(WebElement element) {
-		((JavascriptExecutor) driver).executeScript(
-				"arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center', inline:'nearest'});",
+				element);
 	}
 }

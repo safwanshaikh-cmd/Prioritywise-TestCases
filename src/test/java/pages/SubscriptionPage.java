@@ -15,14 +15,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import base.BasePage;
 
 /**
- * Page object for subscription-related flows.
- * Reuses the same interaction style already used across the framework.
+ * Page object for subscription-related flows. Reuses the same interaction style
+ * already used across the framework.
  */
 public class SubscriptionPage extends BasePage {
 
 	private static final Logger LOGGER = Logger.getLogger(SubscriptionPage.class.getName());
 
+	// Multiple hamburger menu locators for different UI states
 	private static final By HAMBURGER_MENU = By.xpath("//img[contains(@src,'ic_menu') and @draggable='false']");
+	private static final By HAMBURGER_MENU_ARIA = By
+			.xpath("//button[@aria-label='Menu' or @aria-label='menu' or @aria-label='Open menu']"
+					+ " | //*[@role='button' and (@aria-label='Menu' or @aria-label='menu' or @aria-label='Open menu')]"
+					+ " | //*[@tabindex='0' and (@aria-label='Menu' or @aria-label='menu' or @aria-label='Open menu')]");
+	private static final By HAMBURGER_MENU_SVG = By.xpath("(//button[.//*[name()='svg']])[1]"
+			+ " | (//*[@role='button'][.//*[name()='svg']])[1]" + " | (//*[@tabindex='0'][.//*[name()='svg']])[1]");
+	private static final By HAMBURGER_MENU_ALT = By
+			.xpath("//*[contains(@class, 'menu') or contains(@class, 'hamburger') or contains(@class, 'sidebar')]"
+					+ "[self::button or @role='button' or @tabindex='0']]");
+
 	private static final By SUBSCRIPTION_MENU = By.xpath("//div[text()='Subscriptions']");
 	private static final By OFFER_80 = By.xpath("//*[contains(text(),'80% Off')]");
 	private static final By START_LISTENING_BTN = By.xpath("//*[contains(text(),'Start Listening')]");
@@ -31,16 +42,16 @@ public class SubscriptionPage extends BasePage {
 	private static final By PLAN_ACTIVE_STATUS = By.xpath("//*[contains(text(),'Remaining')]");
 	private static final By PLAN_INACTIVE_STATUS = By
 			.xpath("//*[contains(text(),'Plan Deactivated') or contains(text(),'Expired')]");
-	private static final By PLAN_DETAILS_CONTAINER = By.xpath(
-			"//*[contains(@class, 'plan') or contains(@class, 'subscription') or contains(@class, 'tier')]"
-			+ " | //*[*[contains(text(),'Plan') or contains(text(),'Premium') or contains(text(),'Subscription')]]");
+	private static final By PLAN_DETAILS_CONTAINER = By
+			.xpath("//*[contains(@class, 'plan') or contains(@class, 'subscription') or contains(@class, 'tier')]"
+					+ " | //*[*[contains(text(),'Plan') or contains(text(),'Premium') or contains(text(),'Subscription')]]");
 
 	private static final By ACTIVE_PLAN_TEXT = By.xpath(
 			"//*[contains(text(),'Active') or contains(text(),'Premium') or contains(text(),'Remaining') or contains(text(),'Days')]"
-			+ "[not(contains(text(),'Not Active'))]");
+					+ "[not(contains(text(),'Not Active'))]");
 
-	private static final By PLAN_INFO_SECTIONS = By.xpath(
-			"//*[contains(@class, 'info') or contains(@class, 'details') or contains(@class, 'status')]");
+	private static final By PLAN_INFO_SECTIONS = By
+			.xpath("//*[contains(@class, 'info') or contains(@class, 'details') or contains(@class, 'status')]");
 
 	private static final By SUBSCRIPTION_RESTRICTION_MSG = By.xpath(
 			"//*[contains(text(),'already have') or contains(text(),'not eligible') or contains(text(),'cannot')]");
@@ -60,14 +71,62 @@ public class SubscriptionPage extends BasePage {
 
 	public void clickHamburgerMenu() {
 		waitForOverlayToDisappear();
-		jsClick(HAMBURGER_MENU);
-		LOGGER.info("Hamburger menu clicked");
+
+		// Try multiple locators for hamburger menu (different UI states)
+		By[] menuLocators = { HAMBURGER_MENU, // Primary: ic_menu image
+				HAMBURGER_MENU_ARIA, // Alternative: aria-label
+				HAMBURGER_MENU_SVG, // Alternative: SVG-based button
+				HAMBURGER_MENU_ALT // Alternative: class-based
+		};
+
+		for (int i = 0; i < menuLocators.length; i++) {
+			try {
+				if (isDisplayed(menuLocators[i])) {
+					jsClick(menuLocators[i]);
+					LOGGER.info("Hamburger menu clicked (attempt " + (i + 1) + " of " + menuLocators.length + ")");
+					return;
+				}
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Hamburger menu locator " + (i + 1) + " failed: " + e.getMessage());
+			}
+		}
+
+		// If all locators failed, throw exception with details
+		throw new org.openqa.selenium.NoSuchElementException(
+				"Hamburger menu not found using any locator (tried " + menuLocators.length + " approaches)");
 	}
 
 	public void clickSubscription() {
 		waitForOverlayToDisappear();
 		jsClick(SUBSCRIPTION_MENU);
 		LOGGER.info("Subscription menu clicked");
+	}
+
+	/**
+	 * Check if hamburger menu is visible using any available locator. This method
+	 * tries all menu locators and returns true if any is found.
+	 *
+	 * @return true if hamburger menu is visible, false otherwise
+	 */
+	public boolean isHamburgerMenuVisible() {
+		By[] menuLocators = { HAMBURGER_MENU, // Primary: ic_menu image
+				HAMBURGER_MENU_ARIA, // Alternative: aria-label
+				HAMBURGER_MENU_SVG, // Alternative: SVG-based button
+				HAMBURGER_MENU_ALT // Alternative: class-based
+		};
+
+		for (By locator : menuLocators) {
+			try {
+				if (isDisplayed(locator)) {
+					LOGGER.info("Hamburger menu visible with locator: " + locator);
+					return true;
+				}
+			} catch (Exception e) {
+				LOGGER.log(Level.FINEST, "Menu locator check failed: " + e.getMessage());
+			}
+		}
+
+		return false;
 	}
 
 	public boolean isSubscriptionPageDisplayed() {
@@ -130,11 +189,10 @@ public class SubscriptionPage extends BasePage {
 				StringBuilder allStatus = new StringBuilder();
 				for (WebElement section : infoSections) {
 					String sectionText = section.getText();
-					if (!sectionText.isBlank() &&
-					    (sectionText.contains("Plan") || sectionText.contains("Premium") ||
-					     sectionText.contains("Active") || sectionText.contains("Remaining") ||
-					     sectionText.contains("Cancel") || sectionText.contains("Expire") ||
-					     sectionText.contains("Inactive") || sectionText.contains("Deactivate"))) {
+					if (!sectionText.isBlank() && (sectionText.contains("Plan") || sectionText.contains("Premium")
+							|| sectionText.contains("Active") || sectionText.contains("Remaining")
+							|| sectionText.contains("Cancel") || sectionText.contains("Expire")
+							|| sectionText.contains("Inactive") || sectionText.contains("Deactivate"))) {
 						allStatus.append(sectionText).append(" | ");
 					}
 				}
@@ -158,27 +216,28 @@ public class SubscriptionPage extends BasePage {
 	}
 
 	/**
-	 * Check if any plan details are visible on the page.
-	 * This is a more robust check than getPlanStatus() for verifying that plan information is displayed.
+	 * Check if any plan details are visible on the page. This is a more robust
+	 * check than getPlanStatus() for verifying that plan information is displayed.
 	 *
 	 * @return true if any plan details are visible, false otherwise
 	 */
 	public boolean isPlanDetailsVisible() {
 		// Check if any of the plan-related elements are present on the page
-		return isAnyVisible(PLAN_ACTIVE_STATUS, PLAN_INACTIVE_STATUS, ACTIVE_PLAN_TEXT,
-		                  PLAN_DETAILS_CONTAINER, SUBSCRIPTION_TITLE);
+		return isAnyVisible(PLAN_ACTIVE_STATUS, PLAN_INACTIVE_STATUS, ACTIVE_PLAN_TEXT, PLAN_DETAILS_CONTAINER,
+				SUBSCRIPTION_TITLE);
 	}
 
 	/**
-	 * Check if the plan has been cancelled.
-	 * This method looks for various indicators that a plan has been cancelled.
+	 * Check if the plan has been cancelled. This method looks for various
+	 * indicators that a plan has been cancelled.
 	 *
 	 * @return true if plan is cancelled, false otherwise
 	 */
 	public boolean isPlanCancelled() {
 		String status = getPlanStatus().toLowerCase();
 
-		// If status is empty, this strongly indicates cancellation (plan details removed)
+		// If status is empty, this strongly indicates cancellation (plan details
+		// removed)
 		if (status.isBlank()) {
 			// Empty status after being on subscription page = cancelled
 			LOGGER.info("Plan cancellation detected: Status is empty (plan details removed from page)");
@@ -186,10 +245,9 @@ public class SubscriptionPage extends BasePage {
 		}
 
 		// Check for cancellation indicators in status text
-		boolean hasCancellationKeywords = status.contains("cancel") || status.contains("expire") ||
-		       status.contains("deactivate") || status.contains("inactive") ||
-		       status.contains("ended") || status.contains("terminated") ||
-		       status.contains("suspended");
+		boolean hasCancellationKeywords = status.contains("cancel") || status.contains("expire")
+				|| status.contains("deactivate") || status.contains("inactive") || status.contains("ended")
+				|| status.contains("terminated") || status.contains("suspended");
 
 		if (hasCancellationKeywords) {
 			LOGGER.info("Plan cancellation detected: Status contains cancellation keywords");
@@ -208,10 +266,10 @@ public class SubscriptionPage extends BasePage {
 	}
 
 	/**
-	 * Cancel the active subscription plan.
-	 * This method cancels the active plan using the complete cancellation flow.
-	 * Follows: Cancel Plan → Continue to Cancel → Select Reason → Submit Reason
-	 * Note: Cancellation completes after submitting reason (no final confirmation click needed)
+	 * Cancel the active subscription plan. This method cancels the active plan
+	 * using the complete cancellation flow. Follows: Cancel Plan → Continue to
+	 * Cancel → Select Reason → Submit Reason Note: Cancellation completes after
+	 * submitting reason (no final confirmation click needed)
 	 */
 	public void cancelActivePlan() {
 		// Step 1: Click first Cancel button
@@ -242,10 +300,9 @@ public class SubscriptionPage extends BasePage {
 		LOGGER.log(Level.INFO, "Page refreshed to show cancelled status");
 	}
 
-
 	/**
-	 * Check if subscription is cancelled.
-	 * This method matches the Sonarplay Automation pattern for checking subscription cancellation.
+	 * Check if subscription is cancelled. This method matches the Sonarplay
+	 * Automation pattern for checking subscription cancellation.
 	 *
 	 * @return true if subscription is cancelled, false otherwise
 	 */
@@ -333,8 +390,36 @@ public class SubscriptionPage extends BasePage {
 	}
 
 	public void goToHome() {
-		jsClick(By.xpath("//*[contains(text(),'Home')]"));
-		LOGGER.info("Navigated to home");
+		// Try multiple approaches to navigate to home
+		boolean navigated = false;
+
+		// Approach 1: Try clicking "Home" link/menu item
+		try {
+			By homeLocator = By.xpath("//*[contains(text(),'Home')]");
+			if (isDisplayed(homeLocator)) {
+				jsClick(homeLocator);
+				navigated = true;
+				LOGGER.info("Navigated to home (via Home link)");
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Home link not found: " + e.getMessage());
+		}
+
+		// Approach 2: Navigate directly to home URL
+		if (!navigated) {
+			try {
+				driver.get("https://web-splay.acceses.com/");
+				navigated = true;
+				LOGGER.info("Navigated to home (via direct URL)");
+			} catch (Exception e) {
+				LOGGER.log(Level.FINE, "Direct URL navigation failed: " + e.getMessage());
+			}
+		}
+
+		if (!navigated) {
+			LOGGER.warning("Unable to navigate to home page");
+			throw new org.openqa.selenium.NoSuchElementException("Could not navigate to home page using any method");
+		}
 	}
 
 	public void playFirstBook() {
@@ -373,8 +458,8 @@ public class SubscriptionPage extends BasePage {
 	}
 
 	public void waitForPageReady() {
-		pageWait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState")
-				.equals("complete"));
+		pageWait.until(webDriver -> "complete"
+				.equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
 	}
 
 	// ================= ADDITIONAL METHODS FROM SONARPLAY =================
@@ -390,15 +475,17 @@ public class SubscriptionPage extends BasePage {
 
 	public boolean isPaymentPageDisplayed() {
 		try {
-			String currentUrl = driver.getCurrentUrl().toLowerCase();
-			return currentUrl.contains("payment")
-				|| currentUrl.contains("checkout")
-				|| currentUrl.contains("razorpay")
-				|| !driver.findElements(By.xpath("//iframe")).isEmpty();
+			String currentUrl = driver.getCurrentUrl();
+			String safeUrl = currentUrl != null ? currentUrl.toLowerCase() : "";
+
+			return safeUrl.contains("payment") || safeUrl.contains("checkout") || safeUrl.contains("razorpay")
+					|| !driver.findElements(By.xpath("//iframe")).isEmpty();
+
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Payment page not visible: {0}", e.getMessage());
 			return false;
 		}
+
 	}
 
 	/**
@@ -406,10 +493,12 @@ public class SubscriptionPage extends BasePage {
 	 */
 	public void closeSidebarIfOpen() {
 		try {
-			java.util.List<WebElement> closeBtns = driver.findElements(By.xpath("//div[@data-testid='pressable_close_sidebar']"));
+			java.util.List<WebElement> closeBtns = driver
+					.findElements(By.xpath("//div[@data-testid='pressable_close_sidebar']"));
 
 			if (!closeBtns.isEmpty()) {
-				// Use JavaScript directly (Sonarplay pattern) since jsClick() doesn't accept WebElement
+				// Use JavaScript directly (Sonarplay pattern) since jsClick() doesn't accept
+				// WebElement
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", closeBtns.get(0));
 				LOGGER.info("Sidebar closed");
 				waitForOverlayToDisappear();
@@ -426,7 +515,8 @@ public class SubscriptionPage extends BasePage {
 					return true;
 				}
 			} catch (Exception e) {
-				LOGGER.log(Level.FINEST, "Visibility check failed for {0}: {1}", new Object[] { locator, e.getMessage() });
+				LOGGER.log(Level.FINEST, "Visibility check failed for {0}: {1}",
+						new Object[] { locator, e.getMessage() });
 			}
 		}
 		return false;
@@ -444,85 +534,49 @@ public class SubscriptionPage extends BasePage {
 	// SUBSCRIPTION CANCELLATION METHODS
 	// ============================================================
 
-	private static final By CANCEL_PLAN_BUTTON = By.xpath(
-			"//*[self::button or @role='button' or @tabindex='0']"
+	private static final By CANCEL_PLAN_BUTTON = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
 			+ "[contains(translate(normalize-space(.), 'CANCEL', 'cancel'), 'cancel')]"
 			+ "[contains(translate(normalize-space(.), 'PLAN', 'plan'), 'plan') or contains(translate(normalize-space(.), 'SUBSCRIPTION', 'subscription'), 'subscription')]");
 
-	private static final By CONTINUE_TO_CANCEL_BUTTON = By.xpath(
-			"//*[self::div or @role='button' or @tabindex='0']"
+	private static final By CONTINUE_TO_CANCEL_BUTTON = By.xpath("//*[self::div or @role='button' or @tabindex='0']"
 			+ "[contains(translate(normalize-space(.), 'CONTINUE', 'continue'), 'continue')]"
 			+ "[contains(translate(normalize-space(.), 'CANCEL', 'cancel'), 'cancel')]"
 			+ "[normalize-space()='Continue to Cancel']");
 
-	private static final By CANCEL_REASON_OPTION = By.xpath(
-			"//*[@tabindex='0']"
+	private static final By CANCEL_REASON_OPTION = By.xpath("//*[@tabindex='0']"
 			+ "[contains(translate(normalize-space(.), 'NOT USING', 'not using'), 'not using')"
 			+ " or contains(translate(normalize-space(.), 'EXPENSIVE', 'expensive'), 'expensive')"
 			+ " or contains(translate(normalize-space(.), 'TECHNICAL', 'technical'), 'technical')"
 			+ " or contains(translate(normalize-space(.), 'OTHER', 'other'), 'other')]"
 			+ "[.//div[contains(text(), 'Not Using It Much?') or contains(text(), 'Too Expensive') or contains(text(), 'Technical Issues')]]");
 
-	private static final By SUBMIT_REASON_BUTTON = By.xpath(
-			"//*[@tabindex='0']"
-			+ "[contains(translate(normalize-space(.), 'SUBMIT', 'submit'), 'submit')]"
-			+ "[contains(translate(normalize-space(.), 'REASON', 'reason'), 'reason')]"
-			+ "[normalize-space()='Submit Reason']");
+	private static final By SUBMIT_REASON_BUTTON = By
+			.xpath("//*[@tabindex='0']" + "[contains(translate(normalize-space(.), 'SUBMIT', 'submit'), 'submit')]"
+					+ "[contains(translate(normalize-space(.), 'REASON', 'reason'), 'reason')]"
+					+ "[normalize-space()='Submit Reason']");
 
-	private static final By FINAL_CANCEL_BUTTON = By.xpath(
-			"//div[@tabindex='0'][.//div[contains(text(), 'Continue to Cancel')]]");
-
-	private static final By KEEP_SUBSCRIPTION_BUTTON = By.xpath(
-			"//div[@tabindex='0'][.//div[contains(text(), 'Keep Subscription')]]");
-
-	private static final By CANCELLATION_CONFIRMATION_DIALOG = By.xpath(
-			"//*[contains(text(), 'Are you sure you want to cancel') or contains(text(), 'Your plan will stay active until')]");
-
-	private static final By ANY_CONTINUE_TO_CANCEL = By.xpath(
-			"//*[@tabindex='0'][.//div[contains(text(), 'Continue to Cancel')]]");
-
-	private static final By GO_BACK_BUTTON = By.xpath(
-			"//*[@tabindex='0']"
+	private static final By GO_BACK_BUTTON = By.xpath("//*[@tabindex='0']"
 			+ "[contains(translate(normalize-space(.), 'GO BACK', 'go back'), 'go back')]"
-			+ "[contains(translate(normalize-space(.), 'BACK', 'back'), 'back')]"
-			+ "[normalize-space()='Go Back']");
+			+ "[contains(translate(normalize-space(.), 'BACK', 'back'), 'back')]" + "[normalize-space()='Go Back']");
 
-	private static final By CANCEL_CONFIRMATION_DIALOG = By.xpath(
-			"//*[contains(translate(normalize-space(.), 'CANCEL', 'cancel'), 'cancel')]"
-			+ "[contains(translate(normalize-space(.), 'PLAN', 'plan'), 'plan') or contains(translate(normalize-space(.), 'SUBSCRIPTION', 'subscription'), 'subscription')]"
-			+ "[ancestor::*[contains(@class, 'modal') or contains(@class, 'dialog') or contains(@role, 'dialog')]]");
-
-	private static final By CONFIRM_CANCEL_BUTTON = By.xpath(
-			"//*[self::button or @role='button']"
-			+ "[contains(translate(normalize-space(.), 'YES', 'yes'), 'yes')"
-			+ " or contains(translate(normalize-space(.), 'CONFIRM', 'confirm'), 'confirm')]"
-			+ "[ancestor::*[contains(@class, 'modal') or contains(@class, 'dialog') or contains(@role, 'dialog')]]");
-
-	private static final By DECLINE_CANCEL_BUTTON = By.xpath(
-			"//*[self::button or @role='button']"
-			+ "[contains(translate(normalize-space(.), 'NO', 'no'), 'no')"
-			+ " or contains(translate(normalize-space(.), 'KEEP', 'keep'), 'keep')]"
-			+ "[ancestor::*[contains(@class, 'modal') or contains(@class, 'dialog') or contains(@role, 'dialog')]]");
-
-	private static final By LOGOUT_MENU_ITEM = By.xpath(
-			"//*[normalize-space()='Logout' or normalize-space()='Log Out']"
+	private static final By LOGOUT_MENU_ITEM = By.xpath("//*[normalize-space()='Logout' or normalize-space()='Log Out']"
 			+ " | //*[@tabindex='0' and contains(normalize-space(.), 'Logout')]");
 
-	private static final By PLAN_EXPIRY_DATE = By.xpath(
-			"//*[contains(text(),'Expiry') or contains(text(),'Valid till') or contains(text(),'Valid until')]");
+	private static final By PLAN_EXPIRY_DATE = By
+			.xpath("//*[contains(text(),'Expiry') or contains(text(),'Valid till') or contains(text(),'Valid until')]");
 
-	private static final By ACTIVE_PLAN_DETAILS = By.xpath(
-			"//*[contains(@class, 'plan') or contains(@class, 'subscription')]"
-			+ "[contains(text(),'Active') or contains(text(),'Remaining') or contains(text(),'Premium')]");
+	private static final By ACTIVE_PLAN_DETAILS = By
+			.xpath("//*[contains(@class, 'plan') or contains(@class, 'subscription')]"
+					+ "[contains(text(),'Active') or contains(text(),'Remaining') or contains(text(),'Premium')]");
 
-	private static final By CANCELLED_PLAN_DETAILS = By.xpath(
-			"//*[contains(@class, 'plan') or contains(@class, 'subscription')]"
-			+ "[contains(text(),'Cancel') or contains(text(),'Expire') or contains(text(),'Deactivate')]");
+	private static final By CANCELLED_PLAN_DETAILS = By
+			.xpath("//*[contains(@class, 'plan') or contains(@class, 'subscription')]"
+					+ "[contains(text(),'Cancel') or contains(text(),'Expire') or contains(text(),'Deactivate')]");
 
 	/**
-	 * Cancel the active subscription plan.
-	 * This method initiates cancellation, selects a reason, and confirms it.
-	 * Follows the complete cancellation flow: Continue to Cancel → Select Reason → Submit Reason
+	 * Cancel the active subscription plan. This method initiates cancellation,
+	 * selects a reason, and confirms it. Follows the complete cancellation flow:
+	 * Continue to Cancel → Select Reason → Submit Reason
 	 */
 	public void cancelPlan() {
 		waitForOverlayToDisappear();
@@ -569,9 +623,9 @@ public class SubscriptionPage extends BasePage {
 	}
 
 	/**
-	 * Initiate plan cancellation without confirming.
-	 * Used to test the confirmation dialog behavior.
-	 * This method stops after clicking "Continue to Cancel" and shows the reason selection screen.
+	 * Initiate plan cancellation without confirming. Used to test the confirmation
+	 * dialog behavior. This method stops after clicking "Continue to Cancel" and
+	 * shows the reason selection screen.
 	 *
 	 * @return true if reason selection screen appeared, false otherwise
 	 */
@@ -597,13 +651,15 @@ public class SubscriptionPage extends BasePage {
 
 			// Check if reason selection screen is displayed
 			try {
-				WebElement reasonOption = pageWait.until(ExpectedConditions.visibilityOfElementLocated(CANCEL_REASON_OPTION));
-				WebElement submitButton = pageWait.until(ExpectedConditions.visibilityOfElementLocated(SUBMIT_REASON_BUTTON));
+				WebElement reasonOption = pageWait
+						.until(ExpectedConditions.visibilityOfElementLocated(CANCEL_REASON_OPTION));
+				WebElement submitButton = pageWait
+						.until(ExpectedConditions.visibilityOfElementLocated(SUBMIT_REASON_BUTTON));
 				WebElement goBackButton = pageWait.until(ExpectedConditions.visibilityOfElementLocated(GO_BACK_BUTTON));
 
-				boolean hasReasonScreen = (reasonOption != null && reasonOption.isDisplayed()) &&
-				                         (submitButton != null && submitButton.isDisplayed()) &&
-				                         (goBackButton != null && goBackButton.isDisplayed());
+				boolean hasReasonScreen = (reasonOption != null && reasonOption.isDisplayed())
+						&& (submitButton != null && submitButton.isDisplayed())
+						&& (goBackButton != null && goBackButton.isDisplayed());
 
 				LOGGER.log(Level.INFO, "Cancellation reason selection screen present: {0}", hasReasonScreen);
 				return hasReasonScreen;
@@ -618,8 +674,8 @@ public class SubscriptionPage extends BasePage {
 	}
 
 	/**
-	 * Decline the plan cancellation by clicking Go Back button.
-	 * This aborts the cancellation process and keeps the plan active.
+	 * Decline the plan cancellation by clicking Go Back button. This aborts the
+	 * cancellation process and keeps the plan active.
 	 */
 	public void declineCancellation() {
 		waitForOverlayToDisappear();
@@ -673,8 +729,8 @@ public class SubscriptionPage extends BasePage {
 	}
 
 	/**
-	 * Check if the plan has expired based on the current date.
-	 * This compares the expiry date with the current system date.
+	 * Check if the plan has expired based on the current date. This compares the
+	 * expiry date with the current system date.
 	 *
 	 * @return true if plan is expired, false otherwise
 	 */
@@ -719,14 +775,14 @@ public class SubscriptionPage extends BasePage {
 	}
 
 	/**
-	 * Verify if subscription activation is restricted via backend validation.
-	 * This simulates API call behavior by checking UI response to activation attempts.
+	 * Verify if subscription activation is restricted via backend validation. This
+	 * simulates API call behavior by checking UI response to activation attempts.
 	 *
 	 * @return true if restriction is enforced, false otherwise
 	 */
 	public boolean isApiRestrictionEnforced() {
+
 		// Record initial state
-		boolean wasRestricted = isSubscriptionActivationRestricted();
 		String initialStatus = getPlanStatus();
 
 		// Attempt to activate plan
@@ -740,14 +796,14 @@ public class SubscriptionPage extends BasePage {
 		boolean noStateChange = currentStatus.equals(initialStatus);
 
 		LOGGER.log(Level.INFO, "API Restriction Check - Initial: {0}, Current: {1}, Restricted: {2}",
-			new Object[]{initialStatus, currentStatus, restrictionMessageShown});
+				new Object[] { initialStatus, currentStatus, restrictionMessageShown });
 
 		return restrictionMessageShown || noStateChange;
 	}
 
 	/**
-	 * Wait for a specific duration to test expiry boundary conditions.
-	 * This method should be used carefully in test scenarios.
+	 * Wait for a specific duration to test expiry boundary conditions. This method
+	 * should be used carefully in test scenarios.
 	 *
 	 * @param seconds Duration to wait in seconds
 	 */
@@ -762,8 +818,8 @@ public class SubscriptionPage extends BasePage {
 	}
 
 	/**
-	 * Verify that plan selection is allowed after expiry.
-	 * This method checks if the UI enables plan selection for expired plans.
+	 * Verify that plan selection is allowed after expiry. This method checks if the
+	 * UI enables plan selection for expired plans.
 	 *
 	 * @return true if plan selection is allowed, false otherwise
 	 */
@@ -786,8 +842,8 @@ public class SubscriptionPage extends BasePage {
 	}
 
 	/**
-	 * Get the remaining days in the subscription plan.
-	 * This extracts the number of days from the plan status text.
+	 * Get the remaining days in the subscription plan. This extracts the number of
+	 * days from the plan status text.
 	 *
 	 * @return Number of remaining days, or -1 if not found
 	 */
@@ -843,8 +899,8 @@ public class SubscriptionPage extends BasePage {
 	}
 
 	/**
-	 * Check if cancel button is visible on the subscription page.
-	 * This method verifies if the cancel plan button is available for users to click.
+	 * Check if cancel button is visible on the subscription page. This method
+	 * verifies if the cancel plan button is available for users to click.
 	 *
 	 * @return true if cancel button is visible, false otherwise
 	 */

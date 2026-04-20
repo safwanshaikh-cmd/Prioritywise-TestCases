@@ -60,7 +60,10 @@
       "Bash(/mnt/c/Program Files/Java/jdk-25.0.2/bin/java.exe:*)",
       "Bash(export JAVA_HOME=\"C:\\\\\\\\Program Files\\\\\\\\Java\\\\\\\\jdk-25.0.2\")",
       "Bash(export JAVACMD=\"/mnt/c/Program Files/Java/jdk-25.0.2/bin/java.exe\")",
-      "Bash(/mnt/c/Program Files/apache-maven-3.9.12/bin/mvn.cmd compile -q)"
+      "Bash(/mnt/c/Program Files/apache-maven-3.9.12/bin/mvn.cmd compile -q)",
+      "Bash(tee /tmp/tc_540_test.log)",
+      "Read(//usr/lib/**)",
+      "Read(//opt/**)"
     ]
   }
 }

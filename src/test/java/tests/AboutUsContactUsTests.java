@@ -1,11 +1,8 @@
 package tests;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.time.Duration;
 import java.util.List;
-import java.util.UUID;
 
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -20,6 +17,7 @@ import listeners.RetryAnalyzer;
 import pages.DashboardPage;
 import pages.LoginPage;
 import utils.ConfigReader;
+import utils.TestDataGenerator;
 
 /**
  * About Us and Contact Us page automation tests.
@@ -58,8 +56,9 @@ public class AboutUsContactUsTests extends BaseTest {
 				if (!login.isOnLoginPage()) {
 					return true;
 				}
-				String currentUrl = currentDriver.getCurrentUrl().toLowerCase();
-				return !currentUrl.contains("/login") && !currentUrl.contains("signin");
+				String currentUrl = safeGetCurrentUrl(currentDriver);
+				String lowerUrl = currentUrl.toLowerCase();
+				return !lowerUrl.contains("/login") && !lowerUrl.contains("signin");
 			});
 			Assert.assertTrue(loginSettled, "Registered user login should move past the login page");
 			LOGGER.info("Logged in as registered user");
@@ -71,14 +70,14 @@ public class AboutUsContactUsTests extends BaseTest {
 	/**
 	 * Helper method to logout
 	 */
-	private void logoutAsUser() {
+	/*private void logoutAsUser() {
 		try {
 			dashboard.clickLogout();
 			LOGGER.info("Logged out successfully");
 		} catch (Exception e) {
 			LOGGER.warning("Logout failed: " + e.getMessage());
 		}
-	}
+	}*/
 
 	/**
 	 * Helper method to open About Us page
@@ -113,7 +112,7 @@ public class AboutUsContactUsTests extends BaseTest {
 	private void openContactUsPage() {
 		try {
 			String contactUsUrl = dashboard.openContactUsLink();
-			LOGGER.info("Contact Us page URL: " + contactUsUrl);
+			LOGGER.info("Contact Us page URL: " + safeString(contactUsUrl));
 
 			// Wait for page to load
 			try {
@@ -122,7 +121,7 @@ public class AboutUsContactUsTests extends BaseTest {
 				Thread.currentThread().interrupt();
 			}
 		} catch (Exception e) {
-			LOGGER.warning("Failed to open Contact Us page: " + e.getMessage());
+			LOGGER.warning("Failed to open Contact Us page: " + safeString(e.getMessage()));
 			throw e;
 		}
 	}
@@ -139,7 +138,7 @@ public class AboutUsContactUsTests extends BaseTest {
 				Thread.currentThread().interrupt();
 			}
 
-			LOGGER.info("Checking for Contact Us form fields on page: " + driver.getCurrentUrl());
+			LOGGER.info("Checking for Contact Us form fields on page: " + safeGetCurrentUrl(driver));
 
 			// Check for Subject field with multiple locator strategies
 			WebElement subjectField = null;
@@ -204,7 +203,7 @@ public class AboutUsContactUsTests extends BaseTest {
 
 			return formFound;
 		} catch (Exception e) {
-			LOGGER.warning("Exception while checking form availability: " + e.getMessage());
+			LOGGER.warning("Exception while checking form availability: " + safeString(e.getMessage()));
 			return false;
 		}
 	}
@@ -218,18 +217,18 @@ public class AboutUsContactUsTests extends BaseTest {
 		loginAsRegisteredUser();
 		LOGGER.info("TC_514 - STEP 1: Logged in as registered user");
 
-		String currentUrlBefore = driver.getCurrentUrl();
+		String currentUrlBefore = safeGetCurrentUrl(driver);
 		LOGGER.info("TC_514 - STEP 2: Current URL before navigation: " + currentUrlBefore);
 
 		openAboutUsPage();
 
-		String currentUrlAfter = driver.getCurrentUrl();
+		String currentUrlAfter = safeGetCurrentUrl(driver);
 		LOGGER.info("TC_514 - STEP 3: URL after clicking About Us: " + currentUrlAfter);
 
 		// Verify URL changed or page content loaded
-		boolean pageLoaded = !currentUrlAfter.equals(currentUrlBefore)
+		boolean pageLoaded = !safeStringEquals(currentUrlBefore, currentUrlAfter)
 				|| currentUrlAfter.toLowerCase().contains("about")
-				|| driver.getPageSource().toLowerCase().contains("about");
+				|| safeGetPageSource(driver).toLowerCase().contains("about");
 
 		Assert.assertTrue(pageLoaded, "TC_514: About Us page should load successfully");
 		LOGGER.info("TC_514: About Us page navigation verified - Page loaded successfully");
@@ -248,7 +247,7 @@ public class AboutUsContactUsTests extends BaseTest {
 		LOGGER.info("TC_515 - STEP 2: Opened About Us page");
 
 		// Check for common content elements
-		String pageSource = driver.getPageSource().toLowerCase();
+		String pageSource = safeGetPageSource(driver).toLowerCase();
 		boolean hasContent = pageSource.length() > 1000; // Page should have substantial content
 
 		// More robust text content check - look for common words, not just long words
@@ -284,7 +283,7 @@ public class AboutUsContactUsTests extends BaseTest {
 		openAboutUsPage();
 		LOGGER.info("TC_516 - STEP 2: Opened About Us page");
 
-		String urlBeforeRefresh = driver.getCurrentUrl();
+		String urlBeforeRefresh = safeGetCurrentUrl(driver);
 		LOGGER.info("TC_516 - STEP 3: URL before refresh: " + urlBeforeRefresh);
 
 		// Refresh the page
@@ -298,10 +297,10 @@ public class AboutUsContactUsTests extends BaseTest {
 			Thread.currentThread().interrupt();
 		}
 
-		String urlAfterRefresh = driver.getCurrentUrl();
+		String urlAfterRefresh = safeGetCurrentUrl(driver);
 		LOGGER.info("TC_516 - STEP 5: URL after refresh: " + urlAfterRefresh);
 
-		boolean pageReloaded = urlAfterRefresh.equals(urlBeforeRefresh)
+		boolean pageReloaded = safeStringEquals(urlBeforeRefresh, urlAfterRefresh)
 				|| urlAfterRefresh.toLowerCase().contains("about");
 
 		Assert.assertTrue(pageReloaded, "TC_516: Page should reload successfully");
@@ -335,7 +334,7 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		// If no links found, check if we're still on the same page (About Us might be a
 		// modal)
-		String currentUrl = driver.getCurrentUrl().toLowerCase();
+		String currentUrl = safeGetCurrentUrl(driver).toLowerCase();
 		LOGGER.info("TC_517 - STEP 3: Current URL: " + currentUrl);
 
 		boolean onAboutUsPage = currentUrl.contains("about") || currentUrl.contains("about-us");
@@ -356,7 +355,7 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		for (org.openqa.selenium.WebElement link : links) {
 			try {
-				String href = link.getAttribute("href");
+				String href = safeGetAttribute(link, "href");
 				if (href != null && !href.isEmpty() && !href.startsWith("javascript:")) {
 					validLinks++;
 				} else if (href == null || href.isEmpty()) {
@@ -389,24 +388,24 @@ public class AboutUsContactUsTests extends BaseTest {
 		// Don't login - access as guest
 		LOGGER.info("TC_518 - STEP 1: Accessing as guest user (not logged in)");
 
-		String currentUrlBefore = driver.getCurrentUrl();
+		String currentUrlBefore = safeGetCurrentUrl(driver);
 		LOGGER.info("TC_518 - STEP 2: Current URL (guest): " + currentUrlBefore);
 
 		try {
 			openAboutUsPage();
 			LOGGER.info("TC_518 - STEP 3: Opened About Us page as guest");
 
-			String currentUrlAfter = driver.getCurrentUrl();
+			String currentUrlAfter = safeGetCurrentUrl(driver);
 			LOGGER.info("TC_518 - STEP 4: URL after navigation (guest): " + currentUrlAfter);
 
-			boolean pageAccessible = !currentUrlAfter.equals(currentUrlBefore)
+			boolean pageAccessible = !safeStringEquals(currentUrlBefore, currentUrlAfter)
 					|| currentUrlAfter.toLowerCase().contains("about");
 
 			Assert.assertTrue(pageAccessible, "TC_518: About Us page should be accessible to guest users");
 			LOGGER.info("TC_518: About Us guest access verified - Page accessible to guest users");
 		} catch (Exception e) {
 			// If About Us requires login, that's still valid behavior
-			LOGGER.info("TC_518 - About Us might require login: " + e.getMessage());
+			LOGGER.info("TC_518 - About Us might require login: " + safeString(e.getMessage()));
 			Assert.assertTrue(true, "TC_518: Page behavior verified (login may be required)");
 		}
 	}
@@ -420,16 +419,16 @@ public class AboutUsContactUsTests extends BaseTest {
 		loginAsRegisteredUser();
 		LOGGER.info("TC_519 - STEP 1: Logged in as registered user");
 
-		String currentUrlBefore = driver.getCurrentUrl();
+		String currentUrlBefore = safeGetCurrentUrl(driver);
 		LOGGER.info("TC_519 - STEP 2: Current URL before navigation: " + currentUrlBefore);
 
 		openContactUsPage();
 
-		String currentUrlAfter = driver.getCurrentUrl();
+		String currentUrlAfter = safeGetCurrentUrl(driver);
 		LOGGER.info("TC_519 - STEP 3: URL after clicking Contact Us: " + currentUrlAfter);
 
 		// Verify URL changed or page content loaded
-		boolean pageLoaded = !currentUrlAfter.equals(currentUrlBefore)
+		boolean pageLoaded = !safeStringEquals(currentUrlBefore, currentUrlAfter)
 				|| currentUrlAfter.toLowerCase().contains("contact");
 
 		Assert.assertTrue(pageLoaded, "TC_519: Contact Us page should load successfully");
@@ -484,11 +483,10 @@ public class AboutUsContactUsTests extends BaseTest {
 				}
 			}
 
-			// Fill form with valid data
-			String uniqueId = UUID.randomUUID().toString().substring(0, 8);
-			String testSubject = "Test Subject " + uniqueId;
-			String testMessage = "This is a test message from automation testing. Test ID: " + uniqueId + ". "
-					+ "This message is being sent to verify Contact Us form functionality.";
+			// Fill form with valid data using TestDataGenerator
+			//String uniqueId = TestDataGenerator.generateTestId();
+			String testSubject = TestDataGenerator.generateTestSubject("Form Submission Test");
+			String testMessage = TestDataGenerator.generateTestMessage("Form Submission Test");
 
 			subjectField.clear();
 			subjectField.sendKeys(testSubject);
@@ -524,7 +522,7 @@ public class AboutUsContactUsTests extends BaseTest {
 			}
 
 			// Check for success message or URL change
-			String pageSource = driver.getPageSource().toLowerCase();
+			String pageSource = safeGetPageSource(driver).toLowerCase();
 			boolean hasSuccessMessage = pageSource.contains("success") || pageSource.contains("thank")
 					|| pageSource.contains("submitted") || pageSource.contains("received")
 					|| pageSource.contains("we'll get back");
@@ -547,7 +545,7 @@ public class AboutUsContactUsTests extends BaseTest {
 			LOGGER.info("TC_520: Contact Us form submission verified - Backend communication successful");
 
 		} catch (Exception e) {
-			LOGGER.warning("TC_520 - Form submission test failed: " + e.getMessage());
+			LOGGER.warning("TC_520 - Form submission test failed: " + safeString(e.getMessage()));
 			throw e;
 		}
 	}
@@ -575,7 +573,7 @@ public class AboutUsContactUsTests extends BaseTest {
 			Thread.sleep(1000);
 
 			// Check for validation messages
-			String pageSource = driver.getPageSource().toLowerCase();
+			String pageSource = safeGetPageSource(driver).toLowerCase();
 			boolean hasValidationMessage = pageSource.contains("required") || pageSource.contains("mandatory")
 					|| pageSource.contains("please fill") || pageSource.contains("this field")
 					|| pageSource.contains("valid");
@@ -586,7 +584,7 @@ public class AboutUsContactUsTests extends BaseTest {
 			LOGGER.info("TC_521: Contact Us mandatory field validation verified");
 
 		} catch (Exception e) {
-			throw new SkipException("TC_521: Contact form not found: " + e.getMessage());
+			throw new SkipException("TC_521: Contact form not found: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -607,14 +605,14 @@ public class AboutUsContactUsTests extends BaseTest {
 			// Find message field using multiple locator strategies
 			org.openqa.selenium.WebElement messageField = null;
 
-			// Strategy 1: Try with index [2]
+			// Strategy 1: Try with index [1] - Fixed XPath error
 			try {
-				messageField = driver.findElement(By.xpath("((//input[@placeholder='Subject *'])[1]"));
-				LOGGER.info("TC_522 - Found message field using strategy 1: (//textarea[@placeholder='Message *'])[2]");
+				messageField = driver.findElement(By.xpath("(//textarea[@placeholder='Message *'])[1]"));
+				LOGGER.info("TC_522 - Found message field using strategy 1: (//textarea[@placeholder='Message *'])[1]");
 			} catch (Exception e1) {
 				// Strategy 2: Try without index
 				try {
-					messageField = driver.findElement(By.xpath("(//textarea[@placeholder='Message *'])[1]"));
+					messageField = driver.findElement(By.xpath("//textarea[@placeholder='Message *']"));
 					LOGGER.info("TC_522 - Found message field using strategy 2: //textarea[@placeholder='Message *']");
 				} catch (Exception e2) {
 					// Strategy 3: Try any textarea
@@ -627,19 +625,15 @@ public class AboutUsContactUsTests extends BaseTest {
 				}
 			}
 
-			// Generate 500 character string
-			StringBuilder longText = new StringBuilder();
-			for (int i = 0; i < 500; i++) {
-				longText.append("A");
-			}
-			String testInput = longText.toString();
+			// Generate 500 character string using TestDataGenerator
+			String testInput = TestDataGenerator.generateLongText(500);
 
 			messageField.clear();
 			messageField.sendKeys(testInput);
 
 			LOGGER.info("TC_522 - STEP 3: Entered 500 characters in message field");
 
-			String enteredValue = messageField.getAttribute("value");
+			String enteredValue = safeGetAttribute(messageField, "value");
 			int actualLength = enteredValue != null ? enteredValue.length() : 0;
 
 			LOGGER.info("TC_522 - STEP 4: Actual length entered: " + actualLength);
@@ -656,15 +650,15 @@ public class AboutUsContactUsTests extends BaseTest {
 			LOGGER.info("TC_522: Contact Us max field length verified");
 
 		} catch (Exception e) {
-			throw new SkipException("TC_522: Message field not found: " + e.getMessage());
+			throw new SkipException("TC_522: Message field not found: " + safeString(e.getMessage()));
 		}
 	}
 
 	/**
-	 * TC_523: Contact Us - Special characters input validation
-	 * User Type: Registered User
-	 * Test Flow: Enter valid Subject + Invalid special characters in Message → Submit
-	 * Expected: Validation message captured OR form submitted (special chars handled)
+	 * TC_523: Contact Us - Special characters input validation User Type:
+	 * Registered User Test Flow: Enter valid Subject + Invalid special characters
+	 * in Message → Submit Expected: Validation message captured OR form submitted
+	 * (special chars handled)
 	 */
 	@Test(priority = 523, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyContactUsSpecialCharactersValidation() {
@@ -719,8 +713,8 @@ public class AboutUsContactUsTests extends BaseTest {
 			subjectField.sendKeys(validSubject);
 			LOGGER.info("TC_523 - STEP 3: Entered valid subject: " + validSubject);
 
-			// Enter invalid special characters in message field
-			String specialChars = "@#$%^&*()_+-=[]{}|;':\",./<>?";
+			// Enter invalid special characters using TestDataGenerator
+			String specialChars = TestDataGenerator.generateSpecialCharacters();
 			messageField.clear();
 			messageField.sendKeys(specialChars);
 			LOGGER.info("TC_523 - STEP 4: Entered special characters in message: " + specialChars);
@@ -732,7 +726,8 @@ public class AboutUsContactUsTests extends BaseTest {
 				LOGGER.info("TC_523 - Found Submit button using primary locator");
 			} catch (Exception e) {
 				try {
-					submitButton = driver.findElement(By.xpath("//button[contains(text(),'Submit')] | //input[@type='submit']"));
+					submitButton = driver
+							.findElement(By.xpath("//button[contains(text(),'Submit')] | //input[@type='submit']"));
 					LOGGER.info("TC_523 - Found Submit button using fallback locator");
 				} catch (Exception ex) {
 					throw new SkipException("TC_523: Submit button not found", ex);
@@ -750,20 +745,16 @@ public class AboutUsContactUsTests extends BaseTest {
 			}
 
 			// Check for validation messages
-			String pageSource = driver.getPageSource().toLowerCase();
+			String pageSource = safeGetPageSource(driver).toLowerCase();
 
 			// Check for various validation message patterns
-			boolean hasInvalidMessage = pageSource.contains("invalid")
-					|| pageSource.contains("not allowed")
-					|| pageSource.contains("special characters")
-					|| pageSource.contains("contains invalid")
+			boolean hasInvalidMessage = pageSource.contains("invalid") || pageSource.contains("not allowed")
+					|| pageSource.contains("special characters") || pageSource.contains("contains invalid")
 					|| pageSource.contains("please enter valid");
 
 			// Check if form was submitted successfully (special chars might be allowed)
-			boolean hasSuccessOrSMTP = pageSource.contains("success")
-					|| pageSource.contains("thank")
-					|| pageSource.contains("submitted")
-					|| pageSource.contains("smtp")
+			boolean hasSuccessOrSMTP = pageSource.contains("success") || pageSource.contains("thank")
+					|| pageSource.contains("submitted") || pageSource.contains("smtp")
 					|| pageSource.contains("authentication");
 
 			LOGGER.info("TC_523 - STEP 6: Validation message detected: " + hasInvalidMessage);
@@ -772,11 +763,12 @@ public class AboutUsContactUsTests extends BaseTest {
 			// Verify the test - either validation message OR successful submission
 			boolean testPassed = hasInvalidMessage || hasSuccessOrSMTP;
 
-			Assert.assertTrue(testPassed, "TC_523: Form should show validation error OR submit successfully (special chars handled)");
+			Assert.assertTrue(testPassed,
+					"TC_523: Form should show validation error OR submit successfully (special chars handled)");
 			LOGGER.info("TC_523: Contact Us special characters validation verified - Response captured successfully");
 
 		} catch (Exception e) {
-			throw new SkipException("TC_523: Test failed: " + e.getMessage());
+			throw new SkipException("TC_523: Test failed: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -794,7 +786,7 @@ public class AboutUsContactUsTests extends BaseTest {
 		LOGGER.info("TC_524 - STEP 2: Opened Contact Us page");
 
 		LOGGER.info("TC_524 - STEP 3: Simulating network failure scenario");
-		LOGGER.info("TC_525 - NOTE: Full network failure test requires manual network manipulation");
+		LOGGER.info("TC_524 - NOTE: Full network failure test requires manual network manipulation");
 
 		try {
 			// Find form fields using multiple locator strategies
@@ -835,9 +827,11 @@ public class AboutUsContactUsTests extends BaseTest {
 				}
 			}
 
-			String uniqueId = UUID.randomUUID().toString().substring(0, 8);
-			subjectField.sendKeys("Network Test " + uniqueId);
-			messageField.sendKeys("Testing network failure handling. Test ID: " + uniqueId);
+			// Use TestDataGenerator for network test data
+			String subject = TestDataGenerator.generateNetworkTestSubject();
+			String message = TestDataGenerator.generateNetworkTestMessage();
+			subjectField.sendKeys(subject);
+			messageField.sendKeys(message);
 
 			LOGGER.info("TC_524 - STEP 4: Filled form data");
 
@@ -849,7 +843,7 @@ public class AboutUsContactUsTests extends BaseTest {
 					"TC_524: Contact Us network failure handling verified (manual network manipulation required for full test)");
 
 		} catch (Exception e) {
-			throw new SkipException("TC_524: Contact form not found: " + e.getMessage());
+			throw new SkipException("TC_524: Contact form not found: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -862,24 +856,24 @@ public class AboutUsContactUsTests extends BaseTest {
 		// Don't login - access as guest
 		LOGGER.info("TC_525 - STEP 1: Accessing as guest user (not logged in)");
 
-		String currentUrlBefore = driver.getCurrentUrl();
+		String currentUrlBefore = safeGetCurrentUrl(driver);
 		LOGGER.info("TC_525 - STEP 2: Current URL (guest): " + currentUrlBefore);
 
 		try {
 			openContactUsPage();
 			LOGGER.info("TC_525 - STEP 3: Opened Contact Us page as guest");
 
-			String currentUrlAfter = driver.getCurrentUrl();
+			String currentUrlAfter = safeGetCurrentUrl(driver);
 			LOGGER.info("TC_525 - STEP 4: URL after navigation (guest): " + currentUrlAfter);
 
-			boolean pageAccessible = !currentUrlAfter.equals(currentUrlBefore)
+			boolean pageAccessible = !safeStringEquals(currentUrlBefore, currentUrlAfter)
 					|| currentUrlAfter.toLowerCase().contains("contact");
 
 			Assert.assertTrue(pageAccessible, "TC_525: Contact Us page should be accessible to guest users");
 			LOGGER.info("TC_525: Contact Us guest access verified - Page accessible to guest users");
 		} catch (Exception e) {
 			// If Contact Us requires login, that's still valid behavior
-			LOGGER.info("TC_525 - Contact Us might require login: " + e.getMessage());
+			LOGGER.info("TC_525 - Contact Us might require login: " + safeString(e.getMessage()));
 			Assert.assertTrue(true, "TC_525: Page behavior verified (login may be required)");
 		}
 	}
@@ -887,10 +881,10 @@ public class AboutUsContactUsTests extends BaseTest {
 	/**
 	 * Helper method to check for SMTP error message (expected when Gmail
 	 * credentials are not configured)
-	 */
+	
 	private boolean hasSMTPErrorMessage() {
 		try {
-			String pageSource = driver.getPageSource().toLowerCase();
+			String pageSource = safeGetPageSource(driver).toLowerCase();
 			return pageSource.contains("failed to authenticate on smtp server")
 					|| pageSource.contains("username and password not accepted")
 					|| pageSource.contains("badcredentials") || pageSource.contains("smtp")
@@ -898,7 +892,7 @@ public class AboutUsContactUsTests extends BaseTest {
 		} catch (Exception e) {
 			return false;
 		}
-	}
+	} */
 
 	/**
 	 * Helper method to find document upload element
@@ -917,12 +911,7 @@ public class AboutUsContactUsTests extends BaseTest {
 	 * Helper method to create test file for upload
 	 */
 	private String createTestFile(String fileName) throws IOException {
-		Path tempDir = Files.createTempDirectory("contact-upload-test-");
-		Path testFile = tempDir.resolve(fileName);
-		Files.writeString(testFile, "Test file for Contact Us automation testing. Test ID: "
-				+ UUID.randomUUID().toString().substring(0, 8));
-		testFile.toFile().deleteOnExit();
-		return testFile.toString();
+		return TestDataGenerator.createDefaultTestFile(fileName);
 	}
 
 	/**
@@ -980,7 +969,7 @@ public class AboutUsContactUsTests extends BaseTest {
 			LOGGER.info("TC_526: Contact Us document upload verified - Upload functionality exists");
 
 		} catch (Exception e) {
-			LOGGER.warning("TC_526 - Document upload test failed: " + e.getMessage());
+			LOGGER.warning("TC_526 - Document upload test failed: " + safeString(e.getMessage()));
 			throw e;
 		}
 	}
@@ -1009,7 +998,7 @@ public class AboutUsContactUsTests extends BaseTest {
 
 			LOGGER.info("TC_527 - STEP 3: Found file input element");
 
-			// Create a test file to upload
+			// Create a test file to upload using TestDataGenerator
 			String testFilePath = createTestFile("contact_us_test.txt");
 			LOGGER.info("TC_527 - STEP 4: Created test file: " + testFilePath);
 
@@ -1025,22 +1014,100 @@ public class AboutUsContactUsTests extends BaseTest {
 			}
 
 			// Verify file was uploaded (check if file name appears or success message)
-			String pageSource = driver.getPageSource().toLowerCase();
+			String pageSource = safeGetPageSource(driver).toLowerCase();
 			boolean fileProcessed = pageSource.contains("contact_us_test") || pageSource.contains("uploaded")
 					|| pageSource.contains("file uploaded");
 
 			LOGGER.info("TC_527 - STEP 6: File processed: " + fileProcessed);
 
 			// Verify the test file exists
-			boolean fileExists = new java.io.File(testFilePath).exists();
+			boolean fileExists = TestDataGenerator.testFileExists(testFilePath);
 			LOGGER.info("TC_527 - STEP 6: Test file exists: " + fileExists);
 
 			Assert.assertTrue(fileExists, "TC_527: Test file should exist");
 			LOGGER.info("TC_527: Contact Us document upload with valid file verified");
 
 		} catch (Exception e) {
-			LOGGER.warning("TC_527 - Document upload test failed: " + e.getMessage());
+			LOGGER.warning("TC_527 - Document upload test failed: " + safeString(e.getMessage()));
 			throw e;
 		}
+	}
+
+	// ================= SAFE WRAPPER METHODS =================
+
+	/**
+	 * Safe getCurrentUrl wrapper that handles null
+	 * 
+	 * @param driver the WebDriver instance
+	 * @return current URL or empty string if unavailable
+	 */
+	private String safeGetCurrentUrl(org.openqa.selenium.WebDriver driver) {
+		try {
+			String url = driver.getCurrentUrl();
+			return url != null ? url : "";
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	/**
+	 * Safe getPageSource wrapper that handles null
+	 * 
+	 * @param driver the WebDriver instance
+	 * @return page source or empty string if unavailable
+	 */
+	private String safeGetPageSource(org.openqa.selenium.WebDriver driver) {
+		try {
+			String source = driver.getPageSource();
+			return source != null ? source : "";
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	/**
+	 * Safe getAttribute wrapper that handles null
+	 * 
+	 * @param element       the WebElement
+	 * @param attributeName the attribute name
+	 * @return attribute value or empty string if unavailable
+	 */
+	private String safeGetAttribute(WebElement element, String attributeName) {
+		if (element == null || attributeName == null) {
+			return "";
+		}
+		try {
+			String value = element.getAttribute(attributeName);
+			return value != null ? value : "";
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	/**
+	 * Safe string wrapper that handles null
+	 * 
+	 * @param str the string to check
+	 * @return the string or empty string if null
+	 */
+	private String safeString(String str) {
+		return str != null ? str : "";
+	}
+
+	/**
+	 * Safe string equality check that handles null
+	 * 
+	 * @param str1 first string
+	 * @param str2 second string
+	 * @return true if strings are equal (both null or equal content)
+	 */
+	private boolean safeStringEquals(String str1, String str2) {
+		if (str1 == null && str2 == null) {
+			return true;
+		}
+		if (str1 == null || str2 == null) {
+			return false;
+		}
+		return str1.equals(str2);
 	}
 }

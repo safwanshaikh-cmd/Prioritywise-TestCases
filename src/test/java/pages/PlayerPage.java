@@ -176,10 +176,4 @@ public class PlayerPage extends BasePage {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 	}
 
-	/**
-	 * Scroll element into view before interaction.
-	 */
-	private void scrollIntoView(By element) {
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
-	}
 }

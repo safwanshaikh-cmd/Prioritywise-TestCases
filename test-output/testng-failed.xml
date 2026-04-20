@@ -3,13 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.AudioPlayerBehaviorTests">
+      <class name="tests.FavouritesManagementTests">
         <methods>
           <include name="setup"/>
           <include name="tearDown"/>
-          <include name="verifyAudioPlaybackWithoutInternet"/>
+          <include name="verifyRemoveSelectedBooks"/>
+          <include name="initPagesAndLogin"/>
         </methods>
-      </class> <!-- tests.AudioPlayerBehaviorTests -->
+      </class> <!-- tests.FavouritesManagementTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
