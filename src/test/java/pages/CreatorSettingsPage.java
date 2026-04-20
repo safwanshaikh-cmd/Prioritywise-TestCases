@@ -268,6 +268,7 @@ public class CreatorSettingsPage {
 	public void enterSummary(String summary) {
 		WebElement summaryInput = wait.until(ExpectedConditions.visibilityOfElementLocated(SUMMARY_FIELD_UPLOAD));
 		js.executeScript("arguments[0].scrollIntoView({block:'center'});", summaryInput);
+		String safeSummary = summary == null ? "" : summary;
 
 		try {
 			wait.until(ExpectedConditions.elementToBeClickable(summaryInput)).click();
@@ -278,10 +279,25 @@ public class CreatorSettingsPage {
 		try {
 			summaryInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
 			summaryInput.clear();
-			summaryInput.sendKeys(summary == null ? "" : summary);
+			if (safeSummary.length() > 4000) {
+				js.executeScript(
+						"const el = arguments[0]; const value = arguments[1];"
+								+ "if ('value' in el) { el.value = value; }"
+								+ "else { el.textContent = value; }"
+								+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
+								+ "el.dispatchEvent(new Event('change', { bubbles: true }));",
+						summaryInput, safeSummary);
+			} else {
+				summaryInput.sendKeys(safeSummary);
+			}
 		} catch (Exception e) {
-			js.executeScript("const el = arguments[0]; el.value = arguments[1];",
-				summaryInput, summary == null ? "" : summary);
+			js.executeScript(
+					"const el = arguments[0]; const value = arguments[1];"
+							+ "if ('value' in el) { el.value = value; }"
+							+ "else { el.textContent = value; }"
+							+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
+							+ "el.dispatchEvent(new Event('change', { bubbles: true }));",
+					summaryInput, safeSummary);
 		}
 
 		LOGGER.log(Level.INFO, "Entered book summary");
@@ -551,6 +567,35 @@ public class CreatorSettingsPage {
 			messages.clear();
 			try {
 				List<WebElement> elements = driver.findElements(VALIDATION_MESSAGES);
+				for (WebElement element : elements) {
+					if (!element.isDisplayed()) {
+						continue;
+					}
+					String text = element.getText().trim();
+					if (!text.isEmpty()) {
+						messages.add(text);
+					}
+				}
+				if (!messages.isEmpty()) {
+					return messages;
+				}
+			} catch (StaleElementReferenceException e) {
+				// Re-read the validation nodes after the form rerenders.
+			}
+		}
+
+		return messages;
+	}
+
+	public List<String> getValidationMessagesIfPresent() {
+		List<String> messages = new ArrayList<>();
+		for (int attempt = 0; attempt < 3; attempt++) {
+			messages.clear();
+			try {
+				List<WebElement> elements = driver.findElements(VALIDATION_MESSAGES);
+				if (elements.isEmpty()) {
+					return messages;
+				}
 				for (WebElement element : elements) {
 					if (!element.isDisplayed()) {
 						continue;
@@ -1139,20 +1184,41 @@ public class CreatorSettingsPage {
 
 	// ================= CHAPTER EDIT/DELETE METHODS =================
 
-	private static final By CHAPTER_EDIT_BUTTON = By.cssSelector("[data-testid^='button_edit_chapter_']");
-	private static final By CHAPTER_DELETE_BUTTON = By.cssSelector("[data-testid^='button_delete_chapter_']");
-	private static final By CHAPTER_LIST = By.cssSelector("[data-testid^='container_chapter_row_']");
+	private static final By CHAPTER_EDIT_BUTTON = By.xpath(
+			"//*[@data-testid and contains(@data-testid,'chapter') and contains(@data-testid,'edit')]"
+					+ " | //*[@data-testid and contains(@data-testid,'button_edit_uploaded_file_')]"
+					+ " | //*[@data-testid='screen_upload_audio_file']//*[self::button or @role='button' or @tabindex='0']"
+					+ "[normalize-space()='Edit' or .//*[normalize-space()='Edit']]");
+	private static final By CHAPTER_DELETE_BUTTON = By.xpath(
+			"//*[@data-testid and contains(@data-testid,'chapter') and contains(@data-testid,'delete')]"
+					+ " | //*[@data-testid and contains(@data-testid,'button_delete_uploaded_file_')]"
+					+ " | //*[@data-testid='screen_upload_audio_file']//*[self::button or @role='button' or @tabindex='0']"
+					+ "[normalize-space()='Delete' or .//*[normalize-space()='Delete']]");
+	private static final By CHAPTER_LIST = By.xpath(
+			"//*[@data-testid and (contains(@data-testid,'chapter_row')"
+					+ " or contains(@data-testid,'chapter-row')"
+					+ " or contains(@data-testid,'chapter_item')"
+					+ " or contains(@data-testid,'chapter-item')"
+					+ " or contains(@data-testid,'chapter_card')"
+					+ " or contains(@data-testid,'chapter-card')"
+					+ " or contains(@data-testid,'container_chapter')"
+					+ " or contains(@data-testid,'uploaded_file'))]");
 
 	/**
 	 * Edit first chapter in the list
 	 */
 	public void editFirstChapter() {
 		try {
-			List<WebElement> editButtons = driver.findElements(CHAPTER_EDIT_BUTTON);
+			List<WebElement> editButtons = getVisibleElements(CHAPTER_EDIT_BUTTON);
 			if (!editButtons.isEmpty()) {
 				WebElement firstEditButton = editButtons.get(0);
 				js.executeScript("arguments[0].scrollIntoView({block:'center'});", firstEditButton);
-				js.executeScript("arguments[0].click();", firstEditButton);
+				try {
+					wait.until(ExpectedConditions.elementToBeClickable(firstEditButton)).click();
+				} catch (Exception e) {
+					js.executeScript("arguments[0].click();", firstEditButton);
+				}
+				wait.until(driver -> isChapterFormVisible());
 				LOGGER.info("Clicked edit button on first chapter");
 			} else {
 				throw new IllegalStateException("No edit button found on any chapter");
@@ -1168,7 +1234,7 @@ public class CreatorSettingsPage {
 	 */
 	public void deleteFirstChapter() {
 		try {
-			List<WebElement> deleteButtons = driver.findElements(CHAPTER_DELETE_BUTTON);
+			List<WebElement> deleteButtons = getVisibleElements(CHAPTER_DELETE_BUTTON);
 			if (!deleteButtons.isEmpty()) {
 				WebElement firstDeleteButton = deleteButtons.get(0);
 				js.executeScript("arguments[0].scrollIntoView({block:'center'});", firstDeleteButton);
@@ -1188,6 +1254,15 @@ public class CreatorSettingsPage {
 	 */
 	public void confirmChapterDelete() {
 		try {
+			try {
+				Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+				alert.accept();
+				LOGGER.info("Confirmed chapter deletion via browser alert");
+				return;
+			} catch (TimeoutException e) {
+				// Fall back to in-page confirmation when no browser alert is present.
+			}
+
 			WebElement confirmButton = wait.until(ExpectedConditions.elementToBeClickable(
 					By.xpath("//button[contains(text(),'Delete') or contains(text(),'Confirm')] | " +
 							"//div[@tabindex='0'][.//div[contains(text(),'Delete') or contains(text(),'Confirm')]]")));
@@ -1203,6 +1278,15 @@ public class CreatorSettingsPage {
 	 */
 	public void cancelChapterDelete() {
 		try {
+			try {
+				Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+				alert.dismiss();
+				LOGGER.info("Canceled chapter deletion via browser alert");
+				return;
+			} catch (TimeoutException e) {
+				// Fall back to in-page cancel when no browser alert is present.
+			}
+
 			WebElement cancelButton = wait.until(ExpectedConditions.elementToBeClickable(
 					By.xpath("//button[contains(text(),'Cancel')] | " +
 							"//div[@tabindex='0'][.//div[contains(text(),'Cancel')]]")));
@@ -1233,12 +1317,36 @@ public class CreatorSettingsPage {
 	 */
 	public int getChapterCount() {
 		try {
-			List<WebElement> chapters = driver.findElements(CHAPTER_LIST);
-			return chapters.size();
+			List<WebElement> chapters = getVisibleElements(CHAPTER_LIST);
+			if (!chapters.isEmpty()) {
+				return chapters.size();
+			}
+
+			List<WebElement> editButtons = getVisibleElements(CHAPTER_EDIT_BUTTON);
+			if (!editButtons.isEmpty()) {
+				return editButtons.size();
+			}
+
+			List<WebElement> deleteButtons = getVisibleElements(CHAPTER_DELETE_BUTTON);
+			return deleteButtons.size();
 		} catch (Exception e) {
 			LOGGER.warning("Could not get chapter count: " + e.getMessage());
 			return 0;
 		}
+	}
+
+	private List<WebElement> getVisibleElements(By locator) {
+		List<WebElement> visibleElements = new ArrayList<>();
+		for (WebElement element : driver.findElements(locator)) {
+			try {
+				if (element.isDisplayed()) {
+					visibleElements.add(element);
+				}
+			} catch (StaleElementReferenceException e) {
+				// Ignore transient rerenders and keep scanning remaining candidates.
+			}
+		}
+		return visibleElements;
 	}
 
 	/**

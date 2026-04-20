@@ -76,8 +76,10 @@ public class UploadPage extends BasePage {
 	private static final By CLEAR_FILTERS_BUTTON = By.xpath("//button[contains(text(), 'Clear') or contains(text(), 'Reset')]");
 
 	// Validation message locators
-	private static final By ERROR_MESSAGE = By.xpath("//*[contains(@class, 'error') or contains(@class, 'invalid') or contains(@role, 'alert')]");
-	private static final By SUCCESS_MESSAGE = By.xpath("//*[contains(@class, 'success') or contains(@class, 'message')]");
+	private static final By ERROR_MESSAGE = By.xpath(
+			"//*[@data-testid='toastText1' or @data-testid='toastText2' or contains(@class, 'error') or contains(@class, 'invalid') or contains(@role, 'alert')]");
+	private static final By SUCCESS_MESSAGE = By.xpath(
+			"//*[@data-testid='toastText1' or @data-testid='toastText2' or contains(@data-testid,'toast') or contains(@class, 'success') or contains(@class, 'message')]");
 	private static final By NO_DATA_MESSAGE = By.xpath("//*[contains(text(), 'No data') or contains(text(), 'No results') or contains(text(), 'Not found')]");
 
 	public UploadPage(WebDriver driver) {
@@ -531,7 +533,7 @@ public class UploadPage extends BasePage {
 	 */
 	public String getSuccessMessage() {
 		try {
-			WebElement successElement = driver.findElement(SUCCESS_MESSAGE);
+			WebElement successElement = pageWait.until(ExpectedConditions.visibilityOfElementLocated(SUCCESS_MESSAGE));
 			return successElement.getText().trim();
 		} catch (Exception e) {
 			return "";
