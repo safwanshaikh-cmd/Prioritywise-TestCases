@@ -1,12 +1,13 @@
 package tests;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import org.jspecify.annotations.NonNull;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v143.network.Network;
+import org.openqa.selenium.devtools.v145.network.Network;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
@@ -643,9 +644,8 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 			Assert.assertTrue(player.isPlaybackProgressing() || player.isPauseButtonVisible(),
 					"TC_539 setup: expected player to be playing before back navigation.");
 
-			@SuppressWarnings("null")
 			@NonNull
-			String currentUrl = driver.getCurrentUrl();
+			String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
 			LOGGER.info("TC_539 - STEP 3: Current URL: " + currentUrl);
 
 			// Navigate back
@@ -655,7 +655,7 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 			LOGGER.info("TC_539 - STEP 4: Navigated back");
 
 			// Verify navigation handled correctly
-			String newUrl = driver.getCurrentUrl();
+			String newUrl = Objects.requireNonNull(driver.getCurrentUrl());
 			LOGGER.info("TC_539 - STEP 5: URL after back: " + newUrl);
 
 			boolean navigationHandled = !currentUrl.equals(newUrl);
@@ -813,7 +813,8 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 	 * TC_545: Audio Player - Multiple tabs playback Test Flow: Play in 2 tabs
 	 * Expected: Only one audio plays Type: Edge - Multiple tabs
 	 */
-	@SuppressWarnings("null")
+	
+	
 	@Test(priority = 545, retryAnalyzer = RetryAnalyzer.class)
 	public void verifyMultipleTabsPlaybackConflict() throws Exception {
 		loginAsRegisteredUser();
@@ -836,7 +837,7 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 
 			// Store URL from first tab BEFORE opening new tab
 			String originalTab = driver.getWindowHandle();
-			String currentUrl = driver.getCurrentUrl();
+			String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
 			LOGGER.info("TC_545 - STEP 4: Stored URL from first tab: " + currentUrl);
 
 			// Open second tab
@@ -929,7 +930,7 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 			driver.manage().deleteCookieNamed("session");
 
 			// Also clear local storage and session storage via JavaScript
-			((org.openqa.selenium.JavascriptExecutor) driver)
+			Objects.requireNonNull((org.openqa.selenium.JavascriptExecutor) driver)
 					.executeScript("localStorage.clear(); sessionStorage.clear();");
 
 			LOGGER.info("TC_546 - STEP 5: Session storage and cookies cleared");

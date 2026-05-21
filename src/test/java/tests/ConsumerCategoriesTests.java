@@ -1,6 +1,7 @@
 package tests;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.TreeSet;
 
 import org.testng.Assert;
@@ -13,7 +14,6 @@ import listeners.RetryAnalyzer;
 import pages.DashboardPage;
 import pages.LoginPage;
 import utils.ConfigReader;
-import utils.TestWaitHelper;
 
 /**
  * Consumer Dashboard Categories & Trending Shows module tests.
@@ -50,17 +50,17 @@ public class ConsumerCategoriesTests extends BaseTest {
 
 	private void waitForDashboardReady() {
 		dashboard.waitForPageReady();
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 	}
 
 	private void scrollToCategories() {
 		dashboard.scrollToCategoriesSection();
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 	}
 
 	private void scrollToTrending() {
 		dashboard.scrollToTrendingSection();
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 	}
 
 	private void assertIfAvailable(boolean condition, String successMessage) {
@@ -280,7 +280,7 @@ public class ConsumerCategoriesTests extends BaseTest {
 
 		long beforeScroll = dashboard.getCurrentScrollPosition();
 		boolean scrolled = dashboard.scrollCategoriesHorizontal();
-		TestWaitHelper.shortWait();
+		waitUtils.waitForMilliseconds(500);
 		long afterScroll = dashboard.getCurrentScrollPosition();
 
 		Assert.assertTrue(scrolled || beforeScroll == afterScroll,
@@ -388,7 +388,7 @@ public class ConsumerCategoriesTests extends BaseTest {
 	public void verifyMoreRelatedShowsSectionVisible() {
 		waitForDashboardReady();
 		dashboard.scrollToRelatedShowsSection();
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 
 		assertIfAvailable(dashboard.isRelatedShowsSectionVisible(), "Related shows section should be displayed.");
 	}
@@ -397,7 +397,7 @@ public class ConsumerCategoriesTests extends BaseTest {
 	public void verifyClickingRelatedShowOpensDetails() {
 		waitForDashboardReady();
 		dashboard.scrollToRelatedShowsSection();
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 
 		String firstShow = dashboard.getFirstRelatedShowName();
 		if (isBlank(firstShow)) {
@@ -405,7 +405,7 @@ public class ConsumerCategoriesTests extends BaseTest {
 		}
 
 		dashboard.clickRelatedShow(firstShow);
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 
 		boolean hasDetails = dashboard.isShowDetailsVisible();
 		Assert.assertTrue(hasDetails, "Show details should be displayed");
@@ -417,7 +417,7 @@ public class ConsumerCategoriesTests extends BaseTest {
 	public void verifyBehaviorWhenNoRelatedShowsExist() {
 		waitForDashboardReady();
 		dashboard.scrollToRelatedShowsSection();
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 
 		boolean hasSection = dashboard.isRelatedShowsSectionVisible();
 
@@ -450,14 +450,14 @@ public class ConsumerCategoriesTests extends BaseTest {
 	public void verifyViewAllOpensRelatedShowsPage() {
 		waitForDashboardReady();
 		dashboard.scrollToRelatedShowsSection();
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 
 		try {
 			dashboard.clickViewAllRelatedShows();
-			TestWaitHelper.longWait();
+			waitUtils.waitForMilliseconds(5000);
 
 			// Verify navigation
-			String currentUrl = dashboard.getCurrentUrl();
+			String currentUrl = Objects.requireNonNull(dashboard.getCurrentUrl());
 			boolean isRelatedPage = currentUrl.contains("related") || currentUrl.contains("shows")
 					|| currentUrl.contains("view_all");
 
@@ -481,11 +481,11 @@ public class ConsumerCategoriesTests extends BaseTest {
 	public void verifyViewAllWhenRelatedListEmpty() {
 		waitForDashboardReady();
 		dashboard.scrollToRelatedShowsSection();
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 
 		try {
 			dashboard.clickViewAllRelatedShows();
-			TestWaitHelper.longWait();
+			waitUtils.waitForMilliseconds(5000);
 
 			// Check for empty state or related shows
 			String firstShow = dashboard.getFirstRelatedShowName();
@@ -517,7 +517,7 @@ public class ConsumerCategoriesTests extends BaseTest {
 
 	private void scrollToUpcoming() {
 		dashboard.scrollToUpcomingReleasesSection();
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 	}
 
 	// ================= TC_177: UPCOMING RELEASES VISIBILITY =================
@@ -571,10 +571,10 @@ public class ConsumerCategoriesTests extends BaseTest {
 
 		try {
 			dashboard.clickViewAllUpcoming();
-			TestWaitHelper.longWait();
+			waitUtils.waitForMilliseconds(5000);
 
 			// Verify navigation
-			String currentUrl = dashboard.getCurrentUrl();
+			String currentUrl = Objects.requireNonNull(dashboard.getCurrentUrl());
 			boolean isUpcomingPage = currentUrl.contains("upcoming") || currentUrl.contains("releases")
 					|| currentUrl.contains("view_all");
 
@@ -601,7 +601,7 @@ public class ConsumerCategoriesTests extends BaseTest {
 
 		try {
 			dashboard.clickViewAllUpcoming();
-			TestWaitHelper.longWait();
+			waitUtils.waitForMilliseconds(5000);
 
 			// Check for empty state or upcoming releases
 			String firstShow = dashboard.getFirstUpcomingShowName();
@@ -634,7 +634,7 @@ public class ConsumerCategoriesTests extends BaseTest {
 
 	private void scrollToMostRated() {
 		dashboard.scrollToMostRatedSection();
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 	}
 
 	// ================= TC_181: MOST RATED SECTION VISIBILITY =================
@@ -703,10 +703,10 @@ public class ConsumerCategoriesTests extends BaseTest {
 
 		try {
 			dashboard.clickViewAllMostRated();
-			TestWaitHelper.longWait();
+			waitUtils.waitForMilliseconds(5000);
 
 			// Verify navigation
-			String currentUrl = dashboard.getCurrentUrl();
+			String currentUrl = Objects.requireNonNull(dashboard.getCurrentUrl());
 			boolean isRatedPage = currentUrl.contains("rated") || currentUrl.contains("most")
 					|| currentUrl.contains("view_all");
 
@@ -771,12 +771,12 @@ public class ConsumerCategoriesTests extends BaseTest {
 					break;
 				}
 				clickedAtLeastOnce = true;
-				TestWaitHelper.shortWait();
+				waitUtils.waitForMilliseconds(500);
 			}
 
 			// Verify system is still responsive
-			TestWaitHelper.mediumWait();
-			String currentUrl = dashboard.getCurrentUrl();
+			waitUtils.waitForMilliseconds(2000);
+			String currentUrl = Objects.requireNonNull(dashboard.getCurrentUrl());
 			boolean isValidPage = !currentUrl.isEmpty() && currentUrl.contains("http");
 
 			Assert.assertTrue(clickedAtLeastOnce, "Rapid click test requires at least one successful category click.");

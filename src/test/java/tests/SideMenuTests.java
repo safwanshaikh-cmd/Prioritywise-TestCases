@@ -1,7 +1,5 @@
 package tests;
 
-import java.util.List;
-
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;

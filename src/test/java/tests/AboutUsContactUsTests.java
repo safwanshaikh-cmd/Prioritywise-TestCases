@@ -3,6 +3,7 @@ package tests;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -1043,8 +1044,8 @@ public class AboutUsContactUsTests extends BaseTest {
 	 */
 	private String safeGetCurrentUrl(org.openqa.selenium.WebDriver driver) {
 		try {
-			String url = driver.getCurrentUrl();
-			return url != null ? url : "";
+			String url = Objects.requireNonNull(driver.getCurrentUrl());
+			return url;
 		} catch (Exception e) {
 			return "";
 		}

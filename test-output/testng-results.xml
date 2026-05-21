@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-04-20T16:40:39 GST" name="Default suite" finished-at="2026-04-20T16:42:14 GST" duration-ms="94535">
+  <suite started-at="2026-05-21T13:38:25 GST" name="Default suite" finished-at="2026-05-21T13:40:22 GST" duration-ms="117840">
     <groups>
     </groups>
-    <test started-at="2026-04-20T16:40:39 GST" name="Default test" finished-at="2026-04-20T16:42:14 GST" duration-ms="94535">
-      <class name="tests.AboutUsContactUsTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@1a677343]" started-at="2026-04-20T16:40:40 GST" name="setup" finished-at="2026-04-20T16:40:53 GST" duration-ms="13325" status="PASS">
+    <test started-at="2026-05-21T13:38:25 GST" name="Default test" finished-at="2026-05-21T13:40:22 GST" duration-ms="117840">
+      <class name="tests.AudioPlayerBehaviorTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerBehaviorTests@185a6e9]" started-at="2026-05-21T13:38:25 GST" name="setup" finished-at="2026-05-21T13:38:40 GST" duration-ms="14714" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="verifyContactUsFormSubmission()[pri:520, instance:tests.AboutUsContactUsTests@1a677343]" started-at="2026-04-20T16:40:53 GST" name="verifyContactUsFormSubmission" finished-at="2026-04-20T16:42:13 GST" duration-ms="80152" status="PASS">
+        <test-method signature="verifySeekBeyondDuration()[pri:536, instance:tests.AudioPlayerBehaviorTests@185a6e9]" started-at="2026-05-21T13:38:40 GST" name="verifySeekBeyondDuration" finished-at="2026-05-21T13:40:22 GST" duration-ms="102353" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyContactUsFormSubmission -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@1a677343]" started-at="2026-04-20T16:42:13 GST" name="tearDown" finished-at="2026-04-20T16:42:14 GST" duration-ms="631" status="PASS">
+        </test-method> <!-- verifySeekBeyondDuration -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerBehaviorTests@185a6e9]" started-at="2026-05-21T13:40:22 GST" name="tearDown" finished-at="2026-05-21T13:40:22 GST" duration-ms="494" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- tests.AboutUsContactUsTests -->
+      </class> <!-- tests.AudioPlayerBehaviorTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

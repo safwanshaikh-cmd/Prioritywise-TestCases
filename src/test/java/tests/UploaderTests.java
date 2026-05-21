@@ -8,13 +8,13 @@ import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.SkipException;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import base.BaseTest;
@@ -163,15 +163,6 @@ public class UploaderTests extends BaseTest {
 		}
 	}
 
-	private String resolvePdfUploadPath() {
-		String configuredPath = resolveOptionalConfiguredPath("pdfUploadFilePath");
-		if (!configuredPath.isBlank()) {
-			return configuredPath;
-		}
-		return findFirstFileInDownloads(List.of(".pdf"),
-				"PDF file not configured. Add pdfUploadFilePath or place a PDF file in Downloads.");
-	}
-
 	private String resolveInvalidUploadPath() {
 		String configuredPath = resolveOptionalConfiguredPath("invalidUploadPath");
 		if (!configuredPath.isBlank()) {
@@ -290,8 +281,8 @@ public class UploaderTests extends BaseTest {
 				if (!login.isOnLoginPage()) {
 					return true;
 				}
-				@SuppressWarnings("null")
-				String currentUrl = currentDriver.getCurrentUrl().toLowerCase();
+				
+				String currentUrl = Objects.requireNonNull(currentDriver.getCurrentUrl()).toLowerCase();
 				return !currentUrl.contains("/login") && !currentUrl.contains("signin");
 			});
 			Assert.assertTrue(loginSettled, "Uploader login: Login flow should move past the login page");
@@ -325,8 +316,8 @@ public class UploaderTests extends BaseTest {
 			});
 			Assert.assertTrue(landingReady,
 					"Uploader navigation: Post-login landing page should be stable. Current URL: "
-							+ driver.getCurrentUrl());
-			LOGGER.info("Uploader landing page is stable. Current URL: " + driver.getCurrentUrl());
+							+ Objects.requireNonNull(driver.getCurrentUrl()));
+			LOGGER.info("Uploader landing page is stable. Current URL: " + Objects.requireNonNull(driver.getCurrentUrl()));
 
 			creatorSettings.clickHamburgerMenu();
 			LOGGER.info("Side menu opened");
@@ -410,12 +401,7 @@ public class UploaderTests extends BaseTest {
 		creatorSettings.clickEditFirstContent();
 	}
 
-	private void openFirstListedBookChapterSection() {
-		openFirstListedBookFromForCreators();
-		creatorSettings.prepareChapterSectionFromListedBook();
-	}
-
-	private void openAutomationBookFromHeaderSearch() {
+private void openAutomationBookFromHeaderSearch() {
 		dashboard.waitForPageReady();
 		Assert.assertTrue(dashboard.isSearchBarVisible(),
 				"Header search bar should be visible for Automation Book search");
@@ -2127,10 +2113,10 @@ public class UploaderTests extends BaseTest {
 		LOGGER.info("TC_501 - STEP 2: Playback started on viewing tab = " + playbackStarted);
 
 		String viewingTab = driver.getWindowHandle();
-		String viewingUrl = driver.getCurrentUrl();
+		String viewingUrl = Objects.requireNonNull(driver.getCurrentUrl());
 		LOGGER.info("TC_501 - STEP 2: Viewing tab URL = '" + viewingUrl + "'");
 
-		((org.openqa.selenium.JavascriptExecutor) driver).executeScript("window.open('about:blank','_blank');");
+		Objects.requireNonNull((org.openqa.selenium.JavascriptExecutor) driver).executeScript("window.open('about:blank','_blank');");
 		List<String> windowHandles = new java.util.ArrayList<>(driver.getWindowHandles());
 		String adminTab = windowHandles.get(windowHandles.size() - 1);
 		driver.switchTo().window(adminTab);
@@ -2162,7 +2148,7 @@ public class UploaderTests extends BaseTest {
 		driver.navigate().refresh();
 		Thread.sleep(2000);
 
-		String currentUrlAfterDelete = driver.getCurrentUrl();
+		String currentUrlAfterDelete = Objects.requireNonNull(driver.getCurrentUrl());
 		boolean redirectedAway = !currentUrlAfterDelete.equals(viewingUrl);
 		boolean dashboardVisibleAfterDelete = dashboard.waitForDashboardShell();
 		boolean stillOnBookDetails = dashboard.isBookDetailsPageVisible();
@@ -2378,7 +2364,7 @@ public class UploaderTests extends BaseTest {
 		LOGGER.info("TC_505 - STEP 3: Logged out to simulate session timeout");
 
 		// Try to navigate back to edit page
-		String currentUrl = driver.getCurrentUrl();
+		String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
 		boolean isOnLoginPage = login.isOnLoginPage();
 
 		LOGGER.info("TC_505 - STEP 4: Current URL = '" + currentUrl + "'");

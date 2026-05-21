@@ -3,6 +3,7 @@ package pages;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -100,7 +101,7 @@ public class FavouritesPage extends BasePage {
 			WebElement menu = pageWait.until(ExpectedConditions.visibilityOfElementLocated(FAVOURITES_MENU));
 			menu.click();
 			LOGGER.info("Favourites menu clicked");
-			Thread.sleep(2000);
+			sleepMillis(2000);
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click Favourites menu: {0}", e.getMessage());
 		}
@@ -125,7 +126,7 @@ public class FavouritesPage extends BasePage {
 			searchInput.clear();
 			searchInput.sendKeys(searchText);
 			LOGGER.info("Searched in favourites: " + searchText);
-			Thread.sleep(2000);
+			sleepMillis(2000);
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to search in favourites: {0}", e.getMessage());
 		}
@@ -138,7 +139,7 @@ public class FavouritesPage extends BasePage {
 			searchInput.clear();
 			searchInput.sendKeys(searchText);
 			LOGGER.info("Searched book or author: " + searchText);
-			Thread.sleep(2000);
+			sleepMillis(2000);
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to search book or author: {0}", e.getMessage());
 		}
@@ -161,7 +162,7 @@ public class FavouritesPage extends BasePage {
 			WebElement filterBtn = pageWait.until(ExpectedConditions.visibilityOfElementLocated(FILTER_BUTTON));
 			filterBtn.click();
 			LOGGER.info("Filter button clicked");
-			Thread.sleep(1000);
+			sleepMillis(1000);
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click Filter button: {0}", e.getMessage());
 		}
@@ -218,16 +219,16 @@ public class FavouritesPage extends BasePage {
 					LOGGER.info("Selecting book at index " + index + " by clicking book card");
 
 					// Scroll to book first
-					((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});",
+					Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});",
 							book);
-					Thread.sleep(300);
+					sleepMillis(300);
 
 					// Click the book card using JavaScript
-					((JavascriptExecutor) driver).executeScript("arguments[0].click();", book);
+					Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", book);
 					LOGGER.info("✅ Clicked book card at index " + index);
 
 					// Wait for selection to register
-					Thread.sleep(1000);
+					sleepMillis(1000);
 
 					// Verify selection worked by checking selected count
 					int selectedCount = getSelectedCount();
@@ -267,8 +268,8 @@ public class FavouritesPage extends BasePage {
 
 			WebElement book = books.get(index);
 			LOGGER.info("Selecting book at index " + index + " using checkbox overlay");
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", book);
-			Thread.sleep(500);
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", book);
+			sleepMillis(500);
 
 			// NEW APPROACH: Direct checkbox targeting by data-testid
 			boolean selectionSuccessful = false;
@@ -282,8 +283,8 @@ public class FavouritesPage extends BasePage {
 					LOGGER.info("Found checkbox with data-testid='checkbox-icon-" + index + "'");
 
 					int countBefore = getSelectedCount();
-					((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
-					Thread.sleep(500);
+					Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
+					sleepMillis(500);
 					int countAfter = getSelectedCount();
 
 					if (countAfter > countBefore) {
@@ -306,8 +307,8 @@ public class FavouritesPage extends BasePage {
 				try {
 					WebElement bookContainer = book.findElement(By.xpath("./ancestor::div[@tabindex='0'][1]"));
 					LOGGER.info("Strategy 3: Clicking book container for selection at index " + index);
-					((JavascriptExecutor) driver).executeScript("arguments[0].click();", bookContainer);
-					Thread.sleep(800);
+					Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", bookContainer);
+					sleepMillis(800);
 					selectionSuccessful = true;
 				} catch (Exception containerException) {
 					LOGGER.log(Level.FINE, "Strategy 3 failed: {0}", containerException.getMessage());
@@ -317,8 +318,8 @@ public class FavouritesPage extends BasePage {
 			// Strategy 4: Last resort - click the book element itself
 			if (!selectionSuccessful) {
 				LOGGER.warning("Strategy 4: Clicking book element directly as last resort");
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", book);
-				Thread.sleep(800);
+				Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", book);
+				sleepMillis(800);
 			}
 
 			// Verify selection was successful
@@ -334,7 +335,7 @@ public class FavouritesPage extends BasePage {
 	private boolean selectCheckboxByPosition(int index, WebElement targetBook) {
 		try {
 
-			Object bookObj = ((JavascriptExecutor) driver)
+			Object bookObj = Objects.requireNonNull(((JavascriptExecutor) driver))
 					.executeScript("return arguments[0].getBoundingClientRect().top;", targetBook);
 
 			double bookLocation = bookObj != null ? Double.parseDouble(bookObj.toString()) : 0;
@@ -352,7 +353,7 @@ public class FavouritesPage extends BasePage {
 						continue;
 					}
 
-					Object clickObj = ((JavascriptExecutor) driver)
+					Object clickObj = Objects.requireNonNull(((JavascriptExecutor) driver))
 							.executeScript("return arguments[0].getBoundingClientRect().top;", clickable);
 
 					double clickableLocation = clickObj != null ? Double.parseDouble(clickObj.toString()) : 0;
@@ -364,9 +365,9 @@ public class FavouritesPage extends BasePage {
 
 						int countBefore = getSelectedCount();
 
-						((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickable);
+						Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", clickable);
 
-						Thread.sleep(500);
+						sleepMillis(500);
 
 						int countAfter = getSelectedCount();
 
@@ -522,7 +523,7 @@ public class FavouritesPage extends BasePage {
 				WebElement heartIcon = book.findElement(HEART_ICON_ADD);
 				heartIcon.click(); // Direct click on WebElement
 				LOGGER.info("Clicked heart icon for book at index: " + index);
-				Thread.sleep(1000);
+				sleepMillis(1000);
 			}
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click heart icon at index " + index + ": {0}", e.getMessage());
@@ -593,7 +594,7 @@ public class FavouritesPage extends BasePage {
 							+ "for(var i=0; i<icons.length; i++) {" + "  try{"
 							+ "    if(icons[i].textContent.includes('󰋔')) {" + "      return icons[i];" + "    }"
 							+ "  }catch(e){}" + "}" + "return null;";
-					removeIcon = (WebElement) ((JavascriptExecutor) driver).executeScript(js, book);
+					removeIcon = (WebElement) Objects.requireNonNull((JavascriptExecutor) driver).executeScript(js, book);
 					if (removeIcon != null) {
 						LOGGER.info("Found remove icon using Method 4 (JavaScript within book)");
 					}
@@ -637,7 +638,7 @@ public class FavouritesPage extends BasePage {
 							+ "  var icons = parent.querySelectorAll('div[class*=\"css-146c3p1\"]');"
 							+ "  for(var i=0; i<icons.length; i++) {" + "    if(icons[i].textContent.includes('󰋔')) {"
 							+ "      return icons[i];" + "    }" + "  }" + "}" + "return null;";
-					removeIcon = (WebElement) ((JavascriptExecutor) driver).executeScript(js6, book);
+					removeIcon = (WebElement) Objects.requireNonNull((JavascriptExecutor) driver).executeScript(js6, book);
 					if (removeIcon != null) {
 						LOGGER.info("Found remove icon using Method 6 (ancestor traversal)");
 					}
@@ -650,16 +651,16 @@ public class FavouritesPage extends BasePage {
 			if (removeIcon != null) {
 				try {
 					// Scroll to the element first
-					((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});",
+					Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});",
 							removeIcon);
-					Thread.sleep(500);
+					sleepMillis(500);
 
 					// Try multiple click approaches
 					boolean clicked = false;
 
 					// Approach 1: Direct JavaScript click
 					try {
-						((JavascriptExecutor) driver).executeScript("arguments[0].click();", removeIcon);
+						Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", removeIcon);
 						LOGGER.info("Clicked remove icon using JavaScript click");
 						clicked = true;
 					} catch (Exception c1) {
@@ -690,7 +691,7 @@ public class FavouritesPage extends BasePage {
 
 					if (clicked) {
 						LOGGER.info("✅ Successfully clicked remove icon for book at index: " + index);
-						Thread.sleep(2000); // Wait for dialog to appear
+						sleepMillis(2000); // Wait for dialog to appear
 					} else {
 						LOGGER.severe("❌ All click approaches failed for remove icon at index " + index);
 					}
@@ -715,7 +716,7 @@ public class FavouritesPage extends BasePage {
 			if (isRemoveConfirmationDialogDisplayed()) {
 				clickYesOnConfirmation();
 				LOGGER.info("Removed book at index: " + index);
-				Thread.sleep(2000);
+				sleepMillis(2000);
 			}
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to remove book at index " + index + ": {0}", e.getMessage());
@@ -790,7 +791,7 @@ public class FavouritesPage extends BasePage {
 			searchBookOrAuthor(bookTitle);
 
 			// Wait for search results
-			Thread.sleep(2000);
+			sleepMillis(2000);
 
 			// Click heart icon on first search result
 			List<WebElement> books = getBookItems();
@@ -859,7 +860,7 @@ public class FavouritesPage extends BasePage {
 					By.xpath("//div[@tabindex='0'][.//div[normalize-space()='Select All']]")));
 			selectAllBtn.click();
 			LOGGER.info("Select All clicked");
-			Thread.sleep(1000);
+			sleepMillis(1000);
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click Select All: {0}", e.getMessage());
 		}
@@ -876,7 +877,7 @@ public class FavouritesPage extends BasePage {
 			clickFilterButton();
 
 			// Wait for filter action bar to appear
-			Thread.sleep(1000);
+			sleepMillis(1000);
 
 			// Click individual books to select them
 			for (int i = 0; i < booksToSelect; i++) {
@@ -884,7 +885,7 @@ public class FavouritesPage extends BasePage {
 					// Click on the book item to select it
 					WebElement book = books.get(i);
 					book.click();
-					Thread.sleep(500);
+					sleepMillis(500);
 				} catch (Exception e) {
 					LOGGER.log(Level.WARNING, "Could not select book at index " + i);
 				}
@@ -902,7 +903,7 @@ public class FavouritesPage extends BasePage {
 					By.xpath("//div[@tabindex='0'][.//div[normalize-space()='Deselect All']]")));
 			deselectAllBtn.click();
 			LOGGER.info("Deselect All clicked");
-			Thread.sleep(1000);
+			sleepMillis(1000);
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click Deselect All: {0}", e.getMessage());
 		}
@@ -918,7 +919,7 @@ public class FavouritesPage extends BasePage {
 			WebElement cancelBtn = pageWait.until(ExpectedConditions.visibilityOfElementLocated(CANCEL_BUTTON));
 			cancelBtn.click();
 			LOGGER.info("Cancel clicked");
-			Thread.sleep(1000);
+			sleepMillis(1000);
 			return true;
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click Cancel: {0}", e.getMessage());
@@ -932,7 +933,7 @@ public class FavouritesPage extends BasePage {
 					.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_SELECTED_BUTTON));
 			removeSelectedBtn.click();
 			LOGGER.info("Remove Selected clicked");
-			Thread.sleep(2000);
+			sleepMillis(2000);
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click Remove Selected: {0}", e.getMessage());
 		}
@@ -946,7 +947,7 @@ public class FavouritesPage extends BasePage {
 			if (isRemoveConfirmationDialogDisplayed()) {
 				clickYesOnConfirmation();
 				LOGGER.info("Confirmed bulk removal");
-				Thread.sleep(2000);
+				sleepMillis(2000);
 			}
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to remove selected books: {0}", e.getMessage());
@@ -1053,9 +1054,9 @@ public class FavouritesPage extends BasePage {
 	public void scrollToBottom() {
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+			Objects.requireNonNull(js).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 			LOGGER.info("Scrolled to bottom of page");
-			Thread.sleep(1000);
+			sleepMillis(1000);
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Could not scroll to bottom: {0}", e.getMessage());
 		}
@@ -1064,9 +1065,9 @@ public class FavouritesPage extends BasePage {
 	public void scrollToTop() {
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("window.scrollTo(0, 0)");
+			Objects.requireNonNull(js).executeScript("window.scrollTo(0, 0)");
 			LOGGER.info("Scrolled to top of page");
-			Thread.sleep(1000);
+			sleepMillis(1000);
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Could not scroll to top: {0}", e.getMessage());
 		}
@@ -1075,9 +1076,9 @@ public class FavouritesPage extends BasePage {
 	public boolean isPageScrollable() {
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			Long scrollHeight = (Long) js.executeScript("return document.body.scrollHeight");
-			Long windowHeight = (Long) js.executeScript("return window.innerHeight");
-			return scrollHeight != null && windowHeight != null && scrollHeight > windowHeight;
+			Number scrollHeight = (Number) Objects.requireNonNull(js).executeScript("return document.body.scrollHeight");
+			Number windowHeight = (Number) Objects.requireNonNull(js).executeScript("return window.innerHeight");
+			return scrollHeight != null && windowHeight != null && scrollHeight.longValue() > windowHeight.longValue();
 		} catch (Exception e) {
 			return false;
 		}
@@ -1142,7 +1143,7 @@ public class FavouritesPage extends BasePage {
 					LOGGER.info("✅ Confirmation dialog closed successfully");
 					return true;
 				}
-				Thread.sleep(500);
+				sleepMillis(500);
 			}
 
 			LOGGER.warning("⚠️ Confirmation dialog still visible after " + timeoutSeconds + " seconds");
@@ -1182,7 +1183,7 @@ public class FavouritesPage extends BasePage {
 							"✅ Removal completed and confirmation dialog closed even though exact toaster text was not captured");
 					return true;
 				}
-				Thread.sleep(500);
+				sleepMillis(500);
 			}
 
 			LOGGER.warning("⚠️ Removal toaster not found after " + timeoutSeconds + " seconds");
@@ -1201,7 +1202,7 @@ public class FavouritesPage extends BasePage {
 			org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(driver);
 			actions.sendKeys(org.openqa.selenium.Keys.ESCAPE).perform();
 			LOGGER.info("Closed dialog using Escape key");
-			Thread.sleep(1000);
+			sleepMillis(1000);
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Could not close dialog with Escape: {0}", e.getMessage());
 		}
@@ -1233,7 +1234,7 @@ public class FavouritesPage extends BasePage {
 		WebElement dialog = getConfirmationDialogContainer();
 		if (dialog != null) {
 			try {
-				Object candidate = ((JavascriptExecutor) driver).executeScript(
+				Object candidate = Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 						"const dialog = arguments[0];" + "const label = arguments[1].trim().toLowerCase();"
 								+ "const nodes = Array.from(dialog.querySelectorAll('div, button, span'));"
 								+ "for (const node of nodes) {"
@@ -1286,7 +1287,7 @@ public class FavouritesPage extends BasePage {
 
 	private WebElement getCenterPointInteractionTarget(WebElement element) {
 		try {
-			Object candidate = ((JavascriptExecutor) driver).executeScript(
+			Object candidate = Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 					"const rect = arguments[0].getBoundingClientRect();"
 							+ "const x = Math.floor(rect.left + (rect.width / 2));"
 							+ "const y = Math.floor(rect.top + (rect.height / 2));"
@@ -1304,7 +1305,7 @@ public class FavouritesPage extends BasePage {
 	}
 
 	private void dispatchPressSequence(WebElement element) {
-		((JavascriptExecutor) driver).executeScript(
+		Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 				"['pointerdown','mousedown','pointerup','mouseup','click'].forEach(type => "
 						+ "arguments[0].dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, view: window })));",
 				element);
@@ -1324,13 +1325,7 @@ public class FavouritesPage extends BasePage {
 			if (didRemovalProgress()) {
 				return true;
 			}
-			try {
-				Thread.sleep(250);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				LOGGER.log(Level.WARNING, "Interrupted while waiting for removal progress: {0}", e.getMessage());
-				return false;
-			}
+			sleepMillis(250); // sleepMillis handles InterruptedException internally
 		}
 		return didRemovalProgress();
 	}
@@ -1461,16 +1456,16 @@ public class FavouritesPage extends BasePage {
 
 			try {
 				// Scroll element into view first
-				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", yesBtn);
-				Thread.sleep(500);
+				Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", yesBtn);
+				sleepMillis(500);
 
 				// Attempt 1: JavaScript click on parent element
 				try {
-					((JavascriptExecutor) driver).executeScript("arguments[0].click();", yesBtn);
+					Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", yesBtn);
 					LOGGER.info("✅ Attempt 1: JavaScript click on parent");
 
 					// Wait briefly and check if toaster appeared
-					Thread.sleep(2000);
+					sleepMillis(2000);
 					if (isToasterVisible()) {
 						LOGGER.info("✅ Attempt 1 SUCCESSFUL - Toaster detected!");
 						clicked = true;
@@ -1485,11 +1480,11 @@ public class FavouritesPage extends BasePage {
 				if (!clicked) {
 					try {
 						WebElement innerDiv = yesBtn.findElement(By.xpath(".//div[@dir='auto']"));
-						((JavascriptExecutor) driver).executeScript("arguments[0].click();", innerDiv);
+						Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", innerDiv);
 						LOGGER.info("✅ Attempt 2: JavaScript click on inner div");
 
 						// Wait briefly and check if toaster appeared
-						Thread.sleep(2000);
+						sleepMillis(2000);
 						if (isToasterVisible()) {
 							LOGGER.info("✅ Attempt 2 SUCCESSFUL - Toaster detected!");
 							clicked = true;
@@ -1505,12 +1500,12 @@ public class FavouritesPage extends BasePage {
 				if (!clicked) {
 					try {
 						waitForOverlayToDisappear();
-						Thread.sleep(500);
+						sleepMillis(500);
 						yesBtn.click();
 						LOGGER.info("✅ Attempt 3: Standard click");
 
 						// Wait briefly and check if toaster appeared
-						Thread.sleep(2000);
+						sleepMillis(2000);
 						if (isToasterVisible()) {
 							LOGGER.info("✅ Attempt 3 SUCCESSFUL - Toaster detected!");
 							clicked = true;
@@ -1531,7 +1526,7 @@ public class FavouritesPage extends BasePage {
 						LOGGER.info("✅ Attempt 4: Actions click");
 
 						// Wait briefly and check if toaster appeared
-						Thread.sleep(2000);
+						sleepMillis(2000);
 						if (isToasterVisible()) {
 							LOGGER.info("✅ Attempt 4 SUCCESSFUL - Toaster detected!");
 							clicked = true;
@@ -1548,11 +1543,11 @@ public class FavouritesPage extends BasePage {
 					try {
 						String js = "var evt = new MouseEvent('click', {view: window, bubbles: true, cancelable: true});"
 								+ "arguments[0].dispatchEvent(evt);";
-						((JavascriptExecutor) driver).executeScript(js, yesBtn);
+						Objects.requireNonNull((JavascriptExecutor) driver).executeScript(js, yesBtn);
 						LOGGER.info("✅ Attempt 5: Event dispatching");
 
 						// Wait briefly and check if toaster appeared
-						Thread.sleep(2000);
+						sleepMillis(2000);
 						if (isToasterVisible()) {
 							LOGGER.info("✅ Attempt 5 SUCCESSFUL - Toaster detected!");
 							clicked = true;
@@ -1589,10 +1584,10 @@ public class FavouritesPage extends BasePage {
 			try {
 				WebElement yesBtn = getConfirmationActionButton("Yes");
 				if (yesBtn != null) {
-					((JavascriptExecutor) driver)
-							.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", yesBtn);
+					Objects.requireNonNull((JavascriptExecutor) driver)
+							.executeScript("arguments[0].scrollIntoView({block: center, inline: center});", yesBtn);
 					Thread.sleep(400);
-					((JavascriptExecutor) driver).executeScript("arguments[0].click();", yesBtn);
+					Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", yesBtn);
 					LOGGER.info("Attempt 1: JavaScript click on Yes button container");
 					Thread.sleep(1500);
 					clicked = didRemovalProgress();
@@ -1607,7 +1602,7 @@ public class FavouritesPage extends BasePage {
 					WebElement yesBtn = getConfirmationActionButton("Yes");
 					if (yesBtn != null) {
 						WebElement innerLabel = yesBtn.findElement(By.xpath(".//*[normalize-space(text())='Yes'][1]"));
-						((JavascriptExecutor) driver).executeScript("arguments[0].click();", innerLabel);
+						Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", innerLabel);
 						LOGGER.info("Attempt 2: JavaScript click on Yes label");
 						Thread.sleep(1500);
 						clicked = didRemovalProgress();
@@ -1690,8 +1685,8 @@ public class FavouritesPage extends BasePage {
 
 		try {
 			waitForOverlayToDisappear();
-			((JavascriptExecutor) driver)
-					.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'center'});", yesBtn);
+			Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("arguments[0].scrollIntoView({block: center, inline: center});", yesBtn);
 			Thread.sleep(400);
 
 			WebElement target = yesBtn;
@@ -1720,7 +1715,7 @@ public class FavouritesPage extends BasePage {
 			}
 
 			try {
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", target);
+				Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", target);
 				LOGGER.info("Attempt 2: JavaScript click on Yes target");
 				if (waitForRemovalProgress(4)) {
 					LOGGER.info("Confirmed removal via Yes button");
@@ -1732,7 +1727,7 @@ public class FavouritesPage extends BasePage {
 
 			if (innerLabel != null) {
 				try {
-					((JavascriptExecutor) driver).executeScript("arguments[0].click();", innerLabel);
+					Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", innerLabel);
 					LOGGER.info("Attempt 3: JavaScript click on Yes label");
 					if (waitForRemovalProgress(4)) {
 						LOGGER.info("Confirmed removal via Yes button");
@@ -1778,7 +1773,7 @@ public class FavouritesPage extends BasePage {
 			WebElement noBtn = pageWait.until(ExpectedConditions.visibilityOfElementLocated(NO_BUTTON));
 			noBtn.click();
 			LOGGER.info("Clicked No on removal confirmation");
-			Thread.sleep(1000);
+			sleepMillis(1000);
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click No on confirmation: {0}", e.getMessage());
 		}
@@ -1805,8 +1800,8 @@ public class FavouritesPage extends BasePage {
 	public long getPageScrollHeight() {
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			Long scrollHeight = (Long) js.executeScript("return document.body.scrollHeight");
-			return scrollHeight != null ? scrollHeight : 0L;
+			Number scrollHeight = (Number) Objects.requireNonNull(js).executeScript("return document.body.scrollHeight");
+			return scrollHeight != null ? scrollHeight.longValue() : 0L;
 		} catch (Exception e) {
 			return 0L;
 		}
@@ -1815,10 +1810,21 @@ public class FavouritesPage extends BasePage {
 	public long getWindowHeight() {
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			Long windowHeight = (Long) js.executeScript("return window.innerHeight");
-			return windowHeight != null ? windowHeight : 0L;
+			Number windowHeight = (Number) Objects.requireNonNull(js).executeScript("return window.innerHeight");
+			return windowHeight != null ? windowHeight.longValue() : 0L;
 		} catch (Exception e) {
 			return 0L;
+		}
+	}
+
+	/**
+	 * Helper method for retry delays - wraps Thread.sleep with proper interrupt handling.
+	 */
+	private void sleepMillis(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
 		}
 	}
 }

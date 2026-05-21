@@ -1,6 +1,7 @@
 package tests;
 
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
@@ -71,8 +72,8 @@ public class HeaderFooterTests extends BaseTest {
 	private void prepareGuestState() {
 		try {
 			driver.manage().deleteAllCookies();
-			((JavascriptExecutor) driver).executeScript("window.localStorage.clear();");
-			((JavascriptExecutor) driver).executeScript("window.sessionStorage.clear();");
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("window.localStorage.clear();");
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("window.sessionStorage.clear();");
 		} catch (Exception e) {
 			System.out.println("Could not fully clear guest session state: " + e.getMessage());
 		}
@@ -94,7 +95,7 @@ public class HeaderFooterTests extends BaseTest {
 	}
 
 	private boolean isLoggedOutState() {
-		String currentUrl = dashboard.getCurrentUrl();
+		String currentUrl = Objects.requireNonNull(dashboard.getCurrentUrl());
 		return currentUrl.contains("login") || currentUrl.contains("signin") || currentUrl.contains("home")
 				|| !currentUrl.contains("dashboard") || login.isOnLoginPage() || login.isLoginTextButtonAvailable()
 				|| !dashboard.isLogoutButtonVisible();
@@ -144,7 +145,7 @@ public class HeaderFooterTests extends BaseTest {
 		dashboard.clickSearchButton();
 		waitForMilliseconds(2000);
 
-		String navigatedUrl = dashboard.getCurrentUrl();
+		String navigatedUrl = Objects.requireNonNull(dashboard.getCurrentUrl());
 		Assert.assertTrue(
 				navigatedUrl.contains("search") || dashboard.areSearchResultsDisplayed()
 						|| dashboard.hasNoSearchResultsMessage(),
@@ -188,7 +189,7 @@ public class HeaderFooterTests extends BaseTest {
 		dashboard.clickSearchButton();
 		waitForMilliseconds(2000);
 
-		String currentUrl = dashboard.getCurrentUrl();
+		String currentUrl = Objects.requireNonNull(dashboard.getCurrentUrl());
 		String searchValue = dashboard.getSearchInputValue();
 		boolean hasResults = dashboard.areSearchResultsDisplayed();
 		boolean hasNoResultsMessage = dashboard.hasNoSearchResultsMessage();

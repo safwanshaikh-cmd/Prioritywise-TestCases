@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -169,7 +170,7 @@ public class RegistrationPage extends BasePage {
 	public void selectRole(String role) {
 		if (role != null && !role.isBlank()) {
 			openRoleDropdown();
-			wait.waitForSeconds(1);
+			wait.waitForMilliseconds(1000);
 			if (clickDirectRoleOption(role)) {
 				return;
 			}
@@ -190,7 +191,7 @@ public class RegistrationPage extends BasePage {
 		dropdown.click();
 
 		// Wait for options to render
-		wait.waitForSeconds(2);
+		wait.waitForMilliseconds(2000);
 
 		try {
 			// Try exact match first
@@ -203,9 +204,9 @@ public class RegistrationPage extends BasePage {
 			By fallback = By.xpath("//*[contains(text(),'" + role + "')]");
 			WebElement option = wait.waitForElementClickable(fallback);
 
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
 
-			((JavascriptExecutor) driver).executeScript("arguments[0].click();", option);
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", option);
 		}
 	}
 
@@ -297,7 +298,7 @@ public class RegistrationPage extends BasePage {
 			}
 
 			clickTermsTarget(checkbox);
-			wait.waitForSeconds(1);
+			wait.waitForMilliseconds(1000);
 			if (isTermsSelected(checkbox, container)) {
 				LOGGER.log(Level.INFO, "Terms checkbox clicked successfully");
 				return;
@@ -305,7 +306,7 @@ public class RegistrationPage extends BasePage {
 
 			if (container != null) {
 				clickTermsTarget(container);
-				wait.waitForSeconds(1);
+				wait.waitForMilliseconds(1000);
 				if (isTermsSelected(checkbox, container)) {
 					LOGGER.log(Level.INFO, "Terms checkbox selected via container click");
 					return;
@@ -314,7 +315,7 @@ public class RegistrationPage extends BasePage {
 
 			if (label != null) {
 				clickTermsTarget(label);
-				wait.waitForSeconds(1);
+				wait.waitForMilliseconds(1000);
 				if (isTermsSelected(checkbox, container)) {
 					LOGGER.log(Level.INFO, "Terms checkbox selected via label click");
 					return;
@@ -338,10 +339,10 @@ public class RegistrationPage extends BasePage {
 		}
 
 		try {
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", link);
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", link);
 			link.click();
 		} catch (Exception e) {
-			((JavascriptExecutor) driver).executeScript("arguments[0].click();", link);
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", link);
 		}
 	}
 
@@ -385,7 +386,7 @@ public class RegistrationPage extends BasePage {
 
 		WebElement activeElement = driver.switchTo().activeElement();
 		activeElement.sendKeys(Keys.ENTER);
-		wait.waitForSeconds(2);
+		wait.waitForMilliseconds(2000);
 
 		if (isRegistrationSuccessful() || hasAnyVisibleFeedback()) {
 			return;
@@ -393,9 +394,9 @@ public class RegistrationPage extends BasePage {
 
 		try {
 			WebElement registerButton = wait.waitForElementVisible(REGISTER_BUTTON);
-			((JavascriptExecutor) driver).executeScript("arguments[0].focus();", registerButton);
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].focus();", registerButton);
 			registerButton.sendKeys(Keys.ENTER);
-			wait.waitForSeconds(2);
+			wait.waitForMilliseconds(2000);
 			if (isRegistrationSuccessful() || hasAnyVisibleFeedback()) {
 				return;
 			}
@@ -417,12 +418,12 @@ public class RegistrationPage extends BasePage {
 				return;
 			}
 			activeElement.sendKeys(Keys.TAB);
-			wait.waitForSeconds(1);
+			wait.waitForMilliseconds(1000);
 		}
 
 		WebElement registerButton = wait.waitForElementVisible(REGISTER_BUTTON);
 		try {
-			((JavascriptExecutor) driver).executeScript("arguments[0].focus();", registerButton);
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].focus();", registerButton);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Unable to focus register button directly: {0}", e.getMessage());
 		}
@@ -436,7 +437,7 @@ public class RegistrationPage extends BasePage {
 		try {
 			String text = normalizeFeedbackText(
 					firstNonBlank(element.getText(),
-							String.valueOf(((JavascriptExecutor) driver).executeScript(
+							String.valueOf(Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 									"return (arguments[0].innerText || arguments[0].textContent || '').trim();",
 									element))));
 			String ariaLabel = firstNonBlank(element.getAttribute("aria-label")).toLowerCase(Locale.ENGLISH);
@@ -549,7 +550,7 @@ public class RegistrationPage extends BasePage {
 	}
 
 	public String getCurrentUrl() {
-		return driver.getCurrentUrl();
+		return Objects.requireNonNull(driver.getCurrentUrl());
 	}
 
 	public void refreshPage() {
@@ -757,7 +758,7 @@ public class RegistrationPage extends BasePage {
 				}
 				String text = element.getText().trim();
 				if (text.isEmpty()) {
-					Object value = ((JavascriptExecutor) driver).executeScript(
+					Object value = Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 							"return (arguments[0].innerText || arguments[0].textContent || '').trim();", element);
 					text = value == null ? "" : value.toString().trim();
 				}
@@ -847,17 +848,17 @@ public class RegistrationPage extends BasePage {
 			return;
 		}
 
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", target);
+		Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", target);
 		try {
 			target.click();
 		} catch (Exception e) {
-			((JavascriptExecutor) driver).executeScript("arguments[0].click();", target);
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", target);
 		}
 
 		String tagName = firstNonBlank(target.getTagName()).toLowerCase(Locale.ENGLISH);
 		String tabindex = firstNonBlank(target.getAttribute("tabindex"));
 		if ("div".equals(tagName) && !tabindex.isBlank()) {
-			((JavascriptExecutor) driver).executeScript(
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 					"const el = arguments[0];"
 							+ "['pointerdown','mousedown','pointerup','mouseup','click'].forEach(type => "
 							+ "el.dispatchEvent(new MouseEvent(type,{bubbles:true,cancelable:true,view:window})));",
@@ -893,7 +894,7 @@ public class RegistrationPage extends BasePage {
 				if ("input".equalsIgnoreCase(checkbox.getTagName()) && checkbox.isSelected()) {
 					return true;
 				}
-				Object visualState = ((JavascriptExecutor) driver)
+				Object visualState = Objects.requireNonNull(((JavascriptExecutor) driver))
 						.executeScript("const el = arguments[0];" + "const hasImg = !!el.querySelector('img');"
 								+ "const bgNode = el.querySelector('[style*=\\'background-image\\']');"
 								+ "const bgImg = bgNode ? window.getComputedStyle(bgNode).backgroundImage : '';"
@@ -923,7 +924,7 @@ public class RegistrationPage extends BasePage {
 
 		try {
 			openRoleDropdown();
-			wait.waitForSeconds(1);
+			wait.waitForMilliseconds(1000);
 			for (WebElement option : driver.findElements(GENERIC_ROLE_OPTIONS)) {
 				String normalized = normalizeRoleText(option);
 				if (normalized.isEmpty() || isNonRoleText(normalized)) {
@@ -1011,10 +1012,10 @@ public class RegistrationPage extends BasePage {
 
 	private void clickRoleOption(WebElement option) {
 		try {
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", option);
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", option);
 			option.click();
 		} catch (Exception e) {
-			((JavascriptExecutor) driver).executeScript("arguments[0].click();", option);
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", option);
 		}
 	}
 
@@ -1109,24 +1110,13 @@ public class RegistrationPage extends BasePage {
 				|| normalizedText.equals("en");
 	}
 
-	private boolean isElementPresent(By locator) {
-		try {
-			for (WebElement element : driver.findElements(locator)) {
-				if (element.isDisplayed()) {
-					return true;
-				}
-			}
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Element not present for locator {0}: {1}",
-					new Object[] { locator, e.getMessage() });
-		}
-		return false;
-	}
-
+	/**
+	 * Wait for field value to stabilize.
+	 */
 	private void waitForFieldValue(By locator, String expectedValue) {
 		String valueToMatch = safeValue(expectedValue);
 		try {
-			wait.until(driver -> {
+			wait.waitForFunction(driver -> {
 				String currentValue = getAttribute(locator, "value");
 				return valueToMatch.equals(currentValue) ? wait.waitForElementVisible(locator) : null;
 			});
@@ -1154,12 +1144,12 @@ public class RegistrationPage extends BasePage {
 					continue;
 				}
 
-				((JavascriptExecutor) driver)
+				Objects.requireNonNull((JavascriptExecutor) driver)
 						.executeScript("arguments[0].scrollIntoView({block:'center', inline:'nearest'});", element);
 				try {
 					element.click();
 				} catch (Exception e) {
-					((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+					Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 				}
 				return true;
 			}
@@ -1179,8 +1169,8 @@ public class RegistrationPage extends BasePage {
 		try {
 			driver.get(buildCandidateUrl(configuredUrl, path));
 
-			String currentUrl = driver.getCurrentUrl();
-			String safeUrl = currentUrl != null ? currentUrl.toLowerCase(Locale.ENGLISH) : "";
+			String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
+			String safeUrl = currentUrl.toLowerCase(Locale.ENGLISH);
 
 			return new LoginPage(driver).isOnLoginPage() || isRegistrationScreenDisplayed()
 					|| safeUrl.contains(path.replace("/", ""));

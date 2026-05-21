@@ -30,6 +30,7 @@ public class SubscriptionManagementTests extends BaseTest {
 	private SubscriptionPage subscription;
 	private DashboardPage dashboard;
 
+	@SuppressWarnings("null")
 	@BeforeMethod(alwaysRun = true)
 	public void initPagesAndLogin(Method method) {
 		ConfigReader.reload();

@@ -2,6 +2,7 @@ package pages;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -69,8 +70,8 @@ public class TransactionsPage extends BasePage {
 	 */
 	public boolean isTransactionsPageDisplayed() {
 		try {
-			String currentUrl = driver.getCurrentUrl();
-			String safeUrl = currentUrl != null ? currentUrl.toLowerCase() : "";
+			String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
+			String safeUrl = currentUrl.toLowerCase();
 
 			return isAnyTransactionLocatorVisible(TRANSACTIONS_SCREEN, TRANSACTIONS_HEADER)
 					|| safeUrl.contains("transaction")
@@ -249,7 +250,7 @@ public class TransactionsPage extends BasePage {
 			try {
 				filterBtn.click();
 			} catch (Exception clickException) {
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", filterBtn);
+				Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", filterBtn);
 			}
 			LOGGER.info("Clicked Filter button");
 			Thread.sleep(1000);

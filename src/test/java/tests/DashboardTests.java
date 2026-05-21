@@ -3,7 +3,10 @@ package tests;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.chromium.ChromiumDriver;
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -36,7 +39,7 @@ public class DashboardTests extends BaseTest {
 	private LoginPage login;
 	private CreatorSettingsPage creatorSettings;
 	private ForCreatorPage forCreatorPage;
-	private org.openqa.selenium.JavascriptExecutor js;
+	private JavascriptExecutor js;
 
 	private String accountType = "consumer"; // Default to consumer
 
@@ -138,7 +141,7 @@ public class DashboardTests extends BaseTest {
 		dashboard = new DashboardPage(driver);
 		creatorSettings = new CreatorSettingsPage(driver);
 		forCreatorPage = new ForCreatorPage(driver);
-		js = (org.openqa.selenium.JavascriptExecutor) driver;
+		js = (JavascriptExecutor) driver;
 
 		// Login with the appropriate account
 		login.openLogin();
@@ -684,8 +687,8 @@ public class DashboardTests extends BaseTest {
 		waitForMilliseconds(1000);
 
 		// Clear local storage and session storage
-		js.executeScript("window.localStorage.clear();");
-		js.executeScript("window.sessionStorage.clear();");
+		Objects.requireNonNull(js).executeScript("window.localStorage.clear();");
+		Objects.requireNonNull(js).executeScript("window.sessionStorage.clear();");
 		waitForMilliseconds(1000);
 
 		// Try to access dashboard directly without login
@@ -695,7 +698,7 @@ public class DashboardTests extends BaseTest {
 		waitForMilliseconds(3000);
 
 		// Verify redirected to login page or home page
-		String currentUrl = driver.getCurrentUrl().toLowerCase();
+		String currentUrl = Objects.requireNonNull(driver.getCurrentUrl()).toLowerCase();
 		boolean isRedirectedCorrectly = currentUrl.contains("/login") || currentUrl.contains("signin")
 				|| currentUrl.contains("home") || !currentUrl.contains("dashboard");
 
@@ -717,7 +720,7 @@ public class DashboardTests extends BaseTest {
 		waitForMilliseconds(3000);
 
 		// Verify access denied or redirected to consumer dashboard
-		String currentUrl = driver.getCurrentUrl();
+		String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
 		boolean isDenied = currentUrl.contains("access") && currentUrl.contains("denied")
 				|| currentUrl.contains("unauthorized") || currentUrl.contains("dashboard")
 				|| !currentUrl.contains("/uploader") || currentUrl.contains("forbidden");
@@ -800,7 +803,7 @@ public class DashboardTests extends BaseTest {
 
 		// Verify back button behavior - should return to dashboard or handle
 		// appropriately
-		String currentUrl = driver.getCurrentUrl().toLowerCase();
+		String currentUrl = Objects.requireNonNull(driver.getCurrentUrl()).toLowerCase();
 
 		// Check if we're back on dashboard, or still on a valid page
 		boolean isValidState = currentUrl.contains("dashboard") || currentUrl.contains("home")
@@ -925,11 +928,11 @@ public class DashboardTests extends BaseTest {
 		Assert.assertTrue(isDashboardLoaded, "Dashboard should load in first tab");
 
 		// Open new tab using JavaScript
-		js.executeScript("window.open('about:blank', '_blank');");
+		Objects.requireNonNull(js).executeScript("window.open('about:blank', '_blank');");
 		waitForMilliseconds(1000);
 
 		// Switch to new tab
-		java.util.Set<String> tabs = driver.getWindowHandles();
+		Set<String> tabs = driver.getWindowHandles();
 		java.util.Iterator<String> iterator = tabs.iterator();
 		String mainWindow = iterator.next();
 		String newTab = iterator.next();
@@ -940,7 +943,7 @@ public class DashboardTests extends BaseTest {
 		waitForMilliseconds(3000);
 
 		// Verify session is maintained
-		String currentUrl = driver.getCurrentUrl();
+		String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
 		boolean isDashboardAccessible = currentUrl.contains("dashboard") || !currentUrl.contains("login");
 
 		// Close new tab and switch back
@@ -965,7 +968,7 @@ public class DashboardTests extends BaseTest {
 			waitForMilliseconds(3000);
 
 			// Verify redirected to login or home page
-			String currentUrl = driver.getCurrentUrl();
+			String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
 			boolean isLoggedOut = currentUrl.contains("login") || currentUrl.contains("signin")
 					|| currentUrl.contains("home") || !currentUrl.contains("dashboard");
 

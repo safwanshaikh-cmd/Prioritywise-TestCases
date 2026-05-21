@@ -14,8 +14,6 @@ import listeners.RetryAnalyzer;
 import pages.AudioPlayerPage;
 import pages.DashboardPage;
 import pages.LoginPage;
-import pages.PaymentPage;
-import pages.SubscriptionPage;
 import utils.ConfigReader;
 
 public class AudioPlayerTests extends BaseTest {

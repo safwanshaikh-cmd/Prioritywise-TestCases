@@ -1,6 +1,7 @@
 package tests;
 
 import java.lang.reflect.Method;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -660,8 +661,8 @@ public class FavouritesManagementTests extends BaseTest {
 		boolean attemptedAddToFavourites = dashboard.addToDefaultFavourites();
 		System.out.println("Attempted Add To Favourites: " + attemptedAddToFavourites);
 
-		String currentUrl = driver.getCurrentUrl();
-		String safeUrl = currentUrl != null ? currentUrl.toLowerCase() : "";
+		String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
+		String safeUrl = currentUrl.toLowerCase();
 
 		System.out.println("Current URL: " + safeUrl);
 
@@ -870,18 +871,10 @@ public class FavouritesManagementTests extends BaseTest {
 		try {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 
-			Number scrollHeightObj = (Number) js.executeScript("return document.body.scrollHeight");
+			long scrollHeight = getLongFromScript(js, "return document.body.scrollHeight");
+			long windowHeight = getLongFromScript(js, "return window.innerHeight");
 
-			long scrollHeight = scrollHeightObj != null ? scrollHeightObj.longValue() : 0;
-
-			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-			Thread.sleep(1000);
-
-			js.executeScript("window.scrollTo(0, 0)");
-
-			Number windowHeightObj = (Number) js.executeScript("return window.innerHeight");
-
-			long windowHeight = windowHeightObj != null ? windowHeightObj.longValue() : 0;
+			js.executeScript("window.scrollTo(0, 0);");
 
 			boolean isScrollable = scrollHeight > windowHeight;
 
@@ -894,6 +887,16 @@ public class FavouritesManagementTests extends BaseTest {
 			LOGGER.warning("Could not test scrollability: " + e.getMessage());
 			return false;
 		}
+	}
+
+	private long getLongFromScript(JavascriptExecutor js, String script) {
+		Object result = js.executeScript(script);
+
+		if (result instanceof Number) {
+			return ((Number) result).longValue();
+		}
+
+		return 0L;
 	}
 
 	private boolean verifyErrorHandlingElements() {

@@ -1,5 +1,7 @@
 package tests;
 
+import java.util.Objects;
+
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
@@ -44,7 +46,7 @@ public class OfferTests extends BaseTest {
         subscription.closeSidebarIfOpen();
 
         // Step 2: Verify offer page opens successfully
-        String currentUrl = driver.getCurrentUrl().toLowerCase();
+        String currentUrl = Objects.requireNonNull(driver.getCurrentUrl()).toLowerCase();
         boolean offerPageOpened = currentUrl.contains("limited-offer")
             || currentUrl.contains("/payments/limited-offer")
             || currentUrl.contains("offer")
@@ -107,7 +109,7 @@ public class OfferTests extends BaseTest {
         subscription.closeSidebarIfOpen();
 
         // Verify payment page load
-        String currentUrl = driver.getCurrentUrl().toLowerCase();
+        String currentUrl = Objects.requireNonNull(driver.getCurrentUrl()).toLowerCase();
         boolean onPaymentPage = currentUrl.contains("payment")
             || currentUrl.contains("checkout")
             || currentUrl.contains("razorpay")
@@ -160,16 +162,7 @@ public class OfferTests extends BaseTest {
 
     // ================= HELPER METHODS =================
 
-    private void navigateToOfferPage() {
-        // Use working DashboardPage method (proven in TC_365-370)
-        dashboard.openSimpleSideMenu();
-        subscription.click80();
-
-        // Close sidebar to properly view the offer page
-        subscription.closeSidebarIfOpen();
-    }
-
-    private void loginAsUser() {
+   private void loginAsUser() {
         String email = ConfigReader.getProperty("consumer.email",
             ConfigReader.getProperty("login.validEmail"));
         String password = ConfigReader.getProperty("consumer.password",

@@ -2,6 +2,7 @@ package pages;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
@@ -242,7 +243,7 @@ public class UploadPage extends BasePage {
 				if (!trigger.isDisplayed()) {
 					continue;
 				}
-				((org.openqa.selenium.JavascriptExecutor) driver)
+				Objects.requireNonNull((org.openqa.selenium.JavascriptExecutor) driver)
 						.executeScript("arguments[0].scrollIntoView({block:'center'}); arguments[0].click();", trigger);
 				Thread.sleep(500);
 

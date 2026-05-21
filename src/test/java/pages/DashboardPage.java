@@ -515,12 +515,13 @@ public class DashboardPage extends BasePage {
 					.until(ExpectedConditions.visibilityOfElementLocated(COOKIE_ACCEPT_BUTTON));
 
 			if (acceptButton.isDisplayed()) {
-				((JavascriptExecutor) driver).executeScript(
+				Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 						"arguments[0].scrollIntoView({block:'center', inline:'nearest'});", acceptButton);
 				try {
 					acceptButton.click();
 				} catch (Exception e) {
-					((JavascriptExecutor) driver).executeScript("arguments[0].click();", acceptButton);
+					Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+							acceptButton);
 				}
 				LOGGER.info("Cookie consent accepted.");
 			}
@@ -540,8 +541,8 @@ public class DashboardPage extends BasePage {
 	}
 
 	public void waitForPageReady() {
-		pageWait.until(
-				driver -> "complete".equals(((JavascriptExecutor) driver).executeScript("return document.readyState")));
+		pageWait.until(driver -> "complete".equals(
+				Objects.requireNonNull((JavascriptExecutor) driver).executeScript("return document.readyState")));
 	}
 
 	public boolean waitForDashboardShell() {
@@ -699,7 +700,7 @@ public class DashboardPage extends BasePage {
 
 			searchInput.clear();
 			if (containsNonBmpCharacters(keyword)) {
-				((JavascriptExecutor) driver).executeScript("const el = arguments[0];"
+				Objects.requireNonNull((JavascriptExecutor) driver).executeScript("const el = arguments[0];"
 						+ "const value = arguments[1] == null ? '' : arguments[1];" + "el.focus();"
 						+ "el.value = value;" + "el.dispatchEvent(new Event('input', { bubbles: true }));"
 						+ "el.dispatchEvent(new Event('change', { bubbles: true }));", searchInput, keyword);
@@ -790,8 +791,8 @@ public class DashboardPage extends BasePage {
 		try {
 			waitForMilliseconds(1000);
 
-			String currentUrl = driver.getCurrentUrl();
-			String safeUrl = currentUrl != null ? currentUrl.toLowerCase() : "";
+			String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
+			String safeUrl = currentUrl.toLowerCase();
 
 			return safeUrl.contains("playlist");
 
@@ -953,7 +954,7 @@ public class DashboardPage extends BasePage {
 
 	public boolean isBookDetailsPageVisible() {
 		try {
-			String currentUrl = firstNonBlank(driver.getCurrentUrl(), "").toLowerCase();
+			String currentUrl = Objects.requireNonNull(driver.getCurrentUrl()).toLowerCase();
 			return currentUrl.contains("book") || currentUrl.contains("show") || currentUrl.contains("detail")
 					|| isAnyElementVisible(BOOK_DETAILS_PAGE);
 		} catch (Exception e) {
@@ -964,7 +965,8 @@ public class DashboardPage extends BasePage {
 
 	public String getBookTitleText() {
 		try {
-			Object result = ((JavascriptExecutor) driver)
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			Object result = Objects.requireNonNull(js)
 					.executeScript("const reviewsLink = document.querySelector('a[href*=\"/reviews\"]');"
 							+ "if (reviewsLink) {" + "  let container = reviewsLink.parentElement;"
 							+ "  while (container) {" + "    const text = (container.textContent || '').toLowerCase();"
@@ -987,7 +989,8 @@ public class DashboardPage extends BasePage {
 
 	public String getBookOwnerNameText() {
 		try {
-			Object result = ((JavascriptExecutor) driver)
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			Object result = Objects.requireNonNull(js)
 					.executeScript("const reviewsLink = document.querySelector('a[href*=\"/reviews\"]');"
 							+ "if (reviewsLink) {" + "  let container = reviewsLink.parentElement;"
 							+ "  while (container) {" + "    const text = (container.textContent || '').toLowerCase();"
@@ -1045,7 +1048,8 @@ public class DashboardPage extends BasePage {
 		}
 
 		try {
-			Object result = ((JavascriptExecutor) driver)
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			Object result = Objects.requireNonNull(js)
 					.executeScript("const link = document.querySelector('a[href*=\"/reviews\"]');"
 							+ "return link ? (link.textContent || '').replace(/\\s+/g, ' ').trim() : '';");
 			return result == null ? "" : result.toString().trim();
@@ -1097,7 +1101,8 @@ public class DashboardPage extends BasePage {
 		}
 
 		try {
-			Object result = ((JavascriptExecutor) driver)
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			Object result = Objects.requireNonNull(js)
 					.executeScript("const title = Array.from(document.querySelectorAll('div[dir=\"auto\"]'))"
 							+ "  .find(el => (el.textContent || '').trim().length > 0);" + "if (!title) return '';"
 							+ "let current = title.parentElement;"
@@ -1210,8 +1215,9 @@ public class DashboardPage extends BasePage {
 
 	private void debugAudioState() {
 		try {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
 			// Check for any audio/video elements
-			String audioCheck = (String) ((JavascriptExecutor) driver).executeScript(
+			String audioCheck = (String) Objects.requireNonNull(js).executeScript(
 					"return JSON.stringify({" + "audioElements: document.querySelectorAll('audio').length,"
 							+ "videoElements: document.querySelectorAll('video').length,"
 							+ "iframeElements: document.querySelectorAll('iframe').length,"
@@ -1220,7 +1226,7 @@ public class DashboardPage extends BasePage {
 			LOGGER.log(Level.INFO, "Media elements in DOM: {0}", audioCheck);
 
 			// Check for any buttons with play/pause related text
-			String buttonCheck = (String) ((JavascriptExecutor) driver)
+			String buttonCheck = (String) Objects.requireNonNull(js)
 					.executeScript("var buttons = Array.from(document.querySelectorAll('button, [role=\"button\"]')); "
 							+ "var playButtons = buttons.filter(b => b.textContent.toLowerCase().includes('play')).length; "
 							+ "var pauseButtons = buttons.filter(b => b.textContent.toLowerCase().includes('pause')).length; "
@@ -1228,10 +1234,11 @@ public class DashboardPage extends BasePage {
 			LOGGER.log(Level.INFO, "Buttons found: {0}", buttonCheck);
 
 			// Check if there's a progress bar or time indicator
-			String progressCheck = (String) ((JavascriptExecutor) driver).executeScript("return JSON.stringify({"
-					+ "progressBars: document.querySelectorAll('[role=\"progressbar\"], .progress, .player-progress').length,"
-					+ "timeDisplays: document.querySelectorAll('[class*=\"time\"], [class*=\"duration\"], [class*=\"current\"]').length"
-					+ "});");
+			String progressCheck = (String) Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("return JSON.stringify({"
+							+ "progressBars: document.querySelectorAll('[role=\"progressbar\"], .progress, .player-progress').length,"
+							+ "timeDisplays: document.querySelectorAll('[class*=\"time\"], [class*=\"duration\"], [class*=\"current\"]').length"
+							+ "});");
 			LOGGER.log(Level.INFO, "Player indicators: {0}", progressCheck);
 
 		} catch (Exception e) {
@@ -1466,7 +1473,7 @@ public class DashboardPage extends BasePage {
 
 			// DEBUG: Log all clickable elements in the dialog
 			try {
-				Object debugInfo = ((JavascriptExecutor) driver).executeScript(
+				Object debugInfo = Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 						"const elements = Array.from(document.querySelectorAll('[tabindex=\"0\"], [role=\"button\"], [role=\"checkbox\"], div[class*=\"css-\"]')).slice(0, 20);"
 								+ "return elements.map(el => {" + "  return {" + "    tag: el.tagName,"
 								+ "    text: el.textContent.trim().substring(0, 30)," + "    class: el.className,"
@@ -1503,7 +1510,7 @@ public class DashboardPage extends BasePage {
 			// Method 3: Look for any element with aria-checked near "Favourites" text
 			if (favouritesCheckbox == null) {
 				try {
-					Object result = ((JavascriptExecutor) driver).executeScript(
+					Object result = Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 							"const favText = Array.from(document.querySelectorAll('div, span, p')).find(el => "
 									+ "  el.textContent.trim() === 'Favourites' || el.textContent.trim() === 'Favorites');"
 									+ "if (!favText) return null;" + "let parent = favText;"
@@ -1586,7 +1593,8 @@ public class DashboardPage extends BasePage {
 				LOGGER.info("Attempting to click checkbox using direct JavaScript...");
 				try {
 					// Approach 1: Direct JavaScript click
-					((JavascriptExecutor) driver).executeScript("arguments[0].click();", favouritesCheckbox);
+					Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+							favouritesCheckbox);
 					LOGGER.info("Approach 1: Direct JavaScript click executed");
 				} catch (Exception e1) {
 					LOGGER.log(Level.WARNING, "Approach 1 failed: " + e1.getMessage());
@@ -1626,7 +1634,7 @@ public class DashboardPage extends BasePage {
 				LOGGER.log(Level.FINE, "Escape key failed, trying body click: {0}", e.getMessage());
 				// Fallback: click outside dialog
 				try {
-					((JavascriptExecutor) driver).executeScript("document.body.click();");
+					Objects.requireNonNull((JavascriptExecutor) driver).executeScript("document.body.click();");
 					waitForMilliseconds(1000);
 					LOGGER.info("Favorites dialog closed with body click");
 				} catch (Exception ex) {
@@ -1655,16 +1663,17 @@ public class DashboardPage extends BasePage {
 	private WebElement findPlaylistCheckbox(String playlistName) {
 		try {
 
-			Object candidate = ((JavascriptExecutor) driver).executeScript("const name = arguments[0];"
-					+ "const nodes = Array.from(document.querySelectorAll('div,span,p')).filter(el => {"
-					+ "  const text = (el.textContent || '').trim();" + "  return text === name;" + "});"
-					+ "for (const label of nodes) {" + "  let row = label;"
-					+ "  for (let depth = 0; row && depth < 5; depth++, row = row.parentElement) {"
-					+ "    const checkbox = row.querySelector('[role=\"checkbox\"], input[type=\"checkbox\"], [aria-checked], [data-testid*=\"checkbox\" i], [data-testid*=\"check\" i]');"
-					+ "    if (checkbox) return checkbox;"
-					+ "    const clickables = Array.from(row.querySelectorAll('[tabindex=\"0\"], button, [role=\"button\"]'));"
-					+ "    const best = clickables.find(el => el !== label && (el.getAttribute('role') === 'checkbox' || el.hasAttribute('aria-checked')));"
-					+ "    if (best) return best;" + "  }" + "}" + "return null;", playlistName);
+			Object candidate = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const name = arguments[0];"
+							+ "const nodes = Array.from(document.querySelectorAll('div,span,p')).filter(el => {"
+							+ "  const text = (el.textContent || '').trim();" + "  return text === name;" + "});"
+							+ "for (const label of nodes) {" + "  let row = label;"
+							+ "  for (let depth = 0; row && depth < 5; depth++, row = row.parentElement) {"
+							+ "    const checkbox = row.querySelector('[role=\"checkbox\"], input[type=\"checkbox\"], [aria-checked], [data-testid*=\"checkbox\" i], [data-testid*=\"check\" i]');"
+							+ "    if (checkbox) return checkbox;"
+							+ "    const clickables = Array.from(row.querySelectorAll('[tabindex=\"0\"], button, [role=\"button\"]'));"
+							+ "    const best = clickables.find(el => el !== label && (el.getAttribute('role') === 'checkbox' || el.hasAttribute('aria-checked')));"
+							+ "    if (best) return best;" + "  }" + "}" + "return null;", playlistName);
 			if (candidate instanceof WebElement webElement) {
 				try {
 					if (webElement.isDisplayed()) {
@@ -1831,7 +1840,7 @@ public class DashboardPage extends BasePage {
 
 	private void debugButtonState() {
 		try {
-			String buttonInfo = (String) ((JavascriptExecutor) driver).executeScript(
+			String buttonInfo = (String) Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 					"const buttons = Array.from(document.querySelectorAll('button, [role=\"button\"], [tabindex=\"0\"]')); "
 							+ "const visible = buttons.filter(b => {" + "  const rect = b.getBoundingClientRect();"
 							+ "  return rect.width > 0 && rect.height > 0;" + "});" + "return JSON.stringify({"
@@ -1847,15 +1856,16 @@ public class DashboardPage extends BasePage {
 	private void debugModalState() {
 		try {
 			// Check for modals, dialogs, popups
-			String modalCheck = (String) ((JavascriptExecutor) driver).executeScript("return JSON.stringify({"
-					+ "modals: document.querySelectorAll('[role=\"dialog\"], .modal, .popup').length,"
-					+ "dropdowns: document.querySelectorAll('.dropdown, .menu[role=\"menu\"]').length,"
-					+ "overlays: document.querySelectorAll('.overlay, .backdrop').length" + "});");
+			String modalCheck = (String) Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("return JSON.stringify({"
+							+ "modals: document.querySelectorAll('[role=\"dialog\"], .modal, .popup').length,"
+							+ "dropdowns: document.querySelectorAll('.dropdown, .menu[role=\"menu\"]').length,"
+							+ "overlays: document.querySelectorAll('.overlay, .backdrop').length" + "});");
 			LOGGER.log(Level.INFO, "Modal/Popup elements: {0}", modalCheck);
 
 			// Check for native share dialog (can't detect directly, but check if button
 			// click triggered something)
-			String activeElement = (String) ((JavascriptExecutor) driver).executeScript(
+			String activeElement = (String) Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 					"return document.activeElement ? document.activeElement.tagName + (document.activeElement.className ? '.' + document.activeElement.className : '') : 'none';");
 			LOGGER.log(Level.INFO, "Active element after click: {0}", activeElement);
 
@@ -1935,7 +1945,8 @@ public class DashboardPage extends BasePage {
 
 	public boolean hasAlreadyReportedMessage() {
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript("return document.body.innerText");
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("return document.body.innerText");
 
 			String bodyText = result != null ? result.toString() : "";
 
@@ -1991,7 +2002,8 @@ public class DashboardPage extends BasePage {
 
 	private boolean isReportConfirmationVisible() {
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript("return document.body.innerText");
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("return document.body.innerText");
 
 			String bodyText = result != null ? result.toString() : "";
 
@@ -2102,8 +2114,9 @@ public class DashboardPage extends BasePage {
 			return;
 		}
 		try {
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
-			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+			Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 			LOGGER.log(Level.FINE, "JS click executed successfully");
 		} catch (org.openqa.selenium.JavascriptException e) {
 			LOGGER.log(Level.FINE, "JS click failed: {0}", e.getMessage());
@@ -2589,7 +2602,7 @@ public class DashboardPage extends BasePage {
 	public List<String> getAllCategoryTexts() {
 		List<String> categories = new ArrayList<>();
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript("const values = [];"
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver).executeScript("const values = [];"
 					+ "document.querySelectorAll('div[dir=\"auto\"]').forEach(el => {"
 					+ "  const text = (el.textContent || '').trim();"
 					+ "  if (text && text.length <= 40 && !values.includes(text)) {"
@@ -3034,7 +3047,7 @@ public class DashboardPage extends BasePage {
 		}
 
 		try {
-			((JavascriptExecutor) driver).executeScript("document.body.click();");
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("document.body.click();");
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Body-click fallback for side menu close failed: {0}", e.getMessage());
 		}
@@ -3200,14 +3213,15 @@ public class DashboardPage extends BasePage {
 			}
 
 			try {
-				Object clicked = ((JavascriptExecutor) driver).executeScript("const overlay = arguments[0];"
-						+ "if (!overlay) return false;" + "const rect = overlay.getBoundingClientRect();"
-						+ "const x = Math.max(rect.left + rect.width - 60, rect.left + 20);"
-						+ "const y = rect.top + Math.max(Math.floor(rect.height / 2), 20);"
-						+ "const target = document.elementFromPoint(x, y) || overlay;"
-						+ "['pointerdown','mousedown','mouseup','click'].forEach((type) => {"
-						+ "  target.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, clientX: x, clientY: y }));"
-						+ "});" + "return true;", overlay);
+				Object clicked = Objects.requireNonNull((JavascriptExecutor) driver)
+						.executeScript("const overlay = arguments[0];" + "if (!overlay) return false;"
+								+ "const rect = overlay.getBoundingClientRect();"
+								+ "const x = Math.max(rect.left + rect.width - 60, rect.left + 20);"
+								+ "const y = rect.top + Math.max(Math.floor(rect.height / 2), 20);"
+								+ "const target = document.elementFromPoint(x, y) || overlay;"
+								+ "['pointerdown','mousedown','mouseup','click'].forEach((type) => {"
+								+ "  target.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, clientX: x, clientY: y }));"
+								+ "});" + "return true;", overlay);
 				if (Boolean.TRUE.equals(clicked)) {
 					waitForMilliseconds(700);
 					return waitForSimpleSideMenuClosed();
@@ -3254,20 +3268,21 @@ public class DashboardPage extends BasePage {
 		try {
 			WebElement sidebarContent = new WebDriverWait(driver, Duration.ofSeconds(5))
 					.until(ExpectedConditions.visibilityOfElementLocated(SIDE_MENU_CONTENT));
-			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
-					+ "const labels = arguments[1];" + "const isVisible = (element) => {"
-					+ "  if (!element) return false;" + "  const style = window.getComputedStyle(element);"
-					+ "  const rect = element.getBoundingClientRect();"
-					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
-					+ "    && rect.width > 0 && rect.height > 0;" + "};"
-					+ "const textOf = (element) => [element.innerText, element.textContent,"
-					+ "  element.getAttribute('data-testid'), element.getAttribute('aria-label')]"
-					+ "  .filter(Boolean).join(' ').toLowerCase();"
-					+ "const clickable = Array.from(root.querySelectorAll('[data-testid^=\"button_\"],[tabindex=\"0\"],a,button,[role=\"button\"],[role=\"link\"]'))"
-					+ "  .filter(isVisible)"
-					+ "  .filter((element) => labels.some((label) => textOf(element).includes(label)));"
-					+ "clickable.sort((left, right) => textOf(right).length - textOf(left).length);"
-					+ "return clickable[0] || null;", sidebarContent, labels);
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const root = arguments[0];" + "const labels = arguments[1];"
+							+ "const isVisible = (element) => {" + "  if (!element) return false;"
+							+ "  const style = window.getComputedStyle(element);"
+							+ "  const rect = element.getBoundingClientRect();"
+							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+							+ "    && rect.width > 0 && rect.height > 0;" + "};"
+							+ "const textOf = (element) => [element.innerText, element.textContent,"
+							+ "  element.getAttribute('data-testid'), element.getAttribute('aria-label')]"
+							+ "  .filter(Boolean).join(' ').toLowerCase();"
+							+ "const clickable = Array.from(root.querySelectorAll('[data-testid^=\"button_\"],[tabindex=\"0\"],a,button,[role=\"button\"],[role=\"link\"]'))"
+							+ "  .filter(isVisible)"
+							+ "  .filter((element) => labels.some((label) => textOf(element).includes(label)));"
+							+ "clickable.sort((left, right) => textOf(right).length - textOf(left).length);"
+							+ "return clickable[0] || null;", sidebarContent, labels);
 			return result instanceof WebElement ? (WebElement) result : null;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Unable to find simple side menu item {0}: {1}",
@@ -3473,8 +3488,8 @@ public class DashboardPage extends BasePage {
 	 * @return true if on creator page, false otherwise
 	 */
 	public boolean isOnCreatorPage() {
-		String currentUrl = driver.getCurrentUrl();
-		String safeUrl = currentUrl != null ? currentUrl.toLowerCase() : "";
+		String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
+		String safeUrl = currentUrl.toLowerCase();
 
 		if (safeUrl.contains("creator") || safeUrl.contains("for-creator")) {
 			return true;
@@ -3509,8 +3524,8 @@ public class DashboardPage extends BasePage {
 		try {
 			waitForMilliseconds(1000);
 
-			String url = driver.getCurrentUrl();
-			String safeUrl = url != null ? url.toLowerCase() : "";
+			String url = Objects.requireNonNull(driver.getCurrentUrl());
+			String safeUrl = url.toLowerCase();
 
 			return safeUrl.contains("upload") || driver.findElements(UPLOAD_PAGE).size() > 0;
 
@@ -3578,8 +3593,8 @@ public class DashboardPage extends BasePage {
 
 	public boolean isAdminDashboardLoaded() {
 		try {
-			String url = driver.getCurrentUrl();
-			String safeUrl = url != null ? url.toLowerCase() : "";
+			String url = Objects.requireNonNull(driver.getCurrentUrl());
+			String safeUrl = url.toLowerCase();
 
 			return waitForDashboardShell()
 					&& (driver.findElements(ADMIN_DASHBOARD).size() > 0 || safeUrl.contains("admin"));
@@ -3646,7 +3661,7 @@ public class DashboardPage extends BasePage {
 		}
 		try {
 			scrollIntoView(element);
-			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to click with JS: {0}", e.getMessage());
 		}
@@ -3665,7 +3680,7 @@ public class DashboardPage extends BasePage {
 			return false;
 		}
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		Object result = js.executeScript("var rect = arguments[0].getBoundingClientRect();"
+		Object result = Objects.requireNonNull(js).executeScript("var rect = arguments[0].getBoundingClientRect();"
 				+ "return (rect.top >= 0 && rect.left >= 0 && rect.bottom <= window.innerHeight && rect.right <= window.innerWidth);",
 				element);
 		return Boolean.TRUE.equals(result);
@@ -3884,7 +3899,7 @@ public class DashboardPage extends BasePage {
 
 	public String findEmptyCategory() {
 		try {
-			String originalUrl = driver.getCurrentUrl();
+			String originalUrl = Objects.requireNonNull(driver.getCurrentUrl());
 
 			List<WebElement> categories = driver.findElements(CATEGORY_ITEMS);
 
@@ -3918,8 +3933,8 @@ public class DashboardPage extends BasePage {
 			}
 
 			// safe URL comparison
-			String currentUrl = driver.getCurrentUrl();
-			if (originalUrl != null && !originalUrl.equals(currentUrl)) {
+			String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
+			if (!originalUrl.equals(currentUrl)) {
 				driver.navigate().back();
 			}
 
@@ -4047,19 +4062,21 @@ public class DashboardPage extends BasePage {
 			WebElement section = driver.findElement(CATEGORIES_SECTION);
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 
-			@SuppressWarnings("null")
-			Long initialScroll = ((Number) js.executeScript("return arguments[0].scrollLeft;", section)).longValue();
+			Object initialResult = js.executeScript("return arguments[0].scrollLeft;", section);
+
+			long initialScroll = initialResult instanceof Number ? ((Number) initialResult).longValue() : 0L;
 
 			js.executeScript("arguments[0].scrollLeft += 300;", section);
 
 			waitForMilliseconds(500);
 
-			@SuppressWarnings("null")
-			Long afterScroll = ((Number) js.executeScript("return arguments[0].scrollLeft;", section)).longValue();
+			Object afterResult = js.executeScript("return arguments[0].scrollLeft;", section);
+
+			long afterScroll = afterResult instanceof Number ? ((Number) afterResult).longValue() : 0L;
 
 			LOGGER.info("Categories horizontal scroll: " + initialScroll + " -> " + afterScroll);
 
-			return !afterScroll.equals(initialScroll);
+			return afterScroll != initialScroll;
 
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to scroll categories: {0}", e.getMessage());
@@ -4071,8 +4088,9 @@ public class DashboardPage extends BasePage {
 		try {
 			WebElement section = driver.findElement(CATEGORIES_SECTION);
 			JavascriptExecutor js = (JavascriptExecutor) driver;
-			Long scrollPos = (Long) js.executeScript("return arguments[0].scrollLeft;", section);
-			return scrollPos != null ? scrollPos : 0;
+			Number scrollPos = (Number) Objects.requireNonNull(js).executeScript("return arguments[0].scrollLeft;",
+					section);
+			return scrollPos != null ? scrollPos.longValue() : 0;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to get scroll position: {0}", e.getMessage());
 			return 0;
@@ -4396,13 +4414,15 @@ public class DashboardPage extends BasePage {
 			return null;
 		}
 		try {
-			Object candidate = ((JavascriptExecutor) driver).executeScript("let el = arguments[0];" + "while (el) {"
-					+ "  const rect = el.getBoundingClientRect();" + "  const style = window.getComputedStyle(el);"
-					+ "  const tabIndex = el.getAttribute('tabindex');"
-					+ "  const testId = el.getAttribute('data-testid') || '';"
-					+ "  const visible = rect.width > 0 && rect.height > 0 && style.display !== 'none' && style.visibility !== 'hidden';"
-					+ "  if (visible && (tabIndex !== null || testId.includes('trending') || testId.includes('card'))) {"
-					+ "    return el;" + "  }" + "  el = el.parentElement;" + "}" + "return null;", element);
+			Object candidate = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("let el = arguments[0];" + "while (el) {"
+							+ "  const rect = el.getBoundingClientRect();"
+							+ "  const style = window.getComputedStyle(el);"
+							+ "  const tabIndex = el.getAttribute('tabindex');"
+							+ "  const testId = el.getAttribute('data-testid') || '';"
+							+ "  const visible = rect.width > 0 && rect.height > 0 && style.display !== 'none' && style.visibility !== 'hidden';"
+							+ "  if (visible && (tabIndex !== null || testId.includes('trending') || testId.includes('card'))) {"
+							+ "    return el;" + "  }" + "  el = el.parentElement;" + "}" + "return null;", element);
 			return candidate instanceof WebElement ? (WebElement) candidate : null;
 		} catch (Exception e) {
 			return null;
@@ -4414,11 +4434,13 @@ public class DashboardPage extends BasePage {
 			return null;
 		}
 		try {
-			Object candidate = ((JavascriptExecutor) driver).executeScript("let el = arguments[0];" + "while (el) {"
-					+ "  const role = (el.getAttribute('role') || '').toLowerCase();"
-					+ "  const tabIndex = el.getAttribute('tabindex');"
-					+ "  if (el.tagName === 'A' || el.tagName === 'BUTTON' || role === 'button' || tabIndex !== null) {"
-					+ "    return el;" + "  }" + "  el = el.parentElement;" + "}" + "return arguments[0];", element);
+			Object candidate = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("let el = arguments[0];" + "while (el) {"
+							+ "  const role = (el.getAttribute('role') || '').toLowerCase();"
+							+ "  const tabIndex = el.getAttribute('tabindex');"
+							+ "  if (el.tagName === 'A' || el.tagName === 'BUTTON' || role === 'button' || tabIndex !== null) {"
+							+ "    return el;" + "  }" + "  el = el.parentElement;" + "}" + "return arguments[0];",
+							element);
 			return candidate instanceof WebElement ? (WebElement) candidate : element;
 		} catch (Exception e) {
 			return element;
@@ -5185,11 +5207,12 @@ public class DashboardPage extends BasePage {
 			for (int attempt = 0; attempt < 6; attempt++) {
 
 				@SuppressWarnings("null")
-				long currentHeight = ((Number) ((JavascriptExecutor) driver).executeScript(
+				long currentHeight = ((Number) Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 						"return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);"))
 						.longValue();
 
-				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, arguments[0]);", currentHeight);
+				Objects.requireNonNull((JavascriptExecutor) driver).executeScript("window.scrollTo(0, arguments[0]);",
+						currentHeight);
 
 				waitForMilliseconds(800);
 
@@ -5259,7 +5282,7 @@ public class DashboardPage extends BasePage {
 		String brokenPath = "/broken-footer-link-automation";
 		List<String> windowHandlesBeforeClick = new ArrayList<>(driver.getWindowHandles());
 		scrollIntoView(element);
-		((JavascriptExecutor) driver).executeScript("const el = arguments[0];"
+		Objects.requireNonNull((JavascriptExecutor) driver).executeScript("const el = arguments[0];"
 				+ "const brokenUrl = window.location.origin + arguments[1];"
 				+ "if (el.tagName === 'A') { el.setAttribute('href', brokenUrl); el.setAttribute('target', '_self'); }"
 				+ "el.onclick = function(event) {" + "  if (event) { event.preventDefault(); event.stopPropagation(); }"
@@ -5374,15 +5397,17 @@ public class DashboardPage extends BasePage {
 		}
 
 		try {
-			Object candidate = ((JavascriptExecutor) driver).executeScript("let current = arguments[0];"
-					+ "while (current) {" + "  const tag = (current.tagName || '').toLowerCase();"
-					+ "  const role = (current.getAttribute('role') || '').toLowerCase();"
-					+ "  const onclick = current.getAttribute('onclick');"
-					+ "  const href = current.getAttribute('href');"
-					+ "  const tabIndex = current.getAttribute('tabindex');"
-					+ "  if (tag === 'a' || tag === 'button' || role === 'button' || role === 'link'"
-					+ "      || onclick || href || (tabIndex !== null && tabIndex !== '-1')) {" + "    return current;"
-					+ "  }" + "  current = current.parentElement;" + "}" + "return null;", element);
+			Object candidate = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("let current = arguments[0];" + "while (current) {"
+							+ "  const tag = (current.tagName || '').toLowerCase();"
+							+ "  const role = (current.getAttribute('role') || '').toLowerCase();"
+							+ "  const onclick = current.getAttribute('onclick');"
+							+ "  const href = current.getAttribute('href');"
+							+ "  const tabIndex = current.getAttribute('tabindex');"
+							+ "  if (tag === 'a' || tag === 'button' || role === 'button' || role === 'link'"
+							+ "      || onclick || href || (tabIndex !== null && tabIndex !== '-1')) {"
+							+ "    return current;" + "  }" + "  current = current.parentElement;" + "}"
+							+ "return null;", element);
 
 			if (candidate instanceof WebElement webElement) {
 				try {
@@ -5446,10 +5471,11 @@ public class DashboardPage extends BasePage {
 		}
 
 		try {
-			Object candidate = ((JavascriptExecutor) driver).executeScript("let current = arguments[0];"
-					+ "while (current) {" + "  const testId = current.getAttribute('data-testid') || '';"
-					+ "  if (testId.startsWith('__CAROUSEL_ITEM_')) {" + "    return current;" + "  }"
-					+ "  current = current.parentElement;" + "}" + "return null;", element);
+			Object candidate = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("let current = arguments[0];" + "while (current) {"
+							+ "  const testId = current.getAttribute('data-testid') || '';"
+							+ "  if (testId.startsWith('__CAROUSEL_ITEM_')) {" + "    return current;" + "  }"
+							+ "  current = current.parentElement;" + "}" + "return null;", element);
 			return candidate instanceof WebElement webElement ? webElement : null;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Banner item container lookup failed: {0}", e.getMessage());
@@ -5463,19 +5489,20 @@ public class DashboardPage extends BasePage {
 		}
 
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript("const label = arguments[0].toLowerCase();"
-					+ "const nodes = Array.from(document.querySelectorAll('div,span,a')).filter(el => {"
-					+ "  const text = (el.textContent || '').trim().toLowerCase();"
-					+ "  const style = window.getComputedStyle(el);"
-					+ "  return text === label && style.display !== 'none' && style.visibility !== 'hidden';" + "});"
-					+ "for (const node of nodes) {" + "  let current = node.parentElement;"
-					+ "  for (let depth = 0; current && depth < 4; depth++, current = current.parentElement) {"
-					+ "    const texts = Array.from(current.querySelectorAll('div,span,a'))"
-					+ "      .map(el => (el.textContent || '').trim())" + "      .filter(Boolean);"
-					+ "    const candidate = texts.find(text => text.toLowerCase() !== label"
-					+ "      && text.toLowerCase() !== 'review' && text.toLowerCase() !== 'reviews'"
-					+ "      && text.toLowerCase() !== 'episodes' && text.toLowerCase() !== 'duration');"
-					+ "    if (candidate) return candidate;" + "  }" + "}" + "return '';", labelText);
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const label = arguments[0].toLowerCase();"
+							+ "const nodes = Array.from(document.querySelectorAll('div,span,a')).filter(el => {"
+							+ "  const text = (el.textContent || '').trim().toLowerCase();"
+							+ "  const style = window.getComputedStyle(el);"
+							+ "  return text === label && style.display !== 'none' && style.visibility !== 'hidden';"
+							+ "});" + "for (const node of nodes) {" + "  let current = node.parentElement;"
+							+ "  for (let depth = 0; current && depth < 4; depth++, current = current.parentElement) {"
+							+ "    const texts = Array.from(current.querySelectorAll('div,span,a'))"
+							+ "      .map(el => (el.textContent || '').trim())" + "      .filter(Boolean);"
+							+ "    const candidate = texts.find(text => text.toLowerCase() !== label"
+							+ "      && text.toLowerCase() !== 'review' && text.toLowerCase() !== 'reviews'"
+							+ "      && text.toLowerCase() !== 'episodes' && text.toLowerCase() !== 'duration');"
+							+ "    if (candidate) return candidate;" + "  }" + "}" + "return '';", labelText);
 
 			return result == null ? "" : result.toString().trim();
 		} catch (Exception e) {
@@ -5487,7 +5514,7 @@ public class DashboardPage extends BasePage {
 
 	private WebElement findShareButtonByShape() {
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript(
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 					"const candidates = Array.from(document.querySelectorAll('[tabindex=\"0\"]')).filter(el => {"
 							+ "  const rect = el.getBoundingClientRect();"
 							+ "  const style = window.getComputedStyle(el);"
@@ -5512,7 +5539,7 @@ public class DashboardPage extends BasePage {
 		}
 
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript(
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
 					"const candidates = Array.from(document.querySelectorAll('[tabindex=\"0\"],button,[role=\"button\"]'));"
 							+ "return candidates.find(el => {"
 							+ "  const text = ((el.textContent || '') + ' ' + (el.getAttribute('aria-label') || '') + ' ' + (el.getAttribute('data-testid') || '')).toLowerCase();"
@@ -5556,8 +5583,9 @@ public class DashboardPage extends BasePage {
 	}
 
 	private boolean isAudioPlayingInCurrentContext() {
-		Object result = ((JavascriptExecutor) driver).executeScript("const audio = document.querySelector('audio');"
-				+ "if (!audio) return false;" + "return !audio.paused || (!audio.ended && audio.currentTime > 0);");
+		Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+				.executeScript("const audio = document.querySelector('audio');" + "if (!audio) return false;"
+						+ "return !audio.paused || (!audio.ended && audio.currentTime > 0);");
 		return Boolean.TRUE.equals(result);
 	}
 
@@ -5595,14 +5623,15 @@ public class DashboardPage extends BasePage {
 	}
 
 	private String readCurrentAudioPositionInCurrentContext() {
-		Object result = ((JavascriptExecutor) driver).executeScript("const audio = document.querySelector('audio');"
-				+ "if (!audio || Number.isNaN(audio.currentTime)) return null;"
-				+ "const totalSeconds = Math.floor(audio.currentTime);"
-				+ "const hours = Math.floor(totalSeconds / 3600);"
-				+ "const minutes = Math.floor((totalSeconds % 3600) / 60);" + "const seconds = totalSeconds % 60;"
-				+ "if (hours > 0) {"
-				+ "  return String(hours).padStart(2,'0') + ':' + String(minutes).padStart(2,'0') + ':' + String(seconds).padStart(2,'0');"
-				+ "}" + "return String(minutes).padStart(2,'0') + ':' + String(seconds).padStart(2,'0');");
+		Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+				.executeScript("const audio = document.querySelector('audio');"
+						+ "if (!audio || Number.isNaN(audio.currentTime)) return null;"
+						+ "const totalSeconds = Math.floor(audio.currentTime);"
+						+ "const hours = Math.floor(totalSeconds / 3600);"
+						+ "const minutes = Math.floor((totalSeconds % 3600) / 60);"
+						+ "const seconds = totalSeconds % 60;" + "if (hours > 0) {"
+						+ "  return String(hours).padStart(2,'0') + ':' + String(minutes).padStart(2,'0') + ':' + String(seconds).padStart(2,'0');"
+						+ "}" + "return String(minutes).padStart(2,'0') + ':' + String(seconds).padStart(2,'0');");
 		return result == null ? "N/A" : result.toString();
 	}
 
@@ -5690,8 +5719,8 @@ public class DashboardPage extends BasePage {
 
 	private WebElement getCenterPointInteractionTarget(WebElement banner) {
 		try {
-			Object candidate = ((JavascriptExecutor) driver).executeScript(
-					"const rect = arguments[0].getBoundingClientRect();"
+			Object candidate = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const rect = arguments[0].getBoundingClientRect();"
 							+ "const x = Math.floor(rect.left + (rect.width / 2));"
 							+ "const y = Math.floor(rect.top + (rect.height / 2));"
 							+ "let el = document.elementFromPoint(x, y);" + "while (el) {"
@@ -5703,7 +5732,7 @@ public class DashboardPage extends BasePage {
 							+ "  if (tag === 'a' || tag === 'button' || role === 'button' || role === 'link'"
 							+ "      || href || onclick || (tabIndex !== null && tabIndex !== '-1')) {"
 							+ "    return el;" + "  }" + "  el = el.parentElement;" + "}" + "return arguments[0];",
-					banner);
+							banner);
 
 			return candidate instanceof WebElement webElement ? webElement : null;
 		} catch (Exception e) {
@@ -5714,10 +5743,10 @@ public class DashboardPage extends BasePage {
 
 	private void dispatchJavascriptClick(WebElement element) {
 		try {
-			((JavascriptExecutor) driver).executeScript(
-					"['pointerdown','mousedown','pointerup','mouseup','click'].forEach(type => "
+			Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("['pointerdown','mousedown','pointerup','mouseup','click'].forEach(type => "
 							+ "arguments[0].dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, view: window })));",
-					element);
+							element);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Synthetic banner click failed: {0}", e.getMessage());
 		}
@@ -5809,41 +5838,45 @@ public class DashboardPage extends BasePage {
 
 	private WebElement findSideMenuPanelByVisibleLabels() {
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript("const labels = arguments[0];"
-					+ "const uniqueMenuHints = ['80% off', 'transaction history', 'download apps', 'download app',"
-					+ "  'most favorite', 'most favourite', 'logout'];" + "const isVisible = (element) => {"
-					+ "  if (!element) return false;" + "  const style = window.getComputedStyle(element);"
-					+ "  const rect = element.getBoundingClientRect();"
-					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
-					+ "    && rect.width > 0 && rect.height > 0" + "    && rect.bottom > 0 && rect.right > 0"
-					+ "    && rect.top < (window.innerHeight || document.documentElement.clientHeight)"
-					+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);" + "};"
-					+ "const textOf = (element) => [element.innerText, element.textContent,"
-					+ "  element.getAttribute('aria-label'), element.getAttribute('data-testid'),"
-					+ "  element.getAttribute('class')].filter(Boolean).join(' ').toLowerCase();"
-					+ "const matches = (text) => labels.filter((label) => text.includes(label));"
-					+ "const candidates = Array.from(document.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span,nav,aside'))"
-					+ "  .filter(isVisible)" + "  .map((element) => ({ element, labels: matches(textOf(element)) }))"
-					+ "  .filter((entry) => entry.labels.length > 0);" + "if (!candidates.length) return null;"
-					+ "const scoreNode = (node) => {" + "  if (!node || !isVisible(node)) return null;"
-					+ "  const descendants = candidates.filter((entry) => node.contains(entry.element));"
-					+ "  if (!descendants.length) return null;" + "  const labelSet = new Set();"
-					+ "  descendants.forEach((entry) => entry.labels.forEach((label) => labelSet.add(label)));"
-					+ "  const uniqueHintHits = Array.from(labelSet).filter((label) => uniqueMenuHints.includes(label)).length;"
-					+ "  const nodeText = textOf(node);"
-					+ "  const semanticBonus = node.tagName === 'NAV' || node.tagName === 'ASIDE'"
-					+ "    || nodeText.includes('menu') || nodeText.includes('drawer')"
-					+ "    || nodeText.includes('sidebar') || nodeText.includes('navigation') ? 1 : 0;" + "  return {"
-					+ "    node," + "    distinctLabels: labelSet.size," + "    uniqueHintHits," + "    semanticBonus,"
-					+ "    depth: descendants.length" + "  };" + "};" + "const scored = [];"
-					+ "for (const candidate of candidates) {" + "  let current = candidate.element;" + "  let hops = 0;"
-					+ "  while (current && hops < 7) {" + "    const score = scoreNode(current);"
-					+ "    if (score && (score.distinctLabels >= 3 || (score.distinctLabels >= 2 && score.uniqueHintHits >= 1))) {"
-					+ "      scored.push(score);" + "    }" + "    current = current.parentElement;" + "    hops++;"
-					+ "  }" + "}" + "scored.sort((left, right) => right.distinctLabels - left.distinctLabels"
-					+ "  || right.uniqueHintHits - left.uniqueHintHits"
-					+ "  || right.semanticBonus - left.semanticBonus" + "  || right.depth - left.depth);"
-					+ "return scored.length ? scored[0].node : null;", Arrays.asList(PRIMARY_SIDE_MENU_LABELS));
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const labels = arguments[0];"
+							+ "const uniqueMenuHints = ['80% off', 'transaction history', 'download apps', 'download app',"
+							+ "  'most favorite', 'most favourite', 'logout'];" + "const isVisible = (element) => {"
+							+ "  if (!element) return false;" + "  const style = window.getComputedStyle(element);"
+							+ "  const rect = element.getBoundingClientRect();"
+							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+							+ "    && rect.width > 0 && rect.height > 0" + "    && rect.bottom > 0 && rect.right > 0"
+							+ "    && rect.top < (window.innerHeight || document.documentElement.clientHeight)"
+							+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);" + "};"
+							+ "const textOf = (element) => [element.innerText, element.textContent,"
+							+ "  element.getAttribute('aria-label'), element.getAttribute('data-testid'),"
+							+ "  element.getAttribute('class')].filter(Boolean).join(' ').toLowerCase();"
+							+ "const matches = (text) => labels.filter((label) => text.includes(label));"
+							+ "const candidates = Array.from(document.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span,nav,aside'))"
+							+ "  .filter(isVisible)"
+							+ "  .map((element) => ({ element, labels: matches(textOf(element)) }))"
+							+ "  .filter((entry) => entry.labels.length > 0);" + "if (!candidates.length) return null;"
+							+ "const scoreNode = (node) => {" + "  if (!node || !isVisible(node)) return null;"
+							+ "  const descendants = candidates.filter((entry) => node.contains(entry.element));"
+							+ "  if (!descendants.length) return null;" + "  const labelSet = new Set();"
+							+ "  descendants.forEach((entry) => entry.labels.forEach((label) => labelSet.add(label)));"
+							+ "  const uniqueHintHits = Array.from(labelSet).filter((label) => uniqueMenuHints.includes(label)).length;"
+							+ "  const nodeText = textOf(node);"
+							+ "  const semanticBonus = node.tagName === 'NAV' || node.tagName === 'ASIDE'"
+							+ "    || nodeText.includes('menu') || nodeText.includes('drawer')"
+							+ "    || nodeText.includes('sidebar') || nodeText.includes('navigation') ? 1 : 0;"
+							+ "  return {" + "    node," + "    distinctLabels: labelSet.size," + "    uniqueHintHits,"
+							+ "    semanticBonus," + "    depth: descendants.length" + "  };" + "};"
+							+ "const scored = [];" + "for (const candidate of candidates) {"
+							+ "  let current = candidate.element;" + "  let hops = 0;"
+							+ "  while (current && hops < 7) {" + "    const score = scoreNode(current);"
+							+ "    if (score && (score.distinctLabels >= 3 || (score.distinctLabels >= 2 && score.uniqueHintHits >= 1))) {"
+							+ "      scored.push(score);" + "    }" + "    current = current.parentElement;"
+							+ "    hops++;" + "  }" + "}"
+							+ "scored.sort((left, right) => right.distinctLabels - left.distinctLabels"
+							+ "  || right.uniqueHintHits - left.uniqueHintHits"
+							+ "  || right.semanticBonus - left.semanticBonus" + "  || right.depth - left.depth);"
+							+ "return scored.length ? scored[0].node : null;", Arrays.asList(PRIMARY_SIDE_MENU_LABELS));
 
 			return result instanceof WebElement ? (WebElement) result : null;
 		} catch (Exception e) {
@@ -5862,36 +5895,36 @@ public class DashboardPage extends BasePage {
 				}
 			}
 
-			Object result = ((JavascriptExecutor) driver).executeScript("const labels = arguments[0];"
-					+ "const isVisible = (element) => {" + "  if (!element) return false;"
-					+ "  const style = window.getComputedStyle(element);"
-					+ "  const rect = element.getBoundingClientRect();"
-					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
-					+ "    && rect.width > 0 && rect.height > 0" + "    && rect.bottom > 0 && rect.right > 0"
-					+ "    && rect.top < (window.innerHeight || document.documentElement.clientHeight)"
-					+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);" + "};"
-					+ "const metaText = (element) => [element.innerText, element.textContent,"
-					+ "  element.getAttribute('aria-label'), element.getAttribute('data-testid'),"
-					+ "  element.getAttribute('class')].filter(Boolean).join(' ').toLowerCase();"
-					+ "const score = (element) => {" + "  const text = metaText(element);"
-					+ "  return labels.reduce((sum, label) => sum + (text.includes(label) ? 1 : 0), 0);" + "};"
-					+ "const selectors = ['nav', '[role=\"navigation\"]', '[role=\"menu\"]',"
-					+ "  '[class*=\"menu\"]', '[class*=\"drawer\"]', '[class*=\"sidebar\"]',"
-					+ "  '[data-testid*=\"menu\"]', '[data-testid*=\"drawer\"]', '[data-testid*=\"sidebar\"]'];"
-					+ "const candidates = Array.from(document.querySelectorAll(selectors.join(',')))"
-					+ "  .filter(isVisible)" + "  .filter((element) => score(element) > 0)"
-					+ "  .sort((left, right) => score(right) - score(left));"
-					+ "if (candidates.length) return candidates[0];" + "const menuAncestor = (element) => {"
-					+ "  let current = element;" + "  while (current) {" + "    const text = metaText(current);"
-					+ "    if (current.tagName === 'NAV' || text.includes('menu') || text.includes('drawer')"
-					+ "      || text.includes('sidebar') || text.includes('navigation')) {"
-					+ "      return isVisible(current) ? current : null;" + "    }"
-					+ "    current = current.parentElement;" + "  }" + "  return null;" + "};"
-					+ "const matches = Array.from(document.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span'))"
-					+ "  .filter(isVisible)" + "  .filter((element) => score(element) > 0);"
-					+ "for (const match of matches) {" + "  const ancestor = menuAncestor(match);"
-					+ "  if (ancestor) return ancestor;" + "}" + "return null;",
-					Arrays.asList(PRIMARY_SIDE_MENU_LABELS));
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const labels = arguments[0];" + "const isVisible = (element) => {"
+							+ "  if (!element) return false;" + "  const style = window.getComputedStyle(element);"
+							+ "  const rect = element.getBoundingClientRect();"
+							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+							+ "    && rect.width > 0 && rect.height > 0" + "    && rect.bottom > 0 && rect.right > 0"
+							+ "    && rect.top < (window.innerHeight || document.documentElement.clientHeight)"
+							+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);" + "};"
+							+ "const metaText = (element) => [element.innerText, element.textContent,"
+							+ "  element.getAttribute('aria-label'), element.getAttribute('data-testid'),"
+							+ "  element.getAttribute('class')].filter(Boolean).join(' ').toLowerCase();"
+							+ "const score = (element) => {" + "  const text = metaText(element);"
+							+ "  return labels.reduce((sum, label) => sum + (text.includes(label) ? 1 : 0), 0);" + "};"
+							+ "const selectors = ['nav', '[role=\"navigation\"]', '[role=\"menu\"]',"
+							+ "  '[class*=\"menu\"]', '[class*=\"drawer\"]', '[class*=\"sidebar\"]',"
+							+ "  '[data-testid*=\"menu\"]', '[data-testid*=\"drawer\"]', '[data-testid*=\"sidebar\"]'];"
+							+ "const candidates = Array.from(document.querySelectorAll(selectors.join(',')))"
+							+ "  .filter(isVisible)" + "  .filter((element) => score(element) > 0)"
+							+ "  .sort((left, right) => score(right) - score(left));"
+							+ "if (candidates.length) return candidates[0];" + "const menuAncestor = (element) => {"
+							+ "  let current = element;" + "  while (current) {" + "    const text = metaText(current);"
+							+ "    if (current.tagName === 'NAV' || text.includes('menu') || text.includes('drawer')"
+							+ "      || text.includes('sidebar') || text.includes('navigation')) {"
+							+ "      return isVisible(current) ? current : null;" + "    }"
+							+ "    current = current.parentElement;" + "  }" + "  return null;" + "};"
+							+ "const matches = Array.from(document.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span'))"
+							+ "  .filter(isVisible)" + "  .filter((element) => score(element) > 0);"
+							+ "for (const match of matches) {" + "  const ancestor = menuAncestor(match);"
+							+ "  if (ancestor) return ancestor;" + "}" + "return null;",
+							Arrays.asList(PRIMARY_SIDE_MENU_LABELS));
 
 			if (result instanceof WebElement) {
 				return (WebElement) result;
@@ -5924,32 +5957,35 @@ public class DashboardPage extends BasePage {
 			if (menuPanel == null) {
 				return null;
 			}
-			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
-					+ "const labels = arguments[1];" + "const isVisible = (element) => {"
-					+ "  if (!element) return false;" + "  const style = window.getComputedStyle(element);"
-					+ "  const rect = element.getBoundingClientRect();"
-					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
-					+ "    && rect.width > 0 && rect.height > 0" + "    && rect.bottom > 0 && rect.right > 0"
-					+ "    && rect.top < (window.innerHeight || document.documentElement.clientHeight)"
-					+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);" + "};"
-					+ "const textOf = (element) => [element.innerText, element.textContent,"
-					+ "  element.getAttribute('aria-label'), element.getAttribute('href'),"
-					+ "  element.getAttribute('data-testid'), element.getAttribute('class')]"
-					+ "  .filter(Boolean).join(' ').toLowerCase();" + "const matches = (element) => {"
-					+ "  const text = textOf(element);" + "  return labels.some((label) => text.includes(label));"
-					+ "};" + "const menuLike = (element) => {" + "  let current = element;" + "  while (current) {"
-					+ "    const text = textOf(current);"
-					+ "    if (current.tagName === 'NAV' || text.includes('menu') || text.includes('drawer')"
-					+ "      || text.includes('sidebar') || text.includes('navigation')) {" + "      return true;"
-					+ "    }" + "    current = current.parentElement;" + "  }" + "  return false;" + "};"
-					+ "const isClickable = (element) => element.tagName === 'A' || element.tagName === 'BUTTON'"
-					+ "  || element.getAttribute('role') === 'button' || element.getAttribute('role') === 'link'"
-					+ "  || element.hasAttribute('href') || element.hasAttribute('tabindex') || typeof element.onclick === 'function';"
-					+ "const candidates = Array.from(root.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span'))"
-					+ "  .filter(isVisible)" + "  .filter(matches);" + "candidates.sort((left, right) => {"
-					+ "  const leftScore = (menuLike(left) ? 100 : 0) + (isClickable(left) ? 10 : 0) + textOf(left).length;"
-					+ "  const rightScore = (menuLike(right) ? 100 : 0) + (isClickable(right) ? 10 : 0) + textOf(right).length;"
-					+ "  return rightScore - leftScore;" + "});" + "return candidates[0] || null;", menuPanel, labels);
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
+					"const root = arguments[0];" + "const labels = arguments[1];" + "const isVisible = (element) => {"
+							+ "  if (!element) return false;" + "  const style = window.getComputedStyle(element);"
+							+ "  const rect = element.getBoundingClientRect();"
+							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+							+ "    && rect.width > 0 && rect.height > 0" + "    && rect.bottom > 0 && rect.right > 0"
+							+ "    && rect.top < (window.innerHeight || document.documentElement.clientHeight)"
+							+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);" + "};"
+							+ "const textOf = (element) => [element.innerText, element.textContent,"
+							+ "  element.getAttribute('aria-label'), element.getAttribute('href'),"
+							+ "  element.getAttribute('data-testid'), element.getAttribute('class')]"
+							+ "  .filter(Boolean).join(' ').toLowerCase();" + "const matches = (element) => {"
+							+ "  const text = textOf(element);"
+							+ "  return labels.some((label) => text.includes(label));" + "};"
+							+ "const menuLike = (element) => {" + "  let current = element;" + "  while (current) {"
+							+ "    const text = textOf(current);"
+							+ "    if (current.tagName === 'NAV' || text.includes('menu') || text.includes('drawer')"
+							+ "      || text.includes('sidebar') || text.includes('navigation')) {"
+							+ "      return true;" + "    }" + "    current = current.parentElement;" + "  }"
+							+ "  return false;" + "};"
+							+ "const isClickable = (element) => element.tagName === 'A' || element.tagName === 'BUTTON'"
+							+ "  || element.getAttribute('role') === 'button' || element.getAttribute('role') === 'link'"
+							+ "  || element.hasAttribute('href') || element.hasAttribute('tabindex') || typeof element.onclick === 'function';"
+							+ "const candidates = Array.from(root.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span'))"
+							+ "  .filter(isVisible)" + "  .filter(matches);" + "candidates.sort((left, right) => {"
+							+ "  const leftScore = (menuLike(left) ? 100 : 0) + (isClickable(left) ? 10 : 0) + textOf(left).length;"
+							+ "  const rightScore = (menuLike(right) ? 100 : 0) + (isClickable(right) ? 10 : 0) + textOf(right).length;"
+							+ "  return rightScore - leftScore;" + "});" + "return candidates[0] || null;",
+					menuPanel, labels);
 
 			return result instanceof WebElement ? (WebElement) result : null;
 		} catch (Exception e) {
@@ -5966,17 +6002,18 @@ public class DashboardPage extends BasePage {
 			if (menuPanel == null) {
 				return names;
 			}
-			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
-					+ "const isVisible = (element) => {" + "  if (!element) return false;"
-					+ "  const style = window.getComputedStyle(element);"
-					+ "  const rect = element.getBoundingClientRect();"
-					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
-					+ "    && rect.width > 0 && rect.height > 0;" + "};"
-					+ "const textOf = (element) => (element.innerText || element.textContent || '').trim();"
-					+ "const values = Array.from(root.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span'))"
-					+ "  .filter(isVisible)" + "  .map(textOf)" + "  .map((text) => text.replace(/\\s+/g, ' ').trim())"
-					+ "  .filter((text) => text.length > 0 && text.length <= 80);"
-					+ "return Array.from(new Set(values)).slice(0, 25);", menuPanel);
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const root = arguments[0];" + "const isVisible = (element) => {"
+							+ "  if (!element) return false;" + "  const style = window.getComputedStyle(element);"
+							+ "  const rect = element.getBoundingClientRect();"
+							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+							+ "    && rect.width > 0 && rect.height > 0;" + "};"
+							+ "const textOf = (element) => (element.innerText || element.textContent || '').trim();"
+							+ "const values = Array.from(root.querySelectorAll('a,button,[role=\"button\"],[role=\"link\"],[tabindex],div,span'))"
+							+ "  .filter(isVisible)" + "  .map(textOf)"
+							+ "  .map((text) => text.replace(/\\s+/g, ' ').trim())"
+							+ "  .filter((text) => text.length > 0 && text.length <= 80);"
+							+ "return Array.from(new Set(values)).slice(0, 25);", menuPanel);
 			if (result instanceof List<?>) {
 				for (Object item : (List<?>) result) {
 					if (item != null) {
@@ -5992,12 +6029,13 @@ public class DashboardPage extends BasePage {
 
 	private WebElement resolveSideMenuClickableTarget(WebElement element) {
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript("let current = arguments[0];"
-					+ "while (current) {" + "  if (current.tagName === 'A' || current.tagName === 'BUTTON'"
-					+ "    || current.getAttribute('role') === 'button' || current.getAttribute('role') === 'link'"
-					+ "    || current.hasAttribute('href') || current.hasAttribute('tabindex')) {"
-					+ "    return current;" + "  }" + "  current = current.parentElement;" + "}"
-					+ "return arguments[0];", element);
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("let current = arguments[0];" + "while (current) {"
+							+ "  if (current.tagName === 'A' || current.tagName === 'BUTTON'"
+							+ "    || current.getAttribute('role') === 'button' || current.getAttribute('role') === 'link'"
+							+ "    || current.hasAttribute('href') || current.hasAttribute('tabindex')) {"
+							+ "    return current;" + "  }" + "  current = current.parentElement;" + "}"
+							+ "return arguments[0];", element);
 			return result instanceof WebElement ? (WebElement) result : element;
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to resolve clickable side menu target: {0}", e.getMessage());
@@ -6012,31 +6050,31 @@ public class DashboardPage extends BasePage {
 				return findCloseButtonWithinSideMenu();
 			}
 
-			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
-					+ "const isVisible = (element) => {" + "  if (!element) return false;"
-					+ "  const style = window.getComputedStyle(element);"
-					+ "  const rect = element.getBoundingClientRect();"
-					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
-					+ "    && rect.width > 0 && rect.height > 0" + "    && rect.bottom > 0 && rect.right > 0"
-					+ "    && rect.top < (window.innerHeight || document.documentElement.clientHeight)"
-					+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);" + "};"
-					+ "const clickableAncestor = (element) => {" + "  let current = element;"
-					+ "  while (current && current !== root.parentElement) {"
-					+ "    if (current.tagName === 'A' || current.tagName === 'BUTTON'"
-					+ "      || current.getAttribute('role') === 'button' || current.hasAttribute('tabindex')"
-					+ "      || typeof current.onclick === 'function') {" + "      return current;" + "    }"
-					+ "    current = current.parentElement;" + "  }" + "  return null;" + "};"
-					+ "const candidates = Array.from(root.querySelectorAll('button,[role=\"button\"],[tabindex],img,div,span'))"
-					+ "  .filter(isVisible)" + "  .map((element) => clickableAncestor(element) || element)"
-					+ "  .filter((element, index, array) => array.indexOf(element) === index)"
-					+ "  .filter((element) => !root.contains(element) || element !== root);"
-					+ "candidates.sort((left, right) => {" + "  const leftRect = left.getBoundingClientRect();"
-					+ "  const rightRect = right.getBoundingClientRect();"
-					+ "  return rightRect.left - leftRect.left || leftRect.top - rightRect.top;" + "});"
-					+ "for (const candidate of candidates) {" + "  if (!isVisible(candidate)) continue;"
-					+ "  const rect = candidate.getBoundingClientRect();"
-					+ "  if (rect.width < 16 || rect.height < 16) continue;" + "  return candidate;" + "}"
-					+ "return null;", sidebarHeader);
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const root = arguments[0];" + "const isVisible = (element) => {"
+							+ "  if (!element) return false;" + "  const style = window.getComputedStyle(element);"
+							+ "  const rect = element.getBoundingClientRect();"
+							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+							+ "    && rect.width > 0 && rect.height > 0" + "    && rect.bottom > 0 && rect.right > 0"
+							+ "    && rect.top < (window.innerHeight || document.documentElement.clientHeight)"
+							+ "    && rect.left < (window.innerWidth || document.documentElement.clientWidth);" + "};"
+							+ "const clickableAncestor = (element) => {" + "  let current = element;"
+							+ "  while (current && current !== root.parentElement) {"
+							+ "    if (current.tagName === 'A' || current.tagName === 'BUTTON'"
+							+ "      || current.getAttribute('role') === 'button' || current.hasAttribute('tabindex')"
+							+ "      || typeof current.onclick === 'function') {" + "      return current;" + "    }"
+							+ "    current = current.parentElement;" + "  }" + "  return null;" + "};"
+							+ "const candidates = Array.from(root.querySelectorAll('button,[role=\"button\"],[tabindex],img,div,span'))"
+							+ "  .filter(isVisible)" + "  .map((element) => clickableAncestor(element) || element)"
+							+ "  .filter((element, index, array) => array.indexOf(element) === index)"
+							+ "  .filter((element) => !root.contains(element) || element !== root);"
+							+ "candidates.sort((left, right) => {" + "  const leftRect = left.getBoundingClientRect();"
+							+ "  const rightRect = right.getBoundingClientRect();"
+							+ "  return rightRect.left - leftRect.left || leftRect.top - rightRect.top;" + "});"
+							+ "for (const candidate of candidates) {" + "  if (!isVisible(candidate)) continue;"
+							+ "  const rect = candidate.getBoundingClientRect();"
+							+ "  if (rect.width < 16 || rect.height < 16) continue;" + "  return candidate;" + "}"
+							+ "return null;", sidebarHeader);
 
 			if (result instanceof WebElement) {
 				return (WebElement) result;
@@ -6056,21 +6094,21 @@ public class DashboardPage extends BasePage {
 				return null;
 			}
 
-			Object result = ((JavascriptExecutor) driver).executeScript("const root = arguments[0];"
-					+ "const isVisible = (element) => {" + "  if (!element) return false;"
-					+ "  const style = window.getComputedStyle(element);"
-					+ "  const rect = element.getBoundingClientRect();"
-					+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
-					+ "    && rect.width > 0 && rect.height > 0;" + "};"
-					+ "const textOf = (element) => [element.innerText, element.textContent, element.getAttribute('aria-label'),"
-					+ "  element.getAttribute('data-testid'), element.getAttribute('class')]"
-					+ "  .filter(Boolean).join(' ').toLowerCase();"
-					+ "const candidates = Array.from(root.querySelectorAll('button,[role=\"button\"],[tabindex],img,div,span'))"
-					+ "  .filter(isVisible);" + "for (const candidate of candidates) {"
-					+ "  const text = textOf(candidate);"
-					+ "  if (text.includes('close') || text.includes('back') || text.includes('dismiss')"
-					+ "      || text.includes('cancel') || text.includes('arrow-left') || text.includes('chevron-left')) {"
-					+ "    return candidate;" + "  }" + "}" + "return null;", menuPanel);
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const root = arguments[0];" + "const isVisible = (element) => {"
+							+ "  if (!element) return false;" + "  const style = window.getComputedStyle(element);"
+							+ "  const rect = element.getBoundingClientRect();"
+							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
+							+ "    && rect.width > 0 && rect.height > 0;" + "};"
+							+ "const textOf = (element) => [element.innerText, element.textContent, element.getAttribute('aria-label'),"
+							+ "  element.getAttribute('data-testid'), element.getAttribute('class')]"
+							+ "  .filter(Boolean).join(' ').toLowerCase();"
+							+ "const candidates = Array.from(root.querySelectorAll('button,[role=\"button\"],[tabindex],img,div,span'))"
+							+ "  .filter(isVisible);" + "for (const candidate of candidates) {"
+							+ "  const text = textOf(candidate);"
+							+ "  if (text.includes('close') || text.includes('back') || text.includes('dismiss')"
+							+ "      || text.includes('cancel') || text.includes('arrow-left') || text.includes('chevron-left')) {"
+							+ "    return candidate;" + "  }" + "}" + "return null;", menuPanel);
 
 			return result instanceof WebElement ? (WebElement) result : null;
 		} catch (Exception e) {
@@ -6082,20 +6120,20 @@ public class DashboardPage extends BasePage {
 	private WebElement findHamburgerToggleOutsideSideMenu() {
 		try {
 			WebElement menuPanel = findVisibleSideMenuPanel();
-			Object result = ((JavascriptExecutor) driver).executeScript(
-					"const panel = arguments[0];" + "const selectors = [" + "\"button[aria-label='Menu']\","
-							+ "\"button[aria-label='menu']\"," + "\"button[aria-label='Open menu']\","
-							+ "\"[role='button'][aria-label='Menu']\"," + "\"[role='button'][aria-label='menu']\","
-							+ "\"img[src*='ic_menu']\"," + "\"header [class*='menu']\"," + "\"header [src*='menu']\""
-							+ "];" + "const isVisible = (element) => {" + "  if (!element) return false;"
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const panel = arguments[0];" + "const selectors = ["
+							+ "\"button[aria-label='Menu']\"," + "\"button[aria-label='menu']\","
+							+ "\"button[aria-label='Open menu']\"," + "\"[role='button'][aria-label='Menu']\","
+							+ "\"[role='button'][aria-label='menu']\"," + "\"img[src*='ic_menu']\","
+							+ "\"header [class*='menu']\"," + "\"header [src*='menu']\"" + "];"
+							+ "const isVisible = (element) => {" + "  if (!element) return false;"
 							+ "  const style = window.getComputedStyle(element);"
 							+ "  const rect = element.getBoundingClientRect();"
 							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
 							+ "    && rect.width > 0 && rect.height > 0;" + "};" + "for (const selector of selectors) {"
 							+ "  const elements = Array.from(document.querySelectorAll(selector))"
 							+ "    .filter(isVisible)" + "    .filter((element) => !panel || !panel.contains(element));"
-							+ "  if (elements.length) return elements[0];" + "}" + "return null;",
-					menuPanel);
+							+ "  if (elements.length) return elements[0];" + "}" + "return null;", menuPanel);
 
 			return result instanceof WebElement ? (WebElement) result : findFirstVisibleElement(HAMBURGER_MENU);
 		} catch (Exception e) {
@@ -6129,16 +6167,17 @@ public class DashboardPage extends BasePage {
 
 		try {
 			WebElement menuPanel = findVisibleSideMenuPanel();
-			Object clicked = ((JavascriptExecutor) driver).executeScript("const panel = arguments[0];"
-					+ "if (!panel) return false;" + "const rect = panel.getBoundingClientRect();"
-					+ "const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 0;"
-					+ "const x = Math.min(Math.max(5, Math.floor(rect.right + 20)), Math.max(5, viewportWidth - 5));"
-					+ "const y = Math.max(5, Math.floor(rect.top + Math.min(rect.height / 2, 200)));"
-					+ "const target = document.elementFromPoint(x, y) || document.body;"
-					+ "if (typeof target.click === 'function') { target.click(); return true; }"
-					+ "['pointerdown','mousedown','mouseup','click'].forEach((type) => {"
-					+ "  target.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, clientX: x, clientY: y }));"
-					+ "});" + "return true;", menuPanel);
+			Object clicked = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const panel = arguments[0];" + "if (!panel) return false;"
+							+ "const rect = panel.getBoundingClientRect();"
+							+ "const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 0;"
+							+ "const x = Math.min(Math.max(5, Math.floor(rect.right + 20)), Math.max(5, viewportWidth - 5));"
+							+ "const y = Math.max(5, Math.floor(rect.top + Math.min(rect.height / 2, 200)));"
+							+ "const target = document.elementFromPoint(x, y) || document.body;"
+							+ "if (typeof target.click === 'function') { target.click(); return true; }"
+							+ "['pointerdown','mousedown','mouseup','click'].forEach((type) => {"
+							+ "  target.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, clientX: x, clientY: y }));"
+							+ "});" + "return true;", menuPanel);
 			return Boolean.TRUE.equals(clicked);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "JavaScript outside side menu click fallback failed: {0}", e.getMessage());
@@ -6148,10 +6187,10 @@ public class DashboardPage extends BasePage {
 
 	private WebElement resolveSideMenuContainerFromHeader(WebElement headerElement) {
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript(
-					"const header = arguments[0];" + "if (!header) return null;" + "const labels = arguments[1];"
-							+ "const isVisible = (element) => {" + "  if (!element) return false;"
-							+ "  const style = window.getComputedStyle(element);"
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const header = arguments[0];" + "if (!header) return null;"
+							+ "const labels = arguments[1];" + "const isVisible = (element) => {"
+							+ "  if (!element) return false;" + "  const style = window.getComputedStyle(element);"
 							+ "  const rect = element.getBoundingClientRect();"
 							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
 							+ "    && rect.width > 0 && rect.height > 0;" + "};"
@@ -6164,8 +6203,8 @@ public class DashboardPage extends BasePage {
 							+ "    const rect = current.getBoundingClientRect();"
 							+ "    if (labelHits >= 3 || (rect.width >= 220 && rect.height >= 300)) {"
 							+ "      return current;" + "    }" + "  }" + "  current = current.parentElement;"
-							+ "  hops++;" + "}" + "return header.parentElement || header;",
-					headerElement, Arrays.asList(PRIMARY_SIDE_MENU_LABELS));
+							+ "  hops++;" + "}" + "return header.parentElement || header;", headerElement,
+							Arrays.asList(PRIMARY_SIDE_MENU_LABELS));
 
 			return result instanceof WebElement ? (WebElement) result : headerElement;
 		} catch (Exception e) {
@@ -6190,12 +6229,13 @@ public class DashboardPage extends BasePage {
 
 		try {
 			WebElement menuPanel = preferOutsideSideMenu ? findVisibleSideMenuPanel() : null;
-			Object clicked = ((JavascriptExecutor) driver).executeScript(
-					"const panel = arguments[0];" + "const selectors = [" + "\"button[aria-label='Menu']\","
-							+ "\"button[aria-label='menu']\"," + "\"button[aria-label='Open menu']\","
-							+ "\"[role='button'][aria-label='Menu']\"," + "\"[role='button'][aria-label='menu']\","
-							+ "\"img[src*='ic_menu']\"," + "\"header [class*='menu']\"," + "\"header [src*='menu']\""
-							+ "];" + "const isRenderable = (element) => {" + "  if (!element) return false;"
+			Object clicked = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const panel = arguments[0];" + "const selectors = ["
+							+ "\"button[aria-label='Menu']\"," + "\"button[aria-label='menu']\","
+							+ "\"button[aria-label='Open menu']\"," + "\"[role='button'][aria-label='Menu']\","
+							+ "\"[role='button'][aria-label='menu']\"," + "\"img[src*='ic_menu']\","
+							+ "\"header [class*='menu']\"," + "\"header [src*='menu']\"" + "];"
+							+ "const isRenderable = (element) => {" + "  if (!element) return false;"
 							+ "  const style = window.getComputedStyle(element);"
 							+ "  const rect = element.getBoundingClientRect();"
 							+ "  return style && style.display !== 'none' && style.visibility !== 'hidden'"
@@ -6203,8 +6243,7 @@ public class DashboardPage extends BasePage {
 							+ "  const elements = Array.from(document.querySelectorAll(selector)).filter(isRenderable)"
 							+ "    .filter((element) => !panel || !panel.contains(element));"
 							+ "  if (!elements.length) continue;" + "  const target = elements[0];"
-							+ "  target.click();" + "  return true;" + "}" + "return false;",
-					menuPanel);
+							+ "  target.click();" + "  return true;" + "}" + "return false;", menuPanel);
 			if (Boolean.TRUE.equals(clicked)) {
 				LOGGER.info("Hamburger menu toggle clicked via JavaScript fallback");
 				return true;
@@ -6346,7 +6385,7 @@ public class DashboardPage extends BasePage {
 
 	private void scrollToPageTop() {
 		try {
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
+			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
 			waitForMilliseconds(500);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, "Failed to scroll to page top: {0}", e.getMessage());
@@ -6357,25 +6396,27 @@ public class DashboardPage extends BasePage {
 		try {
 			scrollToPageTop();
 
-			Object navigationTriggered = ((JavascriptExecutor) driver).executeScript("const selectors = ["
-					+ "'header a[href=\"/\"]'," + "'header a[href*=\"home\"]'," + "'header a[href*=\"dashboard\"]',"
-					+ "'a[href=\"/\"]'," + "'a[href*=\"home\"]'," + "'a[href*=\"dashboard\"]'," + "'header img',"
-					+ "'img[alt*=\"logo\" i]'," + "'img[src*=\"logo\" i]'" + "];" + "const isVisible = (element) => {"
-					+ "  if (!element) return false;" + "  const rect = element.getBoundingClientRect();"
-					+ "  return rect.width > 0 && rect.height > 0;" + "};" + "const clickableAncestor = (element) => {"
-					+ "  let current = element;" + "  while (current) {"
-					+ "    if (current.tagName === 'A' || current.tagName === 'BUTTON' || current.onclick || current.getAttribute('role') === 'button') {"
-					+ "      return current;" + "    }" + "    current = current.parentElement;" + "  }"
-					+ "  return element;" + "};" + "for (const selector of selectors) {"
-					+ "  const elements = Array.from(document.querySelectorAll(selector)).filter(isVisible);"
-					+ "  elements.sort((a, b) => {" + "    const rectA = a.getBoundingClientRect();"
-					+ "    const rectB = b.getBoundingClientRect();"
-					+ "    return rectA.top - rectB.top || rectA.left - rectB.left;" + "  });"
-					+ "  for (const element of elements) {" + "    const target = clickableAncestor(element);"
-					+ "    if (!target) continue;" + "    const href = target.getAttribute('href');"
-					+ "    if (href && (href === '/' || href.includes('home') || href.includes('dashboard'))) {"
-					+ "      window.location.href = href;" + "      return true;" + "    }" + "    target.click();"
-					+ "    return true;" + "  }" + "}" + "return false;");
+			Object navigationTriggered = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("const selectors = [" + "'header a[href=\"/\"]'," + "'header a[href*=\"home\"]',"
+							+ "'header a[href*=\"dashboard\"]'," + "'a[href=\"/\"]'," + "'a[href*=\"home\"]',"
+							+ "'a[href*=\"dashboard\"]'," + "'header img'," + "'img[alt*=\"logo\" i]',"
+							+ "'img[src*=\"logo\" i]'" + "];" + "const isVisible = (element) => {"
+							+ "  if (!element) return false;" + "  const rect = element.getBoundingClientRect();"
+							+ "  return rect.width > 0 && rect.height > 0;" + "};"
+							+ "const clickableAncestor = (element) => {" + "  let current = element;"
+							+ "  while (current) {"
+							+ "    if (current.tagName === 'A' || current.tagName === 'BUTTON' || current.onclick || current.getAttribute('role') === 'button') {"
+							+ "      return current;" + "    }" + "    current = current.parentElement;" + "  }"
+							+ "  return element;" + "};" + "for (const selector of selectors) {"
+							+ "  const elements = Array.from(document.querySelectorAll(selector)).filter(isVisible);"
+							+ "  elements.sort((a, b) => {" + "    const rectA = a.getBoundingClientRect();"
+							+ "    const rectB = b.getBoundingClientRect();"
+							+ "    return rectA.top - rectB.top || rectA.left - rectB.left;" + "  });"
+							+ "  for (const element of elements) {" + "    const target = clickableAncestor(element);"
+							+ "    if (!target) continue;" + "    const href = target.getAttribute('href');"
+							+ "    if (href && (href === '/' || href.includes('home') || href.includes('dashboard'))) {"
+							+ "      window.location.href = href;" + "      return true;" + "    }"
+							+ "    target.click();" + "    return true;" + "  }" + "}" + "return false;");
 
 			waitForMilliseconds(2000);
 			return Boolean.TRUE.equals(navigationTriggered);

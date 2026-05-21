@@ -1,5 +1,7 @@
 package tests;
 
+import java.util.Objects;
+
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
@@ -51,8 +53,8 @@ public class RoleAccessTests extends BaseTest {
         driver.get(creatorUrl);
 
         // Verify either redirect to login/dashboard or access denied message
-        String currentUrl = driver.getCurrentUrl().toLowerCase();
-        String pageText = driver.getPageSource().toLowerCase();
+        String currentUrl = Objects.requireNonNull(driver.getCurrentUrl()).toLowerCase();
+        String pageText = Objects.requireNonNull(driver.getPageSource()).toLowerCase();
 
         boolean isBlocked = currentUrl.contains("login")
             || currentUrl.contains("dashboard")
@@ -87,7 +89,7 @@ public class RoleAccessTests extends BaseTest {
     public void verifyUploaderCanAccessCreatorPage() {
         loginAsUploader();
 
-        String startingUrl = driver.getCurrentUrl();
+        String startingUrl = Objects.requireNonNull(driver.getCurrentUrl());
         Assert.assertTrue(dashboard.openSimpleSideMenu(),
             "TC_363: Side menu should open successfully");
         Assert.assertTrue(dashboard.waitForSimpleSideMenuVisibility(),

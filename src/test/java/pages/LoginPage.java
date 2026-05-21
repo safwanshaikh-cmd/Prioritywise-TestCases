@@ -2,6 +2,7 @@ package pages;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -174,7 +175,7 @@ public class LoginPage extends BasePage {
 	}
 
 	public String getCurrentUrl() {
-		return driver.getCurrentUrl();
+		return Objects.requireNonNull(driver.getCurrentUrl());
 	}
 
 	public String getLoggedInRole() {
@@ -377,15 +378,9 @@ public class LoginPage extends BasePage {
 		}
 	}
 
-	private boolean isElementPresent(By locator) {
-		try {
-			List<WebElement> elements = driver.findElements(locator);
-			return elements.stream().anyMatch(WebElement::isDisplayed);
-		} catch (Exception e) {
-			return false;
-		}
-	}
-
+	/**
+	 * Helper method to click element if visible.
+	 */
 	private boolean clickIfVisible(By locator) {
 		try {
 			List<WebElement> elements = driver.findElements(locator);
@@ -398,7 +393,7 @@ public class LoginPage extends BasePage {
 				try {
 					element.click();
 				} catch (Exception e) {
-					((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+					Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 				}
 				return true;
 			}

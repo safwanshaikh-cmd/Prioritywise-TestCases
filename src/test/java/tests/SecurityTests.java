@@ -1,6 +1,7 @@
 package tests;
 
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -110,7 +111,7 @@ public class SecurityTests extends BaseTest {
 		driver.get(targetUrl);
 		waitForMilliseconds(3000);
 
-		String currentUrl = driver.getCurrentUrl().toLowerCase();
+		String currentUrl = Objects.requireNonNull(driver.getCurrentUrl()).toLowerCase();
 		String expectedToken = expectedPage == null ? "" : expectedPage.toLowerCase();
 		String pathToken = (urlToTest.startsWith("http") ? urlToTest : sanitizedPath).toLowerCase()
 				.replace("https://", "").replace("http://", "").replace("/", "");
@@ -225,7 +226,7 @@ public class SecurityTests extends BaseTest {
 		dashboard.waitForPageReady();
 		waitForMilliseconds(2000);
 
-		String storedUrl = driver.getCurrentUrl();
+		String storedUrl = Objects.requireNonNull(driver.getCurrentUrl());
 		System.out.println("Stored URL: " + storedUrl);
 
 		try {
@@ -238,7 +239,7 @@ public class SecurityTests extends BaseTest {
 		driver.get(storedUrl);
 		waitForMilliseconds(3000);
 
-		String currentUrl = driver.getCurrentUrl().toLowerCase();
+		String currentUrl = Objects.requireNonNull(driver.getCurrentUrl()).toLowerCase();
 		boolean isAccessibleAfterExpiry = !currentUrl.contains("login");
 
 		System.out.println("Current URL after session expiry: " + currentUrl);
@@ -267,7 +268,7 @@ public class SecurityTests extends BaseTest {
 		driver.get(adminUrl);
 		waitForMilliseconds(3000);
 
-		String currentUrl = driver.getCurrentUrl().toLowerCase();
+		String currentUrl = Objects.requireNonNull(driver.getCurrentUrl()).toLowerCase();
 		boolean isAdminDashboardLoaded = dashboard.isAdminDashboardLoaded();
 		boolean isRestricted = currentUrl.contains("unauthorized") || currentUrl.contains("forbidden")
 				|| currentUrl.contains("access") && currentUrl.contains("denied")
@@ -304,7 +305,7 @@ public class SecurityTests extends BaseTest {
 
 		waitForMilliseconds(2000);
 
-		String currentUrl = driver.getCurrentUrl();
+		String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
 		boolean isHttps = currentUrl.startsWith("https://");
 
 		System.out.println("Current URL: " + currentUrl);
@@ -347,7 +348,7 @@ public class SecurityTests extends BaseTest {
 		driver.navigate().refresh();
 		waitForMilliseconds(2000);
 
-		String currentUrl = driver.getCurrentUrl().toLowerCase();
+		String currentUrl = Objects.requireNonNull(driver.getCurrentUrl()).toLowerCase();
 		boolean isAccessibleOrRedirected = !currentUrl.contains("error")
 			|| currentUrl.contains("login");
 

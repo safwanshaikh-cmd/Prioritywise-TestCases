@@ -63,7 +63,14 @@
       "Bash(/mnt/c/Program Files/apache-maven-3.9.12/bin/mvn.cmd compile -q)",
       "Bash(tee /tmp/tc_540_test.log)",
       "Read(//usr/lib/**)",
-      "Read(//opt/**)"
+      "Read(//opt/**)",
+      "Read(//home/safwan/**)",
+      "Bash(javac -cp \"target/classes:target/test-classes:$\\(find ~/.m2 -name '*.jar')",
+      "Bash(awk ' *)",
+      "Bash(grep -n \"^\\\\s*\\\\.executeScript\\\\|\\\\.executeScript$\\\\|executeScript;\" ./src/test/java/pages/DashboardPage.java)",
+      "Bash(grep *)",
+      "Bash([ -d \"src/test/java/$dir\" ])",
+      "Bash(git checkout *)"
     ]
   }
 }

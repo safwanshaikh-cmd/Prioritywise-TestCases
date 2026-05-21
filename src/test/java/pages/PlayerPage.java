@@ -1,6 +1,7 @@
 package pages;
 
 import java.time.Duration;
+import java.util.Objects;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -173,7 +174,7 @@ public class PlayerPage extends BasePage {
 	 * Perform click using JavaScript (avoids interception issues).
 	 */
 	private void clickWithJS(WebElement element) {
-		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+		Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 	}
 
 }

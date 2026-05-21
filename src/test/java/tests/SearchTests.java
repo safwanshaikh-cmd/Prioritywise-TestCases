@@ -1,6 +1,7 @@
 package tests;
 
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 import org.openqa.selenium.NoAlertPresentException;
 import org.testng.Assert;
@@ -63,14 +64,6 @@ public class SearchTests extends BaseTest {
 		return ConfigReader.getProperty(key, fallback);
 	}
 
-	private String buildString(char character, int length) {
-		StringBuilder builder = new StringBuilder(length);
-		for (int i = 0; i < length; i++) {
-			builder.append(character);
-		}
-		return builder.toString();
-	}
-
 	private String buildAlternatingString(int length) {
 		String seed = "Book123Search";
 		StringBuilder builder = new StringBuilder(length);
@@ -111,7 +104,7 @@ public class SearchTests extends BaseTest {
 	}
 
 	private void assertSearchPageStable(String message) {
-		String currentUrl = dashboard.getCurrentUrl();
+		String currentUrl = Objects.requireNonNull(dashboard.getCurrentUrl());
 		boolean stable = dashboard.isSearchPageActive() || dashboard.waitForDashboardShell() || currentUrl.contains("home")
 				|| currentUrl.contains("dashboard");
 		Assert.assertTrue(stable, message + " Current URL: " + currentUrl);

@@ -1,6 +1,7 @@
 package tests;
 
 import java.time.Duration;
+import java.util.Objects;
 import java.util.Set;
 
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -32,30 +33,7 @@ public class LoginTests extends BaseTest {
 	}
 
 	// Helper methods for different account types
-	private String getConsumerEmail() {
-		return ConfigReader.getProperty("consumer.email", getConfiguredEmail());
-	}
-
-	private String getConsumerPassword() {
-		return ConfigReader.getProperty("consumer.password", getConfiguredPassword());
-	}
-
-	private String getUploaderEmail() {
-		return ConfigReader.getProperty("uploader.email", getConfiguredEmail());
-	}
-
-	private String getUploaderPassword() {
-		return ConfigReader.getProperty("uploader.password", getConfiguredPassword());
-	}
-
-	private String getAdminEmail() {
-		return ConfigReader.getProperty("admin.email", getConfiguredEmail());
-	}
-
-	private String getAdminPassword() {
-		return ConfigReader.getProperty("admin.password", getConfiguredPassword());
-	}
-
+	
 	private void skipIfValidCredentialsMissing() {
 		if (getConfiguredEmail() == null || getConfiguredEmail().isBlank() || getConfiguredPassword() == null
 				|| getConfiguredPassword().isBlank()) {
@@ -244,9 +222,10 @@ public class LoginTests extends BaseTest {
 			throw new SkipException("Forgot Password link is not identifiable on the current login page.");
 		}
 		login.clickForgotPassword();
+		String currentUrl = Objects.requireNonNull(login.getCurrentUrl()).toLowerCase();
 		Assert.assertTrue(
-				login.getCurrentUrl().toLowerCase().contains("forgot")
-						|| login.getCurrentUrl().toLowerCase().contains("reset"),
+				currentUrl.contains("forgot")
+						|| currentUrl.contains("reset"),
 				"Forgot Password should redirect to a reset-password page");
 	}
 
@@ -288,8 +267,11 @@ public class LoginTests extends BaseTest {
 
 		WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		shortWait.until(
-				d -> d.getWindowHandles().size() > existingWindows || d.getCurrentUrl().toLowerCase().contains("google")
-						|| d.getCurrentUrl().toLowerCase().contains("accounts"));
+				d -> {
+					String u = Objects.requireNonNull(d.getCurrentUrl()).toLowerCase();
+					return d.getWindowHandles().size() > existingWindows || u.contains("google")
+							|| u.contains("accounts");
+				});
 
 		Set<String> windows = driver.getWindowHandles();
 		for (String window : windows) {
@@ -299,7 +281,7 @@ public class LoginTests extends BaseTest {
 			}
 		}
 
-		String currentUrl = driver.getCurrentUrl().toLowerCase();
+		String currentUrl = Objects.requireNonNull(driver.getCurrentUrl()).toLowerCase();
 		Assert.assertTrue(currentUrl.contains("google") || currentUrl.contains("accounts"),
 				"Google login flow should redirect to the Gmail/Google sign-in page");
 	}
@@ -324,7 +306,7 @@ public class LoginTests extends BaseTest {
 			throw new SkipException("Register button is not identifiable on the current login page.");
 		}
 		login.clickRegister();
-		String currentUrl = login.getCurrentUrl().toLowerCase();
+		String currentUrl = Objects.requireNonNull(login.getCurrentUrl()).toLowerCase();
 		Assert.assertTrue(currentUrl.contains("register") || currentUrl.contains("signup"),
 				"Register URL should contain register or signup");
 	}

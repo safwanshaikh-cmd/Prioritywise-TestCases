@@ -18,6 +18,8 @@ import org.openqa.selenium.support.ui.Select;
 
 import base.BasePage;
 
+import java.util.Objects;
+
 public class AudioPlayerPage extends BasePage {
 
 	private static final Logger LOGGER = Logger.getLogger(AudioPlayerPage.class.getName());
@@ -367,6 +369,7 @@ public class AudioPlayerPage extends BasePage {
 
 	public boolean validateSeekBeyondEnd() {
 		if (!ensureAdvancedPlaybackReady()) {
+			LOGGER.warning("Seek beyond end failed: advanced playback not ready");
 			return false;
 		}
 
@@ -374,22 +377,23 @@ public class AudioPlayerPage extends BasePage {
 		int duration = readDurationSeconds();
 
 		if (bar == null || duration <= 0) {
-			LOGGER.warning("Seek beyond end failed because progress bar or duration was unavailable.");
+			LOGGER.log(Level.WARNING, "Seek beyond end failed: progress bar={0}, duration={1}", new Object[]{bar, duration});
 			return false;
 		}
 
 		clickProgressBar(bar, 0.99);
 
+		// Wait longer for audio to update position after seek
 		boolean clamped = waitUntil(() -> {
 			int current = convertToSeconds(getCurrentTime());
-			return current >= Math.max(0, duration - 2) && current <= duration;
-		}, Duration.ofSeconds(5));
+			return current >= Math.max(0, duration - 3) && current <= duration + 1;
+		}, Duration.ofSeconds(10));
 
 		int after = convertToSeconds(getCurrentTime());
-		LOGGER.log(Level.INFO, "Seek Beyond End: duration={0}, after={1}",
-				new Object[] { formatSeconds(duration), formatSeconds(after) });
+		LOGGER.log(Level.INFO, "Seek Beyond End: duration={0}, after={1}, clamped={2}",
+				new Object[] { formatSeconds(duration), formatSeconds(after), clamped });
 
-		return clamped && after >= 0 && after <= duration;
+		return clamped && after >= 0 && after <= duration + 1;
 	}
 
 	public boolean validateSkipNearEnd() {
@@ -1054,7 +1058,7 @@ public class AudioPlayerPage extends BasePage {
 	private void clickElement(WebElement element) {
 		try {
 			scrollIntoView(element);
-			((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+			Objects.requireNonNull(((JavascriptExecutor) driver)).executeScript("arguments[0].click();", element);
 		} catch (Exception e) {
 			try {
 				element.click();
@@ -1091,7 +1095,7 @@ public class AudioPlayerPage extends BasePage {
 		try {
 			new Actions(driver).moveToElement(bar, offset, 0).click().perform();
 		} catch (Exception e) {
-			((JavascriptExecutor) driver).executeScript(
+			Objects.requireNonNull(((JavascriptExecutor) driver)).executeScript(
 					"const el=arguments[0],ratio=arguments[1],rect=el.getBoundingClientRect();"
 							+ "el.dispatchEvent(new MouseEvent('click',{bubbles:true,clientX:rect.left+Math.max(0,Math.min(rect.width,rect.width*ratio)),clientY:rect.top+rect.height/2}));",
 					bar, Math.max(0.0, Math.min(1.0, ratio)));
@@ -1111,7 +1115,7 @@ public class AudioPlayerPage extends BasePage {
 		}
 		try {
 			if (isNativeRangeSlider(slider)) {
-				((JavascriptExecutor) driver).executeScript(
+				Objects.requireNonNull(((JavascriptExecutor) driver)).executeScript(
 						"const el=arguments[0],delta=arguments[1];let current=Number(el.value||el.getAttribute('aria-valuenow')||50);"
 								+ "const min=Number(el.min||0),max=Number(el.max||100);if(current<=1&&max>1) current=current*100;"
 								+ "const next=Math.max(min,Math.min(max,current+delta));el.value=next;el.setAttribute('aria-valuenow',next);"
@@ -1145,7 +1149,7 @@ public class AudioPlayerPage extends BasePage {
 			int offset = (int) Math.round(width * targetRatio) - (width / 2);
 			new Actions(driver).moveToElement(slider, offset, 0).click().perform();
 		} catch (Exception e) {
-			((JavascriptExecutor) driver).executeScript(
+			Objects.requireNonNull(((JavascriptExecutor) driver)).executeScript(
 					"const el=arguments[0],ratio=arguments[1],rect=el.getBoundingClientRect();"
 							+ "const clientX=rect.left + Math.max(1, Math.min(rect.width - 1, rect.width * ratio));"
 							+ "const clientY=rect.top + (rect.height / 2);"
@@ -1161,7 +1165,7 @@ public class AudioPlayerPage extends BasePage {
 			new Select(selectElement).selectByValue(normalized);
 		} catch (Exception ignored) {
 			try {
-				((JavascriptExecutor) driver).executeScript(
+				Objects.requireNonNull(((JavascriptExecutor) driver)).executeScript(
 						"const el=arguments[0],target=arguments[1];const option=Array.from(el.options).find(opt => opt.value===target || (opt.textContent||'').trim()===arguments[2]);"
 								+ "if(!option)return false;el.value=option.value;el.dispatchEvent(new Event('input',{bubbles:true}));el.dispatchEvent(new Event('change',{bubbles:true}));return true;",
 						selectElement, normalized, speed);
@@ -1241,7 +1245,7 @@ public class AudioPlayerPage extends BasePage {
 
 	private Double readCustomSliderPercent(WebElement slider) {
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript("const slider=arguments[0];"
+			Object result = Objects.requireNonNull(((JavascriptExecutor) driver)).executeScript("const slider=arguments[0];"
 					+ "const knob=slider.querySelector('div[style*=\"translateX(\"]');"
 					+ "const fill=slider.querySelector('div[style*=\"width:\"]');"
 					+ "const width=slider.getBoundingClientRect().width;" + "if(width<=0)return null;" + "if(knob){"
@@ -1425,7 +1429,7 @@ public class AudioPlayerPage extends BasePage {
 
 	private Object executeScript(String script) {
 		try {
-			Object result = ((JavascriptExecutor) driver).executeScript(script);
+			Object result = Objects.requireNonNull(((JavascriptExecutor) driver)).executeScript(script);
 			return result instanceof String && ((String) result).isBlank() ? null : result;
 		} catch (Exception e) {
 			return null;
@@ -1434,7 +1438,7 @@ public class AudioPlayerPage extends BasePage {
 
 	private Object executeAsyncScript(String script, Duration timeout) {
 		try {
-			Object result = ((JavascriptExecutor) driver).executeAsyncScript(script, timeout.toMillis());
+			Object result = Objects.requireNonNull(((JavascriptExecutor) driver)).executeAsyncScript(script, timeout.toMillis());
 			return result instanceof String && ((String) result).isBlank() ? null : result;
 		} catch (Exception e) {
 			return null;

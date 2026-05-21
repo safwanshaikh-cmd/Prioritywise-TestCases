@@ -2,6 +2,7 @@ package pages;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -459,7 +460,7 @@ public class SubscriptionPage extends BasePage {
 
 	public void waitForPageReady() {
 		pageWait.until(webDriver -> "complete"
-				.equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
+				.equals(Objects.requireNonNull(((JavascriptExecutor) webDriver).executeScript("return document.readyState"))));
 	}
 
 	// ================= ADDITIONAL METHODS FROM SONARPLAY =================
@@ -475,8 +476,8 @@ public class SubscriptionPage extends BasePage {
 
 	public boolean isPaymentPageDisplayed() {
 		try {
-			String currentUrl = driver.getCurrentUrl();
-			String safeUrl = currentUrl != null ? currentUrl.toLowerCase() : "";
+			String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
+			String safeUrl = currentUrl.toLowerCase();
 
 			return safeUrl.contains("payment") || safeUrl.contains("checkout") || safeUrl.contains("razorpay")
 					|| !driver.findElements(By.xpath("//iframe")).isEmpty();
@@ -499,7 +500,7 @@ public class SubscriptionPage extends BasePage {
 			if (!closeBtns.isEmpty()) {
 				// Use JavaScript directly (Sonarplay pattern) since jsClick() doesn't accept
 				// WebElement
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", closeBtns.get(0));
+				Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", closeBtns.get(0));
 				LOGGER.info("Sidebar closed");
 				waitForOverlayToDisappear();
 			}

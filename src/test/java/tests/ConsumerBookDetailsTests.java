@@ -15,7 +15,6 @@ import pages.AudioPlayerPage;
 import pages.DashboardPage;
 import pages.LoginPage;
 import utils.ConfigReader;
-import utils.TestWaitHelper;
 
 /**
  * Consumer dashboard banner and book details tests.
@@ -48,7 +47,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 	private void waitForDashboardReady() {
 		dashboard.waitForPageReady();
 		dashboard.waitForDashboardShell();
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 	}
 
 	private boolean openBookDetailsFromDashboard() {
@@ -56,7 +55,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 
 		try {
 			dashboard.openAnyBook();
-			TestWaitHelper.mediumWait();
+			waitUtils.waitForMilliseconds(2000);
 			boolean detailsVisible = dashboard.isBookDetailsPageVisible();
 			if (detailsVisible) {
 				// Wait for book data to load before checking for Play button
@@ -299,7 +298,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 			}
 			driver.navigate().back();
 			waitForDashboardReady();
-			TestWaitHelper.shortWait();
+			waitUtils.waitForMilliseconds(500);
 		}
 
 		Assert.assertTrue(dashboard.waitForDashboardShell(),
@@ -492,14 +491,14 @@ public class ConsumerBookDetailsTests extends BaseTest {
 			return;
 		}
 
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 
 		Assert.assertTrue(dashboard.hasCategoryContent(),
 				"Art category page should show at least one visible book before opening details.");
 
 		try {
 			dashboard.openAnyBookFromCategoryPage();
-			TestWaitHelper.mediumWait();
+			waitUtils.waitForMilliseconds(2000);
 		} catch (Exception e) {
 			Assert.fail("Unable to open a book from the Art category: " + e.getMessage());
 		}
@@ -521,7 +520,7 @@ public class ConsumerBookDetailsTests extends BaseTest {
 			return;
 		}
 
-		TestWaitHelper.mediumWait();
+		waitUtils.waitForMilliseconds(2000);
 
 		// Verify that we successfully navigated to a category page
 		Assert.assertTrue(dashboard.hasCategoryContent(),

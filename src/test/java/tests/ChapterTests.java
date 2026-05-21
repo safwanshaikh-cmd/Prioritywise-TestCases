@@ -6,8 +6,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.UUID;
+
+import org.openqa.selenium.JavascriptExecutor;
 
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -85,7 +90,7 @@ public class ChapterTests extends BaseTest {
 				if (!login.isOnLoginPage()) {
 					return true;
 				}
-				String currentUrl = currentDriver.getCurrentUrl().toLowerCase();
+				String currentUrl = Objects.toString(currentDriver.getCurrentUrl(), "").toLowerCase(Locale.ROOT);
 				return !currentUrl.contains("/login") && !currentUrl.contains("signin");
 			});
 			Assert.assertTrue(loginSettled, "Uploader login should move past the login page");
@@ -535,7 +540,7 @@ public class ChapterTests extends BaseTest {
 
 		dashboard.clickLogout();
 		loginAsConsumer();
-		driver.get(chapterEditUrl);
+		driver.get(Objects.requireNonNull(chapterEditUrl, "Chapter edit URL should not be null"));
 		waitForMilliseconds(2000);
 
 		boolean deleteBlocked;
@@ -583,8 +588,8 @@ public class ChapterTests extends BaseTest {
 		LOGGER.info("TC_506 - STEP 2: Viewing tab URL = '" + viewingUrl + "'");
 		LOGGER.info("TC_506 - STEP 2: Play button visible before delete = " + playVisibleBeforeDelete);
 
-		((org.openqa.selenium.JavascriptExecutor) driver).executeScript("window.open('about:blank','_blank');");
-		java.util.List<String> windowHandles = new java.util.ArrayList<>(driver.getWindowHandles());
+		Objects.requireNonNull((JavascriptExecutor) driver).executeScript("window.open('about:blank','_blank');");
+		List<String> windowHandles = new ArrayList<>(driver.getWindowHandles());
 		String adminTab = windowHandles.get(windowHandles.size() - 1);
 		driver.switchTo().window(adminTab);
 		LOGGER.info("TC_506 - STEP 3: Opened second tab for chapter deletion");
@@ -623,7 +628,7 @@ public class ChapterTests extends BaseTest {
 		waitForMilliseconds(2000);
 
 		String currentUrlAfterDelete = driver.getCurrentUrl();
-		boolean redirectedAway = !currentUrlAfterDelete.equals(viewingUrl);
+		boolean redirectedAway = !Objects.equals(currentUrlAfterDelete, viewingUrl);
 		boolean stillOnBookDetails = dashboard.isBookDetailsPageVisible();
 		boolean playVisibleAfterDelete = dashboard.isPlayAudioButtonVisible();
 		boolean pauseVisibleAfterDelete = dashboard.isPauseAudioButtonVisible();
@@ -673,8 +678,8 @@ public class ChapterTests extends BaseTest {
 		LOGGER.info("TC_507 - STEP 2: Play visible before edit = " + playVisibleBeforeEdit);
 		LOGGER.info("TC_507 - STEP 2: Pause visible before edit = " + pauseVisibleBeforeEdit);
 
-		((org.openqa.selenium.JavascriptExecutor) driver).executeScript("window.open('about:blank','_blank');");
-		java.util.List<String> windowHandles = new java.util.ArrayList<>(driver.getWindowHandles());
+		Objects.requireNonNull((JavascriptExecutor) driver).executeScript("window.open('about:blank','_blank');");
+		List<String> windowHandles = new ArrayList<>(driver.getWindowHandles());
 		String adminTab = windowHandles.get(windowHandles.size() - 1);
 		driver.switchTo().window(adminTab);
 		LOGGER.info("TC_507 - STEP 3: Opened second tab for chapter edit");
@@ -717,7 +722,7 @@ public class ChapterTests extends BaseTest {
 		waitForMilliseconds(2000);
 
 		String currentUrlAfterEdit = driver.getCurrentUrl();
-		boolean redirectedAway = !currentUrlAfterEdit.equals(viewingUrl);
+		boolean redirectedAway = !Objects.equals(currentUrlAfterEdit, viewingUrl);
 		boolean stillOnBookDetails = dashboard.isBookDetailsPageVisible();
 		boolean playVisibleAfterEdit = dashboard.isPlayAudioButtonVisible();
 		boolean pauseVisibleAfterEdit = dashboard.isPauseAudioButtonVisible();
@@ -775,5 +780,5 @@ public class ChapterTests extends BaseTest {
 
 		Assert.assertTrue(chaptersAccessible, "TC_508: Remaining chapters should be accessible after reorder");
 		LOGGER.info("TC_508: Chapter reordering after delete verified");
-		}
 	}
+}

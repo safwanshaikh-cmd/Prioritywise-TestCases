@@ -1,6 +1,7 @@
 package tests;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -412,7 +413,7 @@ public class RegistrationTests extends BaseTest {
 		registration.navigateBack();
 
 		boolean registrationStillVisible = registration.isRegistrationScreenDisplayed();
-		String pageSource = driver.getPageSource().toLowerCase(Locale.ENGLISH);
+		String pageSource = Objects.requireNonNull(driver.getPageSource()).toLowerCase(Locale.ENGLISH);
 		boolean authFlowStillUsable = pageSource.contains("login") || pageSource.contains("register")
 				|| pageSource.contains("email") || pageSource.contains("password");
 
@@ -772,11 +773,11 @@ public class RegistrationTests extends BaseTest {
 			throw new SkipException("Terms and Conditions link is not exposed on the current registration page.");
 		}
 
-		String currentUrl = registration.getCurrentUrl();
+		String currentUrl = Objects.requireNonNull(registration.getCurrentUrl());
 		Set<String> existingWindows = driver.getWindowHandles();
 		registration.clickTermsLink();
 
-		boolean navigated = !registration.getCurrentUrl().equalsIgnoreCase(currentUrl);
+		boolean navigated = !Objects.requireNonNull(registration.getCurrentUrl()).equalsIgnoreCase(currentUrl);
 		boolean openedWindow = driver.getWindowHandles().size() > existingWindows.size();
 		boolean contentVisible = registration.isTermsContentVisible();
 

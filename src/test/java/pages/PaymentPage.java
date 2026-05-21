@@ -1,5 +1,6 @@
 package pages;
 
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -132,8 +133,8 @@ public class PaymentPage extends BasePage {
 		try {
 			refreshPaymentPage();
 
-			String currentUrl = driver.getCurrentUrl();
-			String safeUrl = currentUrl != null ? currentUrl.toLowerCase() : "";
+			String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
+			String safeUrl = currentUrl.toLowerCase();
 
 			return isPaymentPageLoaded() || safeUrl.contains("payment");
 
