@@ -555,9 +555,29 @@ public class UploadPage extends BasePage {
 	 */
 	public String getSuccessMessage() {
 		try {
+			// Wait for any toast message to appear
+			Thread.sleep(1500);
 			WebElement successElement = pageWait.until(ExpectedConditions.visibilityOfElementLocated(SUCCESS_MESSAGE));
-			return successElement.getText().trim();
+			String rawText = successElement.getText();
+			String text = rawText == null ? "" : rawText.trim();
+			// Also try to get text from child elements
+			if (text.isEmpty()) {
+				String innerText = successElement.getAttribute("innerText");
+				text = innerText == null ? "" : innerText.trim();
+			}
+			if (text.isEmpty()) {
+				String textContent = successElement.getAttribute("textContent");
+				text = textContent == null ? "" : textContent.trim();
+			}
+			// Log all toast elements found for debugging
+			List<WebElement> toasts = driver.findElements(SUCCESS_MESSAGE);
+			LOGGER.info("Toast elements found: " + toasts.size());
+			for (WebElement toast : toasts) {
+				LOGGER.info("Toast - text: [" + toast.getText() + "] innerText: [" + toast.getAttribute("innerText") + "] ariaLabel: [" + toast.getAttribute("aria-label") + "]");
+			}
+			return text;
 		} catch (Exception e) {
+			LOGGER.warning("No success message found: " + e.getMessage());
 			return "";
 		}
 	}

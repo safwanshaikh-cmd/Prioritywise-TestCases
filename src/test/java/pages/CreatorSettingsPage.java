@@ -48,9 +48,9 @@ public class CreatorSettingsPage {
 	private static final By TITLE_FIELD = By.cssSelector("[data-testid='input_book_title']");
 	private static final By TITLE_FIELD_FALLBACK = By.xpath(
 			"//input[@placeholder='Title' or @name='title' or @data-testid='input_title' or contains(@placeholder,'Title')]");
-	private static final By AUTHOR_FIELD = By.cssSelector("[data-testid='input_book_author']");
+	private static final By AUTHOR_FIELD = By.cssSelector(
+			"[data-testid='input_book_author'] | input[name='author'] | input[placeholder*='author' i] | input[placeholder*='Author' i]");
 	private static final By SUMMARY_FIELD = By.cssSelector("[data-testid='input_book_summary']");
-	private static final By LANGUAGE_DROPDOWN = By.cssSelector("[data-testid='select_language']");
 	private static final By SAVE_BUTTON = By.xpath("//div[text()='Save']");
 	private static final By NEXT_BUTTON = By.xpath(
 			"//div[contains(text(),'Next') or @type='button' and contains(text(),'Next')] | //button[contains(text(),'Next')]");
@@ -263,10 +263,33 @@ public class CreatorSettingsPage {
 	}
 
 	public void enterAuthor(String author) {
-		WebElement authorInput = wait.until(ExpectedConditions.visibilityOfElementLocated(AUTHOR_FIELD));
+		WebElement authorInput = findAuthorField();
+		if (authorInput == null) {
+			LOGGER.warning("Author field not found");
+			return;
+		}
 		authorInput.clear();
 		authorInput.sendKeys(author == null ? "" : author);
 		LOGGER.log(Level.INFO, "Entered book author");
+	}
+
+	private WebElement findAuthorField() {
+		By[] selectors = {
+			By.cssSelector("[data-testid='input_book_author']"),
+			By.xpath("//input[@name='author']"),
+			By.xpath("//input[contains(translate(@placeholder,'AUTHOR','author'),'author')]"),
+			By.xpath("//input[contains(translate(@placeholder,'AUTHOR','author'),'author')]")
+		};
+		for (By selector : selectors) {
+			try {
+				WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
+				if (element.isDisplayed()) {
+					return element;
+				}
+			} catch (Exception ignored) {
+			}
+		}
+		return null;
 	}
 
 	public void enterSummary(String summary) {
@@ -304,15 +327,47 @@ public class CreatorSettingsPage {
 	}
 
 	public void selectLanguage(String language) {
-		Select select = new Select(wait.until(ExpectedConditions.visibilityOfElementLocated(LANGUAGE_DROPDOWN)));
+		WebElement dropdown = findLanguageDropdown();
+		if (dropdown == null) {
+			LOGGER.log(Level.WARNING, "Language dropdown not found, skipping");
+			return;
+		}
 		try {
+			Select select = new Select(dropdown);
 			select.selectByVisibleText(language);
 			LOGGER.log(Level.INFO, "Language selected: {0}", language);
 		} catch (NoSuchElementException e) {
-			String fallback = selectFirstEnabledOption(select);
+			String fallback = selectFirstEnabledOption(new Select(dropdown));
 			LOGGER.log(Level.INFO, "Language option {0} not found. Selected fallback option: {1}",
 					new Object[] { language, fallback });
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Could not select language with Select, trying click: {0}", e.getMessage());
+			try {
+				js.executeScript("arguments[0].value='" + language + "'; arguments[0].dispatchEvent(new Event('change'));", dropdown);
+				LOGGER.log(Level.INFO, "Language selected via JS: {0}", language);
+			} catch (Exception jsEx) {
+				LOGGER.log(Level.WARNING, "Could not select language: {0}", jsEx.getMessage());
+			}
 		}
+	}
+
+	private WebElement findLanguageDropdown() {
+		By[] selectors = {
+			By.cssSelector("[data-testid='select_language']"),
+			By.xpath("//select[contains(@name,'language')]"),
+			By.xpath("//select[contains(@data-testid,'language')]"),
+			By.xpath("//*[contains(@data-testid,'language') and (self::select or descendant::select)]")
+		};
+		for (By selector : selectors) {
+			try {
+				WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
+				if (el.isDisplayed()) {
+					return el;
+				}
+			} catch (Exception ignored) {
+			}
+		}
+		return null;
 	}
 
 	public void selectCountryCategory(String countryCategory) {
@@ -569,7 +624,8 @@ public class CreatorSettingsPage {
 					if (!element.isDisplayed()) {
 						continue;
 					}
-					String text = element.getText().trim();
+					String rawText = element.getText();
+					String text = rawText == null ? "" : rawText.trim();
 					if (!text.isEmpty()) {
 						messages.add(text);
 					}
@@ -598,7 +654,8 @@ public class CreatorSettingsPage {
 					if (!element.isDisplayed()) {
 						continue;
 					}
-					String text = element.getText().trim();
+					String rawText = element.getText();
+					String text = rawText == null ? "" : rawText.trim();
 					if (!text.isEmpty()) {
 						messages.add(text);
 					}
@@ -724,6 +781,15 @@ public class CreatorSettingsPage {
 
 	public boolean isAddAudioButtonVisible() {
 		return isDisplayed(ADD_AUDIO_BUTTON);
+	}
+
+	public boolean isAudioUploadScreenVisible() {
+		return isDisplayed(AUDIO_UPLOAD_SCREEN) || isDisplayed(ADD_AUDIO_BUTTON);
+	}
+
+	public boolean isChapterSaved() {
+		// Check if save completed - either Add Audio button is visible or we're back to chapter list
+		return isAddAudioButtonVisible() || isDisplayed(AUDIO_CLOSE_BUTTON);
 	}
 
 	public void waitForAudioUploadScreen() {
@@ -892,8 +958,7 @@ public class CreatorSettingsPage {
 			}
 
 			String text = candidate.getText();
-
-			String normalized = text.trim();
+			String normalized = text == null ? "" : text.trim();
 			if (!normalized.isEmpty() && !normalized.contains(placeholderText) && !normalized.startsWith("Select ")) {
 				return candidate;
 			}

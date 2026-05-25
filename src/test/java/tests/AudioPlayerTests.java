@@ -20,6 +20,8 @@ public class AudioPlayerTests extends BaseTest {
 
 	private static final String AUDIO_ADVANCED_EMAIL = "safwan.shaikh+041@11axis.com";
 	private static final String AUDIO_ADVANCED_PASSWORD = "Password@123";
+	private static final String FREE_USER_EMAIL = "safwan.shaikh+040@11axis.com";
+	private static final String FREE_USER_PASSWORD = "Password@123";
 
 	private DashboardPage dashboard;
 	private LoginPage login;
@@ -65,11 +67,12 @@ public class AudioPlayerTests extends BaseTest {
 				"TC_328: expected playback time to decrease after backward.");
 	}
 
-	@Test(priority = 329, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 329, retryAnalyzer = RetryAnalyzer.class,
+			description = "TC_329: Verify Forward 30 near audio end stops at duration or completes playback without overshooting")
 	public void verifyForwardButtonBehaviorNearAudioEnd() {
 		openConsumerBook();
 		Assert.assertTrue(audioPlayer.validateSkipNearEnd(),
-				"TC_329: expected forward near end to clamp within duration.");
+				"TC_329: expected Forward 30 near the audio end to stop at the end duration or complete/reset cleanly without overshooting.");
 	}
 
 	@Test(priority = 330, retryAnalyzer = RetryAnalyzer.class)
@@ -214,29 +217,33 @@ public class AudioPlayerTests extends BaseTest {
 		Assert.assertTrue(audioPlayer.validatePlay(), "TC_345: expected second book to play for subscribed user.");
 	}
 
-	@Test(priority = 346, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 346, retryAnalyzer = RetryAnalyzer.class,
+			description = "TC_346: Verify free user is redirected to payments after trying to listen to the second chapter")
 	public void verifyFreeUserCanListenToOnlyOneBook() {
 		loginFreeUser();
-		List<String> titles = requireTrendingTitles(2, "TC_346 requires at least two trending books.");
+		List<String> titles = requireTrendingTitles(1, "TC_346 requires at least one trending book.");
 		openBookByTitle(titles.get(0));
-		Assert.assertTrue(audioPlayer.validatePlay(), "TC_346: expected first book to play for free user.");
-		returnToDashboard();
-		openBookByTitle(titles.get(1));
-		Assert.assertTrue(audioPlayer.validateRestrictedPlaybackBlocked() || audioPlayer.hasFreeUserLimitIndicator(),
-				"TC_346: expected second book to be blocked for free user.");
+		requireMultipleChapters("TC_346 requires a book with at least two chapters.");
+
+		Assert.assertTrue(audioPlayer.clickSecondChapterAndVerifyPaymentsRedirect(),
+				"TC_346: expected free user to be redirected to https://web-splay.acceses.com/payments after clicking Listen on the second chapter. Current URL: "
+						+ driver.getCurrentUrl());
 	}
 
-	@Test(priority = 347, retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 347, retryAnalyzer = RetryAnalyzer.class,
+			description = "TC_347: Verify free user can listen only to the first chapter")
 	public void verifyFreeUserCanOnlyListenToFirstBookFully() {
 		loginFreeUser();
-		List<String> titles = requireTrendingTitles(2, "TC_347 requires at least two trending books.");
+		List<String> titles = requireTrendingTitles(1, "TC_347 requires at least one trending book.");
 		openBookByTitle(titles.get(0));
-		Assert.assertTrue(audioPlayer.validatePlay(), "TC_347: expected first book to start.");
-		Assert.assertTrue(audioPlayer.isPlaybackProgressing(), "TC_347: expected first book playback to progress.");
-		returnToDashboard();
-		openBookByTitle(titles.get(1));
-		Assert.assertTrue(audioPlayer.validateRestrictedPlaybackBlocked() || audioPlayer.hasFreeUserLimitIndicator(),
-				"TC_347: expected subsequent books to be blocked for free user.");
+		requireMultipleChapters("TC_347 requires a book with at least two chapters.");
+
+		Assert.assertTrue(audioPlayer.validatePlay(), "TC_347: expected first chapter to start for free user.");
+		Assert.assertTrue(audioPlayer.isPlaybackProgressing(),
+				"TC_347: expected first chapter playback to progress for free user.");
+		Assert.assertTrue(audioPlayer.clickSecondChapterAndVerifyPaymentsRedirect(),
+				"TC_347: expected second chapter Listen action to redirect free user to https://web-splay.acceses.com/payments. Current URL: "
+						+ driver.getCurrentUrl());
 	}
 
 	@Test(priority = 350, retryAnalyzer = RetryAnalyzer.class)
@@ -269,7 +276,7 @@ public class AudioPlayerTests extends BaseTest {
 	}
 
 	private void loginFreeUser() {
-		loginAs(getAdvancedAudioEmail(), getAdvancedAudioPassword());
+		loginAs(FREE_USER_EMAIL, FREE_USER_PASSWORD);
 	}
 
 	private void loginAs(String email, String password) {
@@ -304,12 +311,6 @@ public class AudioPlayerTests extends BaseTest {
 				"Expected player or subscription gate for title: " + title);
 		Assert.assertTrue(audioPlayer.waitForPlayControlsReady() || audioPlayer.hasSubscriptionGate(),
 				"Expected play controls or subscription gate for title: " + title);
-	}
-
-	private void returnToDashboard() {
-		driver.navigate().back();
-		dashboard.waitForPageReady();
-		Assert.assertTrue(dashboard.waitForDashboardShell(), "Expected dashboard after navigating back.");
 	}
 
 	private List<String> requireTrendingTitles(int minimum, String skipMessage) {

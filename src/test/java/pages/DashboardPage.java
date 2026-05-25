@@ -5110,19 +5110,70 @@ public class DashboardPage extends BasePage {
 	}
 
 	public boolean clickFirstSearchResult() {
+		waitForMilliseconds(2000); // Wait for search results to load
+
 		List<WebElement> results = getVisibleSearchResultElements();
+		LOGGER.info("Search results count: " + results.size());
+
 		if (results.isEmpty()) {
-			LOGGER.fine("No visible search result available to click.");
-			return false;
+			// Try alternative locators - look for any clickable book items
+			List<WebElement> alternativeResults = findVisibleElements(
+				By.xpath("//div[contains(@class,'r-1udh08x')]//img[@src and not(contains(@src,'placeholder'))] | //div[@class='css-g5y9jx' and .//img[@src]]")
+			);
+			LOGGER.info("Alternative search results count: " + alternativeResults.size());
+
+			if (alternativeResults.isEmpty()) {
+				LOGGER.fine("No visible search result available to click.");
+				return false;
+			}
+			results = alternativeResults;
 		}
 
 		String startingUrl = getCurrentUrl();
 		WebElement firstResult = results.get(0);
-		scrollIntoView(firstResult);
-		clickWithJS(firstResult);
-		waitForMilliseconds(2000);
 
-		return isShowDetailsVisible1() || !startingUrl.equals(getCurrentUrl());
+		// Find the actual clickable container - look for div with border-radius (card style)
+		WebElement clickTarget = firstResult;
+		try {
+			List<WebElement> cards = findVisibleElements(
+				By.xpath("//div[contains(@style,'border-radius: 8px')]")
+			);
+			if (!cards.isEmpty()) {
+				clickTarget = cards.get(0);
+				LOGGER.info("Found clickable card div with border-radius");
+			}
+		} catch (Exception ignored) {}
+
+		// Scroll to make visible
+		scrollIntoView(clickTarget);
+		waitForMilliseconds(800);
+
+		// Use Actions with specific coordinates in center
+		try {
+			int centerX = clickTarget.getSize().getWidth() / 2;
+			int centerY = clickTarget.getSize().getHeight() / 2;
+			org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(driver);
+			actions.moveToElement(clickTarget, centerX, centerY).pause(300).click().perform();
+			LOGGER.info("Clicked using Actions with center coordinates: " + centerX + "," + centerY);
+		} catch (Exception actionsEx) {
+			LOGGER.warning("Actions click failed: " + actionsEx.getMessage());
+			clickWithJS(clickTarget);
+		}
+
+		// Wait for URL to change (navigation) - poll for up to 5 seconds
+		long deadline = System.currentTimeMillis() + 5000;
+		String newUrl = getCurrentUrl();
+		while (System.currentTimeMillis() < deadline && newUrl.equals(startingUrl)) {
+			waitForMilliseconds(300);
+			newUrl = getCurrentUrl();
+		}
+
+		boolean urlChanged = !startingUrl.equals(newUrl);
+		boolean detailsVisible = isShowDetailsVisible1();
+
+		LOGGER.info("Search result clicked: startingUrl=" + startingUrl + ", newUrl=" + newUrl + ", urlChanged=" + urlChanged + ", detailsVisible=" + detailsVisible);
+
+		return urlChanged || detailsVisible;
 	}
 
 	public boolean isSearchPageActive() {
