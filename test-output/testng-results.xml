@@ -1,29 +1,422 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results retried="3" ignored="3" total="18" passed="11" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-05-25T09:08:43 GST" name="Default suite" finished-at="2026-05-25T09:10:02 GST" duration-ms="78195">
+  <suite started-at="2026-06-11T16:38:58 GST" name="Default suite" finished-at="2026-06-11T17:02:22 GST" duration-ms="1403681">
     <groups>
     </groups>
-    <test started-at="2026-05-25T09:08:43 GST" name="Default test" finished-at="2026-05-25T09:10:02 GST" duration-ms="78195">
-      <class name="tests.HamburgerMenuBehaviorTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.HamburgerMenuBehaviorTests@662ac478]" started-at="2026-05-25T09:08:44 GST" name="setup" finished-at="2026-05-25T09:08:57 GST" duration-ms="12917" status="PASS">
+    <test started-at="2026-06-11T16:38:58 GST" name="Default test" finished-at="2026-06-11T17:02:22 GST" duration-ms="1403681">
+      <class name="tests.ChapterTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:38:58 GST" name="setup" finished-at="2026-06-11T16:39:19 GST" duration-ms="20842" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="initPagesAndLogin()[pri:0, instance:tests.HamburgerMenuBehaviorTests@662ac478]" started-at="2026-05-25T09:08:57 GST" name="initPagesAndLogin" finished-at="2026-05-25T09:09:20 GST" duration-ms="23359" status="PASS">
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:39:19 GST" name="setupPages" finished-at="2026-06-11T16:39:29 GST" duration-ms="9327" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- initPagesAndLogin -->
-        <test-method signature="verifyStabilityOnRapidClicks()[pri:366, instance:tests.HamburgerMenuBehaviorTests@662ac478]" started-at="2026-05-25T09:09:20 GST" name="verifyStabilityOnRapidClicks" description="TC_366: Verify stability on rapid clicks" finished-at="2026-05-25T09:10:01 GST" duration-ms="41225" status="PASS">
+        </test-method> <!-- setupPages -->
+        <test-method signature="verifyChapterEditScreenLoads()[pri:490, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:39:29 GST" name="verifyChapterEditScreenLoads" finished-at="2026-06-11T16:40:20 GST" duration-ms="51174" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyStabilityOnRapidClicks -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.HamburgerMenuBehaviorTests@662ac478]" started-at="2026-05-25T09:10:01 GST" name="tearDown" finished-at="2026-05-25T09:10:02 GST" duration-ms="478" status="PASS">
+        </test-method> <!-- verifyChapterEditScreenLoads -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:40:20 GST" name="tearDown" finished-at="2026-06-11T16:40:20 GST" duration-ms="614" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- tests.HamburgerMenuBehaviorTests -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:40:20 GST" name="setup" finished-at="2026-06-11T16:40:35 GST" duration-ms="14725" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:40:35 GST" name="setupPages" finished-at="2026-06-11T16:40:45 GST" duration-ms="9705" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method signature="verifyChapterTitleUpdate()[pri:491, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:40:45 GST" name="verifyChapterTitleUpdate" finished-at="2026-06-11T16:41:35 GST" duration-ms="50567" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyChapterTitleUpdate -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:41:35 GST" name="tearDown" finished-at="2026-06-11T16:41:36 GST" duration-ms="481" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:41:36 GST" name="setup" finished-at="2026-06-11T16:41:52 GST" duration-ms="16439" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:41:52 GST" name="setupPages" finished-at="2026-06-11T16:42:02 GST" duration-ms="9874" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method signature="verifyChapterAudioUpdate()[pri:492, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:42:02 GST" name="verifyChapterAudioUpdate" finished-at="2026-06-11T16:42:51 GST" duration-ms="48906" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyChapterAudioUpdate -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:42:51 GST" name="tearDown" finished-at="2026-06-11T16:42:52 GST" duration-ms="464" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:42:52 GST" name="setup" finished-at="2026-06-11T16:43:03 GST" duration-ms="11534" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:43:03 GST" name="setupPages" finished-at="2026-06-11T16:43:10 GST" duration-ms="6446" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method signature="verifyInvalidChapterFileUpload()[pri:493, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:43:10 GST" name="verifyInvalidChapterFileUpload" finished-at="2026-06-11T16:44:01 GST" duration-ms="51610" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyInvalidChapterFileUpload -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:44:01 GST" name="tearDown" finished-at="2026-06-11T16:44:02 GST" duration-ms="606" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:44:02 GST" name="setup" finished-at="2026-06-11T16:44:13 GST" duration-ms="11126" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:44:13 GST" name="setupPages" finished-at="2026-06-11T16:44:21 GST" duration-ms="7752" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method signature="verifyChapterEditCancel()[pri:494, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:44:21 GST" name="verifyChapterEditCancel" finished-at="2026-06-11T16:45:29 GST" duration-ms="68632" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyChapterEditCancel -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:45:29 GST" name="tearDown" finished-at="2026-06-11T16:45:30 GST" duration-ms="509" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:45:30 GST" name="setup" finished-at="2026-06-11T16:46:10 GST" duration-ms="40044" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:46:10 GST" name="setupPages" finished-at="2026-06-11T16:46:16 GST" duration-ms="5907" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method signature="verifyChapterDeleteFunctionality()[pri:495, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:46:16 GST" name="verifyChapterDeleteFunctionality" finished-at="2026-06-11T16:47:05 GST" duration-ms="49223" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyChapterDeleteFunctionality -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:47:05 GST" name="tearDown" finished-at="2026-06-11T16:47:06 GST" duration-ms="546" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:47:06 GST" name="setup" finished-at="2026-06-11T16:47:20 GST" duration-ms="14299" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:47:20 GST" name="setupPages" finished-at="2026-06-11T16:47:26 GST" duration-ms="6558" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method signature="verifyChapterDeleteCancel()[pri:496, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:47:26 GST" name="verifyChapterDeleteCancel" finished-at="2026-06-11T16:48:41 GST" duration-ms="74480" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyChapterDeleteCancel -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:48:41 GST" name="tearDown" finished-at="2026-06-11T16:48:41 GST" duration-ms="550" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:48:41 GST" name="setup" finished-at="2026-06-11T16:49:00 GST" duration-ms="18067" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:49:00 GST" name="setupPages" finished-at="2026-06-11T16:49:09 GST" duration-ms="9060" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method signature="verifyFirstAndLastChapterDeletion()[pri:497, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:49:09 GST" name="verifyFirstAndLastChapterDeletion" finished-at="2026-06-11T16:50:03 GST" duration-ms="54373" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyFirstAndLastChapterDeletion -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:50:03 GST" name="tearDown" finished-at="2026-06-11T16:50:05 GST" duration-ms="2365" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:50:05 GST" name="setup" finished-at="2026-06-11T16:50:16 GST" duration-ms="10800" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:50:16 GST" name="setupPages" finished-at="2026-06-11T16:50:23 GST" duration-ms="6824" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method signature="verifyChapterDeleteAccessControl()[pri:498, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:50:23 GST" name="verifyChapterDeleteAccessControl" finished-at="2026-06-11T16:51:36 GST" duration-ms="73474" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyChapterDeleteAccessControl -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:51:36 GST" name="tearDown" finished-at="2026-06-11T16:51:37 GST" duration-ms="527" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:51:37 GST" name="setup" finished-at="2026-06-11T16:51:51 GST" duration-ms="14431" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:51:51 GST" name="setupPages" finished-at="2026-06-11T16:51:56 GST" duration-ms="4750" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method retried="true" signature="verifyDeleteChapterDuringPlayback()[pri:506, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:51:56 GST" name="verifyDeleteChapterDuringPlayback" finished-at="2026-06-11T16:53:33 GST" duration-ms="96791" status="SKIP">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[TC_506: At least one chapter should exist before deleting Chapter 1 expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: TC_506: At least one chapter should exist before deleting Chapter 1 expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at tests.ChapterTests.verifyDeleteChapterDuringPlayback(ChapterTests.java:611)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyDeleteChapterDuringPlayback -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:53:33 GST" name="tearDown" finished-at="2026-06-11T16:53:34 GST" duration-ms="1416" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:53:34 GST" name="setup" finished-at="2026-06-11T16:53:49 GST" duration-ms="14746" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:53:49 GST" name="setupPages" finished-at="2026-06-11T16:53:56 GST" duration-ms="6676" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method retried="true" signature="verifyDeleteChapterDuringPlayback()[pri:506, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:53:56 GST" name="verifyDeleteChapterDuringPlayback" finished-at="2026-06-11T16:55:15 GST" duration-ms="79140" status="SKIP">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[TC_506: At least one chapter should exist before deleting Chapter 1 expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: TC_506: At least one chapter should exist before deleting Chapter 1 expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at tests.ChapterTests.verifyDeleteChapterDuringPlayback(ChapterTests.java:611)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyDeleteChapterDuringPlayback -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:55:15 GST" name="tearDown" finished-at="2026-06-11T16:55:16 GST" duration-ms="620" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:55:16 GST" name="setup" finished-at="2026-06-11T16:55:29 GST" duration-ms="12983" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:55:29 GST" name="setupPages" finished-at="2026-06-11T16:55:37 GST" duration-ms="8430" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method signature="verifyDeleteChapterDuringPlayback()[pri:506, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:55:37 GST" name="verifyDeleteChapterDuringPlayback" finished-at="2026-06-11T16:57:00 GST" duration-ms="83534" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[TC_506: At least one chapter should exist before deleting Chapter 1 expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: TC_506: At least one chapter should exist before deleting Chapter 1 expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at tests.ChapterTests.verifyDeleteChapterDuringPlayback(ChapterTests.java:611)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyDeleteChapterDuringPlayback -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:57:01 GST" name="tearDown" finished-at="2026-06-11T16:57:01 GST" duration-ms="660" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:57:01 GST" name="setup" finished-at="2026-06-11T16:57:13 GST" duration-ms="11720" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:57:13 GST" name="setupPages" finished-at="2026-06-11T16:57:50 GST" duration-ms="36793" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method retried="true" signature="verifyEditDuringUpload()[pri:507, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:57:50 GST" name="verifyEditDuringUpload" finished-at="2026-06-11T16:59:21 GST" duration-ms="91137" status="SKIP">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for pages.ForCreatorPage$$Lambda/0x0000026eb02f5218@41cd09da
+(tried for 15 seconds with 500 milliseconds interval)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.55 (3188f8a607ae..., userDataDir: C:\Users\safwan\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54444}, goog:processID: 17892, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54444/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8d37b47276b29fe064ae7d38474e2a8c]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for pages.ForCreatorPage$$Lambda/0x0000026eb02f5218@41cd09da
+(tried for 15 seconds with 500 milliseconds interval)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.55 (3188f8a607ae..., userDataDir: C:\Users\safwan\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54444}, goog:processID: 17892, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54444/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8d37b47276b29fe064ae7d38474e2a8c
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:85)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:233)
+at pages.ForCreatorPage.waitForListingState(ForCreatorPage.java:122)
+at tests.ChapterTests.openForCreatorsListingPage(ChapterTests.java:266)
+at tests.ChapterTests.verifyEditDuringUpload(ChapterTests.java:688)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyEditDuringUpload -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:59:21 GST" name="tearDown" finished-at="2026-06-11T16:59:22 GST" duration-ms="497" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:59:22 GST" name="setup" finished-at="2026-06-11T16:59:35 GST" duration-ms="13325" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:59:35 GST" name="setupPages" finished-at="2026-06-11T16:59:42 GST" duration-ms="6867" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method signature="verifyEditDuringUpload()[pri:507, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T16:59:42 GST" name="verifyEditDuringUpload" finished-at="2026-06-11T17:01:17 GST" duration-ms="95396" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyEditDuringUpload -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T17:01:17 GST" name="tearDown" finished-at="2026-06-11T17:01:18 GST" duration-ms="511" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T17:01:18 GST" name="setup" finished-at="2026-06-11T17:01:31 GST" duration-ms="13398" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="setupPages()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T17:01:31 GST" name="setupPages" finished-at="2026-06-11T17:01:36 GST" duration-ms="5297" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupPages -->
+        <test-method signature="verifyReorderAfterDelete()[pri:508, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T17:01:36 GST" name="verifyReorderAfterDelete" finished-at="2026-06-11T17:02:21 GST" duration-ms="45023" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyReorderAfterDelete -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ChapterTests@9d5509a]" started-at="2026-06-11T17:02:21 GST" name="tearDown" finished-at="2026-06-11T17:02:22 GST" duration-ms="495" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- tests.ChapterTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
