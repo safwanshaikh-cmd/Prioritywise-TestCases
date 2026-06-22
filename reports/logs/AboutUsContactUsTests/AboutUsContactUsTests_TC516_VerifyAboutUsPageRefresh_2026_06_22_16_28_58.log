@@ -1,0 +1,28 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC516_VerifyAboutUsPageRefresh
+Started: 2026-06-22 16:28:58
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC516_VerifyAboutUsPageRefresh_2026_06_22_16_28_58.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC516_VerifyAboutUsPageRefresh_2026_06_22_16_28_58.log
+[START] AboutUsContactUsTests :: TC516_VerifyAboutUsPageRefresh
+========== TEST STARTED: TC516_VerifyAboutUsPageRefresh ==========
+========== TEST STARTED: TC_516: About Us Page Refresh ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  Logged in as registered user
+STEP 2: Open About Us page
+INFO  Opening About Us page from footer/sidebar
+INFO  Successfully clicked About Us link
+INFO  Opened About Us page
+STEP 3: Capture URL before refresh
+INFO  URL before refresh: https://web-splay.acceses.com/about_us
+STEP 4: Refresh the page
+INFO  Page refreshed
+STEP 5: Verify page reloaded
+INFO  URL after refresh: https://web-splay.acceses.com/about_us
+INFO  TC_516: About Us page refresh verified - Page reloaded without error
+========== TEST PASSED: TC_516 ==========
+[PASS] AboutUsContactUsTests :: TC516_VerifyAboutUsPageRefresh
+========== TEST PASSED: TC516_VerifyAboutUsPageRefresh: TC_516: Verify About Us page reloads successfully on refresh ==========
+============================================================
+Ended: 2026-06-22 16:29:29

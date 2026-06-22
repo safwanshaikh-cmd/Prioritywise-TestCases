@@ -1,5 +1,6 @@
 package tests;
 
+import java.time.Duration;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -8,23 +9,29 @@ import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.v145.network.Network;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import base.BaseTest;
+import constants.TestConstants;
 import listeners.RetryAnalyzer;
 import pages.AudioPlayerPage;
+import pages.ContactUsPage;
 import pages.DashboardPage;
 import pages.LoginPage;
 import utils.ConfigReader;
+import utils.LoggerUtils;
 
 /**
  * Audio Player Behavior Automation Tests
  *
- * Test Coverage: TC_532 - TC_539, TC_544 - TC_547 Focus: Audio player behavior,
- * edge cases, and user interaction scenarios
+ * <p>
+ * Test Coverage: TC_532 - TC_539, TC_543 - TC_546
+ * <p>
+ * Focus: Audio player behavior, edge cases, and user interaction scenarios.
  */
 public class AudioPlayerBehaviorTests extends BaseTest {
 
@@ -34,7 +41,15 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 	private DevTools devTools;
 	private boolean isNetworkControlled = false;
 
-	@BeforeMethod
+	private String getRegisteredUserEmail() {
+		return ConfigReader.getProperty("login.validEmail");
+	}
+
+	private String getRegisteredUserPassword() {
+		return ConfigReader.getProperty("login.validPassword");
+	}
+
+	@BeforeMethod(alwaysRun = true)
 	@Override
 	public void setup() {
 		super.setup();
@@ -44,17 +59,27 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 	}
 
 	/**
-	 * Helper method to login as registered user
+	 * Helper method to login as registered user. Mirrors the
+	 * {@code loginAsRegisteredUser} pattern used in {@link AboutUsContactUsTests}
+	 * so the dashboard shell is consistently settled before any audio test runs.
 	 */
 	private void loginAsRegisteredUser() {
 		try {
 			login.openLogin();
-			login.loginUser(ConfigReader.getProperty("login.validEmail"),
-					ConfigReader.getProperty("login.validPassword"));
+			login.loginUser(getRegisteredUserEmail(), getRegisteredUserPassword());
 			login.clickNextAfterLogin();
-			dashboard.waitForDashboardShell();
+			boolean loginSettled = new WebDriverWait(driver, Duration.ofSeconds(30)).until(currentDriver -> {
+				if (!login.isOnLoginPage()) {
+					return true;
+				}
+				String currentUrl = safeGetCurrentUrl(currentDriver);
+				String lowerUrl = currentUrl.toLowerCase();
+				return !lowerUrl.contains("/login") && !lowerUrl.contains("signin");
+			});
+			Assert.assertTrue(loginSettled, "Registered user login should move past the login page");
+			LoggerUtils.logInfo("Logged in as registered user");
 		} catch (Exception e) {
-			throw new SkipException("Could not login as registered user: " + e.getMessage());
+			throw new SkipException("Could not login as registered user: " + e.getMessage(), e);
 		}
 	}
 
@@ -85,197 +110,201 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 	}
 
 	/**
-	 * Helper method to initialize Chrome DevTools for network control Only works
-	 * with Chrome browser
+	 * Helper method to initialize Chrome DevTools for network control. Only works
+	 * with Chrome browser.
 	 */
 	private void initializeDevTools() {
 		try {
-			LOGGER.info("TC_532 - Checking browser type for CDP support");
+			LoggerUtils.logInfo("TC_532 - Checking browser type for CDP support");
 
-			// Check if driver is ChromeDriver
 			if (!(driver instanceof ChromeDriver)) {
 				String browserType = driver.getClass().getSimpleName();
-				LOGGER.warning("TC_532 - Browser not supported for CDP: " + browserType);
+				LoggerUtils.logWarn("TC_532 - Browser not supported for CDP: " + browserType);
 				throw new SkipException("TC_532: CDP network control requires Chrome browser. Current: " + browserType);
 			}
 
-			LOGGER.info("TC_532 - ChromeDriver detected, initializing DevTools");
+			LoggerUtils.logInfo("TC_532 - ChromeDriver detected, initializing DevTools");
 
-			// Get DevTools instance
 			devTools = ((ChromeDriver) driver).getDevTools();
-			LOGGER.info("TC_532 - DevTools instance created");
+			LoggerUtils.logInfo("TC_532 - DevTools instance created");
 
-			// Create DevTools session
 			devTools.createSession();
-			LOGGER.info("TC_532 - DevTools session created");
+			LoggerUtils.logInfo("TC_532 - DevTools session created");
 
-			// Enable Network domain with required parameters
 			try {
-				devTools.send(Network.enable(Optional.empty(), // maxTotalBufferSize
-						Optional.empty(), // maxResourceBufferSize
-						Optional.empty(), // maxPostDataSize
-						Optional.empty(), // skipCacheForDataUrl
-						Optional.empty() // maxResourceBufferSize (v143 specific)
-				));
-				LOGGER.info("TC_532 - Network domain enabled successfully");
+				devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(),
+						Optional.empty()));
+				LoggerUtils.logInfo("TC_532 - Network domain enabled successfully");
 			} catch (Exception networkEx) {
-				LOGGER.warning("TC_532 - Failed to enable Network domain: " + networkEx.getMessage());
+				LoggerUtils.logWarn("TC_532 - Failed to enable Network domain: " + networkEx.getMessage());
 				throw networkEx;
 			}
 
 			isNetworkControlled = true;
-			LOGGER.info("TC_532 - Chrome DevTools fully initialized and ready");
+			LoggerUtils.logInfo("TC_532 - Chrome DevTools fully initialized and ready");
 
 		} catch (SkipException e) {
 			throw e;
 		} catch (Exception e) {
-			LOGGER.warning("TC_532 - Error initializing DevTools: " + e.getMessage());
+			LoggerUtils.logWarn("TC_532 - Error initializing DevTools: " + e.getMessage());
 			throw new SkipException("TC_532: Could not initialize DevTools: " + e.getMessage(), e);
 		}
 	}
 
 	/**
-	 * Helper method to disconnect network using CDP
+	 * Helper method to disconnect network using CDP.
 	 */
 	@SuppressWarnings("deprecation")
 	private void disconnectNetwork() {
 		try {
 			if (!isNetworkControlled || devTools == null) {
 				String errorMsg = "TC_532: DevTools not initialized. Cannot disconnect network.";
-				LOGGER.warning(errorMsg);
+				LoggerUtils.logWarn(errorMsg);
 				throw new SkipException(errorMsg);
 			}
 
-			LOGGER.info("TC_532 - Disconnecting network using CDP...");
+			LoggerUtils.logInfo("TC_532 - Disconnecting network using CDP...");
 
-			// Go offline using CDP - emulate offline network conditions
-			devTools.send(Network.emulateNetworkConditions(false, // offline
-					0, // downloadThroughput - no download
-					0, // uploadThroughput - no upload
-					0, // latency
-					Optional.empty(), // connectionType
-					Optional.empty(), // unknown
-					Optional.empty(), // unknown
-					Optional.empty() // unknown
-			));
-			LOGGER.info(
+			devTools.send(Network.emulateNetworkConditions(false, 0, 0, 0, Optional.empty(), Optional.empty(),
+					Optional.empty(), Optional.empty()));
+			LoggerUtils.logInfo(
 					"TC_532 - ✓ Network disconnected successfully (emulateNetworkConditions: offline=true, throughput=0)");
 
-			Thread.sleep(2000); // Wait for network to disconnect
+			Thread.sleep(2000);
 
 		} catch (SkipException e) {
 			throw e;
 		} catch (Exception e) {
-			LOGGER.warning("TC_532 - Failed to disconnect network: " + e.getMessage());
+			LoggerUtils.logWarn("TC_532 - Failed to disconnect network: " + e.getMessage());
 			throw new SkipException("TC_532: Could not disconnect network: " + e.getMessage(), e);
 		}
 	}
 
 	/**
-	 * Helper method to reconnect network using CDP
+	 * Helper method to reconnect network using CDP.
 	 */
 	@SuppressWarnings("deprecation")
 	private void reconnectNetwork() {
 		try {
 			if (!isNetworkControlled || devTools == null) {
-				LOGGER.warning("TC_532 - DevTools not initialized, skipping network reconnection");
+				LoggerUtils.logWarn("TC_532 - DevTools not initialized, skipping network reconnection");
 				return;
 			}
 
-			LOGGER.info("TC_532 - Reconnecting network using CDP...");
+			LoggerUtils.logInfo("TC_532 - Reconnecting network using CDP...");
 
-			// Go back online using CDP - restore normal network conditions
-			devTools.send(Network.emulateNetworkConditions(false, // offline
-					100, // downloadThroughput - restore normal (100 Kbps)
-					1000, // uploadThroughput - restore normal (1 Mbps)
-					2, // latency - 2ms
-					Optional.empty(), // connectionType
-					Optional.empty(), // unknown
-					Optional.empty(), // unknown
-					Optional.empty() // unknown
-			));
-			LOGGER.info(
+			devTools.send(Network.emulateNetworkConditions(false, 100, 1000, 2, Optional.empty(), Optional.empty(),
+					Optional.empty(), Optional.empty()));
+			LoggerUtils.logInfo(
 					"TC_532 - ✓ Network reconnected successfully (emulateNetworkConditions: offline=false, throughput restored)");
 
-			Thread.sleep(2000); // Wait for network to reconnect
+			Thread.sleep(2000);
 
 		} catch (Exception e) {
-			LOGGER.warning("TC_532 - Failed to reconnect network: " + e.getMessage());
-			// Don't throw exception in cleanup method
+			LoggerUtils.logWarn("TC_532 - Failed to reconnect network: " + e.getMessage());
 		}
 	}
+
+	private String safeGetCurrentUrl(org.openqa.selenium.WebDriver driver) {
+		return ContactUsPage.safeGetCurrentUrl(driver);
+	}
+
+	private String safeGetPageSource(org.openqa.selenium.WebDriver driver) {
+		return ContactUsPage.safeGetPageSource(driver);
+	}
+
+	private String safeString(String str) {
+		return ContactUsPage.safeString(str);
+	}
+
+	private boolean safeStringEquals(String str1, String str2) {
+		return ContactUsPage.safeStringEquals(str1, str2);
+	}
+
+	private void sleepQuietly(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
+	}
+
+	// ==================== TC_532: PLAY WITHOUT INTERNET ====================
 
 	/**
 	 * TC_532: Audio Player - Play without internet using CDP Test Flow: Login →
 	 * Play → Disconnect network using CDP → Verify behavior Expected: Error shown /
-	 * playback stops Note: Uses Chrome DevTools Protocol (CDP) for actual network
-	 * control
-	 * 
+	 * playback stops. Uses Chrome DevTools Protocol (CDP) for actual network
+	 * control.
+	 *
 	 * @throws Exception
 	 */
-	@SuppressWarnings("null")
-	@Test(priority = 532, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyAudioPlaybackWithoutInternet() throws Exception {
+
+	@Test(priority = 532, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_PERFORMANCE }, retryAnalyzer = RetryAnalyzer.class, description = "TC_532: Verify audio player behavior when network is disconnected using CDP")
+	public void TC532_VerifyAudioPlaybackWithoutInternet() throws Exception {
+		LoggerUtils.logTestStart("TC_532: Audio Playback Without Internet (CDP)");
+
 		try {
+			LoggerUtils.logStep(1, "Log in as registered user");
 			loginAsRegisteredUser();
-			LOGGER.info("TC_532 - STEP 1: Logged in as registered user");
+			LoggerUtils.logInfo("TC_532 - STEP 1: Logged in as registered user");
 
-			// Initialize Chrome DevTools
+			LoggerUtils.logStep(2, "Initialize Chrome DevTools for network control");
 			initializeDevTools();
-			LOGGER.info("TC_532 - STEP 2: DevTools initialized");
+			LoggerUtils.logInfo("TC_532 - STEP 2: DevTools initialized");
 
-			// Navigate to audio player
+			LoggerUtils.logStep(3, "Navigate to audio player");
 			long startTime = System.currentTimeMillis();
 			dashboard.waitForDashboardShell();
 			player.waitForPlayerBar();
-			LOGGER.info(
+			LoggerUtils.logInfo(
 					"TC_532 - STEP 3: Audio player ready (took " + (System.currentTimeMillis() - startTime) + "ms)");
 
-			// Start audio playback
+			LoggerUtils.logStep(4, "Start audio playback");
 			startTime = System.currentTimeMillis();
 			player.clickPlayAudio();
-			Thread.sleep(2000); // Wait for initial playback to start
-			LOGGER.info("TC_532 - STEP 4: Audio play button clicked (took " + (System.currentTimeMillis() - startTime)
-					+ "ms)");
-
-			// DISCONNECT NETWORK using CDP
-			startTime = System.currentTimeMillis();
-			disconnectNetwork();
-			LOGGER.info("TC_532 - STEP 5: Network disconnected using CDP (took "
+			sleepQuietly(2000);
+			LoggerUtils.logInfo("TC_532 - STEP 4: Audio play button clicked (took "
 					+ (System.currentTimeMillis() - startTime) + "ms)");
 
-			// Wait for application to react to network loss
-			Thread.sleep(2000);
+			LoggerUtils.logStep(5, "Disconnect network using CDP");
+			startTime = System.currentTimeMillis();
+			disconnectNetwork();
+			LoggerUtils.logInfo("TC_532 - STEP 5: Network disconnected using CDP (took "
+					+ (System.currentTimeMillis() - startTime) + "ms)");
 
-			// Check player behavior after network disconnection
+			sleepQuietly(2000);
+
+			LoggerUtils.logStep(6, "Verify player behavior after network disconnection");
 			startTime = System.currentTimeMillis();
 			boolean playerResponsive = player.isPlayerResponsive();
-			String pageSource = driver.getPageSource().toLowerCase();
+			String pageSource = safeGetPageSource(driver).toLowerCase();
 
-			// Check for error indicators
 			boolean hasNetworkError = pageSource.contains("network") || pageSource.contains("offline")
 					|| pageSource.contains("connection") || pageSource.contains("internet")
 					|| pageSource.contains("error") || pageSource.contains("retry");
 
-			LOGGER.info("TC_532 - STEP 6: Player responsive: " + playerResponsive);
-			LOGGER.info("TC_532 - STEP 6: Network error detected: " + hasNetworkError);
-			LOGGER.info("TC_532 - STEP 6: Checks completed (took " + (System.currentTimeMillis() - startTime) + "ms)");
+			LoggerUtils.logInfo("TC_532 - STEP 6: Player responsive: " + playerResponsive);
+			LoggerUtils.logInfo("TC_532 - STEP 6: Network error detected: " + hasNetworkError);
+			LoggerUtils.logInfo(
+					"TC_532 - STEP 6: Checks completed (took " + (System.currentTimeMillis() - startTime) + "ms)");
 
-			// Reconnect network for cleanup
+			LoggerUtils.logStep(7, "Reconnect network for cleanup");
 			startTime = System.currentTimeMillis();
 			reconnectNetwork();
-			LOGGER.info(
+			LoggerUtils.logInfo(
 					"TC_532 - STEP 7: Network reconnected (took " + (System.currentTimeMillis() - startTime) + "ms)");
 
-			// Verify the application handled network disconnection gracefully
 			boolean handledCorrectly = playerResponsive || hasNetworkError;
 
 			Assert.assertTrue(handledCorrectly,
 					"TC_532: Application should handle network disconnection gracefully (error shown or player unresponsive)");
-			LOGGER.info("TC_532: ✓ Test PASSED - Application handled network loss gracefully");
+			LoggerUtils.logInfo("TC_532: ✓ Test PASSED - Application handled network loss gracefully");
+
+			LoggerUtils.logTestEnd("TC_532", "PASSED");
 
 		} catch (SkipException e) {
-			// Reconnect network before throwing SkipException
 			try {
 				reconnectNetwork();
 			} catch (Exception ex) {
@@ -283,16 +312,14 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 			}
 			throw e;
 		} catch (Exception e) {
-			// Reconnect network before throwing exception
 			try {
 				reconnectNetwork();
 			} catch (Exception ex) {
 				// Ignore cleanup errors
 			}
-			LOGGER.warning("TC_532 - Test failed: " + e.getMessage());
+			LoggerUtils.logWarn("TC_532 - Test failed: " + safeString(e.getMessage()));
 			throw e;
 		} finally {
-			// Always try to reconnect network at the end
 			try {
 				if (isNetworkControlled) {
 					reconnectNetwork();
@@ -303,89 +330,107 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 		}
 	}
 
+	// ==================== TC_533: MULTIPLE RAPID CLICKS ====================
+
 	/**
 	 * TC_533: Audio Player - Multiple rapid clicks Test Flow: Click Play multiple
-	 * times rapidly Expected: No crash / single playback
-	 * 
+	 * times rapidly Expected: No crash / single playback.
+	 *
 	 * @throws Exception
 	 */
-
-	@Test(priority = 533, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyMultipleRapidPlayClicks() throws Exception {
-		loginAsRegisteredUser();
-		LOGGER.info("TC_533 - STEP 1: Logged in as registered user");
+	@Test(priority = 533, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_533: Verify audio player handles multiple rapid play clicks without crashing")
+	public void TC533_VerifyMultipleRapidPlayClicks() throws Exception {
+		LoggerUtils.logTestStart("TC_533: Audio Player Multiple Rapid Clicks");
 
 		try {
+			LoggerUtils.logStep(1, "Log in as registered user");
+			loginAsRegisteredUser();
+			LoggerUtils.logInfo("TC_533 - STEP 1: Logged in as registered user");
+
+			LoggerUtils.logStep(2, "Open a book from dashboard and wait for player");
 			openAnyDashboardBookAndWaitForPlayer();
-			LOGGER.info("TC_533 - STEP 2: Opened a book from dashboard and player is ready");
+			LoggerUtils.logInfo("TC_533 - STEP 2: Opened a book from dashboard and player is ready");
 
 			if (player.hasSubscriptionGate()) {
 				throw new SkipException("TC_533: Selected dashboard book is gated for playback.");
 			}
 
-			// Simulate multiple rapid clicks on play button
+			LoggerUtils.logStep(3, "Click play button rapidly");
 			int rapidClickCount = 5;
 			Assert.assertTrue(player.clickPlayButtonRapidly(rapidClickCount, 100),
 					"TC_533 setup: expected play button to accept rapid clicks.");
+			LoggerUtils.logInfo("TC_533 - STEP 3: Clicked play button " + rapidClickCount + " times rapidly");
+			sleepQuietly(1500);
 
-			LOGGER.info("TC_533 - STEP 3: Clicked play button " + rapidClickCount + " times rapidly");
-			Thread.sleep(1500);
-
-			// Verify no crash and single playback instance
+			LoggerUtils.logStep(4, "Verify single playback and player responsiveness");
 			boolean isPlaying = player.isPauseButtonVisible() || player.isPlaybackProgressing();
 			boolean playerResponsive = player.isPlayerResponsive();
 
-			LOGGER.info("TC_533 - STEP 4: Audio playing: " + isPlaying);
-			LOGGER.info("TC_533 - STEP 4: Player responsive: " + playerResponsive);
+			LoggerUtils.logInfo("TC_533 - STEP 4: Audio playing: " + isPlaying);
+			LoggerUtils.logInfo("TC_533 - STEP 4: Player responsive: " + playerResponsive);
 
 			Assert.assertTrue(isPlaying && playerResponsive, "TC_533: Should have single playback without crash");
-			LOGGER.info("TC_533: Multiple rapid clicks verified - No crash, single playback");
+			LoggerUtils.logInfo("TC_533: Multiple rapid clicks verified - No crash, single playback");
+
+			LoggerUtils.logTestEnd("TC_533", "PASSED");
 
 		} catch (Exception e) {
-			LOGGER.warning("TC_533 - Test failed: " + e.getMessage());
+			LoggerUtils.logWarn("TC_533 - Test failed: " + safeString(e.getMessage()));
 			throw e;
 		}
 	}
 
+	// ==================== TC_534: TAB SWITCH DURING PLAYBACK ====================
+
 	/**
 	 * TC_534: Audio Player - Switch tabs during playback Test Flow: Play → Switch
-	 * browser tab Expected: Behavior as per design (pause/continue) Note: Cross-tab
-	 * behavior verification
-	 * 
+	 * browser tab Expected: Behavior as per design (pause/continue). Cross-tab
+	 * behavior verification.
+	 *
 	 * @throws Exception
 	 */
-	@Test(priority = 534, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyPlaybackOnTabSwitch() throws Exception {
-		loginAsRegisteredUser();
-		LOGGER.info("TC_534 - STEP 1: Logged in as registered user");
+	@Test(priority = 534, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_534: Verify audio player behavior across browser tab switches")
+	public void TC534_VerifyPlaybackOnTabSwitch() throws Exception {
+		LoggerUtils.logTestStart("TC_534: Audio Playback On Tab Switch");
 
 		try {
+			LoggerUtils.logStep(1, "Log in as registered user");
+			loginAsRegisteredUser();
+			LoggerUtils.logInfo("TC_534 - STEP 1: Logged in as registered user");
+
+			LoggerUtils.logStep(2, "Open a book from dashboard");
 			openAnyDashboardBookAndWaitForPlayer();
-			LOGGER.info("TC_534 - STEP 2: Opened a book from dashboard");
+			LoggerUtils.logInfo("TC_534 - STEP 2: Opened a book from dashboard");
 
 			if (player.hasSubscriptionGate()) {
 				throw new SkipException("TC_534: Selected dashboard book is gated for playback.");
 			}
 
+			LoggerUtils.logStep(3, "Start playback and capture current time");
 			Assert.assertTrue(player.clickPlayAudio(),
 					"TC_534 setup: expected playback to start before switching tabs.");
 			Assert.assertTrue(player.isPlaybackProgressing() || player.isPauseButtonVisible(),
 					"TC_534 setup: expected player to be playing before switching tabs.");
 
 			int timeBeforeSwitch = player.convertToSeconds(player.getCurrentTime());
-			LOGGER.info("TC_534 - STEP 3: Current time before tab switch: " + timeBeforeSwitch + " seconds");
+			LoggerUtils.logInfo("TC_534 - STEP 3: Current time before tab switch: " + timeBeforeSwitch + " seconds");
 
+			LoggerUtils.logStep(4, "Open a new browser tab");
 			String originalTab = driver.getWindowHandle();
 			driver.switchTo().newWindow(WindowType.TAB);
 			driver.get("about:blank");
-			LOGGER.info("TC_534 - STEP 4: Switched to another browser tab");
-			Thread.sleep(2000);
+			LoggerUtils.logInfo("TC_534 - STEP 4: Switched to another browser tab");
+			sleepQuietly(2000);
 
+			LoggerUtils.logStep(5, "Close new tab and return to original playback tab");
 			driver.close();
 			driver.switchTo().window(originalTab);
-			LOGGER.info("TC_534 - STEP 5: Returned to the original playback tab");
-			Thread.sleep(1500);
+			LoggerUtils.logInfo("TC_534 - STEP 5: Returned to the original playback tab");
+			sleepQuietly(1500);
 
+			LoggerUtils.logStep(6, "Verify playback state after tab switch");
 			int timeAfterReturn = player.convertToSeconds(player.getCurrentTime());
 			boolean playerResponsive = player.isPlayerResponsive();
 			boolean playbackContinued = timeBeforeSwitch >= 0 && timeAfterReturn > timeBeforeSwitch;
@@ -393,252 +438,296 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 
 			if (!playbackContinued) {
 				boolean playButtonVisible = player.isPlayButtonVisible();
-				Thread.sleep(1200);
+				sleepQuietly(1200);
 				int stableTime = player.convertToSeconds(player.getCurrentTime());
 				playbackPaused = playButtonVisible && timeAfterReturn >= 0 && stableTime >= 0
 						&& Math.abs(stableTime - timeAfterReturn) <= 1;
-				LOGGER.info("TC_534 - STEP 6: Stable time after return: " + stableTime + " seconds");
+				LoggerUtils.logInfo("TC_534 - STEP 6: Stable time after return: " + stableTime + " seconds");
 			}
 
-			LOGGER.info("TC_534 - STEP 6: Current time after tab switch: " + timeAfterReturn + " seconds");
-			LOGGER.info("TC_534 - STEP 6: Playback continued: " + playbackContinued);
-			LOGGER.info("TC_534 - STEP 6: Playback paused: " + playbackPaused);
-			LOGGER.info("TC_534 - STEP 6: Player responsive after tab switch: " + playerResponsive);
+			LoggerUtils.logInfo("TC_534 - STEP 6: Current time after tab switch: " + timeAfterReturn + " seconds");
+			LoggerUtils.logInfo("TC_534 - STEP 6: Playback continued: " + playbackContinued);
+			LoggerUtils.logInfo("TC_534 - STEP 6: Playback paused: " + playbackPaused);
+			LoggerUtils.logInfo("TC_534 - STEP 6: Player responsive after tab switch: " + playerResponsive);
 
 			Assert.assertTrue(playerResponsive && (playbackContinued || playbackPaused),
 					"TC_534: Playback should either continue or pause cleanly after switching tabs.");
-			LOGGER.info("TC_534: Tab switch behavior verified - System behaved as expected with no deviations");
+			LoggerUtils.logInfo("TC_534: Tab switch behavior verified - System behaved as expected with no deviations");
+
+			LoggerUtils.logTestEnd("TC_534", "PASSED");
 
 		} catch (Exception e) {
-			LOGGER.warning("TC_534 - Test failed: " + e.getMessage());
+			LoggerUtils.logWarn("TC_534 - Test failed: " + safeString(e.getMessage()));
 			throw e;
 		}
 	}
 
+	// ==================== TC_535: BROWSER MINIMIZE ====================
+
 	/**
 	 * TC_535: Audio Player - Minimize browser Test Flow: Play → Minimize browser
-	 * Expected: Playback continues Note: Actual minimize requires OS-level control
-	 * 
+	 * Expected: Playback continues. Note: Actual minimize requires OS-level
+	 * control.
+	 *
 	 * @throws Exception
 	 */
-	@Test(priority = 535, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyPlaybackOnBrowserMinimize() throws Exception {
-		loginAsRegisteredUser();
-		LOGGER.info("TC_535 - STEP 1: Logged in as registered user");
+	@Test(priority = 535, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_535: Verify audio playback continues after browser is minimized")
+	public void TC535_VerifyPlaybackOnBrowserMinimize() throws Exception {
+		LoggerUtils.logTestStart("TC_535: Audio Playback On Browser Minimize");
 
 		try {
+			LoggerUtils.logStep(1, "Log in as registered user");
+			loginAsRegisteredUser();
+			LoggerUtils.logInfo("TC_535 - STEP 1: Logged in as registered user");
+
+			LoggerUtils.logStep(2, "Open a book from dashboard");
 			openAnyDashboardBookAndWaitForPlayer();
-			LOGGER.info("TC_535 - STEP 2: Opened a book from dashboard");
+			LoggerUtils.logInfo("TC_535 - STEP 2: Opened a book from dashboard");
 
 			if (player.hasSubscriptionGate()) {
 				throw new SkipException("TC_535: Selected dashboard book is gated for playback.");
 			}
 
+			LoggerUtils.logStep(3, "Start playback and capture current time");
 			Assert.assertTrue(player.clickPlayAudio(), "TC_535 setup: expected playback to start before minimizing.");
 			Assert.assertTrue(player.isPlaybackProgressing() || player.isPauseButtonVisible(),
 					"TC_535 setup: expected player to be playing before minimizing.");
 
-			// Store initial playback state
 			int timeBeforeMinimize = player.convertToSeconds(player.getCurrentTime());
-			LOGGER.info("TC_535 - STEP 3: Current time: " + timeBeforeMinimize + " seconds");
+			LoggerUtils.logInfo("TC_535 - STEP 3: Current time: " + timeBeforeMinimize + " seconds");
 
-			// Note: Actual browser minimize requires OS automation
-			// Simulate by waiting and checking if playback continues
-			Thread.sleep(3000);
+			LoggerUtils.logStep(4, "Wait while browser minimize is simulated");
+			sleepQuietly(3000);
 
+			LoggerUtils.logStep(5, "Verify playback continued after minimize");
 			int timeAfterMinimize = player.convertToSeconds(player.getCurrentTime());
-			LOGGER.info("TC_535 - STEP 4: Current time after minimize simulation: " + timeAfterMinimize + " seconds");
+			LoggerUtils.logInfo(
+					"TC_535 - STEP 4: Current time after minimize simulation: " + timeAfterMinimize + " seconds");
 
-			// Verify playback continued
 			boolean playerResponsive = player.isPlayerResponsive();
 			boolean playbackContinued = timeBeforeMinimize >= 0 && timeAfterMinimize > timeBeforeMinimize;
-			LOGGER.info("TC_535 - STEP 5: Playback continuing: " + playbackContinued);
-			LOGGER.info("TC_535 - STEP 5: Player responsive: " + playerResponsive);
+			LoggerUtils.logInfo("TC_535 - STEP 5: Playback continuing: " + playbackContinued);
+			LoggerUtils.logInfo("TC_535 - STEP 5: Player responsive: " + playerResponsive);
 
 			Assert.assertTrue(playerResponsive && playbackContinued,
 					"TC_535: Playback should continue after browser minimize");
-			LOGGER.info("TC_535: Browser minimize behavior verified - Playback continues");
+			LoggerUtils.logInfo("TC_535: Browser minimize behavior verified - Playback continues");
+
+			LoggerUtils.logTestEnd("TC_535", "PASSED");
 
 		} catch (Exception e) {
-			LOGGER.warning("TC_535 - Test failed: " + e.getMessage());
+			LoggerUtils.logWarn("TC_535 - Test failed: " + safeString(e.getMessage()));
 			throw e;
 		}
 	}
 
+	// ==================== TC_536: SEEK BEYOND DURATION ====================
+
 	/**
 	 * TC_536: Audio Player - Seek beyond duration Test Flow: Drag seek bar to end
-	 * Expected: Playback stops at end Type: Boundary
+	 * Expected: Playback stops at end. Type: Boundary.
 	 */
-	@Test(priority = 536, retryAnalyzer = RetryAnalyzer.class)
-	public void verifySeekBeyondDuration() {
-		loginAsRegisteredUser();
-		LOGGER.info("TC_536 - STEP 1: Logged in as registered user");
+	@Test(priority = 536, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_536: Verify audio player handles seeking beyond duration (boundary case)")
+	public void TC536_VerifySeekBeyondDuration() {
+		LoggerUtils.logTestStart("TC_536: Audio Seek Beyond Duration");
 
 		try {
+			LoggerUtils.logStep(1, "Log in as registered user");
+			loginAsRegisteredUser();
+			LoggerUtils.logInfo("TC_536 - STEP 1: Logged in as registered user");
+
+			LoggerUtils.logStep(2, "Open a book from dashboard");
 			openAnyDashboardBookAndWaitForPlayer();
-			LOGGER.info("TC_536 - STEP 2: Opened a book from dashboard");
+			LoggerUtils.logInfo("TC_536 - STEP 2: Opened a book from dashboard");
 
 			if (player.hasSubscriptionGate()) {
 				throw new SkipException("TC_536: Selected dashboard book is gated for playback.");
 			}
 
+			LoggerUtils.logStep(3, "Start audio playback");
 			Assert.assertTrue(player.clickPlayAudio(), "TC_536 setup: expected playback to start before seeking.");
 			Assert.assertTrue(player.isPlaybackProgressing() || player.isPauseButtonVisible(),
 					"TC_536 setup: expected player to be playing before seeking.");
+			LoggerUtils.logInfo("TC_536 - STEP 3: Audio playback started");
 
-			LOGGER.info("TC_536 - STEP 3: Audio playback started");
-
-			// Verify seek beyond end behavior
+			LoggerUtils.logStep(4, "Verify seek beyond end behavior");
 			boolean seekBeyondEndHandled = player.validateSeekBeyondEnd();
+			LoggerUtils.logInfo("TC_536 - STEP 4: Seek beyond end handled: " + seekBeyondEndHandled);
 
-			LOGGER.info("TC_536 - STEP 4: Seek beyond end handled: " + seekBeyondEndHandled);
-
-			// Verify playback stopped at end
+			LoggerUtils.logStep(5, "Verify playback stopped at end");
 			boolean isPlaying = player.validatePlay();
-			LOGGER.info("TC_536 - STEP 5: Still playing: " + isPlaying);
+			LoggerUtils.logInfo("TC_536 - STEP 5: Still playing: " + isPlaying);
 
 			Assert.assertTrue(seekBeyondEndHandled, "TC_536: Should handle seeking beyond duration correctly");
-			LOGGER.info(
+			LoggerUtils.logInfo(
 					"TC_536: Seek beyond duration verified - Playback stops at end. System behaved as expected with no deviations");
 
+			LoggerUtils.logTestEnd("TC_536", "PASSED");
+
 		} catch (Exception e) {
-			LOGGER.warning("TC_536 - Test failed: " + e.getMessage());
+			LoggerUtils.logWarn("TC_536 - Test failed: " + safeString(e.getMessage()));
 			throw e;
 		}
 	}
 
+	// ==================== TC_537: QUICK CHAPTER SWITCHING ====================
+
 	/**
 	 * TC_537: Audio Player - Play next chapter quickly Test Flow: Play → Switch
-	 * chapters quickly Expected: Previous audio stops, new starts
-	 * 
+	 * chapters quickly Expected: Previous audio stops, new starts.
+	 *
 	 * @throws Exception
 	 */
-	@Test(priority = 537, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyQuickChapterSwitching() throws Exception {
-		loginAsRegisteredUser();
-		LOGGER.info("TC_537 - STEP 1: Logged in as registered user");
+	@Test(priority = 537, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_537: Verify quick chapter switching stops previous audio and starts new chapter")
+	public void TC537_VerifyQuickChapterSwitching() throws Exception {
+		LoggerUtils.logTestStart("TC_537: Audio Quick Chapter Switching");
 
 		try {
+			LoggerUtils.logStep(1, "Log in as registered user");
+			loginAsRegisteredUser();
+			LoggerUtils.logInfo("TC_537 - STEP 1: Logged in as registered user");
+
+			LoggerUtils.logStep(2, "Open a book from dashboard");
 			openAnyDashboardBookAndWaitForPlayer();
-			LOGGER.info("TC_537 - STEP 2: Opened a book from dashboard");
+			LoggerUtils.logInfo("TC_537 - STEP 2: Opened a book from dashboard");
 
 			if (player.hasSubscriptionGate()) {
 				throw new SkipException("TC_537: Selected dashboard book is gated for playback.");
 			}
 
-			// Check if audio has multiple chapters
+			LoggerUtils.logStep(3, "Verify multiple chapters are available");
 			if (!player.hasMultipleChapters()) {
 				throw new SkipException("TC_537: Audio does not have multiple chapters");
 			}
 
+			LoggerUtils.logStep(4, "Start playback and capture current chapter");
 			Assert.assertTrue(player.clickPlayAudio(),
 					"TC_537 setup: expected playback to start before switching chapters.");
 			Assert.assertTrue(player.isPlaybackProgressing() || player.isPauseButtonVisible(),
 					"TC_537 setup: expected player to be playing before switching chapters.");
 
-			// Store current chapter
 			String initialChapter = player.getCurrentChapterTitle();
-			LOGGER.info("TC_537 - STEP 3: Current chapter: " + initialChapter);
+			LoggerUtils.logInfo("TC_537 - STEP 3: Current chapter: " + initialChapter);
 
-			// Switch to next chapter quickly
+			LoggerUtils.logStep(5, "Switch to next chapter quickly");
 			boolean chapterSwitched = player.clickNextChapter();
-			Thread.sleep(1000); // Brief wait
+			sleepQuietly(1000);
+			LoggerUtils.logInfo("TC_537 - STEP 4: Switched to next chapter");
 
-			LOGGER.info("TC_537 - STEP 4: Switched to next chapter");
-
-			// Verify new chapter started
+			LoggerUtils.logStep(6, "Verify new chapter started and previous audio stopped");
 			String newChapter = player.getCurrentChapterTitle();
-			LOGGER.info("TC_537 - STEP 5: New chapter: " + newChapter);
+			LoggerUtils.logInfo("TC_537 - STEP 5: New chapter: " + newChapter);
 
-			// Verify previous audio stopped and new started
 			boolean titleChanged = !"N/A".equals(newChapter) && !initialChapter.equals(newChapter);
 			boolean playerResponsive = player.isPlayerResponsive();
 			boolean isNewChapterPlaying = chapterSwitched && playerResponsive;
-			LOGGER.info("TC_537 - STEP 6: Chapter switch detected: " + chapterSwitched);
-			LOGGER.info("TC_537 - STEP 6: Title changed: " + titleChanged);
-			LOGGER.info("TC_537 - STEP 6: New chapter playing: " + isNewChapterPlaying);
+			LoggerUtils.logInfo("TC_537 - STEP 6: Chapter switch detected: " + chapterSwitched);
+			LoggerUtils.logInfo("TC_537 - STEP 6: Title changed: " + titleChanged);
+			LoggerUtils.logInfo("TC_537 - STEP 6: New chapter playing: " + isNewChapterPlaying);
 
 			Assert.assertTrue(isNewChapterPlaying, "TC_537: Should switch to new chapter correctly");
-			LOGGER.info(
+			LoggerUtils.logInfo(
 					"TC_537: Quick chapter switching verified - Previous audio stopped, new starts. System behaved as expected with no deviations");
 
+			LoggerUtils.logTestEnd("TC_537", "PASSED");
+
 		} catch (Exception e) {
-			LOGGER.warning("TC_537 - Test failed: " + e.getMessage());
+			LoggerUtils.logWarn("TC_537 - Test failed: " + safeString(e.getMessage()));
 			throw e;
 		}
 	}
 
+	// ==================== TC_538: REFRESH DURING PLAYBACK ====================
+
 	/**
 	 * TC_538: Audio Player - Refresh during playback Test Flow: Play → Refresh page
-	 * Expected: Playback resets or resumes correctly
-	 * 
+	 * Expected: Playback resets or resumes correctly.
+	 *
 	 * @throws Exception
 	 */
-	@Test(priority = 538, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyPlaybackAfterRefresh() throws Exception {
-		loginAsRegisteredUser();
-		LOGGER.info("TC_538 - STEP 1: Logged in as registered user");
+	@Test(priority = 538, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_REGRESSION }, retryAnalyzer = RetryAnalyzer.class, description = "TC_538: Verify audio player handles page refresh during playback")
+	public void TC538_VerifyPlaybackAfterRefresh() throws Exception {
+		LoggerUtils.logTestStart("TC_538: Audio Playback After Refresh");
 
 		try {
+			LoggerUtils.logStep(1, "Log in as registered user");
+			loginAsRegisteredUser();
+			LoggerUtils.logInfo("TC_538 - STEP 1: Logged in as registered user");
+
+			LoggerUtils.logStep(2, "Open a book from dashboard");
 			openAnyDashboardBookAndWaitForPlayer();
-			LOGGER.info("TC_538 - STEP 2: Opened a book from dashboard");
+			LoggerUtils.logInfo("TC_538 - STEP 2: Opened a book from dashboard");
 
 			if (player.hasSubscriptionGate()) {
 				throw new SkipException("TC_538: Selected dashboard book is gated for playback.");
 			}
 
+			LoggerUtils.logStep(3, "Start playback and capture current time");
 			Assert.assertTrue(player.clickPlayAudio(), "TC_538 setup: expected playback to start before refresh.");
 			Assert.assertTrue(player.isPlaybackProgressing() || player.isPauseButtonVisible(),
 					"TC_538 setup: expected player to be playing before refresh.");
 
-			// Store current position
 			String timeBeforeRefresh = player.getCurrentTime();
-			LOGGER.info("TC_538 - STEP 3: Current time before refresh: " + timeBeforeRefresh);
+			LoggerUtils.logInfo("TC_538 - STEP 3: Current time before refresh: " + timeBeforeRefresh);
 
-			// Refresh the page
+			LoggerUtils.logStep(4, "Refresh the page");
 			driver.navigate().refresh();
-			Thread.sleep(3000); // Wait for page reload
+			sleepQuietly(3000);
+			LoggerUtils.logInfo("TC_538 - STEP 4: Page refreshed");
 
-			LOGGER.info("TC_538 - STEP 4: Page refreshed");
-
-			// Wait for player to be ready again
+			LoggerUtils.logStep(5, "Wait for player to be ready again");
 			player.waitForPlayerBar();
 			String timeAfterRefresh = player.getCurrentTime();
-			LOGGER.info("TC_538 - STEP 5: Current time after refresh: " + timeAfterRefresh);
+			LoggerUtils.logInfo("TC_538 - STEP 5: Current time after refresh: " + timeAfterRefresh);
 
-			// Verify player handled refresh correctly (either reset or resumed)
+			LoggerUtils.logStep(6, "Verify player handled refresh correctly");
 			boolean playerResponsive = player.isPlayerResponsive();
-			LOGGER.info("TC_538 - STEP 6: Player responsive after refresh: " + playerResponsive);
+			LoggerUtils.logInfo("TC_538 - STEP 6: Player responsive after refresh: " + playerResponsive);
 
 			Assert.assertTrue(playerResponsive, "TC_538: Player should handle refresh correctly");
-			LOGGER.info(
+			LoggerUtils.logInfo(
 					"TC_538: Refresh during playback verified - Playback resets or resumes correctly. System behaved as expected with no deviations");
 
+			LoggerUtils.logTestEnd("TC_538", "PASSED");
+
 		} catch (Exception e) {
-			LOGGER.warning("TC_538 - Test failed: " + e.getMessage());
+			LoggerUtils.logWarn("TC_538 - Test failed: " + safeString(e.getMessage()));
 			throw e;
 		}
 	}
 
+	// ==================== TC_539: BACK NAVIGATION DURING PLAYBACK
+	// ====================
+
 	/**
 	 * TC_539: Audio Player - Browser back navigation Test Flow: Play → Click back
-	 * button Expected: Playback stops or navigates correctly
-	 * 
+	 * button Expected: Playback stops or navigates correctly.
+	 *
 	 * @throws Exception
 	 */
-	@Test(priority = 539, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyBackNavigationDuringPlayback() throws Exception {
-		loginAsRegisteredUser();
-		LOGGER.info("TC_539 - STEP 1: Logged in as registered user");
+	@Test(priority = 539, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_REGRESSION }, retryAnalyzer = RetryAnalyzer.class, description = "TC_539: Verify audio player behavior on browser back navigation during playback")
+	public void TC539_VerifyBackNavigationDuringPlayback() throws Exception {
+		LoggerUtils.logTestStart("TC_539: Audio Back Navigation During Playback");
 
 		try {
+			LoggerUtils.logStep(1, "Log in as registered user");
+			loginAsRegisteredUser();
+			LoggerUtils.logInfo("TC_539 - STEP 1: Logged in as registered user");
+
+			LoggerUtils.logStep(2, "Open a book from dashboard");
 			openAnyDashboardBookAndWaitForPlayer();
-			LOGGER.info("TC_539 - STEP 2: Opened a book from dashboard");
+			LoggerUtils.logInfo("TC_539 - STEP 2: Opened a book from dashboard");
 
 			if (player.hasSubscriptionGate()) {
 				throw new SkipException("TC_539: Selected dashboard book is gated for playback.");
 			}
 
+			LoggerUtils.logStep(3, "Start playback and capture current URL");
 			Assert.assertTrue(player.clickPlayAudio(),
 					"TC_539 setup: expected playback to start before back navigation.");
 			Assert.assertTrue(player.isPlaybackProgressing() || player.isPauseButtonVisible(),
@@ -646,149 +735,158 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 
 			@NonNull
 			String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
-			LOGGER.info("TC_539 - STEP 3: Current URL: " + currentUrl);
+			LoggerUtils.logInfo("TC_539 - STEP 3: Current URL: " + currentUrl);
 
-			// Navigate back
+			LoggerUtils.logStep(4, "Navigate back");
 			driver.navigate().back();
-			Thread.sleep(2000);
+			sleepQuietly(2000);
+			LoggerUtils.logInfo("TC_539 - STEP 4: Navigated back");
 
-			LOGGER.info("TC_539 - STEP 4: Navigated back");
-
-			// Verify navigation handled correctly
+			LoggerUtils.logStep(5, "Verify navigation handled correctly");
 			String newUrl = Objects.requireNonNull(driver.getCurrentUrl());
-			LOGGER.info("TC_539 - STEP 5: URL after back: " + newUrl);
+			LoggerUtils.logInfo("TC_539 - STEP 5: URL after back: " + newUrl);
 
-			boolean navigationHandled = !currentUrl.equals(newUrl);
-			LOGGER.info("TC_539 - STEP 6: Navigation handled: " + navigationHandled);
+			boolean navigationHandled = !safeStringEquals(currentUrl, newUrl);
+			LoggerUtils.logInfo("TC_539 - STEP 6: Navigation handled: " + navigationHandled);
 
 			Assert.assertTrue(navigationHandled, "TC_539: Should handle back navigation correctly");
-			LOGGER.info(
+			LoggerUtils.logInfo(
 					"TC_539: Back navigation during playback verified - Playback stops or navigates correctly. System behaved as expected with no deviations");
 
+			LoggerUtils.logTestEnd("TC_539", "PASSED");
+
 		} catch (Exception e) {
-			LOGGER.warning("TC_539 - Test failed: " + e.getMessage());
+			LoggerUtils.logWarn("TC_539 - Test failed: " + safeString(e.getMessage()));
 			throw e;
 		}
 	}
 
+	// ==================== TC_543: CROSS BROWSER PLAYBACK ====================
+
 	/**
 	 * TC_543: Audio Player - Cross browser Test Flow: Test in Chrome/Firefox
-	 * Expected: Works in all browsers Note: This is a smoke test - run in different
-	 * browsers via testng.xml or command line
+	 * Expected: Works in all browsers. Smoke test - run in different browsers via
+	 * testng.xml or command line.
 	 */
-	@Test(priority = 543, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyCrossBrowserPlayback() {
-		loginAsRegisteredUser();
-		LOGGER.info("TC_543 - STEP 1: Logged in as registered user");
+	@Test(priority = 543, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_SMOKE,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_543: Verify audio playback works across supported browsers")
+	public void TC543_VerifyCrossBrowserPlayback() {
+		LoggerUtils.logTestStart("TC_543: Audio Cross-Browser Playback");
 
 		try {
+			LoggerUtils.logStep(1, "Log in as registered user");
+			loginAsRegisteredUser();
+			LoggerUtils.logInfo("TC_543 - STEP 1: Logged in as registered user");
+
+			LoggerUtils.logStep(2, "Open a book from dashboard");
 			openAnyDashboardBookAndWaitForPlayer();
-			LOGGER.info("TC_543 - STEP 2: Opened a book from dashboard");
+			LoggerUtils.logInfo("TC_543 - STEP 2: Opened a book from dashboard");
 
 			if (player.hasSubscriptionGate()) {
 				throw new SkipException("TC_543: Selected dashboard book is gated for playback.");
 			}
 
-			// Verify player is accessible and functional in current browser
+			LoggerUtils.logStep(3, "Verify player is accessible and functional in current browser");
 			boolean isPlayerAccessible = player.isPlayerResponsive();
 			boolean playButtonVisible = player.isPlayButtonVisible();
+			LoggerUtils.logInfo("TC_543 - STEP 3: Player accessible in current browser: " + isPlayerAccessible);
+			LoggerUtils.logInfo("TC_543 - STEP 3: Play button visible: " + playButtonVisible);
 
-			LOGGER.info("TC_543 - STEP 3: Player accessible in current browser: " + isPlayerAccessible);
-			LOGGER.info("TC_543 - STEP 3: Play button visible: " + playButtonVisible);
-
+			LoggerUtils.logStep(4, "Start playback");
 			Assert.assertTrue(player.clickPlayAudio(), "TC_543 setup: expected playback to start.");
 			Assert.assertTrue(player.isPlaybackProgressing() || player.isPauseButtonVisible(),
 					"TC_543 setup: expected player to be playing.");
 
 			String browserName = ConfigReader.getProperty("browser", "chrome").toUpperCase();
-			LOGGER.info("TC_543 - STEP 4: Testing in browser: " + browserName);
+			LoggerUtils.logInfo("TC_543 - STEP 4: Testing in browser: " + browserName);
 
+			LoggerUtils.logStep(5, "Verify playback works in current browser");
 			boolean isPlaying = player.isPlaybackProgressing() || player.isPauseButtonVisible();
-			LOGGER.info("TC_543 - STEP 5: Audio playing in " + browserName + ": " + isPlaying);
+			LoggerUtils.logInfo("TC_543 - STEP 5: Audio playing in " + browserName + ": " + isPlaying);
 
 			Assert.assertTrue(isPlaying, "TC_543: Playback should work in current browser");
-			LOGGER.info("TC_543: Cross-browser playback verified - Works in " + browserName
+			LoggerUtils.logInfo("TC_543: Cross-browser playback verified - Works in " + browserName
 					+ ". System behaved as expected with no deviations");
 
+			LoggerUtils.logTestEnd("TC_543", "PASSED");
+
 		} catch (Exception e) {
-			LOGGER.warning("TC_543 - Test failed: " + e.getMessage());
+			LoggerUtils.logWarn("TC_543 - Test failed: " + safeString(e.getMessage()));
 			throw e;
 		}
 	}
 
+	// ==================== TC_544: LOW BANDWIDTH PLAYBACK ====================
+
 	/**
 	 * TC_544: Audio Player - Low bandwidth Test Flow: Throttle network using CDP
-	 * Expected: Buffering handled properly Type: Edge - Slow network
+	 * Expected: Buffering handled properly. Type: Edge - Slow network.
 	 */
 	@SuppressWarnings("deprecation")
-	@Test(priority = 544, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyLowBandwidthPlayback() throws Exception {
-		loginAsRegisteredUser();
-		LOGGER.info("TC_544 - STEP 1: Logged in as registered user");
+	@Test(priority = 544, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_PERFORMANCE }, retryAnalyzer = RetryAnalyzer.class, description = "TC_544: Verify audio player handles low bandwidth via CDP network throttling")
+	public void TC544_VerifyLowBandwidthPlayback() throws Exception {
+		LoggerUtils.logTestStart("TC_544: Audio Low Bandwidth Playback");
 
-		// Check if CDP is available (Chrome only)
+		LoggerUtils.logStep(1, "Log in as registered user");
+		loginAsRegisteredUser();
+		LoggerUtils.logInfo("TC_544 - STEP 1: Logged in as registered user");
+
 		if (!(driver instanceof ChromeDriver)) {
 			throw new SkipException("TC_544: Network throttling requires Chrome browser with CDP support.");
 		}
 
 		try {
+			LoggerUtils.logStep(2, "Open a book from dashboard");
 			openAnyDashboardBookAndWaitForPlayer();
-			LOGGER.info("TC_544 - STEP 2: Opened a book from dashboard");
+			LoggerUtils.logInfo("TC_544 - STEP 2: Opened a book from dashboard");
 
 			if (player.hasSubscriptionGate()) {
 				throw new SkipException("TC_544: Selected dashboard book is gated for playback.");
 			}
 
-			// Start playback with NORMAL network first
+			LoggerUtils.logStep(3, "Start playback with normal network");
 			Assert.assertTrue(player.clickPlayAudio(), "TC_544 setup: expected playback to start with normal network.");
 			Assert.assertTrue(player.isPlaybackProgressing() || player.isPauseButtonVisible(),
 					"TC_544 setup: expected player to be playing with normal network.");
-			LOGGER.info("TC_544 - STEP 3: Audio playback started with normal network");
+			LoggerUtils.logInfo("TC_544 - STEP 3: Audio playback started with normal network");
 
-			// Wait for playback to stabilize
-			Thread.sleep(2000);
+			sleepQuietly(2000);
 
-			// Initialize DevTools for network throttling
+			LoggerUtils.logStep(4, "Initialize DevTools for network throttling");
 			initializeDevTools();
-			LOGGER.info("TC_544 - STEP 4: DevTools initialized for network throttling");
+			LoggerUtils.logInfo("TC_544 - STEP 4: DevTools initialized for network throttling");
 
-			// NOW throttle network to simulate slow connection (2G speeds)
-			LOGGER.info("TC_544 - STEP 5: Throttling network to 2G speeds during playback");
-			devTools.send(Network.emulateNetworkConditions(false, // online
-					50, // 50 Kbps download (very slow)
-					50, // 50 Kbps upload (very slow)
-					300, // 300ms latency (high latency)
-					Optional.empty(), // connectionType
-					Optional.empty(), // bandwidth
-					Optional.empty(), // packetLoss
-					Optional.empty() // packetReordering
-			));
-			LOGGER.info("TC_544 - STEP 6: Network throttled to 50 Kbps, 300ms latency during playback");
+			LoggerUtils.logStep(5, "Throttle network to 2G speeds during playback");
+			devTools.send(Network.emulateNetworkConditions(false, 50, 50, 300, Optional.empty(), Optional.empty(),
+					Optional.empty(), Optional.empty()));
+			LoggerUtils.logInfo("TC_544 - STEP 6: Network throttled to 50 Kbps, 300ms latency during playback");
 
-			// Wait and verify playback handles buffering gracefully
-			Thread.sleep(5000); // Wait for buffering to occur
+			sleepQuietly(5000);
 
+			LoggerUtils.logStep(6, "Verify playback handles buffering gracefully");
 			boolean playerResponsive = player.isPlayerResponsive();
 			boolean isPlayingOrBuffering = player.isPlaybackProgressing() || player.isPauseButtonVisible()
 					|| player.isPlayButtonVisible();
 
-			LOGGER.info("TC_544 - STEP 7: Player responsive: " + playerResponsive);
-			LOGGER.info("TC_544 - STEP 7: Playing or buffering: " + isPlayingOrBuffering);
+			LoggerUtils.logInfo("TC_544 - STEP 7: Player responsive: " + playerResponsive);
+			LoggerUtils.logInfo("TC_544 - STEP 7: Playing or buffering: " + isPlayingOrBuffering);
 
-			// Restore normal network
+			LoggerUtils.logStep(7, "Restore normal network");
 			reconnectNetwork();
-			LOGGER.info("TC_544 - STEP 8: Network restored to normal speed");
+			LoggerUtils.logInfo("TC_544 - STEP 8: Network restored to normal speed");
 
 			Assert.assertTrue(playerResponsive && isPlayingOrBuffering,
 					"TC_544: Player should handle low bandwidth gracefully (buffering)");
-			LOGGER.info(
+			LoggerUtils.logInfo(
 					"TC_544: Low bandwidth playback verified - Buffering handled properly. System behaved as expected with no deviations");
+
+			LoggerUtils.logTestEnd("TC_544", "PASSED");
 
 		} catch (SkipException e) {
 			throw e;
 		} catch (Exception e) {
-			LOGGER.warning("TC_544 - Test failed: " + e.getMessage());
-			// Ensure network is restored
+			LoggerUtils.logWarn("TC_544 - Test failed: " + safeString(e.getMessage()));
 			try {
 				if (isNetworkControlled) {
 					reconnectNetwork();
@@ -798,7 +896,6 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 			}
 			throw e;
 		} finally {
-			// Always restore network
 			try {
 				if (isNetworkControlled) {
 					reconnectNetwork();
@@ -809,163 +906,159 @@ public class AudioPlayerBehaviorTests extends BaseTest {
 		}
 	}
 
+	// ==================== TC_545: MULTIPLE TABS PLAYBACK ====================
+
 	/**
 	 * TC_545: Audio Player - Multiple tabs playback Test Flow: Play in 2 tabs
-	 * Expected: Only one audio plays Type: Edge - Multiple tabs
+	 * Expected: Only one audio plays. Type: Edge - Multiple tabs.
 	 */
-	
-	
-	@Test(priority = 545, retryAnalyzer = RetryAnalyzer.class)
-	public void verifyMultipleTabsPlaybackConflict() throws Exception {
-		loginAsRegisteredUser();
-		LOGGER.info("TC_545 - STEP 1: Logged in as registered user");
+	@Test(priority = 545, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_545: Verify only one audio plays when opened in multiple tabs")
+	public void TC545_VerifyMultipleTabsPlaybackConflict() throws Exception {
+		LoggerUtils.logTestStart("TC_545: Audio Multiple Tabs Playback Conflict");
 
 		try {
+			LoggerUtils.logStep(1, "Log in as registered user");
+			loginAsRegisteredUser();
+			LoggerUtils.logInfo("TC_545 - STEP 1: Logged in as registered user");
+
+			LoggerUtils.logStep(2, "Open a book from dashboard in first tab");
 			openAnyDashboardBookAndWaitForPlayer();
-			LOGGER.info("TC_545 - STEP 2: Opened a book from dashboard in first tab");
+			LoggerUtils.logInfo("TC_545 - STEP 2: Opened a book from dashboard in first tab");
 
 			if (player.hasSubscriptionGate()) {
 				throw new SkipException("TC_545: Selected dashboard book is gated for playback.");
 			}
 
-			// Start playback in first tab
+			LoggerUtils.logStep(3, "Start playback in first tab");
 			Assert.assertTrue(player.clickPlayAudio(), "TC_545 setup: expected playback to start in first tab.");
-			Thread.sleep(2000);
+			sleepQuietly(2000);
 
 			boolean firstTabPlaying = player.isPlaybackProgressing() || player.isPauseButtonVisible();
-			LOGGER.info("TC_545 - STEP 3: Audio playing in first tab: " + firstTabPlaying);
+			LoggerUtils.logInfo("TC_545 - STEP 3: Audio playing in first tab: " + firstTabPlaying);
 
-			// Store URL from first tab BEFORE opening new tab
 			String originalTab = driver.getWindowHandle();
 			String currentUrl = Objects.requireNonNull(driver.getCurrentUrl());
-			LOGGER.info("TC_545 - STEP 4: Stored URL from first tab: " + currentUrl);
+			LoggerUtils.logInfo("TC_545 - STEP 4: Stored URL from first tab: " + currentUrl);
 
-			// Open second tab
-			driver.switchTo().newWindow(org.openqa.selenium.WindowType.TAB);
-			LOGGER.info("TC_545 - STEP 5: Opened second browser tab");
+			LoggerUtils.logStep(4, "Open a second browser tab and navigate to same URL");
+			driver.switchTo().newWindow(WindowType.TAB);
+			LoggerUtils.logInfo("TC_545 - STEP 5: Opened second browser tab");
 
-			// Navigate to the stored URL in new tab
 			driver.get(currentUrl);
-			Thread.sleep(3000);
+			sleepQuietly(3000);
+			LoggerUtils.logInfo("TC_545 - STEP 6: Navigated to same URL in second tab: " + currentUrl);
 
-			LOGGER.info("TC_545 - STEP 6: Navigated to same URL in second tab: " + currentUrl);
-
-			// Try to play audio in second tab
+			LoggerUtils.logStep(5, "Try to play audio in second tab");
 			player.waitForPlayerBar();
 
 			boolean secondTabHasPlayer = player.isPlayerResponsive();
-			LOGGER.info("TC_545 - STEP 7: Player available in second tab: " + secondTabHasPlayer);
+			LoggerUtils.logInfo("TC_545 - STEP 7: Player available in second tab: " + secondTabHasPlayer);
 
 			if (secondTabHasPlayer && !player.hasSubscriptionGate()) {
 				player.clickPlayAudio();
-				Thread.sleep(2000);
+				sleepQuietly(2000);
 
 				boolean secondTabPlaying = player.isPlaybackProgressing() || player.isPauseButtonVisible();
-				LOGGER.info("TC_545 - STEP 8: Attempted to play in second tab: " + secondTabPlaying);
+				LoggerUtils.logInfo("TC_545 - STEP 8: Attempted to play in second tab: " + secondTabPlaying);
 			}
 
-			// Switch back to first tab and check if still playing
+			LoggerUtils.logStep(6, "Switch back to first tab and verify playback state");
 			driver.switchTo().window(originalTab);
-			Thread.sleep(1000);
+			sleepQuietly(1000);
 
 			boolean firstTabStillPlaying = player.isPlaybackProgressing() || player.isPauseButtonVisible();
-			LOGGER.info("TC_545 - STEP 9: First tab still playing after second tab opened: " + firstTabStillPlaying);
+			LoggerUtils.logInfo(
+					"TC_545 - STEP 9: First tab still playing after second tab opened: " + firstTabStillPlaying);
 
-			// Close second tab
-			driver.switchTo().newWindow(org.openqa.selenium.WindowType.TAB);
+			LoggerUtils.logStep(7, "Close second tab and verify first tab is still playing");
+			driver.switchTo().newWindow(WindowType.TAB);
 			driver.close();
 			driver.switchTo().window(originalTab);
 
 			Assert.assertTrue(firstTabStillPlaying, "TC_545: First tab should handle second tab conflict gracefully");
-			LOGGER.info(
+			LoggerUtils.logInfo(
 					"TC_545: Multiple tabs playback verified - Only one audio plays. System behaved as expected with no deviations");
 
-			// Close second tab
-			driver.switchTo().newWindow(org.openqa.selenium.WindowType.TAB);
-			driver.close();
-			driver.switchTo().window(originalTab);
-
-			Assert.assertTrue(firstTabStillPlaying, "TC_545: First tab should handle second tab conflict gracefully");
-			LOGGER.info(
-					"TC_545: Multiple tabs playback verified - Only one audio plays. System behaved as expected with no deviations");
+			LoggerUtils.logTestEnd("TC_545", "PASSED");
 
 		} catch (Exception e) {
-			LOGGER.warning("TC_545 - Test failed: " + e.getMessage());
+			LoggerUtils.logWarn("TC_545 - Test failed: " + safeString(e.getMessage()));
 			throw e;
 		}
 	}
 
+	// ==================== TC_546: SESSION TIMEOUT ====================
+
 	/**
 	 * TC_546: Audio Player - Session timeout Test Flow: Simulate session expiry →
-	 * Play Expected: Redirect to login Type: Edge - Session timeout
+	 * Play Expected: Redirect to login. Type: Edge - Session timeout.
 	 */
-	@SuppressWarnings("null")
-	@Test(priority = 546, retryAnalyzer = RetryAnalyzer.class)
-	public void verifySessionTimeoutBehavior() throws Exception {
-		loginAsRegisteredUser();
-		LOGGER.info("TC_546 - STEP 1: Logged in as registered user");
+
+	@Test(priority = 546, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_SECURITY }, retryAnalyzer = RetryAnalyzer.class, description = "TC_546: Verify audio player behavior on session timeout")
+	public void TC546_VerifySessionTimeoutBehavior() throws Exception {
+		LoggerUtils.logTestStart("TC_546: Audio Session Timeout Behavior");
 
 		try {
+			LoggerUtils.logStep(1, "Log in as registered user");
+			loginAsRegisteredUser();
+			LoggerUtils.logInfo("TC_546 - STEP 1: Logged in as registered user");
+
+			LoggerUtils.logStep(2, "Open a book from dashboard");
 			openAnyDashboardBookAndWaitForPlayer();
-			LOGGER.info("TC_546 - STEP 2: Opened a book from dashboard");
+			LoggerUtils.logInfo("TC_546 - STEP 2: Opened a book from dashboard");
 
 			if (player.hasSubscriptionGate()) {
 				throw new SkipException("TC_546: Selected dashboard book is gated for playback.");
 			}
 
-			// Start playback to ensure session is active
+			LoggerUtils.logStep(3, "Start playback to ensure session is active");
 			Assert.assertTrue(player.clickPlayAudio(), "TC_546 setup: expected playback to start.");
-			Thread.sleep(2000);
+			sleepQuietly(2000);
 
 			boolean initiallyPlaying = player.isPlaybackProgressing() || player.isPauseButtonVisible();
-			LOGGER.info("TC_546 - STEP 3: Audio initially playing: " + initiallyPlaying);
+			LoggerUtils.logInfo("TC_546 - STEP 3: Audio initially playing: " + initiallyPlaying);
 
+			LoggerUtils.logStep(4, "Simulate session timeout by clearing session storage and cookies");
+			LoggerUtils.logInfo("TC_546 - STEP 4: Simulating session timeout by clearing session storage");
 
-			// Simulate session timeout by clearing session storage and cookies
-			LOGGER.info("TC_546 - STEP 4: Simulating session timeout by clearing session storage");
-
-			// Clear session storage (this typically stores auth tokens)
 			driver.manage().deleteAllCookies();
 			driver.manage().deleteCookieNamed("JSESSIONID");
 			driver.manage().deleteCookieNamed("session");
 
-			// Also clear local storage and session storage via JavaScript
 			Objects.requireNonNull((org.openqa.selenium.JavascriptExecutor) driver)
 					.executeScript("localStorage.clear(); sessionStorage.clear();");
+			LoggerUtils.logInfo("TC_546 - STEP 5: Session storage and cookies cleared");
 
-			LOGGER.info("TC_546 - STEP 5: Session storage and cookies cleared");
+			sleepQuietly(2000);
 
-			// Wait and check player behavior after session loss
-			Thread.sleep(2000);
-
-			// Check if player continues working (client-side playback)
+			LoggerUtils.logStep(5, "Verify player behavior after session loss");
 			boolean playerStillAccessible = player.isPlayerResponsive();
 			boolean playbackContinues = player.isPlaybackProgressing() || player.isPauseButtonVisible();
 
-			LOGGER.info("TC_546 - STEP 6: Player still accessible after session clear: " + playerStillAccessible);
-			LOGGER.info("TC_546 - STEP 6: Playback continues: " + playbackContinues);
+			LoggerUtils
+					.logInfo("TC_546 - STEP 6: Player still accessible after session clear: " + playerStillAccessible);
+			LoggerUtils.logInfo("TC_546 - STEP 6: Playback continues: " + playbackContinues);
 
-			// Check for any session error messages in the page
-			String pageSource = driver.getPageSource().toLowerCase();
-			boolean hasSessionError = pageSource.contains("session")
-					|| pageSource.contains("expired")
-					|| pageSource.contains("unauthorized")
-					|| pageSource.contains("login");
+			LoggerUtils.logStep(6, "Check for session error messages");
+			String pageSource = safeGetPageSource(driver).toLowerCase();
+			boolean hasSessionError = pageSource.contains("session") || pageSource.contains("expired")
+					|| pageSource.contains("unauthorized") || pageSource.contains("login");
 
-			LOGGER.info("TC_546 - STEP 7: Session error detected: " + hasSessionError);
+			LoggerUtils.logInfo("TC_546 - STEP 7: Session error detected: " + hasSessionError);
 
-			// Verify application handles session timeout gracefully
-			// Note: Audio player may continue working (client-side playback)
-			// The app should not crash and should handle session loss
 			boolean handledGracefully = playerStillAccessible || playbackContinues || hasSessionError;
 
 			Assert.assertTrue(handledGracefully,
 					"TC_546: Application should handle session timeout gracefully (player continues or shows error)");
-			LOGGER.info(
+			LoggerUtils.logInfo(
 					"TC_546: Session timeout behavior verified - Application handled session loss gracefully. System behaved as expected with no deviations");
 
+			LoggerUtils.logTestEnd("TC_546", "PASSED");
+
 		} catch (Exception e) {
-			LOGGER.warning("TC_546 - Test failed: " + e.getMessage());
+			LoggerUtils.logWarn("TC_546 - Test failed: " + safeString(e.getMessage()));
 			throw e;
 		}
 	}

@@ -1,0 +1,32 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC520_VerifyContactUsFormSubmission
+Started: 2026-06-22 16:31:28
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC520_VerifyContactUsFormSubmission_2026_06_22_16_31_28.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC520_VerifyContactUsFormSubmission_2026_06_22_16_31_28.log
+[START] AboutUsContactUsTests :: TC520_VerifyContactUsFormSubmission
+========== TEST STARTED: TC520_VerifyContactUsFormSubmission ==========
+========== TEST STARTED: TC_520: Contact Us Form Submission ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  Logged in as registered user
+STEP 2: Open Contact Us page
+INFO  Contact Us page URL: https://web-splay.acceses.com/contact_us
+INFO  Opened Contact Us page
+STEP 3: Locate form fields and fill them with valid data
+INFO  ContactUsPage: Subject filled
+INFO  Entered subject: Test Subject - Form Submission Test [58bfa05b]
+INFO  ContactUsPage: Message filled
+INFO  Entered message
+STEP 4: Submit the form
+INFO  ContactUsPage: Submit clicked
+INFO  Submitted form
+STEP 5: Verify form submission response
+INFO  Success message detected: true
+INFO  SMTP error detected (expected in test): false
+INFO  TC_520: Contact Us form submission verified - Backend communication successful
+========== TEST PASSED: TC_520 ==========
+[PASS] AboutUsContactUsTests :: TC520_VerifyContactUsFormSubmission
+========== TEST PASSED: TC520_VerifyContactUsFormSubmission: TC_520: Verify Contact Us form submission with valid data reaches backend ==========
+============================================================
+Ended: 2026-06-22 16:32:20

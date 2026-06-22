@@ -1,0 +1,29 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC522_VerifyContactUsMaxFieldLength
+Started: 2026-06-22 16:33:19
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC522_VerifyContactUsMaxFieldLength_2026_06_22_16_33_19.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC522_VerifyContactUsMaxFieldLength_2026_06_22_16_33_19.log
+[START] AboutUsContactUsTests :: TC522_VerifyContactUsMaxFieldLength
+========== TEST STARTED: TC522_VerifyContactUsMaxFieldLength ==========
+========== TEST STARTED: TC_522: Contact Us Max Field Length ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  Logged in as registered user
+STEP 2: Open Contact Us page
+INFO  Contact Us page URL: https://web-splay.acceses.com/contact_us
+INFO  Opened Contact Us page
+STEP 3: Locate message field with multiple locator strategies
+INFO  ContactUsPage: Message filled
+INFO  Entered 500 characters in message field
+STEP 4: Verify input length after entry
+INFO  Actual length entered: 500
+STEP 5: Verify input accepted or restricted
+INFO  Input accepted (500 chars): true
+INFO  Input restricted: false
+INFO  TC_522: Contact Us max field length verified
+========== TEST PASSED: TC_522 ==========
+[PASS] AboutUsContactUsTests :: TC522_VerifyContactUsMaxFieldLength
+========== TEST PASSED: TC522_VerifyContactUsMaxFieldLength: TC_522: Verify Contact Us message field handles 500 character boundary input ==========
+============================================================
+Ended: 2026-06-22 16:34:04

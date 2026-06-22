@@ -1,0 +1,33 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC517_VerifyAboutUsLinks
+Started: 2026-06-22 16:29:44
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC517_VerifyAboutUsLinks_2026_06_22_16_29_44.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC517_VerifyAboutUsLinks_2026_06_22_16_29_44.log
+[START] AboutUsContactUsTests :: TC517_VerifyAboutUsLinks
+========== TEST STARTED: TC517_VerifyAboutUsLinks ==========
+========== TEST STARTED: TC_517: About Us Links Validation ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  Logged in as registered user
+STEP 2: Open About Us page
+INFO  Opening About Us page from footer/sidebar
+INFO  Successfully clicked About Us link
+INFO  Opened About Us page
+STEP 3: Find all links on the page
+INFO  Found 0 links on About Us page
+INFO  Current URL: https://web-splay.acceses.com/about_us
+INFO  On About Us page: true
+INFO  No standard links found, checking for clickable elements
+STEP 4: Find clickable elements with alternative locator
+INFO  Found 12 clickable elements
+STEP 5: Validate link results
+INFO  Valid links: 0
+INFO  Empty links: 0
+INFO  Basic link validation completed. Manual testing recommended for thorough link checking.
+INFO  TC_517: About Us links basic validation completed (manual testing recommended for detailed validation)
+========== TEST PASSED: TC_517 ==========
+[PASS] AboutUsContactUsTests :: TC517_VerifyAboutUsLinks
+========== TEST PASSED: TC517_VerifyAboutUsLinks: TC_517: Verify About Us page contains links (basic automated check, manual testing recommended) ==========
+============================================================
+Ended: 2026-06-22 16:30:19

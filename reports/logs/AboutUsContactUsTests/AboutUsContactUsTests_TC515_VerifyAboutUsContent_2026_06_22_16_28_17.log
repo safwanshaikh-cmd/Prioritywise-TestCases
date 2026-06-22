@@ -1,0 +1,27 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC515_VerifyAboutUsContent
+Started: 2026-06-22 16:28:17
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC515_VerifyAboutUsContent_2026_06_22_16_28_17.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC515_VerifyAboutUsContent_2026_06_22_16_28_17.log
+[START] AboutUsContactUsTests :: TC515_VerifyAboutUsContent
+========== TEST STARTED: TC515_VerifyAboutUsContent ==========
+========== TEST STARTED: TC_515: About Us Content Validation ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  Logged in as registered user
+STEP 2: Open About Us page
+INFO  Opening About Us page from footer/sidebar
+INFO  Successfully clicked About Us link
+INFO  Opened About Us page
+STEP 3: Verify content visibility
+INFO  Page source length: 194125
+INFO  Has substantial content: true
+INFO  Has text content: true
+INFO  Has HTML structure: true
+INFO  TC_515: About Us content validation verified - Content is visible and readable
+========== TEST PASSED: TC_515 ==========
+[PASS] AboutUsContactUsTests :: TC515_VerifyAboutUsContent
+========== TEST PASSED: TC515_VerifyAboutUsContent: TC_515: Verify About Us page displays visible and readable content ==========
+============================================================
+Ended: 2026-06-22 16:28:45

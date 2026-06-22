@@ -3,15 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.ChapterTests">
+      <class name="tests.AboutUsContactUsTests">
         <methods>
-          <include name="setup"/>
           <include name="tearDown"/>
-          <include name="verifyEditDuringUpload"/>
-          <include name="setupPages"/>
-          <include name="verifyDeleteChapterDuringPlayback"/>
+          <include name="TC527_VerifyContactUsDocumentUploadWithValidFile"/>
+          <include name="setup"/>
         </methods>
-      </class> <!-- tests.ChapterTests -->
+      </class> <!-- tests.AboutUsContactUsTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

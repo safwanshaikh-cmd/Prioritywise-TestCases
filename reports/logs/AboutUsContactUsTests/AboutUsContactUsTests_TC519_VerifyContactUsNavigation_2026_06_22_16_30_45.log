@@ -1,0 +1,23 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC519_VerifyContactUsNavigation
+Started: 2026-06-22 16:30:45
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC519_VerifyContactUsNavigation_2026_06_22_16_30_45.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC519_VerifyContactUsNavigation_2026_06_22_16_30_45.log
+[START] AboutUsContactUsTests :: TC519_VerifyContactUsNavigation
+========== TEST STARTED: TC519_VerifyContactUsNavigation ==========
+========== TEST STARTED: TC_519: Contact Us Navigation ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  Logged in as registered user
+STEP 2: Capture URL before navigation
+INFO  Current URL before navigation: https://web-splay.acceses.com/
+STEP 3: Open Contact Us page
+INFO  Contact Us page URL: https://web-splay.acceses.com/contact_us
+INFO  URL after clicking Contact Us: https://web-splay.acceses.com/contact_us
+INFO  TC_519: Contact Us navigation verified - Contact page loads successfully
+========== TEST PASSED: TC_519 ==========
+[PASS] AboutUsContactUsTests :: TC519_VerifyContactUsNavigation
+========== TEST PASSED: TC519_VerifyContactUsNavigation: TC_519: Verify Contact Us page loads successfully when navigated ==========
+============================================================
+Ended: 2026-06-22 16:31:17

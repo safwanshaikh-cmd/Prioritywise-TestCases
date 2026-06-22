@@ -1,0 +1,24 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC514_VerifyAboutUsNavigation
+Started: 2026-06-22 16:27:34
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC514_VerifyAboutUsNavigation_2026_06_22_16_27_34.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC514_VerifyAboutUsNavigation_2026_06_22_16_27_34.log
+[START] AboutUsContactUsTests :: TC514_VerifyAboutUsNavigation
+========== TEST STARTED: TC514_VerifyAboutUsNavigation ==========
+========== TEST STARTED: TC_514: About Us Navigation ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  Logged in as registered user
+STEP 2: Capture URL before navigation
+INFO  Current URL before navigation: https://web-splay.acceses.com/
+STEP 3: Open About Us page from sidebar
+INFO  Opening About Us page from footer/sidebar
+INFO  Successfully clicked About Us link
+INFO  URL after clicking About Us: https://web-splay.acceses.com/about_us
+INFO  TC_514: About Us page navigation verified - Page loaded successfully
+========== TEST PASSED: TC_514 ==========
+[PASS] AboutUsContactUsTests :: TC514_VerifyAboutUsNavigation
+========== TEST PASSED: TC514_VerifyAboutUsNavigation: TC_514: Verify About Us page loads successfully when navigated from sidebar ==========
+============================================================
+Ended: 2026-06-22 16:28:04

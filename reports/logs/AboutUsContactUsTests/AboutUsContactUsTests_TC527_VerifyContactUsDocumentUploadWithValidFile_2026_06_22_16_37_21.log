@@ -1,0 +1,21 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC527_VerifyContactUsDocumentUploadWithValidFile
+Started: 2026-06-22 16:37:21
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC527_VerifyContactUsDocumentUploadWithValidFile_2026_06_22_16_37_21.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC527_VerifyContactUsDocumentUploadWithValidFile_2026_06_22_16_37_21.log
+[START] AboutUsContactUsTests :: TC527_VerifyContactUsDocumentUploadWithValidFile
+========== TEST STARTED: TC527_VerifyContactUsDocumentUploadWithValidFile ==========
+========== TEST STARTED: TC_527: Contact Us Document Upload With Valid File ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  Logged in as registered user
+STEP 2: Open Contact Us page
+INFO  Contact Us page URL: https://web-splay.acceses.com/contact_us
+INFO  Opened Contact Us page
+STEP 3: Locate upload widget and underlying file input
+INFO  Found upload placeholder: div
+[SKIP] AboutUsContactUsTests :: TC527_VerifyContactUsDocumentUploadWithValidFile
+========== TEST SKIPPED: TC527_VerifyContactUsDocumentUploadWithValidFile: TC_527: Verify Contact Us accepts and processes a valid uploaded document file ==========
+============================================================
+Ended: 2026-06-22 16:38:19

@@ -1,0 +1,26 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC521_VerifyContactUsMandatoryFieldValidation
+Started: 2026-06-22 16:32:34
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC521_VerifyContactUsMandatoryFieldValidation_2026_06_22_16_32_34.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC521_VerifyContactUsMandatoryFieldValidation_2026_06_22_16_32_34.log
+[START] AboutUsContactUsTests :: TC521_VerifyContactUsMandatoryFieldValidation
+========== TEST STARTED: TC521_VerifyContactUsMandatoryFieldValidation ==========
+========== TEST STARTED: TC_521: Contact Us Mandatory Field Validation ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  Logged in as registered user
+STEP 2: Open Contact Us page
+INFO  Contact Us page URL: https://web-splay.acceses.com/contact_us
+INFO  Opened Contact Us page
+STEP 3: Click Submit without filling form
+INFO  ContactUsPage: Generic submit clicked
+INFO  Submitted empty form
+STEP 4: Verify validation messages appear
+INFO  Validation message detected: true
+INFO  TC_521: Contact Us mandatory field validation verified
+========== TEST PASSED: TC_521 ==========
+[PASS] AboutUsContactUsTests :: TC521_VerifyContactUsMandatoryFieldValidation
+========== TEST PASSED: TC521_VerifyContactUsMandatoryFieldValidation: TC_521: Verify Contact Us form shows validation messages for empty form submission ==========
+============================================================
+Ended: 2026-06-22 16:33:08

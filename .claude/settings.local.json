@@ -77,7 +77,29 @@
       "Bash(cmd.exe /c \"set JAVA_HOME=C:\\\\Program Files\\\\Java\\\\jdk-25.0.2&& mvn test -Dtest=AudioPlayerTests#verifyForwardButtonBehaviorNearAudioEnd\")",
       "Bash(cmd.exe /c \"type C:\\\\Users\\\\safwan\\\\eclipse-workspace\\\\Prioritywise-TestCases\\\\target\\\\surefire-reports\\\\tests.AudioPlayerTests.txt\")",
       "Bash(cmd.exe *)",
-      "Bash(findstr /I \\\\\"Restricted\\\\\"\")"
+      "Bash(findstr /I \\\\\"Restricted\\\\\"\")",
+      "Bash(mvn -o compile -q)",
+      "Bash(/tmp/jdk-link/bin/java.exe -version)",
+      "Bash(apt list *)",
+      "Bash(/home/safwan/jdk/bin/java -version)",
+      "Bash(find / -maxdepth 8 -name \"testng-7.9.0.jar\")",
+      "Bash(find / -maxdepth 8 -name \"jcommander-*.jar\")",
+      "Bash('/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe' -d /tmp/audiobuild -cp __CMDSUB_OUTPUT__:/tmp/audiobuild -sourcepath src/test/java src/test/java/tests/AudioPlayerBehaviorTests.java)",
+      "Bash('/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe' -d /tmp/audiobuild -cp '__CMDSUB_OUTPUT__;/mnt/c/Automation Reports/Prioritywise-TestCases/.tmp-testng-jars/testng-7.9.0.jar;/mnt/c/Automation Reports/Prioritywise-TestCases/.tmp-testng-jars/jcommander-1.82.jar' -sourcepath src/test/java src/test/java/tests/AudioPlayerBehaviorTests.java)",
+      "Bash(cp \"/mnt/c/Automation Reports/Prioritywise-TestCases/.tmp-testng-jars/testng-7.9.0.jar\" /tmp/audiobuild/testng.jar)",
+      "Bash(cp \"/mnt/c/Automation Reports/Prioritywise-TestCases/.tmp-testng-jars/jcommander-1.82.jar\" /tmp/audiobuild/jcommander.jar)",
+      "Bash('/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe' -d /tmp/audiobuild/classes -cp '__CMDSUB_OUTPUT__;/tmp/audiobuild/testng.jar;/tmp/audiobuild/jcommander.jar' -sourcepath src/test/java src/test/java/tests/AudioPlayerBehaviorTests.java)",
+      "Bash(cp /tmp/audiobuild/testng.jar \"C:\\\\\\\\Users\\\\\\\\safwan\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Temp\\\\\\\\testng.jar\")",
+      "Bash(cp /tmp/audiobuild/testng.jar \"/mnt/c/Users/safwan/AppData/Local/Temp/testng.jar\")",
+      "Bash(cp /tmp/audiobuild/jcommander.jar \"/mnt/c/Users/safwan/AppData/Local/Temp/jcommander.jar\")",
+      "Bash('/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe' -d /tmp/audiobuild/classes -cp '__CMDSUB_OUTPUT__;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\testng.jar;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\jcommander.jar' -sourcepath src/test/java src/test/java/tests/AudioPlayerBehaviorTests.java)",
+      "Bash(echo \"EXIT=$?\")",
+      "Bash('/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe' -d /tmp/audiobuild/about -cp '__CMDSUB_OUTPUT__;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\testng.jar;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\jcommander.jar' -sourcepath src/test/java src/test/java/tests/AboutUsContactUsTests.java)",
+      "Bash(\"/mnt/c/Program Files/Java/jdk-25.0.2/bin/jar.exe\" tf .m2repo/org/seleniumhq/selenium/selenium-api/4.41.0/selenium-api-4.41.0.jar)",
+      "Bash('/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe' -d /tmp/audiobuild/clean -cp '__CMDSUB_OUTPUT__;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\testng.jar;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\jcommander.jar' src/test/java/pages/AudioPlayerPage.java src/test/java/pages/DashboardPage.java src/test/java/pages/LoginPage.java src/test/java/pages/ContactUsPage.java src/test/java/pages/BasePage.java src/test/java/tests/AudioPlayerBehaviorTests.java)",
+      "Bash('/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe' -d /tmp/audiobuild/clean -cp '__CMDSUB_OUTPUT__;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\testng.jar;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\jcommander.jar' -sourcepath src/test/java src/test/java/tests/AudioPlayerBehaviorTests.java)",
+      "Bash(awk -F: '{print $1}')",
+      "Bash('/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe' -d /tmp/audiobuild/clean -cp '__CMDSUB_OUTPUT__;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\testng.jar;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\jcommander.jar' -sourcepath src/test/java src/test/java/tests/AboutUsContactUsTests.java)"
     ]
   }
 }

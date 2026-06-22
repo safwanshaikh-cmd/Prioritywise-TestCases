@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 
 import factory.DriverFactory;
+import listeners.ExtentReportListener;
 import listeners.RetryListener;
 import listeners.TestListener;
 import utils.ConfigReader;
@@ -19,9 +20,17 @@ import utils.WaitUtils;
  * BaseTest provides common setup and teardown for UI tests.
  * Uses explicit waits instead of Thread.sleep for synchronization.
  */
-@Listeners({ TestListener.class, RetryListener.class })
+@Listeners({ ExtentReportListener.class, TestListener.class, RetryListener.class })
 public class BaseTest {
 
+    /**
+     * Legacy {@link java.util.logging.Logger} kept for backward compatibility —
+     * subclasses reference {@code LOGGER} directly. The jul-to-slf4j bridge
+     * (installed by {@code ExtentReportListener#onStart}) routes j.u.l calls
+     * through Log4j2's console pattern, so these messages render with the
+     * same {@code [HH:mm:ss] [thread] INFO ClassName - msg} format as
+     * {@link LoggerUtils} calls.
+     */
     protected static final Logger LOGGER = Logger.getLogger(BaseTest.class.getName());
 
     protected WebDriver driver;

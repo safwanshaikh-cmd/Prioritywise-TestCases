@@ -1,0 +1,23 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC525_VerifyContactUsGuestAccess
+Started: 2026-06-22 16:36:01
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC525_VerifyContactUsGuestAccess_2026_06_22_16_36_01.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC525_VerifyContactUsGuestAccess_2026_06_22_16_36_01.log
+[START] AboutUsContactUsTests :: TC525_VerifyContactUsGuestAccess
+========== TEST STARTED: TC525_VerifyContactUsGuestAccess ==========
+========== TEST STARTED: TC_525: Contact Us Guest Access ==========
+STEP 1: Access Contact Us as guest user (no login)
+INFO  Accessing as guest user (not logged in)
+INFO  Current URL (guest): https://web-splay.acceses.com/
+STEP 2: Open Contact Us page as guest
+INFO  Contact Us page URL: https://web-splay.acceses.com/login
+INFO  Opened Contact Us page as guest
+STEP 3: Verify page accessibility
+INFO  URL after navigation (guest): https://web-splay.acceses.com/login
+INFO  TC_525: Contact Us guest access verified - Page accessible to guest users
+========== TEST PASSED: TC_525 ==========
+[PASS] AboutUsContactUsTests :: TC525_VerifyContactUsGuestAccess
+========== TEST PASSED: TC525_VerifyContactUsGuestAccess: TC_525: Verify Contact Us page is accessible to guest users ==========
+============================================================
+Ended: 2026-06-22 16:36:06

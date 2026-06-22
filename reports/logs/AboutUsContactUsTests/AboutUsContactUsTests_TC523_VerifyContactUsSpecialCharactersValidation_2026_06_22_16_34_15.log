@@ -1,0 +1,32 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC523_VerifyContactUsSpecialCharactersValidation
+Started: 2026-06-22 16:34:15
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC523_VerifyContactUsSpecialCharactersValidation_2026_06_22_16_34_15.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC523_VerifyContactUsSpecialCharactersValidation_2026_06_22_16_34_15.log
+[START] AboutUsContactUsTests :: TC523_VerifyContactUsSpecialCharactersValidation
+========== TEST STARTED: TC523_VerifyContactUsSpecialCharactersValidation ==========
+========== TEST STARTED: TC_523: Contact Us Special Characters Validation ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  Logged in as registered user
+STEP 2: Open Contact Us page
+INFO  Contact Us page URL: https://web-splay.acceses.com/contact_us
+INFO  Opened Contact Us page
+STEP 3: Locate subject and message fields
+INFO  ContactUsPage: Subject filled
+INFO  Entered valid subject: Test Subject - Special Character Validation
+INFO  ContactUsPage: Message filled
+INFO  Entered special characters in message: @#$%^&*()_+-=[]{}|;':",./<>?
+STEP 4: Submit form with special characters
+INFO  ContactUsPage: Submit clicked
+INFO  Clicked Submit button
+STEP 5: Verify response (validation message or successful submission)
+INFO  Validation message detected: false
+INFO  Form submitted (special chars allowed): true
+INFO  TC_523: Contact Us special characters validation verified - Response captured successfully
+========== TEST PASSED: TC_523 ==========
+[PASS] AboutUsContactUsTests :: TC523_VerifyContactUsSpecialCharactersValidation
+========== TEST PASSED: TC523_VerifyContactUsSpecialCharactersValidation: TC_523: Verify Contact Us form handles special character input safely ==========
+============================================================
+Ended: 2026-06-22 16:34:59

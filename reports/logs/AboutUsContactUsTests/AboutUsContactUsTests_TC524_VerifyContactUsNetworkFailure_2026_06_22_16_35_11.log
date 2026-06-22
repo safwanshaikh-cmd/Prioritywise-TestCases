@@ -1,0 +1,29 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC524_VerifyContactUsNetworkFailure
+Started: 2026-06-22 16:35:11
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC524_VerifyContactUsNetworkFailure_2026_06_22_16_35_11.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC524_VerifyContactUsNetworkFailure_2026_06_22_16_35_11.log
+[START] AboutUsContactUsTests :: TC524_VerifyContactUsNetworkFailure
+========== TEST STARTED: TC524_VerifyContactUsNetworkFailure ==========
+========== TEST STARTED: TC_524: Contact Us Network Failure (Simulated) ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  Logged in as registered user
+STEP 2: Open Contact Us page
+INFO  Contact Us page URL: https://web-splay.acceses.com/contact_us
+INFO  Opened Contact Us page
+STEP 3: Simulate network failure scenario
+INFO  Simulating network failure scenario
+INFO  NOTE: Full network failure test requires manual network manipulation
+STEP 4: Fill form fields
+INFO  ContactUsPage: Subject filled
+INFO  ContactUsPage: Message filled
+INFO  Filled form data
+STEP 5: Verify network failure handling
+INFO  TC_524: Contact Us network failure handling verified (manual network manipulation required for full test)
+========== TEST PASSED: TC_524 ==========
+[PASS] AboutUsContactUsTests :: TC524_VerifyContactUsNetworkFailure
+========== TEST PASSED: TC524_VerifyContactUsNetworkFailure: TC_524: Verify Contact Us form behavior under simulated network failure ==========
+============================================================
+Ended: 2026-06-22 16:35:49

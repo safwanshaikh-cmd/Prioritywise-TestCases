@@ -1,0 +1,28 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC526_VerifyContactUsDocumentUpload
+Started: 2026-06-22 16:36:20
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC526_VerifyContactUsDocumentUpload_2026_06_22_16_36_20.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC526_VerifyContactUsDocumentUpload_2026_06_22_16_36_20.log
+[START] AboutUsContactUsTests :: TC526_VerifyContactUsDocumentUpload
+========== TEST STARTED: TC526_VerifyContactUsDocumentUpload ==========
+========== TEST STARTED: TC_526: Contact Us Document Upload ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  Logged in as registered user
+STEP 2: Open Contact Us page
+INFO  Contact Us page URL: https://web-splay.acceses.com/contact_us
+INFO  Opened Contact Us page
+STEP 3: Locate upload widget
+INFO  Found upload placeholder: div
+INFO  Clicked upload placeholder to reveal file input
+STEP 4: Verify upload functionality is available
+INFO  Document upload available: true
+INFO  Upload placeholder found: true
+INFO  File input directly scriptable: false
+INFO  TC_526: Contact Us document upload verified - Upload functionality exists
+========== TEST PASSED: TC_526 ==========
+[PASS] AboutUsContactUsTests :: TC526_VerifyContactUsDocumentUpload
+========== TEST PASSED: TC526_VerifyContactUsDocumentUpload: TC_526: Verify Contact Us page exposes document upload functionality ==========
+============================================================
+Ended: 2026-06-22 16:37:10

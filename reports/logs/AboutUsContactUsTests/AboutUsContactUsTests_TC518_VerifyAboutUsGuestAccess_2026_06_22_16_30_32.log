@@ -1,0 +1,24 @@
+============================================================
+Test Log: AboutUsContactUsTests.TC518_VerifyAboutUsGuestAccess
+Started: 2026-06-22 16:30:32
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC518_VerifyAboutUsGuestAccess_2026_06_22_16_30_32.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AboutUsContactUsTests_TC518_VerifyAboutUsGuestAccess_2026_06_22_16_30_32.log
+[START] AboutUsContactUsTests :: TC518_VerifyAboutUsGuestAccess
+========== TEST STARTED: TC518_VerifyAboutUsGuestAccess ==========
+========== TEST STARTED: TC_518: About Us Guest Access ==========
+STEP 1: Access About Us as guest user (no login)
+INFO  Accessing as guest user (not logged in)
+INFO  Current URL (guest): https://web-splay.acceses.com/
+STEP 2: Open About Us page as guest
+INFO  Opening About Us page from footer/sidebar
+INFO  Successfully clicked About Us link
+INFO  Opened About Us page as guest
+STEP 3: Verify page accessibility
+INFO  URL after navigation (guest): https://web-splay.acceses.com/about_us
+INFO  TC_518: About Us guest access verified - Page accessible to guest users
+========== TEST PASSED: TC_518 ==========
+[PASS] AboutUsContactUsTests :: TC518_VerifyAboutUsGuestAccess
+========== TEST PASSED: TC518_VerifyAboutUsGuestAccess: TC_518: Verify About Us page is accessible to guest users ==========
+============================================================
+Ended: 2026-06-22 16:30:33

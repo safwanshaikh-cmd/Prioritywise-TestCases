@@ -2,6 +2,7 @@
 
 <suite name="Consumer Categories TC_172_TC_176 Suite" verbose="1">
 	<listeners>
+		<listener class-name="listeners.ExtentReportListener" />
 		<listener class-name="listeners.TestListener" />
 		<listener class-name="listeners.RetryListener" />
 	</listeners>

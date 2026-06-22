@@ -61,6 +61,19 @@
 			<version>2.22.1</version>
 		</dependency>
 
+		<!--
+			jul-to-slf4j bridges java.util.logging (j.u.l) calls into SLF4J so
+			that legacy j.u.logging.Logger call sites in our own framework
+			classes (BaseTest, BasePage, DriverFactory, etc.) flow through
+			Log4j2's console pattern. The bridge is installed at runtime by
+			Log4jProxyManager in a static initializer.
+		-->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>2.0.13</version>
+		</dependency>
+
 		<!-- TestNG -->
 		<dependency>
 			<groupId>org.testng</groupId>
