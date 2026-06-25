@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.ConsumerCategoriesTests">
+      <class name="tests.HamburgerMenuBehaviorTests">
         <methods>
+          <include name="TC371_VerifyHamburgerVisibleOnAllPages"/>
           <include name="tearDown"/>
-          <include name="TC163_VerifyViewAllOpensFullCategoryList"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- tests.ConsumerCategoriesTests -->
+      </class> <!-- tests.HamburgerMenuBehaviorTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1,0 +1,25 @@
+============================================================
+Test Log: FavouritesManagementTests.TC405_VerifyAddBookToFavourites
+Started: 2026-06-25 15:45:13
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC405_VerifyAddBookToFavourites_2026_06_25_15_45_13.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC405_VerifyAddBookToFavourites_2026_06_25_15_45_13.log
+[START] FavouritesManagementTests :: TC405_VerifyAddBookToFavourites
+========== TEST STARTED: TC405_VerifyAddBookToFavourites ==========
+========== TEST STARTED: TC_405: Add Book To Favourites ==========
+STEP 1: Login as consumer and drive search → open → favourite → verify flow for 'New-3'
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to home page
+INFO  Navigated to favourites page
+INFO  TC_405 - Step 1: Book to Search = New-3
+INFO  TC_405 - Step 2-3: Searched and opened first book from results
+INFO  TC_405 - Step 4: Add to favourites (heart + dialog) result: VERIFIED
+INFO  TC_405 - Step 5: Navigated to favourites section
+INFO  TC_405 - Step 6: Book in favourites list: true
+INFO  TC_405: Book added to favourites. System behaved as expected.
+========== TEST PASSED: TC_405 ==========
+[PASS] FavouritesManagementTests :: TC405_VerifyAddBookToFavourites
+========== TEST PASSED: TC405_VerifyAddBookToFavourites: TC_405: Verify book is added to favourites ==========
+============================================================
+Ended: 2026-06-25 15:46:57

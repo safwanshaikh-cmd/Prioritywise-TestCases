@@ -1,0 +1,19 @@
+============================================================
+Test Log: DashboardTests.TC146_VerifySessionExpires
+Started: 2026-06-25 11:24:28
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC146_VerifySessionExpires_2026_06_25_11_24_28.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC146_VerifySessionExpires_2026_06_25_11_24_28.log
+[START] DashboardTests :: TC146_VerifySessionExpires
+========== TEST STARTED: TC146_VerifySessionExpires ==========
+========== TEST STARTED: TC_146: Session Management ==========
+STEP 1: Wait for dashboard to be ready
+INFO  TC_146: Session timeout test requires manual verification or very long wait time
+INFO  TC_146: Current test checks if session management is in place
+STEP 2: Check for known session/auth cookie names
+INFO  TC_146: No session cookie found - session may use different mechanism
+========== TEST PASSED: TC_146 ==========
+[PASS] DashboardTests :: TC146_VerifySessionExpires
+========== TEST PASSED: TC146_VerifySessionExpires: TC_146: Verify session management is in place ==========
+============================================================
+Ended: 2026-06-25 11:24:28

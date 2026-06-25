@@ -1,0 +1,15 @@
+============================================================
+Test Log: HamburgerMenuBehaviorTests.TC367_VerifyScrollingInSmallScreens
+Started: 2026-06-25 17:08:00
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HamburgerMenuBehaviorTests_TC367_VerifyScrollingInSmallScreens_2026_06_25_17_08_00.log
+============================================================
+========== TEST STARTED: TC_367: Scrolling In Small Screens ==========
+STEP 1: Open the side menu
+INFO  TC_367 - STEP 1: Side menu opened: true
+INFO  TC_367 - STEP 1: Side menu is open: true
+STEP 2: Verify menu items are loaded for scrolling
+INFO  TC_367 - STEP 2: Menu items loaded for scrolling: true
+INFO  TC_367: Menu items verified for scrolling scenarios
+========== TEST PASSED: TC_367 ==========
+============================================================
+Ended: 2026-06-25 17:09:10

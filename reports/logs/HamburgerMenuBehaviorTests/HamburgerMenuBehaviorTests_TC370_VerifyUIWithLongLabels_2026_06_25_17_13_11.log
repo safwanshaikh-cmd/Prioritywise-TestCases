@@ -1,0 +1,15 @@
+============================================================
+Test Log: HamburgerMenuBehaviorTests.TC370_VerifyUIWithLongLabels
+Started: 2026-06-25 17:13:11
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HamburgerMenuBehaviorTests_TC370_VerifyUIWithLongLabels_2026_06_25_17_13_11.log
+============================================================
+========== TEST STARTED: TC_370: UI With Long Labels ==========
+STEP 1: Open the side menu with long labels
+INFO  TC_370 - STEP 1: Side menu opened: true
+INFO  TC_370 - STEP 1: Side menu is open: true
+STEP 2: Verify menu items are properly aligned with long labels
+INFO  TC_370 - STEP 2: Menu items properly aligned: true
+INFO  TC_370: UI alignment verified with long labels
+========== TEST PASSED: TC_370 ==========
+============================================================
+Ended: 2026-06-25 17:14:21

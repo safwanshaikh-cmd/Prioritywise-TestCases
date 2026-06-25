@@ -1,0 +1,27 @@
+============================================================
+Test Log: DashboardTests.TC149_VerifyDashboardUnderSlowNetwork
+Started: 2026-06-25 11:28:15
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC149_VerifyDashboardUnderSlowNetwork_2026_06_25_11_28_15.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC149_VerifyDashboardUnderSlowNetwork_2026_06_25_11_28_15.log
+[START] DashboardTests :: TC149_VerifyDashboardUnderSlowNetwork
+========== TEST STARTED: TC149_VerifyDashboardUnderSlowNetwork ==========
+========== TEST STARTED: TC_149: Dashboard Under Slow Network (CDP) ==========
+STEP 1: Wait for dashboard to be ready under normal network
+INFO  TC_149: Baseline load time (normal network): 45ms
+STEP 2: Verify the active driver supports Chrome DevTools Protocol (CDP)
+INFO  TC_149: CDP-capable driver detected - throttling Slow 3G profile
+STEP 3: Enable Slow-3G network emulation via CDP (Network.emulateNetworkConditions)
+INFO  TC_149: Slow-3G profile applied: 500 Kbps down/up, 400ms latency, offline=false
+STEP 4: Refresh dashboard and measure load time under throttled network
+INFO  TC_149: Dashboard load time under Slow 3G: 1958ms
+INFO  TC_149: Delta vs baseline: +1913ms
+STEP 5: Verify dashboard still renders under slow network and is measurably slower
+INFO  TC_149: Dashboard successfully rendered under throttled Slow-3G conditions (delta=1913ms over baseline)
+========== TEST PASSED: TC_149 ==========
+STEP 6: Reset CDP network conditions to normal (Network.emulateNetworkConditions {offline:false,downloadThroughput:-1,uploadThroughput:-1,latency:0}) and disable Network domain
+INFO  TC_149: Network conditions reset to normal
+[PASS] DashboardTests :: TC149_VerifyDashboardUnderSlowNetwork
+========== TEST PASSED: TC149_VerifyDashboardUnderSlowNetwork: TC_149: Verify dashboard under slow network using CDP throttling ==========
+============================================================
+Ended: 2026-06-25 11:28:18

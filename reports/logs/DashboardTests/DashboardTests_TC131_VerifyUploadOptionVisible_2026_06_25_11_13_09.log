@@ -1,0 +1,17 @@
+============================================================
+Test Log: DashboardTests.TC131_VerifyUploadOptionVisible
+Started: 2026-06-25 11:13:09
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC131_VerifyUploadOptionVisible_2026_06_25_11_13_09.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC131_VerifyUploadOptionVisible_2026_06_25_11_13_09.log
+[START] DashboardTests :: TC131_VerifyUploadOptionVisible
+========== TEST STARTED: TC131_VerifyUploadOptionVisible ==========
+========== TEST STARTED: TC_131: Upload Option Visible ==========
+STEP 1: Open hamburger menu and click For Creators
+STEP 2: Verify upload content menu is accessible
+INFO  TC_131: Upload Content menu is accessible for uploader
+========== TEST PASSED: TC_131 ==========
+[PASS] DashboardTests :: TC131_VerifyUploadOptionVisible
+========== TEST PASSED: TC131_VerifyUploadOptionVisible: TC_131: Verify upload option is visible ==========
+============================================================
+Ended: 2026-06-25 11:13:12

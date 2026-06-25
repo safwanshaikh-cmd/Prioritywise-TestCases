@@ -1,34 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-06-25T09:30:06 GST" name="Default suite" finished-at="2026-06-25T09:31:08 GST" duration-ms="61944">
+  <suite started-at="2026-06-25T17:05:11 GST" name="Default suite" finished-at="2026-06-25T17:16:22 GST" duration-ms="671008">
     <groups>
       <group name="functional">
-        <method signature="ConsumerCategoriesTests.TC166_VerifyTrendingShowsSectionDisplayed()[pri:166, instance:tests.ConsumerCategoriesTests@3bf7ca37]" name="TC166_VerifyTrendingShowsSectionDisplayed" class="tests.ConsumerCategoriesTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC365_VerifyMenuClosesOnOutsideClick()[pri:365, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC365_VerifyMenuClosesOnOutsideClick" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC366_VerifyStabilityOnRapidClicks()[pri:366, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC366_VerifyStabilityOnRapidClicks" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC367_VerifyScrollingInSmallScreens()[pri:367, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC367_VerifyScrollingInSmallScreens" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC368_VerifyKeyboardNavigation()[pri:368, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC368_VerifyKeyboardNavigation" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC369_VerifyThemeModeUI()[pri:369, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC369_VerifyThemeModeUI" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC370_VerifyUIWithLongLabels()[pri:370, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC370_VerifyUIWithLongLabels" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC371_VerifyHamburgerVisibleOnAllPages()[pri:371, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC371_VerifyHamburgerVisibleOnAllPages" class="tests.HamburgerMenuBehaviorTests"/>
       </group> <!-- functional -->
       <group name="ui">
-        <method signature="ConsumerCategoriesTests.TC166_VerifyTrendingShowsSectionDisplayed()[pri:166, instance:tests.ConsumerCategoriesTests@3bf7ca37]" name="TC166_VerifyTrendingShowsSectionDisplayed" class="tests.ConsumerCategoriesTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC365_VerifyMenuClosesOnOutsideClick()[pri:365, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC365_VerifyMenuClosesOnOutsideClick" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC366_VerifyStabilityOnRapidClicks()[pri:366, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC366_VerifyStabilityOnRapidClicks" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC367_VerifyScrollingInSmallScreens()[pri:367, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC367_VerifyScrollingInSmallScreens" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC368_VerifyKeyboardNavigation()[pri:368, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC368_VerifyKeyboardNavigation" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC369_VerifyThemeModeUI()[pri:369, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC369_VerifyThemeModeUI" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC370_VerifyUIWithLongLabels()[pri:370, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC370_VerifyUIWithLongLabels" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC371_VerifyHamburgerVisibleOnAllPages()[pri:371, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC371_VerifyHamburgerVisibleOnAllPages" class="tests.HamburgerMenuBehaviorTests"/>
       </group> <!-- ui -->
+      <group name="accessibility">
+        <method signature="HamburgerMenuBehaviorTests.TC368_VerifyKeyboardNavigation()[pri:368, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC368_VerifyKeyboardNavigation" class="tests.HamburgerMenuBehaviorTests"/>
+      </group> <!-- accessibility -->
       <group name="consumer">
-        <method signature="ConsumerCategoriesTests.TC166_VerifyTrendingShowsSectionDisplayed()[pri:166, instance:tests.ConsumerCategoriesTests@3bf7ca37]" name="TC166_VerifyTrendingShowsSectionDisplayed" class="tests.ConsumerCategoriesTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC365_VerifyMenuClosesOnOutsideClick()[pri:365, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC365_VerifyMenuClosesOnOutsideClick" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC366_VerifyStabilityOnRapidClicks()[pri:366, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC366_VerifyStabilityOnRapidClicks" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC367_VerifyScrollingInSmallScreens()[pri:367, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC367_VerifyScrollingInSmallScreens" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC368_VerifyKeyboardNavigation()[pri:368, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC368_VerifyKeyboardNavigation" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC369_VerifyThemeModeUI()[pri:369, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC369_VerifyThemeModeUI" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC370_VerifyUIWithLongLabels()[pri:370, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC370_VerifyUIWithLongLabels" class="tests.HamburgerMenuBehaviorTests"/>
+        <method signature="HamburgerMenuBehaviorTests.TC371_VerifyHamburgerVisibleOnAllPages()[pri:371, instance:tests.HamburgerMenuBehaviorTests@139982de]" name="TC371_VerifyHamburgerVisibleOnAllPages" class="tests.HamburgerMenuBehaviorTests"/>
       </group> <!-- consumer -->
     </groups>
-    <test started-at="2026-06-25T09:30:06 GST" name="Default test" finished-at="2026-06-25T09:31:08 GST" duration-ms="61944">
-      <class name="tests.ConsumerCategoriesTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerCategoriesTests@3bf7ca37]" started-at="2026-06-25T09:30:10 GST" name="setup" finished-at="2026-06-25T09:30:50 GST" duration-ms="39530" status="PASS">
+    <test started-at="2026-06-25T17:05:11 GST" name="Default test" finished-at="2026-06-25T17:16:22 GST" duration-ms="671008">
+      <class name="tests.HamburgerMenuBehaviorTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:05:15 GST" name="setup" finished-at="2026-06-25T17:05:50 GST" duration-ms="35571" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC166_VerifyTrendingShowsSectionDisplayed()[pri:166, instance:tests.ConsumerCategoriesTests@3bf7ca37]" started-at="2026-06-25T09:30:50 GST" name="TC166_VerifyTrendingShowsSectionDisplayed" description="TC_166: Verify trending shows section is displayed on dashboard" finished-at="2026-06-25T09:31:07 GST" duration-ms="17329" status="PASS">
+        <test-method signature="TC365_VerifyMenuClosesOnOutsideClick()[pri:365, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:05:50 GST" name="TC365_VerifyMenuClosesOnOutsideClick" description="TC_365: Verify menu closes on outside click" finished-at="2026-06-25T17:06:13 GST" duration-ms="22951" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC166_VerifyTrendingShowsSectionDisplayed -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerCategoriesTests@3bf7ca37]" started-at="2026-06-25T09:31:07 GST" name="tearDown" finished-at="2026-06-25T09:31:08 GST" duration-ms="528" status="PASS">
+        </test-method> <!-- TC365_VerifyMenuClosesOnOutsideClick -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:06:13 GST" name="tearDown" finished-at="2026-06-25T17:06:14 GST" duration-ms="466" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- tests.ConsumerCategoriesTests -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:06:14 GST" name="setup" finished-at="2026-06-25T17:06:46 GST" duration-ms="32228" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC366_VerifyStabilityOnRapidClicks()[pri:366, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:06:46 GST" name="TC366_VerifyStabilityOnRapidClicks" description="TC_366: Verify stability on rapid clicks" finished-at="2026-06-25T17:07:27 GST" duration-ms="40859" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC366_VerifyStabilityOnRapidClicks -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:07:27 GST" name="tearDown" finished-at="2026-06-25T17:07:27 GST" duration-ms="473" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:07:27 GST" name="setup" finished-at="2026-06-25T17:08:00 GST" duration-ms="32573" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC367_VerifyScrollingInSmallScreens()[pri:367, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:08:00 GST" name="TC367_VerifyScrollingInSmallScreens" description="TC_367: Verify scrolling in small screens" finished-at="2026-06-25T17:09:10 GST" duration-ms="70734" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC367_VerifyScrollingInSmallScreens -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:09:10 GST" name="tearDown" finished-at="2026-06-25T17:09:11 GST" duration-ms="496" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:09:11 GST" name="setup" finished-at="2026-06-25T17:09:44 GST" duration-ms="32645" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC368_VerifyKeyboardNavigation()[pri:368, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:09:44 GST" name="TC368_VerifyKeyboardNavigation" description="TC_368: Verify keyboard navigation" finished-at="2026-06-25T17:10:54 GST" duration-ms="70861" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC368_VerifyKeyboardNavigation -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:10:54 GST" name="tearDown" finished-at="2026-06-25T17:10:55 GST" duration-ms="464" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:10:55 GST" name="setup" finished-at="2026-06-25T17:11:26 GST" duration-ms="31277" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC369_VerifyThemeModeUI()[pri:369, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:11:26 GST" name="TC369_VerifyThemeModeUI" description="TC_369: Verify dark/light mode UI" finished-at="2026-06-25T17:12:38 GST" duration-ms="71543" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC369_VerifyThemeModeUI -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:12:38 GST" name="tearDown" finished-at="2026-06-25T17:12:38 GST" duration-ms="503" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:12:38 GST" name="setup" finished-at="2026-06-25T17:13:11 GST" duration-ms="32379" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC370_VerifyUIWithLongLabels()[pri:370, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:13:11 GST" name="TC370_VerifyUIWithLongLabels" description="TC_370: Verify UI with long labels" finished-at="2026-06-25T17:14:21 GST" duration-ms="70795" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC370_VerifyUIWithLongLabels -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:14:21 GST" name="tearDown" finished-at="2026-06-25T17:14:22 GST" duration-ms="482" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:14:22 GST" name="setup" finished-at="2026-06-25T17:14:55 GST" duration-ms="32904" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC371_VerifyHamburgerVisibleOnAllPages()[pri:371, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:14:55 GST" name="TC371_VerifyHamburgerVisibleOnAllPages" description="TC_371: Verify hamburger icon visible across all pages" finished-at="2026-06-25T17:16:21 GST" duration-ms="86535" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC371_VerifyHamburgerVisibleOnAllPages -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.HamburgerMenuBehaviorTests@139982de]" started-at="2026-06-25T17:16:21 GST" name="tearDown" finished-at="2026-06-25T17:16:22 GST" duration-ms="506" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- tests.HamburgerMenuBehaviorTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

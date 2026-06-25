@@ -1,0 +1,18 @@
+============================================================
+Test Log: HamburgerMenuBehaviorTests.TC371_VerifyHamburgerVisibleOnAllPages
+Started: 2026-06-25 17:14:55
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HamburgerMenuBehaviorTests_TC371_VerifyHamburgerVisibleOnAllPages_2026_06_25_17_14_55.log
+============================================================
+========== TEST STARTED: TC_371: Hamburger Icon Visible Across All Pages ==========
+STEP 1: Check hamburger menu visibility on home page
+INFO  TC_371 - STEP 1: Hamburger visible on home page: true
+STEP 2: Open side menu and wait for items to load
+INFO  TC_371 - STEP 2: Side menu items loaded: true
+STEP 3: Navigate to a different page and verify hamburger visibility persists
+INFO  TC_371 - STEP 3: Home menu item not available, trying alternative navigation
+INFO  TC_371 - STEP 3: Used page refresh as alternative navigation method
+INFO  TC_371 - STEP 3: Hamburger visible after navigation: true
+INFO  TC_371: Hamburger menu visibility verified across pages
+========== TEST PASSED: TC_371 ==========
+============================================================
+Ended: 2026-06-25 17:16:21

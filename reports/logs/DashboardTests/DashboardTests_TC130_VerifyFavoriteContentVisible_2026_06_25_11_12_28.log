@@ -1,0 +1,18 @@
+============================================================
+Test Log: DashboardTests.TC130_VerifyFavoriteContentVisible
+Started: 2026-06-25 11:12:28
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC130_VerifyFavoriteContentVisible_2026_06_25_11_12_28.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC130_VerifyFavoriteContentVisible_2026_06_25_11_12_28.log
+[START] DashboardTests :: TC130_VerifyFavoriteContentVisible
+========== TEST STARTED: TC130_VerifyFavoriteContentVisible ==========
+========== TEST STARTED: TC_130: Favorite Content Visible ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Verify favorite section is visible
+STEP 3: Verify favorite content is present
+INFO  TC_130: Favorite content found and verified
+========== TEST PASSED: TC_130 ==========
+[PASS] DashboardTests :: TC130_VerifyFavoriteContentVisible
+========== TEST PASSED: TC130_VerifyFavoriteContentVisible: TC_130: Verify favorite content is visible ==========
+============================================================
+Ended: 2026-06-25 11:12:30

@@ -1,0 +1,24 @@
+============================================================
+Test Log: FavouritesManagementTests.TC414_VerifySearchInFavouritesByAuthorName
+Started: 2026-06-25 15:59:11
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC414_VerifySearchInFavouritesByAuthorName_2026_06_25_15_59_11.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC414_VerifySearchInFavouritesByAuthorName_2026_06_25_15_59_11.log
+[START] FavouritesManagementTests :: TC414_VerifySearchInFavouritesByAuthorName
+========== TEST STARTED: TC414_VerifySearchInFavouritesByAuthorName ==========
+========== TEST STARTED: TC_414: Search In Favourites By Author Name ==========
+STEP 1: Login as consumer, navigate to Favourites, and read the first book's author
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to favourites page
+INFO  TC_414 - Favourite Books Count: 5
+INFO  TC_414 - Author Name Used For Search: The Golem
+STEP 2: Search by author and verify matching favourites are listed
+INFO  TC_414 - Search Results Count: 5
+INFO  TC_414 - First Visible Author Matches Search: true
+INFO  TC_414: Search by author name working correctly
+========== TEST PASSED: TC_414 ==========
+[PASS] FavouritesManagementTests :: TC414_VerifySearchInFavouritesByAuthorName
+========== TEST PASSED: TC414_VerifySearchInFavouritesByAuthorName: TC_414: Verify search in favourites by author name ==========
+============================================================
+Ended: 2026-06-25 16:00:00

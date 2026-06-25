@@ -1,0 +1,28 @@
+============================================================
+Test Log: FavouritesManagementTests.TC406_VerifyRemoveBookFromFavourites
+Started: 2026-06-25 15:47:11
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC406_VerifyRemoveBookFromFavourites_2026_06_25_15_47_11.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC406_VerifyRemoveBookFromFavourites_2026_06_25_15_47_11.log
+[START] FavouritesManagementTests :: TC406_VerifyRemoveBookFromFavourites
+========== TEST STARTED: TC406_VerifyRemoveBookFromFavourites ==========
+========== TEST STARTED: TC_406: Remove Book From Favourites ==========
+STEP 1: Login as consumer, navigate to Favourites, and capture the current count + first book title
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to favourites page
+INFO  TC_406 - Current Favourites Count: 8
+INFO  TC_406 - Book to remove: Brain At Work
+STEP 2: Click remove icon, wait for dialog, confirm via Yes, and wait for toaster
+INFO  TC_406 - Clicked remove icon for first book
+INFO  TC_406 - Confirmation message: Are you sure you want to remove this book from favourites?
+INFO  TC_406 - Confirmed removal by clicking Yes
+INFO  TC_406 - Removal confirmed via toaster notification
+STEP 3: Settle the page and verify the post-removal favourites list
+INFO  TC_406 - New Favourites Count: 7
+INFO  TC_406: Book removal test completed successfully
+========== TEST PASSED: TC_406 ==========
+[PASS] FavouritesManagementTests :: TC406_VerifyRemoveBookFromFavourites
+========== TEST PASSED: TC406_VerifyRemoveBookFromFavourites: TC_406: Verify removal of book ==========
+============================================================
+Ended: 2026-06-25 15:49:10

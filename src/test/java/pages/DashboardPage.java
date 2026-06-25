@@ -13,16 +13,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chromium.ChromiumDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import base.BasePage;
+import utils.ConfigReader;
+import utils.LoggerUtils;
 
 /**
  * Page object representing the dashboard page of the application. Contains
@@ -6923,6 +6927,393 @@ public class DashboardPage extends BasePage {
 		state.put("itemCount", getTrendingBooksList().size());
 		state.put("hasEmptyMessage", hasNoTrendingShowsMessage());
 		return state;
+	}
+
+	// ============================================================
+	// END OF ENHANCED METHODS
+	// ============================================================
+
+	// ============================================================
+	// TEST-LEVEL ORCHESTRATION HELPERS
+	// ============================================================
+
+	// ----- Null-safe accessors -----
+
+	/**
+	 * @return the value, or empty string if it is {@code null}.
+	 */
+	public String safeString(String value) {
+		return value == null ? "" : value;
+	}
+
+	/**
+	 * @return the value (or empty) lower-cased using {@link Locale#ROOT}.
+	 */
+	public String safeLowerUrl(String value) {
+		return safeString(value).toLowerCase(Locale.ROOT);
+	}
+
+	/**
+	 * Convenience wrapper that logs a non-blocking message to the test
+	 * report. Use for "optional feature unavailable" branches.
+	 */
+	public void logOptionalUnavailable(String message) {
+		LoggerUtils.logInfo(safeString(message));
+	}
+
+	/**
+	 * Pause execution for the given number of milliseconds. Throws
+	 * {@link RuntimeException} on interrupt so the test surfaces a clear
+	 * failure rather than silently swallowing it.
+	 */
+	public void waitQuietly(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			throw new RuntimeException("Sleep interrupted", e);
+		}
+	}
+
+	// ----- Credentials / base URL -----
+
+	/**
+	 * @return the configured e-mail address for the given account type
+	 *         (consumer / uploader / admin). Falls back to the generic
+	 *         {@code login.validEmail} when a role-specific value is not
+	 *         configured.
+	 */
+	public String getAccountEmail(String accountType) {
+		String type = safeString(accountType).toLowerCase(Locale.ROOT);
+		switch (type) {
+		case "admin":
+			return ConfigReader.getProperty("admin.email", ConfigReader.getProperty("login.validEmail"));
+		case "uploader":
+			return ConfigReader.getProperty("uploader.email", ConfigReader.getProperty("login.validEmail"));
+		case "consumer":
+		default:
+			return ConfigReader.getProperty("consumer.email", ConfigReader.getProperty("login.validEmail"));
+		}
+	}
+
+	/**
+	 * @return the configured password for the given account type
+	 *         (consumer / uploader / admin). Falls back to the generic
+	 *         {@code login.validPassword} when a role-specific value is
+	 *         not configured.
+	 */
+	public String getAccountPassword(String accountType) {
+		String type = safeString(accountType).toLowerCase(Locale.ROOT);
+		switch (type) {
+		case "admin":
+			return ConfigReader.getProperty("admin.password", ConfigReader.getProperty("login.validPassword"));
+		case "uploader":
+			return ConfigReader.getProperty("uploader.password", ConfigReader.getProperty("login.validPassword"));
+		case "consumer":
+		default:
+			return ConfigReader.getProperty("consumer.password", ConfigReader.getProperty("login.validPassword"));
+		}
+	}
+
+	/**
+	 * @return the configured base URL, or a sane default when missing.
+	 */
+	public String getBaseUrl() {
+		String baseUrl = ConfigReader.getProperty("url", "https://web-splay.acceses.com/");
+		if (!baseUrl.endsWith("/")) {
+			baseUrl = baseUrl + "/";
+		}
+		return baseUrl;
+	}
+
+	// ----- Session / auth helpers -----
+
+	/**
+	 * Wipe all cookies, local storage, and session storage so the next
+	 * navigation is treated as a fresh unauthenticated visit.
+	 */
+	public void clearSession() {
+		try {
+			driver.manage().deleteAllCookies();
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to clear cookies: {0}", e.getMessage());
+		}
+		try {
+			((JavascriptExecutor) driver).executeScript("window.localStorage.clear();");
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to clear local storage: {0}", e.getMessage());
+		}
+		try {
+			((JavascriptExecutor) driver).executeScript("window.sessionStorage.clear();");
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to clear session storage: {0}", e.getMessage());
+		}
+	}
+
+	/**
+	 * @return the named cookie's value, or empty string if no such
+	 *         cookie exists. Tolerates missing cookies / different auth
+	 *         mechanisms.
+	 */
+	public String getCookieValueSafely(String name) {
+		try {
+			org.openqa.selenium.Cookie cookie = driver.manage().getCookieNamed(safeString(name));
+			return cookie == null ? "" : safeString(cookie.getValue());
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	// ----- Multi-tab helpers -----
+
+	/**
+	 * Open a fresh tab via JavaScript and switch the driver to it.
+	 *
+	 * @return the new tab's window handle.
+	 */
+	public String openNewTabAndSwitch() {
+		((JavascriptExecutor) driver).executeScript("window.open('about:blank','_blank');");
+		List<String> windowHandles = new ArrayList<>(driver.getWindowHandles());
+		String newTab = windowHandles.get(windowHandles.size() - 1);
+		driver.switchTo().window(newTab);
+		return newTab;
+	}
+
+	/**
+	 * Switch to the first tab whose handle matches the given
+	 * {@code windowHandle}.
+	 */
+	public void switchToTab(String windowHandle) {
+		if (safeString(windowHandle).isEmpty()) {
+			return;
+		}
+		driver.switchTo().window(windowHandle);
+	}
+
+	// ----- URL navigation -----
+
+	/**
+	 * Navigate to a relative path appended to the configured base URL.
+	 * Tolerates a blank/null {@code relativePath} (no navigation).
+	 */
+	public void navigateToRelativePath(String relativePath) {
+		String safePath = safeString(relativePath);
+		if (safePath.isEmpty()) {
+			return;
+		}
+		driver.get(getBaseUrl() + safePath.replaceFirst("^/+", ""));
+	}
+
+	// ----- Browser / responsive -----
+
+	/**
+	 * Resize the browser window to the given width (height fixed at 800).
+	 */
+	public void resizeWindowTo(int width) {
+		driver.manage().window().setSize(new Dimension(width, 800));
+	}
+
+	/**
+	 * Restore a "normal desktop" window size (1920x1080).
+	 */
+	public void resetWindowSize() {
+		driver.manage().window().setSize(new Dimension(1920, 1080));
+	}
+
+	// ----- Network throttling (CDP) -----
+
+	/**
+	 * @return true when the current driver supports Chrome DevTools
+	 *         Protocol (i.e. is a {@link ChromiumDriver}).
+	 */
+	public boolean isChromiumDriver() {
+		return driver instanceof ChromiumDriver;
+	}
+
+	/**
+	 * Enable Slow-3G network throttling on the current tab (via CDP).
+	 * Returns true on success, false when the driver is not a
+	 * {@link ChromiumDriver} or the CDP command fails.
+	 */
+	public boolean enableSlow3GNetwork() {
+		if (!isChromiumDriver()) {
+			return false;
+		}
+		ChromiumDriver chromiumDriver = (ChromiumDriver) driver;
+		try {
+			Map<String, Object> emptyArgs = new HashMap<>();
+			chromiumDriver.executeCdpCommand("Network.enable", emptyArgs);
+
+			Map<String, Object> networkConditions = new HashMap<>();
+			networkConditions.put("offline", false);
+			networkConditions.put("downloadThroughput", 500 * 1024);
+			networkConditions.put("uploadThroughput", 500 * 1024);
+			networkConditions.put("latency", 400);
+			chromiumDriver.executeCdpCommand("Network.emulateNetworkConditions", networkConditions);
+			return true;
+		} catch (Exception e) {
+			LoggerUtils.logInfo("CDP slow-3G enable failed: " + safeString(e.getMessage()));
+			return false;
+		}
+	}
+
+	/**
+	 * Reset CDP network conditions to "no throttling" and disable the
+	 * Network domain. Tolerates failure (logs at info level).
+	 */
+	public void resetNetwork() {
+		if (!isChromiumDriver()) {
+			return;
+		}
+		ChromiumDriver chromiumDriver = (ChromiumDriver) driver;
+		try {
+			Map<String, Object> normalNetwork = new HashMap<>();
+			normalNetwork.put("offline", false);
+			normalNetwork.put("downloadThroughput", -1);
+			normalNetwork.put("uploadThroughput", -1);
+			normalNetwork.put("latency", 0);
+			chromiumDriver.executeCdpCommand("Network.emulateNetworkConditions", normalNetwork);
+
+			Map<String, Object> emptyArgs = new HashMap<>();
+			chromiumDriver.executeCdpCommand("Network.disable", emptyArgs);
+		} catch (Exception e) {
+			LoggerUtils.logInfo("CDP network reset failed: " + safeString(e.getMessage()));
+		}
+	}
+
+	// ----- Search keyword (test config) -----
+
+	/**
+	 * @return the configured search keyword, defaulting to {@code "audio"}.
+	 */
+	public String getDashboardSearchKeyword() {
+		return ConfigReader.getProperty("dashboard.searchKeyword", "audio");
+	}
+
+	// ----- URL / page state predicates -----
+
+	/**
+	 * @return true if the current URL (lower-cased, null-safe) contains
+	 *         any of the supplied tokens.
+	 */
+	public boolean currentUrlContainsAny(String... tokens) {
+		String url = safeLowerUrl(getCurrentUrlSafely());
+		if (tokens == null) {
+			return false;
+		}
+		for (String token : tokens) {
+			String safe = safeString(token).toLowerCase(Locale.ROOT);
+			if (!safe.isEmpty() && url.contains(safe)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @return true if the current URL is the post-logout landing page
+	 *         (i.e. {@code /login} or {@code signin}). The dashboard of
+	 *         this app is at the bare base URL, so "no /dashboard in the
+	 *         path" is not by itself proof of a logout — the check looks
+	 *         explicitly for the auth pages.
+	 */
+	public boolean isPostLogoutLanding() {
+		String url = safeLowerUrl(getCurrentUrlSafely());
+		return url.contains("/login") || url.contains("signin");
+	}
+
+	/**
+	 * @return true if the current URL indicates an unauthenticated
+	 *         redirect — i.e. the user landed on the login / signin page.
+	 *         Note: the dashboard of this app lives at the bare base URL
+	 *         ({@code https://web-splay.acceses.com/}), so "absence of
+	 *         /dashboard in the path" is <b>not</b> by itself proof of a
+	 *         logout — the check looks explicitly for the auth pages.
+	 */
+	public boolean isUnauthenticatedRedirect() {
+		String url = safeLowerUrl(getCurrentUrlSafely());
+		return url.contains("/login") || url.contains("signin");
+	}
+
+	/**
+	 * @return true if the current URL is exactly (or a sub-path of) the
+	 *         configured base URL. The dashboard of this app is served at
+	 *         the bare base URL, so this is the canonical
+	 *         "user is on the dashboard" check.
+	 */
+	public boolean isOnBaseUrl() {
+		String url = safeLowerUrl(getCurrentUrlSafely());
+		String base = safeLowerUrl(getBaseUrl());
+		if (base.isEmpty() || url.isEmpty()) {
+			return false;
+		}
+		// Strip trailing slash from base for safe startsWith comparison
+		String normalizedBase = base.endsWith("/") ? base.substring(0, base.length() - 1) : base;
+		return url.equals(normalizedBase) || url.startsWith(normalizedBase + "/");
+	}
+
+	// ----- Audio / playback helpers used by existing tests -----
+
+	/**
+	 * Open any book, wait briefly, navigate back, and wait for the
+	 * dashboard to be ready again. Used to seed "Recently Played" /
+	 * "Continue Listening" sections.
+	 */
+	public void seedRecentlyPlayed() {
+		try {
+			openAnyBook();
+			waitQuietly(3000);
+			driver.navigate().back();
+			waitForPageReady();
+			waitQuietly(2000);
+		} catch (Exception e) {
+			LoggerUtils.logInfo("seedRecentlyPlayed skipped: " + safeString(e.getMessage()));
+		}
+	}
+
+	/**
+	 * Open any book, refresh the page, and wait for the dashboard to
+	 * be ready again. Used to seed the "Continue Listening" section.
+	 */
+	public void seedContinueListening() {
+		try {
+			openAnyBook();
+			waitQuietly(2000);
+			driver.navigate().refresh();
+			waitForPageReady();
+			waitQuietly(2000);
+		} catch (Exception e) {
+			LoggerUtils.logInfo("seedContinueListening skipped: " + safeString(e.getMessage()));
+		}
+	}
+
+	/**
+	 * Run a search using the configured keyword, wait briefly, and
+	 * return whether any search results were displayed.
+	 */
+	public boolean runSearchAndReport() {
+		try {
+			String keyword = getDashboardSearchKeyword();
+			enterSearchKeyword(keyword);
+			clickSearchButton();
+			waitQuietly(3000);
+			return areSearchResultsDisplayed();
+		} catch (Exception e) {
+			LoggerUtils.logInfo("runSearchAndReport failed: " + safeString(e.getMessage()));
+			return false;
+		}
+	}
+
+	// ----- Re-expose a couple of safe URL helpers -----
+
+	/**
+	 * @return the current page URL, or empty string if the driver cannot
+	 *         be queried. Mirrors {@link #getCurrentUrl()} but is named
+	 *         to match the test-side convention used elsewhere in the
+	 *         framework.
+	 */
+	public String getCurrentUrlSafely() {
+		return getCurrentUrl();
 	}
 
 	// ============================================================

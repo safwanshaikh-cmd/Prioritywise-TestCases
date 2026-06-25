@@ -1,0 +1,23 @@
+============================================================
+Test Log: FavouritesManagementTests.TC411_VerifyDeselectAll
+Started: 2026-06-25 15:55:05
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC411_VerifyDeselectAll_2026_06_25_15_55_05.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC411_VerifyDeselectAll_2026_06_25_15_55_05.log
+[START] FavouritesManagementTests :: TC411_VerifyDeselectAll
+========== TEST STARTED: TC411_VerifyDeselectAll ==========
+========== TEST STARTED: TC_411: Deselect All ==========
+STEP 1: Login as consumer, navigate to Favourites, and verify at least one book is available
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to favourites page
+INFO  TC_411 - Available Books: 5
+STEP 2: Open selection mode, Select All, then Deselect All
+INFO  TC_411 - Selected Count Before Deselect: 5
+INFO  TC_411 - Selected Count After Deselect: 0
+INFO  TC_411: Deselect all working correctly
+========== TEST PASSED: TC_411 ==========
+[PASS] FavouritesManagementTests :: TC411_VerifyDeselectAll
+========== TEST PASSED: TC411_VerifyDeselectAll: TC_411: Verify deselect functionality ==========
+============================================================
+Ended: 2026-06-25 15:56:17

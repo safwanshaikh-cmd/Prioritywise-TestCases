@@ -1,0 +1,17 @@
+============================================================
+Test Log: DashboardTests.TC121_VerifySidebarMenuNavigationWorks
+Started: 2026-06-25 11:05:14
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC121_VerifySidebarMenuNavigationWorks_2026_06_25_11_05_14.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC121_VerifySidebarMenuNavigationWorks_2026_06_25_11_05_14.log
+[START] DashboardTests :: TC121_VerifySidebarMenuNavigationWorks
+========== TEST STARTED: TC121_VerifySidebarMenuNavigationWorks ==========
+========== TEST STARTED: TC_121: Sidebar Menu Navigation Works ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Verify sidebar menu is accessible
+INFO  TC_121: Sidebar menu button visible: true
+========== TEST PASSED: TC_121 ==========
+[PASS] DashboardTests :: TC121_VerifySidebarMenuNavigationWorks
+========== TEST PASSED: TC121_VerifySidebarMenuNavigationWorks: TC_121: Verify sidebar menu navigation works ==========
+============================================================
+Ended: 2026-06-25 11:05:14

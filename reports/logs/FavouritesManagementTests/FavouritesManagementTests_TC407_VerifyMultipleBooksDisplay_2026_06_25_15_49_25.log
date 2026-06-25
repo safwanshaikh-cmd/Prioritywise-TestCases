@@ -1,0 +1,20 @@
+============================================================
+Test Log: FavouritesManagementTests.TC407_VerifyMultipleBooksDisplay
+Started: 2026-06-25 15:49:25
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC407_VerifyMultipleBooksDisplay_2026_06_25_15_49_25.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC407_VerifyMultipleBooksDisplay_2026_06_25_15_49_25.log
+[START] FavouritesManagementTests :: TC407_VerifyMultipleBooksDisplay
+========== TEST STARTED: TC407_VerifyMultipleBooksDisplay ==========
+========== TEST STARTED: TC_407: Multiple Books Display ==========
+STEP 1: Login as consumer, navigate to Favourites, and read the count
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to favourites page
+INFO  TC_407 - Favourite Books Count: 7
+INFO  TC_407: Page displays books correctly. System behaved as expected.
+========== TEST PASSED: TC_407 ==========
+[PASS] FavouritesManagementTests :: TC407_VerifyMultipleBooksDisplay
+========== TEST PASSED: TC407_VerifyMultipleBooksDisplay: TC_407: Verify multiple books listed correctly ==========
+============================================================
+Ended: 2026-06-25 15:50:11

@@ -1,7 +1,6 @@
 package listeners;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -20,8 +19,6 @@ import com.aventstack.extentreports.ExtentTest;
  * generated report.
  */
 public class TestListener implements ITestListener {
-
-	private static final Logger LOGGER = Logger.getLogger(TestListener.class.getName());
 
 	/**
 	 * Log a single line to the current test's HTML report entry. Safe to call
@@ -61,11 +58,13 @@ public class TestListener implements ITestListener {
 
 	@Override
 	public void onStart(ITestContext context) {
-		LOGGER.info("===== Test Execution Started =====");
+		// NOTE: Suite start is handled by ExtentReportListener with more detailed info
+		// No duplicate logging needed here
 	}
 
 	@Override
 	public void onFinish(ITestContext context) {
-		LOGGER.info("===== Test Execution Completed =====");
+		// NOTE: Suite completion is handled by ExtentReportListener with execution summary
+		// No duplicate logging needed here
 	}
 }

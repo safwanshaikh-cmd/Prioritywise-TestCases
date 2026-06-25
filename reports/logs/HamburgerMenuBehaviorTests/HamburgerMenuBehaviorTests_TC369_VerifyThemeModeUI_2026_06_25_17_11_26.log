@@ -1,0 +1,19 @@
+============================================================
+Test Log: HamburgerMenuBehaviorTests.TC369_VerifyThemeModeUI
+Started: 2026-06-25 17:11:26
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HamburgerMenuBehaviorTests_TC369_VerifyThemeModeUI_2026_06_25_17_11_26.log
+============================================================
+========== TEST STARTED: TC_369: Dark/Light Mode UI ==========
+STEP 1: Open the side menu in theme mode
+INFO  TC_369 - STEP 1: Side menu opened: true
+INFO  TC_369 - STEP 1: Side menu is open: true
+STEP 2: Verify theme toggle button is visible
+INFO  TC_369 - STEP 2: Theme toggle visible: true
+STEP 3: Click theme toggle to switch between dark/light mode
+INFO  TC_369 - STEP 3: Theme toggle clicked: true
+STEP 4: Verify menu items remain visible after theme change
+INFO  TC_369 - STEP 4: Menu items visible after toggle: true
+INFO  TC_369: Theme mode UI verified
+========== TEST PASSED: TC_369 ==========
+============================================================
+Ended: 2026-06-25 17:12:38

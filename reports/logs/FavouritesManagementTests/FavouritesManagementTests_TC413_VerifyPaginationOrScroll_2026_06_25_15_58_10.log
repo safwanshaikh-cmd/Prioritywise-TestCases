@@ -1,0 +1,22 @@
+============================================================
+Test Log: FavouritesManagementTests.TC413_VerifyPaginationOrScroll
+Started: 2026-06-25 15:58:10
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC413_VerifyPaginationOrScroll_2026_06_25_15_58_10.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC413_VerifyPaginationOrScroll_2026_06_25_15_58_10.log
+[START] FavouritesManagementTests :: TC413_VerifyPaginationOrScroll
+========== TEST STARTED: TC413_VerifyPaginationOrScroll ==========
+========== TEST STARTED: TC_413: Pagination / Scroll ==========
+STEP 1: Login as consumer, navigate to Favourites, and verify at least one book is present
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to favourites page
+STEP 2: Verify the page is scrollable when many books are rendered
+INFO  TC_413 - Favourite Books Count: 5
+INFO  TC_413 - Page Scrollable: false
+INFO  TC_413: Pagination / scroll working correctly
+========== TEST PASSED: TC_413 ==========
+[PASS] FavouritesManagementTests :: TC413_VerifyPaginationOrScroll
+========== TEST PASSED: TC413_VerifyPaginationOrScroll: TC_413: Verify large list handling (pagination/scroll) ==========
+============================================================
+Ended: 2026-06-25 15:58:57

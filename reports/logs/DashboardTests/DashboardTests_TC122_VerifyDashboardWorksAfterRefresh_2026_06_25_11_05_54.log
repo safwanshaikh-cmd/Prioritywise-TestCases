@@ -1,0 +1,18 @@
+============================================================
+Test Log: DashboardTests.TC122_VerifyDashboardWorksAfterRefresh
+Started: 2026-06-25 11:05:54
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC122_VerifyDashboardWorksAfterRefresh_2026_06_25_11_05_54.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC122_VerifyDashboardWorksAfterRefresh_2026_06_25_11_05_54.log
+[START] DashboardTests :: TC122_VerifyDashboardWorksAfterRefresh
+========== TEST STARTED: TC122_VerifyDashboardWorksAfterRefresh ==========
+========== TEST STARTED: TC_122: Dashboard Works After Refresh ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Refresh the page and verify dashboard reloads
+INFO  TC_122: Before refresh=true, after refresh=true
+INFO  TC_122: Dashboard reloaded successfully after refresh
+========== TEST PASSED: TC_122 ==========
+[PASS] DashboardTests :: TC122_VerifyDashboardWorksAfterRefresh
+========== TEST PASSED: TC122_VerifyDashboardWorksAfterRefresh: TC_122: Verify dashboard works after refresh ==========
+============================================================
+Ended: 2026-06-25 11:05:56

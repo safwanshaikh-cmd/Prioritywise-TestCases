@@ -1,0 +1,23 @@
+============================================================
+Test Log: FavouritesManagementTests.TC404_VerifyEmptyFavouritesState
+Started: 2026-06-25 15:44:12
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC404_VerifyEmptyFavouritesState_2026_06_25_15_44_12.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC404_VerifyEmptyFavouritesState_2026_06_25_15_44_12.log
+[START] FavouritesManagementTests :: TC404_VerifyEmptyFavouritesState
+========== TEST STARTED: TC404_VerifyEmptyFavouritesState ==========
+========== TEST STARTED: TC_404: Empty Favourites State ==========
+STEP 1: Login as consumer and navigate to the Favourites page
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to favourites page
+STEP 2: Read the current favourite books count
+INFO  TC_404 - Current Favourites Count: 7
+STEP 3: Favourites list is non-empty; verify list is accessible
+INFO  TC_404 - Favourites list contains 7 book(s)
+INFO  TC_404: Favourites list contains 7 book(s)
+========== TEST PASSED: TC_404 ==========
+[PASS] FavouritesManagementTests :: TC404_VerifyEmptyFavouritesState
+========== TEST PASSED: TC404_VerifyEmptyFavouritesState: TC_404: Verify empty state when no books added ==========
+============================================================
+Ended: 2026-06-25 15:44:58

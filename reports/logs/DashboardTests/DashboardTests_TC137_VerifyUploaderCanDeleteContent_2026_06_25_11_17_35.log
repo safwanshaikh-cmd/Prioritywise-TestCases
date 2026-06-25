@@ -1,0 +1,18 @@
+============================================================
+Test Log: DashboardTests.TC137_VerifyUploaderCanDeleteContent
+Started: 2026-06-25 11:17:35
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC137_VerifyUploaderCanDeleteContent_2026_06_25_11_17_35.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC137_VerifyUploaderCanDeleteContent_2026_06_25_11_17_35.log
+[START] DashboardTests :: TC137_VerifyUploaderCanDeleteContent
+========== TEST STARTED: TC137_VerifyUploaderCanDeleteContent ==========
+========== TEST STARTED: TC_137: Uploader Can Delete Content ==========
+STEP 1: Open hamburger menu → For Creators
+STEP 2: Select Pending filter and verify book listing
+STEP 3: Verify delete option is available on the first item
+INFO  TC_137: Delete option verified (not executed to preserve data)
+========== TEST PASSED: TC_137 ==========
+[PASS] DashboardTests :: TC137_VerifyUploaderCanDeleteContent
+========== TEST PASSED: TC137_VerifyUploaderCanDeleteContent: TC_137: Verify uploader can delete content ==========
+============================================================
+Ended: 2026-06-25 11:17:39

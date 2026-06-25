@@ -1,0 +1,25 @@
+============================================================
+Test Log: FavouritesManagementTests.TC412_VerifyCancelAction
+Started: 2026-06-25 15:56:36
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC412_VerifyCancelAction_2026_06_25_15_56_36.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC412_VerifyCancelAction_2026_06_25_15_56_36.log
+[START] FavouritesManagementTests :: TC412_VerifyCancelAction
+========== TEST STARTED: TC412_VerifyCancelAction ==========
+========== TEST STARTED: TC_412: Cancel Action ==========
+STEP 1: Login as consumer, navigate to Favourites, and verify at least one book is available
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to favourites page
+INFO  TC_412 - Available Books: 5
+STEP 2: Open selection mode, select one book, and click Cancel
+INFO  TC_412 - Selection Mode Visible: true
+INFO  TC_412 - Selected Count Before Cancel: 1
+INFO  TC_412 - Selected Count After Cancel: 0
+INFO  TC_412 - Selection Mode Visible After Cancel: false
+INFO  TC_412: Cancel action working correctly
+========== TEST PASSED: TC_412 ==========
+[PASS] FavouritesManagementTests :: TC412_VerifyCancelAction
+========== TEST PASSED: TC412_VerifyCancelAction: TC_412: Verify cancel button behavior ==========
+============================================================
+Ended: 2026-06-25 15:57:55

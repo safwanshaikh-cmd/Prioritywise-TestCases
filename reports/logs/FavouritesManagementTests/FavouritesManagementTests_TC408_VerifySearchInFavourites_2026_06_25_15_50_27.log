@@ -1,0 +1,22 @@
+============================================================
+Test Log: FavouritesManagementTests.TC408_VerifySearchInFavourites
+Started: 2026-06-25 15:50:27
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC408_VerifySearchInFavourites_2026_06_25_15_50_27.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC408_VerifySearchInFavourites_2026_06_25_15_50_27.log
+[START] FavouritesManagementTests :: TC408_VerifySearchInFavourites
+========== TEST STARTED: TC408_VerifySearchInFavourites ==========
+========== TEST STARTED: TC_408: Search In Favourites ==========
+STEP 1: Login as consumer, seed a book into favourites, and open the Favourites page
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to home page
+INFO  Navigated to favourites page
+STEP 2: Search by 'New-3' and verify matching results are shown
+INFO  TC_408 - Search Results Count: 1
+INFO  TC_408: Search functionality working correctly
+========== TEST PASSED: TC_408 ==========
+[PASS] FavouritesManagementTests :: TC408_VerifySearchInFavourites
+========== TEST PASSED: TC408_VerifySearchInFavourites: TC_408: Verify search functionality ==========
+============================================================
+Ended: 2026-06-25 15:51:42

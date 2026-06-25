@@ -1,0 +1,16 @@
+============================================================
+Test Log: DashboardTests.TC141_VerifyAdminCanAccessPlaylists
+Started: 2026-06-25 11:20:41
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC141_VerifyAdminCanAccessPlaylists_2026_06_25_11_20_41.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC141_VerifyAdminCanAccessPlaylists_2026_06_25_11_20_41.log
+[START] DashboardTests :: TC141_VerifyAdminCanAccessPlaylists
+========== TEST STARTED: TC141_VerifyAdminCanAccessPlaylists ==========
+========== TEST STARTED: TC_141: Admin Can Access Playlists ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Verify playlist widget visibility
+========== TEST PASSED: TC_141 ==========
+[PASS] DashboardTests :: TC141_VerifyAdminCanAccessPlaylists
+========== TEST PASSED: TC141_VerifyAdminCanAccessPlaylists: TC_141: Verify admin can access playlists ==========
+============================================================
+Ended: 2026-06-25 11:20:44

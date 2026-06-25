@@ -1,0 +1,18 @@
+============================================================
+Test Log: DashboardTests.TC126_VerifyContinueListeningOptionVisible
+Started: 2026-06-25 11:09:10
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC126_VerifyContinueListeningOptionVisible_2026_06_25_11_09_10.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC126_VerifyContinueListeningOptionVisible_2026_06_25_11_09_10.log
+[START] DashboardTests :: TC126_VerifyContinueListeningOptionVisible
+========== TEST STARTED: TC126_VerifyContinueListeningOptionVisible ==========
+========== TEST STARTED: TC_126: Continue Listening Option Visible ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Seed continue listening by opening a book and refreshing
+STEP 3: Verify continue listening section is visible
+INFO  TC_126: Continue listening section not found - normal for new accounts
+========== TEST PASSED: TC_126 ==========
+[PASS] DashboardTests :: TC126_VerifyContinueListeningOptionVisible
+========== TEST PASSED: TC126_VerifyContinueListeningOptionVisible: TC_126: Verify continue listening option is visible ==========
+============================================================
+Ended: 2026-06-25 11:09:19

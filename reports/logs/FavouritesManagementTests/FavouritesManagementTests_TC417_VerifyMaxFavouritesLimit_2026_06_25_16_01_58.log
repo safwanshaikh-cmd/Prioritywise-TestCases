@@ -1,0 +1,23 @@
+============================================================
+Test Log: FavouritesManagementTests.TC417_VerifyMaxFavouritesLimit
+Started: 2026-06-25 16:01:58
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC417_VerifyMaxFavouritesLimit_2026_06_25_16_01_58.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC417_VerifyMaxFavouritesLimit_2026_06_25_16_01_58.log
+[START] FavouritesManagementTests :: TC417_VerifyMaxFavouritesLimit
+========== TEST STARTED: TC417_VerifyMaxFavouritesLimit ==========
+========== TEST STARTED: TC_417: Max Favourites Limit ==========
+STEP 1: Login as consumer, navigate to Favourites, and read the current count
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to favourites page
+INFO  Navigated to favourites page
+INFO  TC_417 - Max Limit: 500
+INFO  TC_417 - Current Favourites Count: 6
+STEP 2: Verify the current count does not exceed the configured max limit
+INFO  TC_417: Max limit handling verified
+========== TEST PASSED: TC_417 ==========
+[PASS] FavouritesManagementTests :: TC417_VerifyMaxFavouritesLimit
+========== TEST PASSED: TC417_VerifyMaxFavouritesLimit: TC_417: Verify max favourites limit ==========
+============================================================
+Ended: 2026-06-25 16:02:49

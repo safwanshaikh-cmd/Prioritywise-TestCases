@@ -1,0 +1,18 @@
+============================================================
+Test Log: DashboardTests.TC128_VerifySearchFromDashboard
+Started: 2026-06-25 11:10:44
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC128_VerifySearchFromDashboard_2026_06_25_11_10_44.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC128_VerifySearchFromDashboard_2026_06_25_11_10_44.log
+[START] DashboardTests :: TC128_VerifySearchFromDashboard
+========== TEST STARTED: TC128_VerifySearchFromDashboard ==========
+========== TEST STARTED: TC_128: Search From Dashboard ==========
+STEP 1: Wait for dashboard to be ready
+INFO  TC_128: Search Keyword: audio
+STEP 2: Submit search and verify results
+INFO  TC_128: Search results found and verified
+========== TEST PASSED: TC_128 ==========
+[PASS] DashboardTests :: TC128_VerifySearchFromDashboard
+========== TEST PASSED: TC128_VerifySearchFromDashboard: TC_128: Verify search from dashboard ==========
+============================================================
+Ended: 2026-06-25 11:11:03

@@ -1,0 +1,19 @@
+============================================================
+Test Log: DashboardTests.TC144_VerifyDashboardCannotBeAccessedWithoutLogin
+Started: 2026-06-25 11:22:50
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC144_VerifyDashboardCannotBeAccessedWithoutLogin_2026_06_25_11_22_50.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC144_VerifyDashboardCannotBeAccessedWithoutLogin_2026_06_25_11_22_50.log
+[START] DashboardTests :: TC144_VerifyDashboardCannotBeAccessedWithoutLogin
+========== TEST STARTED: TC144_VerifyDashboardCannotBeAccessedWithoutLogin ==========
+========== TEST STARTED: TC_144: Dashboard Cannot Be Accessed Without Login ==========
+STEP 1: Clear cookies and storage to simulate logged-out state
+STEP 2: Try to access the dashboard URL directly without login
+STEP 3: Verify redirected to login / home or away from dashboard
+INFO  TC_144: Current URL after redirect attempt: https://web-splay.acceses.com/login
+INFO  TC_144: Dashboard correctly redirects unauthenticated users to login/home
+========== TEST PASSED: TC_144 ==========
+[PASS] DashboardTests :: TC144_VerifyDashboardCannotBeAccessedWithoutLogin
+========== TEST PASSED: TC144_VerifyDashboardCannotBeAccessedWithoutLogin: TC_144: Verify dashboard cannot be accessed without login ==========
+============================================================
+Ended: 2026-06-25 11:22:56

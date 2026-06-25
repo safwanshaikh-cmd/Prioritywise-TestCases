@@ -1,0 +1,18 @@
+============================================================
+Test Log: DashboardTests.TC147_VerifyLoginOnMultipleDevices
+Started: 2026-06-25 11:25:08
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC147_VerifyLoginOnMultipleDevices_2026_06_25_11_25_08.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC147_VerifyLoginOnMultipleDevices_2026_06_25_11_25_08.log
+[START] DashboardTests :: TC147_VerifyLoginOnMultipleDevices
+========== TEST STARTED: TC147_VerifyLoginOnMultipleDevices ==========
+========== TEST STARTED: TC_147: Session Handling ==========
+STEP 1: Inspect session cookie
+INFO  TC_147: Multiple device login requires actual physical devices or emulators
+INFO  TC_147: This test verifies session handling logic exists
+INFO  TC_147: Session uses token-based or other authentication
+========== TEST PASSED: TC_147 ==========
+[PASS] DashboardTests :: TC147_VerifyLoginOnMultipleDevices
+========== TEST PASSED: TC147_VerifyLoginOnMultipleDevices: TC_147: Verify session handling is in place ==========
+============================================================
+Ended: 2026-06-25 11:25:08

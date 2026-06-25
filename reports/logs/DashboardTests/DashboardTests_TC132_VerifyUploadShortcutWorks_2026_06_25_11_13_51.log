@@ -1,0 +1,17 @@
+============================================================
+Test Log: DashboardTests.TC132_VerifyUploadShortcutWorks
+Started: 2026-06-25 11:13:51
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC132_VerifyUploadShortcutWorks_2026_06_25_11_13_51.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC132_VerifyUploadShortcutWorks_2026_06_25_11_13_51.log
+[START] DashboardTests :: TC132_VerifyUploadShortcutWorks
+========== TEST STARTED: TC132_VerifyUploadShortcutWorks ==========
+========== TEST STARTED: TC_132: Upload Shortcut Works ==========
+STEP 1: Open hamburger menu → For Creators → Add Book
+STEP 2: Verify upload form opened
+INFO  TC_132: Add Book page opened successfully
+========== TEST PASSED: TC_132 ==========
+[PASS] DashboardTests :: TC132_VerifyUploadShortcutWorks
+========== TEST PASSED: TC132_VerifyUploadShortcutWorks: TC_132: Verify upload shortcut works ==========
+============================================================
+Ended: 2026-06-25 11:13:55

@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -33,6 +37,14 @@ public class ConsoleLogSaver {
 	private static PrintWriter writer;
 	private static String logFilePath;
 	private static String currentTestName;
+
+	/**
+	 * Path of the most recently closed per-test log file. Preserved across
+	 * rotations so the ExtentReportListener (called after
+	 * {@link #endPerTest()}) can still resolve the path to embed in the
+	 * failure report.
+	 */
+	private static String lastClosedLogFilePath;
 
 	/**
 	 * Ensure the logs directory exists. Kept as a no-op-for-files entry point
@@ -112,6 +124,43 @@ public class ConsoleLogSaver {
 		return writer != null;
 	}
 
+	/**
+	 * Read the most recently closed per-test log file from disk and return its
+	 * content as a string. Used by the Extent report to embed the TestNG
+	 * trace / console output under the failed-test entry. Always flushes the
+	 * writer before reading so the tail of the log is on disk.
+	 *
+	 * @return the file content, or an empty string if the file cannot be read
+	 *         or does not exist.
+	 */
+	public static synchronized String readLastPerTestLog() {
+		// Force any in-flight writes to flush so the read sees the tail.
+		if (writer != null) {
+			writer.flush();
+		}
+		String path = lastClosedLogFilePath != null ? lastClosedLogFilePath : logFilePath;
+		if (path == null || path.isEmpty()) {
+			return "";
+		}
+		try {
+			Path file = Paths.get(path);
+			if (!Files.exists(file)) {
+				return "";
+			}
+			return new String(Files.readAllBytes(file), StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			return "";
+		}
+	}
+
+	/**
+	 * @return the path of the most recently closed per-test log file, or
+	 *         {@code null} if no per-test log has been rotated yet.
+	 */
+	public static String getLastClosedLogFilePath() {
+		return lastClosedLogFilePath != null ? lastClosedLogFilePath : logFilePath;
+	}
+
 	private static void closeActiveWriter() {
 		if (writer != null) {
 			try {
@@ -121,6 +170,7 @@ public class ConsoleLogSaver {
 				writer.close();
 			} catch (Exception ignored) {
 			} finally {
+				lastClosedLogFilePath = logFilePath;
 				writer = null;
 				logFilePath = null;
 				currentTestName = null;

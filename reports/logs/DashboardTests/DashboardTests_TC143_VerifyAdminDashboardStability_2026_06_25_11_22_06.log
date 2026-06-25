@@ -1,0 +1,17 @@
+============================================================
+Test Log: DashboardTests.TC143_VerifyAdminDashboardStability
+Started: 2026-06-25 11:22:06
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC143_VerifyAdminDashboardStability_2026_06_25_11_22_06.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC143_VerifyAdminDashboardStability_2026_06_25_11_22_06.log
+[START] DashboardTests :: TC143_VerifyAdminDashboardStability
+========== TEST STARTED: TC143_VerifyAdminDashboardStability ==========
+========== TEST STARTED: TC_143: Admin Dashboard Stability ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Refresh the dashboard and verify it remains stable
+INFO  TC_143: Admin dashboard stability verified (load and refresh)
+========== TEST PASSED: TC_143 ==========
+[PASS] DashboardTests :: TC143_VerifyAdminDashboardStability
+========== TEST PASSED: TC143_VerifyAdminDashboardStability: TC_143: Verify admin dashboard stability ==========
+============================================================
+Ended: 2026-06-25 11:22:07

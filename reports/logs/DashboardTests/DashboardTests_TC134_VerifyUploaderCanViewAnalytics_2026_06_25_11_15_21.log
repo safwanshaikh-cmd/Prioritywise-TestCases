@@ -1,0 +1,17 @@
+============================================================
+Test Log: DashboardTests.TC134_VerifyUploaderCanViewAnalytics
+Started: 2026-06-25 11:15:21
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC134_VerifyUploaderCanViewAnalytics_2026_06_25_11_15_21.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC134_VerifyUploaderCanViewAnalytics_2026_06_25_11_15_21.log
+[START] DashboardTests :: TC134_VerifyUploaderCanViewAnalytics
+========== TEST STARTED: TC134_VerifyUploaderCanViewAnalytics ==========
+========== TEST STARTED: TC_134: Uploader Can View Analytics ==========
+STEP 1: Open hamburger menu and click Transaction History
+STEP 2: Verify analytics section is visible
+INFO  TC_134: Analytics/Transaction History accessible for uploader
+========== TEST PASSED: TC_134 ==========
+[PASS] DashboardTests :: TC134_VerifyUploaderCanViewAnalytics
+========== TEST PASSED: TC134_VerifyUploaderCanViewAnalytics: TC_134: Verify uploader can view analytics ==========
+============================================================
+Ended: 2026-06-25 11:15:24

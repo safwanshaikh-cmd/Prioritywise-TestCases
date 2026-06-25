@@ -1,0 +1,17 @@
+============================================================
+Test Log: DashboardTests.TC138_VerifyAdminDashboardLoads
+Started: 2026-06-25 11:18:19
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC138_VerifyAdminDashboardLoads_2026_06_25_11_18_19.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC138_VerifyAdminDashboardLoads_2026_06_25_11_18_19.log
+[START] DashboardTests :: TC138_VerifyAdminDashboardLoads
+========== TEST STARTED: TC138_VerifyAdminDashboardLoads ==========
+========== TEST STARTED: TC_138: Admin Dashboard Loads ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Verify admin dashboard shell is visible
+INFO  TC_138: Admin dashboard loaded successfully
+========== TEST PASSED: TC_138 ==========
+[PASS] DashboardTests :: TC138_VerifyAdminDashboardLoads
+========== TEST PASSED: TC138_VerifyAdminDashboardLoads: TC_138: Verify admin dashboard loads ==========
+============================================================
+Ended: 2026-06-25 11:18:19

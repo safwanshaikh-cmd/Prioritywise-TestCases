@@ -1,0 +1,18 @@
+============================================================
+Test Log: HamburgerMenuBehaviorTests.TC365_VerifyMenuClosesOnOutsideClick
+Started: 2026-06-25 17:05:50
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HamburgerMenuBehaviorTests_TC365_VerifyMenuClosesOnOutsideClick_2026_06_25_17_05_50.log
+============================================================
+========== TEST STARTED: TC_365: Menu Closes On Outside Click ==========
+STEP 1: Open the simple side menu
+INFO  TC_365 - STEP 1: Side menu opened: true
+STEP 2: Print simple side menu button names
+INFO  TC_365: Side menu button names printed
+STEP 3: Close the simple side menu
+INFO  TC_365 - STEP 3: Side menu closed: true
+STEP 4: Verify side menu is hidden after closing
+INFO  TC_365 - STEP 4: Side menu is open: false
+INFO  TC_365: Side menu successfully closed and hidden
+========== TEST PASSED: TC_365 ==========
+============================================================
+Ended: 2026-06-25 17:06:13

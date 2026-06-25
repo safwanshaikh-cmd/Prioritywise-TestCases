@@ -1,0 +1,17 @@
+============================================================
+Test Log: DashboardTests.TC120_VerifyDashboardUIElementsDisplayCorrectly
+Started: 2026-06-25 11:04:33
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC120_VerifyDashboardUIElementsDisplayCorrectly_2026_06_25_11_04_33.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC120_VerifyDashboardUIElementsDisplayCorrectly_2026_06_25_11_04_33.log
+[START] DashboardTests :: TC120_VerifyDashboardUIElementsDisplayCorrectly
+========== TEST STARTED: TC120_VerifyDashboardUIElementsDisplayCorrectly ==========
+========== TEST STARTED: TC_120: Dashboard UI Elements Display Correctly ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Verify dashboard UI shell is visible
+INFO  TC_120: Dashboard shell visible: true
+========== TEST PASSED: TC_120 ==========
+[PASS] DashboardTests :: TC120_VerifyDashboardUIElementsDisplayCorrectly
+========== TEST PASSED: TC120_VerifyDashboardUIElementsDisplayCorrectly: TC_120: Verify dashboard UI elements display correctly ==========
+============================================================
+Ended: 2026-06-25 11:04:33

@@ -1,0 +1,16 @@
+============================================================
+Test Log: DashboardTests.TC129_VerifyPlaylistsAccessible
+Started: 2026-06-25 11:11:43
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC129_VerifyPlaylistsAccessible_2026_06_25_11_11_43.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC129_VerifyPlaylistsAccessible_2026_06_25_11_11_43.log
+[START] DashboardTests :: TC129_VerifyPlaylistsAccessible
+========== TEST STARTED: TC129_VerifyPlaylistsAccessible ==========
+========== TEST STARTED: TC_129: Playlists Accessible ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Verify playlist widget visibility
+========== TEST PASSED: TC_129 ==========
+[PASS] DashboardTests :: TC129_VerifyPlaylistsAccessible
+========== TEST PASSED: TC129_VerifyPlaylistsAccessible: TC_129: Verify playlists are accessible ==========
+============================================================
+Ended: 2026-06-25 11:11:46

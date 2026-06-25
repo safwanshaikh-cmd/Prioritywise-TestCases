@@ -1,0 +1,21 @@
+============================================================
+Test Log: DashboardTests.TC151_VerifyDashboardSessionAcrossTabs
+Started: 2026-06-25 11:30:03
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC151_VerifyDashboardSessionAcrossTabs_2026_06_25_11_30_03.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC151_VerifyDashboardSessionAcrossTabs_2026_06_25_11_30_03.log
+[START] DashboardTests :: TC151_VerifyDashboardSessionAcrossTabs
+========== TEST STARTED: TC151_VerifyDashboardSessionAcrossTabs ==========
+========== TEST STARTED: TC_151: Dashboard Session Across Tabs ==========
+STEP 1: Wait for dashboard to be ready in first tab
+STEP 2: Open a new tab and navigate to the dashboard
+INFO  TC_151: New tab opened with handle: B9F6CEE4412AC415CFF252A324294CBF
+STEP 3: Verify the session is maintained in the new tab
+INFO  TC_151: New tab URL: https://web-splay.acceses.com/dashboard
+STEP 4: Close the new tab and switch back to the main window
+INFO  TC_151: Dashboard session maintained across multiple tabs
+========== TEST PASSED: TC_151 ==========
+[PASS] DashboardTests :: TC151_VerifyDashboardSessionAcrossTabs
+========== TEST PASSED: TC151_VerifyDashboardSessionAcrossTabs: TC_151: Verify dashboard session across tabs ==========
+============================================================
+Ended: 2026-06-25 11:30:07

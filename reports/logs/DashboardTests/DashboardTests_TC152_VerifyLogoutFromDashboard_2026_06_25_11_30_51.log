@@ -1,0 +1,19 @@
+============================================================
+Test Log: DashboardTests.TC152_VerifyLogoutFromDashboard
+Started: 2026-06-25 11:30:51
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC152_VerifyLogoutFromDashboard_2026_06_25_11_30_51.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC152_VerifyLogoutFromDashboard_2026_06_25_11_30_51.log
+[START] DashboardTests :: TC152_VerifyLogoutFromDashboard
+========== TEST STARTED: TC152_VerifyLogoutFromDashboard ==========
+========== TEST STARTED: TC_152: Logout From Dashboard ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Open the hamburger menu and click Logout
+STEP 3: Verify the user is redirected to the post-logout landing page
+INFO  TC_152: Post-logout URL: https://web-splay.acceses.com/login
+INFO  TC_152: Logout functionality verified - user logged out successfully
+========== TEST PASSED: TC_152 ==========
+[PASS] DashboardTests :: TC152_VerifyLogoutFromDashboard
+========== TEST PASSED: TC152_VerifyLogoutFromDashboard: TC_152: Verify logout from dashboard ==========
+============================================================
+Ended: 2026-06-25 11:30:56

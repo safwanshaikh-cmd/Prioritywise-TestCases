@@ -1,0 +1,18 @@
+============================================================
+Test Log: DashboardTests.TC142_VerifyAdminCanAccessFavorites
+Started: 2026-06-25 11:21:23
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC142_VerifyAdminCanAccessFavorites_2026_06_25_11_21_23.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC142_VerifyAdminCanAccessFavorites_2026_06_25_11_21_23.log
+[START] DashboardTests :: TC142_VerifyAdminCanAccessFavorites
+========== TEST STARTED: TC142_VerifyAdminCanAccessFavorites ==========
+========== TEST STARTED: TC_142: Admin Can Access Favorites ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Verify favorite section is visible
+STEP 3: Verify favorite content is present
+INFO  TC_142: Admin favorite content found and verified
+========== TEST PASSED: TC_142 ==========
+[PASS] DashboardTests :: TC142_VerifyAdminCanAccessFavorites
+========== TEST PASSED: TC142_VerifyAdminCanAccessFavorites: TC_142: Verify admin can access favorites ==========
+============================================================
+Ended: 2026-06-25 11:21:25

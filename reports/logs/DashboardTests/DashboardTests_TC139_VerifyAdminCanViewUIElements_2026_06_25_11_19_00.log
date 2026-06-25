@@ -1,0 +1,17 @@
+============================================================
+Test Log: DashboardTests.TC139_VerifyAdminCanViewUIElements
+Started: 2026-06-25 11:19:00
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC139_VerifyAdminCanViewUIElements_2026_06_25_11_19_00.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC139_VerifyAdminCanViewUIElements_2026_06_25_11_19_00.log
+[START] DashboardTests :: TC139_VerifyAdminCanViewUIElements
+========== TEST STARTED: TC139_VerifyAdminCanViewUIElements ==========
+========== TEST STARTED: TC_139: Admin Can View UI Elements ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Verify admin dashboard shell is visible
+INFO  TC_139: Admin dashboard UI elements verified
+========== TEST PASSED: TC_139 ==========
+[PASS] DashboardTests :: TC139_VerifyAdminCanViewUIElements
+========== TEST PASSED: TC139_VerifyAdminCanViewUIElements: TC_139: Verify admin can view UI elements ==========
+============================================================
+Ended: 2026-06-25 11:19:00

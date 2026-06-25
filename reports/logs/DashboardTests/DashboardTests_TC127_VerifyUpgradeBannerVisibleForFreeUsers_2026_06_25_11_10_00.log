@@ -1,0 +1,17 @@
+============================================================
+Test Log: DashboardTests.TC127_VerifyUpgradeBannerVisibleForFreeUsers
+Started: 2026-06-25 11:10:00
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC127_VerifyUpgradeBannerVisibleForFreeUsers_2026_06_25_11_10_00.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC127_VerifyUpgradeBannerVisibleForFreeUsers_2026_06_25_11_10_00.log
+[START] DashboardTests :: TC127_VerifyUpgradeBannerVisibleForFreeUsers
+========== TEST STARTED: TC127_VerifyUpgradeBannerVisibleForFreeUsers ==========
+========== TEST STARTED: TC_127: Upgrade Banner Visible For Free Users ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Verify upgrade banner is visible
+INFO  TC_127: Upgrade banner not found - user may already have premium
+========== TEST PASSED: TC_127 ==========
+[PASS] DashboardTests :: TC127_VerifyUpgradeBannerVisibleForFreeUsers
+========== TEST PASSED: TC127_VerifyUpgradeBannerVisibleForFreeUsers: TC_127: Verify upgrade banner is visible for free users ==========
+============================================================
+Ended: 2026-06-25 11:10:05

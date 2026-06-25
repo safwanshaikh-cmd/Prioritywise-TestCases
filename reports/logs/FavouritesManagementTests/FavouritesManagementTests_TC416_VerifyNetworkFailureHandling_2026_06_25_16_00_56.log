@@ -1,0 +1,21 @@
+============================================================
+Test Log: FavouritesManagementTests.TC416_VerifyNetworkFailureHandling
+Started: 2026-06-25 16:00:56
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC416_VerifyNetworkFailureHandling_2026_06_25_16_00_56.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC416_VerifyNetworkFailureHandling_2026_06_25_16_00_56.log
+[START] FavouritesManagementTests :: TC416_VerifyNetworkFailureHandling
+========== TEST STARTED: TC416_VerifyNetworkFailureHandling ==========
+========== TEST STARTED: TC_416: Network Failure / Error Handling ==========
+STEP 1: Login as consumer and navigate to Favourites
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to favourites page
+STEP 2: Verify error-handling vocabulary is exposed in the page source
+INFO  TC_416 - Error Handling Available: true
+INFO  TC_416: Error handling verified
+========== TEST PASSED: TC_416 ==========
+[PASS] FavouritesManagementTests :: TC416_VerifyNetworkFailureHandling
+========== TEST PASSED: TC416_VerifyNetworkFailureHandling: TC_416: Verify behavior on API failure ==========
+============================================================
+Ended: 2026-06-25 16:01:44

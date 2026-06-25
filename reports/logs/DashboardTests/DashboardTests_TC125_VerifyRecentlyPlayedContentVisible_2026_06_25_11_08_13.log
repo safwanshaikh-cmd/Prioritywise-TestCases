@@ -1,0 +1,18 @@
+============================================================
+Test Log: DashboardTests.TC125_VerifyRecentlyPlayedContentVisible
+Started: 2026-06-25 11:08:13
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC125_VerifyRecentlyPlayedContentVisible_2026_06_25_11_08_13.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC125_VerifyRecentlyPlayedContentVisible_2026_06_25_11_08_13.log
+[START] DashboardTests :: TC125_VerifyRecentlyPlayedContentVisible
+========== TEST STARTED: TC125_VerifyRecentlyPlayedContentVisible ==========
+========== TEST STARTED: TC_125: Recently Played Content Visible ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Seed recently played by opening and returning from a book
+STEP 3: Verify recently played section is visible
+INFO  TC_125: Recently played section not found - normal for new accounts
+========== TEST PASSED: TC_125 ==========
+[PASS] DashboardTests :: TC125_VerifyRecentlyPlayedContentVisible
+========== TEST PASSED: TC125_VerifyRecentlyPlayedContentVisible: TC_125: Verify recently played content is visible ==========
+============================================================
+Ended: 2026-06-25 11:08:29

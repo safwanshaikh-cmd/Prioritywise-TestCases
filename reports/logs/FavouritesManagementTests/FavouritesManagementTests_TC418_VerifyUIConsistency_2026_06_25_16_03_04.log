@@ -1,0 +1,22 @@
+============================================================
+Test Log: FavouritesManagementTests.TC418_VerifyUIConsistency
+Started: 2026-06-25 16:03:04
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC418_VerifyUIConsistency_2026_06_25_16_03_04.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC418_VerifyUIConsistency_2026_06_25_16_03_04.log
+[START] FavouritesManagementTests :: TC418_VerifyUIConsistency
+========== TEST STARTED: TC418_VerifyUIConsistency ==========
+========== TEST STARTED: TC_418: UI Consistency ==========
+STEP 1: Login as consumer and navigate to Favourites
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to favourites page
+STEP 2: Verify page title and core UI elements are visible
+INFO  TC_418 - Page Title Visible: true
+INFO  TC_418 - UI Elements Present: true
+INFO  TC_418: UI consistency verified
+========== TEST PASSED: TC_418 ==========
+[PASS] FavouritesManagementTests :: TC418_VerifyUIConsistency
+========== TEST PASSED: TC418_VerifyUIConsistency: TC_418: Verify UI elements ==========
+============================================================
+Ended: 2026-06-25 16:03:51

@@ -1,0 +1,15 @@
+============================================================
+Test Log: HamburgerMenuBehaviorTests.TC368_VerifyKeyboardNavigation
+Started: 2026-06-25 17:09:44
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HamburgerMenuBehaviorTests_TC368_VerifyKeyboardNavigation_2026_06_25_17_09_44.log
+============================================================
+========== TEST STARTED: TC_368: Keyboard Navigation ==========
+STEP 1: Open the side menu for keyboard navigation
+INFO  TC_368 - STEP 1: Side menu opened: true
+INFO  TC_368 - STEP 1: Side menu is open: true
+STEP 2: Verify menu items are accessible for keyboard navigation
+INFO  TC_368 - STEP 2: Menu items accessible: true
+INFO  TC_368: Menu accessibility verified for keyboard navigation
+========== TEST PASSED: TC_368 ==========
+============================================================
+Ended: 2026-06-25 17:10:54

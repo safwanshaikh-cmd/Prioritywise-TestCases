@@ -1,0 +1,32 @@
+============================================================
+Test Log: FavouritesManagementTests.TC410_VerifyRemoveSelectedBooks
+Started: 2026-06-25 15:53:19
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC410_VerifyRemoveSelectedBooks_2026_06_25_15_53_19.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC410_VerifyRemoveSelectedBooks_2026_06_25_15_53_19.log
+[START] FavouritesManagementTests :: TC410_VerifyRemoveSelectedBooks
+========== TEST STARTED: TC410_VerifyRemoveSelectedBooks ==========
+========== TEST STARTED: TC_410: Remove Selected Books ==========
+STEP 1: Login as consumer, navigate to Favourites, and capture the pre-removal count
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to favourites page
+INFO  TC_410 - Current Favourites Count: 7
+INFO  TC_410 - Books To Remove: 2
+STEP 2: Enter selection mode and select 2 books
+INFO  TC_410 - Selection Mode Visible: true
+INFO  TC_410 - Selected Count Before Removal: 2
+INFO  TC_410 - Remove Selected Enabled: true
+STEP 3: Click Remove Selected, confirm via Yes, wait for toaster, refresh list
+INFO  TC_410 - Confirmation Dialog Displayed: true
+INFO  TC_410 - Confirmation Message: Are you sure you want to remove this book from favourites?
+INFO  TC_410 - Bulk Removal Confirmed: true
+INFO  TC_410 - Removal Toaster Appeared: true
+STEP 4: Verify the post-removal favourites count
+INFO  TC_410 - New Favourites Count: 5
+INFO  TC_410: Bulk removal completed successfully
+========== TEST PASSED: TC_410 ==========
+[PASS] FavouritesManagementTests :: TC410_VerifyRemoveSelectedBooks
+========== TEST PASSED: TC410_VerifyRemoveSelectedBooks: TC_410: Verify bulk removal ==========
+============================================================
+Ended: 2026-06-25 15:54:51

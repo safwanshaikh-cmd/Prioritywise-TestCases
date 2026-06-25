@@ -1,0 +1,18 @@
+============================================================
+Test Log: DashboardTests.TC145_VerifyRoleRestrictions
+Started: 2026-06-25 11:23:43
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC145_VerifyRoleRestrictions_2026_06_25_11_23_43.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC145_VerifyRoleRestrictions_2026_06_25_11_23_43.log
+[START] DashboardTests :: TC145_VerifyRoleRestrictions
+========== TEST STARTED: TC145_VerifyRoleRestrictions ==========
+========== TEST STARTED: TC_145: Role Restrictions ==========
+STEP 1: Attempt to access Uploader/Creator URL as consumer
+STEP 2: Verify access is denied or redirected away from Uploader URL
+INFO  TC_145: Current URL after uploader access attempt: https://web-splay.acceses.com/show_uploader_books
+INFO  TC_145: Role restrictions correctly enforced - consumer cannot access Uploader/Creator URLs
+========== TEST PASSED: TC_145 ==========
+[PASS] DashboardTests :: TC145_VerifyRoleRestrictions
+========== TEST PASSED: TC145_VerifyRoleRestrictions: TC_145: Verify role restrictions ==========
+============================================================
+Ended: 2026-06-25 11:23:48

@@ -1,0 +1,17 @@
+============================================================
+Test Log: DashboardTests.TC123_VerifyDashboardLoadsWithinAcceptableTime
+Started: 2026-06-25 11:06:37
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC123_VerifyDashboardLoadsWithinAcceptableTime_2026_06_25_11_06_37.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC123_VerifyDashboardLoadsWithinAcceptableTime_2026_06_25_11_06_37.log
+[START] DashboardTests :: TC123_VerifyDashboardLoadsWithinAcceptableTime
+========== TEST STARTED: TC123_VerifyDashboardLoadsWithinAcceptableTime ==========
+========== TEST STARTED: TC_123: Dashboard Loads Within Acceptable Time ==========
+STEP 1: Measure dashboard load time
+STEP 2: Verify load completes within SLA
+INFO  TC_123: Dashboard loaded in 75ms (SLA=10000ms)
+========== TEST PASSED: TC_123 ==========
+[PASS] DashboardTests :: TC123_VerifyDashboardLoadsWithinAcceptableTime
+========== TEST PASSED: TC123_VerifyDashboardLoadsWithinAcceptableTime: TC_123: Verify dashboard loads within acceptable time ==========
+============================================================
+Ended: 2026-06-25 11:06:37

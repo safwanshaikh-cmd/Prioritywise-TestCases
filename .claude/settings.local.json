@@ -110,7 +110,9 @@
       "Bash(python3 -c ' *)",
       "Bash(python3 *)",
       "Bash(pip install *)",
-      "Bash(JAVA_HOME='/mnt/c/Program Files/Java/jdk-25.0.2' PATH='/mnt/c/Program Files/Java/jdk-25.0.2/bin:/mnt/c/Program Files/apache-maven-3.9.12/bin:__TRACKED_VAR__' mvn test-compile -f /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/pom.xml -q)"
+      "Bash(JAVA_HOME='/mnt/c/Program Files/Java/jdk-25.0.2' PATH='/mnt/c/Program Files/Java/jdk-25.0.2/bin:/mnt/c/Program Files/apache-maven-3.9.12/bin:__TRACKED_VAR__' mvn test-compile -f /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/pom.xml -q)",
+      "Bash(unzip -p .tmp-testng-jars/extentreports-5.1.1.jar com/aventstack/extentreports/markuputils/CodeLanguage.class)",
+      "Bash(javap -p /dev/stdin)"
     ]
   }
 }

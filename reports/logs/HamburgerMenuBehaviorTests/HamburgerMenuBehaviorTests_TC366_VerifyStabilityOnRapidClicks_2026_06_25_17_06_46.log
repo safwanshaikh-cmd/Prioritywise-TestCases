@@ -1,0 +1,17 @@
+============================================================
+Test Log: HamburgerMenuBehaviorTests.TC366_VerifyStabilityOnRapidClicks
+Started: 2026-06-25 17:06:46
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HamburgerMenuBehaviorTests_TC366_VerifyStabilityOnRapidClicks_2026_06_25_17_06_46.log
+============================================================
+========== TEST STARTED: TC_366: Stability On Rapid Clicks ==========
+STEP 1: Perform rapid clicks on hamburger menu (10 iterations)
+INFO  TC_366: Performed 10 rapid clicks on hamburger menu
+STEP 2: Verify side menu opens correctly after rapid clicks
+INFO  TC_366 - STEP 2: Side menu opened after rapid clicks: true
+INFO  TC_366 - STEP 2: Side menu is open: true
+STEP 3: Verify UI is not broken and menu items load correctly
+INFO  TC_366 - STEP 3: Menu items loaded: true
+INFO  TC_366: Menu stability verified after rapid clicks
+========== TEST PASSED: TC_366 ==========
+============================================================
+Ended: 2026-06-25 17:07:27

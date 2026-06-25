@@ -1,0 +1,17 @@
+============================================================
+Test Log: DashboardTests.TC119_VerifyDashboardLoadsAfterSuccessfulLogin
+Started: 2026-06-25 11:03:53
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC119_VerifyDashboardLoadsAfterSuccessfulLogin_2026_06_25_11_03_53.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC119_VerifyDashboardLoadsAfterSuccessfulLogin_2026_06_25_11_03_53.log
+[START] DashboardTests :: TC119_VerifyDashboardLoadsAfterSuccessfulLogin
+========== TEST STARTED: TC119_VerifyDashboardLoadsAfterSuccessfulLogin ==========
+========== TEST STARTED: TC_119: Dashboard Loads After Successful Login ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Verify dashboard shell is visible
+INFO  TC_119: Dashboard shell visible: true
+========== TEST PASSED: TC_119 ==========
+[PASS] DashboardTests :: TC119_VerifyDashboardLoadsAfterSuccessfulLogin
+========== TEST PASSED: TC119_VerifyDashboardLoadsAfterSuccessfulLogin: TC_119: Verify dashboard loads after successful login ==========
+============================================================
+Ended: 2026-06-25 11:03:53

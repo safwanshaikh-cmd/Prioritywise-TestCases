@@ -1,0 +1,23 @@
+============================================================
+Test Log: DashboardTests.TC148_VerifyBackButtonBehavior
+Started: 2026-06-25 12:43:29
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC148_VerifyBackButtonBehavior_2026_06_25_12_43_29.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC148_VerifyBackButtonBehavior_2026_06_25_12_43_29.log
+[START] DashboardTests :: TC148_VerifyBackButtonBehavior
+========== TEST STARTED: TC148_VerifyBackButtonBehavior ==========
+========== TEST STARTED: TC_148: Browser Back Button Behavior ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Capture the pre-navigation URL and open a sibling page (search)
+INFO  TC_148: URL before navigating to /search: https://web-splay.acceses.com/
+INFO  TC_148: URL on /search: https://web-splay.acceses.com/search
+STEP 3: Press browser back and wait for the previous page to settle
+INFO  TC_148: URL after pressing back: https://web-splay.acceses.com/
+STEP 4: Verify session is preserved (no /login redirect) and post-back URL is on an authenticated route
+INFO  TC_148: notRedirectedToLogin=true, restoredPreviousPage=true, onBaseUrl=true, onKnownAuthenticatedRoute=false
+INFO  TC_148: Browser back button behavior verified - user session maintained and restored to a known authenticated route
+========== TEST PASSED: TC_148 ==========
+[PASS] DashboardTests :: TC148_VerifyBackButtonBehavior
+========== TEST PASSED: TC148_VerifyBackButtonBehavior: TC_148: Verify browser back button behavior ==========
+============================================================
+Ended: 2026-06-25 12:43:44

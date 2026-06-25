@@ -1,0 +1,28 @@
+============================================================
+Test Log: FavouritesManagementTests.TC409_VerifyMultipleBooksSelection
+Started: 2026-06-25 15:51:56
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC409_VerifyMultipleBooksSelection_2026_06_25_15_51_56.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC409_VerifyMultipleBooksSelection_2026_06_25_15_51_56.log
+[START] FavouritesManagementTests :: TC409_VerifyMultipleBooksSelection
+========== TEST STARTED: TC409_VerifyMultipleBooksSelection ==========
+========== TEST STARTED: TC_409: Multiple Books Selection ==========
+STEP 1: Login as consumer, navigate to Favourites, and read available count
+INFO  Logging in with regular consumer account: Safwan.shaikh+040@11axis.com
+INFO  Logged in as consumer
+INFO  Navigated to favourites page
+INFO  TC_409 - Available Books: 7
+INFO  TC_409 - Books To Select: 3
+STEP 2: Open selection mode and select up to 3 books
+INFO  TC_409 - Selection Mode Visible: true
+STEP 3: Verify selected count matches and Remove Selected is enabled
+INFO  TC_409 - Selected Count: 3
+INFO  TC_409 - Remove Selected Enabled: true
+STEP 4: Cancel selection and verify count resets to 0
+INFO  TC_409 - Selected Count After Cancel: 0
+INFO  TC_409: Selection functionality verified
+========== TEST PASSED: TC_409 ==========
+[PASS] FavouritesManagementTests :: TC409_VerifyMultipleBooksSelection
+========== TEST PASSED: TC409_VerifyMultipleBooksSelection: TC_409: Verify selection checkbox works ==========
+============================================================
+Ended: 2026-06-25 15:53:06

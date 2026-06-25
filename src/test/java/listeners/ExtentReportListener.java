@@ -1,5 +1,10 @@
 package listeners;
 
+import java.io.File;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -14,6 +19,8 @@ import org.testng.ITestResult;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.markuputils.CodeLanguage;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
 
 import utils.ConsoleLogSaver;
 import utils.ExecutionFolderManager;
@@ -144,25 +151,16 @@ public class ExtentReportListener implements ITestListener {
 		String classSimple = result.getTestClass() == null ? "" : result.getTestClass().getRealClass().getSimpleName();
 		String rotateName = classSimple.isEmpty() ? methodName : classSimple + "." + methodName;
 		ConsoleLogSaver.rotateTo(rotateName);
-		String logFileMsg = "Log file: " + ConsoleLogSaver.getLogFilePath();
-		LOGGER.info(logFileMsg);
-		ConsoleLogSaver.log(logFileMsg);
 
 		ExtentTest extentTest = ExtentManager.getInstance().createTest(testName, description);
 		test.set(extentTest);
 
-		String startMsg = "[START] " + testName;
-		String bannerStart = "========== TEST STARTED: " + methodName + " ==========";
-		LOGGER.info(startMsg);
-		LOGGER.info(bannerStart);
-		ConsoleLogSaver.log(startMsg);
-		ConsoleLogSaver.log(bannerStart);
-
-		// Assign author and category.
+		// NOTE: Console logging of test start is handled by LoggerUtils.logTestStart()
+		// in the test class itself to avoid duplication. We only log to the HTML report here.
 		extentTest.assignAuthor(QA_NAME);
 		extentTest.assignCategory(getTestCategory(result));
 
-		// Log test details — matches MTNCGModule's "Test Priority" / "Test Groups" entries.
+		// Log test details to the HTML report.
 		extentTest.log(Status.INFO, "Test Priority: " + getTestPriority(result));
 		extentTest.log(Status.INFO, "Test Groups: " + getTestGroups(result));
 		extentTest.log(Status.INFO, "Description: " + description);
@@ -170,14 +168,6 @@ public class ExtentReportListener implements ITestListener {
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		String testName = buildTestName(result);
-		String methodName = methodNameForBanner(result);
-		String passMsg = "[PASS] " + testName;
-		String bannerEnd = "========== TEST PASSED: " + methodName + " ==========";
-		LOGGER.info(passMsg);
-		LOGGER.info(bannerEnd);
-		ConsoleLogSaver.log(passMsg);
-		ConsoleLogSaver.log(bannerEnd);
 
 		ExtentTest current = test.get();
 		if (current != null) {
@@ -192,27 +182,36 @@ public class ExtentReportListener implements ITestListener {
 	@Override
 	public void onTestFailure(ITestResult result) {
 		String testName = buildTestName(result);
-		String methodName = methodNameForBanner(result);
+		String errorMessage = getErrorMessage(result);
+
+		// NOTE: Console logging of test failure is handled by LoggerUtils.logWarn()
+		// in the test class itself to avoid duplication. We only log critical info here.
 		String failMsg = "[FAIL] " + testName;
-		String errMsg = "Error: " + getErrorMessage(result);
-		String bannerEnd = "========== TEST FAILED: " + methodName + " ==========";
+		String errMsg = "Error: " + errorMessage;
 		LOGGER.severe(failMsg);
 		LOGGER.severe(errMsg);
-		LOGGER.severe(bannerEnd);
 		ConsoleLogSaver.log(failMsg);
 		ConsoleLogSaver.log(errMsg);
-		ConsoleLogSaver.log(bannerEnd);
 
 		ExtentTest current = test.get();
 		if (current != null) {
 			current.log(Status.FAIL, "Test Failed");
-			current.fail(getErrorMessage(result));
+			current.fail(errorMessage);
 
-			if (result.getThrowable() != null) {
-				current.fail(result.getThrowable());
-			}
+			// 1) Attach the full TestNG / Java stack trace as a formatted <pre>
+			//    block so it shows up in-line in the report when the user clicks
+			//    the failed test entry. This is the "TestNG trace logs" the user
+			//    asked for: the same exception stack TestNG prints to the
+			//    console, but rendered inside the HTML report.
+			attachStackTrace(current, result);
 
-			// Capture screenshot.
+			// 2) Attach the per-test console log file content (the TestNG
+			//    trace / page log lines written by ConsoleLogSaver during the
+			//    test). Rendered as a separate, clearly-labelled code block.
+			attachPerTestLog(current, result);
+
+			// 3) Capture and embed the failure screenshot, with a path that
+			//    stays valid when the report folder is moved.
 			captureAndAttachScreenshot(result);
 		}
 
@@ -223,13 +222,11 @@ public class ExtentReportListener implements ITestListener {
 	@Override
 	public void onTestSkipped(ITestResult result) {
 		String testName = buildTestName(result);
-		String methodName = methodNameForBanner(result);
+
+		// NOTE: Console logging of test skip is minimal to avoid duplication with retry logs.
 		String skipMsg = "[SKIP] " + testName;
-		String bannerEnd = "========== TEST SKIPPED: " + methodName + " ==========";
 		LOGGER.warning(skipMsg);
-		LOGGER.warning(bannerEnd);
 		ConsoleLogSaver.log(skipMsg);
-		ConsoleLogSaver.log(bannerEnd);
 
 		ExtentTest current = test.get();
 		if (current != null) {
@@ -256,29 +253,8 @@ public class ExtentReportListener implements ITestListener {
 	}
 
 	// ==================== Helper Methods ====================
-
-	private void captureAndAttachScreenshot(ITestResult result) {
-		try {
-			WebDriver driver = getDriverFromResult(result);
-			if (driver != null) {
-				dismissUnexpectedAlerts(driver);
-				String screenshotPath = ScreenshotUtils.captureFailureScreenshot(
-						result.getMethod().getMethodName(), driver);
-				if (screenshotPath != null && !screenshotPath.isEmpty()) {
-					ExtentTest current = test.get();
-					if (current != null) {
-						current.addScreenCaptureFromPath(screenshotPath);
-						current.log(Status.INFO, "Screenshot captured");
-					}
-					String screenshotMsg = "Screenshot: " + screenshotPath;
-					LOGGER.info(screenshotMsg);
-					ConsoleLogSaver.log(screenshotMsg);
-				}
-			}
-		} catch (Exception e) {
-			LOGGER.log(Level.WARNING, "Screenshot capture failed: {0}", e.getMessage());
-		}
-	}
+	// (screenshot / stack-trace / per-test-log attachments are defined further
+	// down in the "Failure-detail attachments" section)
 
 	private WebDriver getDriverFromResult(ITestResult result) {
 		if (result.getTestContext() != null) {
@@ -330,25 +306,6 @@ public class ExtentReportListener implements ITestListener {
 		String className = result.getTestClass() == null ? "" : result.getTestClass().getRealClass().getSimpleName();
 		String methodName = result.getMethod() == null ? "unknown" : result.getMethod().getMethodName();
 		return className.isBlank() ? methodName : className + " :: " + methodName;
-	}
-
-	/**
-	 * The bare method name used inside the "========== TEST PASSED: … ==========" /
-	 * "========== TEST STARTED: … ==========" banners, mirroring MTNCGModule's
-	 * narrow banner that names just the test (e.g. {@code TC-063} or
-	 * {@code verifyMoreRelatedShowsSectionVisible}), not the
-	 * {@code ClassName :: methodName} form used by {@link #buildTestName}.
-	 */
-	private String methodNameForBanner(ITestResult result) {
-		if (result.getMethod() == null) {
-			return "unknown";
-		}
-		String methodName = result.getMethod().getMethodName();
-		String description = result.getMethod().getDescription();
-		if (description != null && !description.isBlank()) {
-			return methodName + ": " + description;
-		}
-		return methodName;
 	}
 
 	private String getTestDescription(ITestResult result) {
@@ -411,5 +368,149 @@ public class ExtentReportListener implements ITestListener {
 	 */
 	public static ExtentTest getCurrentTest() {
 		return test.get();
+	}
+
+	// ==================== Failure-detail attachments ====================
+
+	/**
+	 * Render the failure throwable's full stack trace as a pre-formatted code
+	 * block in the report. This is the "TestNG trace" the user asked for:
+	 * the same exception stack TestNG prints to the console, embedded inline
+	 * so it is visible when the failed test is expanded in the HTML report.
+	 */
+	private void attachStackTrace(ExtentTest current, ITestResult result) {
+		try {
+			Throwable throwable = result.getThrowable();
+			if (throwable == null) {
+				return;
+			}
+			StringWriter sw = new StringWriter();
+			throwable.printStackTrace(new PrintWriter(sw));
+			String fullTrace = sw.toString();
+			if (fullTrace == null || fullTrace.isEmpty()) {
+				fullTrace = throwable.toString();
+			}
+			// Truncate very long traces to keep the report responsive; the full
+			// trace is still preserved in the per-test log file (linked below).
+			String trimmed = fullTrace.length() > 8000 ? fullTrace.substring(0, 8000) + "\n... [truncated; full trace in per-test log]" : fullTrace;
+			// ExtentReports 5.1.1's CodeLanguage enum only exposes XML and JSON,
+			// so use XML for the pre-formatted code block — it renders arbitrary
+			// text with line-numbering and a copyable monospace view.
+			current.fail(MarkupHelper.createCodeBlock(trimmed, CodeLanguage.XML));
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to attach stack trace to report: {0}", e.getMessage());
+		}
+	}
+
+	/**
+	 * Read the per-test log file (written by {@link ConsoleLogSaver}) and
+	 * attach its content as a labelled code block in the report. The log file
+	 * contains every {@code LoggerUtils.logInfo / logWarn} line, the
+	 * {@code ========== TEST STARTED / FAILED ==========} banners, and any
+	 * other per-test output, so embedding it gives the user the full TestNG
+	 * trace inside the report itself.
+	 *
+	 * <p>Also adds a clickable link to the raw log file so the user can
+	 * download it for offline inspection.
+	 */
+	private void attachPerTestLog(ExtentTest current, ITestResult result) {
+		try {
+			// Close the per-test writer first so the full log (including the
+			// failure banner already written above) is flushed to disk.
+			ConsoleLogSaver.endPerTest();
+
+			String logFilePath = ConsoleLogSaver.getLastClosedLogFilePath();
+			String logContent = ConsoleLogSaver.readLastPerTestLog();
+
+			if (logFilePath != null && !logFilePath.isEmpty()) {
+				String relativeLogPath = makeRelativeToReport(logFilePath);
+				String fileName = new File(logFilePath).getName();
+				if (relativeLogPath != null && !relativeLogPath.isEmpty()) {
+					current.log(Status.INFO, "Per-test log file: <a href=\"" + relativeLogPath
+							+ "\" target=\"_blank\">" + fileName + "</a> (open / save for the full execution trace)");
+				} else {
+					current.log(Status.INFO, "Per-test log file: " + logFilePath);
+				}
+			}
+
+			if (logContent != null && !logContent.isEmpty()) {
+				String trimmed = logContent.length() > 12000
+						? logContent.substring(0, 12000) + "\n... [truncated; full log in linked file above]"
+						: logContent;
+				// Use JSON for the per-test log code block — ExtentReports 5.1.1
+				// only exposes XML / JSON as CodeLanguage values, and JSON renders
+				// arbitrary multi-line text in a copyable monospace view.
+				current.log(Status.INFO, MarkupHelper.createCodeBlock(trimmed, CodeLanguage.JSON));
+			} else {
+				current.log(Status.INFO, "Per-test log was empty.");
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to attach per-test log to report: {0}", e.getMessage());
+		}
+	}
+
+	/**
+	 * Convert an absolute path on disk to a path relative to the report HTML
+	 * file. Returns the original absolute path (as a file URL the browser can
+	 * still open) if the relative form cannot be computed.
+	 */
+	private String makeRelativeToReport(String absolutePath) {
+		try {
+			if (absolutePath == null || absolutePath.isEmpty()) {
+				return absolutePath;
+			}
+			Path reportDir = Paths.get(ExecutionFolderManager.getReportsDirectory()).toAbsolutePath().normalize();
+			Path target = Paths.get(absolutePath).toAbsolutePath().normalize();
+			if (!target.startsWith(reportDir)) {
+				return absolutePath;
+			}
+			Path relative = reportDir.relativize(target);
+			// ExtentReports serves assets relative to the report file's location,
+			// so a relative path with forward slashes works in all browsers.
+			String relativeString = relative.toString().replace(File.separatorChar, '/');
+			// Ensure sub-folder assets work — ../logs/<file>.log escapes the
+			// report directory, which the browser still loads fine.
+			return relativeString;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Could not compute relative path for {0}: {1}",
+					new Object[] { absolutePath, e.getMessage() });
+			return absolutePath;
+		}
+	}
+
+	/**
+	 * Re-implementation of {@link #captureAndAttachScreenshot(ITestResult)} that
+	 * resolves the screenshot path to a path relative to the report HTML so
+	 * the embedded image stays valid when the report directory is moved.
+	 */
+	private void captureAndAttachScreenshot(ITestResult result) {
+		try {
+			WebDriver driver = getDriverFromResult(result);
+			if (driver == null) {
+				return;
+			}
+			dismissUnexpectedAlerts(driver);
+			String screenshotPath = ScreenshotUtils.captureFailureScreenshot(
+					result.getMethod().getMethodName(), driver);
+			if (screenshotPath == null || screenshotPath.isEmpty()) {
+				return;
+			}
+			ExtentTest current = test.get();
+			if (current != null) {
+				String relativeScreenshot = makeRelativeToReport(screenshotPath);
+				try {
+					current.addScreenCaptureFromPath(relativeScreenshot);
+				} catch (Exception rel) {
+					// Fall back to the absolute path if relative fails.
+					current.addScreenCaptureFromPath(screenshotPath);
+				}
+				current.log(Status.INFO, "Failure screenshot captured");
+			}
+			String screenshotMsg = "Screenshot: " + screenshotPath;
+			LOGGER.info(screenshotMsg);
+			ConsoleLogSaver.log(screenshotMsg);
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Screenshot capture failed: {0}", e.getMessage());
+		}
 	}
 }

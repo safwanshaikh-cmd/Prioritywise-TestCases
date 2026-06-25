@@ -1,0 +1,22 @@
+============================================================
+Test Log: DashboardTests.TC150_VerifyResponsiveLayout
+Started: 2026-06-25 11:28:58
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC150_VerifyResponsiveLayout_2026_06_25_11_28_58.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC150_VerifyResponsiveLayout_2026_06_25_11_28_58.log
+[START] DashboardTests :: TC150_VerifyResponsiveLayout
+========== TEST STARTED: TC150_VerifyResponsiveLayout ==========
+========== TEST STARTED: TC_150: Responsive Layout ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Resize the browser to multiple widths and verify dashboard visibility
+INFO  TC_150: Dashboard responsive at width: 1920px
+INFO  TC_150: Dashboard responsive at width: 1366px
+INFO  TC_150: Dashboard responsive at width: 768px
+INFO  TC_150: Dashboard responsive at width: 375px
+STEP 3: Restore original desktop size
+INFO  TC_150: Responsive layout verified across multiple screen sizes
+========== TEST PASSED: TC_150 ==========
+[PASS] DashboardTests :: TC150_VerifyResponsiveLayout
+========== TEST PASSED: TC150_VerifyResponsiveLayout: TC_150: Verify responsive layout ==========
+============================================================
+Ended: 2026-06-25 11:29:04

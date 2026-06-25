@@ -1,0 +1,18 @@
+============================================================
+Test Log: DashboardTests.TC140_VerifyAdminCanSearchContent
+Started: 2026-06-25 11:19:42
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC140_VerifyAdminCanSearchContent_2026_06_25_11_19_42.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC140_VerifyAdminCanSearchContent_2026_06_25_11_19_42.log
+[START] DashboardTests :: TC140_VerifyAdminCanSearchContent
+========== TEST STARTED: TC140_VerifyAdminCanSearchContent ==========
+========== TEST STARTED: TC_140: Admin Can Search Content ==========
+STEP 1: Wait for dashboard to be ready
+INFO  TC_140: Search Keyword: audio
+STEP 2: Submit search and verify results
+INFO  TC_140: Admin search results found and verified
+========== TEST PASSED: TC_140 ==========
+[PASS] DashboardTests :: TC140_VerifyAdminCanSearchContent
+========== TEST PASSED: TC140_VerifyAdminCanSearchContent: TC_140: Verify admin can search content ==========
+============================================================
+Ended: 2026-06-25 11:20:01

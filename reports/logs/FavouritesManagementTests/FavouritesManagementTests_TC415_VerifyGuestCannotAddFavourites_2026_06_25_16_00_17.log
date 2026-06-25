@@ -1,0 +1,22 @@
+============================================================
+Test Log: FavouritesManagementTests.TC415_VerifyGuestCannotAddFavourites
+Started: 2026-06-25 16:00:17
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC415_VerifyGuestCannotAddFavourites_2026_06_25_16_00_17.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\FavouritesManagementTests_TC415_VerifyGuestCannotAddFavourites_2026_06_25_16_00_17.log
+[START] FavouritesManagementTests :: TC415_VerifyGuestCannotAddFavourites
+========== TEST STARTED: TC415_VerifyGuestCannotAddFavourites ==========
+========== TEST STARTED: TC_415: Guest Cannot Add Favourites Without Login ==========
+STEP 1: From home (guest), search for a book and open its details
+INFO  Navigated to home page
+INFO  TC_415 - Book Title: New-3
+INFO  TC_415 - Search Results Count: 1
+INFO  TC_415 - Opened Book Details: true
+STEP 2: If a favourite icon is visible, attempt to add it and verify the restriction
+INFO  TC_415 - Favorite Icon Visible: false
+INFO  TC_415: Favorite icon not available for this book. Skipping add-favourite validation.
+========== TEST PASSED: TC_415 ==========
+[PASS] FavouritesManagementTests :: TC415_VerifyGuestCannotAddFavourites
+========== TEST PASSED: TC415_VerifyGuestCannotAddFavourites: TC_415: Verify guest user cannot add favourite without login ==========
+============================================================
+Ended: 2026-06-25 16:00:41

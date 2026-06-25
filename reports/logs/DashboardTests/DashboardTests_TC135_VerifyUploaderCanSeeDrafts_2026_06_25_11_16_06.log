@@ -1,0 +1,17 @@
+============================================================
+Test Log: DashboardTests.TC135_VerifyUploaderCanSeeDrafts
+Started: 2026-06-25 11:16:06
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC135_VerifyUploaderCanSeeDrafts_2026_06_25_11_16_06.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC135_VerifyUploaderCanSeeDrafts_2026_06_25_11_16_06.log
+[START] DashboardTests :: TC135_VerifyUploaderCanSeeDrafts
+========== TEST STARTED: TC135_VerifyUploaderCanSeeDrafts ==========
+========== TEST STARTED: TC_135: Uploader Can See Drafts ==========
+STEP 1: Open hamburger menu → For Creators
+STEP 2: Select Pending filter and verify draft listing
+INFO  TC_135: Draft list found and verified
+========== TEST PASSED: TC_135 ==========
+[PASS] DashboardTests :: TC135_VerifyUploaderCanSeeDrafts
+========== TEST PASSED: TC135_VerifyUploaderCanSeeDrafts: TC_135: Verify uploader can see drafts ==========
+============================================================
+Ended: 2026-06-25 11:16:10

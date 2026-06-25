@@ -1,0 +1,18 @@
+============================================================
+Test Log: DashboardTests.TC136_VerifyUploaderCanEditContent
+Started: 2026-06-25 11:16:49
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC136_VerifyUploaderCanEditContent_2026_06_25_11_16_49.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC136_VerifyUploaderCanEditContent_2026_06_25_11_16_49.log
+[START] DashboardTests :: TC136_VerifyUploaderCanEditContent
+========== TEST STARTED: TC136_VerifyUploaderCanEditContent ==========
+========== TEST STARTED: TC_136: Uploader Can Edit Content ==========
+STEP 1: Open hamburger menu → For Creators
+STEP 2: Select Pending filter and verify book listing
+STEP 3: Click edit on the first content and verify form loads
+INFO  TC_136: Edit option verified. Title: Automation Book 6f49b0
+========== TEST PASSED: TC_136 ==========
+[PASS] DashboardTests :: TC136_VerifyUploaderCanEditContent
+========== TEST PASSED: TC136_VerifyUploaderCanEditContent: TC_136: Verify uploader can edit content ==========
+============================================================
+Ended: 2026-06-25 11:16:56

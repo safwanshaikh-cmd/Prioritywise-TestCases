@@ -1,0 +1,17 @@
+============================================================
+Test Log: DashboardTests.TC133_VerifyUploadedContentSummaryVisible
+Started: 2026-06-25 11:14:36
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC133_VerifyUploadedContentSummaryVisible_2026_06_25_11_14_36.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\DashboardTests_TC133_VerifyUploadedContentSummaryVisible_2026_06_25_11_14_36.log
+[START] DashboardTests :: TC133_VerifyUploadedContentSummaryVisible
+========== TEST STARTED: TC133_VerifyUploadedContentSummaryVisible ==========
+========== TEST STARTED: TC_133: Uploaded Content Summary Visible ==========
+STEP 1: Open hamburger menu → For Creators
+STEP 2: Select Pending filter and verify book listing
+INFO  TC_133: Content summary found and verified
+========== TEST PASSED: TC_133 ==========
+[PASS] DashboardTests :: TC133_VerifyUploadedContentSummaryVisible
+========== TEST PASSED: TC133_VerifyUploadedContentSummaryVisible: TC_133: Verify uploaded content summary is visible ==========
+============================================================
+Ended: 2026-06-25 11:14:42
