@@ -1,0 +1,18 @@
+============================================================
+Test Log: ConsumerCategoriesTests.TC159_VerifyCategoryCardsDisplayCorrectly
+Started: 2026-06-24 16:41:41
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC159_VerifyCategoryCardsDisplayCorrectly_2026_06_24_16_41_41.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC159_VerifyCategoryCardsDisplayCorrectly_2026_06_24_16_41_41.log
+[START] ConsumerCategoriesTests :: TC159_VerifyCategoryCardsDisplayCorrectly
+========== TEST STARTED: TC159_VerifyCategoryCardsDisplayCorrectly ==========
+========== TEST STARTED: TC_159: Category Cards Display Correctly ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Scroll to categories section
+STEP 3: Verify category cards are displayed
+INFO  TC_159: Category cards visible: true
+========== TEST PASSED: TC_159 ==========
+[PASS] ConsumerCategoriesTests :: TC159_VerifyCategoryCardsDisplayCorrectly
+========== TEST PASSED: TC159_VerifyCategoryCardsDisplayCorrectly: TC_159: Verify category cards display correctly ==========
+============================================================
+Ended: 2026-06-24 16:41:48

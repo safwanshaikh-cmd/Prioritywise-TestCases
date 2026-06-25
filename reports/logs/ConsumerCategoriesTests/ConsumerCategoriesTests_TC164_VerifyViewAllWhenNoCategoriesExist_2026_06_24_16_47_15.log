@@ -1,0 +1,17 @@
+============================================================
+Test Log: ConsumerCategoriesTests.TC164_VerifyViewAllWhenNoCategoriesExist
+Started: 2026-06-24 16:47:15
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC164_VerifyViewAllWhenNoCategoriesExist_2026_06_24_16_47_15.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC164_VerifyViewAllWhenNoCategoriesExist_2026_06_24_16_47_15.log
+[START] ConsumerCategoriesTests :: TC164_VerifyViewAllWhenNoCategoriesExist
+========== TEST STARTED: TC164_VerifyViewAllWhenNoCategoriesExist ==========
+========== TEST STARTED: TC_164: View All When No Categories Exist ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Scroll to categories section
+INFO  TC_164: View All Categories button is not available in the current dashboard state
+========== TEST SKIPPED - View All unavailable: TC_164 ==========
+[PASS] ConsumerCategoriesTests :: TC164_VerifyViewAllWhenNoCategoriesExist
+========== TEST PASSED: TC164_VerifyViewAllWhenNoCategoriesExist: TC_164: Verify View All behavior when no categories exist ==========
+============================================================
+Ended: 2026-06-24 16:47:23

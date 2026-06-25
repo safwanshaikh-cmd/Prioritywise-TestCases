@@ -99,7 +99,18 @@
       "Bash('/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe' -d /tmp/audiobuild/clean -cp '__CMDSUB_OUTPUT__;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\testng.jar;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\jcommander.jar' src/test/java/pages/AudioPlayerPage.java src/test/java/pages/DashboardPage.java src/test/java/pages/LoginPage.java src/test/java/pages/ContactUsPage.java src/test/java/pages/BasePage.java src/test/java/tests/AudioPlayerBehaviorTests.java)",
       "Bash('/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe' -d /tmp/audiobuild/clean -cp '__CMDSUB_OUTPUT__;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\testng.jar;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\jcommander.jar' -sourcepath src/test/java src/test/java/tests/AudioPlayerBehaviorTests.java)",
       "Bash(awk -F: '{print $1}')",
-      "Bash('/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe' -d /tmp/audiobuild/clean -cp '__CMDSUB_OUTPUT__;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\testng.jar;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\jcommander.jar' -sourcepath src/test/java src/test/java/tests/AboutUsContactUsTests.java)"
+      "Bash('/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe' -d /tmp/audiobuild/clean -cp '__CMDSUB_OUTPUT__;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\testng.jar;C:\\\\Users\\\\safwan\\\\AppData\\\\Local\\\\Temp\\\\jcommander.jar' -sourcepath src/test/java src/test/java/tests/AboutUsContactUsTests.java)",
+      "Bash(javac -cp \".:lib/*:target/classes\" src/test/java/pages/AudioPlayerPage.java)",
+      "Bash(awk -F'.' '{print $2}')",
+      "Bash(awk -F'\\(' '{print $1}')",
+      "Bash(python3 /tmp/patch_chapter_tests.py)",
+      "Bash(javac -cp target/test-classes:target/classes:/home/safwan/.m2/repository/*/*.jar:/home/safwan/.m2/repository/*/*/*.jar -d target/test-classes src/test/java/tests/ConsumerBookDetailsTests.java)",
+      "Bash(awk '/^[[:space:]]*@Test\\\\\\(/{flag=1; line=NR; next} flag{print NR\": \"$0; if\\(/\\\\\\)/\\){flag=0; next}}' /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/src/test/java/tests/ConsumerBookDetailsTests.java)",
+      "Bash(python3 /tmp/refactor_tests.py)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 *)",
+      "Bash(pip install *)",
+      "Bash(JAVA_HOME='/mnt/c/Program Files/Java/jdk-25.0.2' PATH='/mnt/c/Program Files/Java/jdk-25.0.2/bin:/mnt/c/Program Files/apache-maven-3.9.12/bin:__TRACKED_VAR__' mvn test-compile -f /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/pom.xml -q)"
     ]
   }
 }

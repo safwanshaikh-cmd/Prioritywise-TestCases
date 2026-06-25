@@ -1,0 +1,28 @@
+============================================================
+Test Log: ChapterTests.TC498_VerifyChapterDeleteAccessControl
+Started: 2026-06-24 12:28:22
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC498_VerifyChapterDeleteAccessControl_2026_06_24_12_28_22.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC498_VerifyChapterDeleteAccessControl_2026_06_24_12_28_22.log
+[START] ChapterTests :: TC498_VerifyChapterDeleteAccessControl
+========== TEST STARTED: TC498_VerifyChapterDeleteAccessControl ==========
+========== TEST STARTED: TC_498: Chapter Delete Access Control ==========
+STEP 1: Log in as uploader and capture the chapter edit URL
+INFO  Logged in as uploader
+INFO  TC_498 - STEP 1: Navigating to existing Pending books
+INFO  TC_498 - STEP 2: Trying existing book index 0 = 'Automation Book 6f49b0'
+INFO  TC_498 - STEP 3: Edit book screen opened
+INFO  TC_498 - STEP 4: Chapter screen opened after clicking Next
+INFO  TC_498 - STEP 5: Existing chapter count for 'Automation Book 6f49b0' = 24
+INFO  TC_498 - STEP 6: Using existing book 'Automation Book 6f49b0' for chapter operation
+INFO  TC_498 - STEP 1: Uploader chapter edit URL: https://web-splay.acceses.com/upload_audio_file?id=397&editable=true
+STEP 2: Logout uploader, log in as consumer, and open the chapter URL
+INFO  Logged in as consumer
+STEP 3: Attempt delete and verify access is denied
+INFO  TC_498 - STEP 3: EXPECTED access denial: Failed to delete first chapter
+INFO  TC_498: Chapter delete access control verified
+========== TEST PASSED: TC_498 ==========
+[PASS] ChapterTests :: TC498_VerifyChapterDeleteAccessControl
+========== TEST PASSED: TC498_VerifyChapterDeleteAccessControl: TC_498: Verify chapter delete is restricted to owner ==========
+============================================================
+Ended: 2026-06-24 12:29:27

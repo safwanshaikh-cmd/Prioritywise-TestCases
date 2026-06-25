@@ -1,274 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="14" passed="13" failed="0" skipped="1">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-06-22T16:27:13 GST" name="Default suite" finished-at="2026-06-22T16:38:23 GST" duration-ms="669858">
+  <suite started-at="2026-06-25T09:30:06 GST" name="Default suite" finished-at="2026-06-25T09:31:08 GST" duration-ms="61944">
     <groups>
-      <group name="security">
-        <method signature="AboutUsContactUsTests.TC518_VerifyAboutUsGuestAccess()[pri:518, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC518_VerifyAboutUsGuestAccess" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC523_VerifyContactUsSpecialCharactersValidation()[pri:523, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC523_VerifyContactUsSpecialCharactersValidation" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC525_VerifyContactUsGuestAccess()[pri:525, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC525_VerifyContactUsGuestAccess" class="tests.AboutUsContactUsTests"/>
-      </group> <!-- security -->
       <group name="functional">
-        <method signature="AboutUsContactUsTests.TC514_VerifyAboutUsNavigation()[pri:514, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC514_VerifyAboutUsNavigation" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC515_VerifyAboutUsContent()[pri:515, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC515_VerifyAboutUsContent" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC516_VerifyAboutUsPageRefresh()[pri:516, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC516_VerifyAboutUsPageRefresh" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC517_VerifyAboutUsLinks()[pri:517, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC517_VerifyAboutUsLinks" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC518_VerifyAboutUsGuestAccess()[pri:518, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC518_VerifyAboutUsGuestAccess" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC519_VerifyContactUsNavigation()[pri:519, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC519_VerifyContactUsNavigation" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC520_VerifyContactUsFormSubmission()[pri:520, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC520_VerifyContactUsFormSubmission" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC521_VerifyContactUsMandatoryFieldValidation()[pri:521, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC521_VerifyContactUsMandatoryFieldValidation" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC522_VerifyContactUsMaxFieldLength()[pri:522, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC522_VerifyContactUsMaxFieldLength" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC523_VerifyContactUsSpecialCharactersValidation()[pri:523, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC523_VerifyContactUsSpecialCharactersValidation" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC524_VerifyContactUsNetworkFailure()[pri:524, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC524_VerifyContactUsNetworkFailure" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC525_VerifyContactUsGuestAccess()[pri:525, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC525_VerifyContactUsGuestAccess" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC526_VerifyContactUsDocumentUpload()[pri:526, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC526_VerifyContactUsDocumentUpload" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC527_VerifyContactUsDocumentUploadWithValidFile()[pri:527, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC527_VerifyContactUsDocumentUploadWithValidFile" class="tests.AboutUsContactUsTests"/>
+        <method signature="ConsumerCategoriesTests.TC166_VerifyTrendingShowsSectionDisplayed()[pri:166, instance:tests.ConsumerCategoriesTests@3bf7ca37]" name="TC166_VerifyTrendingShowsSectionDisplayed" class="tests.ConsumerCategoriesTests"/>
       </group> <!-- functional -->
       <group name="ui">
-        <method signature="AboutUsContactUsTests.TC514_VerifyAboutUsNavigation()[pri:514, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC514_VerifyAboutUsNavigation" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC515_VerifyAboutUsContent()[pri:515, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC515_VerifyAboutUsContent" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC516_VerifyAboutUsPageRefresh()[pri:516, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC516_VerifyAboutUsPageRefresh" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC517_VerifyAboutUsLinks()[pri:517, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC517_VerifyAboutUsLinks" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC518_VerifyAboutUsGuestAccess()[pri:518, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC518_VerifyAboutUsGuestAccess" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC519_VerifyContactUsNavigation()[pri:519, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC519_VerifyContactUsNavigation" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC521_VerifyContactUsMandatoryFieldValidation()[pri:521, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC521_VerifyContactUsMandatoryFieldValidation" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC522_VerifyContactUsMaxFieldLength()[pri:522, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC522_VerifyContactUsMaxFieldLength" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC523_VerifyContactUsSpecialCharactersValidation()[pri:523, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC523_VerifyContactUsSpecialCharactersValidation" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC524_VerifyContactUsNetworkFailure()[pri:524, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC524_VerifyContactUsNetworkFailure" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC525_VerifyContactUsGuestAccess()[pri:525, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC525_VerifyContactUsGuestAccess" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC526_VerifyContactUsDocumentUpload()[pri:526, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC526_VerifyContactUsDocumentUpload" class="tests.AboutUsContactUsTests"/>
+        <method signature="ConsumerCategoriesTests.TC166_VerifyTrendingShowsSectionDisplayed()[pri:166, instance:tests.ConsumerCategoriesTests@3bf7ca37]" name="TC166_VerifyTrendingShowsSectionDisplayed" class="tests.ConsumerCategoriesTests"/>
       </group> <!-- ui -->
-      <group name="low">
-        <method signature="AboutUsContactUsTests.TC517_VerifyAboutUsLinks()[pri:517, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC517_VerifyAboutUsLinks" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC524_VerifyContactUsNetworkFailure()[pri:524, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC524_VerifyContactUsNetworkFailure" class="tests.AboutUsContactUsTests"/>
-      </group> <!-- low -->
-      <group name="regression">
-        <method signature="AboutUsContactUsTests.TC516_VerifyAboutUsPageRefresh()[pri:516, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC516_VerifyAboutUsPageRefresh" class="tests.AboutUsContactUsTests"/>
-      </group> <!-- regression -->
-      <group name="e2e">
-        <method signature="AboutUsContactUsTests.TC520_VerifyContactUsFormSubmission()[pri:520, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC520_VerifyContactUsFormSubmission" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC527_VerifyContactUsDocumentUploadWithValidFile()[pri:527, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC527_VerifyContactUsDocumentUploadWithValidFile" class="tests.AboutUsContactUsTests"/>
-      </group> <!-- e2e -->
       <group name="consumer">
-        <method signature="AboutUsContactUsTests.TC514_VerifyAboutUsNavigation()[pri:514, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC514_VerifyAboutUsNavigation" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC515_VerifyAboutUsContent()[pri:515, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC515_VerifyAboutUsContent" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC519_VerifyContactUsNavigation()[pri:519, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC519_VerifyContactUsNavigation" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC520_VerifyContactUsFormSubmission()[pri:520, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC520_VerifyContactUsFormSubmission" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC521_VerifyContactUsMandatoryFieldValidation()[pri:521, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC521_VerifyContactUsMandatoryFieldValidation" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC522_VerifyContactUsMaxFieldLength()[pri:522, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC522_VerifyContactUsMaxFieldLength" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC523_VerifyContactUsSpecialCharactersValidation()[pri:523, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC523_VerifyContactUsSpecialCharactersValidation" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC526_VerifyContactUsDocumentUpload()[pri:526, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC526_VerifyContactUsDocumentUpload" class="tests.AboutUsContactUsTests"/>
-        <method signature="AboutUsContactUsTests.TC527_VerifyContactUsDocumentUploadWithValidFile()[pri:527, instance:tests.AboutUsContactUsTests@9d5509a]" name="TC527_VerifyContactUsDocumentUploadWithValidFile" class="tests.AboutUsContactUsTests"/>
+        <method signature="ConsumerCategoriesTests.TC166_VerifyTrendingShowsSectionDisplayed()[pri:166, instance:tests.ConsumerCategoriesTests@3bf7ca37]" name="TC166_VerifyTrendingShowsSectionDisplayed" class="tests.ConsumerCategoriesTests"/>
       </group> <!-- consumer -->
     </groups>
-    <test started-at="2026-06-22T16:27:13 GST" name="Default test" finished-at="2026-06-22T16:38:23 GST" duration-ms="669858">
-      <class name="tests.AboutUsContactUsTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:27:17 GST" name="setup" finished-at="2026-06-22T16:27:34 GST" duration-ms="16929" status="PASS">
+    <test started-at="2026-06-25T09:30:06 GST" name="Default test" finished-at="2026-06-25T09:31:08 GST" duration-ms="61944">
+      <class name="tests.ConsumerCategoriesTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerCategoriesTests@3bf7ca37]" started-at="2026-06-25T09:30:10 GST" name="setup" finished-at="2026-06-25T09:30:50 GST" duration-ms="39530" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC514_VerifyAboutUsNavigation()[pri:514, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:27:34 GST" name="TC514_VerifyAboutUsNavigation" description="TC_514: Verify About Us page loads successfully when navigated from sidebar" finished-at="2026-06-22T16:28:04 GST" duration-ms="29862" status="PASS">
+        <test-method signature="TC166_VerifyTrendingShowsSectionDisplayed()[pri:166, instance:tests.ConsumerCategoriesTests@3bf7ca37]" started-at="2026-06-25T09:30:50 GST" name="TC166_VerifyTrendingShowsSectionDisplayed" description="TC_166: Verify trending shows section is displayed on dashboard" finished-at="2026-06-25T09:31:07 GST" duration-ms="17329" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC514_VerifyAboutUsNavigation -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:28:04 GST" name="tearDown" finished-at="2026-06-22T16:28:06 GST" duration-ms="1553" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:28:06 GST" name="setup" finished-at="2026-06-22T16:28:17 GST" duration-ms="11469" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC515_VerifyAboutUsContent()[pri:515, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:28:17 GST" name="TC515_VerifyAboutUsContent" description="TC_515: Verify About Us page displays visible and readable content" finished-at="2026-06-22T16:28:45 GST" duration-ms="27758" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC515_VerifyAboutUsContent -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:28:45 GST" name="tearDown" finished-at="2026-06-22T16:28:46 GST" duration-ms="898" status="PASS">
+        </test-method> <!-- TC166_VerifyTrendingShowsSectionDisplayed -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerCategoriesTests@3bf7ca37]" started-at="2026-06-25T09:31:07 GST" name="tearDown" finished-at="2026-06-25T09:31:08 GST" duration-ms="528" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:28:46 GST" name="setup" finished-at="2026-06-22T16:28:58 GST" duration-ms="11965" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC516_VerifyAboutUsPageRefresh()[pri:516, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:28:58 GST" name="TC516_VerifyAboutUsPageRefresh" description="TC_516: Verify About Us page reloads successfully on refresh" finished-at="2026-06-22T16:29:29 GST" duration-ms="31697" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC516_VerifyAboutUsPageRefresh -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:29:29 GST" name="tearDown" finished-at="2026-06-22T16:29:30 GST" duration-ms="823" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:29:30 GST" name="setup" finished-at="2026-06-22T16:29:44 GST" duration-ms="13971" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC517_VerifyAboutUsLinks()[pri:517, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:29:44 GST" name="TC517_VerifyAboutUsLinks" description="TC_517: Verify About Us page contains links (basic automated check, manual testing recommended)" finished-at="2026-06-22T16:30:19 GST" duration-ms="34960" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC517_VerifyAboutUsLinks -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:30:19 GST" name="tearDown" finished-at="2026-06-22T16:30:20 GST" duration-ms="798" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:30:20 GST" name="setup" finished-at="2026-06-22T16:30:32 GST" duration-ms="12159" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC518_VerifyAboutUsGuestAccess()[pri:518, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:30:32 GST" name="TC518_VerifyAboutUsGuestAccess" description="TC_518: Verify About Us page is accessible to guest users" finished-at="2026-06-22T16:30:33 GST" duration-ms="915" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC518_VerifyAboutUsGuestAccess -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:30:33 GST" name="tearDown" finished-at="2026-06-22T16:30:34 GST" duration-ms="508" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:30:34 GST" name="setup" finished-at="2026-06-22T16:30:45 GST" duration-ms="11813" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC519_VerifyContactUsNavigation()[pri:519, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:30:45 GST" name="TC519_VerifyContactUsNavigation" description="TC_519: Verify Contact Us page loads successfully when navigated" finished-at="2026-06-22T16:31:17 GST" duration-ms="31258" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC519_VerifyContactUsNavigation -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:31:17 GST" name="tearDown" finished-at="2026-06-22T16:31:17 GST" duration-ms="669" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:31:17 GST" name="setup" finished-at="2026-06-22T16:31:28 GST" duration-ms="10264" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC520_VerifyContactUsFormSubmission()[pri:520, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:31:28 GST" name="TC520_VerifyContactUsFormSubmission" description="TC_520: Verify Contact Us form submission with valid data reaches backend" finished-at="2026-06-22T16:32:20 GST" duration-ms="51986" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC520_VerifyContactUsFormSubmission -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:32:20 GST" name="tearDown" finished-at="2026-06-22T16:32:20 GST" duration-ms="588" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:32:20 GST" name="setup" finished-at="2026-06-22T16:32:34 GST" duration-ms="13510" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC521_VerifyContactUsMandatoryFieldValidation()[pri:521, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:32:34 GST" name="TC521_VerifyContactUsMandatoryFieldValidation" description="TC_521: Verify Contact Us form shows validation messages for empty form submission" finished-at="2026-06-22T16:33:08 GST" duration-ms="33926" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC521_VerifyContactUsMandatoryFieldValidation -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:33:08 GST" name="tearDown" finished-at="2026-06-22T16:33:08 GST" duration-ms="683" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:33:08 GST" name="setup" finished-at="2026-06-22T16:33:19 GST" duration-ms="10747" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC522_VerifyContactUsMaxFieldLength()[pri:522, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:33:19 GST" name="TC522_VerifyContactUsMaxFieldLength" description="TC_522: Verify Contact Us message field handles 500 character boundary input" finished-at="2026-06-22T16:34:04 GST" duration-ms="44840" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC522_VerifyContactUsMaxFieldLength -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:34:04 GST" name="tearDown" finished-at="2026-06-22T16:34:05 GST" duration-ms="683" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:34:05 GST" name="setup" finished-at="2026-06-22T16:34:15 GST" duration-ms="10127" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC523_VerifyContactUsSpecialCharactersValidation()[pri:523, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:34:15 GST" name="TC523_VerifyContactUsSpecialCharactersValidation" description="TC_523: Verify Contact Us form handles special character input safely" finished-at="2026-06-22T16:34:59 GST" duration-ms="44695" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC523_VerifyContactUsSpecialCharactersValidation -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:34:59 GST" name="tearDown" finished-at="2026-06-22T16:35:00 GST" duration-ms="848" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:35:00 GST" name="setup" finished-at="2026-06-22T16:35:11 GST" duration-ms="11226" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC524_VerifyContactUsNetworkFailure()[pri:524, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:35:11 GST" name="TC524_VerifyContactUsNetworkFailure" description="TC_524: Verify Contact Us form behavior under simulated network failure" finished-at="2026-06-22T16:35:49 GST" duration-ms="37363" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC524_VerifyContactUsNetworkFailure -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:35:49 GST" name="tearDown" finished-at="2026-06-22T16:35:50 GST" duration-ms="702" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:35:50 GST" name="setup" finished-at="2026-06-22T16:36:01 GST" duration-ms="11601" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC525_VerifyContactUsGuestAccess()[pri:525, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:36:01 GST" name="TC525_VerifyContactUsGuestAccess" description="TC_525: Verify Contact Us page is accessible to guest users" finished-at="2026-06-22T16:36:06 GST" duration-ms="4948" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC525_VerifyContactUsGuestAccess -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:36:06 GST" name="tearDown" finished-at="2026-06-22T16:36:07 GST" duration-ms="806" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:36:07 GST" name="setup" finished-at="2026-06-22T16:36:20 GST" duration-ms="13053" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC526_VerifyContactUsDocumentUpload()[pri:526, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:36:20 GST" name="TC526_VerifyContactUsDocumentUpload" description="TC_526: Verify Contact Us page exposes document upload functionality" finished-at="2026-06-22T16:37:10 GST" duration-ms="49802" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC526_VerifyContactUsDocumentUpload -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:37:10 GST" name="tearDown" finished-at="2026-06-22T16:37:10 GST" duration-ms="726" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:37:10 GST" name="setup" finished-at="2026-06-22T16:37:21 GST" duration-ms="10997" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC527_VerifyContactUsDocumentUploadWithValidFile()[pri:527, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:37:21 GST" name="TC527_VerifyContactUsDocumentUploadWithValidFile" description="TC_527: Verify Contact Us accepts and processes a valid uploaded document file" finished-at="2026-06-22T16:38:19 GST" duration-ms="57413" status="SKIP">
-          <exception class="org.testng.SkipException">
-            <message>
-              <![CDATA[TC_527: File input is not directly scriptable on the current Contact Us UI. The upload area is rendered as a CSS-styled placeholder that exposes <input type='file'> only after a JS-triggered click which surfaces the OS file picker dialog — not interactable via WebDriver. Re-enable this test when the page exposes a scriptable file input.]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.SkipException: TC_527: File input is not directly scriptable on the current Contact Us UI. The upload area is rendered as a CSS-styled placeholder that exposes <input type='file'> only after a JS-triggered click which surfaces the OS file picker dialog — not interactable via WebDriver. Re-enable this test when the page exposes a scriptable file input.
-at tests.AboutUsContactUsTests.TC527_VerifyContactUsDocumentUploadWithValidFile(AboutUsContactUsTests.java:863)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:819)
-at org.testng.TestRunner.run(TestRunner.java:619)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-at org.testng.TestNG.runSuites(TestNG.java:1134)
-at org.testng.TestNG.run(TestNG.java:1101)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.SkipException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC527_VerifyContactUsDocumentUploadWithValidFile -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AboutUsContactUsTests@9d5509a]" started-at="2026-06-22T16:38:19 GST" name="tearDown" finished-at="2026-06-22T16:38:23 GST" duration-ms="3738" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- tests.AboutUsContactUsTests -->
+      </class> <!-- tests.ConsumerCategoriesTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

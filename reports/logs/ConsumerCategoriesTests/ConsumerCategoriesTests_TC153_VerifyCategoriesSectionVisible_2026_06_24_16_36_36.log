@@ -1,0 +1,18 @@
+============================================================
+Test Log: ConsumerCategoriesTests.TC153_VerifyCategoriesSectionVisible
+Started: 2026-06-24 16:36:36
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC153_VerifyCategoriesSectionVisible_2026_06_24_16_36_36.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC153_VerifyCategoriesSectionVisible_2026_06_24_16_36_36.log
+[START] ConsumerCategoriesTests :: TC153_VerifyCategoriesSectionVisible
+========== TEST STARTED: TC153_VerifyCategoriesSectionVisible ==========
+========== TEST STARTED: TC_153: Categories Section Visible ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Scroll to categories section
+STEP 3: Verify categories section is visible
+INFO  TC_153: Categories section visible: true
+========== TEST PASSED: TC_153 ==========
+[PASS] ConsumerCategoriesTests :: TC153_VerifyCategoriesSectionVisible
+========== TEST PASSED: TC153_VerifyCategoriesSectionVisible: TC_153: Verify categories section is visible on dashboard ==========
+============================================================
+Ended: 2026-06-24 16:36:41

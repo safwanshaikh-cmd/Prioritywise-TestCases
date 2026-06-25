@@ -1,0 +1,27 @@
+============================================================
+Test Log: ChapterTests.TC496_VerifyChapterDeleteCancel
+Started: 2026-06-24 12:26:29
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC496_VerifyChapterDeleteCancel_2026_06_24_12_26_29.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC496_VerifyChapterDeleteCancel_2026_06_24_12_26_29.log
+[START] ChapterTests :: TC496_VerifyChapterDeleteCancel
+========== TEST STARTED: TC496_VerifyChapterDeleteCancel ==========
+========== TEST STARTED: TC_496: Chapter Delete Cancel ==========
+STEP 1: Log in as uploader and open an existing book chapter section
+INFO  Logged in as uploader
+INFO  TC_496 - STEP 1: Navigating to existing Pending books
+INFO  TC_496 - STEP 2: Trying existing book index 0 = 'Automation Book 6f49b0'
+INFO  TC_496 - STEP 3: Edit book screen opened
+INFO  TC_496 - STEP 4: Chapter screen opened after clicking Next
+INFO  TC_496 - STEP 5: Existing chapter count for 'Automation Book 6f49b0' = 40
+INFO  TC_496 - STEP 6: Using existing book 'Automation Book 6f49b0' for chapter operation
+STEP 2: Capture chapter count, then cancel a delete
+INFO  TC_496 - STEP 2: Chapters BEFORE cancel delete: 40
+STEP 3: Verify chapter count is unchanged after cancel
+INFO  TC_496 - STEP 3: Chapters AFTER cancel delete: 40
+INFO  TC_496: Chapter delete cancel verified
+========== TEST PASSED: TC_496 ==========
+[PASS] ChapterTests :: TC496_VerifyChapterDeleteCancel
+========== TEST PASSED: TC496_VerifyChapterDeleteCancel: TC_496: Verify chapter delete cancel preserves chapter count ==========
+============================================================
+Ended: 2026-06-24 12:27:14

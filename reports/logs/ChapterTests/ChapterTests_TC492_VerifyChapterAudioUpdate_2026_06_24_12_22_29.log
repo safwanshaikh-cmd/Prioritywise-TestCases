@@ -1,0 +1,27 @@
+============================================================
+Test Log: ChapterTests.TC492_VerifyChapterAudioUpdate
+Started: 2026-06-24 12:22:29
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC492_VerifyChapterAudioUpdate_2026_06_24_12_22_29.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC492_VerifyChapterAudioUpdate_2026_06_24_12_22_29.log
+[START] ChapterTests :: TC492_VerifyChapterAudioUpdate
+========== TEST STARTED: TC492_VerifyChapterAudioUpdate ==========
+========== TEST STARTED: TC_492: Chapter Audio Update ==========
+STEP 1: Log in as uploader and open an existing book chapter section
+INFO  Logged in as uploader
+INFO  TC_492 - STEP 1: Navigating to existing Pending books
+INFO  TC_492 - STEP 2: Trying existing book index 0 = 'Automation Book 6f49b0'
+INFO  TC_492 - STEP 3: Edit book screen opened
+INFO  TC_492 - STEP 4: Chapter screen opened after clicking Next
+INFO  TC_492 - STEP 5: Existing chapter count for 'Automation Book 6f49b0' = 49
+INFO  TC_492 - STEP 6: Using existing book 'Automation Book 6f49b0' for chapter operation
+STEP 2: Resolve a valid audio file and upload it
+STEP 3: Verify audio upload completed without errors
+INFO  TC_492 - STEP 3: Audio screen visible: true
+INFO  TC_492 - STEP 3: Chapter saved flag: true
+INFO  TC_492: Chapter audio updated successfully
+========== TEST PASSED: TC_492 ==========
+[PASS] ChapterTests :: TC492_VerifyChapterAudioUpdate
+========== TEST PASSED: TC492_VerifyChapterAudioUpdate: TC_492: Verify chapter audio can be updated ==========
+============================================================
+Ended: 2026-06-24 12:23:16

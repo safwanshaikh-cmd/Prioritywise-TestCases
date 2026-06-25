@@ -1,0 +1,18 @@
+============================================================
+Test Log: ConsumerCategoriesTests.TC154_VerifyAllCategoriesDisplayed
+Started: 2026-06-24 16:37:23
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC154_VerifyAllCategoriesDisplayed_2026_06_24_16_37_23.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC154_VerifyAllCategoriesDisplayed_2026_06_24_16_37_23.log
+[START] ConsumerCategoriesTests :: TC154_VerifyAllCategoriesDisplayed
+========== TEST STARTED: TC154_VerifyAllCategoriesDisplayed ==========
+========== TEST STARTED: TC_154: All Categories Displayed ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Scroll to categories section
+STEP 3: Click View All and verify navigation
+INFO  TC_154: View All Categories did not navigate to a categories page
+========== TEST PASSED: TC_154 ==========
+[PASS] ConsumerCategoriesTests :: TC154_VerifyAllCategoriesDisplayed
+========== TEST PASSED: TC154_VerifyAllCategoriesDisplayed: TC_154: Verify all categories are displayed after View All ==========
+============================================================
+Ended: 2026-06-24 16:37:32

@@ -1,0 +1,33 @@
+============================================================
+Test Log: ChapterTests.TC497_VerifyFirstAndLastChapterDeletion
+Started: 2026-06-24 12:27:23
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC497_VerifyFirstAndLastChapterDeletion_2026_06_24_12_27_23.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC497_VerifyFirstAndLastChapterDeletion_2026_06_24_12_27_23.log
+[START] ChapterTests :: TC497_VerifyFirstAndLastChapterDeletion
+========== TEST STARTED: TC497_VerifyFirstAndLastChapterDeletion ==========
+========== TEST STARTED: TC_497: First And Last Chapter Deletion ==========
+STEP 1: Log in as uploader and open a book with at least 2 chapters
+INFO  Logged in as uploader
+INFO  TC_497 - STEP 1: Navigating to existing Pending books
+INFO  TC_497 - STEP 2: Trying existing book index 0 = 'Automation Book 6f49b0'
+INFO  TC_497 - STEP 3: Edit book screen opened
+INFO  TC_497 - STEP 4: Chapter screen opened after clicking Next
+INFO  TC_497 - STEP 5: Existing chapter count for 'Automation Book 6f49b0' = 40
+INFO  TC_497 - STEP 6: Using existing book 'Automation Book 6f49b0' for chapter operation
+STEP 2: Capture chapter count before boundary deletes
+INFO  TC_497 - STEP 2: Chapters BEFORE boundary delete: 40
+STEP 3: Delete the first chapter and verify
+INFO  TC_497 - SUCCESS MESSAGE: Audio file deleted successfully.
+INFO  TC_497 - STEP 3: FIRST DELETE SUCCESS MESSAGE: Audio file deleted successfully.
+INFO  TC_497 - STEP 3: Chapters AFTER first delete: 32
+STEP 4: Delete the new first chapter (the original last) and verify
+INFO  TC_497 - SUCCESS MESSAGE: Audio file deleted successfully.
+INFO  TC_497 - STEP 4: LAST DELETE SUCCESS MESSAGE: Audio file deleted successfully.
+INFO  TC_497 - STEP 4: Chapters AFTER last delete: 24
+INFO  TC_497: First and last chapter deletion handled correctly
+========== TEST PASSED: TC_497 ==========
+[PASS] ChapterTests :: TC497_VerifyFirstAndLastChapterDeletion
+========== TEST PASSED: TC497_VerifyFirstAndLastChapterDeletion: TC_497: Verify first and last chapter deletion boundary ==========
+============================================================
+Ended: 2026-06-24 12:28:12

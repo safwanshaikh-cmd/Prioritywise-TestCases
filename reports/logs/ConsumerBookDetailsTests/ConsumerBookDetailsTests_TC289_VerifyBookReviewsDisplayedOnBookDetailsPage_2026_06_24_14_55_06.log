@@ -1,0 +1,17 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC289_VerifyBookReviewsDisplayedOnBookDetailsPage
+Started: 2026-06-24 14:55:06
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC289_VerifyBookReviewsDisplayedOnBookDetailsPage_2026_06_24_14_55_06.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC289_VerifyBookReviewsDisplayedOnBookDetailsPage_2026_06_24_14_55_06.log
+[START] ConsumerBookDetailsTests :: TC289_VerifyBookReviewsDisplayedOnBookDetailsPage
+========== TEST STARTED: TC289_VerifyBookReviewsDisplayedOnBookDetailsPage ==========
+========== TEST STARTED: TC_289: Book Reviews Displayed On Book Details Page ==========
+STEP 1: Open book details from dashboard
+STEP 2: Open reviews and verify navigation
+INFO  TC_289: Reviews opened: true
+========== TEST PASSED: TC_289 ==========
+[PASS] ConsumerBookDetailsTests :: TC289_VerifyBookReviewsDisplayedOnBookDetailsPage
+========== TEST PASSED: TC289_VerifyBookReviewsDisplayedOnBookDetailsPage: TC_289: Verify book reviews are displayed on book details page ==========
+============================================================
+Ended: 2026-06-24 14:55:26

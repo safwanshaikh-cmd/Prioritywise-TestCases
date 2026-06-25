@@ -1,0 +1,17 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC290_VerifyEpisodesListDisplayedOnBookDetailsPage
+Started: 2026-06-24 14:56:01
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC290_VerifyEpisodesListDisplayedOnBookDetailsPage_2026_06_24_14_56_01.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC290_VerifyEpisodesListDisplayedOnBookDetailsPage_2026_06_24_14_56_01.log
+[START] ConsumerBookDetailsTests :: TC290_VerifyEpisodesListDisplayedOnBookDetailsPage
+========== TEST STARTED: TC290_VerifyEpisodesListDisplayedOnBookDetailsPage ==========
+========== TEST STARTED: TC_290: Episodes List Displayed On Book Details Page ==========
+STEP 1: Open book details from dashboard
+STEP 2: Verify episodes or empty state
+INFO  TC_290: Episodes visible - true, No episodes message - false
+========== TEST PASSED: TC_290 ==========
+[PASS] ConsumerBookDetailsTests :: TC290_VerifyEpisodesListDisplayedOnBookDetailsPage
+========== TEST PASSED: TC290_VerifyEpisodesListDisplayedOnBookDetailsPage: TC_290: Verify episodes list is displayed on book details page ==========
+============================================================
+Ended: 2026-06-24 14:56:26

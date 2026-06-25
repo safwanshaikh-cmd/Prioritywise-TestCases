@@ -1,0 +1,20 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC288_VerifyCorrectBookOpensWhenBannerClicked
+Started: 2026-06-24 14:54:09
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC288_VerifyCorrectBookOpensWhenBannerClicked_2026_06_24_14_54_09.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC288_VerifyCorrectBookOpensWhenBannerClicked_2026_06_24_14_54_09.log
+[START] ConsumerBookDetailsTests :: TC288_VerifyCorrectBookOpensWhenBannerClicked
+========== TEST STARTED: TC288_VerifyCorrectBookOpensWhenBannerClicked ==========
+========== TEST STARTED: TC_288: Correct Book Opens When Banner Clicked ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Check if banner section is visible
+STEP 3: Check if banner has clickable target
+STEP 4: Click banner and verify destination
+INFO  TC_288 - STEP: Banner click opened a destination page
+INFO  TC_288: Opened - true, URL - https://web-splay.acceses.com/book_detail/478/updated-book-title-111
+========== TEST PASSED: TC_288 ==========
+[PASS] ConsumerBookDetailsTests :: TC288_VerifyCorrectBookOpensWhenBannerClicked
+========== TEST PASSED: TC288_VerifyCorrectBookOpensWhenBannerClicked: TC_288: Verify correct book opens when banner is clicked ==========
+============================================================
+Ended: 2026-06-24 14:54:32

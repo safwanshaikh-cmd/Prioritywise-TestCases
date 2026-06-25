@@ -1,0 +1,34 @@
+============================================================
+Test Log: ChapterTests.TC506_VerifyDeleteChapterDuringPlayback
+Started: 2026-06-24 12:29:36
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC506_VerifyDeleteChapterDuringPlayback_2026_06_24_12_29_36.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC506_VerifyDeleteChapterDuringPlayback_2026_06_24_12_29_36.log
+[START] ChapterTests :: TC506_VerifyDeleteChapterDuringPlayback
+========== TEST STARTED: TC506_VerifyDeleteChapterDuringPlayback ==========
+========== TEST STARTED: TC_506: Delete Chapter During Playback ==========
+STEP 1: Log in as uploader and open the target book for playback
+INFO  Logged in as uploader
+INFO  TC_506 - STEP 1: Target book title = 'Updated Book title 111'
+STEP 2: Start playback and capture the pre-delete player state
+INFO  TC_506 - STEP 2: Playback started for Chapter 1 = true
+INFO  TC_506 - STEP 2: Viewing tab URL = 'https://web-splay.acceses.com/book_detail/478/updated-book-title-111'
+INFO  TC_506 - STEP 2: Play button visible before delete = true
+STEP 3: Open a second tab and delete Chapter 1 from the uploader side
+INFO  TC_506 - STEP 3: Opened second tab for chapter operation
+INFO  TC_506 - STEP 3: Chapter count before delete = 42
+INFO  TC_506 - SUCCESS MESSAGE: Audio file deleted successfully.
+INFO  TC_506 - STEP 3: Delete message = Audio file deleted successfully.
+INFO  TC_506 - STEP 3: Chapter count after delete = 33
+STEP 4: Return to the viewing tab, refresh, and verify the player reacted
+INFO  TC_506 - STEP 4: Current URL after delete = 'https://web-splay.acceses.com/book_detail/478/updated-book-title-111'
+INFO  TC_506 - STEP 4: Redirected away from original page = false
+INFO  TC_506 - STEP 4: Book details visible after delete = true
+INFO  TC_506 - STEP 4: Play button visible after delete = true
+INFO  TC_506 - STEP 4: Pause button visible after delete = false
+INFO  TC_506: Chapter delete during playback verified
+========== TEST PASSED: TC_506 ==========
+[PASS] ChapterTests :: TC506_VerifyDeleteChapterDuringPlayback
+========== TEST PASSED: TC506_VerifyDeleteChapterDuringPlayback: TC_506: Verify chapter delete during playback stops playback and deletes chapter ==========
+============================================================
+Ended: 2026-06-24 12:31:05

@@ -1,0 +1,27 @@
+============================================================
+Test Log: ChapterTests.TC490_VerifyChapterEditScreenLoads
+Started: 2026-06-24 12:20:45
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC490_VerifyChapterEditScreenLoads_2026_06_24_12_20_45.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC490_VerifyChapterEditScreenLoads_2026_06_24_12_20_45.log
+[START] ChapterTests :: TC490_VerifyChapterEditScreenLoads
+========== TEST STARTED: TC490_VerifyChapterEditScreenLoads ==========
+========== TEST STARTED: TC_490: Chapter Edit Screen Loads ==========
+STEP 1: Log in as uploader and open an existing book chapter section
+INFO  Logged in as uploader
+INFO  TC_490 - STEP 1: Navigating to existing Pending books
+INFO  TC_490 - STEP 2: Trying existing book index 0 = 'Automation Book 6f49b0'
+INFO  TC_490 - STEP 3: Edit book screen opened
+INFO  TC_490 - STEP 4: Chapter screen opened after clicking Next
+INFO  TC_490 - STEP 5: Existing chapter count for 'Automation Book 6f49b0' = 49
+INFO  TC_490 - STEP 6: Using existing book 'Automation Book 6f49b0' for chapter operation
+STEP 2: Open the first chapter in edit mode
+STEP 3: Verify chapter edit screen displays chapter details
+INFO  TC_490 - STEP 3: Form visible: true
+INFO  TC_490 - STEP 3: Current chapter name: 'Chapter 1'
+INFO  TC_490: Chapter edit screen loaded successfully
+========== TEST PASSED: TC_490 ==========
+[PASS] ChapterTests :: TC490_VerifyChapterEditScreenLoads
+========== TEST PASSED: TC490_VerifyChapterEditScreenLoads: TC_490: Verify chapter edit screen loads with chapter details ==========
+============================================================
+Ended: 2026-06-24 12:21:24

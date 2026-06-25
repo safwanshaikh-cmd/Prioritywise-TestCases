@@ -1,0 +1,30 @@
+============================================================
+Test Log: AudioPlayerBehaviorTests.TC546_VerifySessionTimeoutBehavior
+Started: 2026-06-23 09:01:39
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC546_VerifySessionTimeoutBehavior_2026_06_23_09_01_39.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC546_VerifySessionTimeoutBehavior_2026_06_23_09_01_39.log
+[START] AudioPlayerBehaviorTests :: TC546_VerifySessionTimeoutBehavior
+========== TEST STARTED: TC546_VerifySessionTimeoutBehavior ==========
+========== TEST STARTED: TC_546: Audio Session Timeout Behavior ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_546 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_546 - STEP 2: Opened a book from dashboard
+STEP 3: Start playback to ensure session is active
+INFO  TC_546 - STEP 3: Audio initially playing: true
+STEP 4: Simulate session timeout by clearing session storage and cookies
+INFO  TC_546 - STEP 4: Simulating session timeout by clearing session storage
+INFO  TC_546 - STEP 5: Session storage and cookies cleared
+STEP 5: Verify player behavior after session loss
+INFO  TC_546 - STEP 6: Player still accessible after session clear: true
+INFO  TC_546 - STEP 6: Playback continues: true
+STEP 6: Check for session error messages
+INFO  TC_546 - STEP 7: Session error detected: true
+INFO  TC_546: Session timeout behavior verified - Application handled session loss gracefully. System behaved as expected with no deviations
+========== TEST PASSED: TC_546 ==========
+[PASS] AudioPlayerBehaviorTests :: TC546_VerifySessionTimeoutBehavior
+========== TEST PASSED: TC546_VerifySessionTimeoutBehavior: TC_546: Verify audio player behavior on session timeout ==========
+============================================================
+Ended: 2026-06-23 09:03:00

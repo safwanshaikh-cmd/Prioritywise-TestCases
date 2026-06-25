@@ -1,0 +1,28 @@
+============================================================
+Test Log: AudioPlayerBehaviorTests.TC538_VerifyPlaybackAfterRefresh
+Started: 2026-06-23 08:52:39
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC538_VerifyPlaybackAfterRefresh_2026_06_23_08_52_39.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC538_VerifyPlaybackAfterRefresh_2026_06_23_08_52_39.log
+[START] AudioPlayerBehaviorTests :: TC538_VerifyPlaybackAfterRefresh
+========== TEST STARTED: TC538_VerifyPlaybackAfterRefresh ==========
+========== TEST STARTED: TC_538: Audio Playback After Refresh ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_538 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_538 - STEP 2: Opened a book from dashboard
+STEP 3: Start playback and capture current time
+INFO  TC_538 - STEP 3: Current time before refresh: 00:02
+STEP 4: Refresh the page
+INFO  TC_538 - STEP 4: Page refreshed
+STEP 5: Wait for player to be ready again
+INFO  TC_538 - STEP 5: Current time after refresh: N/A
+STEP 6: Verify player handled refresh correctly
+INFO  TC_538 - STEP 6: Player responsive after refresh: true
+INFO  TC_538: Refresh during playback verified - Playback resets or resumes correctly. System behaved as expected with no deviations
+========== TEST PASSED: TC_538 ==========
+[PASS] AudioPlayerBehaviorTests :: TC538_VerifyPlaybackAfterRefresh
+========== TEST PASSED: TC538_VerifyPlaybackAfterRefresh: TC_538: Verify audio player handles page refresh during playback ==========
+============================================================
+Ended: 2026-06-23 08:54:10

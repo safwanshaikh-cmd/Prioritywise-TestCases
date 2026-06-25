@@ -1,0 +1,19 @@
+============================================================
+Test Log: ConsumerCategoriesTests.TC161_VerifyBooksDisplayedUnderCategory
+Started: 2026-06-24 16:43:09
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC161_VerifyBooksDisplayedUnderCategory_2026_06_24_16_43_09.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC161_VerifyBooksDisplayedUnderCategory_2026_06_24_16_43_09.log
+[START] ConsumerCategoriesTests :: TC161_VerifyBooksDisplayedUnderCategory
+========== TEST STARTED: TC161_VerifyBooksDisplayedUnderCategory ==========
+========== TEST STARTED: TC_161: Books Displayed Under Category ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Scroll to categories section
+STEP 3: Open the first visible category
+STEP 4: Verify relevant content is displayed
+INFO  TC_161: Content present for category: Art
+========== TEST PASSED: TC_161 ==========
+[PASS] ConsumerCategoriesTests :: TC161_VerifyBooksDisplayedUnderCategory
+========== TEST PASSED: TC161_VerifyBooksDisplayedUnderCategory: TC_161: Verify books are displayed under the selected category ==========
+============================================================
+Ended: 2026-06-24 16:43:17

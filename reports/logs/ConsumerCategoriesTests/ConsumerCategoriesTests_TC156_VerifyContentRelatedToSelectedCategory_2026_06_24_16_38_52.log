@@ -1,0 +1,19 @@
+============================================================
+Test Log: ConsumerCategoriesTests.TC156_VerifyContentRelatedToSelectedCategory
+Started: 2026-06-24 16:38:52
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC156_VerifyContentRelatedToSelectedCategory_2026_06_24_16_38_52.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC156_VerifyContentRelatedToSelectedCategory_2026_06_24_16_38_52.log
+[START] ConsumerCategoriesTests :: TC156_VerifyContentRelatedToSelectedCategory
+========== TEST STARTED: TC156_VerifyContentRelatedToSelectedCategory ==========
+========== TEST STARTED: TC_156: Content Related To Selected Category ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Scroll to categories section
+STEP 3: Choose a category (prefer View All list, fall back to first visible)
+STEP 4: Open the category and verify content or stable empty state
+INFO  TC_156: contentCount=0, hasContent=true, emptyState=false
+========== TEST PASSED: TC_156 ==========
+[PASS] ConsumerCategoriesTests :: TC156_VerifyContentRelatedToSelectedCategory
+========== TEST PASSED: TC156_VerifyContentRelatedToSelectedCategory: TC_156: Verify category page shows related content or stable empty state ==========
+============================================================
+Ended: 2026-06-24 16:39:06

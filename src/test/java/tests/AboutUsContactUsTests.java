@@ -65,7 +65,6 @@ public class AboutUsContactUsTests extends BaseTest {
 				return !lowerUrl.contains("/login") && !lowerUrl.contains("signin");
 			});
 			Assert.assertTrue(loginSettled, "Registered user login should move past the login page");
-			LoggerUtils.logInfo("Logged in as registered user");
 		} catch (Exception e) {
 			throw new RuntimeException("Failed to login as registered user", e);
 		}
@@ -139,7 +138,6 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		LoggerUtils.logStep(1, "Log in as registered user");
 		loginAsRegisteredUser();
-		LoggerUtils.logInfo("Logged in as registered user");
 
 		LoggerUtils.logStep(2, "Capture URL before navigation");
 		String currentUrlBefore = safeGetCurrentUrl(driver);
@@ -175,7 +173,6 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		LoggerUtils.logStep(1, "Log in as registered user");
 		loginAsRegisteredUser();
-		LoggerUtils.logInfo("Logged in as registered user");
 
 		LoggerUtils.logStep(2, "Open About Us page");
 		openAboutUsPage();
@@ -220,7 +217,6 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		LoggerUtils.logStep(1, "Log in as registered user");
 		loginAsRegisteredUser();
-		LoggerUtils.logInfo("Logged in as registered user");
 
 		LoggerUtils.logStep(2, "Open About Us page");
 		openAboutUsPage();
@@ -268,7 +264,6 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		LoggerUtils.logStep(1, "Log in as registered user");
 		loginAsRegisteredUser();
-		LoggerUtils.logInfo("Logged in as registered user");
 
 		LoggerUtils.logStep(2, "Open About Us page");
 		openAboutUsPage();
@@ -388,7 +383,6 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		LoggerUtils.logStep(1, "Log in as registered user");
 		loginAsRegisteredUser();
-		LoggerUtils.logInfo("Logged in as registered user");
 
 		LoggerUtils.logStep(2, "Capture URL before navigation");
 		String currentUrlBefore = safeGetCurrentUrl(driver);
@@ -422,7 +416,6 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		LoggerUtils.logStep(1, "Log in as registered user");
 		loginAsRegisteredUser();
-		LoggerUtils.logInfo("Logged in as registered user");
 
 		LoggerUtils.logStep(2, "Open Contact Us page");
 		openContactUsPage();
@@ -509,7 +502,6 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		LoggerUtils.logStep(1, "Log in as registered user");
 		loginAsRegisteredUser();
-		LoggerUtils.logInfo("Logged in as registered user");
 
 		LoggerUtils.logStep(2, "Open Contact Us page");
 		openContactUsPage();
@@ -552,7 +544,6 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		LoggerUtils.logStep(1, "Log in as registered user");
 		loginAsRegisteredUser();
-		LoggerUtils.logInfo("Logged in as registered user");
 
 		LoggerUtils.logStep(2, "Open Contact Us page");
 		openContactUsPage();
@@ -611,7 +602,6 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		LoggerUtils.logStep(1, "Log in as registered user");
 		loginAsRegisteredUser();
-		LoggerUtils.logInfo("Logged in as registered user");
 
 		LoggerUtils.logStep(2, "Open Contact Us page");
 		openContactUsPage();
@@ -693,7 +683,6 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		LoggerUtils.logStep(1, "Log in as registered user");
 		loginAsRegisteredUser();
-		LoggerUtils.logInfo("Logged in as registered user");
 
 		LoggerUtils.logStep(2, "Open Contact Us page");
 		openContactUsPage();
@@ -793,7 +782,6 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		LoggerUtils.logStep(1, "Log in as registered user");
 		loginAsRegisteredUser();
-		LoggerUtils.logInfo("Logged in as registered user");
 
 		LoggerUtils.logStep(2, "Open Contact Us page");
 		openContactUsPage();
@@ -845,53 +833,66 @@ public class AboutUsContactUsTests extends BaseTest {
 
 		LoggerUtils.logStep(1, "Log in as registered user");
 		loginAsRegisteredUser();
-		LoggerUtils.logInfo("Logged in as registered user");
 
 		LoggerUtils.logStep(2, "Open Contact Us page");
 		openContactUsPage();
 		LoggerUtils.logInfo("Opened Contact Us page");
 
-		LoggerUtils.logStep(3, "Locate upload widget and underlying file input");
+		LoggerUtils.logStep(3, "Fill Subject and Message fields");
+		contactUs.fillSubject("Test Subject - File Upload");
+		contactUs.fillMessage("This is a test message for file upload functionality.");
+		LoggerUtils.logInfo("Form fields filled");
+
+		LoggerUtils.logStep(4, "Locate upload widget and underlying file input");
 		WebElement placeholder = contactUs.getUploadPlaceholder();
 		if (placeholder == null) {
 			throw new SkipException("TC_527: Document upload widget not found on Contact Us page");
 		}
 		LoggerUtils.logInfo("Found upload placeholder: " + placeholder.getTagName());
 
-		WebElement fileInput = contactUs.revealFileInput();
-		if (fileInput == null) {
+		LoggerUtils.logStep(5, "Create test file for upload");
+		String testFilePath = createTestFile("contact_us_test.txt");
+		LoggerUtils.logInfo("Created test file: " + testFilePath);
+
+		LoggerUtils.logStep(6, "Upload file via scriptable file input");
+		WebElement fileInput = contactUs.revealFileInput(java.time.Duration.ofSeconds(3));
+		boolean uploaded = false;
+		if (fileInput != null) {
+			fileInput.sendKeys(testFilePath);
+			uploaded = true;
+			LoggerUtils.logInfo("File uploaded via revealed file input element");
+		}
+
+		if (!uploaded) {
 			throw new SkipException("TC_527: File input is not directly scriptable on the current Contact Us UI. "
 					+ "The upload area is rendered as a CSS-styled placeholder that exposes "
 					+ "<input type='file'> only after a JS-triggered click which surfaces the OS "
 					+ "file picker dialog — not interactable via WebDriver. Re-enable this test "
 					+ "when the page exposes a scriptable file input.");
 		}
-		LoggerUtils.logInfo("Found file input element");
 
-		LoggerUtils.logStep(4, "Create test file for upload");
-		String testFilePath = createTestFile("contact_us_test.txt");
-		LoggerUtils.logInfo("Created test file: " + testFilePath);
+		LoggerUtils.logStep(7, "Click Submit and verify success toast");
+		contactUs.clickSubmit();
+		LoggerUtils.logInfo("TC_527 - STEP 7: Submit clicked");
 
-		LoggerUtils.logStep(5, "Upload file and verify");
-		fileInput.sendKeys(testFilePath);
-		LoggerUtils.logInfo("File path entered: " + testFilePath);
+		String toastText = contactUs.waitForSuccessToast(java.time.Duration.ofSeconds(20));
+		LoggerUtils.logInfo("TC_527 - STEP 7: Success toast text: " + safeString(toastText));
 
-		// Wait a moment for upload processing
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
+		Assert.assertNotNull(toastText,
+				"TC_527: Expected success toast after Submit; none appeared within 20 seconds.");
+		// Accept either the fresh-submit confirmation or the server-side
+		// duplicate-subject message. Both indicate the submission was
+		// processed by the backend.
+		String lowerToast = toastText.toLowerCase();
+		boolean accepted = lowerToast.contains("successfully sent")
+				|| lowerToast.contains("already submitted this subject");
+		Assert.assertTrue(accepted,
+				"TC_527: Expected a success or duplicate-subject toast after Submit. Actual: "
+						+ toastText);
 
-		String pageSource = safeGetPageSource(driver).toLowerCase();
-		boolean fileProcessed = pageSource.contains("contact_us_test") || pageSource.contains("uploaded")
-				|| pageSource.contains("file uploaded");
-		LoggerUtils.logInfo("File processed: " + fileProcessed);
-
-		// Verify the test file exists
+		LoggerUtils.logStep(8, "Verify test file still exists locally");
 		boolean fileExists = TestDataGenerator.testFileExists(testFilePath);
 		LoggerUtils.logInfo("Test file exists: " + fileExists);
-
 		Assert.assertTrue(fileExists, "TC_527: Test file should exist");
 		LoggerUtils.logInfo("TC_527: Contact Us document upload with valid file verified");
 

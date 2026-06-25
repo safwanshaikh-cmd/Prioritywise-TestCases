@@ -1,0 +1,24 @@
+============================================================
+Test Log: AudioPlayerBehaviorTests.TC536_VerifySeekBeyondDuration
+Started: 2026-06-23 08:41:09
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC536_VerifySeekBeyondDuration_2026_06_23_08_41_09.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC536_VerifySeekBeyondDuration_2026_06_23_08_41_09.log
+[START] AudioPlayerBehaviorTests :: TC536_VerifySeekBeyondDuration
+========== TEST STARTED: TC536_VerifySeekBeyondDuration ==========
+========== TEST STARTED: TC_536: Audio Seek Beyond Duration ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_536 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_536 - STEP 2: Opened a book from dashboard
+STEP 3: Start audio playback
+INFO  TC_536 - STEP 3: Audio playback started
+STEP 4: Verify seek beyond end behavior
+INFO  TC_536 - STEP 4: Seek beyond end handled: false
+STEP 5: Verify playback stopped at end
+INFO  TC_536 - STEP 5: Still playing: true
+[SKIP] AudioPlayerBehaviorTests :: TC536_VerifySeekBeyondDuration
+========== TEST SKIPPED: TC536_VerifySeekBeyondDuration: TC_536: Verify audio player handles seeking beyond duration (boundary case) ==========
+============================================================
+Ended: 2026-06-23 08:42:49

@@ -1,0 +1,28 @@
+============================================================
+Test Log: ChapterTests.TC493_VerifyInvalidChapterFileUpload
+Started: 2026-06-24 12:23:27
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC493_VerifyInvalidChapterFileUpload_2026_06_24_12_23_27.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC493_VerifyInvalidChapterFileUpload_2026_06_24_12_23_27.log
+[START] ChapterTests :: TC493_VerifyInvalidChapterFileUpload
+========== TEST STARTED: TC493_VerifyInvalidChapterFileUpload ==========
+========== TEST STARTED: TC_493: Invalid Chapter File Upload ==========
+STEP 1: Log in as uploader and open an existing book chapter section
+INFO  Logged in as uploader
+INFO  TC_493 - STEP 1: Navigating to existing Pending books
+INFO  TC_493 - STEP 2: Trying existing book index 0 = 'Automation Book 6f49b0'
+INFO  TC_493 - STEP 3: Edit book screen opened
+INFO  TC_493 - STEP 4: Chapter screen opened after clicking Next
+INFO  TC_493 - STEP 5: Existing chapter count for 'Automation Book 6f49b0' = 49
+INFO  TC_493 - STEP 6: Using existing book 'Automation Book 6f49b0' for chapter operation
+STEP 2: Resolve an invalid file path and try to upload it
+STEP 3: Verify the picker or UI surfaced a rejection
+INFO  TC_493 - STEP 3: UNSUPPORTED FILE ATTEMPTED: Codex Installer.exe
+INFO  TC_493 - STEP 3: UI ERROR MESSAGE: 
+INFO  TC_493 - STEP 3: UI VALIDATION MESSAGES: Please select a valid audio file.(MP3, WAV,  AAC, FLAC)
+INFO  TC_493: Unsupported file handling verified
+========== TEST PASSED: TC_493 ==========
+[PASS] ChapterTests :: TC493_VerifyInvalidChapterFileUpload
+========== TEST PASSED: TC493_VerifyInvalidChapterFileUpload: TC_493: Verify invalid file is rejected during chapter audio upload ==========
+============================================================
+Ended: 2026-06-24 12:24:15

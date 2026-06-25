@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -190,7 +191,11 @@ public class DashboardPage extends BasePage {
 	private static final By REPORT_DUPLICATE_MESSAGE = By.xpath(
 			"//*[contains(translate(normalize-space(.),'ALREADY REPORTED','already reported'),'already reported')"
 					+ " or contains(translate(normalize-space(.),'ALREADY SUBMITTED','already submitted'),'already submitted')"
-					+ " or contains(translate(normalize-space(.),'DUPLICATE','duplicate'),'duplicate')]");
+					+ " or contains(translate(normalize-space(.),'DUPLICATE','duplicate'),'duplicate')"
+					+ " or contains(translate(normalize-space(.),'CANNOT REPORT','cannot report'),'cannot report')"
+					+ " or contains(translate(normalize-space(.),'PREVIOUSLY REPORTED','previously reported'),'previously reported')"
+					+ " or contains(translate(normalize-space(.),'REPORT AGAIN','report again'),'report again')"
+					+ " or contains(translate(normalize-space(.),'HAVE ALREADY','have already'),'have already')]");
 	private static final By REVIEWS_SECTION = By
 			.xpath("//*[contains(translate(normalize-space(.),'REVIEWS','reviews'),'reviews')]"
 					+ " | //*[@data-testid='section_reviews' or @data-testid='book_reviews']");
@@ -841,6 +846,10 @@ public class DashboardPage extends BasePage {
 
 	public boolean areBannerImagesVisible() {
 		return getVisibleBannerCount() > 0;
+	}
+
+	public boolean areMultipleBannersVisible() {
+		return getVisibleBannerCount() >= 2;
 	}
 
 	public boolean areBannerIndicatorsVisible() {
@@ -1929,18 +1938,43 @@ public class DashboardPage extends BasePage {
 
 			scrollIntoView(submitButton);
 			clickWithJS(submitButton);
-			waitForMilliseconds(2000);
 			LOGGER.log(Level.INFO, "Submit Report button clicked");
 
-			// Verify report confirmation
-			boolean confirmationShown = isReportConfirmationVisible();
-			LOGGER.log(Level.INFO, "Report confirmation visible: {0}", confirmationShown);
+			// Poll up to ~8s for either the success confirmation or the
+			// duplicate-protection message to appear. The server response
+			// can take a few seconds on a re-run, and toasts may render
+			// after the modal transitions.
+			boolean confirmationShown = waitForReportOutcome(8);
+			boolean alreadyReportedShown = isAnyElementVisible(REPORT_DUPLICATE_MESSAGE);
+			boolean reportAccepted = confirmationShown || alreadyReportedShown;
 
-			return confirmationShown;
+			if (alreadyReportedShown && !confirmationShown) {
+				LOGGER.log(Level.INFO, "Report was already submitted previously (duplicate-protection message shown)");
+			} else {
+				LOGGER.log(Level.INFO, "Report confirmation visible: {0}", confirmationShown);
+			}
+
+			return reportAccepted;
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to report inappropriate content: {0}", e.getMessage());
 			return false;
 		}
+	}
+
+	/**
+	 * Polls the page up to {@code maxSeconds} for either the success
+	 * confirmation text OR any duplicate-protection sentinel. Returns
+	 * {@code true} as soon as either is observed.
+	 */
+	private boolean waitForReportOutcome(int maxSeconds) {
+		long deadline = System.currentTimeMillis() + maxSeconds * 1000L;
+		while (System.currentTimeMillis() < deadline) {
+			if (isReportConfirmationVisible() || isAnyElementVisible(REPORT_DUPLICATE_MESSAGE)) {
+				return true;
+			}
+			waitForMilliseconds(500);
+		}
+		return isReportConfirmationVisible() || isAnyElementVisible(REPORT_DUPLICATE_MESSAGE);
 	}
 
 	public boolean hasAlreadyReportedMessage() {
@@ -1961,6 +1995,53 @@ public class DashboardPage extends BasePage {
 			LOGGER.log(Level.WARNING, "Failed to check for already reported message: {0}", e.getMessage());
 			return false;
 		}
+	}
+
+	/**
+	 * Returns the first user-visible snippet from the page body that matches
+	 * one of the known report-outcome strings. Used by TC_319 to print what
+	 * the user actually sees after the report flow completes.
+	 *
+	 * @return the matching snippet, or {@code null} if none was found.
+	 */
+	public String findFirstMatchingReportSnippet() {
+		String[] sentinels = {
+				"Report received",
+				"thank you for taking the time",
+				"Thank you for your feedback",
+				"already reported",
+				"already submitted",
+				"duplicate",
+				"cannot report",
+				"previously reported",
+				"have already",
+				"report again"
+		};
+		try {
+			Object result = Objects.requireNonNull((JavascriptExecutor) driver)
+					.executeScript("return document.body.innerText");
+			String bodyText = result != null ? result.toString() : "";
+			String lower = bodyText.toLowerCase(Locale.ROOT);
+			for (String sentinel : sentinels) {
+				if (lower.contains(sentinel.toLowerCase(Locale.ROOT))) {
+					return snippetAround(bodyText, sentinel);
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Failed to read report outcome snippet: {0}", e.getMessage());
+		}
+		return null;
+	}
+
+	private String snippetAround(String bodyText, String sentinel) {
+		int idx = bodyText.toLowerCase(Locale.ROOT).indexOf(sentinel.toLowerCase(Locale.ROOT));
+		if (idx < 0) {
+			return sentinel;
+		}
+		int start = Math.max(0, idx - 40);
+		int end = Math.min(bodyText.length(), idx + sentinel.length() + 80);
+		String snippet = bodyText.substring(start, end).replaceAll("\\s+", " ").trim();
+		return "…" + snippet + "…";
 	}
 
 	public boolean clickContinueListeningAfterReport() {

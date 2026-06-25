@@ -1,0 +1,18 @@
+============================================================
+Test Log: ConsumerCategoriesTests.TC158_VerifyCategoriesSectionIsDisplayed
+Started: 2026-06-24 16:41:00
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC158_VerifyCategoriesSectionIsDisplayed_2026_06_24_16_41_00.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC158_VerifyCategoriesSectionIsDisplayed_2026_06_24_16_41_00.log
+[START] ConsumerCategoriesTests :: TC158_VerifyCategoriesSectionIsDisplayed
+========== TEST STARTED: TC158_VerifyCategoriesSectionIsDisplayed ==========
+========== TEST STARTED: TC_158: Categories Section Is Displayed ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Scroll to categories section
+STEP 3: Verify categories section is displayed
+INFO  TC_158: Categories section displayed: true
+========== TEST PASSED: TC_158 ==========
+[PASS] ConsumerCategoriesTests :: TC158_VerifyCategoriesSectionIsDisplayed
+========== TEST PASSED: TC158_VerifyCategoriesSectionIsDisplayed: TC_158: Verify categories section is displayed on the dashboard ==========
+============================================================
+Ended: 2026-06-24 16:41:04

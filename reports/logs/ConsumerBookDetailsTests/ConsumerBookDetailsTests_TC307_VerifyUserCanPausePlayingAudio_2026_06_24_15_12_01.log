@@ -1,0 +1,19 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC307_VerifyUserCanPausePlayingAudio
+Started: 2026-06-24 15:12:01
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC307_VerifyUserCanPausePlayingAudio_2026_06_24_15_12_01.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC307_VerifyUserCanPausePlayingAudio_2026_06_24_15_12_01.log
+[START] ConsumerBookDetailsTests :: TC307_VerifyUserCanPausePlayingAudio
+========== TEST STARTED: TC307_VerifyUserCanPausePlayingAudio ==========
+========== TEST STARTED: TC_307: User Can Pause Playing Audio ==========
+STEP 1: Open book details from dashboard
+STEP 2: Check if Play button is visible
+STEP 3: Start audio playback
+STEP 4: Pause audio and verify
+INFO  TC_307: Audio paused: true
+========== TEST PASSED: TC_307 ==========
+[PASS] ConsumerBookDetailsTests :: TC307_VerifyUserCanPausePlayingAudio
+========== TEST PASSED: TC307_VerifyUserCanPausePlayingAudio: TC_307: Verify user can pause playing audio ==========
+============================================================
+Ended: 2026-06-24 15:12:53

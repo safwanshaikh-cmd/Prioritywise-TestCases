@@ -1,0 +1,27 @@
+============================================================
+Test Log: AudioPlayerBehaviorTests.TC535_VerifyPlaybackOnBrowserMinimize
+Started: 2026-06-23 08:39:39
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC535_VerifyPlaybackOnBrowserMinimize_2026_06_23_08_39_39.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC535_VerifyPlaybackOnBrowserMinimize_2026_06_23_08_39_39.log
+[START] AudioPlayerBehaviorTests :: TC535_VerifyPlaybackOnBrowserMinimize
+========== TEST STARTED: TC535_VerifyPlaybackOnBrowserMinimize ==========
+========== TEST STARTED: TC_535: Audio Playback On Browser Minimize ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_535 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_535 - STEP 2: Opened a book from dashboard
+STEP 3: Start playback and capture current time
+INFO  TC_535 - STEP 3: Current time: 2 seconds
+STEP 4: Wait while browser minimize is simulated
+STEP 5: Verify playback continued after minimize
+INFO  TC_535 - STEP 4: Current time after minimize simulation: 4 seconds
+INFO  TC_535 - STEP 5: Playback continuing: true
+INFO  TC_535 - STEP 5: Player responsive: true
+INFO  TC_535: Browser minimize behavior verified - Playback continues
+========== TEST PASSED: TC_535 ==========
+[PASS] AudioPlayerBehaviorTests :: TC535_VerifyPlaybackOnBrowserMinimize
+========== TEST PASSED: TC535_VerifyPlaybackOnBrowserMinimize: TC_535: Verify audio playback continues after browser is minimized ==========
+============================================================
+Ended: 2026-06-23 08:40:57

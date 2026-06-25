@@ -1,0 +1,36 @@
+============================================================
+Test Log: ChapterTests.TC507_VerifyEditDuringUpload
+Started: 2026-06-24 12:31:16
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC507_VerifyEditDuringUpload_2026_06_24_12_31_16.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC507_VerifyEditDuringUpload_2026_06_24_12_31_16.log
+[START] ChapterTests :: TC507_VerifyEditDuringUpload
+========== TEST STARTED: TC507_VerifyEditDuringUpload ==========
+========== TEST STARTED: TC_507: Edit Chapter During Playback ==========
+STEP 1: Log in as uploader and open the target book for playback
+INFO  Logged in as uploader
+INFO  TC_507 - STEP 1: Target book title = 'Updated Book Title 111'
+STEP 2: Start playback and capture the pre-edit player state
+INFO  TC_507 - STEP 2: Playback started for Chapter 1 = true
+INFO  TC_507 - STEP 2: Viewing tab URL = 'https://web-splay.acceses.com/book_detail/478/updated-book-title-111'
+INFO  TC_507 - STEP 2: Play visible before edit = true
+INFO  TC_507 - STEP 2: Pause visible before edit = false
+STEP 3: Open a second tab and edit Chapter 1 from the uploader side
+INFO  TC_507 - STEP 3: Opened second tab for chapter operation
+INFO  TC_507 - STEP 3: Original chapter title = 'Chapter'
+INFO  TC_507 - STEP 3: Updated chapter title = 'Updated Chapter During Playback 32ffe4'
+INFO  TC_507 - SUCCESS MESSAGE: Audio file updated successfully.
+INFO  TC_507 - STEP 3: Save message = 'Audio file updated successfully.'
+INFO  TC_507 - STEP 3: Persisted chapter title = 'Updated Chapter During Playback 32ffe4'
+STEP 4: Return to the viewing tab, refresh, and verify the player remains stable
+INFO  TC_507 - STEP 4: Current URL after edit = 'https://web-splay.acceses.com/book_detail/478/updated-book-title-111'
+INFO  TC_507 - STEP 4: Redirected away from original page = false
+INFO  TC_507 - STEP 4: Book details visible after edit = true
+INFO  TC_507 - STEP 4: Play visible after edit = true
+INFO  TC_507 - STEP 4: Pause visible after edit = false
+INFO  TC_507: Chapter edit while playback is active verified
+========== TEST PASSED: TC_507 ==========
+[PASS] ChapterTests :: TC507_VerifyEditDuringUpload
+========== TEST PASSED: TC507_VerifyEditDuringUpload: TC_507: Verify chapter edit during playback persists and player remains responsive ==========
+============================================================
+Ended: 2026-06-24 12:32:49

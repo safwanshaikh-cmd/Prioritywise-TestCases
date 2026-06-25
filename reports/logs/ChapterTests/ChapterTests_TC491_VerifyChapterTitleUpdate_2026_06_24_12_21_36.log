@@ -1,0 +1,29 @@
+============================================================
+Test Log: ChapterTests.TC491_VerifyChapterTitleUpdate
+Started: 2026-06-24 12:21:36
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC491_VerifyChapterTitleUpdate_2026_06_24_12_21_36.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC491_VerifyChapterTitleUpdate_2026_06_24_12_21_36.log
+[START] ChapterTests :: TC491_VerifyChapterTitleUpdate
+========== TEST STARTED: TC491_VerifyChapterTitleUpdate ==========
+========== TEST STARTED: TC_491: Chapter Title Update ==========
+STEP 1: Log in as uploader and open an existing book chapter section
+INFO  Logged in as uploader
+INFO  TC_491 - STEP 1: Navigating to existing Pending books
+INFO  TC_491 - STEP 2: Trying existing book index 0 = 'Automation Book 6f49b0'
+INFO  TC_491 - STEP 3: Edit book screen opened
+INFO  TC_491 - STEP 4: Chapter screen opened after clicking Next
+INFO  TC_491 - STEP 5: Existing chapter count for 'Automation Book 6f49b0' = 49
+INFO  TC_491 - STEP 6: Using existing book 'Automation Book 6f49b0' for chapter operation
+STEP 2: Capture existing title and enter a new title
+INFO  TC_491 - STEP 2: EXISTING Title: Chapter 1
+STEP 3: Verify success toast and persisted title
+INFO  TC_491 - SUCCESS MESSAGE: Audio file updated successfully.
+INFO  TC_491 - STEP 3: UPDATED INPUT Title: Updated Chapter 789fdf
+INFO  TC_491 - STEP 3: ACTUAL SAVED Title: Updated Chapter 789fdf
+INFO  TC_491: Chapter title updated successfully
+========== TEST PASSED: TC_491 ==========
+[PASS] ChapterTests :: TC491_VerifyChapterTitleUpdate
+========== TEST PASSED: TC491_VerifyChapterTitleUpdate: TC_491: Verify chapter title can be updated ==========
+============================================================
+Ended: 2026-06-24 12:22:19

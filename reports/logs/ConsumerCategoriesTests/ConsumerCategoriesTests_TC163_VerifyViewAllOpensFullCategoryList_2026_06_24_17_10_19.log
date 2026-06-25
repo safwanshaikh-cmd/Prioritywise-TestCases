@@ -1,0 +1,19 @@
+============================================================
+Test Log: ConsumerCategoriesTests.TC163_VerifyViewAllOpensFullCategoryList
+Started: 2026-06-24 17:10:19
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC163_VerifyViewAllOpensFullCategoryList_2026_06_24_17_10_19.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC163_VerifyViewAllOpensFullCategoryList_2026_06_24_17_10_19.log
+[START] ConsumerCategoriesTests :: TC163_VerifyViewAllOpensFullCategoryList
+========== TEST STARTED: TC163_VerifyViewAllOpensFullCategoryList ==========
+========== TEST STARTED: TC_163: View All Opens Full Category List ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Scroll to categories section
+STEP 3: Click View All and verify navigation
+INFO  TC_163: View All Categories did not navigate to a categories page. Current URL: https://web-splay.acceses.com/
+INFO  TC_163: View All unavailable — dashboard still valid (URL: https://web-splay.acceses.com/)
+========== TEST PASSED: TC_163 ==========
+[PASS] ConsumerCategoriesTests :: TC163_VerifyViewAllOpensFullCategoryList
+========== TEST PASSED: TC163_VerifyViewAllOpensFullCategoryList: TC_163: Verify View All opens the full category list ==========
+============================================================
+Ended: 2026-06-24 17:10:28

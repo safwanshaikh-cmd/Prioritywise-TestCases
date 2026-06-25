@@ -1,0 +1,32 @@
+============================================================
+Test Log: AudioPlayerBehaviorTests.TC545_VerifyMultipleTabsPlaybackConflict
+Started: 2026-06-23 08:59:22
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC545_VerifyMultipleTabsPlaybackConflict_2026_06_23_08_59_22.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC545_VerifyMultipleTabsPlaybackConflict_2026_06_23_08_59_22.log
+[START] AudioPlayerBehaviorTests :: TC545_VerifyMultipleTabsPlaybackConflict
+========== TEST STARTED: TC545_VerifyMultipleTabsPlaybackConflict ==========
+========== TEST STARTED: TC_545: Audio Multiple Tabs Playback Conflict ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_545 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard in first tab
+INFO  TC_545 - STEP 2: Opened a book from dashboard in first tab
+STEP 3: Start playback in first tab
+INFO  TC_545 - STEP 3: Audio playing in first tab: true
+INFO  TC_545 - STEP 4: Stored URL from first tab: https://web-splay.acceses.com/book_detail/3/brain-at-work
+STEP 4: Open a second browser tab and navigate to same URL
+INFO  TC_545 - STEP 5: Opened second browser tab
+INFO  TC_545 - STEP 6: Navigated to same URL in second tab: https://web-splay.acceses.com/book_detail/3/brain-at-work
+STEP 5: Try to play audio in second tab
+INFO  TC_545 - STEP 7: Player available in second tab: true
+INFO  TC_545 - STEP 8: Attempted to play in second tab: true
+STEP 6: Switch back to first tab and verify playback state
+INFO  TC_545 - STEP 9: First tab still playing after second tab opened: true
+STEP 7: Close second tab and verify first tab is still playing
+INFO  TC_545: Multiple tabs playback verified - Only one audio plays. System behaved as expected with no deviations
+========== TEST PASSED: TC_545 ==========
+[PASS] AudioPlayerBehaviorTests :: TC545_VerifyMultipleTabsPlaybackConflict
+========== TEST PASSED: TC545_VerifyMultipleTabsPlaybackConflict: TC_545: Verify only one audio plays when opened in multiple tabs ==========
+============================================================
+Ended: 2026-06-23 09:01:29

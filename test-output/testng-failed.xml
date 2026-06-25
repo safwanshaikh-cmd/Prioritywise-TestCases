@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.AboutUsContactUsTests">
+      <class name="tests.ConsumerCategoriesTests">
         <methods>
           <include name="tearDown"/>
-          <include name="TC527_VerifyContactUsDocumentUploadWithValidFile"/>
+          <include name="TC163_VerifyViewAllOpensFullCategoryList"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- tests.AboutUsContactUsTests -->
+      </class> <!-- tests.ConsumerCategoriesTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

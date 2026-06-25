@@ -1,0 +1,25 @@
+============================================================
+Test Log: AudioPlayerBehaviorTests.TC533_VerifyMultipleRapidPlayClicks
+Started: 2026-06-23 08:36:53
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC533_VerifyMultipleRapidPlayClicks_2026_06_23_08_36_53.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC533_VerifyMultipleRapidPlayClicks_2026_06_23_08_36_53.log
+[START] AudioPlayerBehaviorTests :: TC533_VerifyMultipleRapidPlayClicks
+========== TEST STARTED: TC533_VerifyMultipleRapidPlayClicks ==========
+========== TEST STARTED: TC_533: Audio Player Multiple Rapid Clicks ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_533 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard and wait for player
+INFO  TC_533 - STEP 2: Opened a book from dashboard and player is ready
+STEP 3: Click play button rapidly
+INFO  TC_533 - STEP 3: Clicked play button 5 times rapidly
+STEP 4: Verify single playback and player responsiveness
+INFO  TC_533 - STEP 4: Audio playing: true
+INFO  TC_533 - STEP 4: Player responsive: true
+INFO  TC_533: Multiple rapid clicks verified - No crash, single playback
+========== TEST PASSED: TC_533 ==========
+[PASS] AudioPlayerBehaviorTests :: TC533_VerifyMultipleRapidPlayClicks
+========== TEST PASSED: TC533_VerifyMultipleRapidPlayClicks: TC_533: Verify audio player handles multiple rapid play clicks without crashing ==========
+============================================================
+Ended: 2026-06-23 08:38:00

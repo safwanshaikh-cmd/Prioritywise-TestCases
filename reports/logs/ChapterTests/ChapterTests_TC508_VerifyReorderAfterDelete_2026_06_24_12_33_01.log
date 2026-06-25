@@ -1,0 +1,31 @@
+============================================================
+Test Log: ChapterTests.TC508_VerifyReorderAfterDelete
+Started: 2026-06-24 12:33:01
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC508_VerifyReorderAfterDelete_2026_06_24_12_33_01.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC508_VerifyReorderAfterDelete_2026_06_24_12_33_01.log
+[START] ChapterTests :: TC508_VerifyReorderAfterDelete
+========== TEST STARTED: TC508_VerifyReorderAfterDelete ==========
+========== TEST STARTED: TC_508: Chapter Reorder After Delete ==========
+STEP 1: Log in as uploader and open a book with at least 3 chapters
+INFO  Logged in as uploader
+INFO  TC_508 - STEP 1: Navigating to existing Pending books
+INFO  TC_508 - STEP 2: Trying existing book index 0 = 'Automation Book 6f49b0'
+INFO  TC_508 - STEP 3: Edit book screen opened
+INFO  TC_508 - STEP 4: Chapter screen opened after clicking Next
+INFO  TC_508 - STEP 5: Existing chapter count for 'Automation Book 6f49b0' = 24
+INFO  TC_508 - STEP 6: Using existing book 'Automation Book 6f49b0' for chapter operation
+STEP 2: Capture chapter count before deleting a middle chapter
+INFO  TC_508 - STEP 2: Chapter count before delete: 24
+STEP 3: Delete a middle chapter and verify success
+INFO  TC_508 - SUCCESS MESSAGE: Audio file deleted successfully.
+INFO  TC_508 - STEP 3: Delete message: Audio file deleted successfully.
+INFO  TC_508 - STEP 3: Chapter count after delete: 16
+STEP 4: Verify remaining chapters are accessible after the reorder
+INFO  TC_508 - STEP 4: Remaining chapters accessible: true
+INFO  TC_508: Chapter reordering after delete verified
+========== TEST PASSED: TC_508 ==========
+[PASS] ChapterTests :: TC508_VerifyReorderAfterDelete
+========== TEST PASSED: TC508_VerifyReorderAfterDelete: TC_508: Verify chapter sequence auto-adjusts after deleting a middle chapter ==========
+============================================================
+Ended: 2026-06-24 12:33:42

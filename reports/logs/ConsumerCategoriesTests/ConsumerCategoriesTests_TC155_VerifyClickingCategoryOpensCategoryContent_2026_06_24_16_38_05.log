@@ -1,0 +1,18 @@
+============================================================
+Test Log: ConsumerCategoriesTests.TC155_VerifyClickingCategoryOpensCategoryContent
+Started: 2026-06-24 16:38:05
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC155_VerifyClickingCategoryOpensCategoryContent_2026_06_24_16_38_05.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC155_VerifyClickingCategoryOpensCategoryContent_2026_06_24_16_38_05.log
+[START] ConsumerCategoriesTests :: TC155_VerifyClickingCategoryOpensCategoryContent
+========== TEST STARTED: TC155_VerifyClickingCategoryOpensCategoryContent ==========
+========== TEST STARTED: TC_155: Clicking Category Opens Category Content ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Scroll to categories section
+STEP 3: Click first visible category
+INFO  TC_155: Opened category: Art
+========== TEST PASSED: TC_155 ==========
+[PASS] ConsumerCategoriesTests :: TC155_VerifyClickingCategoryOpensCategoryContent
+========== TEST PASSED: TC155_VerifyClickingCategoryOpensCategoryContent: TC_155: Verify clicking a category opens the category content ==========
+============================================================
+Ended: 2026-06-24 16:38:10

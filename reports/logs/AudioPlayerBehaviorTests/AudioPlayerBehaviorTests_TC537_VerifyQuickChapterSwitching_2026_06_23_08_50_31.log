@@ -1,0 +1,30 @@
+============================================================
+Test Log: AudioPlayerBehaviorTests.TC537_VerifyQuickChapterSwitching
+Started: 2026-06-23 08:50:31
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC537_VerifyQuickChapterSwitching_2026_06_23_08_50_31.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC537_VerifyQuickChapterSwitching_2026_06_23_08_50_31.log
+[START] AudioPlayerBehaviorTests :: TC537_VerifyQuickChapterSwitching
+========== TEST STARTED: TC537_VerifyQuickChapterSwitching ==========
+========== TEST STARTED: TC_537: Audio Quick Chapter Switching ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_537 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_537 - STEP 2: Opened a book from dashboard
+STEP 3: Verify multiple chapters are available
+STEP 4: Start playback and capture current chapter
+INFO  TC_537 - STEP 3: Current chapter: N/A
+STEP 5: Switch to next chapter quickly
+INFO  TC_537 - STEP 4: Switched to next chapter
+STEP 6: Verify new chapter started and previous audio stopped
+INFO  TC_537 - STEP 5: New chapter: N/A
+INFO  TC_537 - STEP 6: Chapter switch detected: true
+INFO  TC_537 - STEP 6: Title changed: false
+INFO  TC_537 - STEP 6: New chapter playing: true
+INFO  TC_537: Quick chapter switching verified - Previous audio stopped, new starts. System behaved as expected with no deviations
+========== TEST PASSED: TC_537 ==========
+[PASS] AudioPlayerBehaviorTests :: TC537_VerifyQuickChapterSwitching
+========== TEST PASSED: TC537_VerifyQuickChapterSwitching: TC_537: Verify quick chapter switching stops previous audio and starts new chapter ==========
+============================================================
+Ended: 2026-06-23 08:52:27

@@ -66,6 +66,15 @@ public class ContactUsPage extends BasePage {
 			"//button[@type='submit'] | //input[@type='submit']"
 					+ " | //*[contains(text(),'Submit') or contains(text(),'Send')]");
 
+	// ==================== Toast ====================
+
+	/**
+	 * Success toast rendered by the page after a successful submit. Same
+	 * {@code data-testid} used elsewhere in the app (see
+	 * {@link LoginPage#SUCCESSFUL_LOGIN_MESSAGE}).
+	 */
+	private static final By SUCCESS_TOAST = By.xpath("//div[@data-testid='toastText1']");
+
 	// ==================== Upload area ====================
 
 	/**
@@ -74,7 +83,8 @@ public class ContactUsPage extends BasePage {
 	 * gate.
 	 */
 	private static final By UPLOAD_PLACEHOLDER = By.xpath(
-			"//div[contains(., 'Please upload file')]"
+			"//*[@data-testid='media-picker-button']"
+						+ " | //div[contains(., 'Please upload file')]"
 					+ " | //div[contains(@class,'upload') and (contains(., 'upload') or contains(., 'Upload'))]"
 					+ " | //*[@role='button' and (contains(., 'upload') or contains(., 'Upload'))]");
 
@@ -180,6 +190,53 @@ public class ContactUsPage extends BasePage {
 			throw new RuntimeException("ContactUsPage: No submit-shaped element found", e);
 		}
 		LoggerUtils.logInfo("ContactUsPage: Generic submit clicked");
+	}
+
+	// ==================== Toast ====================
+
+	/**
+	 * @return {@code true} if the success toast is currently visible on
+	 *         the page. Cheap probe; does not poll.
+	 */
+	public boolean isSuccessToastVisible() {
+		try {
+			return driver.findElement(SUCCESS_TOAST).isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	/**
+	 * Poll for the success toast to render with a non-empty body after
+	 * submit. Uses a {@link WebDriverWait} with a custom condition that
+	 * returns the toast text only once it is actually populated (the
+	 * toast {@code <div>} mounts before the text arrives, and may even
+	 * auto-dismiss before the text shows up — so a naive
+	 * {@code isDisplayed()} probe returns an empty string and the call
+	 * must instead wait for the text content itself to materialise).
+	 *
+	 * @param timeout how long to keep polling.
+	 * @return the toast text once it is populated, or {@code null} if the
+	 *         toast did not appear with text within the budget.
+	 */
+	public String waitForSuccessToast(java.time.Duration timeout) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, timeout);
+			wait.pollingEvery(java.time.Duration.ofMillis(150));
+			wait.ignoring(org.openqa.selenium.StaleElementReferenceException.class);
+			wait.ignoring(org.openqa.selenium.NoSuchElementException.class);
+			return wait.until(d -> {
+				WebElement toast = d.findElement(SUCCESS_TOAST);
+				String text = toast == null ? null : toast.getText();
+				if (text == null || text.trim().isEmpty()) {
+					return null;
+				}
+				return text;
+			});
+		} catch (Exception e) {
+			// Toast never mounted or never populated with text.
+			return null;
+		}
 	}
 
 	// ==================== Upload area ====================

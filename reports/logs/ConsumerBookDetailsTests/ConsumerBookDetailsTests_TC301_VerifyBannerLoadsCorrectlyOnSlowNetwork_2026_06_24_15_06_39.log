@@ -1,0 +1,18 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork
+Started: 2026-06-24 15:06:39
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork_2026_06_24_15_06_39.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork_2026_06_24_15_06_39.log
+[START] ConsumerBookDetailsTests :: TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork
+========== TEST STARTED: TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork ==========
+========== TEST STARTED: TC_301: Banner Loads Correctly On Slow Network ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Throttle network and verify banner loads
+INFO  TC_301 - Banner stable under throttled network: true
+INFO  TC_301: Banner stable under throttled network: true
+========== TEST PASSED: TC_301 ==========
+[PASS] ConsumerBookDetailsTests :: TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork
+========== TEST PASSED: TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork: TC_301: Verify banner loads correctly on slow network using CDP ==========
+============================================================
+Ended: 2026-06-24 15:06:46

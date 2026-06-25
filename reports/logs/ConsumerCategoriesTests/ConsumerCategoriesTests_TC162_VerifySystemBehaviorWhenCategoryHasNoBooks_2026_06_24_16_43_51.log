@@ -1,0 +1,19 @@
+============================================================
+Test Log: ConsumerCategoriesTests.TC162_VerifySystemBehaviorWhenCategoryHasNoBooks
+Started: 2026-06-24 16:43:51
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC162_VerifySystemBehaviorWhenCategoryHasNoBooks_2026_06_24_16_43_51.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC162_VerifySystemBehaviorWhenCategoryHasNoBooks_2026_06_24_16_43_51.log
+[START] ConsumerCategoriesTests :: TC162_VerifySystemBehaviorWhenCategoryHasNoBooks
+========== TEST STARTED: TC162_VerifySystemBehaviorWhenCategoryHasNoBooks ==========
+========== TEST STARTED: TC_162: System Behavior When Category Has No Books ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Scroll to categories section
+STEP 3: Open configured empty category
+STEP 4: Verify stable no-books or no-content state
+INFO  TC_162: contentCount=0, hasContent=false, noBooksOrContentMessage=false
+========== TEST PASSED: TC_162 ==========
+[PASS] ConsumerCategoriesTests :: TC162_VerifySystemBehaviorWhenCategoryHasNoBooks
+========== TEST PASSED: TC162_VerifySystemBehaviorWhenCategoryHasNoBooks: TC_162: Verify behavior when a category has no books ==========
+============================================================
+Ended: 2026-06-24 16:44:09

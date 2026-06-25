@@ -1,0 +1,44 @@
+============================================================
+Test Log: AudioPlayerBehaviorTests.TC532_VerifyAudioPlaybackWithoutInternet
+Started: 2026-06-23 08:33:30
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC532_VerifyAudioPlaybackWithoutInternet_2026_06_23_08_33_30.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC532_VerifyAudioPlaybackWithoutInternet_2026_06_23_08_33_30.log
+[START] AudioPlayerBehaviorTests :: TC532_VerifyAudioPlaybackWithoutInternet
+========== TEST STARTED: TC532_VerifyAudioPlaybackWithoutInternet ==========
+========== TEST STARTED: TC_532: Audio Playback Without Internet (CDP) ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_532 - STEP 1: Logged in as registered user
+STEP 2: Initialize Chrome DevTools for network control
+INFO  TC_532 - Checking browser type for CDP support
+INFO  TC_532 - ChromeDriver detected, initializing DevTools
+INFO  TC_532 - DevTools instance created
+INFO  TC_532 - DevTools session created
+INFO  TC_532 - Network domain enabled successfully
+INFO  TC_532 - Chrome DevTools fully initialized and ready
+INFO  TC_532 - STEP 2: DevTools initialized
+STEP 3: Navigate to audio player
+INFO  TC_532 - STEP 3: Audio player ready (took 57543ms)
+STEP 4: Start audio playback
+INFO  TC_532 - STEP 4: Audio play button clicked (took 40312ms)
+STEP 5: Disconnect network using CDP
+INFO  TC_532 - Disconnecting network using CDP...
+INFO  TC_532 - ✓ Network disconnected successfully (emulateNetworkConditions: offline=true, throughput=0)
+INFO  TC_532 - STEP 5: Network disconnected using CDP (took 2016ms)
+STEP 6: Verify player behavior after network disconnection
+INFO  TC_532 - STEP 6: Player responsive: false
+INFO  TC_532 - STEP 6: Network error detected: true
+INFO  TC_532 - STEP 6: Checks completed (took 57224ms)
+STEP 7: Reconnect network for cleanup
+INFO  TC_532 - Reconnecting network using CDP...
+INFO  TC_532 - ✓ Network reconnected successfully (emulateNetworkConditions: offline=false, throughput restored)
+INFO  TC_532 - STEP 7: Network reconnected (took 2014ms)
+INFO  TC_532: ✓ Test PASSED - Application handled network loss gracefully
+========== TEST PASSED: TC_532 ==========
+INFO  TC_532 - Reconnecting network using CDP...
+INFO  TC_532 - ✓ Network reconnected successfully (emulateNetworkConditions: offline=false, throughput restored)
+[PASS] AudioPlayerBehaviorTests :: TC532_VerifyAudioPlaybackWithoutInternet
+========== TEST PASSED: TC532_VerifyAudioPlaybackWithoutInternet: TC_532: Verify audio player behavior when network is disconnected using CDP ==========
+============================================================
+Ended: 2026-06-23 08:36:41

@@ -1,0 +1,18 @@
+============================================================
+Test Log: ConsumerCategoriesTests.TC160_VerifyClickingCategoryOpensCategoryPage
+Started: 2026-06-24 16:42:31
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC160_VerifyClickingCategoryOpensCategoryPage_2026_06_24_16_42_31.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC160_VerifyClickingCategoryOpensCategoryPage_2026_06_24_16_42_31.log
+[START] ConsumerCategoriesTests :: TC160_VerifyClickingCategoryOpensCategoryPage
+========== TEST STARTED: TC160_VerifyClickingCategoryOpensCategoryPage ==========
+========== TEST STARTED: TC_160: Clicking Category Opens Category Page ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Scroll to categories section
+STEP 3: Click first category card
+INFO  TC_160: Opened category card: Art
+========== TEST PASSED: TC_160 ==========
+[PASS] ConsumerCategoriesTests :: TC160_VerifyClickingCategoryOpensCategoryPage
+========== TEST PASSED: TC160_VerifyClickingCategoryOpensCategoryPage: TC_160: Verify clicking a category card opens the category page ==========
+============================================================
+Ended: 2026-06-24 16:42:35

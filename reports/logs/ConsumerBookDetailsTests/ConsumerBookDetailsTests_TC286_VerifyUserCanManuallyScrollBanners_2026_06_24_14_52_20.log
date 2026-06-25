@@ -1,0 +1,18 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC286_VerifyUserCanManuallyScrollBanners
+Started: 2026-06-24 14:52:20
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC286_VerifyUserCanManuallyScrollBanners_2026_06_24_14_52_20.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC286_VerifyUserCanManuallyScrollBanners_2026_06_24_14_52_20.log
+[START] ConsumerBookDetailsTests :: TC286_VerifyUserCanManuallyScrollBanners
+========== TEST STARTED: TC286_VerifyUserCanManuallyScrollBanners ==========
+========== TEST STARTED: TC_286: User Can Manually Scroll Banners ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Check if multi-banner scenario is available
+STEP 3: Drag banner and verify change
+INFO  TC_286: Banner drag successful: true
+========== TEST PASSED: TC_286 ==========
+[PASS] ConsumerBookDetailsTests :: TC286_VerifyUserCanManuallyScrollBanners
+========== TEST PASSED: TC286_VerifyUserCanManuallyScrollBanners: TC_286: Verify user can manually scroll banners ==========
+============================================================
+Ended: 2026-06-24 14:52:32

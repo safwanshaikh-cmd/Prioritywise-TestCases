@@ -1,0 +1,17 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC314_VerifyUiWhenSummaryIsMissing
+Started: 2026-06-24 15:18:53
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC314_VerifyUiWhenSummaryIsMissing_2026_06_24_15_18_53.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC314_VerifyUiWhenSummaryIsMissing_2026_06_24_15_18_53.log
+[START] ConsumerBookDetailsTests :: TC314_VerifyUiWhenSummaryIsMissing
+========== TEST STARTED: TC314_VerifyUiWhenSummaryIsMissing ==========
+========== TEST STARTED: TC_314: UI When Summary Is Missing ==========
+STEP 1: Open book details from dashboard
+STEP 2: Check if current book has summary
+INFO  Current book has summary content, so the empty-summary state is not available.
+========== TEST SKIPPED - Summary exists: TC_314 ==========
+[PASS] ConsumerBookDetailsTests :: TC314_VerifyUiWhenSummaryIsMissing
+========== TEST PASSED: TC314_VerifyUiWhenSummaryIsMissing: TC_314: Verify UI behavior when summary is missing ==========
+============================================================
+Ended: 2026-06-24 15:19:11

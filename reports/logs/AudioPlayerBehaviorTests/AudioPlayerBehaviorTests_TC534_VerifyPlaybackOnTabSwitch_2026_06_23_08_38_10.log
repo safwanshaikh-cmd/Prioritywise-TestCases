@@ -1,0 +1,31 @@
+============================================================
+Test Log: AudioPlayerBehaviorTests.TC534_VerifyPlaybackOnTabSwitch
+Started: 2026-06-23 08:38:10
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC534_VerifyPlaybackOnTabSwitch_2026_06_23_08_38_10.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC534_VerifyPlaybackOnTabSwitch_2026_06_23_08_38_10.log
+[START] AudioPlayerBehaviorTests :: TC534_VerifyPlaybackOnTabSwitch
+========== TEST STARTED: TC534_VerifyPlaybackOnTabSwitch ==========
+========== TEST STARTED: TC_534: Audio Playback On Tab Switch ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_534 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_534 - STEP 2: Opened a book from dashboard
+STEP 3: Start playback and capture current time
+INFO  TC_534 - STEP 3: Current time before tab switch: 2 seconds
+STEP 4: Open a new browser tab
+INFO  TC_534 - STEP 4: Switched to another browser tab
+STEP 5: Close new tab and return to original playback tab
+INFO  TC_534 - STEP 5: Returned to the original playback tab
+STEP 6: Verify playback state after tab switch
+INFO  TC_534 - STEP 6: Current time after tab switch: 6 seconds
+INFO  TC_534 - STEP 6: Playback continued: true
+INFO  TC_534 - STEP 6: Playback paused: false
+INFO  TC_534 - STEP 6: Player responsive after tab switch: true
+INFO  TC_534: Tab switch behavior verified - System behaved as expected with no deviations
+========== TEST PASSED: TC_534 ==========
+[PASS] AudioPlayerBehaviorTests :: TC534_VerifyPlaybackOnTabSwitch
+========== TEST PASSED: TC534_VerifyPlaybackOnTabSwitch: TC_534: Verify audio player behavior across browser tab switches ==========
+============================================================
+Ended: 2026-06-23 08:39:29

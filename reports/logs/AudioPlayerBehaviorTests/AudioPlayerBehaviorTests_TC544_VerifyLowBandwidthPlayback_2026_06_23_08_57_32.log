@@ -1,0 +1,41 @@
+============================================================
+Test Log: AudioPlayerBehaviorTests.TC544_VerifyLowBandwidthPlayback
+Started: 2026-06-23 08:57:32
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC544_VerifyLowBandwidthPlayback_2026_06_23_08_57_32.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC544_VerifyLowBandwidthPlayback_2026_06_23_08_57_32.log
+[START] AudioPlayerBehaviorTests :: TC544_VerifyLowBandwidthPlayback
+========== TEST STARTED: TC544_VerifyLowBandwidthPlayback ==========
+========== TEST STARTED: TC_544: Audio Low Bandwidth Playback ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_544 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_544 - STEP 2: Opened a book from dashboard
+STEP 3: Start playback with normal network
+INFO  TC_544 - STEP 3: Audio playback started with normal network
+STEP 4: Initialize DevTools for network throttling
+INFO  TC_532 - Checking browser type for CDP support
+INFO  TC_532 - ChromeDriver detected, initializing DevTools
+INFO  TC_532 - DevTools instance created
+INFO  TC_532 - DevTools session created
+INFO  TC_532 - Network domain enabled successfully
+INFO  TC_532 - Chrome DevTools fully initialized and ready
+INFO  TC_544 - STEP 4: DevTools initialized for network throttling
+STEP 5: Throttle network to 2G speeds during playback
+INFO  TC_544 - STEP 6: Network throttled to 50 Kbps, 300ms latency during playback
+STEP 6: Verify playback handles buffering gracefully
+INFO  TC_544 - STEP 7: Player responsive: true
+INFO  TC_544 - STEP 7: Playing or buffering: true
+STEP 7: Restore normal network
+INFO  TC_532 - Reconnecting network using CDP...
+INFO  TC_532 - ✓ Network reconnected successfully (emulateNetworkConditions: offline=false, throughput restored)
+INFO  TC_544 - STEP 8: Network restored to normal speed
+INFO  TC_544: Low bandwidth playback verified - Buffering handled properly. System behaved as expected with no deviations
+========== TEST PASSED: TC_544 ==========
+INFO  TC_532 - Reconnecting network using CDP...
+INFO  TC_532 - ✓ Network reconnected successfully (emulateNetworkConditions: offline=false, throughput restored)
+[PASS] AudioPlayerBehaviorTests :: TC544_VerifyLowBandwidthPlayback
+========== TEST PASSED: TC544_VerifyLowBandwidthPlayback: TC_544: Verify audio player handles low bandwidth via CDP network throttling ==========
+============================================================
+Ended: 2026-06-23 08:59:07

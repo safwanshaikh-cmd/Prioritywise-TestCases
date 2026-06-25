@@ -1,0 +1,17 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC313_VerifySummaryContentLoads
+Started: 2026-06-24 15:17:56
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC313_VerifySummaryContentLoads_2026_06_24_15_17_56.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC313_VerifySummaryContentLoads_2026_06_24_15_17_56.log
+[START] ConsumerBookDetailsTests :: TC313_VerifySummaryContentLoads
+========== TEST STARTED: TC313_VerifySummaryContentLoads ==========
+========== TEST STARTED: TC_313: Summary Content Loads ==========
+STEP 1: Open book details from dashboard
+STEP 2: Verify summary or empty state
+INFO  TC_313: Summary visible - true, Empty message - false
+========== TEST PASSED: TC_313 ==========
+[PASS] ConsumerBookDetailsTests :: TC313_VerifySummaryContentLoads
+========== TEST PASSED: TC313_VerifySummaryContentLoads: TC_313: Verify summary content loads ==========
+============================================================
+Ended: 2026-06-24 15:18:17

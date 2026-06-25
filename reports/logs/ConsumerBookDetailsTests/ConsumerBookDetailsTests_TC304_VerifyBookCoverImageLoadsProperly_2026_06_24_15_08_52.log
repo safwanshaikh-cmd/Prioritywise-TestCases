@@ -1,0 +1,17 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC304_VerifyBookCoverImageLoadsProperly
+Started: 2026-06-24 15:08:52
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC304_VerifyBookCoverImageLoadsProperly_2026_06_24_15_08_52.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC304_VerifyBookCoverImageLoadsProperly_2026_06_24_15_08_52.log
+[START] ConsumerBookDetailsTests :: TC304_VerifyBookCoverImageLoadsProperly
+========== TEST STARTED: TC304_VerifyBookCoverImageLoadsProperly ==========
+========== TEST STARTED: TC_304: Book Cover Image Loads Properly ==========
+STEP 1: Open book details from dashboard
+STEP 2: Verify cover image or placeholder
+INFO  TC_304: Cover visible - true, Placeholder visible - false
+========== TEST PASSED: TC_304 ==========
+[PASS] ConsumerBookDetailsTests :: TC304_VerifyBookCoverImageLoadsProperly
+========== TEST PASSED: TC304_VerifyBookCoverImageLoadsProperly: TC_304: Verify book cover image loads properly ==========
+============================================================
+Ended: 2026-06-24 15:09:11

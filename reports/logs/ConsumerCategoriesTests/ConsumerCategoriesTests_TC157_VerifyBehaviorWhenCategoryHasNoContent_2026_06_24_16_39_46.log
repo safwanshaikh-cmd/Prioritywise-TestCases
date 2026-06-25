@@ -1,0 +1,19 @@
+============================================================
+Test Log: ConsumerCategoriesTests.TC157_VerifyBehaviorWhenCategoryHasNoContent
+Started: 2026-06-24 16:39:46
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC157_VerifyBehaviorWhenCategoryHasNoContent_2026_06_24_16_39_46.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC157_VerifyBehaviorWhenCategoryHasNoContent_2026_06_24_16_39_46.log
+[START] ConsumerCategoriesTests :: TC157_VerifyBehaviorWhenCategoryHasNoContent
+========== TEST STARTED: TC157_VerifyBehaviorWhenCategoryHasNoContent ==========
+========== TEST STARTED: TC_157: Behavior When Category Has No Content ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Scroll to categories section
+STEP 3: Find an empty category in the current data set
+STEP 4: Verify empty category shows no content or a stable empty state
+INFO  TC_157: emptyCategory=Horror, noContentMessage=false, noContent=true
+========== TEST PASSED: TC_157 ==========
+[PASS] ConsumerCategoriesTests :: TC157_VerifyBehaviorWhenCategoryHasNoContent
+========== TEST PASSED: TC157_VerifyBehaviorWhenCategoryHasNoContent: TC_157: Verify behavior when a category has no content ==========
+============================================================
+Ended: 2026-06-24 16:40:25

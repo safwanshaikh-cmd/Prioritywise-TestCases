@@ -1,0 +1,18 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC312_VerifyClickingCategoryNavigatesToCategoryPage
+Started: 2026-06-24 15:17:14
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC312_VerifyClickingCategoryNavigatesToCategoryPage_2026_06_24_15_17_14.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC312_VerifyClickingCategoryNavigatesToCategoryPage_2026_06_24_15_17_14.log
+[START] ConsumerBookDetailsTests :: TC312_VerifyClickingCategoryNavigatesToCategoryPage
+========== TEST STARTED: TC312_VerifyClickingCategoryNavigatesToCategoryPage ==========
+========== TEST STARTED: TC_312: Clicking Category Navigates To Category Page ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Navigate to Art category from dashboard
+STEP 3: Verify category page is displayed with content
+INFO  TC_312: Category page has content: true
+========== TEST PASSED: TC_312 ==========
+[PASS] ConsumerBookDetailsTests :: TC312_VerifyClickingCategoryNavigatesToCategoryPage
+========== TEST PASSED: TC312_VerifyClickingCategoryNavigatesToCategoryPage: TC_312: Verify clicking category navigates to category page ==========
+============================================================
+Ended: 2026-06-24 15:17:20

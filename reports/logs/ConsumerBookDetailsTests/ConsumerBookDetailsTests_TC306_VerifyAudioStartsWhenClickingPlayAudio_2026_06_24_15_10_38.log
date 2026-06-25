@@ -1,0 +1,18 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC306_VerifyAudioStartsWhenClickingPlayAudio
+Started: 2026-06-24 15:10:38
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC306_VerifyAudioStartsWhenClickingPlayAudio_2026_06_24_15_10_38.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC306_VerifyAudioStartsWhenClickingPlayAudio_2026_06_24_15_10_38.log
+[START] ConsumerBookDetailsTests :: TC306_VerifyAudioStartsWhenClickingPlayAudio
+========== TEST STARTED: TC306_VerifyAudioStartsWhenClickingPlayAudio ==========
+========== TEST STARTED: TC_306: Audio Starts When Clicking Play Audio ==========
+STEP 1: Open book details from dashboard
+STEP 2: Check if Play button is visible
+STEP 3: Click Play and verify audio starts
+INFO  TC_306: Audio started: true
+========== TEST PASSED: TC_306 ==========
+[PASS] ConsumerBookDetailsTests :: TC306_VerifyAudioStartsWhenClickingPlayAudio
+========== TEST PASSED: TC306_VerifyAudioStartsWhenClickingPlayAudio: TC_306: Verify audio starts when clicking Play Audio ==========
+============================================================
+Ended: 2026-06-24 15:11:27

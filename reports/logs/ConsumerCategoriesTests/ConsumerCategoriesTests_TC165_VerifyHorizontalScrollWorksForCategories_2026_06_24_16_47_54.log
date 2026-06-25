@@ -1,0 +1,18 @@
+============================================================
+Test Log: ConsumerCategoriesTests.TC165_VerifyHorizontalScrollWorksForCategories
+Started: 2026-06-24 16:47:54
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC165_VerifyHorizontalScrollWorksForCategories_2026_06_24_16_47_54.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerCategoriesTests_TC165_VerifyHorizontalScrollWorksForCategories_2026_06_24_16_47_54.log
+[START] ConsumerCategoriesTests :: TC165_VerifyHorizontalScrollWorksForCategories
+========== TEST STARTED: TC165_VerifyHorizontalScrollWorksForCategories ==========
+========== TEST STARTED: TC_165: Horizontal Scroll Works For Categories ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Scroll to categories section
+STEP 3: Capture scroll position and attempt horizontal scroll
+INFO  TC_165: scrolled=false, beforeScroll=0, afterScroll=0
+========== TEST PASSED: TC_165 ==========
+[PASS] ConsumerCategoriesTests :: TC165_VerifyHorizontalScrollWorksForCategories
+========== TEST PASSED: TC165_VerifyHorizontalScrollWorksForCategories: TC_165: Verify horizontal scroll works for the categories carousel ==========
+============================================================
+Ended: 2026-06-24 16:48:00

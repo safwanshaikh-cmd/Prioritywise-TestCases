@@ -9,51 +9,10 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">13</td><td class="num attn">1</td><td class="num">0</td><td class="num">0</td><td class="num">669,858</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">61,944</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; skipped</th></tr><tr class="skippedeven"><td rowspan="1">tests.AboutUsContactUsTests</td><td><a href="#m0">TC527_VerifyContactUsDocumentUploadWithValidFile</a></td><td rowspan="1">1782131841973</td><td rowspan="1">57413</td></tr><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="13">tests.AboutUsContactUsTests</td><td><a href="#m1">TC514_VerifyAboutUsNavigation</a></td><td rowspan="1">1782131254634</td><td rowspan="1">29862</td></tr><tr class="passedeven"><td><a href="#m2">TC515_VerifyAboutUsContent</a></td><td rowspan="1">1782131297551</td><td rowspan="1">27758</td></tr><tr class="passedeven"><td><a href="#m3">TC516_VerifyAboutUsPageRefresh</a></td><td rowspan="1">1782131338185</td><td rowspan="1">31697</td></tr><tr class="passedeven"><td><a href="#m4">TC517_VerifyAboutUsLinks</a></td><td rowspan="1">1782131384690</td><td rowspan="1">34960</td></tr><tr class="passedeven"><td><a href="#m5">TC518_VerifyAboutUsGuestAccess</a></td><td rowspan="1">1782131432615</td><td rowspan="1">915</td></tr><tr class="passedeven"><td><a href="#m6">TC519_VerifyContactUsNavigation</a></td><td rowspan="1">1782131445861</td><td rowspan="1">31258</td></tr><tr class="passedeven"><td><a href="#m7">TC520_VerifyContactUsFormSubmission</a></td><td rowspan="1">1782131488059</td><td rowspan="1">51986</td></tr><tr class="passedeven"><td><a href="#m8">TC521_VerifyContactUsMandatoryFieldValidation</a></td><td rowspan="1">1782131554148</td><td rowspan="1">33926</td></tr><tr class="passedeven"><td><a href="#m9">TC522_VerifyContactUsMaxFieldLength</a></td><td rowspan="1">1782131599512</td><td rowspan="1">44840</td></tr><tr class="passedeven"><td><a href="#m10">TC523_VerifyContactUsSpecialCharactersValidation</a></td><td rowspan="1">1782131655174</td><td rowspan="1">44695</td></tr><tr class="passedeven"><td><a href="#m11">TC524_VerifyContactUsNetworkFailure</a></td><td rowspan="1">1782131711951</td><td rowspan="1">37363</td></tr><tr class="passedeven"><td><a href="#m12">TC525_VerifyContactUsGuestAccess</a></td><td rowspan="1">1782131761625</td><td rowspan="1">4948</td></tr><tr class="passedeven"><td><a href="#m13">TC526_VerifyContactUsDocumentUpload</a></td><td rowspan="1">1782131780439</td><td rowspan="1">49802</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">tests.ConsumerCategoriesTests</td><td><a href="#m0">TC166_VerifyTrendingShowsSectionDisplayed</a></td><td rowspan="1">1782365450396</td><td rowspan="1">17329</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">tests.AboutUsContactUsTests#TC527_VerifyContactUsDocumentUploadWithValidFile</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.testng.SkipException: TC_527: File input is not directly scriptable on the current Contact Us UI. The upload area is rendered as a CSS-styled placeholder that exposes &lt;input type=&apos;file&apos;&gt; only after a JS-triggered click which surfaces the OS file picker dialog — not interactable via WebDriver. Re-enable this test when the page exposes a scriptable file input.
-	at tests.AboutUsContactUsTests.TC527_VerifyContactUsDocumentUploadWithValidFile(AboutUsContactUsTests.java:863)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at org.testng.TestRunner.privateRun(TestRunner.java:819)
-	at org.testng.TestRunner.run(TestRunner.java:619)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-	at org.testng.TestNG.runSuites(TestNG.java:1134)
-	at org.testng.TestNG.run(TestNG.java:1101)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">tests.AboutUsContactUsTests#TC514_VerifyAboutUsNavigation</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">tests.AboutUsContactUsTests#TC515_VerifyAboutUsContent</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m3">tests.AboutUsContactUsTests#TC516_VerifyAboutUsPageRefresh</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m4">tests.AboutUsContactUsTests#TC517_VerifyAboutUsLinks</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m5">tests.AboutUsContactUsTests#TC518_VerifyAboutUsGuestAccess</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m6">tests.AboutUsContactUsTests#TC519_VerifyContactUsNavigation</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m7">tests.AboutUsContactUsTests#TC520_VerifyContactUsFormSubmission</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m8">tests.AboutUsContactUsTests#TC521_VerifyContactUsMandatoryFieldValidation</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m9">tests.AboutUsContactUsTests#TC522_VerifyContactUsMaxFieldLength</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m10">tests.AboutUsContactUsTests#TC523_VerifyContactUsSpecialCharactersValidation</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m11">tests.AboutUsContactUsTests#TC524_VerifyContactUsNetworkFailure</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m12">tests.AboutUsContactUsTests#TC525_VerifyContactUsGuestAccess</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m13">tests.AboutUsContactUsTests#TC526_VerifyContactUsDocumentUpload</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Default test</h2><h3 id="m0">tests.ConsumerCategoriesTests#TC166_VerifyTrendingShowsSectionDisplayed</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

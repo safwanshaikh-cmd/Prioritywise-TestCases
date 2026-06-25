@@ -1,0 +1,27 @@
+============================================================
+Test Log: AudioPlayerBehaviorTests.TC539_VerifyBackNavigationDuringPlayback
+Started: 2026-06-23 08:54:21
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC539_VerifyBackNavigationDuringPlayback_2026_06_23_08_54_21.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerBehaviorTests_TC539_VerifyBackNavigationDuringPlayback_2026_06_23_08_54_21.log
+[START] AudioPlayerBehaviorTests :: TC539_VerifyBackNavigationDuringPlayback
+========== TEST STARTED: TC539_VerifyBackNavigationDuringPlayback ==========
+========== TEST STARTED: TC_539: Audio Back Navigation During Playback ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_539 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_539 - STEP 2: Opened a book from dashboard
+STEP 3: Start playback and capture current URL
+INFO  TC_539 - STEP 3: Current URL: https://web-splay.acceses.com/book_detail/155/test-japanese
+STEP 4: Navigate back
+INFO  TC_539 - STEP 4: Navigated back
+STEP 5: Verify navigation handled correctly
+INFO  TC_539 - STEP 5: URL after back: https://web-splay.acceses.com/
+INFO  TC_539 - STEP 6: Navigation handled: true
+INFO  TC_539: Back navigation during playback verified - Playback stops or navigates correctly. System behaved as expected with no deviations
+========== TEST PASSED: TC_539 ==========
+[PASS] AudioPlayerBehaviorTests :: TC539_VerifyBackNavigationDuringPlayback
+========== TEST PASSED: TC539_VerifyBackNavigationDuringPlayback: TC_539: Verify audio player behavior on browser back navigation during playback ==========
+============================================================
+Ended: 2026-06-23 08:55:39

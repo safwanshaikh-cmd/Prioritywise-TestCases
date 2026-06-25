@@ -1,0 +1,28 @@
+============================================================
+Test Log: ChapterTests.TC494_VerifyChapterEditCancel
+Started: 2026-06-24 12:24:25
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC494_VerifyChapterEditCancel_2026_06_24_12_24_25.log
+============================================================
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ChapterTests_TC494_VerifyChapterEditCancel_2026_06_24_12_24_25.log
+[START] ChapterTests :: TC494_VerifyChapterEditCancel
+========== TEST STARTED: TC494_VerifyChapterEditCancel ==========
+========== TEST STARTED: TC_494: Chapter Edit Cancel ==========
+STEP 1: Log in as uploader and open an existing book chapter section
+INFO  Logged in as uploader
+INFO  TC_494 - STEP 1: Navigating to existing Pending books
+INFO  TC_494 - STEP 2: Trying existing book index 0 = 'Automation Book 6f49b0'
+INFO  TC_494 - STEP 3: Edit book screen opened
+INFO  TC_494 - STEP 4: Chapter screen opened after clicking Next
+INFO  TC_494 - STEP 5: Existing chapter count for 'Automation Book 6f49b0' = 49
+INFO  TC_494 - STEP 6: Using existing book 'Automation Book 6f49b0' for chapter operation
+STEP 2: Capture original title, modify it, then cancel
+INFO  TC_494 - STEP 2: EXISTING Title: Updated Chapter 789fdf
+STEP 3: Re-open the chapter and verify the original title is preserved
+INFO  TC_494 - STEP 3: CANCELED INPUT Title: Modified Chapter 9a09fe
+INFO  TC_494 - STEP 3: ACTUAL SAVED Title: Updated Chapter 789fdf
+INFO  TC_494: Chapter edit cancel verified
+========== TEST PASSED: TC_494 ==========
+[PASS] ChapterTests :: TC494_VerifyChapterEditCancel
+========== TEST PASSED: TC494_VerifyChapterEditCancel: TC_494: Verify chapter edit cancel preserves original title ==========
+============================================================
+Ended: 2026-06-24 12:25:25
