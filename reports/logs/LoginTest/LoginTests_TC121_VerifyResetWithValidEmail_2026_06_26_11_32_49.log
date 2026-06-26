@@ -1,0 +1,17 @@
+============================================================
+Test Log: LoginTests.TC121_VerifyResetWithValidEmail
+Started: 2026-06-26 11:32:49
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC121_VerifyResetWithValidEmail_2026_06_26_11_32_49.log
+============================================================
+========== TEST STARTED: TC_121: Reset Password With Valid Email ==========
+STEP 1: Check for valid credentials and Forgot Password availability
+STEP 2: Click Forgot Password link
+STEP 3: Verify reset email field is displayed
+INFO  TC_121 - STEP 3: Reset email field displayed: true
+STEP 4: Submit reset password request
+STEP 5: Verify OTP sent message
+INFO  TC_121 - STEP 5: OTP message: OTP sent to your registered email.
+INFO  TC_121: Valid email reset verified successfully
+========== TEST PASSED: TC_121 ==========
+============================================================
+Ended: 2026-06-26 11:32:52

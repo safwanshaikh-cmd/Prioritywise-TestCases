@@ -1,0 +1,13 @@
+============================================================
+Test Log: LoginTests.TC113_VerifyXssInjectionEmailRejected
+Started: 2026-06-26 11:29:26
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC113_VerifyXssInjectionEmailRejected_2026_06_26_11_29_26.log
+============================================================
+========== TEST STARTED: TC_113: XSS Injection Email Rejection ==========
+STEP 1: Attempt login with XSS injection email payload
+STEP 2: Verify login is rejected
+INFO  TC_113 - STEP 2: Login successful: false
+INFO  TC_113: XSS injection protection verified successfully
+========== TEST PASSED: TC_113 ==========
+============================================================
+Ended: 2026-06-26 11:29:45

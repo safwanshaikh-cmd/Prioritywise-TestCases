@@ -1,0 +1,16 @@
+============================================================
+Test Log: LoginTests.TC119_VerifyBrowserRestart
+Started: 2026-06-26 11:31:41
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC119_VerifyBrowserRestart_2026_06_26_11_31_41.log
+============================================================
+========== TEST STARTED: TC_119: Browser Restart With Remember Me ==========
+STEP 1: Check for valid credentials and Remember Me availability
+STEP 2: Check Remember Me and perform login
+STEP 3: Verify initial login is successful
+INFO  TC_119 - STEP 3: Initial login successful: true
+STEP 4: Restart browser and verify session persistence
+INFO  TC_119 - STEP 4: Login form visible after restart: false
+INFO  TC_119: Browser restart with Remember Me verified successfully
+========== TEST PASSED: TC_119 ==========
+============================================================
+Ended: 2026-06-26 11:32:16

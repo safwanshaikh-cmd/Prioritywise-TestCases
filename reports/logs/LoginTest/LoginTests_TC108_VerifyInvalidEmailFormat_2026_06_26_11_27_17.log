@@ -1,0 +1,13 @@
+============================================================
+Test Log: LoginTests.TC108_VerifyInvalidEmailFormat
+Started: 2026-06-26 11:27:17
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC108_VerifyInvalidEmailFormat_2026_06_26_11_27_17.log
+============================================================
+========== TEST STARTED: TC_108: Invalid Email Format Rejection ==========
+STEP 1: Attempt login with invalid email format
+STEP 2: Verify login is not successful
+INFO  TC_108 - STEP 2: Login successful: false
+INFO  TC_108: Invalid email format rejection verified successfully
+========== TEST PASSED: TC_108 ==========
+============================================================
+Ended: 2026-06-26 11:27:36

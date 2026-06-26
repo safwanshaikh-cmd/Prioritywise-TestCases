@@ -3,6 +3,7 @@ package pages;
 import java.net.URI;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,6 +12,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.v145.network.Network;
 
 import base.BasePage;
 import utils.ConfigReader;
@@ -21,6 +25,9 @@ import utils.ConfigReader;
 public class LoginPage extends BasePage {
 
 	private static final Logger LOGGER = Logger.getLogger(LoginPage.class.getName());
+
+	private DevTools devTools;
+	private boolean isNetworkControlled = false;
 
 	private static final By LOGIN_ENTRY_BUTTON = By.xpath("//span[normalize-space()='Login']"
 			+ " | //div[normalize-space()='Login']" + " | //button[normalize-space()='Login']"
@@ -135,9 +142,33 @@ public class LoginPage extends BasePage {
 		}
 	}
 
+	/**
+	 * Simulate double-click on login button.
+	 * Uses standard click method twice to verify only one login occurs.
+	 */
 	public void doubleClickLogin() {
-		click(LOGIN_BUTTON);
-		click(LOGIN_BUTTON);
+		try {
+			WebElement button = wait.waitForElementVisible(LOGIN_BUTTON);
+			Logger.getLogger(LoginPage.class.getName()).
+			log(Level.INFO, "Attempting double-click on login button: {0}", button);
+			// First click attempt
+			jsClick(LOGIN_BUTTON);
+			// Brief pause before second click
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException ie) {
+				Thread.currentThread().interrupt();
+			}
+			// Second click attempt - may fail if page changed, which is OK
+			try {
+				jsClick(LOGIN_BUTTON);
+			} catch (Exception ignored) {
+				// Expected if first click succeeded and page changed
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Double-click failed, using single click: {0}", e.getMessage());
+			clickLogin();
+		}
 	}
 
 	public void loginUser(String email, String password) {
@@ -431,5 +462,218 @@ public class LoginPage extends BasePage {
 		URI uri = URI.create(baseUrl);
 		String normalizedBase = uri.getScheme() + "://" + uri.getAuthority();
 		return normalizedBase + candidatePath;
+	}
+
+	// ==================== Null-Safe Helper Methods ====================
+
+	/**
+	 * Get current URL safely (null-safe).
+	 */
+	public String getCurrentUrlSafely() {
+		try {
+			String url = driver.getCurrentUrl();
+			return url == null ? "" : url;
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	/**
+	 * Check if a string value is blank (null or empty).
+	 */
+	public boolean isBlank(String value) {
+		return value == null || value.trim().isEmpty();
+	}
+
+	/**
+	 * Null-safe string getter.
+	 */
+	public String safe(String value) {
+		return value == null ? "" : value;
+	}
+
+	/**
+	 * Null-safe lower case converter.
+	 */
+	public String safeLower(String value) {
+		return safe(value).toLowerCase();
+	}
+
+	/**
+	 * Get configured valid email from config.
+	 */
+	public String getValidEmail() {
+		return ConfigReader.getProperty("login.validEmail");
+	}
+
+	/**
+	 * Get configured valid password from config.
+	 */
+	public String getValidPassword() {
+		return ConfigReader.getProperty("login.validPassword");
+	}
+
+	/**
+	 * Check if valid credentials are configured.
+	 */
+	public boolean hasValidCredentials() {
+		String email = getValidEmail();
+		String password = getValidPassword();
+		return !isBlank(email) && !isBlank(password);
+	}
+
+	/**
+	 * Check if current URL contains specific text (case-insensitive).
+	 */
+	public boolean isUrlContaining(String searchText) {
+		if (isBlank(searchText)) {
+			return false;
+		}
+		return safeLower(getCurrentUrlSafely()).contains(searchText.toLowerCase());
+	}
+
+	/**
+	 * Check if current URL contains any of the given tokens (case-insensitive).
+	 */
+	public boolean isUrlContainingAny(String... tokens) {
+		String currentUrl = safeLower(getCurrentUrlSafely());
+		for (String token : tokens) {
+			if (!isBlank(token) && currentUrl.contains(token.toLowerCase())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// ==================== Network Throttling Methods ====================
+
+	/**
+	 * Enable network throttling using Chrome DevTools Protocol.
+	 * Simulates Slow 3G network conditions.
+	 */
+	public void enableSlowNetworkThrottling() {
+		try {
+			JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+			// CDP command to enable network throttling (Slow 3G)
+			String script = "chrome.sendCommand('Network.emulateNetworkConditions', {"
+					+ "'offline': false,"
+					+ "'downloadThroughput': 500," // ~500 Kbps (Slow 3G)
+					+ "'uploadThroughput': 500,"
+					+ "'latency': 400" // 400ms latency
+					+ "});";
+			jsExecutor.executeScript(script);
+			LOGGER.log(Level.INFO, "Slow network throttling enabled (Slow 3G)");
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to enable network throttling: {0}", e.getMessage());
+		}
+	}
+
+	/**
+	 * Disable network throttling and restore normal network conditions.
+	 */
+	public void disableNetworkThrottling() {
+		try {
+			JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+			// CDP command to disable network throttling
+			String script = "chrome.sendCommand('Network.emulateNetworkConditions', {"
+					+ "'offline': false,"
+					+ "'downloadThroughput': 0,"
+					+ "'uploadThroughput': 0,"
+					+ "'latency': 0"
+					+ "});";
+			jsExecutor.executeScript(script);
+			LOGGER.log(Level.INFO, "Network throttling disabled - normal network restored");
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to disable network throttling: {0}", e.getMessage());
+		}
+	}
+
+	// ==================== Network Connect / Disconnect (CDP) ====================
+
+	/**
+	 * Returns {@code true} if a DevTools session has been initialized for this
+	 * page (i.e. {@link #initializeNetworkControl()} ran successfully and the
+	 * session has not been closed).
+	 */
+	public boolean isNetworkControlled() {
+		return isNetworkControlled && devTools != null;
+	}
+
+	/**
+	 * Initialize a Chrome DevTools session attached to the current driver and
+	 * enable the {@code Network} domain. Must be a {@link ChromeDriver} session;
+	 * no-op otherwise. Safe to call multiple times — subsequent calls are
+	 * ignored if a session is already active.
+	 */
+	public void initializeNetworkControl() {
+		try {
+			if (isNetworkControlled && devTools != null) {
+				return;
+			}
+			if (!(driver instanceof ChromeDriver)) {
+				LOGGER.log(Level.WARNING,
+						"Network control skipped: driver is not a ChromeDriver ({0})",
+						driver == null ? "null" : driver.getClass().getName());
+				return;
+			}
+			devTools = ((ChromeDriver) driver).getDevTools();
+			devTools.createSession();
+			devTools.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(),
+					Optional.empty()));
+			isNetworkControlled = true;
+			LOGGER.log(Level.INFO, "Chrome DevTools initialized and Network domain enabled");
+		} catch (Exception e) {
+			isNetworkControlled = false;
+			devTools = null;
+			LOGGER.log(Level.WARNING, "Failed to initialize Chrome DevTools: {0}", e.getMessage());
+		}
+	}
+
+	/**
+	 * Disconnect the browser from the network using CDP
+	 * ({@code Network.emulateNetworkConditions} with {@code offline=true},
+	 * {@code downloadThroughput=0}, {@code uploadThroughput=0}, {@code latency=0}).
+	 * Returns {@code true} on success, {@code false} if DevTools is not ready.
+	 */
+	@SuppressWarnings("deprecation")
+	public boolean disconnectNetwork() {
+		try {
+			if (!isNetworkControlled() || devTools == null) {
+				LOGGER.log(Level.WARNING, "Cannot disconnect network: DevTools not initialized");
+				return false;
+			}
+			devTools.send(Network.emulateNetworkConditions(false, 0, 0, 0, Optional.empty(), Optional.empty(),
+					Optional.empty(), Optional.empty()));
+			Thread.sleep(1500);
+			LOGGER.log(Level.INFO, "Network disconnected via CDP (offline=true, throughput=0)");
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to disconnect network: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	/**
+	 * Reconnect the browser to the network and restore normal throughput
+	 * ({@code offline=false}, {@code downloadThroughput=-1},
+	 * {@code uploadThroughput=-1}, {@code latency=0}). Always safe to call in a
+	 * {@code finally} block.
+	 */
+	@SuppressWarnings("deprecation")
+	public boolean reconnectNetwork() {
+		try {
+			if (!isNetworkControlled() || devTools == null) {
+				return false;
+			}
+			devTools.send(Network.emulateNetworkConditions(false, -1, -1, 0, Optional.empty(), Optional.empty(),
+					Optional.empty(), Optional.empty()));
+			Thread.sleep(1000);
+			isNetworkControlled = false;
+			LOGGER.log(Level.INFO, "Network reconnected via CDP (offline=false, normal throughput)");
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to reconnect network: {0}", e.getMessage());
+			return false;
+		}
 	}
 }

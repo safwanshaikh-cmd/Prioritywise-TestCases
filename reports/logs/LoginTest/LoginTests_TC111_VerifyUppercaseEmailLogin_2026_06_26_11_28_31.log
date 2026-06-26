@@ -1,0 +1,14 @@
+============================================================
+Test Log: LoginTests.TC111_VerifyUppercaseEmailLogin
+Started: 2026-06-26 11:28:31
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC111_VerifyUppercaseEmailLogin_2026_06_26_11_28_31.log
+============================================================
+========== TEST STARTED: TC_111: Uppercase Email Login ==========
+STEP 1: Check for valid credentials
+STEP 2: Login with uppercase email
+STEP 3: Verify login is successful
+INFO  TC_111 - STEP 3: Success message: Login successful
+INFO  TC_111: Uppercase email login verified successfully
+========== TEST PASSED: TC_111 ==========
+============================================================
+Ended: 2026-06-26 11:28:35

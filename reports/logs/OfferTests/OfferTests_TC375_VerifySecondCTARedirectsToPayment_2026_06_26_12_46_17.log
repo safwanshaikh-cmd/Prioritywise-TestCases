@@ -1,0 +1,15 @@
+============================================================
+Test Log: OfferTests.TC375_VerifySecondCTARedirectsToPayment
+Started: 2026-06-26 12:46:17
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\OfferTests_TC375_VerifySecondCTARedirectsToPayment_2026_06_26_12_46_17.log
+============================================================
+========== TEST STARTED: TC_375: Second CTA Redirects To Payment ==========
+STEP 1: Open the offer page from the side menu
+STEP 2: Click through the Start Listening CTA flow
+STEP 3: Verify payment / checkout page is displayed
+INFO  TC_375 - STEP 3: Current URL: https://web-splay.acceses.com/payments
+INFO  TC_375 - STEP 3: On payment page: true
+INFO  TC_375: Second CTA redirected to payment successfully
+========== TEST PASSED: TC_375 ==========
+============================================================
+Ended: 2026-06-26 12:46:25

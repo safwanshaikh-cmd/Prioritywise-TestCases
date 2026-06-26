@@ -1,0 +1,14 @@
+============================================================
+Test Log: OfferTests.TC372_VerifyOfferPageAccessibleFromMenu
+Started: 2026-06-26 12:44:29
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\OfferTests_TC372_VerifyOfferPageAccessibleFromMenu_2026_06_26_12_44_29.log
+============================================================
+========== TEST STARTED: TC_372: Offer Page Accessible From Menu ==========
+STEP 1: Open side menu and click the Get 80% Off entry
+STEP 2: Verify the offer page is displayed
+INFO  TC_372 - STEP 2: Current URL: https://web-splay.acceses.com/payments/limited-offer
+INFO  TC_372 - STEP 2: Offer page opened: true
+INFO  TC_372: Offer page opened successfully from menu
+========== TEST PASSED: TC_372 ==========
+============================================================
+Ended: 2026-06-26 12:44:32

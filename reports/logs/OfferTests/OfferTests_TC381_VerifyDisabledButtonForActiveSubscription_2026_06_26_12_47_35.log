@@ -1,0 +1,13 @@
+============================================================
+Test Log: OfferTests.TC381_VerifyDisabledButtonForActiveSubscription
+Started: 2026-06-26 12:47:35
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\OfferTests_TC381_VerifyDisabledButtonForActiveSubscription_2026_06_26_12_47_35.log
+============================================================
+========== TEST STARTED: TC_381: Disabled Button For Active Subscription ==========
+STEP 1: Open side menu and close it to inspect button state
+STEP 2: Verify activation state matches the user's active plan status
+INFO  TC_381 - STEP 2: Active subscription detected: false
+INFO  TC_381: No active subscription - buttons are enabled as expected
+========== TEST PASSED: TC_381 ==========
+============================================================
+Ended: 2026-06-26 12:48:36

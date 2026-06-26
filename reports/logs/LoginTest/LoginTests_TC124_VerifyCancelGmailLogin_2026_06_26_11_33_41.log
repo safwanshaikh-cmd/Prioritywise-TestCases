@@ -1,0 +1,10 @@
+============================================================
+Test Log: LoginTests.TC124_VerifyCancelGmailLogin
+Started: 2026-06-26 11:33:41
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC124_VerifyCancelGmailLogin_2026_06_26_11_33_41.log
+============================================================
+========== TEST STARTED: TC_124: Cancel Gmail Login ==========
+INFO  TC_124: Test skipped - TC_124: Google OAuth cancel flow needs a controlled popup/window automation path.
+[SKIP] LoginTests :: TC124_VerifyCancelGmailLogin
+============================================================
+Ended: 2026-06-26 11:33:41

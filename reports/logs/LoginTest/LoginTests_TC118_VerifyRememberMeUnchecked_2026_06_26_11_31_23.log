@@ -1,0 +1,13 @@
+============================================================
+Test Log: LoginTests.TC118_VerifyRememberMeUnchecked
+Started: 2026-06-26 11:31:23
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC118_VerifyRememberMeUnchecked_2026_06_26_11_31_23.log
+============================================================
+========== TEST STARTED: TC_118: Remember Me Checkbox Unchecked ==========
+STEP 1: Check if Remember Me checkbox is available
+STEP 2: Verify Remember Me is available
+INFO  TC_118 - STEP 2: Remember Me available: true
+INFO  TC_118: Remember Me availability verified successfully
+========== TEST PASSED: TC_118 ==========
+============================================================
+Ended: 2026-06-26 11:31:23

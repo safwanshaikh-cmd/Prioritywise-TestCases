@@ -1,0 +1,12 @@
+============================================================
+Test Log: PlayerTests.TC09_VerifyPlayerLoad
+Started: 2026-06-26 13:16:57
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\PlayerTests_TC09_VerifyPlayerLoad_2026_06_26_13_16_57.log
+============================================================
+========== TEST STARTED: TC_09: Player Load ==========
+STEP 1: Wait for player bar to be ready
+INFO  TC_09 - STEP 1: Player bar loaded
+INFO  TC_09: Player bar loaded successfully
+========== TEST PASSED: TC_09 ==========
+============================================================
+Ended: 2026-06-26 13:16:57

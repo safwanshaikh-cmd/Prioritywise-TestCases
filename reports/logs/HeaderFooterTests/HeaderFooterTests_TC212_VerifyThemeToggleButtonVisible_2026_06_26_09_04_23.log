@@ -1,0 +1,12 @@
+============================================================
+Test Log: HeaderFooterTests.TC212_VerifyThemeToggleButtonVisible
+Started: 2026-06-26 09:04:23
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC212_VerifyThemeToggleButtonVisible_2026_06_26_09_04_23.log
+============================================================
+========== TEST STARTED: TC_212: Theme Toggle Button Visibility ==========
+STEP 1: Verify theme toggle button is visible in header
+INFO  TC_212 - STEP 1: Theme toggle visible: true
+INFO  TC_212: Theme toggle button verified successfully
+========== TEST PASSED: TC_212 ==========
+============================================================
+Ended: 2026-06-26 09:04:23

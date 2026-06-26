@@ -1,0 +1,13 @@
+============================================================
+Test Log: OfferTests.TC379_VerifyDoubleClickHandledGracefully
+Started: 2026-06-26 12:46:58
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\OfferTests_TC379_VerifyDoubleClickHandledGracefully_2026_06_26_12_46_58.log
+============================================================
+========== TEST STARTED: TC_379: Double Click Handled Gracefully ==========
+STEP 1: Open side menu and double click the Get 80% Off entry
+STEP 2: Verify the flow completed without error
+INFO  TC_379 - STEP 2: Double click completed without exception
+INFO  TC_379: Double click on CTA handled gracefully
+========== TEST PASSED: TC_379 ==========
+============================================================
+Ended: 2026-06-26 12:47:01

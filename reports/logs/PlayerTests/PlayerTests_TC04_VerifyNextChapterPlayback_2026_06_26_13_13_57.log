@@ -1,0 +1,14 @@
+============================================================
+Test Log: PlayerTests.TC04_VerifyNextChapterPlayback
+Started: 2026-06-26 13:13:57
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\PlayerTests_TC04_VerifyNextChapterPlayback_2026_06_26_13_13_57.log
+============================================================
+========== TEST STARTED: TC_04: Player Next Chapter Playback ==========
+STEP 1: Start playback and stabilize controls
+STEP 2: Navigate to the next chapter
+STEP 3: Verify the player remains responsive
+INFO  TC_04 - STEP 3: Player responsive: true
+INFO  TC_04: Player responsive after next chapter navigation
+========== TEST PASSED: TC_04 ==========
+============================================================
+Ended: 2026-06-26 13:13:59

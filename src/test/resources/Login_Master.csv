@@ -1,0 +1,36 @@
+Test Case ID,Priority,Method Name,Description,Class Path,Groups,Execution Type,Automation Status,Remarks
+TC_101,101,TC101_VerifyLoginPageElementsDisplayed,Verify login page elements are displayed,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Login page UI elements visibility check
+TC_102,102,TC102_VerifyPasswordFieldIsMasked,Verify password field is masked,tests.LoginTests,functional;ui;security,Selenium WebDriver,Automated,Password field masking verification
+TC_103,103,TC103_VerifyEmptyFieldsValidation,Verify empty fields validation messages,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Empty email and password validation
+TC_104,104,TC104_VerifyEmptyEmailValidation,Verify empty email validation message,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Email required validation check
+TC_105,105,TC105_VerifyEmptyPasswordValidation,Verify empty password validation message,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Password required validation check
+TC_106,106,TC106_VerifyInvalidPassword,Verify invalid password error message,tests.LoginTests,functional;ui;security,Selenium WebDriver,Automated,Invalid credentials error message
+TC_107,107,TC107_VerifyUnregisteredUserCannotLogin,Verify unregistered user cannot login,tests.LoginTests,functional;ui;security,Selenium WebDriver,Automated,User not found error message
+TC_108,108,TC108_VerifyInvalidEmailFormat,Verify invalid email format is rejected,tests.LoginTests,functional;ui;security,Selenium WebDriver,Automated,Invalid email format rejection
+TC_109,109,TC109_VerifyEmailWithLeadingSpace,Verify email with leading space is trimmed,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Leading space trimming in email
+TC_110,110,TC110_VerifyEmailWithTrailingSpace,Verify email with trailing space is trimmed,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Trailing space trimming in email
+TC_111,111,TC111_VerifyUppercaseEmailLogin,Verify uppercase email login is accepted,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Case-insensitive email login
+TC_112,112,TC112_VerifySqlInjectionEmailRejected,Verify SQL injection email payload is rejected,tests.LoginTests,functional;security;ui,Selenium WebDriver,Automated,SQL injection protection check
+TC_113,113,TC113_VerifyXssInjectionEmailRejected,Verify XSS injection email payload is rejected,tests.LoginTests,functional;security;ui,Selenium WebDriver,Automated,XSS injection protection check
+TC_114,114,TC114_VerifyPasswordWithSpaces,Verify password with leading/trailing spaces is trimmed,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Password space trimming check
+TC_115,115,TC115_VerifyPasswordCopyPaste,Verify password can be pasted into the field,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Password paste functionality
+TC_116,116,TC116_VerifyLongPassword,Verify long password is handled safely,tests.LoginTests,functional;ui;security,Selenium WebDriver,Automated,Long password handling check
+TC_117,117,TC117_VerifyRememberMeChecked,Verify Remember Me checkbox is available and can be checked,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Remember Me checkbox functionality
+TC_118,118,TC118_VerifyRememberMeUnchecked,Verify Remember Me checkbox is available,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Remember Me availability check
+TC_119,119,TC119_VerifyBrowserRestart,Verify session persists after browser restart with Remember Me,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Session persistence after browser restart
+TC_120,120,TC120_VerifyForgotPasswordLink,Verify Forgot Password link redirects correctly,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Forgot Password link navigation
+TC_121,121,TC121_VerifyResetWithValidEmail,Verify password reset request with valid email,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Valid email reset request flow
+TC_122,122,TC122_VerifyResetWithInvalidEmail,Verify password reset request with invalid email shows error,tests.LoginTests,functional;ui;security,Selenium WebDriver,Automated,Invalid email reset request error
+TC_123,123,TC123_VerifyGmailLogin,Verify Google login redirects to Google sign-in page,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Google OAuth redirection check
+TC_124,124,TC124_VerifyCancelGmailLogin,Verify cancel Gmail login flow,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Skipped,Google OAuth cancel needs popup automation
+TC_125,125,TC125_VerifyRegisterButton,Verify Register button opens registration screen,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Register button navigation
+TC_126,126,TC126_VerifyRegisterUrlValidation,Verify Register button URL contains register or signup,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Register URL validation
+TC_127,127,TC127_VerifySqlInjectionLogin,Verify SQL injection in both fields is rejected,tests.LoginTests,functional;security;ui,Selenium WebDriver,Automated,SQL injection in both fields check
+TC_128,128,TC128_VerifyXssAttack,Verify XSS attack in both fields is rejected,tests.LoginTests,functional;security;ui,Selenium WebDriver,Automated,XSS attack in both fields check
+TC_129,129,TC129_VerifyBruteForceAttempt,Verify repeated invalid login attempts are handled safely,tests.LoginTests,functional;security;regression,Selenium WebDriver,Automated,Brute force protection check
+TC_130,130,TC130_VerifyDoubleClickLogin,Verify double-clicking login button results in single login,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Double-click handling verification
+TC_131,131,TC131_VerifySlowInternetLogin,Verify login works with slow internet,tests.LoginTests,functional;performance;consumer,Selenium WebDriver,Skipped,Needs network throttling support
+TC_132,132,TC132_VerifyNetworkDisconnect,Verify login with network disconnect,tests.LoginTests,functional;performance;consumer,Selenium WebDriver,Skipped,Needs offline simulation support
+TC_133,133,TC133_VerifyBrowserRefreshDuringLogin,Verify login page remains accessible after refresh,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Page refresh during login
+TC_134,134,TC134_VerifyBrowserBackAfterLogin,Verify browser back after login does not expose login form,tests.LoginTests,functional;security;consumer,Selenium WebDriver,Automated,Back button after login check
+TC_135,135,TC135_VerifyValidLogin,Verify valid login with correct credentials,tests.LoginTests,functional;ui;consumer,Selenium WebDriver,Automated,Valid login functionality

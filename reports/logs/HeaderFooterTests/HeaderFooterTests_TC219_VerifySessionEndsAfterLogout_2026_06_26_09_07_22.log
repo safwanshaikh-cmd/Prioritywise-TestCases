@@ -1,0 +1,14 @@
+============================================================
+Test Log: HeaderFooterTests.TC219_VerifySessionEndsAfterLogout
+Started: 2026-06-26 09:07:22
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC219_VerifySessionEndsAfterLogout_2026_06_26_09_07_22.log
+============================================================
+========== TEST STARTED: TC_219: Session Termination After Logout ==========
+STEP 1: Logout and wait for logged out state
+INFO  TC_219 - STEP 1: User logged out: true
+STEP 2: Navigate to dashboard URL and verify session ended
+INFO  TC_219 - STEP 2: Session ended: true
+INFO  TC_219: Session termination verified successfully
+========== TEST PASSED: TC_219 ==========
+============================================================
+Ended: 2026-06-26 09:07:29

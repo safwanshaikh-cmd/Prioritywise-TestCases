@@ -1,0 +1,13 @@
+============================================================
+Test Log: HeaderFooterTests.TC228_VerifyFooterLinksAccessibleWithoutLogin
+Started: 2026-06-26 09:14:03
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC228_VerifyFooterLinksAccessibleWithoutLogin_2026_06_26_09_14_03.log
+============================================================
+========== TEST STARTED: TC_228: Footer Links Access Without Login ==========
+STEP 1: Verify footer is visible for guest users
+STEP 2: Open Privacy Policy link and verify access without login
+INFO  TC_228 - STEP 2: Navigated URL: https://web-splay.acceses.com/privacy_policy
+INFO  TC_228: Footer links access without login verified successfully
+========== TEST PASSED: TC_228 ==========
+============================================================
+Ended: 2026-06-26 09:14:07

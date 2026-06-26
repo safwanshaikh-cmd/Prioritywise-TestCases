@@ -1,0 +1,13 @@
+============================================================
+Test Log: LoginTests.TC104_VerifyEmptyEmailValidation
+Started: 2026-06-26 11:26:07
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC104_VerifyEmptyEmailValidation_2026_06_26_11_26_07.log
+============================================================
+========== TEST STARTED: TC_104: Empty Email Validation ==========
+STEP 1: Enter password only and click login
+STEP 2: Verify email required message
+INFO  TC_104 - STEP 2: Email required message: Email is required.
+INFO  TC_104: Empty email validation verified successfully
+========== TEST PASSED: TC_104 ==========
+============================================================
+Ended: 2026-06-26 11:26:08

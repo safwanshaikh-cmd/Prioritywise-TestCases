@@ -1,0 +1,18 @@
+============================================================
+Test Log: HeaderFooterTests.TC207_VerifySearchBehaviorWithInvalidInput
+Started: 2026-06-26 09:03:31
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC207_VerifySearchBehaviorWithInvalidInput_2026_06_26_09_03_31.log
+============================================================
+========== TEST STARTED: TC_207: Search Behavior With Invalid Input ==========
+STEP 1: Enter invalid search keyword and submit
+INFO  TC_207 - STEP 1: Entered invalid keyword: ###@@@
+STEP 2: Verify invalid input is handled gracefully
+INFO  TC_207 - STEP 2: Current URL: https://web-splay.acceses.com/web_search?data=%7B%22query%22%3A%22%23%23%23%40%40%40%22%2C%22language%22%3A%221%22%7D
+INFO  TC_207 - STEP 2: Search value retained: ###@@@
+INFO  TC_207 - STEP 2: Has results: false
+INFO  TC_207 - STEP 2: Has no-results message: true
+INFO  TC_207 - STEP 2: Stayed on valid search page: true
+INFO  TC_207: Invalid search input verified successfully
+========== TEST PASSED: TC_207 ==========
+============================================================
+Ended: 2026-06-26 09:03:39

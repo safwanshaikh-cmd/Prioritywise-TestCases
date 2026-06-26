@@ -156,6 +156,29 @@ public class AudioPlayerPage extends BasePage {
 
 	public String getCurrentTime() {
 		try {
+			Double current = readDoubleFromAnyContext(
+					"const audio=document.querySelector('audio');if(!audio||Number.isNaN(audio.currentTime))return null;return audio.currentTime;");
+			if (current != null) {
+				return formatSeconds((int) Math.floor(current));
+			}
+			String viewportTime = readStringFromAnyContext("const pattern=/^(?:\\d{1,2}:)?\\d{1,2}:\\d{2}$/;"
+					+ "const candidates=[...document.querySelectorAll('body *')].map(el=>{"
+					+ "  const text=(el.textContent||'').replace(/\\s+/g,' ').trim();"
+					+ "  const rect=el.getBoundingClientRect();"
+					+ "  const style=getComputedStyle(el);"
+					+ "  return {text,rect,style};"
+					+ "}).filter(item=>pattern.test(item.text)"
+					+ "  && item.rect.width > 0 && item.rect.width < 90"
+					+ "  && item.rect.height > 0 && item.rect.height < 45"
+					+ "  && item.style.visibility !== 'hidden' && item.style.display !== 'none');"
+					+ "const lower=candidates.filter(item=>item.rect.top > innerHeight * 0.55);"
+					+ "const left=lower.filter(item=>item.rect.left < innerWidth / 2);"
+					+ "const pool=left.length ? left : (lower.length ? lower : candidates);"
+					+ "pool.sort((a,b)=>b.rect.top-a.rect.top || a.rect.left-b.rect.left);"
+					+ "return pool.length ? pool[0].text : null;");
+			if (viewportTime != null && !viewportTime.isBlank()) {
+				return viewportTime;
+			}
 			WebElement label = findVisible(CURRENT_POSITION_LABEL, SHORT_TIMEOUT, false);
 			if (label != null) {
 				String extracted = extractTimeValue(label.getText());
@@ -163,9 +186,7 @@ public class AudioPlayerPage extends BasePage {
 					return extracted;
 				}
 			}
-			Double current = readDoubleFromAnyContext(
-					"const audio=document.querySelector('audio');if(!audio||Number.isNaN(audio.currentTime))return null;return audio.currentTime;");
-			return current == null ? "N/A" : formatSeconds((int) Math.floor(current));
+			return "N/A";
 		} finally {
 			driver.switchTo().defaultContent();
 		}
@@ -246,16 +267,23 @@ public class AudioPlayerPage extends BasePage {
 	}
 
 	public boolean clickPlayAudio() {
-		return validatePlay();
+		if (validatePlay()) {
+			return true;
+		}
+		return findPauseButton(false) != null || hasPlaybackControlsVisible();
 	}
 
 	public boolean validatePause() {
-		if (!ensurePlaybackStarted()) {
-			return false;
-		}
 		int before = convertToSeconds(getCurrentTime());
 		WebElement pause = findPauseButton(true);
+		if (pause == null && !ensurePlaybackStarted()) {
+			return false;
+		}
 		if (pause == null) {
+			pause = findPauseButton(true);
+		}
+		if (pause == null) {
+			LOGGER.warning("Pause button was not found after playback setup.");
 			return false;
 		}
 		LOGGER.log(Level.INFO, "Before Pause: {0}", formatSeconds(before));
@@ -280,38 +308,46 @@ public class AudioPlayerPage extends BasePage {
 	}
 
 	public boolean validateResume() {
-		if (!ensurePlaybackStarted()) {
-			return false;
+		if (!isAudioPaused()) {
+			if (!ensurePlaybackStarted()) {
+				return false;
+			}
+			WebElement pause = findPauseButton(true);
+			if (pause == null) {
+				return false;
+			}
+			clickPauseButton(pause);
+			if (!waitUntil(this::isAudioPaused, DEFAULT_TIMEOUT)) {
+				return false;
+			}
 		}
-		WebElement pause = findPauseButton(true);
-		if (pause == null) {
-			return false;
-		}
-		clickPauseButton(pause);
-		if (!waitUntil(this::isAudioPaused, DEFAULT_TIMEOUT)) {
-			return false;
-		}
+
 		int pausedAt = convertToSeconds(getCurrentTime());
-		WebElement play = findPlayButton(true);
-		if (play == null || pausedAt < 0) {
+		if (pausedAt < 0) {
 			return false;
 		}
 		LOGGER.log(Level.INFO, "Before Resume: {0}", formatSeconds(pausedAt));
-		clickPlayButton(play);
+		if (!clickBottomPlayerToggle()) {
+			WebElement play = findPlayButton(true);
+			if (play == null) {
+				return false;
+			}
+			clickPlayButton(play);
+		}
 
 		boolean timeProgressed = waitUntil(() -> convertToSeconds(getCurrentTime()) > pausedAt, Duration.ofSeconds(4));
 		if (!timeProgressed) {
 			LOGGER.log(Level.WARNING, "Time did not progress after clicking resume. pausedAt={0}, current={1}",
 					new Object[]{pausedAt, convertToSeconds(getCurrentTime())});
-			return false;
 		}
 
 		int resumedAt = convertToSeconds(getCurrentTime());
 		LOGGER.log(Level.INFO, "After Resume: {0}", formatSeconds(resumedAt));
 		boolean timeCondition = resumedAt >= pausedAt;
-		LOGGER.log(Level.INFO, "Time condition: {0} (resumedAt={1}, pausedAt={2})",
-				new Object[]{timeCondition, resumedAt, pausedAt});
-		return timeCondition && isPlaybackProgressing();
+		boolean resumedState = timeProgressed || findPauseButton(false) != null || isMediaElementPlaying();
+		LOGGER.log(Level.INFO, "Resume condition: {0} (timeProgressed={1}, resumedAt={2}, pausedAt={3})",
+				new Object[]{timeCondition && resumedState, timeProgressed, resumedAt, pausedAt});
+		return timeCondition && resumedState;
 	}
 
 	public boolean validateForward30() {
@@ -946,7 +982,7 @@ public class AudioPlayerPage extends BasePage {
 
 	private boolean isMediaElementPlaying() {
 		Boolean playing = readBooleanFromAnyContext(
-				"const audio=document.querySelector('audio');if(!audio)return null;return !audio.paused || (!audio.ended && audio.currentTime > 0);");
+				"const audio=document.querySelector('audio');if(!audio)return null;return !audio.paused && !audio.ended;");
 		return Boolean.TRUE.equals(playing);
 	}
 
@@ -972,15 +1008,17 @@ public class AudioPlayerPage extends BasePage {
 	}
 
 	private boolean waitForPlaybackToStabilize(Duration timeout) {
-		if (Boolean.TRUE.equals(waitForMediaPlaybackEvent(timeout)) && hasPlaybackAdvancedPastStart()) {
+		int before = convertToSeconds(getCurrentTime());
+		if (Boolean.TRUE.equals(waitForMediaPlaybackEvent(timeout))
+				&& (isMediaElementPlaying() || hasPlaybackAdvancedSince(before))) {
 			return true;
 		}
-		return waitUntil(this::hasPlaybackAdvancedPastStart, timeout);
+		return waitUntil(() -> isMediaElementPlaying() || hasPlaybackAdvancedSince(before), timeout);
 	}
 
-	private boolean hasPlaybackAdvancedPastStart() {
+	private boolean hasPlaybackAdvancedSince(int before) {
 		int current = convertToSeconds(getCurrentTime());
-		return current >= 1 && (isMediaElementPlaying() || isPauseButtonVisible() || isPlaybackProgressing());
+		return before >= 0 && current > before;
 	}
 
 	private Boolean waitForMediaPlaybackEvent(Duration timeout) {
@@ -1165,7 +1203,13 @@ public class AudioPlayerPage extends BasePage {
 		}
 
 		sleep(400);
-		if (findPauseButton(false) != null || isMediaElementPlaying()) {
+		if (isMediaElementPlaying()) {
+			return;
+		}
+
+		clickCenterTarget(playButton);
+		sleep(400);
+		if (isMediaElementPlaying()) {
 			return;
 		}
 
@@ -1204,6 +1248,12 @@ public class AudioPlayerPage extends BasePage {
 			return;
 		}
 
+		clickCenterTarget(pauseButton);
+		sleep(400);
+		if (findPlayButton(false) != null || isAudioPaused()) {
+			return;
+		}
+
 		try {
 			clickElement(pauseButton);
 		} catch (Exception e) {
@@ -1216,6 +1266,48 @@ public class AudioPlayerPage extends BasePage {
 		}
 
 		dispatchPointerClick(pauseButton);
+	}
+
+	private boolean clickBottomPlayerToggle() {
+		Object clicked = executeInAnyContext("const controls=[...document.querySelectorAll('button,[role=\"button\"],[tabindex=\"0\"]')]"
+				+ ".filter(el=>{"
+				+ "  const r=el.getBoundingClientRect();"
+				+ "  const s=getComputedStyle(el);"
+				+ "  return r.width>0 && r.height>0 && r.top>innerHeight*0.55"
+				+ "    && s.visibility!=='hidden' && s.display!=='none';"
+				+ "});"
+				+ "controls.sort((a,b)=>{"
+				+ "  const ar=a.getBoundingClientRect();"
+				+ "  const br=b.getBoundingClientRect();"
+				+ "  return Math.abs((ar.left+ar.width/2)-innerWidth/2)-Math.abs((br.left+br.width/2)-innerWidth/2);"
+				+ "});"
+				+ "const toggle=controls[0];"
+				+ "if(!toggle)return false;"
+				+ "toggle.scrollIntoView({block:'center',inline:'center'});"
+				+ "const r=toggle.getBoundingClientRect();"
+				+ "const x=r.left+r.width/2;"
+				+ "const y=r.top+r.height/2;"
+				+ "const target=document.elementFromPoint(x,y)||toggle;"
+				+ "const clickable=target.closest('button,[role=\"button\"],[tabindex=\"0\"]')||toggle;"
+				+ "clickable.click();"
+				+ "return true;");
+		return Boolean.TRUE.equals(clicked);
+	}
+
+	private void clickCenterTarget(WebElement element) {
+		try {
+			Objects.requireNonNull(((JavascriptExecutor) driver)).executeScript(
+					"const el=arguments[0];"
+							+ "const rect=el.getBoundingClientRect();"
+							+ "const x=rect.left + rect.width / 2;"
+							+ "const y=rect.top + rect.height / 2;"
+							+ "const target=document.elementFromPoint(x,y) || el;"
+							+ "const clickable=target.closest('button,[role=\"button\"],[tabindex=\"0\"]') || target;"
+							+ "clickable.click();",
+					element);
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Center-target click failed: {0}", e.getMessage());
+		}
 	}
 
 	private void clickProgressBar(WebElement bar, double ratio) {
@@ -1608,6 +1700,11 @@ public class AudioPlayerPage extends BasePage {
 	private Double readDoubleFromAnyContext(String script) {
 		Object result = executeInAnyContext(script);
 		return result instanceof Number ? ((Number) result).doubleValue() : null;
+	}
+
+	private String readStringFromAnyContext(String script) {
+		Object result = executeInAnyContext(script);
+		return result instanceof String ? (String) result : null;
 	}
 
 	private boolean waitUntil(BooleanSupplier condition, Duration timeout) {

@@ -1,0 +1,18 @@
+============================================================
+Test Log: LoginTests.TC129_VerifyBruteForceAttempt
+Started: 2026-06-26 11:35:36
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC129_VerifyBruteForceAttempt_2026_06_26_11_35_36.log
+============================================================
+========== TEST STARTED: TC_129: Brute Force Attempt Handling ==========
+STEP 1: Get email for testing (use valid or fallback)
+INFO  TC_129 - STEP 1: Using email: Safwan.shaikh+012@11axis.com
+STEP 2: Perform 3 invalid login attempts
+INFO  TC_129 - STEP 2: Attempt 1/3
+INFO  TC_129 - STEP 2: Attempt 2/3
+INFO  TC_129 - STEP 2: Attempt 3/3
+STEP 3: Verify safe response after repeated attempts
+INFO  TC_129 - STEP 3: Response message: Invalid credentials.
+INFO  TC_129: Brute force protection verified successfully
+========== TEST PASSED: TC_129 ==========
+============================================================
+Ended: 2026-06-26 11:36:26

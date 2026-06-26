@@ -1,0 +1,13 @@
+============================================================
+Test Log: PlayerTests.TC01_VerifyPlayBook
+Started: 2026-06-26 13:12:09
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\PlayerTests_TC01_VerifyPlayBook_2026_06_26_13_12_09.log
+============================================================
+========== TEST STARTED: TC_01: Player Play Book ==========
+STEP 1: Click Play Audio and wait for audio to start
+STEP 2: Verify audio is playing
+INFO  TC_01 - STEP 2: Audio playing: true
+INFO  TC_01: Audio playback started successfully
+========== TEST PASSED: TC_01 ==========
+============================================================
+Ended: 2026-06-26 13:12:10

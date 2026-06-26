@@ -1,0 +1,13 @@
+============================================================
+Test Log: LoginTests.TC107_VerifyUnregisteredUserCannotLogin
+Started: 2026-06-26 11:27:01
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC107_VerifyUnregisteredUserCannotLogin_2026_06_26_11_27_01.log
+============================================================
+========== TEST STARTED: TC_107: Unregistered User Login ==========
+STEP 1: Attempt login with unregistered user credentials
+STEP 2: Verify user not found message
+INFO  TC_107 - STEP 2: Error message: User not found.
+INFO  TC_107: Unregistered user rejection verified successfully
+========== TEST PASSED: TC_107 ==========
+============================================================
+Ended: 2026-06-26 11:27:03

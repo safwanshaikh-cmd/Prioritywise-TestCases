@@ -1,0 +1,14 @@
+============================================================
+Test Log: PlayerTests.TC02_VerifyPauseBook
+Started: 2026-06-26 13:12:45
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\PlayerTests_TC02_VerifyPauseBook_2026_06_26_13_12_45.log
+============================================================
+========== TEST STARTED: TC_02: Player Pause Book ==========
+STEP 1: Start playback
+STEP 2: Click pause toggle and wait for audio to pause
+STEP 3: Verify audio is paused
+INFO  TC_02 - STEP 3: Audio paused: true
+INFO  TC_02: Audio paused successfully
+========== TEST PASSED: TC_02 ==========
+============================================================
+Ended: 2026-06-26 13:12:45

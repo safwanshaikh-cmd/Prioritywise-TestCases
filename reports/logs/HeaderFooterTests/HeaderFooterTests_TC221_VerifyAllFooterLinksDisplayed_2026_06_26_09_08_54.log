@@ -1,0 +1,13 @@
+============================================================
+Test Log: HeaderFooterTests.TC221_VerifyAllFooterLinksDisplayed
+Started: 2026-06-26 09:08:54
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC221_VerifyAllFooterLinksDisplayed_2026_06_26_09_08_54.log
+============================================================
+========== TEST STARTED: TC_221: Footer Links Display ==========
+STEP 1: Verify footer is visible
+STEP 2: Verify footer links are displayed
+INFO  TC_221 - STEP 2: Footer links count: 6
+INFO  TC_221: Footer links verified successfully
+========== TEST PASSED: TC_221 ==========
+============================================================
+Ended: 2026-06-26 09:08:57

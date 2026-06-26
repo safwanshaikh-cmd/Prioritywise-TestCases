@@ -1,0 +1,13 @@
+============================================================
+Test Log: OfferTests.TC374_VerifyStartListeningClickExecutes
+Started: 2026-06-26 12:45:41
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\OfferTests_TC374_VerifyStartListeningClickExecutes_2026_06_26_12_45_41.log
+============================================================
+========== TEST STARTED: TC_374: Start Listening Now Click Executes ==========
+STEP 1: Open the offer page from the side menu
+STEP 2: Click the first Start Listening CTA
+INFO  TC_374 - STEP 2: First CTA click executed
+INFO  TC_374: First CTA click executed successfully
+========== TEST PASSED: TC_374 ==========
+============================================================
+Ended: 2026-06-26 12:45:44

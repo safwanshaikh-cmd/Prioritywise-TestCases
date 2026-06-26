@@ -1,0 +1,12 @@
+============================================================
+Test Log: HeaderFooterTests.TC220_VerifyFooterSectionDisplayed
+Started: 2026-06-26 09:08:11
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC220_VerifyFooterSectionDisplayed_2026_06_26_09_08_11.log
+============================================================
+========== TEST STARTED: TC_220: Footer Section Display ==========
+STEP 1: Verify footer section is visible
+INFO  TC_220 - STEP 1: Footer visible: true
+INFO  TC_220: Footer section verified successfully
+========== TEST PASSED: TC_220 ==========
+============================================================
+Ended: 2026-06-26 09:08:14

@@ -1,0 +1,17 @@
+============================================================
+Test Log: HeaderFooterTests.TC205_VerifyClickingLogoRedirectsToDashboard
+Started: 2026-06-26 09:01:54
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC205_VerifyClickingLogoRedirectsToDashboard_2026_06_26_09_01_54.log
+============================================================
+========== TEST STARTED: TC_205: Logo Navigation to Dashboard ==========
+STEP 1: Navigate away from dashboard using search
+INFO  TC_205 - STEP 1: Navigated URL: https://web-splay.acceses.com/web_search?data=%7B%22query%22%3A%22audio%22%2C%22language%22%3A%221%22%7D
+INFO  TC_205 - STEP 1: Navigated away from dashboard: true
+STEP 2: Click header logo and verify navigation
+INFO  TC_205 - STEP 2: URL after logo click: https://web-splay.acceses.com/
+INFO  TC_205 - STEP 2: Dashboard ready after logo click: true
+STEP 3: Verify redirected to dashboard or home
+INFO  TC_205: Logo click redirected to base landing page
+========== TEST PASSED: TC_205 ==========
+============================================================
+Ended: 2026-06-26 09:02:04

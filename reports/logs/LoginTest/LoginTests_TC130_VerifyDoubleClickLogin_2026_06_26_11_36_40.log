@@ -1,0 +1,14 @@
+============================================================
+Test Log: LoginTests.TC130_VerifyDoubleClickLogin
+Started: 2026-06-26 11:36:40
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC130_VerifyDoubleClickLogin_2026_06_26_11_36_40.log
+============================================================
+========== TEST STARTED: TC_130: Double Click Login Button ==========
+STEP 1: Check for valid credentials
+STEP 2: Enter credentials and double-click login button
+STEP 3: Verify login is successful
+INFO  TC_130 - STEP 3: Login successful: true
+INFO  TC_130: Double-click handling verified successfully
+========== TEST PASSED: TC_130 ==========
+============================================================
+Ended: 2026-06-26 11:36:44

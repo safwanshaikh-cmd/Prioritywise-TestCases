@@ -1,0 +1,14 @@
+============================================================
+Test Log: PlayerTests.TC05_VerifyPreviousChapterPlayback
+Started: 2026-06-26 13:14:32
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\PlayerTests_TC05_VerifyPreviousChapterPlayback_2026_06_26_13_14_32.log
+============================================================
+========== TEST STARTED: TC_05: Player Previous Chapter Playback ==========
+STEP 1: Start playback and stabilize controls
+STEP 2: Navigate to the previous chapter
+STEP 3: Verify the player remains responsive
+INFO  TC_05 - STEP 3: Player responsive: true
+INFO  TC_05: Player responsive after previous chapter navigation
+========== TEST PASSED: TC_05 ==========
+============================================================
+Ended: 2026-06-26 13:14:34

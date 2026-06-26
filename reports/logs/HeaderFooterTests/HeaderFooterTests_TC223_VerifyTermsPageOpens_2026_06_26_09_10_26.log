@@ -1,0 +1,13 @@
+============================================================
+Test Log: HeaderFooterTests.TC223_VerifyTermsPageOpens
+Started: 2026-06-26 09:10:26
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC223_VerifyTermsPageOpens_2026_06_26_09_10_26.log
+============================================================
+========== TEST STARTED: TC_223: Terms and Conditions Link Navigation ==========
+STEP 1: Verify footer is visible
+STEP 2: Open Terms link and verify navigation
+INFO  TC_223 - STEP 2: Navigated URL: https://web-splay.acceses.com/terms_conditions
+INFO  TC_223: Terms link navigation verified successfully
+========== TEST PASSED: TC_223 ==========
+============================================================
+Ended: 2026-06-26 09:10:31

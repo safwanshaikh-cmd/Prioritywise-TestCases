@@ -1,0 +1,14 @@
+============================================================
+Test Log: PlayerTests.TC03_VerifyResumeBook
+Started: 2026-06-26 13:13:22
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\PlayerTests_TC03_VerifyResumeBook_2026_06_26_13_13_22.log
+============================================================
+========== TEST STARTED: TC_03: Player Resume Book ==========
+STEP 1: Start playback, then pause
+STEP 2: Resume playback and wait for audio to start
+STEP 3: Verify audio is playing again
+INFO  TC_03 - STEP 3: Audio playing after resume: true
+INFO  TC_03: Audio resumed successfully
+========== TEST PASSED: TC_03 ==========
+============================================================
+Ended: 2026-06-26 13:13:22

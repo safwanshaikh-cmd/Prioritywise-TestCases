@@ -1,0 +1,15 @@
+============================================================
+Test Log: HeaderFooterTests.TC206_VerifySearchBarAcceptsInput
+Started: 2026-06-26 09:02:47
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC206_VerifySearchBarAcceptsInput_2026_06_26_09_02_47.log
+============================================================
+========== TEST STARTED: TC_206: Search Bar Input Acceptance ==========
+STEP 1: Verify search bar is visible and enter keyword
+INFO  TC_206 - STEP 1: Entered search keyword: audio
+STEP 2: Verify search bar accepted the input
+INFO  TC_206 - STEP 2: Search input value: audio
+INFO  TC_206 - STEP 2: Contains keyword: true
+INFO  TC_206: Search bar input verified successfully
+========== TEST PASSED: TC_206 ==========
+============================================================
+Ended: 2026-06-26 09:02:47

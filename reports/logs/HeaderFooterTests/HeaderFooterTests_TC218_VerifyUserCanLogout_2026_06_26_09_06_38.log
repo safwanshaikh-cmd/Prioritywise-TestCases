@@ -1,0 +1,12 @@
+============================================================
+Test Log: HeaderFooterTests.TC218_VerifyUserCanLogout
+Started: 2026-06-26 09:06:38
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC218_VerifyUserCanLogout_2026_06_26_09_06_38.log
+============================================================
+========== TEST STARTED: TC_218: User Logout Functionality ==========
+STEP 1: Click logout and wait for logged out state
+INFO  TC_218 - STEP 1: User logged out: true
+INFO  TC_218: User logout verified successfully
+========== TEST PASSED: TC_218 ==========
+============================================================
+Ended: 2026-06-26 09:06:40

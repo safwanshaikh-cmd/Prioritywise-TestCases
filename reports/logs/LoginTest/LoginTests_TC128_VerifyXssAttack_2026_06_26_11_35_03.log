@@ -1,0 +1,13 @@
+============================================================
+Test Log: LoginTests.TC128_VerifyXssAttack
+Started: 2026-06-26 11:35:03
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC128_VerifyXssAttack_2026_06_26_11_35_03.log
+============================================================
+========== TEST STARTED: TC_128: XSS Attack In Both Fields ==========
+STEP 1: Attempt login with XSS injection in both fields
+STEP 2: Verify login is rejected
+INFO  TC_128 - STEP 2: Login successful: false
+INFO  TC_128: XSS attack protection verified successfully
+========== TEST PASSED: TC_128 ==========
+============================================================
+Ended: 2026-06-26 11:35:22

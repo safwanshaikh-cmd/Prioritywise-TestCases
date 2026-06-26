@@ -112,7 +112,21 @@
       "Bash(pip install *)",
       "Bash(JAVA_HOME='/mnt/c/Program Files/Java/jdk-25.0.2' PATH='/mnt/c/Program Files/Java/jdk-25.0.2/bin:/mnt/c/Program Files/apache-maven-3.9.12/bin:__TRACKED_VAR__' mvn test-compile -f /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/pom.xml -q)",
       "Bash(unzip -p .tmp-testng-jars/extentreports-5.1.1.jar com/aventstack/extentreports/markuputils/CodeLanguage.class)",
-      "Bash(javap -p /dev/stdin)"
+      "Bash(javap -p /dev/stdin)",
+      "Bash(grep -rn \"enum\\\\|{@.*,\" --include=\"*.java\" /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/src)",
+      "Bash(awk NR>=1140 && NR<=1245 {printf \"%4d  %s\\\\n\", NR, $0} *)",
+      "Bash(awk '{ *)",
+      "Bash(mvn -q -o compile test-compile -DskipTests)",
+      "Bash(awk 'BEGIN{b=0} {for\\(i=1;i<=length\\($0\\);i++\\){c=substr\\($0,i,1\\); if\\(c==\"{\"\\)b++; else if\\(c==\"}\"\\)b--}} END{print \"  net =\", b}' src/test/java/tests/LoginTests.java)",
+      "Bash(awk 'BEGIN{b=0} {for\\(i=1;i<=length\\($0\\);i++\\){c=substr\\($0,i,1\\); if\\(c==\"{\"\\)b++; else if\\(c==\"}\"\\)b--}} END{print \"  net =\", b}' src/test/java/pages/LoginPage.java)",
+      "Bash(awk 'BEGIN{b=0} {for\\(i=1;i<=length\\($0\\);i++\\){c=substr\\($0,i,1\\); if\\(c==\"{\"\\)b++; else if\\(c==\"}\"\\)b--}} END{print \"Net brace balance:\", b}' src/test/java/tests/OfferTests.java)",
+      "Bash(awk '/priority\\\\s*=\\\\s*[0-9]+/ { *)",
+      "Bash(awk 'BEGIN{b=0} {for\\(i=1;i<=length\\($0\\);i++\\){c=substr\\($0,i,1\\); if\\(c==\"{\"\\)b++; else if\\(c==\"}\"\\)b--}} END{print \"PlayerPage net brace balance:\", b}' src/test/java/pages/PlayerPage.java)",
+      "Bash(awk 'BEGIN{b=0} {for\\(i=1;i<=length\\($0\\);i++\\){c=substr\\($0,i,1\\); if\\(c==\"{\"\\)b++; else if\\(c==\"}\"\\)b--}} END{print \"PlayerTests net brace balance:\", b}' src/test/java/tests/PlayerTests.java)",
+      "Bash(awk 'BEGIN{b=0} {for\\(i=1;i<=length\\($0\\);i++\\){c=substr\\($0,i,1\\); if\\(c==\"{\"\\)b++; else if\\(c==\"}\"\\)b--}} END{print \"  net =\", b}' src/test/java/pages/PlayerPage.java)",
+      "Bash(awk 'BEGIN{b=0} {for\\(i=1;i<=length\\($0\\);i++\\){c=substr\\($0,i,1\\); if\\(c==\"{\"\\)b++; else if\\(c==\"}\"\\)b--}} END{print \"PlayerPage brace balance:\", b}' src/test/java/pages/PlayerPage.java)",
+      "Bash(awk 'BEGIN{b=0} {for\\(i=1;i<=length\\($0\\);i++\\){c=substr\\($0,i,1\\); if\\(c==\"{\"\\)b++; else if\\(c==\"}\"\\)b--}} END{print \"PlayerTests brace balance:\", b}' src/test/java/tests/PlayerTests.java)",
+      "Bash(grep -oE \"\\(passed|failed|skipped|total\\)[^<]{0,30}\" reports/PlayerTests_20260626_134732.html)"
     ]
   }
 }

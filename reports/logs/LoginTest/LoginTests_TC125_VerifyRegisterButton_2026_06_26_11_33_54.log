@@ -1,0 +1,14 @@
+============================================================
+Test Log: LoginTests.TC125_VerifyRegisterButton
+Started: 2026-06-26 11:33:54
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC125_VerifyRegisterButton_2026_06_26_11_33_54.log
+============================================================
+========== TEST STARTED: TC_125: Register Button ==========
+STEP 1: Check if Register button is available
+STEP 2: Click Register button
+STEP 3: Verify registration screen is displayed
+INFO  TC_125 - STEP 3: Registration screen displayed: true
+INFO  TC_125: Register button functionality verified successfully
+========== TEST PASSED: TC_125 ==========
+============================================================
+Ended: 2026-06-26 11:34:01

@@ -1,0 +1,13 @@
+============================================================
+Test Log: PlayerTests.TC07_VerifyForwardAudio
+Started: 2026-06-26 13:15:43
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\PlayerTests_TC07_VerifyForwardAudio_2026_06_26_13_15_43.log
+============================================================
+========== TEST STARTED: TC_07: Player Forward Audio ==========
+STEP 1: Start playback
+STEP 2: Trigger forward action
+INFO  TC_07 - STEP 2: Forward action executed
+INFO  TC_07: Forward audio action executed successfully
+========== TEST PASSED: TC_07 ==========
+============================================================
+Ended: 2026-06-26 13:15:45

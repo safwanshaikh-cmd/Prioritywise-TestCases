@@ -1,0 +1,13 @@
+============================================================
+Test Log: LoginTests.TC112_VerifySqlInjectionEmailRejected
+Started: 2026-06-26 11:28:53
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC112_VerifySqlInjectionEmailRejected_2026_06_26_11_28_53.log
+============================================================
+========== TEST STARTED: TC_112: SQL Injection Email Rejection ==========
+STEP 1: Attempt login with SQL injection email payload
+STEP 2: Verify login is rejected
+INFO  TC_112 - STEP 2: Login successful: false
+INFO  TC_112: SQL injection protection verified successfully
+========== TEST PASSED: TC_112 ==========
+============================================================
+Ended: 2026-06-26 11:29:12

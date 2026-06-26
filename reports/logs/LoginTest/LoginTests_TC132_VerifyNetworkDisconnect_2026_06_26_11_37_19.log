@@ -1,0 +1,16 @@
+============================================================
+Test Log: LoginTests.TC132_VerifyNetworkDisconnect
+Started: 2026-06-26 11:37:19
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC132_VerifyNetworkDisconnect_2026_06_26_11_37_19.log
+============================================================
+========== TEST STARTED: TC_132: Network Disconnect Login ==========
+STEP 1: Verify valid credentials are configured
+STEP 2: Initialize network control via LoginPage (Chrome DevTools)
+STEP 3: Disconnect network via LoginPage.disconnectNetwork()
+STEP 4: Attempt login with network disconnected
+STEP 5: Verify user remains on login page (login must not succeed while offline)
+INFO  TC_132: Login correctly blocked / stayed on login page while offline
+========== TEST PASSED: TC_132 ==========
+INFO  TC_132 - Restoring network in finally block
+============================================================
+Ended: 2026-06-26 11:37:23

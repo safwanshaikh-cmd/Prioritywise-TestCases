@@ -1,0 +1,15 @@
+============================================================
+Test Log: LoginTests.TC135_VerifyValidLogin
+Started: 2026-06-26 11:38:33
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC135_VerifyValidLogin_2026_06_26_11_38_33.log
+============================================================
+========== TEST STARTED: TC_135: Valid Login Functionality ==========
+STEP 1: Check for valid credentials
+STEP 2: Perform login with valid credentials
+STEP 3: Verify success message
+INFO  TC_135 - STEP 3: Success message: Login successful
+STEP 4: Click Next after login
+INFO  TC_135: Valid login verified successfully
+========== TEST PASSED: TC_135 ==========
+============================================================
+Ended: 2026-06-26 11:38:54

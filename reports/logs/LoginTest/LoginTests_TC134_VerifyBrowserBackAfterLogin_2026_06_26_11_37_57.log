@@ -1,0 +1,15 @@
+============================================================
+Test Log: LoginTests.TC134_VerifyBrowserBackAfterLogin
+Started: 2026-06-26 11:37:57
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC134_VerifyBrowserBackAfterLogin_2026_06_26_11_37_57.log
+============================================================
+========== TEST STARTED: TC_134: Browser Back After Login ==========
+STEP 1: Check for valid credentials
+STEP 2: Perform login and click Next
+STEP 3: Navigate back
+STEP 4: Verify login form is not exposed
+INFO  TC_134 - STEP 4: Login form exposed: false
+INFO  TC_134: Browser back after login verified successfully
+========== TEST PASSED: TC_134 ==========
+============================================================
+Ended: 2026-06-26 11:38:18

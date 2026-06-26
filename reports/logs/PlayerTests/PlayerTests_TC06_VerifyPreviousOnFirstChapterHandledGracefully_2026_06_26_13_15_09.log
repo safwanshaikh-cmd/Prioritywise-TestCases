@@ -1,0 +1,14 @@
+============================================================
+Test Log: PlayerTests.TC06_VerifyPreviousOnFirstChapterHandledGracefully
+Started: 2026-06-26 13:15:09
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\PlayerTests_TC06_VerifyPreviousOnFirstChapterHandledGracefully_2026_06_26_13_15_09.log
+============================================================
+========== TEST STARTED: TC_06: Player Previous On First Chapter Handled Gracefully ==========
+STEP 1: Start playback and stabilize controls
+STEP 2: Click Previous on the first chapter
+STEP 3: Verify the player remains stable
+INFO  TC_06 - STEP 3: Player stable: true
+INFO  TC_06: Player stable after previous on first chapter
+========== TEST PASSED: TC_06 ==========
+============================================================
+Ended: 2026-06-26 13:15:11

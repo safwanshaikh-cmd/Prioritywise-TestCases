@@ -1,0 +1,18 @@
+============================================================
+Test Log: LoginTests.TC123_VerifyGmailLogin
+Started: 2026-06-26 11:33:23
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC123_VerifyGmailLogin_2026_06_26_11_33_23.log
+============================================================
+========== TEST STARTED: TC_123: Google/Gmail Login ==========
+STEP 1: Check if Google login button is available
+STEP 2: Get original window and count
+INFO  TC_123 - STEP 2: Original window: 904EC05E9B5507A8766C8EA8F7FDC567
+STEP 3: Click Google login button
+STEP 4: Wait for new window or Google URL
+STEP 5: Switch to new window if available
+STEP 6: Verify redirected to Google sign-in
+INFO  TC_123 - STEP 6: Current URL: https://accounts.google.com/v3/signin/identifier?opparams=%253fenable_granular_consent%253dtrue%2526gis_params%253dgbmqk1azynaxnhpwovdiz3fsete5s0uzv3lnqtjmn1pnthhxrguvvgxemhl6y3c4auikyxv0ady5otg1m2gb%2526response_mode%253dform_post&dsh=s925293424%3a1782459204364613&client_id=1090722745199-amkso48ga29buj7mf7et07nlr3s4sruc.apps.googleusercontent.com&display=popup&gsiwebsdk=gis_attributes&include_granted_scopes=true&o2v=1&origin=https%3a%2f%2fweb-splay.acceses.com&prompt=select_account&redirect_uri=gis_transform&response_type=token&scope=openid+profile+email+openid+profile+email&service=lso&flowname=generaloauthflow&continue=https%3a%2f%2faccounts.google.com%2fsignin%2foauth%2fconsent%3fauthuser%3dunknown%26part%3daji8haoiadeizhneprxnw2surqtlvmmh9rbyspn3bkv5e9dpwkfb1bl-90cm54dnsx4hjb8cgi1nrqmfde2h2pw1blohge1er8vtqpegivjvsihryen8ojicdnfztzb42qsnxm9f0xf2a6nrx_f3zquj3gs875nvtxvr3v-amwflaeaaulbrv_i2w_w-5vn-sdrvzrh7wgzso_o6o_alwfrnfcz2htj6soqixftl5xickhg1dixrs4feot7oiqvglwcp7mjqmagdwdk2qxlh61d1bmtqggvth6rx1ozifdxppit13opjmik2ol7hwnhzkdivo73aibc3a3g7gtbs-mppgx8jgryfo2u8f91swxaimuv4qvf7fmiwkge68wgab3ef91ew25zyf2fm5ke3650zc6wqedebtgckfd-ftvkee3xapya0ln6wxwr_ffqn509va_80i0zeycj7cluuobnhyps5wvbhzinlhl00ucmvc9uqsizwwpw%26flowname%3dgeneraloauthflow%26as%3ds925293424%253a1782459204364613%26client_id%3d1090722745199-amkso48ga29buj7mf7et07nlr3s4sruc.apps.googleusercontent.com%26requestpath%3d%252fsignin%252foauth%252fconsent%23&app_domain=https%3a%2f%2fweb-splay.acceses.com&rart=angoxccrqbbhlzpwqcor-bsnxnppbupm7yo5ebebyczpk4plsvgthogfaufoardsngt7lau8dtikg9thgx4m7v9xl8qmr_nwgz01ezacim5v6siuxrfcuou
+INFO  TC_123: Google login redirection verified successfully
+========== TEST PASSED: TC_123 ==========
+============================================================
+Ended: 2026-06-26 11:33:26

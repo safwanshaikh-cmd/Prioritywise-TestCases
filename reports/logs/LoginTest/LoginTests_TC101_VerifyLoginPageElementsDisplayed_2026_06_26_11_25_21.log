@@ -1,0 +1,16 @@
+============================================================
+Test Log: LoginTests.TC101_VerifyLoginPageElementsDisplayed
+Started: 2026-06-26 11:25:21
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC101_VerifyLoginPageElementsDisplayed_2026_06_26_11_25_21.log
+============================================================
+========== TEST STARTED: TC_101: Login Page Elements Display ==========
+STEP 1: Verify email field is displayed
+INFO  TC_101 - STEP 1: Email field displayed: true
+STEP 2: Verify password field is displayed
+INFO  TC_101 - STEP 2: Password field displayed: true
+STEP 3: Verify login button is displayed
+INFO  TC_101 - STEP 3: Login button displayed: true
+INFO  TC_101: All login page elements verified successfully
+========== TEST PASSED: TC_101 ==========
+============================================================
+Ended: 2026-06-26 11:25:21

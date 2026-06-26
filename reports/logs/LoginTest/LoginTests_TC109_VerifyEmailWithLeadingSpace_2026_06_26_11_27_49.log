@@ -1,0 +1,14 @@
+============================================================
+Test Log: LoginTests.TC109_VerifyEmailWithLeadingSpace
+Started: 2026-06-26 11:27:49
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC109_VerifyEmailWithLeadingSpace_2026_06_26_11_27_49.log
+============================================================
+========== TEST STARTED: TC_109: Email With Leading Space ==========
+STEP 1: Check for valid credentials
+STEP 2: Login with email containing leading space
+STEP 3: Verify login is successful
+INFO  TC_109 - STEP 3: Login successful: true
+INFO  TC_109: Leading space trimming verified successfully
+========== TEST PASSED: TC_109 ==========
+============================================================
+Ended: 2026-06-26 11:27:53

@@ -1,0 +1,12 @@
+============================================================
+Test Log: HeaderFooterTests.TC204_VerifyHeaderSectionVisibleOnDashboard
+Started: 2026-06-26 09:01:12
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC204_VerifyHeaderSectionVisibleOnDashboard_2026_06_26_09_01_12.log
+============================================================
+========== TEST STARTED: TC_204: Header Section Visible on Dashboard ==========
+STEP 1: Verify header section is visible
+INFO  TC_204 - STEP 1: Header visible: true
+INFO  TC_204: Header section verified successfully
+========== TEST PASSED: TC_204 ==========
+============================================================
+Ended: 2026-06-26 09:01:12

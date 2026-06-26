@@ -1,0 +1,15 @@
+============================================================
+Test Log: LoginTests.TC131_VerifySlowInternetLogin
+Started: 2026-06-26 11:37:01
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC131_VerifySlowInternetLogin_2026_06_26_11_37_01.log
+============================================================
+STEP 1: Check for valid credentials
+STEP 2: Enable slow network throttling (Slow 3G simulation)
+STEP 3: Perform login with throttled network
+STEP 4: Verify login is successful even with slow network
+INFO  TC_131 - STEP 4: Login successful: true
+STEP 5: Disable network throttling
+INFO  TC_131: Slow internet login verified successfully
+========== TEST PASSED: TC_131 ==========
+============================================================
+Ended: 2026-06-26 11:37:05

@@ -1,0 +1,13 @@
+============================================================
+Test Log: HeaderFooterTests.TC226_VerifyInstagramLinkRedirectsCorrectly
+Started: 2026-06-26 09:12:48
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC226_VerifyInstagramLinkRedirectsCorrectly_2026_06_26_09_12_48.log
+============================================================
+========== TEST STARTED: TC_226: Instagram Link Navigation ==========
+STEP 1: Verify footer is visible
+STEP 2: Open Instagram link and verify navigation
+INFO  TC_226 - STEP 2: Navigated URL: https://www.instagram.com/sonarplayofficial/
+INFO  TC_226: Instagram link navigation verified successfully
+========== TEST PASSED: TC_226 ==========
+============================================================
+Ended: 2026-06-26 09:12:53

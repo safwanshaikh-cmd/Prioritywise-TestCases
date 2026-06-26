@@ -1,0 +1,12 @@
+============================================================
+Test Log: HeaderFooterTests.TC216_VerifyProfileIconVisible
+Started: 2026-06-26 09:05:06
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC216_VerifyProfileIconVisible_2026_06_26_09_05_06.log
+============================================================
+========== TEST STARTED: TC_216: Profile Icon Visibility ==========
+STEP 1: Verify hamburger button (profile icon) is visible in header
+INFO  TC_216 - STEP 1: Hamburger menu visible: true
+INFO  TC_216: Hamburger button verified successfully
+========== TEST PASSED: TC_216 ==========
+============================================================
+Ended: 2026-06-26 09:05:06

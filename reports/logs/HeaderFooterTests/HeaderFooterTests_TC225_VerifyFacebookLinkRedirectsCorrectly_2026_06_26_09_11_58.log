@@ -1,0 +1,13 @@
+============================================================
+Test Log: HeaderFooterTests.TC225_VerifyFacebookLinkRedirectsCorrectly
+Started: 2026-06-26 09:11:58
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC225_VerifyFacebookLinkRedirectsCorrectly_2026_06_26_09_11_58.log
+============================================================
+========== TEST STARTED: TC_225: Facebook Link Navigation ==========
+STEP 1: Verify footer is visible
+STEP 2: Open Facebook link and verify navigation
+INFO  TC_225 - STEP 2: Navigated URL: https://www.facebook.com/people/sonarplay/61575369909997/
+INFO  TC_225: Facebook link navigation verified successfully
+========== TEST PASSED: TC_225 ==========
+============================================================
+Ended: 2026-06-26 09:12:05

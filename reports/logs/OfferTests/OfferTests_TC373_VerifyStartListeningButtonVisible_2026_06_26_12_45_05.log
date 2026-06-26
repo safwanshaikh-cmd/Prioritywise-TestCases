@@ -1,0 +1,13 @@
+============================================================
+Test Log: OfferTests.TC373_VerifyStartListeningButtonVisible
+Started: 2026-06-26 12:45:05
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\OfferTests_TC373_VerifyStartListeningButtonVisible_2026_06_26_12_45_05.log
+============================================================
+========== TEST STARTED: TC_373: Start Listening Now Button Visible ==========
+STEP 1: Open the offer page from the side menu
+STEP 2: Verify the Start Listening Now button is visible
+INFO  TC_373 - STEP 2: Start Listening Now button visible: true
+INFO  TC_373: Start Listening Now button visibility verified
+========== TEST PASSED: TC_373 ==========
+============================================================
+Ended: 2026-06-26 12:45:08

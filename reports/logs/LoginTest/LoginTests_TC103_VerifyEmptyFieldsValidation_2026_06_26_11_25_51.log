@@ -1,0 +1,15 @@
+============================================================
+Test Log: LoginTests.TC103_VerifyEmptyFieldsValidation
+Started: 2026-06-26 11:25:51
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC103_VerifyEmptyFieldsValidation_2026_06_26_11_25_51.log
+============================================================
+========== TEST STARTED: TC_103: Empty Fields Validation ==========
+STEP 1: Click login button with empty fields
+STEP 2: Verify email required message
+INFO  TC_103 - STEP 2: Email required message: Email is required.
+STEP 3: Verify password required message
+INFO  TC_103 - STEP 3: Password required message: Password is Required
+INFO  TC_103: Empty fields validation verified successfully
+========== TEST PASSED: TC_103 ==========
+============================================================
+Ended: 2026-06-26 11:25:52

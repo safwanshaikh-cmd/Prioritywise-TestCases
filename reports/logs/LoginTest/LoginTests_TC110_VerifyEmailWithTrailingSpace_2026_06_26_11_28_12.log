@@ -1,0 +1,14 @@
+============================================================
+Test Log: LoginTests.TC110_VerifyEmailWithTrailingSpace
+Started: 2026-06-26 11:28:12
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC110_VerifyEmailWithTrailingSpace_2026_06_26_11_28_12.log
+============================================================
+========== TEST STARTED: TC_110: Email With Trailing Space ==========
+STEP 1: Check for valid credentials
+STEP 2: Login with email containing trailing space
+STEP 3: Verify login is successful
+INFO  TC_110 - STEP 3: Login successful: true
+INFO  TC_110: Trailing space trimming verified successfully
+========== TEST PASSED: TC_110 ==========
+============================================================
+Ended: 2026-06-26 11:28:17

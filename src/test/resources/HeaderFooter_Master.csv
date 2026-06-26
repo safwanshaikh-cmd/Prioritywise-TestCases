@@ -1,0 +1,19 @@
+Test Case ID,Priority,Method Name,Description,Class Path,Groups,Execution Type,Automation Status,Remarks
+TC_204,204,TC204_VerifyHeaderSectionVisibleOnDashboard,Verify header section is visible on dashboard,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Header section visibility check
+TC_205,205,TC205_VerifyClickingLogoRedirectsToDashboard,Verify clicking logo redirects to dashboard,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Logo navigation to dashboard
+TC_206,206,TC206_VerifySearchBarAcceptsInput,Verify search bar accepts input,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Search input field functionality
+TC_207,207,TC207_VerifySearchBehaviorWithInvalidInput,Verify search behavior with invalid input,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Invalid search input handling
+TC_212,212,TC212_VerifyThemeToggleButtonVisible,Verify theme toggle button is visible,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Theme toggle visibility check
+TC_216,216,TC216_VerifyProfileIconVisible,Verify profile icon is visible,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Profile/Hamburger menu visibility
+TC_217,217,TC217_VerifyClickingProfileIconOpensMenu,Verify clicking profile icon opens menu,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Profile menu opening functionality
+TC_218,218,TC218_VerifyUserCanLogout,Verify user can logout,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Logout functionality
+TC_219,219,TC219_VerifySessionEndsAfterLogout,Verify session ends after logout,tests.HeaderFooterTests,functional;security;consumer,Selenium WebDriver,Automated,Session termination after logout
+TC_220,220,TC220_VerifyFooterSectionDisplayed,Verify footer section is displayed,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Footer section visibility check
+TC_221,221,TC221_VerifyAllFooterLinksDisplayed,Verify all footer links are displayed,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Footer links display verification
+TC_222,222,TC222_VerifyPrivacyPolicyPageOpens,Verify privacy policy page opens,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Privacy Policy link navigation
+TC_223,223,TC223_VerifyTermsPageOpens,Verify terms page opens,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Terms and Conditions link navigation
+TC_224,224,TC224_VerifyContactPageOpens,Verify contact page opens,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Contact Us link navigation
+TC_225,225,TC225_VerifyFacebookLinkRedirectsCorrectly,Verify Facebook link redirects correctly,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Facebook social link verification
+TC_226,226,TC226_VerifyInstagramLinkRedirectsCorrectly,Verify Instagram link redirects correctly,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Instagram social link verification
+TC_227,227,TC227_VerifyBehaviorWhenFooterLinkIsBroken,Verify behavior when footer link is broken,tests.HeaderFooterTests,functional;security;consumer,Selenium WebDriver,Automated,Broken link handling verification
+TC_228,228,TC228_VerifyFooterLinksAccessibleWithoutLogin,Verify footer links accessible without login,tests.HeaderFooterTests,functional;ui;consumer,Selenium WebDriver,Automated,Footer links guest access

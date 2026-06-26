@@ -1,0 +1,17 @@
+============================================================
+Test Log: LoginTests.TC122_VerifyResetWithInvalidEmail
+Started: 2026-06-26 11:33:07
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC122_VerifyResetWithInvalidEmail_2026_06_26_11_33_07.log
+============================================================
+========== TEST STARTED: TC_122: Reset Password With Invalid Email ==========
+STEP 1: Check if Forgot Password link is available
+STEP 2: Click Forgot Password link
+STEP 3: Verify reset email field is displayed
+INFO  TC_122 - STEP 3: Reset email field displayed: true
+STEP 4: Submit reset password request with invalid email
+STEP 5: Verify account not found message
+INFO  TC_122 - STEP 5: Error message: No account found with this email or mobile number.
+INFO  TC_122: Invalid email reset verified successfully
+========== TEST PASSED: TC_122 ==========
+============================================================
+Ended: 2026-06-26 11:33:10

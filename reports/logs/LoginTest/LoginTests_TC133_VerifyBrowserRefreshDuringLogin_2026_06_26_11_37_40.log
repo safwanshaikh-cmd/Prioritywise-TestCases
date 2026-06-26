@@ -1,0 +1,14 @@
+============================================================
+Test Log: LoginTests.TC133_VerifyBrowserRefreshDuringLogin
+Started: 2026-06-26 11:37:40
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC133_VerifyBrowserRefreshDuringLogin_2026_06_26_11_37_40.log
+============================================================
+========== TEST STARTED: TC_133: Browser Refresh During Login ==========
+STEP 1: Enter credentials
+STEP 2: Refresh the page
+STEP 3: Verify login page is still accessible
+INFO  TC_133 - STEP 3: On login page: true
+INFO  TC_133: Browser refresh handling verified successfully
+========== TEST PASSED: TC_133 ==========
+============================================================
+Ended: 2026-06-26 11:37:43

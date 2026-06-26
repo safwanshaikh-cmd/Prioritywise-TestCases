@@ -1,0 +1,13 @@
+============================================================
+Test Log: LoginTests.TC127_VerifySqlInjectionLogin
+Started: 2026-06-26 11:34:31
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC127_VerifySqlInjectionLogin_2026_06_26_11_34_31.log
+============================================================
+========== TEST STARTED: TC_127: SQL Injection In Both Fields ==========
+STEP 1: Attempt login with SQL injection in both fields
+STEP 2: Verify login is rejected
+INFO  TC_127 - STEP 2: Login successful: false
+INFO  TC_127: SQL injection protection verified successfully
+========== TEST PASSED: TC_127 ==========
+============================================================
+Ended: 2026-06-26 11:34:49

@@ -1,0 +1,13 @@
+============================================================
+Test Log: PlayerTests.TC08_VerifyBackwardAudio
+Started: 2026-06-26 13:16:21
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\PlayerTests_TC08_VerifyBackwardAudio_2026_06_26_13_16_21.log
+============================================================
+========== TEST STARTED: TC_08: Player Backward Audio ==========
+STEP 1: Start playback
+STEP 2: Trigger backward action
+INFO  TC_08 - STEP 2: Backward action executed
+INFO  TC_08: Backward audio action executed successfully
+========== TEST PASSED: TC_08 ==========
+============================================================
+Ended: 2026-06-26 13:16:23

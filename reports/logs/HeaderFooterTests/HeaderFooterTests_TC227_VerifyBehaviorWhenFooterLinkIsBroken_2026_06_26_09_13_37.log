@@ -1,0 +1,13 @@
+============================================================
+Test Log: HeaderFooterTests.TC227_VerifyBehaviorWhenFooterLinkIsBroken
+Started: 2026-06-26 09:13:37
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\HeaderFooterTests_TC227_VerifyBehaviorWhenFooterLinkIsBroken_2026_06_26_09_13_37.log
+============================================================
+========== TEST STARTED: TC_227: Broken Footer Link Behavior ==========
+STEP 1: Verify footer is visible
+STEP 2: Open broken footer link and verify navigation
+INFO  TC_227 - STEP 2: Navigated URL: https://web-splay.acceses.com/broken-footer-link-automation
+INFO  TC_227: Broken footer link behavior verified successfully
+========== TEST PASSED: TC_227 ==========
+============================================================
+Ended: 2026-06-26 09:13:44

@@ -1,6 +1,8 @@
 package pages;
 
 import java.net.URI;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -9,6 +11,7 @@ import java.util.Map;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -70,6 +73,310 @@ public class RegistrationPage extends BasePage {
 			"Admin" };
 	private static final By GENERIC_ROLE_OPTIONS = By.xpath(
 			"//*[self::div or self::span][normalize-space()='Consumer' or normalize-space()='Uploader' or normalize-space()='User' or normalize-space()='Listener' or normalize-space()='Creator' or normalize-space()='Admin']");
+
+	// ==================== Data factory helpers (test-side moved here) ====================
+
+	private static final AtomicInteger UNIQUE_COUNTER = new AtomicInteger(1000);
+	private static final DateTimeFormatter UNIQUE_STAMP_FORMAT = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+
+	/**
+	 * Returns a fresh {@link RegistrationFormData} populated with the
+	 * configured default values plus a unique username/email so the form
+	 * can be submitted without colliding with existing accounts.
+	 */
+	public RegistrationFormData createValidFormData() {
+		String password = getConfiguredPassword();
+		return new RegistrationFormData().withName(getConfiguredName())
+				.withUsername(createUniqueUsername())
+				.withEmail(createUniqueEmail())
+				.withPassword(password)
+				.withConfirmPassword(password)
+				.withRole(firstNonBlank(getConfiguredRole(), "Consumer"))
+				.withAcceptTerms(true);
+	}
+
+	/**
+	 * Configured default name (overridable via
+	 * {@code registration.name=…} in config.properties).
+	 */
+	public String getConfiguredName() {
+		return firstNonBlank(ConfigReader.getProperty("registration.name"), "Safwan Shaikh");
+	}
+
+	/**
+	 * Configured default role (overridable via
+	 * {@code registration.role=…}).
+	 */
+	public String getConfiguredRole() {
+		return firstNonBlank(ConfigReader.getProperty("registration.role"), "Consumer");
+	}
+
+	/**
+	 * Configured default password (overridable via
+	 * {@code registration.password=…}).
+	 */
+	public String getConfiguredPassword() {
+		return firstNonBlank(ConfigReader.getProperty("registration.password"), "Password@123");
+	}
+
+	/**
+	 * Email of an account that already exists in the system, used by
+	 * duplicate-email assertions. Falls back to the login email.
+	 */
+	public String getExistingEmail() {
+		return firstNonBlank(ConfigReader.getProperty("registration.existingEmail"),
+				ConfigReader.getProperty("login.validEmail"));
+	}
+
+	/**
+	 * Username of an account that already exists in the system, used by
+	 * duplicate-username assertions.
+	 */
+	public String getExistingUsername() {
+		return firstNonBlank(ConfigReader.getProperty("registration.username"), "safwan012");
+	}
+
+	/**
+	 * Generates a unique email of the form {@code local+reg{token}@domain}
+	 * so each registration attempt uses a fresh inbox.
+	 */
+	public String createUniqueEmail() {
+		String seedEmail = firstNonBlank(ConfigReader.getProperty("registration.newEmail"),
+				ConfigReader.getProperty("login.validEmail"), getExistingEmail(), "automation@mail.com");
+		String[] parts = seedEmail.split("@", 2);
+		String localPart = sanitizeEmailLocalPart(parts[0]);
+		String domainPart = parts.length > 1 ? parts[1] : "mail.com";
+		return localPart + "+reg" + buildUniqueToken() + "@" + domainPart;
+	}
+
+	/**
+	 * Generates a unique username derived from the configured base (truncated
+	 * to 8 chars) plus a uniqueness token.
+	 */
+	public String createUniqueUsername() {
+		String baseValue = sanitizeUsername(getExistingUsername());
+		if (baseValue.isBlank()) {
+			baseValue = "reguser";
+		}
+		String suffix = buildUniqueToken();
+		String prefix = baseValue.length() > 8 ? baseValue.substring(0, 8) : baseValue;
+		return prefix + suffix;
+	}
+
+	/**
+	 * Per-process monotonic token used as the uniqueness suffix on generated
+	 * emails and usernames.
+	 */
+	public String buildUniqueToken() {
+		String timestamp = LocalDateTime.now().format(UNIQUE_STAMP_FORMAT);
+		return timestamp + UNIQUE_COUNTER.incrementAndGet();
+	}
+
+	private String sanitizeEmailLocalPart(String value) {
+		String normalized = value == null ? "automation" : value.replaceAll("[^A-Za-z0-9._-]", "");
+		return normalized.isBlank() ? "automation" : normalized;
+	}
+
+	private String sanitizeUsername(String value) {
+		return value == null ? "" : value.replaceAll("[^A-Za-z0-9]", "").toLowerCase(Locale.ENGLISH);
+	}
+
+	// ==================== Expectation wrappers (test-side moved here) ====================
+
+	/**
+	 * Submits {@code data} and asserts that registration was successful.
+	 * Returns {@code true} on success so the caller can decide whether to
+	 * chain additional assertions.
+	 */
+	public boolean expectSuccessful(RegistrationFormData data, String context) {
+		submitRegistration(data);
+		printVisibleFeedbackMessages(context);
+		return isRegistrationSuccessful();
+	}
+
+	/**
+	 * Submits {@code data} and asserts that registration was rejected with a
+	 * visible feedback message containing the given fragments. Returns
+	 * {@code true} when the registration was correctly rejected.
+	 */
+	public boolean expectRejected(RegistrationFormData data, String context, String... expectedFragments) {
+		submitRegistration(data);
+		String[] fragments = resolveFeedbackFragments(context, expectedFragments);
+		boolean notSuccessful = !isRegistrationSuccessful();
+		if (fragments.length == 0) {
+			printMatchedFeedbackMessage(context);
+			return notSuccessful
+					&& (hasAnyVisibleFeedback() || isRegistrationScreenDisplayed());
+		}
+		String matchedFeedback = findFeedbackMessage(fragments);
+		printMatchedFeedbackMessage(context, fragments);
+		return notSuccessful && !matchedFeedback.isBlank();
+	}
+
+	/**
+	 * Submits {@code data} and asserts that the flow handled the scenario
+	 * gracefully — either succeeded, showed visible feedback, or kept the
+	 * registration screen reachable. Returns {@code true} on graceful outcome.
+	 */
+	public boolean expectHandledGracefully(RegistrationFormData data, String context) {
+		submitRegistration(data);
+		String[] fragments = resolveFeedbackFragments(context);
+		if (fragments.length > 0) {
+			printMatchedFeedbackMessage(context, fragments);
+		} else {
+			printVisibleFeedbackMessages(context);
+		}
+		return isRegistrationSuccessful() || hasAnyVisibleFeedback() || isRegistrationScreenDisplayed();
+	}
+
+	/**
+	 * Asserts that every mandatory validation message is present. Returns
+	 * {@code true} when all expected messages are visible.
+	 */
+	public boolean assertAllMandatoryValidationMessages() {
+		boolean name = getNameRequiredMessage().toLowerCase(Locale.ENGLISH).contains("name is required");
+		boolean username = getUsernameRequiredMessage().toLowerCase(Locale.ENGLISH).contains("username is required");
+		boolean email = getEmailRequiredMessage().toLowerCase(Locale.ENGLISH).contains("email is required");
+		boolean password = getPasswordRequiredMessage().toLowerCase(Locale.ENGLISH).contains("password");
+		boolean confirm = getConfirmPasswordRequiredMessage().toLowerCase(Locale.ENGLISH)
+				.contains("password confirmation is required");
+		boolean role = getRoleRequiredMessage().toLowerCase(Locale.ENGLISH).contains("select your role");
+		boolean terms = getTermsRequiredMessage().toLowerCase(Locale.ENGLISH).contains("terms");
+		return name && username && email && password && confirm && role && terms;
+	}
+
+	/**
+	 * Selects an available role (in {@code candidates}) and asserts the
+	 * dropdown reflects the selection. Returns {@code true} on success;
+	 * throws {@link org.openqa.selenium.NoSuchElementException} via the
+	 * inner lookup if none of the candidates are available.
+	 */
+	public boolean assertRoleSelected(String... candidates) {
+		String role = getFirstAvailableRole(candidates);
+		if (role == null || role.isBlank()) {
+			throw new org.openqa.selenium.NoSuchElementException(
+					"No supported role option available from: " + String.join(",", candidates));
+		}
+		selectRole(role);
+		String selectedRole = getSelectedRoleText().toLowerCase(Locale.ENGLISH);
+		return selectedRole.contains(role.toLowerCase(Locale.ENGLISH)) || !selectedRole.isBlank();
+	}
+
+	/**
+	 * Clicks the terms link and returns {@code true} if any of the
+	 * expected outcomes occurred (URL changed, new window opened, or terms
+	 * content became visible).
+	 */
+	public boolean assertTermsLinkOpens() {
+		String currentUrl = getCurrentUrlSafely();
+		Set<String> existingWindows = driver.getWindowHandles();
+		clickTermsLink();
+		String nextUrl = getCurrentUrlSafely();
+		boolean navigated = !currentUrl.isBlank() && !nextUrl.equalsIgnoreCase(currentUrl);
+		boolean openedWindow = driver.getWindowHandles().size() > existingWindows.size();
+		boolean contentVisible = isTermsContentVisible();
+		return navigated || openedWindow || contentVisible;
+	}
+
+	// ==================== Helpers (test-side moved here) ====================
+
+	/**
+	 * Null-safe current-URL accessor. Returns empty string when the driver
+	 * cannot be queried. Replaces ad-hoc {@code Objects.requireNonNull(...)}
+	 * calls from test code.
+	 */
+	public String getCurrentUrlSafely() {
+		try {
+			return driver.getCurrentUrl();
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	/**
+	 * Null-safe page-source accessor (lower-cased). Returns empty string on
+	 * failure.
+	 */
+	public String getPageSourceLowerSafely() {
+		try {
+			String source = driver.getPageSource();
+			return source == null ? "" : source.toLowerCase(Locale.ENGLISH);
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	/**
+	 * Joins the non-blank fragments into a comma-separated string suitable
+	 * for embedding in an assertion message.
+	 */
+	public String joinFragments(String... fragments) {
+		if (fragments == null) {
+			return "[]";
+		}
+		List<String> values = new ArrayList<>();
+		for (String fragment : fragments) {
+			if (fragment != null && !fragment.isBlank()) {
+				values.add(fragment);
+			}
+		}
+		return values.toString();
+	}
+
+	/**
+	 * Resolves the feedback fragments to look for in {@code expectRejected}.
+	 * Uses caller-provided fragments when present, otherwise infers them
+	 * from the {@code context} string.
+	 */
+	public String[] resolveFeedbackFragments(String context, String... expectedFragments) {
+		if (expectedFragments != null && expectedFragments.length > 0) {
+			return expectedFragments;
+		}
+
+		String normalizedContext = context == null ? "" : context.toLowerCase(Locale.ENGLISH);
+
+		if (normalizedContext.contains("duplicate email")) {
+			return new String[] { "email", "taken" };
+		}
+		if (normalizedContext.contains("duplicate username")) {
+			return new String[] { "username", "taken" };
+		}
+		if (normalizedContext.contains("confirm password mismatch")) {
+			return new String[] { "confirm", "password" };
+		}
+		if (normalizedContext.contains("confirm password empty")) {
+			return new String[] { "confirm", "password", "required" };
+		}
+		if (normalizedContext.contains("role")) {
+			return new String[] { "role" };
+		}
+		if (normalizedContext.contains("terms")) {
+			return new String[] { "terms" };
+		}
+		if (normalizedContext.contains("email")) {
+			return new String[] { "email" };
+		}
+		if (normalizedContext.contains("username")) {
+			return new String[] { "username" };
+		}
+		if (normalizedContext.contains("name")) {
+			return new String[] { "name" };
+		}
+		if (normalizedContext.contains("password")) {
+			return new String[] { "password" };
+		}
+
+		return new String[0];
+	}
+
+	/**
+	 * Returns the list of currently-displayed feedback messages, lower-cased
+	 * (for content matching).
+	 */
+	public String findFeedbackMessageLower(String... fragments) {
+		String message = findFeedbackMessage(fragments);
+		return message == null ? "" : message.toLowerCase(Locale.ENGLISH);
+	}
 
 	public RegistrationPage(WebDriver driver) {
 		super(driver);

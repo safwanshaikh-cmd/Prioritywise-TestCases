@@ -1,0 +1,14 @@
+============================================================
+Test Log: LoginTests.TC126_VerifyRegisterUrlValidation
+Started: 2026-06-26 11:34:15
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\LoginTests_TC126_VerifyRegisterUrlValidation_2026_06_26_11_34_15.log
+============================================================
+========== TEST STARTED: TC_126: Register URL Validation ==========
+STEP 1: Check if Register button is available
+STEP 2: Click Register button
+STEP 3: Verify URL contains register or signup
+INFO  TC_126 - STEP 3: Current URL: https://web-splay.acceses.com/register
+INFO  TC_126: Register URL validation verified successfully
+========== TEST PASSED: TC_126 ==========
+============================================================
+Ended: 2026-06-26 11:34:15
