@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC249_VerifyBlankSpaceSearch
+Started: 2026-07-13 17:02:34
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC249_VerifyBlankSpaceSearch_2026_07_13_17_02_34.log
+============================================================
+========== TEST STARTED: TC_249: Blank Space Search ==========
+STEP 1: Search using a single blank space
+INFO  TC_249 - STEP 1: Safe response: true
+========== TEST PASSED: TC_249 ==========
+============================================================
+Ended: 2026-07-13 17:02:40

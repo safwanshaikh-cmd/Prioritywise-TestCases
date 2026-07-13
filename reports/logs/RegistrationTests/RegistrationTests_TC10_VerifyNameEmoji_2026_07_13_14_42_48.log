@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC10_VerifyNameEmoji
+Started: 2026-07-13 14:42:48
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC10_VerifyNameEmoji_2026_07_13_14_42_48.log
+============================================================
+========== TEST STARTED: TC_10: Verify name with emoji is rejected ==========
+STEP 1: Submit registration with an emoji in the name
+INFO  TC_10 - STEP 1: Rejected: true
+========== TEST PASSED: TC_10 ==========
+============================================================
+Ended: 2026-07-13 14:43:20

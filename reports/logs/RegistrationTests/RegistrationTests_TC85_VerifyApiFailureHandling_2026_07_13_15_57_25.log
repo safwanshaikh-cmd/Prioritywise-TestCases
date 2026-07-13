@@ -1,0 +1,12 @@
+============================================================
+Test Log: RegistrationTests.TC85_VerifyApiFailureHandling
+Started: 2026-07-13 15:57:25
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC85_VerifyApiFailureHandling_2026_07_13_15_57_25.log
+============================================================
+========== TEST STARTED: TC_85: Verify registration handles API rejection with stable UI response ==========
+STEP 1: Submit the registration form with an existing email
+STEP 2: Verify the registration handles API-side rejection
+INFO  TC_85 - STEP 2: Stable response: true
+========== TEST PASSED: TC_85 ==========
+============================================================
+Ended: 2026-07-13 15:57:41

@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC30_VerifyEmailSqlInjection
+Started: 2026-07-13 14:57:12
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC30_VerifyEmailSqlInjection_2026_07_13_14_57_12.log
+============================================================
+========== TEST STARTED: TC_30: Verify SQL injection in email is rejected ==========
+STEP 1: Submit registration with a SQL injection payload in the email
+INFO  TC_30 - STEP 1: Rejected: true
+========== TEST PASSED: TC_30 ==========
+============================================================
+Ended: 2026-07-13 14:57:44

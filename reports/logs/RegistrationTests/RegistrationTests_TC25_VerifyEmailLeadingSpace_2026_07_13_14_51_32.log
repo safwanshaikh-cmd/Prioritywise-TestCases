@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC25_VerifyEmailLeadingSpace
+Started: 2026-07-13 14:51:32
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC25_VerifyEmailLeadingSpace_2026_07_13_14_51_32.log
+============================================================
+========== TEST STARTED: TC_25: Verify email with leading space is handled gracefully ==========
+STEP 1: Submit registration with a leading space in the email
+INFO  TC_25 - STEP 1: Handled gracefully: true
+========== TEST PASSED: TC_25 ==========
+============================================================
+Ended: 2026-07-13 14:52:05

@@ -1,0 +1,12 @@
+============================================================
+Test Log: RegistrationTests.TC84_VerifyRegisterJsDisabled
+Started: 2026-07-13 15:56:29
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC84_VerifyRegisterJsDisabled_2026_07_13_15_56_29.log
+============================================================
+========== TEST STARTED: TC_84: Verify registration form is usable before any JS-disabled path ==========
+STEP 1: Populate the registration form
+STEP 2: Verify the registration form remains usable
+INFO  TC_84 - STEP 2: Screen displayed: true
+========== TEST PASSED: TC_84 ==========
+============================================================
+Ended: 2026-07-13 15:56:38

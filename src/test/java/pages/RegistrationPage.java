@@ -1,10 +1,10 @@
 package pages;
 
 import java.net.URI;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -16,10 +16,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import base.BasePage;
 import listeners.TestListener;
 import utils.ConfigReader;
@@ -38,12 +40,9 @@ public class RegistrationPage extends BasePage {
 			+ " | //*[@tabindex='0' and (.//span[normalize-space()='Login'] or .//div[normalize-space()='Login'])]");
 	private static final By REGISTER_LINK = By.xpath("//span[contains(text(),'Register')]");
 	private static final By NAME_FIELD = By.xpath("//input[@placeholder='Name']");
-	private static final By USERNAME_FIELD = By.xpath("//input[@placeholder='Username']");
 	private static final By EMAIL_FIELD = By.xpath("(//input[@placeholder='Email'])[2]");
 	private static final By PASSWORD_FIELD = By.xpath("(//input[@placeholder='Password'])[2]");
 	private static final By CONFIRM_PASSWORD_FIELD = By.xpath("(//input[@placeholder='Confirm password'])[1]");
-	private static final By ROLE_DROPDOWN = By.xpath(
-			"//div[@tabindex='0' and (.//*[normalize-space()='Select Role'] or .//*[normalize-space()='Consumer'] or .//*[normalize-space()='Uploader'] or .//*[normalize-space()='User'] or .//*[normalize-space()='Listener'] or .//*[normalize-space()='Creator'] or .//*[normalize-space()='Admin'])]");
 	private static final By TERMS_CHECKBOX = By.xpath("//*[@data-testid='termsCheckbox']");
 
 	private static final By TERMS_LABEL = By.xpath(
@@ -68,11 +67,7 @@ public class RegistrationPage extends BasePage {
 			"//div[@data-testid='toastText1' or contains(@class,'toast') or contains(@class,'alert') or contains(@class,'error')]");
 	private static final By ALL_VALIDATION_MESSAGES = By.xpath("//div[contains(@class,'css-146c3p1')]");
 	private static final By REGISTRATION_CONTAINER = By.xpath(
-			"//input[@placeholder='Name'] | //input[@placeholder='Username'] | //div[@tabindex='0' and .//div[normalize-space()='Register']]");
-	private static final String[] DEFAULT_ROLE_CANDIDATES = { "Consumer", "Uploader", "User", "Listener", "Creator",
-			"Admin" };
-	private static final By GENERIC_ROLE_OPTIONS = By.xpath(
-			"//*[self::div or self::span][normalize-space()='Consumer' or normalize-space()='Uploader' or normalize-space()='User' or normalize-space()='Listener' or normalize-space()='Creator' or normalize-space()='Admin']");
+			"//input[@placeholder='Name'] | //div[@tabindex='0' and .//div[normalize-space()='Register']]");
 
 	// ==================== Data factory helpers (test-side moved here) ====================
 
@@ -81,17 +76,15 @@ public class RegistrationPage extends BasePage {
 
 	/**
 	 * Returns a fresh {@link RegistrationFormData} populated with the
-	 * configured default values plus a unique username/email so the form
-	 * can be submitted without colliding with existing accounts.
+	 * configured default values plus a unique email so the form can be
+	 * submitted without colliding with existing accounts.
 	 */
 	public RegistrationFormData createValidFormData() {
 		String password = getConfiguredPassword();
 		return new RegistrationFormData().withName(getConfiguredName())
-				.withUsername(createUniqueUsername())
 				.withEmail(createUniqueEmail())
 				.withPassword(password)
 				.withConfirmPassword(password)
-				.withRole(firstNonBlank(getConfiguredRole(), "Consumer"))
 				.withAcceptTerms(true);
 	}
 
@@ -101,14 +94,6 @@ public class RegistrationPage extends BasePage {
 	 */
 	public String getConfiguredName() {
 		return firstNonBlank(ConfigReader.getProperty("registration.name"), "Safwan Shaikh");
-	}
-
-	/**
-	 * Configured default role (overridable via
-	 * {@code registration.role=…}).
-	 */
-	public String getConfiguredRole() {
-		return firstNonBlank(ConfigReader.getProperty("registration.role"), "Consumer");
 	}
 
 	/**
@@ -129,14 +114,6 @@ public class RegistrationPage extends BasePage {
 	}
 
 	/**
-	 * Username of an account that already exists in the system, used by
-	 * duplicate-username assertions.
-	 */
-	public String getExistingUsername() {
-		return firstNonBlank(ConfigReader.getProperty("registration.username"), "safwan012");
-	}
-
-	/**
 	 * Generates a unique email of the form {@code local+reg{token}@domain}
 	 * so each registration attempt uses a fresh inbox.
 	 */
@@ -150,22 +127,8 @@ public class RegistrationPage extends BasePage {
 	}
 
 	/**
-	 * Generates a unique username derived from the configured base (truncated
-	 * to 8 chars) plus a uniqueness token.
-	 */
-	public String createUniqueUsername() {
-		String baseValue = sanitizeUsername(getExistingUsername());
-		if (baseValue.isBlank()) {
-			baseValue = "reguser";
-		}
-		String suffix = buildUniqueToken();
-		String prefix = baseValue.length() > 8 ? baseValue.substring(0, 8) : baseValue;
-		return prefix + suffix;
-	}
-
-	/**
 	 * Per-process monotonic token used as the uniqueness suffix on generated
-	 * emails and usernames.
+	 * emails.
 	 */
 	public String buildUniqueToken() {
 		String timestamp = LocalDateTime.now().format(UNIQUE_STAMP_FORMAT);
@@ -175,10 +138,6 @@ public class RegistrationPage extends BasePage {
 	private String sanitizeEmailLocalPart(String value) {
 		String normalized = value == null ? "automation" : value.replaceAll("[^A-Za-z0-9._-]", "");
 		return normalized.isBlank() ? "automation" : normalized;
-	}
-
-	private String sanitizeUsername(String value) {
-		return value == null ? "" : value.replaceAll("[^A-Za-z0-9]", "").toLowerCase(Locale.ENGLISH);
 	}
 
 	// ==================== Expectation wrappers (test-side moved here) ====================
@@ -235,31 +194,12 @@ public class RegistrationPage extends BasePage {
 	 */
 	public boolean assertAllMandatoryValidationMessages() {
 		boolean name = getNameRequiredMessage().toLowerCase(Locale.ENGLISH).contains("name is required");
-		boolean username = getUsernameRequiredMessage().toLowerCase(Locale.ENGLISH).contains("username is required");
 		boolean email = getEmailRequiredMessage().toLowerCase(Locale.ENGLISH).contains("email is required");
 		boolean password = getPasswordRequiredMessage().toLowerCase(Locale.ENGLISH).contains("password");
 		boolean confirm = getConfirmPasswordRequiredMessage().toLowerCase(Locale.ENGLISH)
 				.contains("password confirmation is required");
-		boolean role = getRoleRequiredMessage().toLowerCase(Locale.ENGLISH).contains("select your role");
 		boolean terms = getTermsRequiredMessage().toLowerCase(Locale.ENGLISH).contains("terms");
-		return name && username && email && password && confirm && role && terms;
-	}
-
-	/**
-	 * Selects an available role (in {@code candidates}) and asserts the
-	 * dropdown reflects the selection. Returns {@code true} on success;
-	 * throws {@link org.openqa.selenium.NoSuchElementException} via the
-	 * inner lookup if none of the candidates are available.
-	 */
-	public boolean assertRoleSelected(String... candidates) {
-		String role = getFirstAvailableRole(candidates);
-		if (role == null || role.isBlank()) {
-			throw new org.openqa.selenium.NoSuchElementException(
-					"No supported role option available from: " + String.join(",", candidates));
-		}
-		selectRole(role);
-		String selectedRole = getSelectedRoleText().toLowerCase(Locale.ENGLISH);
-		return selectedRole.contains(role.toLowerCase(Locale.ENGLISH)) || !selectedRole.isBlank();
+		return name && email && password && confirm && terms;
 	}
 
 	/**
@@ -338,26 +278,17 @@ public class RegistrationPage extends BasePage {
 		if (normalizedContext.contains("duplicate email")) {
 			return new String[] { "email", "taken" };
 		}
-		if (normalizedContext.contains("duplicate username")) {
-			return new String[] { "username", "taken" };
-		}
 		if (normalizedContext.contains("confirm password mismatch")) {
 			return new String[] { "confirm", "password" };
 		}
 		if (normalizedContext.contains("confirm password empty")) {
 			return new String[] { "confirm", "password", "required" };
 		}
-		if (normalizedContext.contains("role")) {
-			return new String[] { "role" };
-		}
 		if (normalizedContext.contains("terms")) {
 			return new String[] { "terms" };
 		}
 		if (normalizedContext.contains("email")) {
 			return new String[] { "email" };
-		}
-		if (normalizedContext.contains("username")) {
-			return new String[] { "username" };
 		}
 		if (normalizedContext.contains("name")) {
 			return new String[] { "name" };
@@ -378,6 +309,133 @@ public class RegistrationPage extends BasePage {
 		return message == null ? "" : message.toLowerCase(Locale.ENGLISH);
 	}
 
+	// ==================== Test-facing helpers (reference-aligned) ====================
+
+	/**
+	 * Null-safe string accessor mirroring {@code safeString} on the sibling
+	 * page objects ({@link ChapterPage}, {@code ConsumerBookDetailsPage}) so
+	 * the test can log exception messages without risking an NPE.
+	 */
+	public String safeString(String value) {
+		return value == null ? "" : value;
+	}
+
+	/**
+	 * Wait the given number of milliseconds, surfacing interrupts as a
+	 * runtime exception. Mirrors {@code waitQuietly} on the sibling page
+	 * objects so the tests do not use raw {@link Thread#sleep}.
+	 */
+	public void waitQuietly(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			throw new RuntimeException("Sleep interrupted", e);
+		}
+	}
+
+	/**
+	 * @return the length of {@code value}, or {@code 0} when it is
+	 *         {@code null}. Lets the test assert on field-value lengths
+	 *         without calling {@code .length()} on a nullable reference.
+	 */
+	public int safeLength(String value) {
+		return value == null ? 0 : value.length();
+	}
+
+	/**
+	 * Null-safe, case-insensitive {@code contains} check used by the
+	 * placeholder, role-text, and validation-message assertions.
+	 */
+	public boolean containsIgnoreCase(String container, String token) {
+		if (container == null || token == null) {
+			return false;
+		}
+		return container.toLowerCase(Locale.ROOT).contains(token.toLowerCase(Locale.ROOT));
+	}
+
+	/**
+	 * @return {@code true} when the first visible feedback message contains
+	 *         any of the given keywords (case-insensitive). Null-safe so the
+	 *         activation-feedback tests never dereference a nullable.
+	 */
+	public boolean firstFeedbackContainsAny(String... keywords) {
+		String message = getFirstVisibleFeedbackMessage();
+		if (keywords == null) {
+			return false;
+		}
+		for (String keyword : keywords) {
+			if (containsIgnoreCase(message, keyword)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @return {@code true} when the current page source contains the given
+	 *         text (case-insensitive). Null-safe wrapper around the
+	 *         page-source lookup so the test never handles a nullable source.
+	 */
+	public boolean pageSourceContains(String text) {
+		return isTextPresentOnPage(text);
+	}
+
+	/**
+	 * Wait up to {@code timeoutSeconds} for the registration flow to surface
+	 * either a success state or visible feedback. Replaces ad-hoc
+	 * {@code Thread.sleep} waits in the slow-network / latency tests.
+	 */
+	public boolean waitForRegistrationResponse(long timeoutSeconds) {
+		try {
+			new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds))
+					.until(ignored -> isRegistrationSuccessful() || hasAnyVisibleFeedback());
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	/**
+	 * Focus the name field, send a single Tab, and return {@code true} when
+	 * keyboard focus actually moved to a different element. Encapsulates the
+	 * active-element / {@link Keys#TAB} interaction so the test stays free
+	 * of raw Selenium.
+	 */
+	public boolean verifyTabFromNameFieldMovesFocus() {
+		try {
+			focusNameField();
+			WebElement beforeTab = driver.switchTo().activeElement();
+			beforeTab.sendKeys(Keys.TAB);
+			WebElement afterTab = driver.switchTo().activeElement();
+			return !afterTab.equals(beforeTab);
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Tab-key focus move could not be verified: {0}", e.getMessage());
+			return false;
+		}
+	}
+
+	/**
+	 * Navigate the current driver to the configured base URL. No-op when
+	 * the base URL is blank. Centralises {@code driver.get(...)} so the
+	 * driver-restart tests do not call raw {@link WebDriver#get(String)}.
+	 */
+	public void openBaseUrl() {
+		String url = ConfigReader.getProperty("url", "");
+		if (!url.isBlank()) {
+			driver.get(url);
+		}
+	}
+
+	/**
+	 * Resize the browser window to the given dimensions. Centralises
+	 * {@code driver.manage().window().setSize(...)} so the viewport tests
+	 * stay free of raw Selenium.
+	 */
+	public void setWindowSize(int width, int height) {
+		driver.manage().window().setSize(new Dimension(width, height));
+	}
+
 	public RegistrationPage(WebDriver driver) {
 		super(driver);
 	}
@@ -390,15 +448,18 @@ public class RegistrationPage extends BasePage {
 		}
 
 		if (clickVisibleLoginEntry(LOGIN_ENTRY_BUTTON)) {
+			waitForLoginScreenReady();
 			return;
 		}
 
 		if (clickVisibleLoginEntry(HOME_LOGIN_BUTTON)) {
+			waitForLoginScreenReady();
 			return;
 		}
 
 		if (openDirectRoute("/login") || openDirectRoute("/signin") || openDirectRoute("/sign-in")
 				|| openDirectRoute("/auth/login")) {
+			waitForLoginScreenReady();
 			return;
 		}
 
@@ -410,7 +471,13 @@ public class RegistrationPage extends BasePage {
 			return;
 		}
 
+		// The login screen must be ready before the Register link can be
+		// clicked; without this the click races the page render and the
+		// subsequent direct-route fallbacks never find the form.
+		waitForLoginScreenReady();
+
 		try {
+			wait.waitForElementClickable(REGISTER_LINK);
 			jsClick(REGISTER_LINK);
 			if (isRegistrationScreenDisplayed()) {
 				return;
@@ -427,10 +494,27 @@ public class RegistrationPage extends BasePage {
 		throw new IllegalStateException("Unable to open the registration page from the current state.");
 	}
 
+	/**
+	 * Wait for the login screen to finish rendering after the login entry is
+	 * clicked or the direct route is opened. The underlying {@code openLogin}
+	 * click returns before the login form is in the DOM, which previously left
+	 * {@code openRegistration} racing ahead of the page. This uses an explicit
+	 * {@link WebDriverWait} (no {@code Thread.sleep}) and is a no-op when the
+	 * login screen is already visible.
+	 */
+	private void waitForLoginScreenReady() {
+		try {
+			new WebDriverWait(driver, Duration.ofSeconds(15))
+					.until(ignored -> new LoginPage(driver).isOnLoginPage());
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Login screen did not become ready in time: {0}", e.getMessage());
+		}
+	}
+
 	public boolean isRegistrationScreenDisplayed() {
 		try {
 			wait.waitForElementVisible(NAME_FIELD);
-			return isElementPresent(NAME_FIELD) && isElementPresent(USERNAME_FIELD) && isElementPresent(REGISTER_BUTTON)
+			return isElementPresent(NAME_FIELD) && isElementPresent(REGISTER_BUTTON)
 					&& isElementPresent(REGISTRATION_CONTAINER);
 		} catch (Exception e) {
 			return false;
@@ -444,11 +528,6 @@ public class RegistrationPage extends BasePage {
 	public void enterName(String fullName) {
 		type(NAME_FIELD, safeValue(fullName));
 		waitForFieldValue(NAME_FIELD, fullName);
-	}
-
-	public void enterUsername(String userName) {
-		type(USERNAME_FIELD, safeValue(userName));
-		waitForFieldValue(USERNAME_FIELD, userName);
 	}
 
 	public void enterEmail(String email) {
@@ -468,118 +547,6 @@ public class RegistrationPage extends BasePage {
 	public void enterConfirmPassword(String confirmPassword) {
 		type(CONFIRM_PASSWORD_FIELD, safeValue(confirmPassword));
 		waitForFieldValue(CONFIRM_PASSWORD_FIELD, confirmPassword);
-	}
-
-	public void openRoleDropdown() {
-		click(ROLE_DROPDOWN);
-	}
-
-	public void selectRole(String role) {
-		if (role != null && !role.isBlank()) {
-			openRoleDropdown();
-			wait.waitForMilliseconds(1000);
-			if (clickDirectRoleOption(role)) {
-				return;
-			}
-
-			WebElement matchedOption = findMatchingRoleOption(role);
-			if (matchedOption != null) {
-				clickRoleOption(matchedOption);
-				return;
-			}
-		}
-
-		if (role == null || role.isBlank()) {
-			throw new IllegalArgumentException("Role cannot be null or empty");
-		}
-
-		// Open dropdown
-		WebElement dropdown = wait.waitForElementClickable(ROLE_DROPDOWN);
-		dropdown.click();
-
-		// Wait for options to render
-		wait.waitForMilliseconds(2000);
-
-		try {
-			// Try exact match first
-			By roleOption = By.xpath("//div[normalize-space()='" + role + "']");
-			WebElement option = wait.waitForElementClickable(roleOption);
-			option.click();
-		} catch (Exception e) {
-
-			// Fallback → contains match
-			By fallback = By.xpath("//*[contains(text(),'" + role + "')]");
-			WebElement option = wait.waitForElementClickable(fallback);
-
-			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", option);
-
-			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", option);
-		}
-	}
-
-	public boolean isRoleOptionAvailable(String role) {
-		if (role == null || role.isBlank()) {
-			return false;
-		}
-
-		try {
-			openRoleDropdown();
-			return findMatchingRoleOption(role) != null;
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Role option not available for {0}: {1}", new Object[] { role, e.getMessage() });
-			return false;
-		}
-	}
-
-	public String getFirstAvailableRole(String... preferredRoles) {
-		Map<String, String> availableRoles = getAvailableRoleMap();
-
-		for (String preferredRole : preferredRoles) {
-			if (preferredRole == null || preferredRole.isBlank()) {
-				continue;
-			}
-
-			String bestMatch = findBestRoleValue(availableRoles, preferredRole);
-			if (!bestMatch.isBlank()) {
-				return bestMatch;
-			}
-		}
-
-		for (String defaultRole : DEFAULT_ROLE_CANDIDATES) {
-			String bestMatch = findBestRoleValue(availableRoles, defaultRole);
-			if (!bestMatch.isBlank()) {
-				return bestMatch;
-			}
-		}
-
-		return availableRoles.values().stream().findFirst().orElse("");
-	}
-
-	public List<String> getAvailableRoleLabels() {
-		return new ArrayList<>(getAvailableRoleMap().values());
-	}
-
-	public boolean isAnyRoleOptionAvailable(String... roles) {
-		for (String role : roles) {
-			if (isRoleOptionAvailable(role)) {
-				return true;
-			}
-		}
-		for (String role : DEFAULT_ROLE_CANDIDATES) {
-			if (isRoleOptionAvailable(role)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public String getSelectedRoleText() {
-		try {
-			WebElement dropdown = wait.waitForElementVisible(ROLE_DROPDOWN);
-			return dropdown.getText().trim();
-		} catch (Exception e) {
-			return "";
-		}
 	}
 
 	public void acceptTerms() {
@@ -766,15 +733,9 @@ public class RegistrationPage extends BasePage {
 		}
 
 		enterName(data.getName());
-		enterUsername(data.getUsername());
 		enterEmail(data.getEmail());
 		enterPassword(data.getPassword());
 		enterConfirmPassword(data.getConfirmPassword());
-
-		// ✅ FIXED ORDER
-		if (data.getRole() != null && !data.getRole().isBlank()) {
-			selectRole(data.getRole());
-		}
 
 		if (data.isAcceptTerms()) {
 			acceptTerms();
@@ -804,10 +765,6 @@ public class RegistrationPage extends BasePage {
 		return isElementPresent(NAME_FIELD);
 	}
 
-	public boolean isUsernameFieldDisplayed() {
-		return isElementPresent(USERNAME_FIELD);
-	}
-
 	public boolean isEmailFieldDisplayed() {
 		return isElementPresent(EMAIL_FIELD);
 	}
@@ -824,10 +781,6 @@ public class RegistrationPage extends BasePage {
 		return getAttribute(NAME_FIELD, "placeholder");
 	}
 
-	public String getUsernamePlaceholder() {
-		return getAttribute(USERNAME_FIELD, "placeholder");
-	}
-
 	public String getEmailPlaceholder() {
 		return getAttribute(EMAIL_FIELD, "placeholder");
 	}
@@ -838,10 +791,6 @@ public class RegistrationPage extends BasePage {
 
 	public String getConfirmPasswordPlaceholder() {
 		return getAttribute(CONFIRM_PASSWORD_FIELD, "placeholder");
-	}
-
-	public String getUsernameValue() {
-		return getAttribute(USERNAME_FIELD, "value");
 	}
 
 	public String getEmailValue() {
@@ -897,11 +846,9 @@ public class RegistrationPage extends BasePage {
 	public void printVisibleValidationMessages() {
 		List<String> labeledMessages = new ArrayList<>();
 		addLabeledValidationMessage(labeledMessages, "Name Warning", getNameRequiredMessage());
-		addLabeledValidationMessage(labeledMessages, "Username Warning", getUsernameRequiredMessage());
 		addLabeledValidationMessage(labeledMessages, "Email Warning", getEmailRequiredMessage());
 		addLabeledValidationMessage(labeledMessages, "Password Warning", getPasswordRequiredMessage());
 		addLabeledValidationMessage(labeledMessages, "Confirm Password Warning", getConfirmPasswordRequiredMessage());
-		addLabeledValidationMessage(labeledMessages, "Role Warning", getRoleRequiredMessage());
 		addLabeledValidationMessage(labeledMessages, "Terms Warning", getTermsRequiredMessage());
 
 		System.out.println("=== Validation Messages ===");
@@ -1018,10 +965,6 @@ public class RegistrationPage extends BasePage {
 		return findFeedbackMessage("name is required");
 	}
 
-	public String getUsernameRequiredMessage() {
-		return findFeedbackMessage("username is required");
-	}
-
 	public String getEmailRequiredMessage() {
 		return findFeedbackMessage("email is required");
 	}
@@ -1034,10 +977,6 @@ public class RegistrationPage extends BasePage {
 		return findFeedbackMessage("password confirmation is required");
 	}
 
-	public String getRoleRequiredMessage() {
-		return findFeedbackMessage("please select your role");
-	}
-
 	public String getTermsRequiredMessage() {
 		return findFeedbackMessage("terms", "conditions");
 	}
@@ -1045,11 +984,6 @@ public class RegistrationPage extends BasePage {
 	public String getDuplicateEmailMessage() {
 		return firstNonBlank(findFeedbackMessage("email", "taken"), findFeedbackMessage("already taken"),
 				findFeedbackMessage("email", "already"));
-	}
-
-	public String getDuplicateUsernameMessage() {
-		return firstNonBlank(findFeedbackMessage("username", "taken"), findFeedbackMessage("username", "already"),
-				findFeedbackMessage("user name", "already"));
 	}
 
 	public String getConfirmPasswordMismatchMessage() {
@@ -1226,197 +1160,6 @@ public class RegistrationPage extends BasePage {
 		return false;
 	}
 
-	private Map<String, String> getAvailableRoleMap() {
-		Map<String, String> roleMap = new LinkedHashMap<>();
-
-		try {
-			openRoleDropdown();
-			wait.waitForMilliseconds(1000);
-			for (WebElement option : driver.findElements(GENERIC_ROLE_OPTIONS)) {
-				String normalized = normalizeRoleText(option);
-				if (normalized.isEmpty() || isNonRoleText(normalized)) {
-					continue;
-				}
-
-				roleMap.putIfAbsent(normalized, option.getText().trim());
-			}
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Unable to extract role labels: {0}", e.getMessage());
-		}
-
-		return roleMap;
-	}
-
-	private WebElement findMatchingRoleOption(String role) {
-		String desiredRole = normalizeRoleText(role);
-		if (desiredRole.isEmpty()) {
-			return null;
-		}
-
-		List<WebElement> candidates = driver.findElements(GENERIC_ROLE_OPTIONS);
-		WebElement partialMatch = null;
-		int partialMatchScore = Integer.MAX_VALUE;
-
-		for (WebElement candidate : candidates) {
-			String candidateText = normalizeRoleText(candidate);
-			if (candidateText.isEmpty() || isNonRoleText(candidateText)) {
-				continue;
-			}
-
-			if (candidateText.equals(desiredRole)) {
-				return candidate;
-			}
-
-			if (candidateText.contains(desiredRole) || desiredRole.contains(candidateText)) {
-				int score = roleMatchScore(candidateText, desiredRole);
-				if (partialMatch == null || score < partialMatchScore) {
-					partialMatch = candidate;
-					partialMatchScore = score;
-				}
-			}
-		}
-
-		if (partialMatch != null) {
-			return partialMatch;
-		}
-
-		String[] desiredTokens = desiredRole.split(" ");
-		WebElement tokenMatch = null;
-		int tokenMatchScore = Integer.MAX_VALUE;
-		for (WebElement candidate : candidates) {
-			String candidateText = normalizeRoleText(candidate);
-			if (candidateText.isEmpty() || isNonRoleText(candidateText)) {
-				continue;
-			}
-
-			for (String token : desiredTokens) {
-				if (!token.isBlank() && candidateText.contains(token)) {
-					int score = roleMatchScore(candidateText, token);
-					if (tokenMatch == null || score < tokenMatchScore) {
-						tokenMatch = candidate;
-						tokenMatchScore = score;
-					}
-				}
-			}
-		}
-
-		return tokenMatch;
-	}
-
-	private boolean clickDirectRoleOption(String role) {
-		for (By locator : buildDirectRoleOptionLocators(role)) {
-			try {
-				WebElement option = wait.waitForElementClickable(locator);
-				clickRoleOption(option);
-				return true;
-			} catch (Exception e) {
-				LOGGER.log(Level.FINE, "Direct role option click failed for {0}: {1}",
-						new Object[] { locator, e.getMessage() });
-			}
-		}
-		return false;
-	}
-
-	private void clickRoleOption(WebElement option) {
-		try {
-			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", option);
-			option.click();
-		} catch (Exception e) {
-			Objects.requireNonNull((JavascriptExecutor) driver).executeScript("arguments[0].click();", option);
-		}
-	}
-
-	private String normalizeRoleText(WebElement element) {
-		try {
-			if (!element.isDisplayed()) {
-				return "";
-			}
-			return normalizeRoleText(element.getText());
-		} catch (Exception e) {
-			return "";
-		}
-	}
-
-	private String normalizeRoleText(String text) {
-		if (text == null) {
-			return "";
-		}
-		return text.replaceAll("[^A-Za-z ]", " ").replaceAll("\\s+", " ").trim().toLowerCase(Locale.ENGLISH);
-	}
-
-	private List<By> buildDirectRoleOptionLocators(String role) {
-		String safeRole = role.trim();
-		String roleLiteral = toXpathLiteral(safeRole);
-		String lowercaseLiteral = toXpathLiteral(safeRole.toLowerCase(Locale.ENGLISH));
-
-		List<By> locators = new ArrayList<>();
-		locators.add(By.xpath("//div[normalize-space()=" + roleLiteral + "]"));
-		locators.add(By.xpath("//span[normalize-space()=" + roleLiteral + "]"));
-		locators.add(By.xpath(
-				"//*[self::div or self::span][translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')="
-						+ lowercaseLiteral + "]"));
-		return locators;
-	}
-
-	private String findBestRoleValue(Map<String, String> availableRoles, String requestedRole) {
-		String desiredRole = normalizeRoleText(requestedRole);
-		if (desiredRole.isEmpty()) {
-			return "";
-		}
-
-		String partialMatch = "";
-		int partialMatchScore = Integer.MAX_VALUE;
-
-		for (Map.Entry<String, String> entry : availableRoles.entrySet()) {
-			String availableRole = entry.getKey();
-			if (availableRole.equals(desiredRole)) {
-				return entry.getValue();
-			}
-
-			if (availableRole.contains(desiredRole) || desiredRole.contains(availableRole)) {
-				int score = roleMatchScore(availableRole, desiredRole);
-				if (partialMatch.isBlank() || score < partialMatchScore) {
-					partialMatch = entry.getValue();
-					partialMatchScore = score;
-				}
-			}
-		}
-
-		if (!partialMatch.isBlank()) {
-			return partialMatch;
-		}
-
-		String tokenMatch = "";
-		int tokenMatchScore = Integer.MAX_VALUE;
-		for (Map.Entry<String, String> entry : availableRoles.entrySet()) {
-			for (String token : desiredRole.split(" ")) {
-				if (!token.isBlank() && entry.getKey().contains(token)) {
-					int score = roleMatchScore(entry.getKey(), token);
-					if (tokenMatch.isBlank() || score < tokenMatchScore) {
-						tokenMatch = entry.getValue();
-						tokenMatchScore = score;
-					}
-				}
-			}
-		}
-
-		return tokenMatch;
-	}
-
-	private int roleMatchScore(String candidateText, String desiredRole) {
-		int wordCount = candidateText.split("\\s+").length;
-		int lengthDelta = Math.abs(candidateText.length() - desiredRole.length());
-		return (wordCount * 100) + lengthDelta;
-	}
-
-	private boolean isNonRoleText(String normalizedText) {
-		return normalizedText.isEmpty() || normalizedText.contains("register") || normalizedText.contains("terms")
-				|| normalizedText.contains("password") || normalizedText.contains("email")
-				|| normalizedText.contains("name") || normalizedText.contains("privacy")
-				|| normalizedText.contains("news letter") || normalizedText.equals("login")
-				|| normalizedText.equals("en");
-	}
-
 	/**
 	 * Wait for field value to stabilize.
 	 */
@@ -1506,32 +1249,11 @@ public class RegistrationPage extends BasePage {
 		return value == null ? "" : value;
 	}
 
-	private String toXpathLiteral(String value) {
-		if (!value.contains("'")) {
-			return "'" + value + "'";
-		}
-		if (!value.contains("\"")) {
-			return "\"" + value + "\"";
-		}
-		StringBuilder builder = new StringBuilder("concat(");
-		String[] parts = value.split("'");
-		for (int i = 0; i < parts.length; i++) {
-			if (i > 0) {
-				builder.append(", \"'\", ");
-			}
-			builder.append("'").append(parts[i]).append("'");
-		}
-		builder.append(")");
-		return builder.toString();
-	}
-
 	public static class RegistrationFormData {
 		private String name = "";
-		private String username = "";
 		private String email = "";
 		private String password = "";
 		private String confirmPassword = "";
-		private String role = "";
 		private boolean acceptTerms = true;
 		private boolean subscribeToNewsletter;
 
@@ -1541,15 +1263,6 @@ public class RegistrationPage extends BasePage {
 
 		public RegistrationFormData withName(String name) {
 			this.name = name == null ? "" : name;
-			return this;
-		}
-
-		public String getUsername() {
-			return username;
-		}
-
-		public RegistrationFormData withUsername(String username) {
-			this.username = username == null ? "" : username;
 			return this;
 		}
 
@@ -1577,15 +1290,6 @@ public class RegistrationPage extends BasePage {
 
 		public RegistrationFormData withConfirmPassword(String confirmPassword) {
 			this.confirmPassword = confirmPassword == null ? "" : confirmPassword;
-			return this;
-		}
-
-		public String getRole() {
-			return role;
-		}
-
-		public RegistrationFormData withRole(String role) {
-			this.role = role == null ? "" : role;
 			return this;
 		}
 

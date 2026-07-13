@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC255_VerifyUserCanClearSearchField
+Started: 2026-07-13 17:08:44
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC255_VerifyUserCanClearSearchField_2026_07_13_17_08_44.log
+============================================================
+========== TEST STARTED: TC_255: User Can Clear Search Field ==========
+STEP 1: Type a keyword without submitting, then clear the search field
+STEP 2: Verify the search field was cleared
+INFO  TC_255 - STEP 2: Search field value: ''
+========== TEST PASSED: TC_255 ==========
+============================================================
+Ended: 2026-07-13 17:08:46

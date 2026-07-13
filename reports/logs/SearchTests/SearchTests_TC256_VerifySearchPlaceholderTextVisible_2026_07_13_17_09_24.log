@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC256_VerifySearchPlaceholderTextVisible
+Started: 2026-07-13 17:09:24
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC256_VerifySearchPlaceholderTextVisible_2026_07_13_17_09_24.log
+============================================================
+========== TEST STARTED: TC_256: Search Placeholder Text Visible ==========
+STEP 1: Verify the search input exposes placeholder text
+INFO  TC_256 - STEP 1: Placeholder: 'Search audiobooks & stories'
+========== TEST PASSED: TC_256 ==========
+============================================================
+Ended: 2026-07-13 17:09:24

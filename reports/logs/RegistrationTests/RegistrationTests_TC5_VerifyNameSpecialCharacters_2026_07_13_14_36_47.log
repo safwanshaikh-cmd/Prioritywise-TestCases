@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC5_VerifyNameSpecialCharacters
+Started: 2026-07-13 14:36:47
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC5_VerifyNameSpecialCharacters_2026_07_13_14_36_47.log
+============================================================
+========== TEST STARTED: TC_5: Verify name with special characters is rejected ==========
+STEP 1: Submit registration with special characters in the name
+INFO  TC_5 - STEP 1: Rejected: true
+========== TEST PASSED: TC_5 ==========
+============================================================
+Ended: 2026-07-13 14:37:20

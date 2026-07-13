@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC3_VerifyNameValid
+Started: 2026-07-13 14:34:51
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC3_VerifyNameValid_2026_07_13_14_34_51.log
+============================================================
+========== TEST STARTED: TC_3: Verify valid name input is accepted ==========
+STEP 1: Enter a valid name
+INFO  TC_3 - STEP 1: Name value: Safwan Shaikh
+========== TEST PASSED: TC_3 ==========
+============================================================
+Ended: 2026-07-13 14:34:52

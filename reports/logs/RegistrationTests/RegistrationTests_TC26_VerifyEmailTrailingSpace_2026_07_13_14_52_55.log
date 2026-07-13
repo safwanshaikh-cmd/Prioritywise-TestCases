@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC26_VerifyEmailTrailingSpace
+Started: 2026-07-13 14:52:55
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC26_VerifyEmailTrailingSpace_2026_07_13_14_52_55.log
+============================================================
+========== TEST STARTED: TC_26: Verify email with trailing space is handled gracefully ==========
+STEP 1: Submit registration with a trailing space in the email
+INFO  TC_26 - STEP 1: Handled gracefully: true
+========== TEST PASSED: TC_26 ==========
+============================================================
+Ended: 2026-07-13 14:53:27

@@ -1,0 +1,13 @@
+============================================================
+Test Log: RegistrationTests.TC64_VerifySessionTimeout
+Started: 2026-07-13 15:30:18
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC64_VerifySessionTimeout_2026_07_13_15_30_18.log
+============================================================
+========== TEST STARTED: TC_64: Verify registration page is stable after an idle wait ==========
+STEP 1: Enter name
+STEP 2: Simulate an idle wait on the registration page
+STEP 3: Enter email and verify the page remains stable
+INFO  TC_64 - STEP 3: Screen displayed after idle: true
+========== TEST PASSED: TC_64 ==========
+============================================================
+Ended: 2026-07-13 15:30:26

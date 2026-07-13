@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC247_VerifySearchResultsCountDisplayed
+Started: 2026-07-13 17:01:00
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC247_VerifySearchResultsCountDisplayed_2026_07_13_17_01_00.log
+============================================================
+========== TEST STARTED: TC_247: Search Results Count Displayed ==========
+STEP 1: Search using a keyword expected to surface a result count
+STEP 2: Verify the count label is shown or results are visible
+INFO  TC_247 - STEP 2: Count available: true
+========== TEST PASSED: TC_247 ==========
+============================================================
+Ended: 2026-07-13 17:01:04

@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC58_VerifyNewsletterStorePreference
+Started: 2026-07-13 15:24:19
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC58_VerifyNewsletterStorePreference_2026_07_13_15_24_19.log
+============================================================
+========== TEST STARTED: TC_58: Verify newsletter preference persistence ==========
+STEP 1: Verify newsletter preference persistence
+========== TEST SKIPPED: TC_58 ==========
+[SKIP] RegistrationTests :: TC58_VerifyNewsletterStorePreference
+============================================================
+Ended: 2026-07-13 15:24:19

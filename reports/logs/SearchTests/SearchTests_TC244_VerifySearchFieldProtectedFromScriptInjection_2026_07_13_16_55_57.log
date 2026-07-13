@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC244_VerifySearchFieldProtectedFromScriptInjection
+Started: 2026-07-13 16:55:57
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC244_VerifySearchFieldProtectedFromScriptInjection_2026_07_13_16_55_57.log
+============================================================
+========== TEST STARTED: TC_244: Search Field Protected From Script Injection ==========
+STEP 1: Search using a script injection payload
+INFO  TC_244 - STEP 1: Safe response: true, Alert present: false
+========== TEST PASSED: TC_244 ==========
+============================================================
+Ended: 2026-07-13 16:56:04

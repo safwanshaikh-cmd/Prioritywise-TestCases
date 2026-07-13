@@ -1,0 +1,12 @@
+============================================================
+Test Log: RegistrationTests.TC79_VerifyRateLimiting
+Started: 2026-07-13 15:48:19
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC79_VerifyRateLimiting_2026_07_13_15_48_19.log
+============================================================
+========== TEST STARTED: TC_79: Verify repeated submissions remain stable ==========
+STEP 1: Submit duplicate-email registrations repeatedly and verify stable responses
+STEP 2: Verify repeated attempts returned a stable response
+INFO  TC_79 - STEP 2: Had feedback: true, Screen displayed: true
+========== TEST PASSED: TC_79 ==========
+============================================================
+Ended: 2026-07-13 15:50:57

@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC250_VerifyUnsupportedCharactersSearch
+Started: 2026-07-13 17:03:25
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC250_VerifyUnsupportedCharactersSearch_2026_07_13_17_03_25.log
+============================================================
+========== TEST STARTED: TC_250: Unsupported Characters Search ==========
+STEP 1: Search using emoji characters
+STEP 2: Verify the page remains stable after emoji input
+INFO  TC_250 - STEP 2: Safe response: true, Page stable: true
+========== TEST PASSED: TC_250 ==========
+============================================================
+Ended: 2026-07-13 17:03:32

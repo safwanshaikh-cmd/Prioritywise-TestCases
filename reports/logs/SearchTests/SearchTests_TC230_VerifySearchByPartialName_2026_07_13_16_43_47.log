@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC230_VerifySearchByPartialName
+Started: 2026-07-13 16:43:47
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC230_VerifySearchByPartialName_2026_07_13_16_43_47.log
+============================================================
+========== TEST STARTED: TC_230: Search By Partial Name ==========
+STEP 1: Search using a partial book title
+INFO  TC_230 - STEP 1: Results present: true
+========== TEST PASSED: TC_230 ==========
+============================================================
+Ended: 2026-07-13 16:43:59

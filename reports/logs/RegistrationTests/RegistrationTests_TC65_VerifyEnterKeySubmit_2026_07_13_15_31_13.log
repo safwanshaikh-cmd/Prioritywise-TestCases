@@ -1,0 +1,13 @@
+============================================================
+Test Log: RegistrationTests.TC65_VerifyEnterKeySubmit
+Started: 2026-07-13 15:31:13
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC65_VerifyEnterKeySubmit_2026_07_13_15_31_13.log
+============================================================
+========== TEST STARTED: TC_65: Verify Enter key submits the registration form ==========
+STEP 1: Populate the registration form
+STEP 2: Submit the form using the Enter key
+STEP 3: Verify a visible registration response
+INFO  TC_65 - STEP 3: Response visible: true
+========== TEST PASSED: TC_65 ==========
+============================================================
+Ended: 2026-07-13 15:31:40

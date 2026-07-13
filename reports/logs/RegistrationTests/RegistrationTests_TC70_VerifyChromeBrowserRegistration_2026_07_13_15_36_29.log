@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC70_VerifyChromeBrowserRegistration
+Started: 2026-07-13 15:36:29
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC70_VerifyChromeBrowserRegistration_2026_07_13_15_36_29.log
+============================================================
+========== TEST STARTED: TC_70: Verify registration opens in Chrome browser ==========
+STEP 1: Restart the driver on Chrome and open the registration screen
+INFO  TC_70 - STEP 1: Screen displayed on Chrome: true
+========== TEST PASSED: TC_70 ==========
+============================================================
+Ended: 2026-07-13 15:37:09

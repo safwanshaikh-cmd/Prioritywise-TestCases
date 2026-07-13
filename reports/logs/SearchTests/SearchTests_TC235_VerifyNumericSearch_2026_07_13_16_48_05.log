@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC235_VerifyNumericSearch
+Started: 2026-07-13 16:48:05
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC235_VerifyNumericSearch_2026_07_13_16_48_05.log
+============================================================
+========== TEST STARTED: TC_235: Numeric Search ==========
+STEP 1: Search using a numeric value
+INFO  TC_235 - STEP 1: Safe response: true
+========== TEST PASSED: TC_235 ==========
+============================================================
+Ended: 2026-07-13 16:48:12

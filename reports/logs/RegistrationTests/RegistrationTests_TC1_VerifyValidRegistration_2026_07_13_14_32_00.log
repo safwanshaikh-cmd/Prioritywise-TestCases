@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC1_VerifyValidRegistration
+Started: 2026-07-13 14:32:00
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC1_VerifyValidRegistration_2026_07_13_14_32_00.log
+============================================================
+========== TEST STARTED: TC_1: Verify valid registration submits successfully ==========
+STEP 1: Submit the registration form with valid details
+INFO  TC_1 - STEP 1: Registration successful: true
+========== TEST PASSED: TC_1 ==========
+============================================================
+Ended: 2026-07-13 14:32:20

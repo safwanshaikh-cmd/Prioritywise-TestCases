@@ -1,0 +1,12 @@
+============================================================
+Test Log: RegistrationTests.TC80_VerifyActivationEmail
+Started: 2026-07-13 15:51:43
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC80_VerifyActivationEmail_2026_07_13_15_51_43.log
+============================================================
+========== TEST STARTED: TC_80: Verify activation email feedback surfaces after submission ==========
+STEP 1: Submit a valid registration
+STEP 2: Verify activation-email feedback surfaces
+INFO  TC_80 - STEP 2: Activation email indicated: true
+========== TEST PASSED: TC_80 ==========
+============================================================
+Ended: 2026-07-13 15:51:58

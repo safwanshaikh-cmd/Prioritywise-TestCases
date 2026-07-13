@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC24_VerifyEmailMultipleAt
+Started: 2026-07-13 14:50:13
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC24_VerifyEmailMultipleAt_2026_07_13_14_50_13.log
+============================================================
+========== TEST STARTED: TC_24: Verify email with multiple '@' is rejected ==========
+STEP 1: Submit registration with an email containing multiple '@'
+INFO  TC_24 - STEP 1: Rejected: true
+========== TEST PASSED: TC_24 ==========
+============================================================
+Ended: 2026-07-13 14:50:45

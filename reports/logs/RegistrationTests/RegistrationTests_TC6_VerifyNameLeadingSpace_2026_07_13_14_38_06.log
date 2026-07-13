@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC6_VerifyNameLeadingSpace
+Started: 2026-07-13 14:38:06
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC6_VerifyNameLeadingSpace_2026_07_13_14_38_06.log
+============================================================
+========== TEST STARTED: TC_6: Verify name with leading space is handled gracefully ==========
+STEP 1: Submit registration with a leading space in the name
+INFO  TC_6 - STEP 1: Handled gracefully: true
+========== TEST PASSED: TC_6 ==========
+============================================================
+Ended: 2026-07-13 14:38:26

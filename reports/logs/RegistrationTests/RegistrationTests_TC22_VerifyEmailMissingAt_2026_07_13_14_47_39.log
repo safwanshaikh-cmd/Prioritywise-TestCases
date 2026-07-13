@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC22_VerifyEmailMissingAt
+Started: 2026-07-13 14:47:39
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC22_VerifyEmailMissingAt_2026_07_13_14_47_39.log
+============================================================
+========== TEST STARTED: TC_22: Verify email without '@' is rejected ==========
+STEP 1: Submit registration with an email missing '@'
+INFO  TC_22 - STEP 1: Rejected: true
+========== TEST PASSED: TC_22 ==========
+============================================================
+Ended: 2026-07-13 14:48:11

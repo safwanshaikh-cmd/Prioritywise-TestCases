@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC260_VerifySearchFieldPreventsHtmlInjection
+Started: 2026-07-13 17:12:41
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC260_VerifySearchFieldPreventsHtmlInjection_2026_07_13_17_12_41.log
+============================================================
+========== TEST STARTED: TC_260: Search Field Prevents HTML Injection ==========
+STEP 1: Search using an HTML injection payload
+INFO  TC_260 - STEP 1: Safe response: true, Alert present: false
+========== TEST PASSED: TC_260 ==========
+============================================================
+Ended: 2026-07-13 17:12:48

@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC8_VerifyNameMultipleSpaces
+Started: 2026-07-13 14:40:28
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC8_VerifyNameMultipleSpaces_2026_07_13_14_40_28.log
+============================================================
+========== TEST STARTED: TC_8: Verify name with multiple spaces is handled gracefully ==========
+STEP 1: Submit registration with multiple spaces in the name
+INFO  TC_8 - STEP 1: Handled gracefully: true
+========== TEST PASSED: TC_8 ==========
+============================================================
+Ended: 2026-07-13 14:40:48

@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC9_VerifyNameUnicode
+Started: 2026-07-13 14:41:38
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC9_VerifyNameUnicode_2026_07_13_14_41_38.log
+============================================================
+========== TEST STARTED: TC_9: Verify name with unicode characters is handled gracefully ==========
+STEP 1: Submit registration with a unicode name
+INFO  TC_9 - STEP 1: Handled gracefully: true
+========== TEST PASSED: TC_9 ==========
+============================================================
+Ended: 2026-07-13 14:41:58

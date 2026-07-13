@@ -1,0 +1,13 @@
+============================================================
+Test Log: RegistrationTests.TC62_VerifySlowNetworkRegistration
+Started: 2026-07-13 15:28:07
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC62_VerifySlowNetworkRegistration_2026_07_13_15_28_07.log
+============================================================
+========== TEST STARTED: TC_62: Verify registration flow is stable under slow network ==========
+STEP 1: Populate and submit the registration form
+STEP 2: Wait for the registration flow to settle under a slow response
+STEP 3: Verify the registration flow remains stable
+INFO  TC_62 - STEP 3: Flow stable: true
+========== TEST PASSED: TC_62 ==========
+============================================================
+Ended: 2026-07-13 15:28:28

@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC242_VerifySearchIconClickTriggersSearch
+Started: 2026-07-13 16:54:15
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC242_VerifySearchIconClickTriggersSearch_2026_07_13_16_54_15.log
+============================================================
+========== TEST STARTED: TC_242: Search Icon Click Triggers Search ==========
+STEP 1: Enter a keyword and click the search icon
+STEP 2: Verify a search outcome was produced
+INFO  TC_242 - STEP 2: Search outcome present: true
+========== TEST PASSED: TC_242 ==========
+============================================================
+Ended: 2026-07-13 16:54:25

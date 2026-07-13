@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC248_VerifySearchAutoSuggestionsAppearWhileTyping
+Started: 2026-07-13 17:01:49
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC248_VerifySearchAutoSuggestionsAppearWhileTyping_2026_07_13_17_01_49.log
+============================================================
+========== TEST STARTED: TC_248: Search Auto-Suggestions Appear While Typing ==========
+STEP 1: Type a keyword without submitting
+STEP 2: Verify suggestions or live results surfaced
+INFO  TC_248 - STEP 2: Suggestions or live results: true
+========== TEST PASSED: TC_248 ==========
+============================================================
+Ended: 2026-07-13 17:01:52

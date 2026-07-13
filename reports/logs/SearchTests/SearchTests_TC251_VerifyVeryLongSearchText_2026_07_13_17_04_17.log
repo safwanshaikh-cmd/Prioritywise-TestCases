@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC251_VerifyVeryLongSearchText
+Started: 2026-07-13 17:04:17
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC251_VerifyVeryLongSearchText_2026_07_13_17_04_17.log
+============================================================
+========== TEST STARTED: TC_251: Very Long Search Text ==========
+STEP 1: Search using a 1000-character string
+STEP 2: Verify the page remains stable after a very long search
+INFO  TC_251 - STEP 2: Page stable: true
+========== TEST PASSED: TC_251 ==========
+============================================================
+Ended: 2026-07-13 17:04:44

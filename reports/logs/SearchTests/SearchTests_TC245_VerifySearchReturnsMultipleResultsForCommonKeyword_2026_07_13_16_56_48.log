@@ -1,0 +1,13 @@
+============================================================
+Test Log: SearchTests.TC245_VerifySearchReturnsMultipleResultsForCommonKeyword
+Started: 2026-07-13 16:56:48
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC245_VerifySearchReturnsMultipleResultsForCommonKeyword_2026_07_13_16_56_48.log
+============================================================
+========== TEST STARTED: TC_245: Search Returns Multiple Results For Common Keyword ==========
+STEP 1: Search using a common keyword expected to return multiple results
+INFO  TC_245 - STEP 1: Result count: 0
+STEP 2: Verify multiple results or a stable empty-state message
+INFO  TC_245 - STEP 2: Multiple results: false, Empty state: true
+========== TEST PASSED: TC_245 ==========
+============================================================
+Ended: 2026-07-13 16:57:01

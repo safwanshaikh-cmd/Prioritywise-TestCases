@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC261_VerifySearchFieldProtectedFromUrlInjection
+Started: 2026-07-13 17:13:30
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC261_VerifySearchFieldProtectedFromUrlInjection_2026_07_13_17_13_30.log
+============================================================
+========== TEST STARTED: TC_261: Search Field Protected From URL Injection ==========
+STEP 1: Search using a javascript: URL payload
+INFO  TC_261 - STEP 1: Safe response: true, Alert present: false
+========== TEST PASSED: TC_261 ==========
+============================================================
+Ended: 2026-07-13 17:13:31

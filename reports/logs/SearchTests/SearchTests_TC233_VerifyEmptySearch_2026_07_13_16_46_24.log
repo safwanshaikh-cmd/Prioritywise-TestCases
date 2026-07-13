@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC233_VerifyEmptySearch
+Started: 2026-07-13 16:46:24
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC233_VerifyEmptySearch_2026_07_13_16_46_24.log
+============================================================
+========== TEST STARTED: TC_233: Empty Search ==========
+STEP 1: Submit an empty search
+STEP 2: Verify validation or a safe empty response
+INFO  TC_233 - STEP 2: Safe empty response: true
+========== TEST PASSED: TC_233 ==========
+============================================================
+Ended: 2026-07-13 16:46:37

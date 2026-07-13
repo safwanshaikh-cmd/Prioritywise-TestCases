@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC27_VerifyUppercaseEmail
+Started: 2026-07-13 14:54:15
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC27_VerifyUppercaseEmail_2026_07_13_14_54_15.log
+============================================================
+========== TEST STARTED: TC_27: Verify uppercase email input is accepted ==========
+STEP 1: Enter an uppercase email
+INFO  TC_27 - STEP 1: Email value: USER@MAIL.COM
+========== TEST PASSED: TC_27 ==========
+============================================================
+Ended: 2026-07-13 14:54:16

@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC243_VerifySearchFieldProtectedFromSqlInjection
+Started: 2026-07-13 16:55:07
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC243_VerifySearchFieldProtectedFromSqlInjection_2026_07_13_16_55_07.log
+============================================================
+========== TEST STARTED: TC_243: Search Field Protected From SQL Injection ==========
+STEP 1: Search using a SQL injection payload
+INFO  TC_243 - STEP 1: Safe response: true, Alert present: false
+========== TEST PASSED: TC_243 ==========
+============================================================
+Ended: 2026-07-13 16:55:14

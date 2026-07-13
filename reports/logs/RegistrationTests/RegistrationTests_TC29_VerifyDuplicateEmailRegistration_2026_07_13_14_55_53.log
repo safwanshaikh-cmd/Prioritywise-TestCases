@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC29_VerifyDuplicateEmailRegistration
+Started: 2026-07-13 14:55:53
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC29_VerifyDuplicateEmailRegistration_2026_07_13_14_55_53.log
+============================================================
+========== TEST STARTED: TC_29: Verify duplicate email registration is rejected ==========
+STEP 1: Submit registration with an already-existing email
+INFO  TC_29 - STEP 1: Rejected: true
+========== TEST PASSED: TC_29 ==========
+============================================================
+Ended: 2026-07-13 14:56:26

@@ -1,0 +1,13 @@
+============================================================
+Test Log: SearchTests.TC259_VerifyLargeDataSearchPerformance
+Started: 2026-07-13 17:11:46
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC259_VerifyLargeDataSearchPerformance_2026_07_13_17_11_46.log
+============================================================
+========== TEST STARTED: TC_259: Large Data Search Performance ==========
+STEP 1: Measure the search response time for the large-data keyword
+INFO  TC_259 - STEP 1: Large-data search response time: 11276ms
+STEP 2: Verify the response time was recorded and the page remains stable
+INFO  TC_259 - STEP 2: SLA: 10000ms, Within SLA: false, Page stable: true
+========== TEST PASSED: TC_259 ==========
+============================================================
+Ended: 2026-07-13 17:11:58

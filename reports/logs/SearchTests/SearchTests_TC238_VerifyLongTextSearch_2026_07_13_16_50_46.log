@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC238_VerifyLongTextSearch
+Started: 2026-07-13 16:50:46
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC238_VerifyLongTextSearch_2026_07_13_16_50_46.log
+============================================================
+========== TEST STARTED: TC_238: Long Text Search ==========
+STEP 1: Search using a 500-character string
+STEP 2: Verify the page remains stable after a long-text search
+INFO  TC_238 - STEP 2: Page stable: true
+========== TEST PASSED: TC_238 ==========
+============================================================
+Ended: 2026-07-13 16:51:06

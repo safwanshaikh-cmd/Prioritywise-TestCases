@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC28_VerifyEmailWithSubdomain
+Started: 2026-07-13 14:55:04
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC28_VerifyEmailWithSubdomain_2026_07_13_14_55_04.log
+============================================================
+========== TEST STARTED: TC_28: Verify email with subdomain is accepted ==========
+STEP 1: Enter an email with a subdomain
+INFO  TC_28 - STEP 1: Email value: user@mail.company.com
+========== TEST PASSED: TC_28 ==========
+============================================================
+Ended: 2026-07-13 14:55:05

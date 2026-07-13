@@ -1,0 +1,12 @@
+============================================================
+Test Log: RegistrationTests.TC52_VerifyTermsUnchecked
+Started: 2026-07-13 15:18:07
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC52_VerifyTermsUnchecked_2026_07_13_15_18_07.log
+============================================================
+========== TEST STARTED: TC_52: Verify unchecked terms triggers terms validation ==========
+STEP 1: Submit the registration form without accepting the terms
+STEP 2: Verify terms validation is triggered
+INFO  TC_52 - STEP 2: Not successful: true, Terms warning: true
+========== TEST PASSED: TC_52 ==========
+============================================================
+Ended: 2026-07-13 15:18:36

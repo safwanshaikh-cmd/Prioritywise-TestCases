@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC241_VerifySearchBarVisibility
+Started: 2026-07-13 16:53:34
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC241_VerifySearchBarVisibility_2026_07_13_16_53_34.log
+============================================================
+========== TEST STARTED: TC_241: Search Bar Visibility ==========
+STEP 1: Verify the search bar is visible on the dashboard
+INFO  TC_241 - STEP 1: Search bar visible: true
+========== TEST PASSED: TC_241 ==========
+============================================================
+Ended: 2026-07-13 16:53:34

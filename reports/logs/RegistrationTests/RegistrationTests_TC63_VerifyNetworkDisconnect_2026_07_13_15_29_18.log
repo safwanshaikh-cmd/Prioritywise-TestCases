@@ -1,0 +1,12 @@
+============================================================
+Test Log: RegistrationTests.TC63_VerifyNetworkDisconnect
+Started: 2026-07-13 15:29:18
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC63_VerifyNetworkDisconnect_2026_07_13_15_29_18.log
+============================================================
+========== TEST STARTED: TC_63: Verify registration survives network disruption simulation ==========
+STEP 1: Populate and submit the registration form
+STEP 2: Verify the registration flow remains stable after a simulated interruption
+INFO  TC_63 - STEP 2: Flow stable: true
+========== TEST PASSED: TC_63 ==========
+============================================================
+Ended: 2026-07-13 15:29:33

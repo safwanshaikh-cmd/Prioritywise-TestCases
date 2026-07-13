@@ -1,0 +1,12 @@
+============================================================
+Test Log: RegistrationTests.TC82_VerifyResendActivation
+Started: 2026-07-13 15:53:52
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC82_VerifyResendActivation_2026_07_13_15_53_52.log
+============================================================
+========== TEST STARTED: TC_82: Verify activation flow surfaces a stable response ==========
+STEP 1: Submit a valid registration
+STEP 2: Verify the activation flow surfaces a stable response
+INFO  TC_82 - STEP 2: Stable response: true
+========== TEST PASSED: TC_82 ==========
+============================================================
+Ended: 2026-07-13 15:54:07

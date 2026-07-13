@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC23_VerifyEmailMissingDomain
+Started: 2026-07-13 14:48:56
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC23_VerifyEmailMissingDomain_2026_07_13_14_48_56.log
+============================================================
+========== TEST STARTED: TC_23: Verify email without domain is rejected ==========
+STEP 1: Submit registration with an email missing the domain
+INFO  TC_23 - STEP 1: Rejected: true
+========== TEST PASSED: TC_23 ==========
+============================================================
+Ended: 2026-07-13 14:49:28

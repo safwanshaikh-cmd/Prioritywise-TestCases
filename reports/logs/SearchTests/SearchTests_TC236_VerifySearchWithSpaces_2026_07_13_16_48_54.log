@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC236_VerifySearchWithSpaces
+Started: 2026-07-13 16:48:54
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC236_VerifySearchWithSpaces_2026_07_13_16_48_54.log
+============================================================
+========== TEST STARTED: TC_236: Search With Spaces ==========
+STEP 1: Search using a padded title with leading and trailing spaces
+STEP 2: Verify the search field retained the spaced input value
+INFO  TC_236 - STEP 2: Search field value: 'New-3 '
+========== TEST PASSED: TC_236 ==========
+============================================================
+Ended: 2026-07-13 16:49:05

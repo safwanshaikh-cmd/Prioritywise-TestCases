@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC254_VerifySearchWithMixedCharacters
+Started: 2026-07-13 17:07:49
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC254_VerifySearchWithMixedCharacters_2026_07_13_17_07_49.log
+============================================================
+========== TEST STARTED: TC_254: Search With Mixed Characters ==========
+STEP 1: Search using a mixed-character keyword
+STEP 2: Verify the search was processed safely and the page stayed stable
+INFO  TC_254 - STEP 2: Processed safely: true, Page stable: true
+========== TEST PASSED: TC_254 ==========
+============================================================
+Ended: 2026-07-13 17:08:00

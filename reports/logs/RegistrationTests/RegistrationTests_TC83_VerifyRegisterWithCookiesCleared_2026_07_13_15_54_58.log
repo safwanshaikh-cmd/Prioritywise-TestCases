@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC83_VerifyRegisterWithCookiesCleared
+Started: 2026-07-13 15:54:58
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC83_VerifyRegisterWithCookiesCleared_2026_07_13_15_54_58.log
+============================================================
+========== TEST STARTED: TC_83: Verify registration still works after cookies are cleared ==========
+STEP 1: Clear cookies and reopen the registration screen
+INFO  TC_83 - STEP 1: Screen displayed: true
+========== TEST PASSED: TC_83 ==========
+============================================================
+Ended: 2026-07-13 15:55:39

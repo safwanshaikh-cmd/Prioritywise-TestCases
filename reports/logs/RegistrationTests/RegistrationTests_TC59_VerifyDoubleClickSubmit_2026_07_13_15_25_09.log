@@ -1,0 +1,13 @@
+============================================================
+Test Log: RegistrationTests.TC59_VerifyDoubleClickSubmit
+Started: 2026-07-13 15:25:09
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC59_VerifyDoubleClickSubmit_2026_07_13_15_25_09.log
+============================================================
+========== TEST STARTED: TC_59: Verify double-click submit produces one stable response ==========
+STEP 1: Populate the registration form
+STEP 2: Double-click the register button
+STEP 3: Verify one stable registration response
+INFO  TC_59 - STEP 3: Stable response: true
+========== TEST PASSED: TC_59 ==========
+============================================================
+Ended: 2026-07-13 15:25:24

@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC231_VerifySearchByKeyword
+Started: 2026-07-13 16:44:44
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC231_VerifySearchByKeyword_2026_07_13_16_44_44.log
+============================================================
+========== TEST STARTED: TC_231: Search By Keyword ==========
+STEP 1: Search using a keyword
+INFO  TC_231 - STEP 1: Results present: true
+========== TEST PASSED: TC_231 ==========
+============================================================
+Ended: 2026-07-13 16:44:54

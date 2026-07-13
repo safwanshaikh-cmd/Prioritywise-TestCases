@@ -1,0 +1,12 @@
+============================================================
+Test Log: RegistrationTests.TC56_VerifyNewsletterChecked
+Started: 2026-07-13 15:21:59
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC56_VerifyNewsletterChecked_2026_07_13_15_21_59.log
+============================================================
+========== TEST STARTED: TC_56: Verify checked newsletter checkbox supports graceful flow ==========
+STEP 1: Check if the newsletter checkbox is available
+STEP 2: Submit registration with the newsletter option enabled
+INFO  TC_56 - STEP 2: Flow handled gracefully: true
+========== TEST PASSED: TC_56 ==========
+============================================================
+Ended: 2026-07-13 15:22:20

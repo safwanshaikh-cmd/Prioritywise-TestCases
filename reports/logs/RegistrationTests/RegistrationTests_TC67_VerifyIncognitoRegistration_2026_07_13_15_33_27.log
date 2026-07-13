@@ -1,0 +1,12 @@
+============================================================
+Test Log: RegistrationTests.TC67_VerifyIncognitoRegistration
+Started: 2026-07-13 15:33:27
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC67_VerifyIncognitoRegistration_2026_07_13_15_33_27.log
+============================================================
+========== TEST STARTED: TC_67: Verify registration screen opens in incognito browser ==========
+STEP 1: Restart the driver in an incognito / private session
+STEP 2: Open the registration screen in the incognito session
+INFO  TC_67 - STEP 2: Screen displayed: true
+========== TEST PASSED: TC_67 ==========
+============================================================
+Ended: 2026-07-13 15:34:06

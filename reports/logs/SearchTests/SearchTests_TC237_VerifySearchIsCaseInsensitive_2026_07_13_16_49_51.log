@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC237_VerifySearchIsCaseInsensitive
+Started: 2026-07-13 16:49:51
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC237_VerifySearchIsCaseInsensitive_2026_07_13_16_49_51.log
+============================================================
+========== TEST STARTED: TC_237: Search Is Case-Insensitive ==========
+STEP 1: Search using a lowercase title
+INFO  TC_237 - STEP 1: Results present: true
+========== TEST PASSED: TC_237 ==========
+============================================================
+Ended: 2026-07-13 16:50:02

@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC12_VerifyNameXssInjection
+Started: 2026-07-13 14:45:32
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC12_VerifyNameXssInjection_2026_07_13_14_45_32.log
+============================================================
+========== TEST STARTED: TC_12: Verify XSS injection in name is rejected ==========
+STEP 1: Submit registration with an XSS payload in the name
+INFO  TC_12 - STEP 1: Rejected: true
+========== TEST PASSED: TC_12 ==========
+============================================================
+Ended: 2026-07-13 14:46:05

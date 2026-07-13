@@ -1,0 +1,12 @@
+============================================================
+Test Log: RegistrationTests.TC2_VerifyEmptyFormValidation
+Started: 2026-07-13 14:33:05
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC2_VerifyEmptyFormValidation_2026_07_13_14_33_05.log
+============================================================
+========== TEST STARTED: TC_2: Verify empty form shows mandatory validation messages ==========
+STEP 1: Submit the empty registration form
+STEP 2: Verify all mandatory validation messages are displayed
+INFO  TC_2 - STEP 2: All mandatory warnings shown: true
+========== TEST PASSED: TC_2 ==========
+============================================================
+Ended: 2026-07-13 14:34:06

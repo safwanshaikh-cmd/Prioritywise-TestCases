@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC252_VerifyRapidSearchQueries
+Started: 2026-07-13 17:05:24
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC252_VerifyRapidSearchQueries_2026_07_13_17_05_24.log
+============================================================
+========== TEST STARTED: TC_252: Rapid Search Queries ==========
+STEP 1: Run a sequence of rapid consecutive searches
+STEP 2: Verify the page remains stable after the rapid searches
+INFO  TC_252 - STEP 2: Page stable: true
+========== TEST PASSED: TC_252 ==========
+============================================================
+Ended: 2026-07-13 17:06:08

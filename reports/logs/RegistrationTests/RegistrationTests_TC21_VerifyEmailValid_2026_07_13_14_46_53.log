@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC21_VerifyEmailValid
+Started: 2026-07-13 14:46:53
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC21_VerifyEmailValid_2026_07_13_14_46_53.log
+============================================================
+========== TEST STARTED: TC_21: Verify valid email input is accepted ==========
+STEP 1: Enter a valid email
+INFO  TC_21 - STEP 1: Email value: user@mail.com
+========== TEST PASSED: TC_21 ==========
+============================================================
+Ended: 2026-07-13 14:46:54

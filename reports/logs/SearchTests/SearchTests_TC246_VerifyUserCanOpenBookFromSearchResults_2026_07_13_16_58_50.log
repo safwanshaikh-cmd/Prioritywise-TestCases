@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC246_VerifyUserCanOpenBookFromSearchResults
+Started: 2026-07-13 16:58:50
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC246_VerifyUserCanOpenBookFromSearchResults_2026_07_13_16_58_50.log
+============================================================
+========== TEST STARTED: TC_246: User Can Open Book From Search Results ==========
+STEP 1: Search using the full title and verify results are present
+STEP 2: Click the first search result and verify it opens book details
+INFO  TC_246 - STEP 2: Book details opened: false
+[SKIP] SearchTests :: TC246_VerifyUserCanOpenBookFromSearchResults
+============================================================
+Ended: 2026-07-13 16:59:14

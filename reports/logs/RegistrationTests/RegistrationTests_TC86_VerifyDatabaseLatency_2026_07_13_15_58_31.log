@@ -1,0 +1,13 @@
+============================================================
+Test Log: RegistrationTests.TC86_VerifyDatabaseLatency
+Started: 2026-07-13 15:58:31
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC86_VerifyDatabaseLatency_2026_07_13_15_58_31.log
+============================================================
+========== TEST STARTED: TC_86: Verify registration flow remains stable under backend latency ==========
+STEP 1: Submit a valid registration
+STEP 2: Wait for the backend response under simulated latency
+STEP 3: Verify the registration flow remains stable
+INFO  TC_86 - STEP 3: Flow stable: true
+========== TEST PASSED: TC_86 ==========
+============================================================
+Ended: 2026-07-13 15:58:52

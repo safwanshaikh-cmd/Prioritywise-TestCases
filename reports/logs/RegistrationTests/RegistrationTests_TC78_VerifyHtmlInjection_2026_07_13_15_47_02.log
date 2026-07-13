@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC78_VerifyHtmlInjection
+Started: 2026-07-13 15:47:02
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC78_VerifyHtmlInjection_2026_07_13_15_47_02.log
+============================================================
+========== TEST STARTED: TC_78: Verify HTML injection is rejected ==========
+STEP 1: Submit registration with HTML tags in the name
+INFO  TC_78 - STEP 1: Rejected: true
+========== TEST PASSED: TC_78 ==========
+============================================================
+Ended: 2026-07-13 15:47:35

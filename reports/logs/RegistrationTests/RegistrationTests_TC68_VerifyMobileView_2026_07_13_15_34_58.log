@@ -1,0 +1,12 @@
+============================================================
+Test Log: RegistrationTests.TC68_VerifyMobileView
+Started: 2026-07-13 15:34:58
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC68_VerifyMobileView_2026_07_13_15_34_58.log
+============================================================
+========== TEST STARTED: TC_68: Verify registration form remains usable in mobile viewport ==========
+STEP 1: Resize the browser to a mobile viewport
+STEP 2: Verify the registration form remains usable
+INFO  TC_68 - STEP 2: Screen displayed: true
+========== TEST PASSED: TC_68 ==========
+============================================================
+Ended: 2026-07-13 15:34:58

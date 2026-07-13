@@ -1,0 +1,13 @@
+============================================================
+Test Log: RegistrationTests.TC60_VerifyBrowserRefresh
+Started: 2026-07-13 15:26:11
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC60_VerifyBrowserRefresh_2026_07_13_15_26_11.log
+============================================================
+========== TEST STARTED: TC_60: Verify registration page survives browser refresh ==========
+STEP 1: Enter name
+STEP 2: Refresh the registration page
+STEP 3: Verify the registration page remains accessible
+INFO  TC_60 - STEP 3: Screen displayed: true
+========== TEST PASSED: TC_60 ==========
+============================================================
+Ended: 2026-07-13 15:26:18

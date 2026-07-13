@@ -1,0 +1,12 @@
+============================================================
+Test Log: RegistrationTests.TC81_VerifyActivationLink
+Started: 2026-07-13 15:52:50
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC81_VerifyActivationLink_2026_07_13_15_52_50.log
+============================================================
+========== TEST STARTED: TC_81: Verify activation-link feedback surfaces after submission ==========
+STEP 1: Submit a valid registration
+STEP 2: Verify activation-link feedback surfaces
+INFO  TC_81 - STEP 2: Activation link indicated: true
+========== TEST PASSED: TC_81 ==========
+============================================================
+Ended: 2026-07-13 15:53:05

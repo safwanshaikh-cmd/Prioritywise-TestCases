@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC71_VerifyFirefoxBrowserRegistration
+Started: 2026-07-13 15:37:59
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC71_VerifyFirefoxBrowserRegistration_2026_07_13_15_37_59.log
+============================================================
+========== TEST STARTED: TC_71: Verify registration opens in Firefox browser ==========
+STEP 1: Restart the driver on Firefox and open the registration screen
+INFO  TC_71 - STEP 1: Screen displayed on Firefox: true
+========== TEST PASSED: TC_71 ==========
+============================================================
+Ended: 2026-07-13 15:38:41

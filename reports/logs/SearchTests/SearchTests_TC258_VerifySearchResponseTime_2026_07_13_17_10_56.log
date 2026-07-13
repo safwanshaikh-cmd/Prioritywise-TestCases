@@ -1,0 +1,13 @@
+============================================================
+Test Log: SearchTests.TC258_VerifySearchResponseTime
+Started: 2026-07-13 17:10:56
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC258_VerifySearchResponseTime_2026_07_13_17_10_56.log
+============================================================
+========== TEST STARTED: TC_258: Search Response Time ==========
+STEP 1: Measure the search response time for the performance keyword
+INFO  TC_258 - STEP 1: Search response time: 10261ms
+STEP 2: Verify the response time was recorded and is within the SLA
+INFO  TC_258 - STEP 2: SLA: 10000ms, Within SLA: false
+========== TEST PASSED: TC_258 ==========
+============================================================
+Ended: 2026-07-13 17:11:06

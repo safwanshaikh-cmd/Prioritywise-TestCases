@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC257_VerifySearchWorksWithEnterKey
+Started: 2026-07-13 17:10:04
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC257_VerifySearchWorksWithEnterKey_2026_07_13_17_10_04.log
+============================================================
+========== TEST STARTED: TC_257: Search Works With Enter Key ==========
+STEP 1: Enter a keyword and press Enter in the search field
+STEP 2: Verify a search outcome was produced
+INFO  TC_257 - STEP 2: Search outcome present: true
+========== TEST PASSED: TC_257 ==========
+============================================================
+Ended: 2026-07-13 17:10:14

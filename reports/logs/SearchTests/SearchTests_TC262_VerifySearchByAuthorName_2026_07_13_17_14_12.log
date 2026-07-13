@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC262_VerifySearchByAuthorName
+Started: 2026-07-13 17:14:12
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC262_VerifySearchByAuthorName_2026_07_13_17_14_12.log
+============================================================
+========== TEST STARTED: TC_262: Search By Author Name ==========
+STEP 1: Search using the author name
+INFO  TC_262 - STEP 1: Results present: true
+========== TEST PASSED: TC_262 ==========
+============================================================
+Ended: 2026-07-13 17:14:23

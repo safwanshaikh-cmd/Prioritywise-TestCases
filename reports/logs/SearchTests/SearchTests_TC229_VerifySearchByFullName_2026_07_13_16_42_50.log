@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC229_VerifySearchByFullName
+Started: 2026-07-13 16:42:50
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC229_VerifySearchByFullName_2026_07_13_16_42_50.log
+============================================================
+========== TEST STARTED: TC_229: Search By Full Name ==========
+STEP 1: Search using the full book title
+INFO  TC_229 - STEP 1: Results present: true
+========== TEST PASSED: TC_229 ==========
+============================================================
+Ended: 2026-07-13 16:43:01

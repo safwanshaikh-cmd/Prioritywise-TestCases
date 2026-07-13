@@ -1,0 +1,13 @@
+============================================================
+Test Log: RegistrationTests.TC61_VerifyBackButton
+Started: 2026-07-13 15:27:01
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC61_VerifyBackButton_2026_07_13_15_27_01.log
+============================================================
+========== TEST STARTED: TC_61: Verify browser back keeps user in a usable auth flow ==========
+STEP 1: Enter name
+STEP 2: Navigate back using the browser back button
+STEP 3: Verify the auth flow remains usable
+INFO  TC_61 - STEP 3: Registration visible: false, Auth flow usable: true
+========== TEST PASSED: TC_61 ==========
+============================================================
+Ended: 2026-07-13 15:27:19

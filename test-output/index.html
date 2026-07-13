@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Default_suite" class="navigator-link">
-              <span class="suite-name border-passed">Default suite</span>
+              <span class="suite-name border-failed">Default suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\safwan\AppData\Local\Temp\testng-eclipse--228284577\testng-customsuite.xml</span>
+                    <span>C:\Users\safwan\AppData\Local\Temp\testng-eclipse--908758436\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -60,7 +60,7 @@
                 </li>
                 <li>
                   <a href="#" panel-name="group-Default_suite" class="navigator-link ">
-                    <span>3 groups</span>
+                    <span>6 groups</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,7 +92,40 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">36 methods, 1 failed,  2 skipped,  33 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods failed suite-Default_suite"> (hide)</a> <!-- hide-methods failed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods failed suite-Default_suite"> (show)</a> <!-- show-methods failed suite-Default_suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Default_suite">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC246_VerifyUserCanOpenBookFromSearchResults">TC246_VerifyUserCanOpenBookFromSearchResults</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Default_suite -->
+                  </li>
+                  <li>
+                    <span class="method-list-title skipped">Retried methods</span>
+                    <span class="show-or-hide-methods skipped">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods skipped suite-Default_suite"> (hide)</a> <!-- hide-methods skipped suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods skipped suite-Default_suite"> (show)</a> <!-- show-methods skipped suite-Default_suite -->
+                    </span>
+                    <div class="method-list-content skipped suite-Default_suite">
+                      <span>
+                        <img src="skipped.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC246_VerifyUserCanOpenBookFromSearchResults">TC246_VerifyUserCanOpenBookFromSearchResults</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="skipped.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC246_VerifyUserCanOpenBookFromSearchResults">TC246_VerifyUserCanOpenBookFromSearchResults</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content skipped suite-Default_suite -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,7 +136,167 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.PlayerTests" class="method navigator-link" hash-for-method="TC03_VerifyResumeBook">TC03_VerifyResumeBook</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC229_VerifySearchByFullName">TC229_VerifySearchByFullName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC230_VerifySearchByPartialName">TC230_VerifySearchByPartialName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC231_VerifySearchByKeyword">TC231_VerifySearchByKeyword</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC232_VerifySearchNonExistingBook">TC232_VerifySearchNonExistingBook</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC233_VerifyEmptySearch">TC233_VerifyEmptySearch</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC234_VerifySearchWithSpecialCharacters">TC234_VerifySearchWithSpecialCharacters</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC235_VerifyNumericSearch">TC235_VerifyNumericSearch</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC236_VerifySearchWithSpaces">TC236_VerifySearchWithSpaces</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC237_VerifySearchIsCaseInsensitive">TC237_VerifySearchIsCaseInsensitive</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC238_VerifyLongTextSearch">TC238_VerifyLongTextSearch</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC239_VerifyMinimumCharacterSearch">TC239_VerifyMinimumCharacterSearch</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC240_VerifyMaximumCharacterLimitSearch">TC240_VerifyMaximumCharacterLimitSearch</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC241_VerifySearchBarVisibility">TC241_VerifySearchBarVisibility</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC242_VerifySearchIconClickTriggersSearch">TC242_VerifySearchIconClickTriggersSearch</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC243_VerifySearchFieldProtectedFromSqlInjection">TC243_VerifySearchFieldProtectedFromSqlInjection</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC244_VerifySearchFieldProtectedFromScriptInjection">TC244_VerifySearchFieldProtectedFromScriptInjection</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC245_VerifySearchReturnsMultipleResultsForCommonKeyword">TC245_VerifySearchReturnsMultipleResultsForCommonKeyword</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC247_VerifySearchResultsCountDisplayed">TC247_VerifySearchResultsCountDisplayed</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC248_VerifySearchAutoSuggestionsAppearWhileTyping">TC248_VerifySearchAutoSuggestionsAppearWhileTyping</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC249_VerifyBlankSpaceSearch">TC249_VerifyBlankSpaceSearch</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC250_VerifyUnsupportedCharactersSearch">TC250_VerifyUnsupportedCharactersSearch</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC251_VerifyVeryLongSearchText">TC251_VerifyVeryLongSearchText</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC252_VerifyRapidSearchQueries">TC252_VerifyRapidSearchQueries</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC253_VerifySearchWithSpecialLanguageCharacters">TC253_VerifySearchWithSpecialLanguageCharacters</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC254_VerifySearchWithMixedCharacters">TC254_VerifySearchWithMixedCharacters</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC255_VerifyUserCanClearSearchField">TC255_VerifyUserCanClearSearchField</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC256_VerifySearchPlaceholderTextVisible">TC256_VerifySearchPlaceholderTextVisible</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC257_VerifySearchWorksWithEnterKey">TC257_VerifySearchWorksWithEnterKey</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC258_VerifySearchResponseTime">TC258_VerifySearchResponseTime</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC259_VerifyLargeDataSearchPerformance">TC259_VerifyLargeDataSearchPerformance</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC260_VerifySearchFieldPreventsHtmlInjection">TC260_VerifySearchFieldPreventsHtmlInjection</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC261_VerifySearchFieldProtectedFromUrlInjection">TC261_VerifySearchFieldProtectedFromUrlInjection</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.SearchTests" class="method navigator-link" hash-for-method="TC262_VerifySearchByAuthorName">TC262_VerifySearchByAuthorName</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -118,19 +311,449 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Default_suite" class="panel Default_suite">
-          <div class="suite-Default_suite-class-passed">
+          <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">tests.PlayerTests</span>
+              <img src="failed.png"/>
+              <span class="class-name">tests.SearchTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="TC03_VerifyResumeBook">
-                  </a> <!-- TC03_VerifyResumeBook -->
-                  <span class="method-name">TC03_VerifyResumeBook</span>
+                  <a name="TC246_VerifyUserCanOpenBookFromSearchResults">
+                  </a> <!-- TC246_VerifyUserCanOpenBookFromSearchResults -->
+                  <span class="method-name">TC246_VerifyUserCanOpenBookFromSearchResults</span>
+                  <div class="stack-trace">java.lang.AssertionError: TC_246: Clicking a search result should open the book details page expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at tests.SearchTests.TC246_VerifyUserCanOpenBookFromSearchResults(SearchTests.java:589)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+
+</div> <!-- stack-trace -->
                   <em>
-(TC_03: Verify audio resumes from paused position)                  </em>
+(TC_246: Verify the user can open a book from search results)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_suite-class-failed -->
+          <div class="suite-Default_suite-class-skipped">
+            <div class="main-panel-header rounded-window-top">
+              <img src="skipped.png"/>
+              <span class="class-name">tests.SearchTests</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC246_VerifyUserCanOpenBookFromSearchResults">
+                  </a> <!-- TC246_VerifyUserCanOpenBookFromSearchResults -->
+                  <span class="method-name">TC246_VerifyUserCanOpenBookFromSearchResults</span>
+                  <div class="stack-trace">java.lang.AssertionError: TC_246: Clicking a search result should open the book details page expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at tests.SearchTests.TC246_VerifyUserCanOpenBookFromSearchResults(SearchTests.java:589)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+
+</div> <!-- stack-trace -->
+                  <em>
+(TC_246: Verify the user can open a book from search results)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC246_VerifyUserCanOpenBookFromSearchResults">
+                  </a> <!-- TC246_VerifyUserCanOpenBookFromSearchResults -->
+                  <span class="method-name">TC246_VerifyUserCanOpenBookFromSearchResults</span>
+                  <div class="stack-trace">java.lang.AssertionError: TC_246: Clicking a search result should open the book details page expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at tests.SearchTests.TC246_VerifyUserCanOpenBookFromSearchResults(SearchTests.java:589)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+
+</div> <!-- stack-trace -->
+                  <em>
+(TC_246: Verify the user can open a book from search results)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_suite-class-skipped -->
+          <div class="suite-Default_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">tests.SearchTests</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC229_VerifySearchByFullName">
+                  </a> <!-- TC229_VerifySearchByFullName -->
+                  <span class="method-name">TC229_VerifySearchByFullName</span>
+                  <em>
+(TC_229: Verify search by full book name returns results)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC230_VerifySearchByPartialName">
+                  </a> <!-- TC230_VerifySearchByPartialName -->
+                  <span class="method-name">TC230_VerifySearchByPartialName</span>
+                  <em>
+(TC_230: Verify search by partial book name returns results)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC231_VerifySearchByKeyword">
+                  </a> <!-- TC231_VerifySearchByKeyword -->
+                  <span class="method-name">TC231_VerifySearchByKeyword</span>
+                  <em>
+(TC_231: Verify search by keyword returns results)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC232_VerifySearchNonExistingBook">
+                  </a> <!-- TC232_VerifySearchNonExistingBook -->
+                  <span class="method-name">TC232_VerifySearchNonExistingBook</span>
+                  <em>
+(TC_232: Verify non-existing book search returns safe empty-state)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC233_VerifyEmptySearch">
+                  </a> <!-- TC233_VerifyEmptySearch -->
+                  <span class="method-name">TC233_VerifyEmptySearch</span>
+                  <em>
+(TC_233: Verify empty search shows validation or remains safely empty)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC234_VerifySearchWithSpecialCharacters">
+                  </a> <!-- TC234_VerifySearchWithSpecialCharacters -->
+                  <span class="method-name">TC234_VerifySearchWithSpecialCharacters</span>
+                  <em>
+(TC_234: Verify special-character search is handled gracefully)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC235_VerifyNumericSearch">
+                  </a> <!-- TC235_VerifyNumericSearch -->
+                  <span class="method-name">TC235_VerifyNumericSearch</span>
+                  <em>
+(TC_235: Verify numeric search does not break the search flow)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC236_VerifySearchWithSpaces">
+                  </a> <!-- TC236_VerifySearchWithSpaces -->
+                  <span class="method-name">TC236_VerifySearchWithSpaces</span>
+                  <em>
+(TC_236: Verify leading/trailing spaces are ignored for valid searches)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC237_VerifySearchIsCaseInsensitive">
+                  </a> <!-- TC237_VerifySearchIsCaseInsensitive -->
+                  <span class="method-name">TC237_VerifySearchIsCaseInsensitive</span>
+                  <em>
+(TC_237: Verify case-insensitive search returns the expected book)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC238_VerifyLongTextSearch">
+                  </a> <!-- TC238_VerifyLongTextSearch -->
+                  <span class="method-name">TC238_VerifyLongTextSearch</span>
+                  <em>
+(TC_238: Verify long-text search is handled without crashing the page)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC239_VerifyMinimumCharacterSearch">
+                  </a> <!-- TC239_VerifyMinimumCharacterSearch -->
+                  <span class="method-name">TC239_VerifyMinimumCharacterSearch</span>
+                  <em>
+(TC_239: Verify single-character search completes without errors)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC240_VerifyMaximumCharacterLimitSearch">
+                  </a> <!-- TC240_VerifyMaximumCharacterLimitSearch -->
+                  <span class="method-name">TC240_VerifyMaximumCharacterLimitSearch</span>
+                  <em>
+(TC_240: Verify search field accepts long input up to the maximum length)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC241_VerifySearchBarVisibility">
+                  </a> <!-- TC241_VerifySearchBarVisibility -->
+                  <span class="method-name">TC241_VerifySearchBarVisibility</span>
+                  <em>
+(TC_241: Verify search bar is visible on the dashboard)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC242_VerifySearchIconClickTriggersSearch">
+                  </a> <!-- TC242_VerifySearchIconClickTriggersSearch -->
+                  <span class="method-name">TC242_VerifySearchIconClickTriggersSearch</span>
+                  <em>
+(TC_242: Verify clicking the search icon triggers a search outcome)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC243_VerifySearchFieldProtectedFromSqlInjection">
+                  </a> <!-- TC243_VerifySearchFieldProtectedFromSqlInjection -->
+                  <span class="method-name">TC243_VerifySearchFieldProtectedFromSqlInjection</span>
+                  <em>
+(TC_243: Verify the search field is protected from SQL injection)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC244_VerifySearchFieldProtectedFromScriptInjection">
+                  </a> <!-- TC244_VerifySearchFieldProtectedFromScriptInjection -->
+                  <span class="method-name">TC244_VerifySearchFieldProtectedFromScriptInjection</span>
+                  <em>
+(TC_244: Verify the search field is protected from script injection)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC245_VerifySearchReturnsMultipleResultsForCommonKeyword">
+                  </a> <!-- TC245_VerifySearchReturnsMultipleResultsForCommonKeyword -->
+                  <span class="method-name">TC245_VerifySearchReturnsMultipleResultsForCommonKeyword</span>
+                  <em>
+(TC_245: Verify a common keyword returns multiple results)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC247_VerifySearchResultsCountDisplayed">
+                  </a> <!-- TC247_VerifySearchResultsCountDisplayed -->
+                  <span class="method-name">TC247_VerifySearchResultsCountDisplayed</span>
+                  <em>
+(TC_247: Verify the search results count is available after a successful search)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC248_VerifySearchAutoSuggestionsAppearWhileTyping">
+                  </a> <!-- TC248_VerifySearchAutoSuggestionsAppearWhileTyping -->
+                  <span class="method-name">TC248_VerifySearchAutoSuggestionsAppearWhileTyping</span>
+                  <em>
+(TC_248: Verify typing in the search field surfaces suggestions or live results)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC249_VerifyBlankSpaceSearch">
+                  </a> <!-- TC249_VerifyBlankSpaceSearch -->
+                  <span class="method-name">TC249_VerifyBlankSpaceSearch</span>
+                  <em>
+(TC_249: Verify blank-space search shows validation or no results)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC250_VerifyUnsupportedCharactersSearch">
+                  </a> <!-- TC250_VerifyUnsupportedCharactersSearch -->
+                  <span class="method-name">TC250_VerifyUnsupportedCharactersSearch</span>
+                  <em>
+(TC_250: Verify emoji input is handled safely and does not destabilize the page)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC251_VerifyVeryLongSearchText">
+                  </a> <!-- TC251_VerifyVeryLongSearchText -->
+                  <span class="method-name">TC251_VerifyVeryLongSearchText</span>
+                  <em>
+(TC_251: Verify very long search text is handled gracefully)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC252_VerifyRapidSearchQueries">
+                  </a> <!-- TC252_VerifyRapidSearchQueries -->
+                  <span class="method-name">TC252_VerifyRapidSearchQueries</span>
+                  <em>
+(TC_252: Verify rapid consecutive searches do not crash the page)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC253_VerifySearchWithSpecialLanguageCharacters">
+                  </a> <!-- TC253_VerifySearchWithSpecialLanguageCharacters -->
+                  <span class="method-name">TC253_VerifySearchWithSpecialLanguageCharacters</span>
+                  <em>
+(TC_253: Verify foreign-language search completes safely and keeps the page stable)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC254_VerifySearchWithMixedCharacters">
+                  </a> <!-- TC254_VerifySearchWithMixedCharacters -->
+                  <span class="method-name">TC254_VerifySearchWithMixedCharacters</span>
+                  <em>
+(TC_254: Verify mixed-character search is processed without errors and keeps the page stable)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC255_VerifyUserCanClearSearchField">
+                  </a> <!-- TC255_VerifyUserCanClearSearchField -->
+                  <span class="method-name">TC255_VerifyUserCanClearSearchField</span>
+                  <em>
+(TC_255: Verify the user can clear the search field)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC256_VerifySearchPlaceholderTextVisible">
+                  </a> <!-- TC256_VerifySearchPlaceholderTextVisible -->
+                  <span class="method-name">TC256_VerifySearchPlaceholderTextVisible</span>
+                  <em>
+(TC_256: Verify the search input exposes placeholder text)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC257_VerifySearchWorksWithEnterKey">
+                  </a> <!-- TC257_VerifySearchWorksWithEnterKey -->
+                  <span class="method-name">TC257_VerifySearchWorksWithEnterKey</span>
+                  <em>
+(TC_257: Verify pressing Enter triggers the search flow)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC258_VerifySearchResponseTime">
+                  </a> <!-- TC258_VerifySearchResponseTime -->
+                  <span class="method-name">TC258_VerifySearchResponseTime</span>
+                  <em>
+(TC_258: Verify search response time is recorded and within the SLA)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC259_VerifyLargeDataSearchPerformance">
+                  </a> <!-- TC259_VerifyLargeDataSearchPerformance -->
+                  <span class="method-name">TC259_VerifyLargeDataSearchPerformance</span>
+                  <em>
+(TC_259: Verify large-data search response time is recorded and the page remains stable)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC260_VerifySearchFieldPreventsHtmlInjection">
+                  </a> <!-- TC260_VerifySearchFieldPreventsHtmlInjection -->
+                  <span class="method-name">TC260_VerifySearchFieldPreventsHtmlInjection</span>
+                  <em>
+(TC_260: Verify the search field prevents HTML injection)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC261_VerifySearchFieldProtectedFromUrlInjection">
+                  </a> <!-- TC261_VerifySearchFieldProtectedFromUrlInjection -->
+                  <span class="method-name">TC261_VerifySearchFieldProtectedFromUrlInjection</span>
+                  <em>
+(TC_261: Verify the search field is protected from URL-based script injection)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC262_VerifySearchByAuthorName">
+                  </a> <!-- TC262_VerifySearchByAuthorName -->
+                  <span class="method-name">TC262_VerifySearchByAuthorName</span>
+                  <em>
+(TC_262: Verify search by author name returns results)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -138,7 +761,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\safwan\AppData\Local\Temp\testng-eclipse--228284577\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\safwan\AppData\Local\Temp\testng-eclipse--908758436\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -147,11 +770,7 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;tests.PlayerTests&quot;&gt;
-        &lt;methods&gt;
-          &lt;include name=&quot;TC03_VerifyResumeBook&quot;/&gt;
-        &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- tests.PlayerTests --&gt;
+      &lt;class name=&quot;tests.SearchTests&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -179,7 +798,63 @@
               <span class="test-group-name">consumer</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">TC03_VerifyResumeBook</span>
+                <span class="method-in-group-name">TC229_VerifySearchByFullName</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC230_VerifySearchByPartialName</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC231_VerifySearchByKeyword</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC236_VerifySearchWithSpaces</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC237_VerifySearchIsCaseInsensitive</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC241_VerifySearchBarVisibility</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC242_VerifySearchIconClickTriggersSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC245_VerifySearchReturnsMultipleResultsForCommonKeyword</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC246_VerifyUserCanOpenBookFromSearchResults</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC247_VerifySearchResultsCountDisplayed</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC248_VerifySearchAutoSuggestionsAppearWhileTyping</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC255_VerifyUserCanClearSearchField</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC256_VerifySearchPlaceholderTextVisible</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC257_VerifySearchWorksWithEnterKey</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC262_VerifySearchByAuthorName</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -187,7 +862,227 @@
               <span class="test-group-name">functional</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">TC03_VerifyResumeBook</span>
+                <span class="method-in-group-name">TC229_VerifySearchByFullName</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC230_VerifySearchByPartialName</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC231_VerifySearchByKeyword</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC232_VerifySearchNonExistingBook</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC233_VerifyEmptySearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC234_VerifySearchWithSpecialCharacters</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC235_VerifyNumericSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC236_VerifySearchWithSpaces</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC237_VerifySearchIsCaseInsensitive</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC238_VerifyLongTextSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC239_VerifyMinimumCharacterSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC240_VerifyMaximumCharacterLimitSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC241_VerifySearchBarVisibility</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC242_VerifySearchIconClickTriggersSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC243_VerifySearchFieldProtectedFromSqlInjection</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC244_VerifySearchFieldProtectedFromScriptInjection</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC245_VerifySearchReturnsMultipleResultsForCommonKeyword</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC246_VerifyUserCanOpenBookFromSearchResults</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC247_VerifySearchResultsCountDisplayed</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC248_VerifySearchAutoSuggestionsAppearWhileTyping</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC249_VerifyBlankSpaceSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC250_VerifyUnsupportedCharactersSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC251_VerifyVeryLongSearchText</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC252_VerifyRapidSearchQueries</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC253_VerifySearchWithSpecialLanguageCharacters</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC254_VerifySearchWithMixedCharacters</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC255_VerifyUserCanClearSearchField</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC256_VerifySearchPlaceholderTextVisible</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC257_VerifySearchWorksWithEnterKey</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC258_VerifySearchResponseTime</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC259_VerifyLargeDataSearchPerformance</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC260_VerifySearchFieldPreventsHtmlInjection</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC261_VerifySearchFieldProtectedFromUrlInjection</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC262_VerifySearchByAuthorName</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">performance</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC258_VerifySearchResponseTime</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC259_VerifyLargeDataSearchPerformance</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">regression</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC238_VerifyLongTextSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC239_VerifyMinimumCharacterSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC240_VerifyMaximumCharacterLimitSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC250_VerifyUnsupportedCharactersSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC251_VerifyVeryLongSearchText</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC252_VerifyRapidSearchQueries</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC253_VerifySearchWithSpecialLanguageCharacters</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC254_VerifySearchWithMixedCharacters</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">security</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC232_VerifySearchNonExistingBook</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC233_VerifyEmptySearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC234_VerifySearchWithSpecialCharacters</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC235_VerifyNumericSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC243_VerifySearchFieldProtectedFromSqlInjection</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC244_VerifySearchFieldProtectedFromScriptInjection</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC249_VerifyBlankSpaceSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC260_VerifySearchFieldPreventsHtmlInjection</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC261_VerifySearchFieldProtectedFromUrlInjection</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -195,7 +1090,139 @@
               <span class="test-group-name">ui</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">TC03_VerifyResumeBook</span>
+                <span class="method-in-group-name">TC229_VerifySearchByFullName</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC230_VerifySearchByPartialName</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC231_VerifySearchByKeyword</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC232_VerifySearchNonExistingBook</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC233_VerifyEmptySearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC234_VerifySearchWithSpecialCharacters</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC235_VerifyNumericSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC236_VerifySearchWithSpaces</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC237_VerifySearchIsCaseInsensitive</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC238_VerifyLongTextSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC239_VerifyMinimumCharacterSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC240_VerifyMaximumCharacterLimitSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC241_VerifySearchBarVisibility</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC242_VerifySearchIconClickTriggersSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC243_VerifySearchFieldProtectedFromSqlInjection</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC244_VerifySearchFieldProtectedFromScriptInjection</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC245_VerifySearchReturnsMultipleResultsForCommonKeyword</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC246_VerifyUserCanOpenBookFromSearchResults</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC247_VerifySearchResultsCountDisplayed</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC248_VerifySearchAutoSuggestionsAppearWhileTyping</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC249_VerifyBlankSpaceSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC250_VerifyUnsupportedCharactersSearch</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC251_VerifyVeryLongSearchText</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC252_VerifyRapidSearchQueries</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC253_VerifySearchWithSpecialLanguageCharacters</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC254_VerifySearchWithMixedCharacters</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC255_VerifyUserCanClearSearchField</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC256_VerifySearchPlaceholderTextVisible</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC257_VerifySearchWorksWithEnterKey</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC258_VerifySearchResponseTime</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC259_VerifyLargeDataSearchPerformance</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC260_VerifySearchFieldPreventsHtmlInjection</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC261_VerifySearchFieldProtectedFromUrlInjection</span>
+                <br/>
+              </div> <!-- method-in-group -->
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC262_VerifySearchByAuthorName</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -215,16 +1242,156 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(36);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'TC03_VerifyResumeBook')
-data.setCell(0, 2, 'tests.PlayerTests')
-data.setCell(0, 3, 93297);
+data.setCell(0, 1, 'TC252_VerifyRapidSearchQueries')
+data.setCell(0, 2, 'tests.SearchTests')
+data.setCell(0, 3, 43784);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'TC251_VerifyVeryLongSearchText')
+data.setCell(1, 2, 'tests.SearchTests')
+data.setCell(1, 3, 26211);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'TC246_VerifyUserCanOpenBookFromSearchResults')
+data.setCell(2, 2, 'tests.SearchTests')
+data.setCell(2, 3, 23837);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'TC246_VerifyUserCanOpenBookFromSearchResults')
+data.setCell(3, 2, 'tests.SearchTests')
+data.setCell(3, 3, 23613);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'TC246_VerifyUserCanOpenBookFromSearchResults')
+data.setCell(4, 2, 'tests.SearchTests')
+data.setCell(4, 3, 23584);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'TC238_VerifyLongTextSearch')
+data.setCell(5, 2, 'tests.SearchTests')
+data.setCell(5, 3, 20211);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'TC233_VerifyEmptySearch')
+data.setCell(6, 2, 'tests.SearchTests')
+data.setCell(6, 3, 12874);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'TC245_VerifySearchReturnsMultipleResultsForCommonKeyword')
+data.setCell(7, 2, 'tests.SearchTests')
+data.setCell(7, 3, 12402);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'TC230_VerifySearchByPartialName')
+data.setCell(8, 2, 'tests.SearchTests')
+data.setCell(8, 3, 11800);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'TC259_VerifyLargeDataSearchPerformance')
+data.setCell(9, 2, 'tests.SearchTests')
+data.setCell(9, 3, 11312);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'TC254_VerifySearchWithMixedCharacters')
+data.setCell(10, 2, 'tests.SearchTests')
+data.setCell(10, 3, 10833);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'TC253_VerifySearchWithSpecialLanguageCharacters')
+data.setCell(11, 2, 'tests.SearchTests')
+data.setCell(11, 3, 10785);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'TC229_VerifySearchByFullName')
+data.setCell(12, 2, 'tests.SearchTests')
+data.setCell(12, 3, 10767);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'TC236_VerifySearchWithSpaces')
+data.setCell(13, 2, 'tests.SearchTests')
+data.setCell(13, 3, 10589);
+data.setCell(14, 0, 14)
+data.setCell(14, 1, 'TC237_VerifySearchIsCaseInsensitive')
+data.setCell(14, 2, 'tests.SearchTests')
+data.setCell(14, 3, 10509);
+data.setCell(15, 0, 15)
+data.setCell(15, 1, 'TC257_VerifySearchWorksWithEnterKey')
+data.setCell(15, 2, 'tests.SearchTests')
+data.setCell(15, 3, 10380);
+data.setCell(16, 0, 16)
+data.setCell(16, 1, 'TC242_VerifySearchIconClickTriggersSearch')
+data.setCell(16, 2, 'tests.SearchTests')
+data.setCell(16, 3, 10310);
+data.setCell(17, 0, 17)
+data.setCell(17, 1, 'TC258_VerifySearchResponseTime')
+data.setCell(17, 2, 'tests.SearchTests')
+data.setCell(17, 3, 10269);
+data.setCell(18, 0, 18)
+data.setCell(18, 1, 'TC262_VerifySearchByAuthorName')
+data.setCell(18, 2, 'tests.SearchTests')
+data.setCell(18, 3, 10211);
+data.setCell(19, 0, 19)
+data.setCell(19, 1, 'TC231_VerifySearchByKeyword')
+data.setCell(19, 2, 'tests.SearchTests')
+data.setCell(19, 3, 10155);
+data.setCell(20, 0, 20)
+data.setCell(20, 1, 'TC239_VerifyMinimumCharacterSearch')
+data.setCell(20, 2, 'tests.SearchTests')
+data.setCell(20, 3, 10103);
+data.setCell(21, 0, 21)
+data.setCell(21, 1, 'TC234_VerifySearchWithSpecialCharacters')
+data.setCell(21, 2, 'tests.SearchTests')
+data.setCell(21, 3, 7051);
+data.setCell(22, 0, 22)
+data.setCell(22, 1, 'TC232_VerifySearchNonExistingBook')
+data.setCell(22, 2, 'tests.SearchTests')
+data.setCell(22, 3, 7013);
+data.setCell(23, 0, 23)
+data.setCell(23, 1, 'TC250_VerifyUnsupportedCharactersSearch')
+data.setCell(23, 2, 'tests.SearchTests')
+data.setCell(23, 3, 6989);
+data.setCell(24, 0, 24)
+data.setCell(24, 1, 'TC243_VerifySearchFieldProtectedFromSqlInjection')
+data.setCell(24, 2, 'tests.SearchTests')
+data.setCell(24, 3, 6966);
+data.setCell(25, 0, 25)
+data.setCell(25, 1, 'TC260_VerifySearchFieldPreventsHtmlInjection')
+data.setCell(25, 2, 'tests.SearchTests')
+data.setCell(25, 3, 6918);
+data.setCell(26, 0, 26)
+data.setCell(26, 1, 'TC235_VerifyNumericSearch')
+data.setCell(26, 2, 'tests.SearchTests')
+data.setCell(26, 3, 6901);
+data.setCell(27, 0, 27)
+data.setCell(27, 1, 'TC249_VerifyBlankSpaceSearch')
+data.setCell(27, 2, 'tests.SearchTests')
+data.setCell(27, 3, 6896);
+data.setCell(28, 0, 28)
+data.setCell(28, 1, 'TC244_VerifySearchFieldProtectedFromScriptInjection')
+data.setCell(28, 2, 'tests.SearchTests')
+data.setCell(28, 3, 6858);
+data.setCell(29, 0, 29)
+data.setCell(29, 1, 'TC240_VerifyMaximumCharacterLimitSearch')
+data.setCell(29, 2, 'tests.SearchTests')
+data.setCell(29, 3, 6588);
+data.setCell(30, 0, 30)
+data.setCell(30, 1, 'TC247_VerifySearchResultsCountDisplayed')
+data.setCell(30, 2, 'tests.SearchTests')
+data.setCell(30, 3, 4326);
+data.setCell(31, 0, 31)
+data.setCell(31, 1, 'TC248_VerifySearchAutoSuggestionsAppearWhileTyping')
+data.setCell(31, 2, 'tests.SearchTests')
+data.setCell(31, 3, 3475);
+data.setCell(32, 0, 32)
+data.setCell(32, 1, 'TC255_VerifyUserCanClearSearchField')
+data.setCell(32, 2, 'tests.SearchTests')
+data.setCell(32, 3, 2269);
+data.setCell(33, 0, 33)
+data.setCell(33, 1, 'TC261_VerifySearchFieldProtectedFromUrlInjection')
+data.setCell(33, 2, 'tests.SearchTests')
+data.setCell(33, 3, 815);
+data.setCell(34, 0, 34)
+data.setCell(34, 1, 'TC256_VerifySearchPlaceholderTextVisible')
+data.setCell(34, 2, 'tests.SearchTests')
+data.setCell(34, 3, 68);
+data.setCell(35, 0, 35)
+data.setCell(35, 1, 'TC241_VerifySearchBarVisibility')
+data.setCell(35, 2, 'tests.SearchTests')
+data.setCell(35, 3, 62);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 6 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -239,30 +1406,9 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">8 ignored methods</span>
+            <span class="header-content">0 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
-            <div class="ignored-class-div">
-              <span class="ignored-class-name">tests.PlayerTests</span>
-              <div class="ignored-methods-div">
-                <span class="ignored-method-name">TC06_VerifyPreviousOnFirstChapterHandledGracefully</span>
-                <br/>
-                <span class="ignored-method-name">TC07_VerifyForwardAudio</span>
-                <br/>
-                <span class="ignored-method-name">TC08_VerifyBackwardAudio</span>
-                <br/>
-                <span class="ignored-method-name">TC04_VerifyNextChapterPlayback</span>
-                <br/>
-                <span class="ignored-method-name">TC05_VerifyPreviousChapterPlayback</span>
-                <br/>
-                <span class="ignored-method-name">TC09_VerifyPlayerLoad</span>
-                <br/>
-                <span class="ignored-method-name">TC01_VerifyPlayBook</span>
-                <br/>
-                <span class="ignored-method-name">TC02_VerifyPauseBook</span>
-                <br/>
-              </div> <!-- ignored-methods-div -->
-            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Default_suite" class="panel">
@@ -271,18 +1417,440 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">tests.PlayerTests</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">tests.SearchTests</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setup</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">TC03_VerifyResumeBook</span>
-                <span class="method-start">20279 ms</span>
+                <span class="method-name">TC229_VerifySearchByFullName</span>
+                <span class="method-start">45024 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">113594 ms</span>
+                <span class="method-start">55803 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">56302 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC230_VerifySearchByPartialName</span>
+                <span class="method-start">102454 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">114258 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">114774 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC231_VerifySearchByKeyword</span>
+                <span class="method-start">159244 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">169405 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">169900 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC232_VerifySearchNonExistingBook</span>
+                <span class="method-start">210759 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">217776 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">218271 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC233_VerifyEmptySearch</span>
+                <span class="method-start">259594 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">272470 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">272954 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC234_VerifySearchWithSpecialCharacters</span>
+                <span class="method-start">313858 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">320911 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">321385 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC235_VerifyNumericSearch</span>
+                <span class="method-start">360545 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">367450 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">367953 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC236_VerifySearchWithSpaces</span>
+                <span class="method-start">409332 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">419925 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">420424 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC237_VerifySearchIsCaseInsensitive</span>
+                <span class="method-start">466371 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">476885 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">477376 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC238_VerifyLongTextSearch</span>
+                <span class="method-start">521249 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">541463 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">541943 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC239_VerifyMinimumCharacterSearch</span>
+                <span class="method-start">585100 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">595207 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">595694 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC240_VerifyMaximumCharacterLimitSearch</span>
+                <span class="method-start">638381 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">644971 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">645433 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC241_VerifySearchBarVisibility</span>
+                <span class="method-start">689597 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">689662 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">690116 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC242_VerifySearchIconClickTriggersSearch</span>
+                <span class="method-start">730215 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">740528 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">740993 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC243_VerifySearchFieldProtectedFromSqlInjection</span>
+                <span class="method-start">781974 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">788942 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">789432 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC244_VerifySearchFieldProtectedFromScriptInjection</span>
+                <span class="method-start">832412 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">839274 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">839777 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC245_VerifySearchReturnsMultipleResultsForCommonKeyword</span>
+                <span class="method-start">883330 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">895734 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">896201 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC246_VerifyUserCanOpenBookFromSearchResults</span>
+                <span class="method-start">938633 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">962252 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">962713 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC246_VerifyUserCanOpenBookFromSearchResults</span>
+                <span class="method-start">1005602 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1029443 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1029897 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">TC246_VerifyUserCanOpenBookFromSearchResults</span>
+                <span class="method-start">1070280 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1094322 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1094802 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC247_VerifySearchResultsCountDisplayed</span>
+                <span class="method-start">1134981 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1139309 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1139798 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC248_VerifySearchAutoSuggestionsAppearWhileTyping</span>
+                <span class="method-start">1183709 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1187187 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1187647 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC249_VerifyBlankSpaceSearch</span>
+                <span class="method-start">1228746 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1235644 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1236128 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC250_VerifyUnsupportedCharactersSearch</span>
+                <span class="method-start">1280385 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1287377 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1287825 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC251_VerifyVeryLongSearchText</span>
+                <span class="method-start">1332458 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1358672 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1359162 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC252_VerifyRapidSearchQueries</span>
+                <span class="method-start">1399219 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1443005 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1443492 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC253_VerifySearchWithSpecialLanguageCharacters</span>
+                <span class="method-start">1489743 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1500532 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1501006 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC254_VerifySearchWithMixedCharacters</span>
+                <span class="method-start">1543856 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1554691 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1555169 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC255_VerifyUserCanClearSearchField</span>
+                <span class="method-start">1598778 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1601050 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1601547 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC256_VerifySearchPlaceholderTextVisible</span>
+                <span class="method-start">1638858 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1638928 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1639391 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC257_VerifySearchWorksWithEnterKey</span>
+                <span class="method-start">1679096 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1689479 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1689962 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC258_VerifySearchResponseTime</span>
+                <span class="method-start">1731074 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1741345 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1741808 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC259_VerifyLargeDataSearchPerformance</span>
+                <span class="method-start">1781361 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1792678 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1793144 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC260_VerifySearchFieldPreventsHtmlInjection</span>
+                <span class="method-start">1836444 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1843364 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1843834 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC261_VerifySearchFieldProtectedFromUrlInjection</span>
+                <span class="method-start">1885276 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1886092 ms</span>
+              </div> <!-- configuration-method after -->
+              <div class="configuration-method before">
+                <span class="method-name">setup</span>
+                <span class="method-start">1886596 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC262_VerifySearchByAuthorName</span>
+                <span class="method-start">1927521 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">1937734 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC4_VerifyNameWithNumbers
+Started: 2026-07-13 14:35:40
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC4_VerifyNameWithNumbers_2026_07_13_14_35_40.log
+============================================================
+========== TEST STARTED: TC_4: Verify name with numbers is accepted ==========
+STEP 1: Submit registration with numbers in the name
+INFO  TC_4 - STEP 1: Registration successful: true
+========== TEST PASSED: TC_4 ==========
+============================================================
+Ended: 2026-07-13 14:36:00

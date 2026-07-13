@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC76_VerifyFieldMinLength
+Started: 2026-07-13 15:44:28
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC76_VerifyFieldMinLength_2026_07_13_15_44_28.log
+============================================================
+========== TEST STARTED: TC_76: Verify minimum length inputs are handled gracefully ==========
+STEP 1: Submit registration with minimum length inputs
+INFO  TC_76 - STEP 1: Handled gracefully: true
+========== TEST PASSED: TC_76 ==========
+============================================================
+Ended: 2026-07-13 15:45:00

@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC7_VerifyNameTrailingSpace
+Started: 2026-07-13 14:39:15
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC7_VerifyNameTrailingSpace_2026_07_13_14_39_15.log
+============================================================
+========== TEST STARTED: TC_7: Verify name with trailing space is handled gracefully ==========
+STEP 1: Submit registration with a trailing space in the name
+INFO  TC_7 - STEP 1: Handled gracefully: true
+========== TEST PASSED: TC_7 ==========
+============================================================
+Ended: 2026-07-13 14:39:36

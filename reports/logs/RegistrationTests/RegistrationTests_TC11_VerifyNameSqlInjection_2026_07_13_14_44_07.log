@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC11_VerifyNameSqlInjection
+Started: 2026-07-13 14:44:07
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC11_VerifyNameSqlInjection_2026_07_13_14_44_07.log
+============================================================
+========== TEST STARTED: TC_11: Verify SQL injection in name is rejected ==========
+STEP 1: Submit registration with a SQL injection payload in the name
+INFO  TC_11 - STEP 1: Rejected: true
+========== TEST PASSED: TC_11 ==========
+============================================================
+Ended: 2026-07-13 14:44:40

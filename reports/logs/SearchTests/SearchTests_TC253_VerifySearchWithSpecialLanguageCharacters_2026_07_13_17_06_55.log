@@ -1,0 +1,12 @@
+============================================================
+Test Log: SearchTests.TC253_VerifySearchWithSpecialLanguageCharacters
+Started: 2026-07-13 17:06:55
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC253_VerifySearchWithSpecialLanguageCharacters_2026_07_13_17_06_55.log
+============================================================
+========== TEST STARTED: TC_253: Search With Special Language Characters ==========
+STEP 1: Search using a foreign-language keyword
+STEP 2: Verify the search completed safely and the page stayed stable
+INFO  TC_253 - STEP 2: Completed safely: true, Page stable: true
+========== TEST PASSED: TC_253 ==========
+============================================================
+Ended: 2026-07-13 17:07:05

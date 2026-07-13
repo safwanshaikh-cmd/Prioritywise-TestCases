@@ -1,0 +1,11 @@
+============================================================
+Test Log: RegistrationTests.TC31_VerifyEmailXssInjection
+Started: 2026-07-13 14:58:33
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\RegistrationTests_TC31_VerifyEmailXssInjection_2026_07_13_14_58_33.log
+============================================================
+========== TEST STARTED: TC_31: Verify XSS injection in email is rejected ==========
+STEP 1: Submit registration with an XSS payload in the email
+INFO  TC_31 - STEP 1: Rejected: true
+========== TEST PASSED: TC_31 ==========
+============================================================
+Ended: 2026-07-13 14:59:05

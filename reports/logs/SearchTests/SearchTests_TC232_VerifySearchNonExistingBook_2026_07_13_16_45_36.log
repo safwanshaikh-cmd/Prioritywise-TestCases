@@ -1,0 +1,11 @@
+============================================================
+Test Log: SearchTests.TC232_VerifySearchNonExistingBook
+Started: 2026-07-13 16:45:36
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SearchTests_TC232_VerifySearchNonExistingBook_2026_07_13_16_45_36.log
+============================================================
+========== TEST STARTED: TC_232: Search Non-Existing Book ==========
+STEP 1: Search using a non-existing book title
+INFO  TC_232 - STEP 1: Safe empty-state response: true
+========== TEST PASSED: TC_232 ==========
+============================================================
+Ended: 2026-07-13 16:45:43
