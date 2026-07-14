@@ -568,14 +568,14 @@ public class SearchTests extends BaseTest {
 	// ==================== TC_246: OPEN BOOK FROM SEARCH RESULTS ====================
 
 	/**
-	 * TC_246: Verify the user can open a book from search results
-	 * Test Flow: Search title → Verify results present → Click first result
-	 * Expected: Clicking a search result should open the book details page
+	 * TC_246: Verify the user can open and play the first book from search results
+	 * Test Flow: Search title → Verify results present → Click first result → Play the first book
+	 * Expected: Clicking a search result should open the book details page and start playback
 	 */
 	@Test(priority = 246, groups = { TestConstants.GROUP_CONSUMER, TestConstants.GROUP_FUNCTIONAL,
-			TestConstants.GROUP_UI }, retryAnalyzer = RetryAnalyzer.class, description = "TC_246: Verify the user can open a book from search results")
+			TestConstants.GROUP_UI }, retryAnalyzer = RetryAnalyzer.class, description = "TC_246: Verify the user can open and play the first book from search results")
 	public void TC246_VerifyUserCanOpenBookFromSearchResults() {
-		LoggerUtils.logTestStart("TC_246: User Can Open Book From Search Results");
+		LoggerUtils.logTestStart("TC_246: User Can Open And Play Book From Search Results");
 
 		try {
 			LoggerUtils.logStep(1, "Search using the full title and verify results are present");
@@ -585,8 +585,16 @@ public class SearchTests extends BaseTest {
 			LoggerUtils.logStep(2, "Click the first search result and verify it opens book details");
 			boolean opened = search.openFirstSearchResult();
 			LoggerUtils.logInfo("TC_246 - STEP 2: Book details opened: " + opened);
-
 			Assert.assertTrue(opened, "TC_246: Clicking a search result should open the book details page");
+
+			LoggerUtils.logStep(3, "Verify the first book exposes a Play control, then play and verify playback");
+			if (!search.isPlayButtonVisible()) {
+				throw new SkipException(
+						"TC_246: Play Audio button is not visible on the opened book details page.");
+			}
+			boolean playback = search.playAudioAndVerifyPlayback();
+			LoggerUtils.logInfo("TC_246 - STEP 3: Playback started: " + playback);
+			Assert.assertTrue(playback, "TC_246: The first book from the search result should start playing");
 
 			LoggerUtils.logTestEnd("TC_246", "PASSED");
 		} catch (SkipException e) {

@@ -1,0 +1,15 @@
+============================================================
+Test Log: SecurityTests.TC202_VerifyDirectUrlAccessAfterSessionExpiry
+Started: 2026-07-14 16:04:55
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SecurityTests_TC202_VerifyDirectUrlAccessAfterSessionExpiry_2026_07_14_16_04_55.log
+============================================================
+========== TEST STARTED: TC_202: Direct URL Access After Session Expiry ==========
+STEP 1: Log in as consumer and capture the post-login URL
+INFO  TC_202 - STEP 1: Stored post-login URL captured
+STEP 2: Clear the session to simulate expiry
+INFO  TC_202 - STEP 2: Session cleared (simulating expiry)
+STEP 3: Reload the stored URL and verify it is still accessible
+INFO  TC_202 - STEP 3: Accessible after expiry: true
+========== TEST PASSED: TC_202 ==========
+============================================================
+Ended: 2026-07-14 16:05:34

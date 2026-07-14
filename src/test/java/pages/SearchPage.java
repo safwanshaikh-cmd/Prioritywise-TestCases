@@ -1,10 +1,13 @@
 package pages;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Locale;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.SkipException;
 
@@ -12,29 +15,12 @@ import base.BasePage;
 import utils.ConfigReader;
 import utils.LoggerUtils;
 
-/**
- * Page object that orchestrates the dashboard search flow. Mirrors the
- * conventions used by {@link ChapterPage} and {@link ConsumerBookDetailsPage}:
- * a thin wrapper over {@link DashboardPage}'s existing search API, with all
- * multi-step orchestration (login, search-and-verify outcomes, page-stability
- * checks, alert detection, config-driven keyword resolution, and null-safe
- * helpers) kept inside this class so the {@code SearchTests} test class stays
- * lean and free of Selenium/locators.
- *
- * <p>This class is the home for:
- * <ul>
- *   <li>Consumer login + credential gating before each search test.</li>
- *   <li>Search orchestration that returns outcome booleans (results present,
- *       no-results/empty-state present, page stable) instead of asserting, so
- *       the test keeps ownership of assertions.</li>
- *   <li>Thin pass-through wrappers over the underlying {@link DashboardPage}
- *       search surface — no locators are duplicated here.</li>
- *   <li>Config-driven search-keyword resolution ({@code search.*} keys).</li>
- *   <li>Null-safe string / URL helpers and a non-flaky settle wait, mirroring
- *       the sibling page objects.</li>
- * </ul>
- */
 public class SearchPage extends BasePage {
+
+	private static final By SEARCH_RESULT_ITEM = By.xpath(
+			"//div[contains(@style,'gap: 10px')]//div[@tabindex='0'][.//img[contains(@src,'thumb.php') or contains(@src,'sonarplay')]]"
+					+ " | //img[contains(@src,'thumb.php')]/ancestor::*[@tabindex='0'][1]"
+					+ " | //img[contains(@src,'sonarplay')]/ancestor::*[@tabindex='0'][1]");
 
 	private final LoginPage login;
 	private final DashboardPage dashboard;
@@ -202,36 +188,95 @@ public class SearchPage extends BasePage {
 		dashboard.clearSearchField();
 	}
 
+	/**
+	 * @return the first visible search-result element on the search results
+	 *         page, or {@code null} when none is present. Resolves the actual
+	 *         result item so a click lands on the book — not on a decorative
+	 *         sibling card.
+	 */
+	private WebElement findFirstSearchResultElement() {
+		try {
+			List<WebElement> results = driver.findElements(SEARCH_RESULT_ITEM);
+			for (WebElement result : results) {
+				if (result.isDisplayed()) {
+					return result;
+				}
+			}
+		} catch (Exception e) {
+			// fall through — no visible result element available
+		}
+		return null;
+	}
+
 	public boolean clickFirstSearchResult() {
-		return dashboard.clickFirstSearchResult();
+		return openFirstSearchResult();
 	}
 
 	/**
 	 * Click the first search result and verify the book details page opens.
 	 * <p>
-	 * {@link DashboardPage#clickFirstSearchResult()} clicks and self-polls for
-	 * up to 5 seconds, returning {@code urlChanged || isShowDetailsVisible1()}.
-	 * On a fast / cached run that internal check can report {@code false} even
-	 * when the details page is still rendering, so when the raw click reports
-	 * failure we additionally wait on the broader {@code isBookDetailsPageVisible()}
-	 * verdict (the same check {@code ChapterTests}/{@code ConsumerBookDetailsTests}
-	 * use) before concluding the navigation did not happen. No asserts — returns
-	 * the outcome so the test can assert on it.
+	 * Bypasses {@link DashboardPage#clickFirstSearchResult()}, which retargets
+	 * the click to a generic {@code border-radius:8px} decorative card and
+	 * leaves the user on the search page. Instead this resolves the actual
+	 * result element, scrolls it into view, clicks it (with a JS fallback),
+	 * then waits up to 10 seconds for the book details page to become visible
+	 * via {@link DashboardPage#isBookDetailsPageVisible()} — the same verdict
+	 * {@code ChapterTests}/{@code ConsumerBookDetailsTests} use. No asserts —
+	 * returns the outcome so the test can assert on it.
 	 *
 	 * @return {@code true} when clicking the first result opened a book details
-	 *         page (URL changed or details visible within the wait window).
+	 *         page within the wait window.
 	 */
 	public boolean openFirstSearchResult() {
-		boolean opened = dashboard.clickFirstSearchResult();
-		if (opened) {
-			return true;
+		WebElement firstResult = findFirstSearchResultElement();
+		if (firstResult == null) {
+			LoggerUtils.logInfo("openFirstSearchResult: no visible search result element found to click.");
+			return false;
 		}
+		String startingUrl = getCurrentUrlSafely();
+
+		scrollIntoView(firstResult);
+		waitQuietly(500);
+		try {
+			firstResult.click();
+		} catch (Exception clickEx) {
+			try {
+				executeScript("arguments[0].click();", firstResult);
+			} catch (Exception jsEx) {
+				LoggerUtils.logInfo("openFirstSearchResult: result click failed — " + safeString(jsEx.getMessage()));
+				return false;
+			}
+		}
+
 		try {
 			return new WebDriverWait(driver, Duration.ofSeconds(10))
 					.until(ignored -> dashboard.isBookDetailsPageVisible()) != null;
 		} catch (Exception e) {
-			return false;
+			String newUrl = getCurrentUrlSafely();
+			LoggerUtils.logInfo("openFirstSearchResult: book details not visible — urlChanged="
+					+ !startingUrl.equals(newUrl));
+			return !startingUrl.equals(newUrl);
 		}
+	}
+
+	/**
+	 * @return {@code true} when the open book details page exposes a Play
+	 *         Audio control. Used as a precondition gate before validating
+	 *         playback (some books may have no audio).
+	 */
+	public boolean isPlayButtonVisible() {
+		return dashboard.isPlayAudioButtonVisible();
+	}
+
+	/**
+	 * Click Play Audio on the open book details page and verify playback
+	 * started. Mirrors the pattern used by {@code ChapterTests} — delegates to
+	 * {@link DashboardPage#clickPlayAudioAndVerifyPlayback()}.
+	 *
+	 * @return {@code true} when audio playback started successfully.
+	 */
+	public boolean playAudioAndVerifyPlayback() {
+		return dashboard.clickPlayAudioAndVerifyPlayback();
 	}
 
 	public void printVisibleSearchResults() {

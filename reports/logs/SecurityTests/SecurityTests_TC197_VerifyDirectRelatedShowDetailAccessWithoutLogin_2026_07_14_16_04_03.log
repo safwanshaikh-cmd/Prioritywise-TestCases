@@ -1,0 +1,11 @@
+============================================================
+Test Log: SecurityTests.TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin
+Started: 2026-07-14 16:04:03
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SecurityTests_TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin_2026_07_14_16_04_03.log
+============================================================
+========== TEST STARTED: TC_197: Direct Related Show Detail Access ==========
+STEP 1: Confirm the related-show detail has no standalone direct URL
+========== TEST SKIPPED: TC_197 ==========
+[SKIP] SecurityTests :: TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin
+============================================================
+Ended: 2026-07-14 16:04:03

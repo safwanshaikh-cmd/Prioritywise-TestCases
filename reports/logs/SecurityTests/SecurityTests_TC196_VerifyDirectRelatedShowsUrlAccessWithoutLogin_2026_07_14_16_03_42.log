@@ -1,0 +1,12 @@
+============================================================
+Test Log: SecurityTests.TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin
+Started: 2026-07-14 16:03:42
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SecurityTests_TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin_2026_07_14_16_03_42.log
+============================================================
+========== TEST STARTED: TC_196: Direct Related Shows URL Access ==========
+STEP 1: Clear any existing session for guest access
+STEP 2: Access the related-shows URL directly without login
+INFO  TC_196 - STEP 2: Guest accessible: true
+========== TEST PASSED: TC_196 ==========
+============================================================
+Ended: 2026-07-14 16:03:49

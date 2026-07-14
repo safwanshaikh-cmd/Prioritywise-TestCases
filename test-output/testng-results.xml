@@ -1,345 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results retried="2" ignored="2" total="38" passed="33" failed="1" skipped="0">
+<testng-results ignored="0" total="9" passed="8" failed="0" skipped="1">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-07-13T16:42:00 GST" name="Default suite" finished-at="2026-07-13T17:14:23 GST" duration-ms="1943023">
+  <suite started-at="2026-07-14T16:03:01 GST" name="Default suite" finished-at="2026-07-14T16:08:28 GST" duration-ms="326982">
     <groups>
-      <group name="security">
-        <method signature="SearchTests.TC232_VerifySearchNonExistingBook()[pri:232, instance:tests.SearchTests@6ed3ccb2]" name="TC232_VerifySearchNonExistingBook" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC233_VerifyEmptySearch()[pri:233, instance:tests.SearchTests@6ed3ccb2]" name="TC233_VerifyEmptySearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC234_VerifySearchWithSpecialCharacters()[pri:234, instance:tests.SearchTests@6ed3ccb2]" name="TC234_VerifySearchWithSpecialCharacters" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC235_VerifyNumericSearch()[pri:235, instance:tests.SearchTests@6ed3ccb2]" name="TC235_VerifyNumericSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC243_VerifySearchFieldProtectedFromSqlInjection()[pri:243, instance:tests.SearchTests@6ed3ccb2]" name="TC243_VerifySearchFieldProtectedFromSqlInjection" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC244_VerifySearchFieldProtectedFromScriptInjection()[pri:244, instance:tests.SearchTests@6ed3ccb2]" name="TC244_VerifySearchFieldProtectedFromScriptInjection" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC249_VerifyBlankSpaceSearch()[pri:249, instance:tests.SearchTests@6ed3ccb2]" name="TC249_VerifyBlankSpaceSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC260_VerifySearchFieldPreventsHtmlInjection()[pri:260, instance:tests.SearchTests@6ed3ccb2]" name="TC260_VerifySearchFieldPreventsHtmlInjection" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC261_VerifySearchFieldProtectedFromUrlInjection()[pri:261, instance:tests.SearchTests@6ed3ccb2]" name="TC261_VerifySearchFieldProtectedFromUrlInjection" class="tests.SearchTests"/>
-      </group> <!-- security -->
       <group name="functional">
-        <method signature="SearchTests.TC229_VerifySearchByFullName()[pri:229, instance:tests.SearchTests@6ed3ccb2]" name="TC229_VerifySearchByFullName" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC230_VerifySearchByPartialName()[pri:230, instance:tests.SearchTests@6ed3ccb2]" name="TC230_VerifySearchByPartialName" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC231_VerifySearchByKeyword()[pri:231, instance:tests.SearchTests@6ed3ccb2]" name="TC231_VerifySearchByKeyword" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC232_VerifySearchNonExistingBook()[pri:232, instance:tests.SearchTests@6ed3ccb2]" name="TC232_VerifySearchNonExistingBook" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC233_VerifyEmptySearch()[pri:233, instance:tests.SearchTests@6ed3ccb2]" name="TC233_VerifyEmptySearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC234_VerifySearchWithSpecialCharacters()[pri:234, instance:tests.SearchTests@6ed3ccb2]" name="TC234_VerifySearchWithSpecialCharacters" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC235_VerifyNumericSearch()[pri:235, instance:tests.SearchTests@6ed3ccb2]" name="TC235_VerifyNumericSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC236_VerifySearchWithSpaces()[pri:236, instance:tests.SearchTests@6ed3ccb2]" name="TC236_VerifySearchWithSpaces" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC237_VerifySearchIsCaseInsensitive()[pri:237, instance:tests.SearchTests@6ed3ccb2]" name="TC237_VerifySearchIsCaseInsensitive" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC238_VerifyLongTextSearch()[pri:238, instance:tests.SearchTests@6ed3ccb2]" name="TC238_VerifyLongTextSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC239_VerifyMinimumCharacterSearch()[pri:239, instance:tests.SearchTests@6ed3ccb2]" name="TC239_VerifyMinimumCharacterSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC240_VerifyMaximumCharacterLimitSearch()[pri:240, instance:tests.SearchTests@6ed3ccb2]" name="TC240_VerifyMaximumCharacterLimitSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC241_VerifySearchBarVisibility()[pri:241, instance:tests.SearchTests@6ed3ccb2]" name="TC241_VerifySearchBarVisibility" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC242_VerifySearchIconClickTriggersSearch()[pri:242, instance:tests.SearchTests@6ed3ccb2]" name="TC242_VerifySearchIconClickTriggersSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC243_VerifySearchFieldProtectedFromSqlInjection()[pri:243, instance:tests.SearchTests@6ed3ccb2]" name="TC243_VerifySearchFieldProtectedFromSqlInjection" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC244_VerifySearchFieldProtectedFromScriptInjection()[pri:244, instance:tests.SearchTests@6ed3ccb2]" name="TC244_VerifySearchFieldProtectedFromScriptInjection" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC245_VerifySearchReturnsMultipleResultsForCommonKeyword()[pri:245, instance:tests.SearchTests@6ed3ccb2]" name="TC245_VerifySearchReturnsMultipleResultsForCommonKeyword" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC246_VerifyUserCanOpenBookFromSearchResults()[pri:246, instance:tests.SearchTests@6ed3ccb2]" name="TC246_VerifyUserCanOpenBookFromSearchResults" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC247_VerifySearchResultsCountDisplayed()[pri:247, instance:tests.SearchTests@6ed3ccb2]" name="TC247_VerifySearchResultsCountDisplayed" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC248_VerifySearchAutoSuggestionsAppearWhileTyping()[pri:248, instance:tests.SearchTests@6ed3ccb2]" name="TC248_VerifySearchAutoSuggestionsAppearWhileTyping" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC249_VerifyBlankSpaceSearch()[pri:249, instance:tests.SearchTests@6ed3ccb2]" name="TC249_VerifyBlankSpaceSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC250_VerifyUnsupportedCharactersSearch()[pri:250, instance:tests.SearchTests@6ed3ccb2]" name="TC250_VerifyUnsupportedCharactersSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC251_VerifyVeryLongSearchText()[pri:251, instance:tests.SearchTests@6ed3ccb2]" name="TC251_VerifyVeryLongSearchText" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC252_VerifyRapidSearchQueries()[pri:252, instance:tests.SearchTests@6ed3ccb2]" name="TC252_VerifyRapidSearchQueries" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC253_VerifySearchWithSpecialLanguageCharacters()[pri:253, instance:tests.SearchTests@6ed3ccb2]" name="TC253_VerifySearchWithSpecialLanguageCharacters" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC254_VerifySearchWithMixedCharacters()[pri:254, instance:tests.SearchTests@6ed3ccb2]" name="TC254_VerifySearchWithMixedCharacters" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC255_VerifyUserCanClearSearchField()[pri:255, instance:tests.SearchTests@6ed3ccb2]" name="TC255_VerifyUserCanClearSearchField" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC256_VerifySearchPlaceholderTextVisible()[pri:256, instance:tests.SearchTests@6ed3ccb2]" name="TC256_VerifySearchPlaceholderTextVisible" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC257_VerifySearchWorksWithEnterKey()[pri:257, instance:tests.SearchTests@6ed3ccb2]" name="TC257_VerifySearchWorksWithEnterKey" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC258_VerifySearchResponseTime()[pri:258, instance:tests.SearchTests@6ed3ccb2]" name="TC258_VerifySearchResponseTime" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC259_VerifyLargeDataSearchPerformance()[pri:259, instance:tests.SearchTests@6ed3ccb2]" name="TC259_VerifyLargeDataSearchPerformance" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC260_VerifySearchFieldPreventsHtmlInjection()[pri:260, instance:tests.SearchTests@6ed3ccb2]" name="TC260_VerifySearchFieldPreventsHtmlInjection" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC261_VerifySearchFieldProtectedFromUrlInjection()[pri:261, instance:tests.SearchTests@6ed3ccb2]" name="TC261_VerifySearchFieldProtectedFromUrlInjection" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC262_VerifySearchByAuthorName()[pri:262, instance:tests.SearchTests@6ed3ccb2]" name="TC262_VerifySearchByAuthorName" class="tests.SearchTests"/>
+        <method signature="SecurityTests.TC192_VerifyDirectCategoryUrlAccessWithoutLogin()[pri:192, instance:tests.SecurityTests@217ed35e]" name="TC192_VerifyDirectCategoryUrlAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin()[pri:196, instance:tests.SecurityTests@217ed35e]" name="TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin()[pri:197, instance:tests.SecurityTests@217ed35e]" name="TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC198_VerifyDirectUpcomingUrlAccessWithoutLogin()[pri:198, instance:tests.SecurityTests@217ed35e]" name="TC198_VerifyDirectUpcomingUrlAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC200_VerifyDirectMostRatedUrlAccessWithoutLogin()[pri:200, instance:tests.SecurityTests@217ed35e]" name="TC200_VerifyDirectMostRatedUrlAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC202_VerifyDirectUrlAccessAfterSessionExpiry()[pri:202, instance:tests.SecurityTests@217ed35e]" name="TC202_VerifyDirectUrlAccessAfterSessionExpiry" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole()[pri:203, instance:tests.SecurityTests@217ed35e]" name="TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC378_VerifyPaymentPageHTTPS()[pri:378, instance:tests.SecurityTests@217ed35e]" name="TC378_VerifyPaymentPageHTTPS" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC383_VerifyPaymentFlowSessionExpiry()[pri:383, instance:tests.SecurityTests@217ed35e]" name="TC383_VerifyPaymentFlowSessionExpiry" class="tests.SecurityTests"/>
       </group> <!-- functional -->
+      <group name="security">
+        <method signature="SecurityTests.TC192_VerifyDirectCategoryUrlAccessWithoutLogin()[pri:192, instance:tests.SecurityTests@217ed35e]" name="TC192_VerifyDirectCategoryUrlAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin()[pri:196, instance:tests.SecurityTests@217ed35e]" name="TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin()[pri:197, instance:tests.SecurityTests@217ed35e]" name="TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC198_VerifyDirectUpcomingUrlAccessWithoutLogin()[pri:198, instance:tests.SecurityTests@217ed35e]" name="TC198_VerifyDirectUpcomingUrlAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC200_VerifyDirectMostRatedUrlAccessWithoutLogin()[pri:200, instance:tests.SecurityTests@217ed35e]" name="TC200_VerifyDirectMostRatedUrlAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC202_VerifyDirectUrlAccessAfterSessionExpiry()[pri:202, instance:tests.SecurityTests@217ed35e]" name="TC202_VerifyDirectUrlAccessAfterSessionExpiry" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole()[pri:203, instance:tests.SecurityTests@217ed35e]" name="TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC378_VerifyPaymentPageHTTPS()[pri:378, instance:tests.SecurityTests@217ed35e]" name="TC378_VerifyPaymentPageHTTPS" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC383_VerifyPaymentFlowSessionExpiry()[pri:383, instance:tests.SecurityTests@217ed35e]" name="TC383_VerifyPaymentFlowSessionExpiry" class="tests.SecurityTests"/>
+      </group> <!-- security -->
       <group name="performance">
-        <method signature="SearchTests.TC258_VerifySearchResponseTime()[pri:258, instance:tests.SearchTests@6ed3ccb2]" name="TC258_VerifySearchResponseTime" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC259_VerifyLargeDataSearchPerformance()[pri:259, instance:tests.SearchTests@6ed3ccb2]" name="TC259_VerifyLargeDataSearchPerformance" class="tests.SearchTests"/>
+        <method signature="SecurityTests.TC378_VerifyPaymentPageHTTPS()[pri:378, instance:tests.SecurityTests@217ed35e]" name="TC378_VerifyPaymentPageHTTPS" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC383_VerifyPaymentFlowSessionExpiry()[pri:383, instance:tests.SecurityTests@217ed35e]" name="TC383_VerifyPaymentFlowSessionExpiry" class="tests.SecurityTests"/>
       </group> <!-- performance -->
-      <group name="ui">
-        <method signature="SearchTests.TC229_VerifySearchByFullName()[pri:229, instance:tests.SearchTests@6ed3ccb2]" name="TC229_VerifySearchByFullName" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC230_VerifySearchByPartialName()[pri:230, instance:tests.SearchTests@6ed3ccb2]" name="TC230_VerifySearchByPartialName" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC231_VerifySearchByKeyword()[pri:231, instance:tests.SearchTests@6ed3ccb2]" name="TC231_VerifySearchByKeyword" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC232_VerifySearchNonExistingBook()[pri:232, instance:tests.SearchTests@6ed3ccb2]" name="TC232_VerifySearchNonExistingBook" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC233_VerifyEmptySearch()[pri:233, instance:tests.SearchTests@6ed3ccb2]" name="TC233_VerifyEmptySearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC234_VerifySearchWithSpecialCharacters()[pri:234, instance:tests.SearchTests@6ed3ccb2]" name="TC234_VerifySearchWithSpecialCharacters" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC235_VerifyNumericSearch()[pri:235, instance:tests.SearchTests@6ed3ccb2]" name="TC235_VerifyNumericSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC236_VerifySearchWithSpaces()[pri:236, instance:tests.SearchTests@6ed3ccb2]" name="TC236_VerifySearchWithSpaces" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC237_VerifySearchIsCaseInsensitive()[pri:237, instance:tests.SearchTests@6ed3ccb2]" name="TC237_VerifySearchIsCaseInsensitive" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC238_VerifyLongTextSearch()[pri:238, instance:tests.SearchTests@6ed3ccb2]" name="TC238_VerifyLongTextSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC239_VerifyMinimumCharacterSearch()[pri:239, instance:tests.SearchTests@6ed3ccb2]" name="TC239_VerifyMinimumCharacterSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC240_VerifyMaximumCharacterLimitSearch()[pri:240, instance:tests.SearchTests@6ed3ccb2]" name="TC240_VerifyMaximumCharacterLimitSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC241_VerifySearchBarVisibility()[pri:241, instance:tests.SearchTests@6ed3ccb2]" name="TC241_VerifySearchBarVisibility" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC242_VerifySearchIconClickTriggersSearch()[pri:242, instance:tests.SearchTests@6ed3ccb2]" name="TC242_VerifySearchIconClickTriggersSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC243_VerifySearchFieldProtectedFromSqlInjection()[pri:243, instance:tests.SearchTests@6ed3ccb2]" name="TC243_VerifySearchFieldProtectedFromSqlInjection" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC244_VerifySearchFieldProtectedFromScriptInjection()[pri:244, instance:tests.SearchTests@6ed3ccb2]" name="TC244_VerifySearchFieldProtectedFromScriptInjection" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC245_VerifySearchReturnsMultipleResultsForCommonKeyword()[pri:245, instance:tests.SearchTests@6ed3ccb2]" name="TC245_VerifySearchReturnsMultipleResultsForCommonKeyword" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC246_VerifyUserCanOpenBookFromSearchResults()[pri:246, instance:tests.SearchTests@6ed3ccb2]" name="TC246_VerifyUserCanOpenBookFromSearchResults" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC247_VerifySearchResultsCountDisplayed()[pri:247, instance:tests.SearchTests@6ed3ccb2]" name="TC247_VerifySearchResultsCountDisplayed" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC248_VerifySearchAutoSuggestionsAppearWhileTyping()[pri:248, instance:tests.SearchTests@6ed3ccb2]" name="TC248_VerifySearchAutoSuggestionsAppearWhileTyping" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC249_VerifyBlankSpaceSearch()[pri:249, instance:tests.SearchTests@6ed3ccb2]" name="TC249_VerifyBlankSpaceSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC250_VerifyUnsupportedCharactersSearch()[pri:250, instance:tests.SearchTests@6ed3ccb2]" name="TC250_VerifyUnsupportedCharactersSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC251_VerifyVeryLongSearchText()[pri:251, instance:tests.SearchTests@6ed3ccb2]" name="TC251_VerifyVeryLongSearchText" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC252_VerifyRapidSearchQueries()[pri:252, instance:tests.SearchTests@6ed3ccb2]" name="TC252_VerifyRapidSearchQueries" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC253_VerifySearchWithSpecialLanguageCharacters()[pri:253, instance:tests.SearchTests@6ed3ccb2]" name="TC253_VerifySearchWithSpecialLanguageCharacters" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC254_VerifySearchWithMixedCharacters()[pri:254, instance:tests.SearchTests@6ed3ccb2]" name="TC254_VerifySearchWithMixedCharacters" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC255_VerifyUserCanClearSearchField()[pri:255, instance:tests.SearchTests@6ed3ccb2]" name="TC255_VerifyUserCanClearSearchField" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC256_VerifySearchPlaceholderTextVisible()[pri:256, instance:tests.SearchTests@6ed3ccb2]" name="TC256_VerifySearchPlaceholderTextVisible" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC257_VerifySearchWorksWithEnterKey()[pri:257, instance:tests.SearchTests@6ed3ccb2]" name="TC257_VerifySearchWorksWithEnterKey" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC258_VerifySearchResponseTime()[pri:258, instance:tests.SearchTests@6ed3ccb2]" name="TC258_VerifySearchResponseTime" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC259_VerifyLargeDataSearchPerformance()[pri:259, instance:tests.SearchTests@6ed3ccb2]" name="TC259_VerifyLargeDataSearchPerformance" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC260_VerifySearchFieldPreventsHtmlInjection()[pri:260, instance:tests.SearchTests@6ed3ccb2]" name="TC260_VerifySearchFieldPreventsHtmlInjection" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC261_VerifySearchFieldProtectedFromUrlInjection()[pri:261, instance:tests.SearchTests@6ed3ccb2]" name="TC261_VerifySearchFieldProtectedFromUrlInjection" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC262_VerifySearchByAuthorName()[pri:262, instance:tests.SearchTests@6ed3ccb2]" name="TC262_VerifySearchByAuthorName" class="tests.SearchTests"/>
-      </group> <!-- ui -->
       <group name="regression">
-        <method signature="SearchTests.TC238_VerifyLongTextSearch()[pri:238, instance:tests.SearchTests@6ed3ccb2]" name="TC238_VerifyLongTextSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC239_VerifyMinimumCharacterSearch()[pri:239, instance:tests.SearchTests@6ed3ccb2]" name="TC239_VerifyMinimumCharacterSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC240_VerifyMaximumCharacterLimitSearch()[pri:240, instance:tests.SearchTests@6ed3ccb2]" name="TC240_VerifyMaximumCharacterLimitSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC250_VerifyUnsupportedCharactersSearch()[pri:250, instance:tests.SearchTests@6ed3ccb2]" name="TC250_VerifyUnsupportedCharactersSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC251_VerifyVeryLongSearchText()[pri:251, instance:tests.SearchTests@6ed3ccb2]" name="TC251_VerifyVeryLongSearchText" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC252_VerifyRapidSearchQueries()[pri:252, instance:tests.SearchTests@6ed3ccb2]" name="TC252_VerifyRapidSearchQueries" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC253_VerifySearchWithSpecialLanguageCharacters()[pri:253, instance:tests.SearchTests@6ed3ccb2]" name="TC253_VerifySearchWithSpecialLanguageCharacters" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC254_VerifySearchWithMixedCharacters()[pri:254, instance:tests.SearchTests@6ed3ccb2]" name="TC254_VerifySearchWithMixedCharacters" class="tests.SearchTests"/>
+        <method signature="SecurityTests.TC192_VerifyDirectCategoryUrlAccessWithoutLogin()[pri:192, instance:tests.SecurityTests@217ed35e]" name="TC192_VerifyDirectCategoryUrlAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin()[pri:196, instance:tests.SecurityTests@217ed35e]" name="TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC198_VerifyDirectUpcomingUrlAccessWithoutLogin()[pri:198, instance:tests.SecurityTests@217ed35e]" name="TC198_VerifyDirectUpcomingUrlAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC200_VerifyDirectMostRatedUrlAccessWithoutLogin()[pri:200, instance:tests.SecurityTests@217ed35e]" name="TC200_VerifyDirectMostRatedUrlAccessWithoutLogin" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC202_VerifyDirectUrlAccessAfterSessionExpiry()[pri:202, instance:tests.SecurityTests@217ed35e]" name="TC202_VerifyDirectUrlAccessAfterSessionExpiry" class="tests.SecurityTests"/>
+        <method signature="SecurityTests.TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole()[pri:203, instance:tests.SecurityTests@217ed35e]" name="TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole" class="tests.SecurityTests"/>
       </group> <!-- regression -->
-      <group name="consumer">
-        <method signature="SearchTests.TC229_VerifySearchByFullName()[pri:229, instance:tests.SearchTests@6ed3ccb2]" name="TC229_VerifySearchByFullName" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC230_VerifySearchByPartialName()[pri:230, instance:tests.SearchTests@6ed3ccb2]" name="TC230_VerifySearchByPartialName" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC231_VerifySearchByKeyword()[pri:231, instance:tests.SearchTests@6ed3ccb2]" name="TC231_VerifySearchByKeyword" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC236_VerifySearchWithSpaces()[pri:236, instance:tests.SearchTests@6ed3ccb2]" name="TC236_VerifySearchWithSpaces" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC237_VerifySearchIsCaseInsensitive()[pri:237, instance:tests.SearchTests@6ed3ccb2]" name="TC237_VerifySearchIsCaseInsensitive" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC241_VerifySearchBarVisibility()[pri:241, instance:tests.SearchTests@6ed3ccb2]" name="TC241_VerifySearchBarVisibility" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC242_VerifySearchIconClickTriggersSearch()[pri:242, instance:tests.SearchTests@6ed3ccb2]" name="TC242_VerifySearchIconClickTriggersSearch" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC245_VerifySearchReturnsMultipleResultsForCommonKeyword()[pri:245, instance:tests.SearchTests@6ed3ccb2]" name="TC245_VerifySearchReturnsMultipleResultsForCommonKeyword" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC246_VerifyUserCanOpenBookFromSearchResults()[pri:246, instance:tests.SearchTests@6ed3ccb2]" name="TC246_VerifyUserCanOpenBookFromSearchResults" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC247_VerifySearchResultsCountDisplayed()[pri:247, instance:tests.SearchTests@6ed3ccb2]" name="TC247_VerifySearchResultsCountDisplayed" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC248_VerifySearchAutoSuggestionsAppearWhileTyping()[pri:248, instance:tests.SearchTests@6ed3ccb2]" name="TC248_VerifySearchAutoSuggestionsAppearWhileTyping" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC255_VerifyUserCanClearSearchField()[pri:255, instance:tests.SearchTests@6ed3ccb2]" name="TC255_VerifyUserCanClearSearchField" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC256_VerifySearchPlaceholderTextVisible()[pri:256, instance:tests.SearchTests@6ed3ccb2]" name="TC256_VerifySearchPlaceholderTextVisible" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC257_VerifySearchWorksWithEnterKey()[pri:257, instance:tests.SearchTests@6ed3ccb2]" name="TC257_VerifySearchWorksWithEnterKey" class="tests.SearchTests"/>
-        <method signature="SearchTests.TC262_VerifySearchByAuthorName()[pri:262, instance:tests.SearchTests@6ed3ccb2]" name="TC262_VerifySearchByAuthorName" class="tests.SearchTests"/>
-      </group> <!-- consumer -->
     </groups>
-    <test started-at="2026-07-13T16:42:00 GST" name="Default test" finished-at="2026-07-13T17:14:23 GST" duration-ms="1943023">
-      <class name="tests.SearchTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:42:05 GST" name="setup" finished-at="2026-07-13T16:42:50 GST" duration-ms="45022" status="PASS">
+    <test started-at="2026-07-14T16:03:01 GST" name="Default test" finished-at="2026-07-14T16:08:28 GST" duration-ms="326982">
+      <class name="tests.SecurityTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:05 GST" name="setup" finished-at="2026-07-14T16:03:23 GST" duration-ms="18298" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC229_VerifySearchByFullName()[pri:229, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:42:50 GST" name="TC229_VerifySearchByFullName" description="TC_229: Verify search by full book name returns results" finished-at="2026-07-13T16:43:01 GST" duration-ms="10767" status="PASS">
+        <test-method signature="TC192_VerifyDirectCategoryUrlAccessWithoutLogin()[pri:192, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:23 GST" name="TC192_VerifyDirectCategoryUrlAccessWithoutLogin" description="TC_192: Verify direct category URL access without login" finished-at="2026-07-14T16:03:28 GST" duration-ms="5437" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC229_VerifySearchByFullName -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:43:01 GST" name="tearDown" finished-at="2026-07-13T16:43:01 GST" duration-ms="492" status="PASS">
+        </test-method> <!-- TC192_VerifyDirectCategoryUrlAccessWithoutLogin -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:28 GST" name="tearDown" finished-at="2026-07-14T16:03:29 GST" duration-ms="339" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:43:01 GST" name="setup" finished-at="2026-07-13T16:43:47 GST" duration-ms="46152" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:29 GST" name="setup" finished-at="2026-07-14T16:03:42 GST" duration-ms="13515" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC230_VerifySearchByPartialName()[pri:230, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:43:47 GST" name="TC230_VerifySearchByPartialName" description="TC_230: Verify search by partial book name returns results" finished-at="2026-07-13T16:43:59 GST" duration-ms="11800" status="PASS">
+        <test-method signature="TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin()[pri:196, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:42 GST" name="TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin" description="TC_196: Verify direct related-shows URL access without login" finished-at="2026-07-14T16:03:49 GST" duration-ms="7195" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC230_VerifySearchByPartialName -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:43:59 GST" name="tearDown" finished-at="2026-07-13T16:44:00 GST" duration-ms="513" status="PASS">
+        </test-method> <!-- TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:49 GST" name="tearDown" finished-at="2026-07-14T16:03:50 GST" duration-ms="361" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:44:00 GST" name="setup" finished-at="2026-07-13T16:44:44 GST" duration-ms="44469" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:50 GST" name="setup" finished-at="2026-07-14T16:04:03 GST" duration-ms="12857" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC231_VerifySearchByKeyword()[pri:231, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:44:44 GST" name="TC231_VerifySearchByKeyword" description="TC_231: Verify search by keyword returns results" finished-at="2026-07-13T16:44:54 GST" duration-ms="10155" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC231_VerifySearchByKeyword -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:44:54 GST" name="tearDown" finished-at="2026-07-13T16:44:55 GST" duration-ms="494" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:44:55 GST" name="setup" finished-at="2026-07-13T16:45:36 GST" duration-ms="40859" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC232_VerifySearchNonExistingBook()[pri:232, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:45:36 GST" name="TC232_VerifySearchNonExistingBook" description="TC_232: Verify non-existing book search returns safe empty-state" finished-at="2026-07-13T16:45:43 GST" duration-ms="7013" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC232_VerifySearchNonExistingBook -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:45:43 GST" name="tearDown" finished-at="2026-07-13T16:45:43 GST" duration-ms="493" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:45:43 GST" name="setup" finished-at="2026-07-13T16:46:24 GST" duration-ms="41323" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC233_VerifyEmptySearch()[pri:233, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:46:24 GST" name="TC233_VerifyEmptySearch" description="TC_233: Verify empty search shows validation or remains safely empty" finished-at="2026-07-13T16:46:37 GST" duration-ms="12874" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC233_VerifyEmptySearch -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:46:37 GST" name="tearDown" finished-at="2026-07-13T16:46:38 GST" duration-ms="482" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:46:38 GST" name="setup" finished-at="2026-07-13T16:47:19 GST" duration-ms="40904" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC234_VerifySearchWithSpecialCharacters()[pri:234, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:47:19 GST" name="TC234_VerifySearchWithSpecialCharacters" description="TC_234: Verify special-character search is handled gracefully" finished-at="2026-07-13T16:47:26 GST" duration-ms="7051" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC234_VerifySearchWithSpecialCharacters -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:47:26 GST" name="tearDown" finished-at="2026-07-13T16:47:26 GST" duration-ms="472" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:47:26 GST" name="setup" finished-at="2026-07-13T16:48:05 GST" duration-ms="39160" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC235_VerifyNumericSearch()[pri:235, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:48:05 GST" name="TC235_VerifyNumericSearch" description="TC_235: Verify numeric search does not break the search flow" finished-at="2026-07-13T16:48:12 GST" duration-ms="6901" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC235_VerifyNumericSearch -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:48:12 GST" name="tearDown" finished-at="2026-07-13T16:48:13 GST" duration-ms="502" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:48:13 GST" name="setup" finished-at="2026-07-13T16:48:54 GST" duration-ms="41378" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC236_VerifySearchWithSpaces()[pri:236, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:48:54 GST" name="TC236_VerifySearchWithSpaces" description="TC_236: Verify leading/trailing spaces are ignored for valid searches" finished-at="2026-07-13T16:49:05 GST" duration-ms="10589" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC236_VerifySearchWithSpaces -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:49:05 GST" name="tearDown" finished-at="2026-07-13T16:49:05 GST" duration-ms="497" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:49:05 GST" name="setup" finished-at="2026-07-13T16:49:51 GST" duration-ms="45946" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC237_VerifySearchIsCaseInsensitive()[pri:237, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:49:51 GST" name="TC237_VerifySearchIsCaseInsensitive" description="TC_237: Verify case-insensitive search returns the expected book" finished-at="2026-07-13T16:50:02 GST" duration-ms="10509" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC237_VerifySearchIsCaseInsensitive -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:50:02 GST" name="tearDown" finished-at="2026-07-13T16:50:02 GST" duration-ms="489" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:50:02 GST" name="setup" finished-at="2026-07-13T16:50:46 GST" duration-ms="43873" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC238_VerifyLongTextSearch()[pri:238, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:50:46 GST" name="TC238_VerifyLongTextSearch" description="TC_238: Verify long-text search is handled without crashing the page" finished-at="2026-07-13T16:51:06 GST" duration-ms="20211" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC238_VerifyLongTextSearch -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:51:06 GST" name="tearDown" finished-at="2026-07-13T16:51:07 GST" duration-ms="479" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:51:07 GST" name="setup" finished-at="2026-07-13T16:51:50 GST" duration-ms="43157" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC239_VerifyMinimumCharacterSearch()[pri:239, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:51:50 GST" name="TC239_VerifyMinimumCharacterSearch" description="TC_239: Verify single-character search completes without errors" finished-at="2026-07-13T16:52:00 GST" duration-ms="10103" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC239_VerifyMinimumCharacterSearch -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:52:00 GST" name="tearDown" finished-at="2026-07-13T16:52:01 GST" duration-ms="486" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:52:01 GST" name="setup" finished-at="2026-07-13T16:52:43 GST" duration-ms="42687" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC240_VerifyMaximumCharacterLimitSearch()[pri:240, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:52:43 GST" name="TC240_VerifyMaximumCharacterLimitSearch" description="TC_240: Verify search field accepts long input up to the maximum length" finished-at="2026-07-13T16:52:50 GST" duration-ms="6588" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC240_VerifyMaximumCharacterLimitSearch -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:52:50 GST" name="tearDown" finished-at="2026-07-13T16:52:50 GST" duration-ms="461" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:52:50 GST" name="setup" finished-at="2026-07-13T16:53:34 GST" duration-ms="44164" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC241_VerifySearchBarVisibility()[pri:241, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:53:34 GST" name="TC241_VerifySearchBarVisibility" description="TC_241: Verify search bar is visible on the dashboard" finished-at="2026-07-13T16:53:34 GST" duration-ms="62" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC241_VerifySearchBarVisibility -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:53:34 GST" name="tearDown" finished-at="2026-07-13T16:53:35 GST" duration-ms="453" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:53:35 GST" name="setup" finished-at="2026-07-13T16:54:15 GST" duration-ms="40099" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC242_VerifySearchIconClickTriggersSearch()[pri:242, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:54:15 GST" name="TC242_VerifySearchIconClickTriggersSearch" description="TC_242: Verify clicking the search icon triggers a search outcome" finished-at="2026-07-13T16:54:25 GST" duration-ms="10310" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC242_VerifySearchIconClickTriggersSearch -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:54:25 GST" name="tearDown" finished-at="2026-07-13T16:54:26 GST" duration-ms="464" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:54:26 GST" name="setup" finished-at="2026-07-13T16:55:07 GST" duration-ms="40980" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC243_VerifySearchFieldProtectedFromSqlInjection()[pri:243, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:55:07 GST" name="TC243_VerifySearchFieldProtectedFromSqlInjection" description="TC_243: Verify the search field is protected from SQL injection" finished-at="2026-07-13T16:55:14 GST" duration-ms="6966" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC243_VerifySearchFieldProtectedFromSqlInjection -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:55:14 GST" name="tearDown" finished-at="2026-07-13T16:55:14 GST" duration-ms="488" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:55:14 GST" name="setup" finished-at="2026-07-13T16:55:57 GST" duration-ms="42980" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC244_VerifySearchFieldProtectedFromScriptInjection()[pri:244, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:55:57 GST" name="TC244_VerifySearchFieldProtectedFromScriptInjection" description="TC_244: Verify the search field is protected from script injection" finished-at="2026-07-13T16:56:04 GST" duration-ms="6858" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC244_VerifySearchFieldProtectedFromScriptInjection -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:56:04 GST" name="tearDown" finished-at="2026-07-13T16:56:05 GST" duration-ms="501" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:56:05 GST" name="setup" finished-at="2026-07-13T16:56:48 GST" duration-ms="43553" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC245_VerifySearchReturnsMultipleResultsForCommonKeyword()[pri:245, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:56:48 GST" name="TC245_VerifySearchReturnsMultipleResultsForCommonKeyword" description="TC_245: Verify a common keyword returns multiple results" finished-at="2026-07-13T16:57:01 GST" duration-ms="12402" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC245_VerifySearchReturnsMultipleResultsForCommonKeyword -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:57:01 GST" name="tearDown" finished-at="2026-07-13T16:57:01 GST" duration-ms="466" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:57:01 GST" name="setup" finished-at="2026-07-13T16:57:43 GST" duration-ms="42432" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method retried="true" signature="TC246_VerifyUserCanOpenBookFromSearchResults()[pri:246, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:57:43 GST" name="TC246_VerifyUserCanOpenBookFromSearchResults" description="TC_246: Verify the user can open a book from search results" finished-at="2026-07-13T16:58:07 GST" duration-ms="23613" status="SKIP">
-          <exception class="java.lang.AssertionError">
+        <test-method signature="TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin()[pri:197, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:03 GST" name="TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin" description="TC_197: Verify related-show-detail access without login" finished-at="2026-07-14T16:04:03 GST" duration-ms="20" status="SKIP">
+          <exception class="org.testng.SkipException">
             <message>
-              <![CDATA[TC_246: Clicking a search result should open the book details page expected [true] but found [false]]]>
+              <![CDATA[TC_197 is dashboard-only. There is no standalone direct URL for Related Show Detail access.]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: TC_246: Clicking a search result should open the book details page expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failNotEquals(Assert.java:1578)
-at org.testng.Assert.assertTrue(Assert.java:57)
-at tests.SearchTests.TC246_VerifyUserCanOpenBookFromSearchResults(SearchTests.java:589)
+              <![CDATA[org.testng.SkipException: TC_197 is dashboard-only. There is no standalone direct URL for Related Show Detail access.
+at tests.SecurityTests.TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin(SecurityTests.java:135)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
@@ -368,309 +105,87 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- org.testng.SkipException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC246_VerifyUserCanOpenBookFromSearchResults -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:58:07 GST" name="tearDown" finished-at="2026-07-13T16:58:08 GST" duration-ms="461" status="PASS">
+        </test-method> <!-- TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:03 GST" name="tearDown" finished-at="2026-07-14T16:04:03 GST" duration-ms="320" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:58:08 GST" name="setup" finished-at="2026-07-13T16:58:50 GST" duration-ms="42889" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:03 GST" name="setup" finished-at="2026-07-14T16:04:15 GST" duration-ms="12101" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method retried="true" signature="TC246_VerifyUserCanOpenBookFromSearchResults()[pri:246, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:58:50 GST" name="TC246_VerifyUserCanOpenBookFromSearchResults" description="TC_246: Verify the user can open a book from search results" finished-at="2026-07-13T16:59:14 GST" duration-ms="23837" status="SKIP">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[TC_246: Clicking a search result should open the book details page expected [true] but found [false]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: TC_246: Clicking a search result should open the book details page expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failNotEquals(Assert.java:1578)
-at org.testng.Assert.assertTrue(Assert.java:57)
-at tests.SearchTests.TC246_VerifyUserCanOpenBookFromSearchResults(SearchTests.java:589)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:819)
-at org.testng.TestRunner.run(TestRunner.java:619)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-at org.testng.TestNG.runSuites(TestNG.java:1134)
-at org.testng.TestNG.run(TestNG.java:1101)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method signature="TC198_VerifyDirectUpcomingUrlAccessWithoutLogin()[pri:198, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:15 GST" name="TC198_VerifyDirectUpcomingUrlAccessWithoutLogin" description="TC_198: Verify direct upcoming URL access without login" finished-at="2026-07-14T16:04:20 GST" duration-ms="5174" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC246_VerifyUserCanOpenBookFromSearchResults -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:59:14 GST" name="tearDown" finished-at="2026-07-13T16:59:15 GST" duration-ms="453" status="PASS">
+        </test-method> <!-- TC198_VerifyDirectUpcomingUrlAccessWithoutLogin -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:20 GST" name="tearDown" finished-at="2026-07-14T16:04:21 GST" duration-ms="334" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:59:15 GST" name="setup" finished-at="2026-07-13T16:59:55 GST" duration-ms="40382" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:21 GST" name="setup" finished-at="2026-07-14T16:04:34 GST" duration-ms="12936" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC246_VerifyUserCanOpenBookFromSearchResults()[pri:246, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T16:59:55 GST" name="TC246_VerifyUserCanOpenBookFromSearchResults" description="TC_246: Verify the user can open a book from search results" finished-at="2026-07-13T17:00:19 GST" duration-ms="23584" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[TC_246: Clicking a search result should open the book details page expected [true] but found [false]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: TC_246: Clicking a search result should open the book details page expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failNotEquals(Assert.java:1578)
-at org.testng.Assert.assertTrue(Assert.java:57)
-at tests.SearchTests.TC246_VerifyUserCanOpenBookFromSearchResults(SearchTests.java:589)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:249)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:819)
-at org.testng.TestRunner.run(TestRunner.java:619)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-at org.testng.TestNG.runSuites(TestNG.java:1134)
-at org.testng.TestNG.run(TestNG.java:1101)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method signature="TC200_VerifyDirectMostRatedUrlAccessWithoutLogin()[pri:200, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:34 GST" name="TC200_VerifyDirectMostRatedUrlAccessWithoutLogin" description="TC_200: Verify direct trending/most-rated URL access without login" finished-at="2026-07-14T16:04:40 GST" duration-ms="6205" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC246_VerifyUserCanOpenBookFromSearchResults -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:00:19 GST" name="tearDown" finished-at="2026-07-13T17:00:20 GST" duration-ms="479" status="PASS">
+        </test-method> <!-- TC200_VerifyDirectMostRatedUrlAccessWithoutLogin -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:40 GST" name="tearDown" finished-at="2026-07-14T16:04:40 GST" duration-ms="326" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:00:20 GST" name="setup" finished-at="2026-07-13T17:01:00 GST" duration-ms="40179" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:40 GST" name="setup" finished-at="2026-07-14T16:04:55 GST" duration-ms="14483" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC247_VerifySearchResultsCountDisplayed()[pri:247, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:01:00 GST" name="TC247_VerifySearchResultsCountDisplayed" description="TC_247: Verify the search results count is available after a successful search" finished-at="2026-07-13T17:01:04 GST" duration-ms="4326" status="PASS">
+        <test-method signature="TC202_VerifyDirectUrlAccessAfterSessionExpiry()[pri:202, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:55 GST" name="TC202_VerifyDirectUrlAccessAfterSessionExpiry" description="TC_202: Verify direct URL access after session expiry" finished-at="2026-07-14T16:05:34 GST" duration-ms="39750" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC247_VerifySearchResultsCountDisplayed -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:01:04 GST" name="tearDown" finished-at="2026-07-13T17:01:05 GST" duration-ms="488" status="PASS">
+        </test-method> <!-- TC202_VerifyDirectUrlAccessAfterSessionExpiry -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:05:34 GST" name="tearDown" finished-at="2026-07-14T16:05:35 GST" duration-ms="463" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:01:05 GST" name="setup" finished-at="2026-07-13T17:01:49 GST" duration-ms="43910" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:05:35 GST" name="setup" finished-at="2026-07-14T16:05:45 GST" duration-ms="10519" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC248_VerifySearchAutoSuggestionsAppearWhileTyping()[pri:248, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:01:49 GST" name="TC248_VerifySearchAutoSuggestionsAppearWhileTyping" description="TC_248: Verify typing in the search field surfaces suggestions or live results" finished-at="2026-07-13T17:01:52 GST" duration-ms="3475" status="PASS">
+        <test-method signature="TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole()[pri:203, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:05:45 GST" name="TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole" description="TC_203: Verify consumer cannot open restricted admin pages" finished-at="2026-07-14T16:06:29 GST" duration-ms="43636" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC248_VerifySearchAutoSuggestionsAppearWhileTyping -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:01:52 GST" name="tearDown" finished-at="2026-07-13T17:01:52 GST" duration-ms="459" status="PASS">
+        </test-method> <!-- TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:06:29 GST" name="tearDown" finished-at="2026-07-14T16:06:29 GST" duration-ms="450" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:01:52 GST" name="setup" finished-at="2026-07-13T17:02:34 GST" duration-ms="41099" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:06:29 GST" name="setup" finished-at="2026-07-14T16:06:43 GST" duration-ms="13813" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC249_VerifyBlankSpaceSearch()[pri:249, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:02:34 GST" name="TC249_VerifyBlankSpaceSearch" description="TC_249: Verify blank-space search shows validation or no results" finished-at="2026-07-13T17:02:40 GST" duration-ms="6896" status="PASS">
+        <test-method signature="TC378_VerifyPaymentPageHTTPS()[pri:378, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:06:43 GST" name="TC378_VerifyPaymentPageHTTPS" description="TC_378: Verify HTTPS is used on the payment page" finished-at="2026-07-14T16:07:28 GST" duration-ms="44428" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC249_VerifyBlankSpaceSearch -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:02:40 GST" name="tearDown" finished-at="2026-07-13T17:02:41 GST" duration-ms="483" status="PASS">
+        </test-method> <!-- TC378_VerifyPaymentPageHTTPS -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:07:28 GST" name="tearDown" finished-at="2026-07-14T16:07:28 GST" duration-ms="459" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:02:41 GST" name="setup" finished-at="2026-07-13T17:03:25 GST" duration-ms="44257" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:07:28 GST" name="setup" finished-at="2026-07-14T16:07:40 GST" duration-ms="11873" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC250_VerifyUnsupportedCharactersSearch()[pri:250, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:03:25 GST" name="TC250_VerifyUnsupportedCharactersSearch" description="TC_250: Verify emoji input is handled safely and does not destabilize the page" finished-at="2026-07-13T17:03:32 GST" duration-ms="6989" status="PASS">
+        <test-method signature="TC383_VerifyPaymentFlowSessionExpiry()[pri:383, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:07:40 GST" name="TC383_VerifyPaymentFlowSessionExpiry" description="TC_383: Verify session expiry behavior on the payment flow" finished-at="2026-07-14T16:08:28 GST" duration-ms="47874" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC250_VerifyUnsupportedCharactersSearch -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:03:32 GST" name="tearDown" finished-at="2026-07-13T17:03:33 GST" duration-ms="446" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:03:33 GST" name="setup" finished-at="2026-07-13T17:04:17 GST" duration-ms="44633" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC251_VerifyVeryLongSearchText()[pri:251, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:04:17 GST" name="TC251_VerifyVeryLongSearchText" description="TC_251: Verify very long search text is handled gracefully" finished-at="2026-07-13T17:04:44 GST" duration-ms="26211" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC251_VerifyVeryLongSearchText -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:04:44 GST" name="tearDown" finished-at="2026-07-13T17:04:44 GST" duration-ms="489" status="PASS">
+        </test-method> <!-- TC383_VerifyPaymentFlowSessionExpiry -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:08:28 GST" name="tearDown" finished-at="2026-07-14T16:08:28 GST" duration-ms="462" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:04:44 GST" name="setup" finished-at="2026-07-13T17:05:24 GST" duration-ms="40057" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC252_VerifyRapidSearchQueries()[pri:252, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:05:24 GST" name="TC252_VerifyRapidSearchQueries" description="TC_252: Verify rapid consecutive searches do not crash the page" finished-at="2026-07-13T17:06:08 GST" duration-ms="43784" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC252_VerifyRapidSearchQueries -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:06:08 GST" name="tearDown" finished-at="2026-07-13T17:06:08 GST" duration-ms="486" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:06:08 GST" name="setup" finished-at="2026-07-13T17:06:55 GST" duration-ms="46251" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC253_VerifySearchWithSpecialLanguageCharacters()[pri:253, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:06:55 GST" name="TC253_VerifySearchWithSpecialLanguageCharacters" description="TC_253: Verify foreign-language search completes safely and keeps the page stable" finished-at="2026-07-13T17:07:05 GST" duration-ms="10785" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC253_VerifySearchWithSpecialLanguageCharacters -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:07:05 GST" name="tearDown" finished-at="2026-07-13T17:07:06 GST" duration-ms="473" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:07:06 GST" name="setup" finished-at="2026-07-13T17:07:49 GST" duration-ms="42850" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC254_VerifySearchWithMixedCharacters()[pri:254, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:07:49 GST" name="TC254_VerifySearchWithMixedCharacters" description="TC_254: Verify mixed-character search is processed without errors and keeps the page stable" finished-at="2026-07-13T17:08:00 GST" duration-ms="10833" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC254_VerifySearchWithMixedCharacters -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:08:00 GST" name="tearDown" finished-at="2026-07-13T17:08:00 GST" duration-ms="475" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:08:00 GST" name="setup" finished-at="2026-07-13T17:08:44 GST" duration-ms="43608" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC255_VerifyUserCanClearSearchField()[pri:255, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:08:44 GST" name="TC255_VerifyUserCanClearSearchField" description="TC_255: Verify the user can clear the search field" finished-at="2026-07-13T17:08:46 GST" duration-ms="2269" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC255_VerifyUserCanClearSearchField -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:08:46 GST" name="tearDown" finished-at="2026-07-13T17:08:46 GST" duration-ms="495" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:08:46 GST" name="setup" finished-at="2026-07-13T17:09:24 GST" duration-ms="37310" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC256_VerifySearchPlaceholderTextVisible()[pri:256, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:09:24 GST" name="TC256_VerifySearchPlaceholderTextVisible" description="TC_256: Verify the search input exposes placeholder text" finished-at="2026-07-13T17:09:24 GST" duration-ms="68" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC256_VerifySearchPlaceholderTextVisible -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:09:24 GST" name="tearDown" finished-at="2026-07-13T17:09:24 GST" duration-ms="461" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:09:24 GST" name="setup" finished-at="2026-07-13T17:10:04 GST" duration-ms="39704" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC257_VerifySearchWorksWithEnterKey()[pri:257, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:10:04 GST" name="TC257_VerifySearchWorksWithEnterKey" description="TC_257: Verify pressing Enter triggers the search flow" finished-at="2026-07-13T17:10:14 GST" duration-ms="10380" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC257_VerifySearchWorksWithEnterKey -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:10:14 GST" name="tearDown" finished-at="2026-07-13T17:10:15 GST" duration-ms="480" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:10:15 GST" name="setup" finished-at="2026-07-13T17:10:56 GST" duration-ms="41111" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC258_VerifySearchResponseTime()[pri:258, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:10:56 GST" name="TC258_VerifySearchResponseTime" description="TC_258: Verify search response time is recorded and within the SLA" finished-at="2026-07-13T17:11:06 GST" duration-ms="10269" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC258_VerifySearchResponseTime -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:11:06 GST" name="tearDown" finished-at="2026-07-13T17:11:07 GST" duration-ms="462" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:11:07 GST" name="setup" finished-at="2026-07-13T17:11:46 GST" duration-ms="39552" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC259_VerifyLargeDataSearchPerformance()[pri:259, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:11:46 GST" name="TC259_VerifyLargeDataSearchPerformance" description="TC_259: Verify large-data search response time is recorded and the page remains stable" finished-at="2026-07-13T17:11:58 GST" duration-ms="11312" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC259_VerifyLargeDataSearchPerformance -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:11:58 GST" name="tearDown" finished-at="2026-07-13T17:11:58 GST" duration-ms="464" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:11:58 GST" name="setup" finished-at="2026-07-13T17:12:41 GST" duration-ms="43300" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC260_VerifySearchFieldPreventsHtmlInjection()[pri:260, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:12:41 GST" name="TC260_VerifySearchFieldPreventsHtmlInjection" description="TC_260: Verify the search field prevents HTML injection" finished-at="2026-07-13T17:12:48 GST" duration-ms="6918" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC260_VerifySearchFieldPreventsHtmlInjection -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:12:48 GST" name="tearDown" finished-at="2026-07-13T17:12:49 GST" duration-ms="469" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:12:49 GST" name="setup" finished-at="2026-07-13T17:13:30 GST" duration-ms="41442" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC261_VerifySearchFieldProtectedFromUrlInjection()[pri:261, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:13:30 GST" name="TC261_VerifySearchFieldProtectedFromUrlInjection" description="TC_261: Verify the search field is protected from URL-based script injection" finished-at="2026-07-13T17:13:31 GST" duration-ms="815" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC261_VerifySearchFieldProtectedFromUrlInjection -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:13:31 GST" name="tearDown" finished-at="2026-07-13T17:13:31 GST" duration-ms="502" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:13:31 GST" name="setup" finished-at="2026-07-13T17:14:12 GST" duration-ms="40925" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC262_VerifySearchByAuthorName()[pri:262, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:14:12 GST" name="TC262_VerifySearchByAuthorName" description="TC_262: Verify search by author name returns results" finished-at="2026-07-13T17:14:23 GST" duration-ms="10211" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC262_VerifySearchByAuthorName -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SearchTests@6ed3ccb2]" started-at="2026-07-13T17:14:23 GST" name="tearDown" finished-at="2026-07-13T17:14:23 GST" duration-ms="481" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- tests.SearchTests -->
+      </class> <!-- tests.SecurityTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

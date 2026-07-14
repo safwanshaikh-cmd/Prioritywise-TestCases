@@ -1,0 +1,10 @@
+Test Case ID,Priority,Method Name,Description,Class Path,Groups,Execution Type,Automation Status,Remarks
+TC_192,192,TC192_VerifyDirectCategoryUrlAccessWithoutLogin,TC_192: Verify direct category URL access without login,tests.SecurityTests,functional;regression;security,Selenium WebDriver,Automated,Security validation scenario
+TC_196,196,TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin,TC_196: Verify direct related-shows URL access without login,tests.SecurityTests,functional;regression;security,Selenium WebDriver,Automated,Security validation scenario
+TC_197,197,TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin,TC_197: Verify related-show-detail access without login,tests.SecurityTests,functional;security,Selenium WebDriver,Automated,Security validation scenario
+TC_198,198,TC198_VerifyDirectUpcomingUrlAccessWithoutLogin,TC_198: Verify direct upcoming URL access without login,tests.SecurityTests,functional;regression;security,Selenium WebDriver,Automated,Security validation scenario
+TC_200,200,TC200_VerifyDirectMostRatedUrlAccessWithoutLogin,TC_200: Verify direct trending/most-rated URL access without login,tests.SecurityTests,functional;regression;security,Selenium WebDriver,Automated,Security validation scenario
+TC_202,202,TC202_VerifyDirectUrlAccessAfterSessionExpiry,TC_202: Verify direct URL access after session expiry,tests.SecurityTests,functional;regression;security,Selenium WebDriver,Automated,Security validation scenario
+TC_203,203,TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole,TC_203: Verify consumer cannot open restricted admin pages,tests.SecurityTests,functional;regression;security,Selenium WebDriver,Automated,Security validation scenario
+TC_378,378,TC378_VerifyPaymentPageHTTPS,TC_378: Verify HTTPS is used on the payment page,tests.SecurityTests,functional;performance;security,Selenium WebDriver,Automated,Security validation scenario
+TC_383,383,TC383_VerifyPaymentFlowSessionExpiry,TC_383: Verify session expiry behavior on the payment flow,tests.SecurityTests,functional;performance;security,Selenium WebDriver,Automated,Security validation scenario

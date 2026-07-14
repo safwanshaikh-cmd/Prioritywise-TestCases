@@ -1,0 +1,12 @@
+============================================================
+Test Log: SecurityTests.TC192_VerifyDirectCategoryUrlAccessWithoutLogin
+Started: 2026-07-14 16:03:23
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SecurityTests_TC192_VerifyDirectCategoryUrlAccessWithoutLogin_2026_07_14_16_03_23.log
+============================================================
+========== TEST STARTED: TC_192: Direct Category URL Access ==========
+STEP 1: Clear any existing session for guest access
+STEP 2: Access the category listing URL directly without login
+INFO  TC_192 - STEP 2: Guest accessible: true
+========== TEST PASSED: TC_192 ==========
+============================================================
+Ended: 2026-07-14 16:03:28

@@ -1,0 +1,12 @@
+============================================================
+Test Log: SecurityTests.TC200_VerifyDirectMostRatedUrlAccessWithoutLogin
+Started: 2026-07-14 16:04:34
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SecurityTests_TC200_VerifyDirectMostRatedUrlAccessWithoutLogin_2026_07_14_16_04_34.log
+============================================================
+========== TEST STARTED: TC_200: Direct Trending Shows URL Access ==========
+STEP 1: Clear any existing session for guest access
+STEP 2: Access the trending-recommendations URL directly without login
+INFO  TC_200 - STEP 2: Guest accessible: true
+========== TEST PASSED: TC_200 ==========
+============================================================
+Ended: 2026-07-14 16:04:40

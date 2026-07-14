@@ -1,0 +1,15 @@
+============================================================
+Test Log: SecurityTests.TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole
+Started: 2026-07-14 16:05:45
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SecurityTests_TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole_2026_07_14_16_05_45.log
+============================================================
+========== TEST STARTED: TC_203: Unauthorized Role Access ==========
+STEP 1: Log in as the consumer (non-admin role)
+INFO  TC_203 - STEP 1: Admin URL under test resolved
+STEP 2: Open the admin URL as the consumer and observe the result
+INFO  TC_203 - STEP 2: Resolved URL after admin route access
+STEP 3: Verify the admin dashboard is not loaded and access is restricted
+INFO  TC_203 - STEP 3: Admin loaded: false, Restricted: true
+========== TEST PASSED: TC_203 ==========
+============================================================
+Ended: 2026-07-14 16:06:29

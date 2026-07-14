@@ -1,0 +1,14 @@
+============================================================
+Test Log: SecurityTests.TC383_VerifyPaymentFlowSessionExpiry
+Started: 2026-07-14 16:07:40
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SecurityTests_TC383_VerifyPaymentFlowSessionExpiry_2026_07_14_16_07_40.log
+============================================================
+========== TEST STARTED: TC_383: Payment Session Expiry Test ==========
+STEP 1: Log in as the consumer and open the payment surface
+STEP 2: Clear the session to simulate expiry
+INFO  TC_383 - STEP 2: Session cleared (simulating expiry)
+STEP 3: Refresh and verify the page is accessible or redirected to login
+INFO  TC_383 - STEP 3: Safe state after expiry: true
+========== TEST PASSED: TC_383 ==========
+============================================================
+Ended: 2026-07-14 16:08:28

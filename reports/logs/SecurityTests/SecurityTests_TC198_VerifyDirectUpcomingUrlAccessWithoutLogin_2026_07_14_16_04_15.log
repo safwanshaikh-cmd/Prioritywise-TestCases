@@ -1,0 +1,12 @@
+============================================================
+Test Log: SecurityTests.TC198_VerifyDirectUpcomingUrlAccessWithoutLogin
+Started: 2026-07-14 16:04:15
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SecurityTests_TC198_VerifyDirectUpcomingUrlAccessWithoutLogin_2026_07_14_16_04_15.log
+============================================================
+========== TEST STARTED: TC_198: Direct Upcoming URL Access ==========
+STEP 1: Clear any existing session for guest access
+STEP 2: Access the upcoming-releases URL directly without login
+INFO  TC_198 - STEP 2: Guest accessible: true
+========== TEST PASSED: TC_198 ==========
+============================================================
+Ended: 2026-07-14 16:04:20

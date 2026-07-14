@@ -1,0 +1,13 @@
+============================================================
+Test Log: SecurityTests.TC378_VerifyPaymentPageHTTPS
+Started: 2026-07-14 16:06:43
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SecurityTests_TC378_VerifyPaymentPageHTTPS_2026_07_14_16_06_43.log
+============================================================
+========== TEST STARTED: TC_378: Payment Page HTTPS Verification ==========
+STEP 1: Log in as the consumer
+STEP 2: Open the payment surface via the side menu
+STEP 3: Verify the payment page is served over HTTPS
+INFO  TC_378 - STEP 3: Payment page HTTPS: true
+========== TEST PASSED: TC_378 ==========
+============================================================
+Ended: 2026-07-14 16:07:28
