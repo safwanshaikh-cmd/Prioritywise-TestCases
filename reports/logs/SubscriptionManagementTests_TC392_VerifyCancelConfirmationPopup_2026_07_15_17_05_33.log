@@ -1,0 +1,15 @@
+============================================================
+Test Log: SubscriptionManagementTests.TC392_VerifyCancelConfirmationPopup
+Started: 2026-07-15 17:05:34
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SubscriptionManagementTests_TC392_VerifyCancelConfirmationPopup_2026_07_15_17_05_33.log
+============================================================
+========== TEST STARTED: TC_392: Cancel Confirmation Popup ==========
+STEP 1: Open the Subscription page
+STEP 2: Verify an active plan is present so the cancel confirmation flow is reachable
+INFO  TC_392 - STEP 2: Active plan visible: true
+STEP 3: Click Cancel and verify the confirmation popup is shown
+INFO  TC_392 - STEP 3: Confirmation popup shown: true
+INFO  TC_392: Confirmation popup shown for cancel action
+========== TEST PASSED: TC_392 ==========
+============================================================
+Ended: 2026-07-15 17:06:03

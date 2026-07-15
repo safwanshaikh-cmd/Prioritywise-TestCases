@@ -1,0 +1,15 @@
+============================================================
+Test Log: SideMenuTests.TC360_VerifyDownloadAppsNavigation
+Started: 2026-07-15 12:45:04
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SideMenuTests_TC360_VerifyDownloadAppsNavigation_2026_07_15_12_45_04.log
+============================================================
+========== TEST STARTED: TC_360: Download Apps Navigation ==========
+STEP 1: Open the side menu using the hamburger button
+INFO  TC_360 - STEP 1: Side menu opened: true
+STEP 2: Verify the Download Apps button is visible in the side menu
+INFO  TC_360 - STEP 2: Download Apps button visible: true
+STEP 3: Print the visible side menu button names
+INFO  TC_360: Download Apps button visibility verified
+========== TEST PASSED: TC_360 ==========
+============================================================
+Ended: 2026-07-15 12:45:08

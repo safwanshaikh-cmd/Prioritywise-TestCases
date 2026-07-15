@@ -1,0 +1,15 @@
+============================================================
+Test Log: SideMenuTests.TC358_VerifyAboutUsNavigation
+Started: 2026-07-15 12:43:28
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SideMenuTests_TC358_VerifyAboutUsNavigation_2026_07_15_12_43_28.log
+============================================================
+========== TEST STARTED: TC_358: About Us Navigation ==========
+STEP 1: Open the side menu using the hamburger button
+INFO  TC_358 - STEP 1: Side menu opened: true
+STEP 2: Click the menu item and capture the navigation URL
+INFO  TC_358 - STEP 2: Current URL after navigation: https://web-splay.acceses.com/about_us
+STEP 3: Verify the navigation URL matches the expected destination
+INFO  TC_358: About Us navigation verified
+========== TEST PASSED: TC_358 ==========
+============================================================
+Ended: 2026-07-15 12:43:31

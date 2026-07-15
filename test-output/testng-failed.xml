@@ -3,13 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.SecurityTests">
+      <class name="tests.SubscriptionManagementTests">
         <methods>
+          <include name="setup"/>
           <include name="tearDown"/>
           <include name="setup"/>
-          <include name="TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin"/>
+          <include name="TC393_VerifyCancelCanBeDeclined"/>
         </methods>
-      </class> <!-- tests.SecurityTests -->
+      </class> <!-- tests.SubscriptionManagementTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

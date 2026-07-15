@@ -1,191 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="9" passed="8" failed="0" skipped="1">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-07-14T16:03:01 GST" name="Default suite" finished-at="2026-07-14T16:08:28 GST" duration-ms="326982">
+  <suite started-at="2026-07-15T17:09:13 GST" name="Default suite" finished-at="2026-07-15T17:11:59 GST" duration-ms="166015">
     <groups>
       <group name="functional">
-        <method signature="SecurityTests.TC192_VerifyDirectCategoryUrlAccessWithoutLogin()[pri:192, instance:tests.SecurityTests@217ed35e]" name="TC192_VerifyDirectCategoryUrlAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin()[pri:196, instance:tests.SecurityTests@217ed35e]" name="TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin()[pri:197, instance:tests.SecurityTests@217ed35e]" name="TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC198_VerifyDirectUpcomingUrlAccessWithoutLogin()[pri:198, instance:tests.SecurityTests@217ed35e]" name="TC198_VerifyDirectUpcomingUrlAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC200_VerifyDirectMostRatedUrlAccessWithoutLogin()[pri:200, instance:tests.SecurityTests@217ed35e]" name="TC200_VerifyDirectMostRatedUrlAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC202_VerifyDirectUrlAccessAfterSessionExpiry()[pri:202, instance:tests.SecurityTests@217ed35e]" name="TC202_VerifyDirectUrlAccessAfterSessionExpiry" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole()[pri:203, instance:tests.SecurityTests@217ed35e]" name="TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC378_VerifyPaymentPageHTTPS()[pri:378, instance:tests.SecurityTests@217ed35e]" name="TC378_VerifyPaymentPageHTTPS" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC383_VerifyPaymentFlowSessionExpiry()[pri:383, instance:tests.SecurityTests@217ed35e]" name="TC383_VerifyPaymentFlowSessionExpiry" class="tests.SecurityTests"/>
+        <method signature="SubscriptionManagementTests.TC393_VerifyCancelCanBeDeclined()[pri:393, instance:tests.SubscriptionManagementTests@185a6e9]" name="TC393_VerifyCancelCanBeDeclined" class="tests.SubscriptionManagementTests"/>
       </group> <!-- functional -->
-      <group name="security">
-        <method signature="SecurityTests.TC192_VerifyDirectCategoryUrlAccessWithoutLogin()[pri:192, instance:tests.SecurityTests@217ed35e]" name="TC192_VerifyDirectCategoryUrlAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin()[pri:196, instance:tests.SecurityTests@217ed35e]" name="TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin()[pri:197, instance:tests.SecurityTests@217ed35e]" name="TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC198_VerifyDirectUpcomingUrlAccessWithoutLogin()[pri:198, instance:tests.SecurityTests@217ed35e]" name="TC198_VerifyDirectUpcomingUrlAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC200_VerifyDirectMostRatedUrlAccessWithoutLogin()[pri:200, instance:tests.SecurityTests@217ed35e]" name="TC200_VerifyDirectMostRatedUrlAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC202_VerifyDirectUrlAccessAfterSessionExpiry()[pri:202, instance:tests.SecurityTests@217ed35e]" name="TC202_VerifyDirectUrlAccessAfterSessionExpiry" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole()[pri:203, instance:tests.SecurityTests@217ed35e]" name="TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC378_VerifyPaymentPageHTTPS()[pri:378, instance:tests.SecurityTests@217ed35e]" name="TC378_VerifyPaymentPageHTTPS" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC383_VerifyPaymentFlowSessionExpiry()[pri:383, instance:tests.SecurityTests@217ed35e]" name="TC383_VerifyPaymentFlowSessionExpiry" class="tests.SecurityTests"/>
-      </group> <!-- security -->
-      <group name="performance">
-        <method signature="SecurityTests.TC378_VerifyPaymentPageHTTPS()[pri:378, instance:tests.SecurityTests@217ed35e]" name="TC378_VerifyPaymentPageHTTPS" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC383_VerifyPaymentFlowSessionExpiry()[pri:383, instance:tests.SecurityTests@217ed35e]" name="TC383_VerifyPaymentFlowSessionExpiry" class="tests.SecurityTests"/>
-      </group> <!-- performance -->
-      <group name="regression">
-        <method signature="SecurityTests.TC192_VerifyDirectCategoryUrlAccessWithoutLogin()[pri:192, instance:tests.SecurityTests@217ed35e]" name="TC192_VerifyDirectCategoryUrlAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin()[pri:196, instance:tests.SecurityTests@217ed35e]" name="TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC198_VerifyDirectUpcomingUrlAccessWithoutLogin()[pri:198, instance:tests.SecurityTests@217ed35e]" name="TC198_VerifyDirectUpcomingUrlAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC200_VerifyDirectMostRatedUrlAccessWithoutLogin()[pri:200, instance:tests.SecurityTests@217ed35e]" name="TC200_VerifyDirectMostRatedUrlAccessWithoutLogin" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC202_VerifyDirectUrlAccessAfterSessionExpiry()[pri:202, instance:tests.SecurityTests@217ed35e]" name="TC202_VerifyDirectUrlAccessAfterSessionExpiry" class="tests.SecurityTests"/>
-        <method signature="SecurityTests.TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole()[pri:203, instance:tests.SecurityTests@217ed35e]" name="TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole" class="tests.SecurityTests"/>
-      </group> <!-- regression -->
+      <group name="ui">
+        <method signature="SubscriptionManagementTests.TC393_VerifyCancelCanBeDeclined()[pri:393, instance:tests.SubscriptionManagementTests@185a6e9]" name="TC393_VerifyCancelCanBeDeclined" class="tests.SubscriptionManagementTests"/>
+      </group> <!-- ui -->
+      <group name="consumer">
+        <method signature="SubscriptionManagementTests.TC393_VerifyCancelCanBeDeclined()[pri:393, instance:tests.SubscriptionManagementTests@185a6e9]" name="TC393_VerifyCancelCanBeDeclined" class="tests.SubscriptionManagementTests"/>
+      </group> <!-- consumer -->
     </groups>
-    <test started-at="2026-07-14T16:03:01 GST" name="Default test" finished-at="2026-07-14T16:08:28 GST" duration-ms="326982">
-      <class name="tests.SecurityTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:05 GST" name="setup" finished-at="2026-07-14T16:03:23 GST" duration-ms="18298" status="PASS">
+    <test started-at="2026-07-15T17:09:13 GST" name="Default test" finished-at="2026-07-15T17:11:59 GST" duration-ms="166015">
+      <class name="tests.SubscriptionManagementTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-15T17:09:17 GST" name="setup" finished-at="2026-07-15T17:10:03 GST" duration-ms="45559" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC192_VerifyDirectCategoryUrlAccessWithoutLogin()[pri:192, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:23 GST" name="TC192_VerifyDirectCategoryUrlAccessWithoutLogin" description="TC_192: Verify direct category URL access without login" finished-at="2026-07-14T16:03:28 GST" duration-ms="5437" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC192_VerifyDirectCategoryUrlAccessWithoutLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:28 GST" name="tearDown" finished-at="2026-07-14T16:03:29 GST" duration-ms="339" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:29 GST" name="setup" finished-at="2026-07-14T16:03:42 GST" duration-ms="13515" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin()[pri:196, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:42 GST" name="TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin" description="TC_196: Verify direct related-shows URL access without login" finished-at="2026-07-14T16:03:49 GST" duration-ms="7195" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:49 GST" name="tearDown" finished-at="2026-07-14T16:03:50 GST" duration-ms="361" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:03:50 GST" name="setup" finished-at="2026-07-14T16:04:03 GST" duration-ms="12857" status="PASS">
+        <test-method is-config="true" signature="setup(java.lang.reflect.Method)[pri:0, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-15T17:10:03 GST" name="setup" finished-at="2026-07-15T17:10:53 GST" duration-ms="50047" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void tests.SubscriptionManagementTests.TC393_VerifyCancelCanBeDeclined()]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin()[pri:197, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:03 GST" name="TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin" description="TC_197: Verify related-show-detail access without login" finished-at="2026-07-14T16:04:03 GST" duration-ms="20" status="SKIP">
-          <exception class="org.testng.SkipException">
-            <message>
-              <![CDATA[TC_197 is dashboard-only. There is no standalone direct URL for Related Show Detail access.]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.SkipException: TC_197 is dashboard-only. There is no standalone direct URL for Related Show Detail access.
-at tests.SecurityTests.TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin(SecurityTests.java:135)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:819)
-at org.testng.TestRunner.run(TestRunner.java:619)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-at org.testng.TestNG.runSuites(TestNG.java:1134)
-at org.testng.TestNG.run(TestNG.java:1101)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.SkipException -->
+        <test-method signature="TC393_VerifyCancelCanBeDeclined()[pri:393, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-15T17:10:53 GST" name="TC393_VerifyCancelCanBeDeclined" description="TC_393: Verify cancel action can be declined" finished-at="2026-07-15T17:11:59 GST" duration-ms="65936" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:03 GST" name="tearDown" finished-at="2026-07-14T16:04:03 GST" duration-ms="320" status="PASS">
+        </test-method> <!-- TC393_VerifyCancelCanBeDeclined -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-15T17:11:59 GST" name="tearDown" finished-at="2026-07-15T17:11:59 GST" duration-ms="493" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:03 GST" name="setup" finished-at="2026-07-14T16:04:15 GST" duration-ms="12101" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC198_VerifyDirectUpcomingUrlAccessWithoutLogin()[pri:198, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:15 GST" name="TC198_VerifyDirectUpcomingUrlAccessWithoutLogin" description="TC_198: Verify direct upcoming URL access without login" finished-at="2026-07-14T16:04:20 GST" duration-ms="5174" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC198_VerifyDirectUpcomingUrlAccessWithoutLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:20 GST" name="tearDown" finished-at="2026-07-14T16:04:21 GST" duration-ms="334" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:21 GST" name="setup" finished-at="2026-07-14T16:04:34 GST" duration-ms="12936" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC200_VerifyDirectMostRatedUrlAccessWithoutLogin()[pri:200, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:34 GST" name="TC200_VerifyDirectMostRatedUrlAccessWithoutLogin" description="TC_200: Verify direct trending/most-rated URL access without login" finished-at="2026-07-14T16:04:40 GST" duration-ms="6205" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC200_VerifyDirectMostRatedUrlAccessWithoutLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:40 GST" name="tearDown" finished-at="2026-07-14T16:04:40 GST" duration-ms="326" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:40 GST" name="setup" finished-at="2026-07-14T16:04:55 GST" duration-ms="14483" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC202_VerifyDirectUrlAccessAfterSessionExpiry()[pri:202, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:04:55 GST" name="TC202_VerifyDirectUrlAccessAfterSessionExpiry" description="TC_202: Verify direct URL access after session expiry" finished-at="2026-07-14T16:05:34 GST" duration-ms="39750" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC202_VerifyDirectUrlAccessAfterSessionExpiry -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:05:34 GST" name="tearDown" finished-at="2026-07-14T16:05:35 GST" duration-ms="463" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:05:35 GST" name="setup" finished-at="2026-07-14T16:05:45 GST" duration-ms="10519" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole()[pri:203, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:05:45 GST" name="TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole" description="TC_203: Verify consumer cannot open restricted admin pages" finished-at="2026-07-14T16:06:29 GST" duration-ms="43636" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:06:29 GST" name="tearDown" finished-at="2026-07-14T16:06:29 GST" duration-ms="450" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:06:29 GST" name="setup" finished-at="2026-07-14T16:06:43 GST" duration-ms="13813" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC378_VerifyPaymentPageHTTPS()[pri:378, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:06:43 GST" name="TC378_VerifyPaymentPageHTTPS" description="TC_378: Verify HTTPS is used on the payment page" finished-at="2026-07-14T16:07:28 GST" duration-ms="44428" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC378_VerifyPaymentPageHTTPS -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:07:28 GST" name="tearDown" finished-at="2026-07-14T16:07:28 GST" duration-ms="459" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:07:28 GST" name="setup" finished-at="2026-07-14T16:07:40 GST" duration-ms="11873" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC383_VerifyPaymentFlowSessionExpiry()[pri:383, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:07:40 GST" name="TC383_VerifyPaymentFlowSessionExpiry" description="TC_383: Verify session expiry behavior on the payment flow" finished-at="2026-07-14T16:08:28 GST" duration-ms="47874" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC383_VerifyPaymentFlowSessionExpiry -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SecurityTests@217ed35e]" started-at="2026-07-14T16:08:28 GST" name="tearDown" finished-at="2026-07-14T16:08:28 GST" duration-ms="462" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- tests.SecurityTests -->
+      </class> <!-- tests.SubscriptionManagementTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

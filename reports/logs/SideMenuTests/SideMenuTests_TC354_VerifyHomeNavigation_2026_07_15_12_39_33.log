@@ -1,0 +1,15 @@
+============================================================
+Test Log: SideMenuTests.TC354_VerifyHomeNavigation
+Started: 2026-07-15 12:39:33
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SideMenuTests_TC354_VerifyHomeNavigation_2026_07_15_12_39_33.log
+============================================================
+========== TEST STARTED: TC_354: Home Navigation ==========
+STEP 1: Open the side menu using the hamburger button
+INFO  TC_354 - STEP 1: Side menu opened: true
+STEP 2: Click the menu item and capture the navigation URL
+INFO  TC_354 - STEP 2: Current URL after navigation: https://web-splay.acceses.com/
+STEP 3: Verify the navigation URL matches the expected destination
+INFO  TC_354: Home navigation verified
+========== TEST PASSED: TC_354 ==========
+============================================================
+Ended: 2026-07-15 12:39:42

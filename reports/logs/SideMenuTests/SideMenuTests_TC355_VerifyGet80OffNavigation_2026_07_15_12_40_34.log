@@ -1,0 +1,17 @@
+============================================================
+Test Log: SideMenuTests.TC355_VerifyGet80OffNavigation
+Started: 2026-07-15 12:40:34
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SideMenuTests_TC355_VerifyGet80OffNavigation_2026_07_15_12_40_34.log
+============================================================
+========== TEST STARTED: TC_355: Get 80% Off Navigation ==========
+STEP 1: Switch to the dedicated Get 80% Off account
+INFO  TC_355 - STEP 1: Dedicated account session started
+STEP 2: Open the side menu using the hamburger button
+INFO  TC_355 - STEP 2: Side menu opened: true
+STEP 3: Click the menu item and capture the navigation URL
+INFO  TC_355 - STEP 3: Current URL after navigation: https://web-splay.acceses.com/payments
+STEP 4: Verify the navigation URL matches the expected destination
+INFO  TC_355: Get 80% Off navigation verified
+========== TEST PASSED: TC_355 ==========
+============================================================
+Ended: 2026-07-15 12:41:04

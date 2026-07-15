@@ -1,0 +1,16 @@
+============================================================
+Test Log: SideMenuTests.TC351_VerifyHamburgerClickOpensMenu
+Started: 2026-07-15 12:36:18
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SideMenuTests_TC351_VerifyHamburgerClickOpensMenu_2026_07_15_12_36_18.log
+============================================================
+========== TEST STARTED: TC_351: Hamburger Click Opens Menu ==========
+STEP 1: Verify the hamburger button is visible
+INFO  TC_351 - STEP 1: Hamburger visible: true
+STEP 2: Click the hamburger button to open the side menu
+INFO  TC_351 - STEP 2: Side menu opened: true
+STEP 3: Verify the side menu remains open after opening
+INFO  TC_351 - STEP 3: Side menu open after click: true
+INFO  TC_351: Side menu opened successfully via hamburger click
+========== TEST PASSED: TC_351 ==========
+============================================================
+Ended: 2026-07-15 12:36:35

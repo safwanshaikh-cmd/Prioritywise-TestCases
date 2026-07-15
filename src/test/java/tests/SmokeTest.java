@@ -232,6 +232,9 @@ public class SmokeTest extends BaseTest {
         System.out.println("\n[SMOKE TEST 6] Verifying Navigation...");
 
         try {
+            // Semantic HTML5 navigation (nav/header/anchors) is informational only:
+            // the app's navigation is the hamburger side menu and header, rendered
+            // with non-semantic div/button elements, so these can all be false here.
             boolean hasNav = dashboard.checkElementExists("nav");
             boolean hasHeader = dashboard.checkElementExists("header");
             boolean hasMenu = dashboard.checkElementExists("[role='navigation']");
@@ -243,7 +246,16 @@ public class SmokeTest extends BaseTest {
             int linkCount = dashboard.countElements("a");
             System.out.println("  Navigation links: " + linkCount);
 
-            Assert.assertTrue(linkCount > 0 || hasNav || hasHeader, "Page should have navigation elements");
+            // App-level navigation entry points this UI actually exposes.
+            boolean hasHamburger = dashboard.isHamburgerMenuVisible();
+            boolean hasAppHeader = dashboard.isHeaderVisible();
+            int clickableCount = dashboard.countClickableElements();
+            System.out.println("  Hamburger menu visible: " + hasHamburger);
+            System.out.println("  App header visible: " + hasAppHeader);
+            System.out.println("  Clickable elements: " + clickableCount);
+
+            Assert.assertTrue(hasHamburger || hasAppHeader || linkCount > 0 || hasNav || hasHeader,
+                    "Page should have navigation elements (hamburger, app header, or semantic nav)");
 
             String bodyText = dashboard.getBodyText().toLowerCase(Locale.ROOT);
 

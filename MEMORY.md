@@ -1,0 +1,1 @@
+- [Smoke/Login pre-existing flakiness](smoke-login-flakiness-pre-existing.md) — SmokeTest.smokeVerifyNavigation + LoginPage.openLogin race root causes (outside SideMenuTests)

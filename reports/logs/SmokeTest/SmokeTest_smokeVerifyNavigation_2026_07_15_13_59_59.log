@@ -1,0 +1,9 @@
+============================================================
+Test Log: SmokeTest.smokeVerifyNavigation
+Started: 2026-07-15 13:59:59
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SmokeTest_smokeVerifyNavigation_2026_07_15_13_59_59.log
+============================================================
+[FAIL] SmokeTest :: smokeVerifyNavigation
+Error: Page should have navigation elements expected [true] but found [false]
+============================================================
+Ended: 2026-07-15 13:59:59

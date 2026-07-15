@@ -1,0 +1,15 @@
+============================================================
+Test Log: SideMenuTests.TC353_VerifyAllSideMenuItemsVisible
+Started: 2026-07-15 12:38:40
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SideMenuTests_TC353_VerifyAllSideMenuItemsVisible_2026_07_15_12_38_40.log
+============================================================
+========== TEST STARTED: TC_353: All Side Menu Items Visible ==========
+STEP 1: Open the side menu using the hamburger button
+INFO  TC_353 - STEP 1: Side menu opened: true
+STEP 2: Verify the side menu buttons are visible after opening
+INFO  TC_353 - STEP 2: Side menu items visible: true
+STEP 3: Print the visible side menu button names
+INFO  TC_353: Side menu items visibility verified
+========== TEST PASSED: TC_353 ==========
+============================================================
+Ended: 2026-07-15 12:38:45

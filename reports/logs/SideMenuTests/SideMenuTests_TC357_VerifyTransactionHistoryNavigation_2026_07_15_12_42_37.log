@@ -1,0 +1,15 @@
+============================================================
+Test Log: SideMenuTests.TC357_VerifyTransactionHistoryNavigation
+Started: 2026-07-15 12:42:37
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SideMenuTests_TC357_VerifyTransactionHistoryNavigation_2026_07_15_12_42_37.log
+============================================================
+========== TEST STARTED: TC_357: Transaction History Navigation ==========
+STEP 1: Open the side menu using the hamburger button
+INFO  TC_357 - STEP 1: Side menu opened: true
+STEP 2: Click the menu item and capture the navigation URL
+INFO  TC_357 - STEP 2: Current URL after navigation: https://web-splay.acceses.com/transactions
+STEP 3: Verify the navigation URL matches the expected destination
+INFO  TC_357: Transaction History navigation verified
+========== TEST PASSED: TC_357 ==========
+============================================================
+Ended: 2026-07-15 12:42:41

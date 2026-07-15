@@ -1,0 +1,15 @@
+============================================================
+Test Log: SideMenuTests.TC356_VerifyMostFavoriteNavigation
+Started: 2026-07-15 12:41:50
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SideMenuTests_TC356_VerifyMostFavoriteNavigation_2026_07_15_12_41_50.log
+============================================================
+========== TEST STARTED: TC_356: Most Favorite Navigation ==========
+STEP 1: Open the side menu using the hamburger button
+INFO  TC_356 - STEP 1: Side menu opened: true
+STEP 2: Click the menu item and capture the navigation URL
+INFO  TC_356 - STEP 2: Current URL after navigation: https://web-splay.acceses.com/favorites
+STEP 3: Verify the navigation URL matches the expected destination
+INFO  TC_356: Most Favorite navigation verified
+========== TEST PASSED: TC_356 ==========
+============================================================
+Ended: 2026-07-15 12:41:53

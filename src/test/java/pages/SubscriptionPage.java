@@ -2,6 +2,7 @@ package pages;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,8 +13,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.SkipException;
 
 import base.BasePage;
+import utils.ConfigReader;
+import utils.LoggerUtils;
 
 /**
  * Page object for subscription-related flows. Reuses the same interaction style
@@ -33,7 +38,7 @@ public class SubscriptionPage extends BasePage {
 			+ " | (//*[@role='button'][.//*[name()='svg']])[1]" + " | (//*[@tabindex='0'][.//*[name()='svg']])[1]");
 	private static final By HAMBURGER_MENU_ALT = By
 			.xpath("//*[contains(@class, 'menu') or contains(@class, 'hamburger') or contains(@class, 'sidebar')]"
-					+ "[self::button or @role='button' or @tabindex='0']]");
+					+ "[self::button or @role='button' or @tabindex='0']");
 
 	private static final By SUBSCRIPTION_MENU = By.xpath("//div[text()='Subscriptions']");
 	private static final By OFFER_80 = By.xpath("//*[contains(text(),'80% Off')]");
@@ -54,6 +59,15 @@ public class SubscriptionPage extends BasePage {
 	private static final By PLAN_INFO_SECTIONS = By
 			.xpath("//*[contains(@class, 'info') or contains(@class, 'details') or contains(@class, 'status')]");
 
+	// Subscription plan duration / billing cycle (e.g. "Billed 1 month", "30 Days Remaining").
+	private static final By PLAN_BILLING_CYCLE = By
+			.xpath("//*[contains(text(),'Billed') or contains(text(),'Days Remaining') or contains(text(),'days remaining')]");
+
+	// "Next billing" row's value cell — the label and the date value are siblings;
+	// select the value that follows the "Next billing" label.
+	private static final By PLAN_NEXT_BILLING_VALUE = By
+			.xpath("//*[contains(text(),'Next billing')]/following-sibling::*[1]");
+
 	private static final By SUBSCRIPTION_RESTRICTION_MSG = By.xpath(
 			"//*[contains(text(),'already have') or contains(text(),'not eligible') or contains(text(),'cannot')]");
 	private static final By SUBSCRIPTION_WARNING = By.xpath(
@@ -64,10 +78,112 @@ public class SubscriptionPage extends BasePage {
 	private static final By PAUSE_ICON = By.xpath("//img[contains(@src,'ic_pause')]");
 
 	private final WebDriverWait pageWait;
+	private final LoginPage login;
+	private final DashboardPage dashboard;
 
 	public SubscriptionPage(WebDriver driver) {
 		super(driver);
 		this.pageWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		this.login = new LoginPage(driver);
+		this.dashboard = new DashboardPage(driver);
+	}
+
+	// ==================== Session / login ====================
+
+	/**
+	 * Reload configuration and start a session with the account that
+	 * matches the given test-case number (the {@code TC<NNN>} value,
+	 * which is also the TestNG {@code @Test priority} for these tests):
+	 * <ul>
+	 *   <li>391–393: subscription-activation account</li>
+	 *   <li>394–403: active-subscription account</li>
+	 *   <li>otherwise: consumer account</li>
+	 * </ul>
+	 * Throws {@link SkipException} if the resolved credentials are missing.
+	 */
+	public void initSession(int testCaseNumber) {
+		ConfigReader.reload();
+		selectAndStartSession(testCaseNumber);
+	}
+
+	private void selectAndStartSession(int testCaseNumber) {
+		if (testCaseNumber >= 391 && testCaseNumber <= 393) {
+			startWith("subscription.activationEmail", "subscription.activationPassword", testCaseNumber);
+			return;
+		}
+		if (testCaseNumber >= 394 && testCaseNumber <= 403) {
+			startWith("subscription.activeEmail", "subscription.activePassword", testCaseNumber);
+			return;
+		}
+		startWith("consumer.email", "consumer.password", testCaseNumber);
+	}
+
+	private void startWith(String emailKey, String passwordKey, int testCaseNumber) {
+		String email = ConfigReader.getProperty(emailKey, ConfigReader.getProperty("login.validEmail"));
+		String password = ConfigReader.getProperty(passwordKey, ConfigReader.getProperty("login.validPassword"));
+		if (isBlank(email) || isBlank(password)) {
+			throw new SkipException("Set " + emailKey + " and " + passwordKey
+					+ " in config.properties to run subscription test TC_" + testCaseNumber + ".");
+		}
+		loginAs(email, password);
+	}
+
+	/**
+	 * Log in with the given credentials and stabilize on the dashboard.
+	 */
+	public void loginAs(String email, String password) {
+		login.openLogin();
+		login.loginUser(email, password);
+		login.clickNextAfterLogin();
+		Assert.assertTrue(dashboard.waitForDashboardShell(),
+				"Consumer dashboard should load after login before subscription tests.");
+	}
+
+	// ==================== Subscription page navigation ====================
+
+	/**
+	 * Open the subscription page via the side menu and dismiss the sidebar.
+	 */
+	public void open() {
+		dashboard.openSimpleSideMenu();
+		clickSubscription();
+		closeSidebarIfOpen();
+	}
+
+	// ==================== Null-safe helpers ====================
+
+	public String safeString(String value) {
+		return value == null ? "" : value;
+	}
+
+	public String safeLowerUrl(String value) {
+		return safeString(value).toLowerCase(Locale.ROOT);
+	}
+
+	public String getCurrentUrlSafely() {
+		try {
+			String url = driver.getCurrentUrl();
+			return url == null ? "" : url.toLowerCase(Locale.ROOT);
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	private boolean isBlank(String value) {
+		return value == null || value.isBlank();
+	}
+
+	public void waitQuietly(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			throw new RuntimeException("Sleep interrupted", e);
+		}
+	}
+
+	public void logOptionalUnavailable(String message) {
+		LoggerUtils.logInfo(safeString(message));
 	}
 
 	public void clickHamburgerMenu() {
@@ -289,16 +405,41 @@ public class SubscriptionPage extends BasePage {
 		jsClick(SUBMIT_REASON_BUTTON);
 		LOGGER.log(Level.INFO, "Cancellation reason submitted - plan cancelled successfully");
 
-		// Wait for cancellation to complete
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
+		// Wait for cancellation to be reflected in the plan status.
+		waitForCancellationToComplete();
 
 		// Refresh page to see updated status
 		driver.navigate().refresh();
+		waitForOverlayToDisappear();
 		LOGGER.log(Level.INFO, "Page refreshed to show cancelled status");
+	}
+
+	/**
+	 * Wait for the plan to reflect a cancelled/inactive state after a
+	 * cancellation action. Polls the plan-status locators so tests do not
+	 * rely on a fixed {@code Thread.sleep}.
+	 */
+	private void waitForCancellationToComplete() {
+		try {
+			pageWait.until(driver -> isPlanCancelled());
+			LOGGER.log(Level.INFO, "Plan status reflects cancellation");
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Plan status did not reflect cancellation within timeout: {0}", e.getMessage());
+		}
+	}
+
+	/**
+	 * Ensure the subscription plan is cancelled. No-op if already cancelled;
+	 * otherwise runs the cancel flow and waits for the cancelled state. Lets
+	 * tests verify "after cancellation" behaviour without managing the
+	 * pre-state conditional themselves.
+	 */
+	public void ensurePlanCancelled() {
+		if (isPlanCancelled()) {
+			LOGGER.log(Level.INFO, "Plan already cancelled - no action needed");
+			return;
+		}
+		cancelActivePlan();
 	}
 
 	/**
@@ -633,45 +774,47 @@ public class SubscriptionPage extends BasePage {
 	public boolean initiatePlanCancellation() {
 		waitForOverlayToDisappear();
 
-		if (isDisplayed(CANCEL_PLAN_BUTTON) || isDisplayed(CONTINUE_TO_CANCEL_BUTTON)) {
-			// Click Continue to Cancel
-			if (isDisplayed(CONTINUE_TO_CANCEL_BUTTON)) {
-				jsClick(CONTINUE_TO_CANCEL_BUTTON);
-				LOGGER.info("Continue to Cancel button clicked (initiation only)");
-			} else if (isDisplayed(CANCEL_PLAN_BUTTON)) {
-				jsClick(CANCEL_PLAN_BUTTON);
-				LOGGER.info("Cancel plan button clicked (initiation only)");
-			}
+		// Step 1: Click the first cancel entry button.
+		if (isDisplayed(CONTINUE_TO_CANCEL_BUTTON)) {
+			jsClick(CONTINUE_TO_CANCEL_BUTTON);
+			LOGGER.info("Continue to Cancel button clicked (initiation only)");
+		} else if (isDisplayed(CANCEL_PLAN_BUTTON)) {
+			jsClick(CANCEL_PLAN_BUTTON);
+			LOGGER.info("Cancel plan button clicked (initiation only)");
 
-			// Wait for reason selection screen to appear
+			// Step 2: After the first Cancel click, "Continue to Cancel" appears.
+			// Wait for it and click it to reach the reason-selection screen.
 			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			}
-
-			// Check if reason selection screen is displayed
-			try {
-				WebElement reasonOption = pageWait
-						.until(ExpectedConditions.visibilityOfElementLocated(CANCEL_REASON_OPTION));
-				WebElement submitButton = pageWait
-						.until(ExpectedConditions.visibilityOfElementLocated(SUBMIT_REASON_BUTTON));
-				WebElement goBackButton = pageWait.until(ExpectedConditions.visibilityOfElementLocated(GO_BACK_BUTTON));
-
-				boolean hasReasonScreen = (reasonOption != null && reasonOption.isDisplayed())
-						&& (submitButton != null && submitButton.isDisplayed())
-						&& (goBackButton != null && goBackButton.isDisplayed());
-
-				LOGGER.log(Level.INFO, "Cancellation reason selection screen present: {0}", hasReasonScreen);
-				return hasReasonScreen;
-
+				WebElement continueButton = pageWait
+						.until(ExpectedConditions.visibilityOfElementLocated(CONTINUE_TO_CANCEL_BUTTON));
+				scrollIntoView(continueButton);
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", continueButton);
+				LOGGER.info("Continue to Cancel button clicked after Cancel Plan");
 			} catch (Exception e) {
-				LOGGER.log(Level.FINE, "Reason selection screen not found: {0}", e.getMessage());
-				return false;
+				LOGGER.log(Level.FINE, "Continue to Cancel button not found after Cancel Plan: {0}", e.getMessage());
 			}
+		} else {
+			LOGGER.log(Level.WARNING, "No cancel entry button found - plan may already be cancelled");
+			return false;
 		}
 
-		return false;
+		// Step 3: Wait for the reason-selection / confirmation screen to appear.
+		try {
+			WebElement reasonOption = pageWait
+					.until(ExpectedConditions.visibilityOfElementLocated(CANCEL_REASON_OPTION));
+			WebElement submitButton = pageWait
+					.until(ExpectedConditions.visibilityOfElementLocated(SUBMIT_REASON_BUTTON));
+			WebElement goBackButton = pageWait.until(ExpectedConditions.visibilityOfElementLocated(GO_BACK_BUTTON));
+
+			boolean hasReasonScreen = reasonOption.isDisplayed() && submitButton.isDisplayed()
+					&& goBackButton.isDisplayed();
+
+			LOGGER.log(Level.INFO, "Cancellation reason selection screen present: {0}", hasReasonScreen);
+			return hasReasonScreen;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Reason selection screen not found: {0}", e.getMessage());
+			return false;
+		}
 	}
 
 	/**
@@ -700,7 +843,7 @@ public class SubscriptionPage extends BasePage {
 		try {
 			WebElement logoutBtn = pageWait.until(ExpectedConditions.elementToBeClickable(LOGOUT_MENU_ITEM));
 			scrollIntoView(logoutBtn);
-			jsClick((By) logoutBtn);
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", logoutBtn);
 			LOGGER.info("Logout menu item clicked");
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Failed to click logout menu item: {0}", e.getMessage());
@@ -718,13 +861,26 @@ public class SubscriptionPage extends BasePage {
 	 * @return Expiry date text or empty string if not found
 	 */
 	public String getPlanExpiryDate() {
+		// Primary: legacy keyword locator (Expiry / Valid till / Valid until).
 		try {
 			WebElement expiryElement = wait.waitForElementVisible(PLAN_EXPIRY_DATE);
-			String expiryText = expiryElement.getText();
-			LOGGER.log(Level.INFO, "Plan expiry date: {0}", expiryText);
-			return expiryText;
+			String expiryText = safeString(expiryElement.getText());
+			if (!expiryText.isBlank()) {
+				LOGGER.log(Level.INFO, "Plan expiry date: {0}", expiryText);
+				return expiryText;
+			}
 		} catch (Exception e) {
-			LOGGER.log(Level.FINE, "Expiry date not found: {0}", e.getMessage());
+			LOGGER.log(Level.FINE, "Expiry date not found via PLAN_EXPIRY_DATE: {0}", e.getMessage());
+		}
+
+		// Fallback: the "Next billing" row's value cell (e.g. "August 14, 2026").
+		try {
+			WebElement billingValue = wait.waitForElementVisible(PLAN_NEXT_BILLING_VALUE);
+			String billingText = safeString(billingValue.getText());
+			LOGGER.log(Level.INFO, "Plan next billing date (as expiry): {0}", billingText);
+			return billingText;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Next billing value not found: {0}", e.getMessage());
 			return "";
 		}
 	}
@@ -894,9 +1050,16 @@ public class SubscriptionPage extends BasePage {
 	 * @return Plan duration or empty string if not found
 	 */
 	public String getPlanDuration() {
-		String expiry = getPlanExpiryDate();
-		LOGGER.log(Level.INFO, "Plan duration: {0}", expiry);
-		return expiry;
+		// Plan billing cycle / remaining window (e.g. "Billed 1 month", "30 Days Remaining").
+		try {
+			WebElement cycleElement = wait.waitForElementVisible(PLAN_BILLING_CYCLE);
+			String cycleText = safeString(cycleElement.getText());
+			LOGGER.log(Level.INFO, "Plan duration: {0}", cycleText);
+			return cycleText;
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "Plan duration not found: {0}", e.getMessage());
+			return "";
+		}
 	}
 
 	/**

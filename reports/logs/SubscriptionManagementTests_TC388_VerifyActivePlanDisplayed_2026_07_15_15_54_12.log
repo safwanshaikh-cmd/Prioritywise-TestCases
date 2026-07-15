@@ -1,0 +1,14 @@
+============================================================
+Test Log: SubscriptionManagementTests.TC388_VerifyActivePlanDisplayed
+Started: 2026-07-15 15:54:12
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SubscriptionManagementTests_TC388_VerifyActivePlanDisplayed_2026_07_15_15_54_12.log
+============================================================
+========== TEST STARTED: TC_388: Active Plan Displayed ==========
+STEP 1: Open the Subscription page
+INFO  TC_388 - STEP 1: Subscription page displayed: true
+STEP 2: Verify the active plan details are displayed
+INFO  TC_388 - STEP 2: Plan name displayed: true
+INFO  TC_388: Active plan details verified: Active Plan
+========== TEST PASSED: TC_388 ==========
+============================================================
+Ended: 2026-07-15 15:55:12

@@ -1,0 +1,15 @@
+============================================================
+Test Log: SideMenuTests.TC352_VerifyHamburgerOpenCloseToggle
+Started: 2026-07-15 12:37:21
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SideMenuTests_TC352_VerifyHamburgerOpenCloseToggle_2026_07_15_12_37_21.log
+============================================================
+========== TEST STARTED: TC_352: Hamburger Open Close Toggle ==========
+STEP 1: Open the side menu using the hamburger button
+INFO  TC_352 - STEP 1: Side menu opened: true
+STEP 2: Print the visible side menu button names
+STEP 3: Close the side menu and verify it is hidden
+INFO  TC_352 - STEP 3: Side menu closed: true
+INFO  TC_352: Side menu open and close toggle verified
+========== TEST PASSED: TC_352 ==========
+============================================================
+Ended: 2026-07-15 12:37:44

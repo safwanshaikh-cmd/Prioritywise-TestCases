@@ -9,46 +9,10 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">8</td><td class="num attn">1</td><td class="num">0</td><td class="num">0</td><td class="num">326,982</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">166,015</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; skipped</th></tr><tr class="skippedeven"><td rowspan="1">tests.SecurityTests</td><td><a href="#m0">TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin</a></td><td rowspan="1">1784030643123</td><td rowspan="1">20</td></tr><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="8">tests.SecurityTests</td><td><a href="#m1">TC192_VerifyDirectCategoryUrlAccessWithoutLogin</a></td><td rowspan="1">1784030603397</td><td rowspan="1">5437</td></tr><tr class="passedeven"><td><a href="#m2">TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin</a></td><td rowspan="1">1784030622703</td><td rowspan="1">7195</td></tr><tr class="passedeven"><td><a href="#m3">TC198_VerifyDirectUpcomingUrlAccessWithoutLogin</a></td><td rowspan="1">1784030655574</td><td rowspan="1">5174</td></tr><tr class="passedeven"><td><a href="#m4">TC200_VerifyDirectMostRatedUrlAccessWithoutLogin</a></td><td rowspan="1">1784030674029</td><td rowspan="1">6205</td></tr><tr class="passedeven"><td><a href="#m5">TC202_VerifyDirectUrlAccessAfterSessionExpiry</a></td><td rowspan="1">1784030695048</td><td rowspan="1">39750</td></tr><tr class="passedeven"><td><a href="#m6">TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole</a></td><td rowspan="1">1784030745785</td><td rowspan="1">43636</td></tr><tr class="passedeven"><td><a href="#m7">TC378_VerifyPaymentPageHTTPS</a></td><td rowspan="1">1784030803689</td><td rowspan="1">44428</td></tr><tr class="passedeven"><td><a href="#m8">TC383_VerifyPaymentFlowSessionExpiry</a></td><td rowspan="1">1784030860455</td><td rowspan="1">47874</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">tests.SubscriptionManagementTests</td><td><a href="#m0">TC393_VerifyCancelCanBeDeclined</a></td><td rowspan="1">1784121053174</td><td rowspan="1">65936</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">tests.SecurityTests#TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.testng.SkipException: TC_197 is dashboard-only. There is no standalone direct URL for Related Show Detail access.
-	at tests.SecurityTests.TC197_VerifyDirectRelatedShowDetailAccessWithoutLogin(SecurityTests.java:135)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at org.testng.TestRunner.privateRun(TestRunner.java:819)
-	at org.testng.TestRunner.run(TestRunner.java:619)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-	at org.testng.TestNG.runSuites(TestNG.java:1134)
-	at org.testng.TestNG.run(TestNG.java:1101)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">tests.SecurityTests#TC192_VerifyDirectCategoryUrlAccessWithoutLogin</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">tests.SecurityTests#TC196_VerifyDirectRelatedShowsUrlAccessWithoutLogin</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m3">tests.SecurityTests#TC198_VerifyDirectUpcomingUrlAccessWithoutLogin</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m4">tests.SecurityTests#TC200_VerifyDirectMostRatedUrlAccessWithoutLogin</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m5">tests.SecurityTests#TC202_VerifyDirectUrlAccessAfterSessionExpiry</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m6">tests.SecurityTests#TC203_VerifyRestrictedDashboardPagesCannotOpenWithWrongRole</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m7">tests.SecurityTests#TC378_VerifyPaymentPageHTTPS</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m8">tests.SecurityTests#TC383_VerifyPaymentFlowSessionExpiry</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Default test</h2><h3 id="m0">tests.SubscriptionManagementTests#TC393_VerifyCancelCanBeDeclined</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

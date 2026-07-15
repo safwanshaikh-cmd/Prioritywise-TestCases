@@ -1,0 +1,14 @@
+============================================================
+Test Log: SubscriptionManagementTests.TC390_VerifyCancelButtonVisible
+Started: 2026-07-15 16:32:56
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SubscriptionManagementTests_TC390_VerifyCancelButtonVisible_2026_07_15_16_32_56.log
+============================================================
+========== TEST STARTED: TC_390: Cancel Button Visible ==========
+STEP 1: Open the Subscription page
+INFO  TC_390 - STEP 1: Subscription page displayed: true
+STEP 2: Verify an active plan is present
+INFO  TC_390 - STEP 2: Plan name displayed: true
+INFO  TC_390: Cancel button visibility verified
+========== TEST PASSED: TC_390 ==========
+============================================================
+Ended: 2026-07-15 16:33:21
