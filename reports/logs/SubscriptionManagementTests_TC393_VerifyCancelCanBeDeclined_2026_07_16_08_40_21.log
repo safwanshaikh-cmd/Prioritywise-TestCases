@@ -1,0 +1,13 @@
+============================================================
+Test Log: SubscriptionManagementTests.TC393_VerifyCancelCanBeDeclined
+Started: 2026-07-16 08:40:21
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SubscriptionManagementTests_TC393_VerifyCancelCanBeDeclined_2026_07_16_08_40_21.log
+============================================================
+========== TEST STARTED: TC_393: Cancel Can Be Declined ==========
+STEP 1: Open the Subscription page
+STEP 2: Verify the plan remains active (cancellation is abortable)
+INFO  TC_393 - STEP 2: Plan visible: true | Plan: Active Plan
+INFO  TC_393: Plan remains active (cancellation can be aborted)
+========== TEST PASSED: TC_393 ==========
+============================================================
+Ended: 2026-07-16 08:41:27

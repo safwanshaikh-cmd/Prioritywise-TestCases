@@ -137,7 +137,9 @@
       "Bash('/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac' -version)",
       "Bash(JAVA_HOME='/mnt/c/Program Files/Java/jdk-25.0.2' PATH='/mnt/c/Program Files/Java/jdk-25.0.2/bin:__TRACKED_VAR__' mvn -q -o compile test-compile -Dmaven.compiler.source=21 -Dmaven.compiler.target=21)",
       "Read(//mnt/c/Users/safwan/.m2/repository/**)",
-      "Bash(sort -t C -k2 -n)"
+      "Bash(sort -t C -k2 -n)",
+      "Bash(javac.exe -d /tmp/tc391-check @compile-argfile.txt)",
+      "Bash(\"/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe\" @\"C:\\\\Users\\\\safwan\\\\eclipse-workspace\\\\Prioritywise-TestCases\\\\target\\\\javac_args.txt\")"
     ]
   }
 }

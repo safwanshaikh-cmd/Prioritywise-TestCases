@@ -351,6 +351,15 @@ public class SubscriptionPage extends BasePage {
 	 * @return true if plan is cancelled, false otherwise
 	 */
 	public boolean isPlanCancelled() {
+		// Strongest signal: the success popup (icon "ic_cancelled.png" or the
+		// "Subscription Cancelled" heading) is rendered. This appears immediately
+		// after the post-submit "Continue to Cancel" click and is the definitive
+		// confirmation the cancellation succeeded.
+		if (isAnyVisible(SUBSCRIPTION_CANCELLED_POPUP)) {
+			LOGGER.info("Plan cancellation detected: Subscription Cancelled popup is visible");
+			return true;
+		}
+
 		String status = getPlanStatus().toLowerCase();
 
 		// If status is empty, this strongly indicates cancellation (plan details
@@ -384,48 +393,96 @@ public class SubscriptionPage extends BasePage {
 
 	/**
 	 * Cancel the active subscription plan. This method cancels the active plan
-	 * using the complete cancellation flow. Follows: Cancel Plan → Continue to
-	 * Cancel → Select Reason → Submit Reason Note: Cancellation completes after
-	 * submitting reason (no final confirmation click needed)
+	 * using the complete cancellation flow:
+	 * Cancel Plan → Continue to Cancel → Select Reason → Submit Reason → Continue
+	 * to Cancel → Subscription Cancelled popup.
 	 */
 	public void cancelActivePlan() {
-		// Step 1: Click first Cancel button
+		// Step 1: Click Cancel Plan button
 		jsClick(CANCEL_PLAN_BUTTON);
 		LOGGER.log(Level.INFO, "Cancel Plan button clicked");
 
-		// Step 2: Click Continue to Cancel (second cancel)
+		// Step 2: Click "Continue to Cancel" (first one) to reach the reason screen.
 		jsClick(CONTINUE_TO_CANCEL_BUTTON);
-		LOGGER.log(Level.INFO, "Continue to Cancel clicked");
+		LOGGER.log(Level.INFO, "Continue to Cancel clicked (1st)");
 
-		// Step 3: Select cancellation reason
+		// Guard: the reason-selection screen must appear after the first Continue click.
+		// Without this, a no-op Continue click silently advanced and the test only
+		// failed later (at the post-cancel assertion) with a confusing message.
+		try {
+			pageWait.until(ExpectedConditions.visibilityOfElementLocated(CANCEL_REASON_OPTION));
+		} catch (Exception e) {
+			throw new IllegalStateException(
+					"Cancel flow stalled: reason-selection screen did not appear after clicking Continue to Cancel",
+					e);
+		}
+
+		// Step 3: Select the cancellation reason
 		jsClick(CANCEL_REASON_OPTION);
 		LOGGER.log(Level.INFO, "Cancellation reason selected");
 
-		// Step 4: Submit the reason (Cancellation completes here)
+		// Step 4: Click Submit Reason to confirm the chosen reason
 		jsClick(SUBMIT_REASON_BUTTON);
-		LOGGER.log(Level.INFO, "Cancellation reason submitted - plan cancelled successfully");
+		LOGGER.log(Level.INFO, "Cancellation reason submitted");
 
-		// Wait for cancellation to be reflected in the plan status.
-		waitForCancellationToComplete();
+		// The post-submit "Are you sure?" confirmation popup animates in and
+		// renders the access-until date BEFORE the final "Continue to Cancel"
+		// button becomes enabled. Use a longer one-off wait (30s) at this gate
+		// because the popup transition can be slow on a cold render path; the
+		// default 15s pageWait was timing out before the date landed in the DOM.
+		WebDriverWait postSubmitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-		// Refresh page to see updated status
+		// Step 4b: Wait for the access-until date to appear on the confirmation popup.
+		try {
+			WebElement accessUntilDate = postSubmitWait
+					.until(ExpectedConditions.visibilityOfElementLocated(SUBSCRIPTION_ACCESS_UNTIL_DATE));
+			LOGGER.log(Level.INFO, "Access-until date displayed: {0}",
+					safeString(accessUntilDate.getText()).trim());
+		} catch (Exception e) {
+			throw new IllegalStateException(
+					"Cancel flow stalled: access-until date did not appear on the popup after submitting reason",
+					e);
+		}
+
+		// Step 5: Wait for the final "Continue to Cancel" button (on the post-submit
+		// "Are you sure?" popup) to be visible AND clickable — not just present in
+		// the DOM. A present-but-hidden click is a silent no-op. The locator is
+		// scoped to the popup that ALSO contains the access-until date so it
+		// cannot match the stale "Continue to Cancel" left over from the
+		// reason-selection screen (which is hidden behind the new popup but still
+		// in the DOM, causing elementToBeClickable to fail with "element not
+		// visible" when the generic locator's [1] hits it first).
+		try {
+			WebElement finalContinueBtn = postSubmitWait
+					.until(ExpectedConditions.elementToBeClickable(POST_SUBMIT_CONTINUE_TO_CANCEL));
+			scrollIntoView(finalContinueBtn);
+			finalContinueBtn.click();
+			LOGGER.log(Level.INFO, "Continue to Cancel clicked (2nd / final)");
+		} catch (Exception e) {
+			throw new IllegalStateException(
+					"Cancel flow stalled: final 'Continue to Cancel' button on the post-submit popup did not become clickable",
+					e);
+		}
+
+		// Step 6: Wait for the Subscription Cancelled popup to appear. The popup
+		// animates in after the final Continue click, so use the same 30s wait
+		// the post-submit gates use. visibilityOfElementLocated is the right
+		// check here because SUBSCRIPTION_CANCELLED_POPUP matches the visible
+		// icon container or the visible heading (not the hidden accessibility
+		// <img>), so it correctly reflects "the popup is on screen."
+		try {
+			postSubmitWait.until(ExpectedConditions.visibilityOfElementLocated(SUBSCRIPTION_CANCELLED_POPUP));
+			LOGGER.log(Level.INFO, "Subscription Cancelled popup displayed - cancellation complete");
+		} catch (Exception e) {
+			throw new IllegalStateException(
+					"Cancel flow stalled: 'Subscription Cancelled' popup did not appear after final Continue to Cancel",
+					e);
+		}
+
+		// Refresh page to see updated plan status.
 		driver.navigate().refresh();
 		waitForOverlayToDisappear();
 		LOGGER.log(Level.INFO, "Page refreshed to show cancelled status");
-	}
-
-	/**
-	 * Wait for the plan to reflect a cancelled/inactive state after a
-	 * cancellation action. Polls the plan-status locators so tests do not
-	 * rely on a fixed {@code Thread.sleep}.
-	 */
-	private void waitForCancellationToComplete() {
-		try {
-			pageWait.until(driver -> isPlanCancelled());
-			LOGGER.log(Level.INFO, "Plan status reflects cancellation");
-		} catch (Exception e) {
-			LOGGER.log(Level.WARNING, "Plan status did not reflect cancellation within timeout: {0}", e.getMessage());
-		}
 	}
 
 	/**
@@ -680,10 +737,26 @@ public class SubscriptionPage extends BasePage {
 			+ "[contains(translate(normalize-space(.), 'CANCEL', 'cancel'), 'cancel')]"
 			+ "[contains(translate(normalize-space(.), 'PLAN', 'plan'), 'plan') or contains(translate(normalize-space(.), 'SUBSCRIPTION', 'subscription'), 'subscription')]");
 
-	private static final By CONTINUE_TO_CANCEL_BUTTON = By.xpath("//*[self::div or @role='button' or @tabindex='0']"
-			+ "[contains(translate(normalize-space(.), 'CONTINUE', 'continue'), 'continue')]"
-			+ "[contains(translate(normalize-space(.), 'CANCEL', 'cancel'), 'cancel')]"
-			+ "[normalize-space()='Continue to Cancel']");
+	// Match the clickable control that bears the "Continue to Cancel" label. The label
+	// typically lives in a child <div>/span rather than on the interactive node itself, so
+	// match an interactive element that CONTAINS the phrase in its own text or in a descendant
+	// element. Also walks up to the clickable ancestor because in some renders (React Native
+	// Web) the text sits in a child styled div (e.g. `class="css-text-146c3p1
+	// r-color-11zlvpd r-fontFamily-1ox28k2 r-fontSize-ubezar r-fontWeight-16dba41"`) while
+	// the click handler lives on a parent div with `tabindex='0'`. Case/whitespace-tolerant
+	// via translate(); avoids the brittle exact normalize-space()='Continue to Cancel' that
+	// silently missed the real button and caused TC_391's Continue-to-Cancel click to no-op.
+	private static final By CONTINUE_TO_CANCEL_BUTTON = By
+			.xpath("(//*[self::button or @role='button' or @tabindex='0']"
+					+ "[contains(translate(normalize-space(.), 'CONTINUE TO CANCEL', 'continue to cancel'), 'continue to cancel')"
+					+ " or .//*[self::div or self::span or self::p or self::button]"
+					+ "[contains(translate(normalize-space(.), 'CONTINUE TO CANCEL', 'continue to cancel'), 'continue to cancel')]])[1]"
+					// Fallback: text node exists but the clickable ancestor is the parent
+					// of an inline-styled or class-styled text div. Walk up to the nearest
+					// interactive ancestor and use it as the click target.
+					+ " | (//*[self::div or self::span or self::p]"
+					+ "[contains(translate(normalize-space(.), 'CONTINUE TO CANCEL', 'continue to cancel'), 'continue to cancel')]"
+					+ "/ancestor::*[@tabindex='0' or @role='button' or self::button][1])[1]");
 
 	private static final By CANCEL_REASON_OPTION = By.xpath("//*[@tabindex='0']"
 			+ "[contains(translate(normalize-space(.), 'NOT USING', 'not using'), 'not using')"
@@ -700,6 +773,62 @@ public class SubscriptionPage extends BasePage {
 	private static final By GO_BACK_BUTTON = By.xpath("//*[@tabindex='0']"
 			+ "[contains(translate(normalize-space(.), 'GO BACK', 'go back'), 'go back')]"
 			+ "[contains(translate(normalize-space(.), 'BACK', 'back'), 'back')]" + "[normalize-space()='Go Back']");
+
+	// Final confirmation popup shown after the post-submit "Continue to Cancel" click.
+// The icon is rendered as a CSS background-image on a <div>, with an
+// accessibility <img alt="" class="css-accessibilityImage-9pa8cd"> mirroring it
+// for screen readers. The <img> is hidden via display:none (RNW accessibility
+// pattern), so matching it with visibilityOfElementLocated would always time
+// out. Match EITHER:
+//   (1) the visible icon container: a <div> whose inline `style` attribute
+//       contains "ic_cancelled.png" as the background-image URL, OR
+//   (2) the visible "Subscription Cancelled" heading (a styled <div> with a
+//       specific class family). Heading text is stable across renders; the body
+//       copy underneath ("We're sad to see you go 💔 ...") changes over time
+//       and is intentionally NOT used.
+private static final By SUBSCRIPTION_CANCELLED_POPUP = By.xpath(
+		"//div[contains(@style,'ic_cancelled.png')]"
+				+ " | //div[contains(@class,'css-text-146c3p1')][normalize-space(text())='Subscription Cancelled']");
+
+	// Final "Continue to Cancel" button on the post-submit "Are you sure?" popup.
+	// Distinct from CONTINUE_TO_CANCEL_BUTTON (which is used for the 1st click on
+	// the reason-entry flow) because the generic locator would match the OLD
+	// Continue button from the reason-selection screen that is still in the DOM
+	// (now hidden) when the new popup animates in. That stale match sits at
+	// document-order [1] and is not visible, so elementToBeClickable times out.
+	// This locator scopes the search to the popup that ALSO contains the
+	// access-until date (the same popup), so it always picks the visible button.
+	private static final By POST_SUBMIT_CONTINUE_TO_CANCEL = By
+			.xpath("//div[contains(@class,'css-view-g5y9jx') and .//*[contains(text(),'until') or contains(text(),'till')]"
+					+ "[.//span[contains(text(),'January') or contains(text(),'February') or contains(text(),'March')"
+					+ " or contains(text(),'April') or contains(text(),'May') or contains(text(),'June')"
+					+ " or contains(text(),'July') or contains(text(),'August') or contains(text(),'September')"
+					+ " or contains(text(),'October') or contains(text(),'November') or contains(text(),'December')]]]"
+					+ "//*[self::button or @role='button' or @tabindex='0']"
+					+ "[.//*[self::div or self::span or self::p]"
+					+ "[contains(translate(normalize-space(.), 'CONTINUE TO CANCEL', 'continue to cancel'), 'continue to cancel')]]");
+
+	// Access-until date that appears on the post-submit confirmation popup
+	// (e.g. "Your plan will stay active until May 6, 2026..."). The popup renders
+	// this date BEFORE the final "Continue to Cancel" button is enabled, so
+	// waiting on the date is a reliable precondition for the click. Two matches:
+	// (1) the styled <span> child that holds the date itself, OR (2) the parent
+	// paragraph containing both the "until" anchor and a month name. The span
+	// match is preferred because the span is what carries the actual date text;
+//	 the parent match is a fallback for renders that put the date in plain text.
+	// The date is locale-dependent (May/June/Jul etc.), so we match all month
+	// names and trust contains() on the substring rather than a strict regex.
+	private static final By SUBSCRIPTION_ACCESS_UNTIL_DATE = By
+			.xpath("//span[contains(@class,'css-textHasAncestor')]"
+					+ "[contains(text(),'January') or contains(text(),'February') or contains(text(),'March')"
+					+ " or contains(text(),'April') or contains(text(),'May') or contains(text(),'June')"
+					+ " or contains(text(),'July') or contains(text(),'August') or contains(text(),'September')"
+					+ " or contains(text(),'October') or contains(text(),'November') or contains(text(),'December')]"
+					+ " | //div[contains(text(),'until') or contains(text(),'till') or contains(text(),'through')]"
+					+ "[contains(text(),'January') or contains(text(),'February') or contains(text(),'March')"
+					+ " or contains(text(),'April') or contains(text(),'May') or contains(text(),'June')"
+					+ " or contains(text(),'July') or contains(text(),'August') or contains(text(),'September')"
+					+ " or contains(text(),'October') or contains(text(),'November') or contains(text(),'December')]");
 
 	private static final By LOGOUT_MENU_ITEM = By.xpath("//*[normalize-space()='Logout' or normalize-space()='Log Out']"
 			+ " | //*[@tabindex='0' and contains(normalize-space(.), 'Logout')]");

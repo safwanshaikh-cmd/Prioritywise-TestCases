@@ -1,0 +1,10 @@
+============================================================
+Test Log: SubscriptionManagementTests.TC399_VerifyCanSelectPlanAfterExpiry
+Started: 2026-07-16 10:49:35
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SubscriptionManagementTests_TC399_VerifyCanSelectPlanAfterExpiry_2026_07_16_10_49_35.log
+============================================================
+========== TEST STARTED: TC_399: Can Select Plan After Expiry ==========
+STEP 1: Open the Subscription page
+STEP 2: Verify the plan is expired
+INFO  TC_399 - STEP 2: Plan status: Plan Deactivated | Expired: true
+STEP 3: Verify plan selection is allowed after expiry

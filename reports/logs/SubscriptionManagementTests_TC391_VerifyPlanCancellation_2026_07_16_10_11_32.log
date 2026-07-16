@@ -1,0 +1,8 @@
+============================================================
+Test Log: SubscriptionManagementTests.TC391_VerifyPlanCancellation
+Started: 2026-07-16 10:11:32
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SubscriptionManagementTests_TC391_VerifyPlanCancellation_2026_07_16_10_11_32.log
+============================================================
+========== TEST STARTED: TC_391: Plan Cancellation ==========
+STEP 1: Open the Subscription page
+STEP 2: Verify an active plan exists before cancellation

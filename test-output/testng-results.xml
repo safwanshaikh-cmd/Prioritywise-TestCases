@@ -2,40 +2,40 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-07-15T17:09:13 GST" name="Default suite" finished-at="2026-07-15T17:11:59 GST" duration-ms="166015">
+  <suite started-at="2026-07-16T10:54:29 GST" name="Default suite" finished-at="2026-07-16T10:56:09 GST" duration-ms="100391">
     <groups>
       <group name="functional">
-        <method signature="SubscriptionManagementTests.TC393_VerifyCancelCanBeDeclined()[pri:393, instance:tests.SubscriptionManagementTests@185a6e9]" name="TC393_VerifyCancelCanBeDeclined" class="tests.SubscriptionManagementTests"/>
+        <method signature="SubscriptionManagementTests.TC403_VerifyStateAfterRelogin()[pri:403, instance:tests.SubscriptionManagementTests@185a6e9]" name="TC403_VerifyStateAfterRelogin" class="tests.SubscriptionManagementTests"/>
       </group> <!-- functional -->
       <group name="ui">
-        <method signature="SubscriptionManagementTests.TC393_VerifyCancelCanBeDeclined()[pri:393, instance:tests.SubscriptionManagementTests@185a6e9]" name="TC393_VerifyCancelCanBeDeclined" class="tests.SubscriptionManagementTests"/>
+        <method signature="SubscriptionManagementTests.TC403_VerifyStateAfterRelogin()[pri:403, instance:tests.SubscriptionManagementTests@185a6e9]" name="TC403_VerifyStateAfterRelogin" class="tests.SubscriptionManagementTests"/>
       </group> <!-- ui -->
       <group name="consumer">
-        <method signature="SubscriptionManagementTests.TC393_VerifyCancelCanBeDeclined()[pri:393, instance:tests.SubscriptionManagementTests@185a6e9]" name="TC393_VerifyCancelCanBeDeclined" class="tests.SubscriptionManagementTests"/>
+        <method signature="SubscriptionManagementTests.TC403_VerifyStateAfterRelogin()[pri:403, instance:tests.SubscriptionManagementTests@185a6e9]" name="TC403_VerifyStateAfterRelogin" class="tests.SubscriptionManagementTests"/>
       </group> <!-- consumer -->
     </groups>
-    <test started-at="2026-07-15T17:09:13 GST" name="Default test" finished-at="2026-07-15T17:11:59 GST" duration-ms="166015">
+    <test started-at="2026-07-16T10:54:29 GST" name="Default test" finished-at="2026-07-16T10:56:09 GST" duration-ms="100391">
       <class name="tests.SubscriptionManagementTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-15T17:09:17 GST" name="setup" finished-at="2026-07-15T17:10:03 GST" duration-ms="45559" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-16T10:54:33 GST" name="setup" finished-at="2026-07-16T10:54:51 GST" duration-ms="18205" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="setup(java.lang.reflect.Method)[pri:0, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-15T17:10:03 GST" name="setup" finished-at="2026-07-15T17:10:53 GST" duration-ms="50047" status="PASS">
+        <test-method is-config="true" signature="setup(java.lang.reflect.Method)[pri:0, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-16T10:54:51 GST" name="setup" finished-at="2026-07-16T10:55:33 GST" duration-ms="41812" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void tests.SubscriptionManagementTests.TC393_VerifyCancelCanBeDeclined()]]>
+                <![CDATA[public void tests.SubscriptionManagementTests.TC403_VerifyStateAfterRelogin()]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC393_VerifyCancelCanBeDeclined()[pri:393, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-15T17:10:53 GST" name="TC393_VerifyCancelCanBeDeclined" description="TC_393: Verify cancel action can be declined" finished-at="2026-07-15T17:11:59 GST" duration-ms="65936" status="PASS">
+        <test-method signature="TC403_VerifyStateAfterRelogin()[pri:403, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-16T10:55:33 GST" name="TC403_VerifyStateAfterRelogin" description="TC_403: Verify state after re-login" finished-at="2026-07-16T10:56:08 GST" duration-ms="35847" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC393_VerifyCancelCanBeDeclined -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-15T17:11:59 GST" name="tearDown" finished-at="2026-07-15T17:11:59 GST" duration-ms="493" status="PASS">
+        </test-method> <!-- TC403_VerifyStateAfterRelogin -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-16T10:56:09 GST" name="tearDown" finished-at="2026-07-16T10:56:09 GST" duration-ms="554" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

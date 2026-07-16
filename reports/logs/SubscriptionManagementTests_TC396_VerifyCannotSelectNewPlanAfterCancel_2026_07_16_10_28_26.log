@@ -1,0 +1,13 @@
+============================================================
+Test Log: SubscriptionManagementTests.TC396_VerifyCannotSelectNewPlanAfterCancel
+Started: 2026-07-16 10:28:26
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SubscriptionManagementTests_TC396_VerifyCannotSelectNewPlanAfterCancel_2026_07_16_10_28_26.log
+============================================================
+========== TEST STARTED: TC_396: Cannot Select New Plan After Cancel ==========
+STEP 1: Open the Subscription page
+STEP 2: Verify the cancel button is not available
+INFO  TC_396 - STEP 2: Cancel button visible: false
+INFO  TC_396: User cannot cancel again
+========== TEST PASSED: TC_396 ==========
+============================================================
+Ended: 2026-07-16 10:29:02

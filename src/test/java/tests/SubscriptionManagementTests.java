@@ -16,15 +16,13 @@ import utils.LoggerUtils;
 /**
  * Subscription management automation tests.
  *
- * Test Coverage: TC_388 - TC_403
- * Focus: Active plan display and verification, plan cancellation
- * workflow, access until expiry, plan selection restrictions, and
- * post-cancellation state persistence.
+ * Test Coverage: TC_388 - TC_403 Focus: Active plan display and verification,
+ * plan cancellation workflow, access until expiry, plan selection restrictions,
+ * and post-cancellation state persistence.
  *
- * Account selection by test priority (resolved inside SubscriptionPage):
- *  - TC_391 to TC_393: subscription activation account
- *  - TC_394 to TC_403: active subscription account
- *  - otherwise:        consumer account
+ * Account selection by test priority (resolved inside SubscriptionPage): -
+ * TC_391 to TC_393: subscription activation account - TC_394 to TC_403: active
+ * subscription account - otherwise: consumer account
  */
 public class SubscriptionManagementTests extends BaseTest {
 
@@ -41,10 +39,10 @@ public class SubscriptionManagementTests extends BaseTest {
 	}
 
 	/**
-	 * Resolve the test-case number from a {@code TC<NNN>_} method name so
-	 * the session account can be selected by test case id without re-reading
-	 * the {@code @Test} annotation. Returns {@code 0} when the name does
-	 * not carry a test-case number.
+	 * Resolve the test-case number from a {@code TC<NNN>_} method name so the
+	 * session account can be selected by test case id without re-reading the
+	 * {@code @Test} annotation. Returns {@code 0} when the name does not carry a
+	 * test-case number.
 	 */
 	private static int resolveTestPriority(String methodName) {
 		String digits = methodName.replaceAll("^TC(\\d+)_.*$", "$1");
@@ -58,12 +56,12 @@ public class SubscriptionManagementTests extends BaseTest {
 	// ==================== ACTIVE PLAN VERIFICATION ====================
 
 	/**
-	 * TC_388: Active subscription plan is displayed.
-	 * Test Flow: Open Subscription page -> Verify page and plan details render.
-	 * Expected: An active plan with a non-blank plan name is shown.
+	 * TC_388: Active subscription plan is displayed. Test Flow: Open Subscription
+	 * page -> Verify page and plan details render. Expected: An active plan with a
+	 * non-blank plan name is shown.
 	 */
-	@Test(priority = 388, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_388: Verify active subscription plan is displayed")
+	@Test(priority = 388, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_388: Verify active subscription plan is displayed")
 	public void TC388_VerifyActivePlanDisplayed() {
 		LoggerUtils.logTestStart("TC_388: Active Plan Displayed");
 
@@ -93,12 +91,12 @@ public class SubscriptionManagementTests extends BaseTest {
 	}
 
 	/**
-	 * TC_389: Plan status is shown as Active.
-	 * Test Flow: Open Subscription page -> Read plan name/duration/expiry -> Verify status.
-	 * Expected: Plan name contains 'Premium' or 'Active'.
+	 * TC_389: Plan status is shown as Active. Test Flow: Open Subscription page ->
+	 * Read plan name/duration/expiry -> Verify status. Expected: Plan name contains
+	 * 'Premium' or 'Active'.
 	 */
-	@Test(priority = 389, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_389: Verify plan status is shown correctly")
+	@Test(priority = 389, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_389: Verify plan status is shown correctly")
 	public void TC389_VerifyPlanStatusCorrect() {
 		LoggerUtils.logTestStart("TC_389: Plan Status Correct");
 
@@ -113,8 +111,8 @@ public class SubscriptionManagementTests extends BaseTest {
 			String planName = subscription.getPlanName();
 			String planDuration = subscription.getPlanDuration();
 			String expiryDays = subscription.getPlanExpiryDate();
-			LoggerUtils.logInfo("TC_389 - STEP 2: Plan: " + planName + " | Duration: " + planDuration
-					+ " | Expiry: " + expiryDays);
+			LoggerUtils.logInfo(
+					"TC_389 - STEP 2: Plan: " + planName + " | Duration: " + planDuration + " | Expiry: " + expiryDays);
 
 			LoggerUtils.logStep(3, "Verify the plan status reads as Active");
 			Assert.assertTrue(planName.contains("Premium") || planName.contains("Active"),
@@ -133,12 +131,12 @@ public class SubscriptionManagementTests extends BaseTest {
 	}
 
 	/**
-	 * TC_390: Cancel button is visible for an active plan.
-	 * Test Flow: Open Subscription page -> Verify page and active plan present.
-	 * Expected: An active plan is shown, enabling the cancel action.
+	 * TC_390: Cancel button is visible for an active plan. Test Flow: Open
+	 * Subscription page -> Verify page and active plan present. Expected: An active
+	 * plan is shown, enabling the cancel action.
 	 */
-	@Test(priority = 390, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_390: Verify cancel button is visible for active plans")
+	@Test(priority = 390, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_390: Verify cancel button is visible for active plans")
 	public void TC390_VerifyCancelButtonVisible() {
 		LoggerUtils.logTestStart("TC_390: Cancel Button Visible");
 
@@ -168,38 +166,29 @@ public class SubscriptionManagementTests extends BaseTest {
 	// ==================== PLAN CANCELLATION ====================
 
 	/**
-	 * TC_391: User can cancel the subscription.
-	 * Test Flow: Open Subscription page -> Cancel the plan -> Verify plan removed.
-	 * Expected: Plan details are removed after cancellation.
+	 * TC_391: Cancel action can be declined (plan remains active). Test Flow: Open
+	 * Subscription page -> Verify the plan stays active (flow abortable). Expected:
+	 * Plan remains active, so the cancellation can be aborted.
 	 */
-	@Test(priority = 391, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_391: Verify user can cancel subscription")
-	public void TC391_VerifyPlanCancellation() {
-		LoggerUtils.logTestStart("TC_391: Plan Cancellation");
+	@Test(priority = 391, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_391: Verify cancel action can be declined")
+	public void TC391_VerifyCancelCanBeDeclined() {
+		LoggerUtils.logTestStart("TC_391: Cancel Can Be Declined");
 
 		try {
 			LoggerUtils.logStep(1, "Open the Subscription page");
 			subscription.open();
 
-			LoggerUtils.logStep(2, "Verify an active plan exists before cancellation");
+			LoggerUtils.logStep(2, "Verify the plan remains active (cancellation is abortable)");
 			if (!subscription.isPlanNameDisplayed()) {
-				throw new SkipException("TC_391: Test requires an active subscription to cancel");
+				throw new SkipException("TC_391: Test requires an active subscription");
 			}
 			String planNameBefore = subscription.getPlanName();
-			LoggerUtils.logInfo("TC_391 - STEP 2: Plan before cancellation: " + planNameBefore);
+			boolean isPlanVisible = subscription.isPlanNameDisplayed();
+			LoggerUtils.logInfo("TC_391 - STEP 2: Plan visible: " + isPlanVisible + " | Plan: " + planNameBefore);
+			Assert.assertTrue(isPlanVisible, "TC_391: Plan should remain active, so cancellation can be aborted");
 
-			LoggerUtils.logStep(3, "Cancel the active plan");
-			subscription.cancelActivePlan();
-
-			LoggerUtils.logStep(4, "Verify the plan was cancelled");
-			boolean planCancelled = !subscription.isPlanNameDisplayed();
-			String planNameAfter = subscription.getPlanName();
-			LoggerUtils.logInfo("TC_391 - STEP 4: Plan cancelled: " + planCancelled);
-			Assert.assertTrue(planCancelled,
-					"TC_391: Plan should be marked as cancelled after the cancellation flow. Before: '"
-							+ planNameBefore + "', after: '" + planNameAfter + "'");
-
-			LoggerUtils.logInfo("TC_391: Plan successfully cancelled");
+			LoggerUtils.logInfo("TC_391: Plan remains active (cancellation can be aborted)");
 
 			LoggerUtils.logTestEnd("TC_391", "PASSED");
 		} catch (SkipException e) {
@@ -211,12 +200,12 @@ public class SubscriptionManagementTests extends BaseTest {
 	}
 
 	/**
-	 * TC_392: Confirmation popup is shown for the cancel action.
-	 * Test Flow: Open Subscription page -> Verify active plan present (cancel reachable).
-	 * Expected: An active plan is shown, so the cancel confirmation flow is reachable.
+	 * TC_392: Confirmation popup is shown for the cancel action. Test Flow: Open
+	 * Subscription page -> Verify active plan present (cancel reachable). Expected:
+	 * An active plan is shown, so the cancel confirmation flow is reachable.
 	 */
-	@Test(priority = 392, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_392: Verify confirmation popup for cancel action")
+	@Test(priority = 392, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_392: Verify confirmation popup for cancel action")
 	public void TC392_VerifyCancelConfirmationPopup() {
 		LoggerUtils.logTestStart("TC_392: Cancel Confirmation Popup");
 
@@ -248,29 +237,38 @@ public class SubscriptionManagementTests extends BaseTest {
 	}
 
 	/**
-	 * TC_393: Cancel action can be declined (plan remains active).
-	 * Test Flow: Open Subscription page -> Verify the plan stays active (flow abortable).
-	 * Expected: Plan remains active, so the cancellation can be aborted.
+	 * TC_393: User can cancel the subscription. Test Flow: Open Subscription page
+	 * -> Cancel the plan -> Verify plan removed. Expected: Plan details are removed
+	 * after cancellation.
 	 */
-	@Test(priority = 393, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_393: Verify cancel action can be declined")
-	public void TC393_VerifyCancelCanBeDeclined() {
-		LoggerUtils.logTestStart("TC_393: Cancel Can Be Declined");
+	@Test(priority = 393, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_393: Verify user can cancel subscription")
+	public void TC393_VerifyPlanCancellation() {
+		LoggerUtils.logTestStart("TC_393: Plan Cancellation");
 
 		try {
 			LoggerUtils.logStep(1, "Open the Subscription page");
 			subscription.open();
 
-			LoggerUtils.logStep(2, "Verify the plan remains active (cancellation is abortable)");
+			LoggerUtils.logStep(2, "Verify an active plan exists before cancellation");
 			if (!subscription.isPlanNameDisplayed()) {
-				throw new SkipException("TC_393: Test requires an active subscription");
+				throw new SkipException("TC_393: Test requires an active subscription to cancel");
 			}
 			String planNameBefore = subscription.getPlanName();
-			boolean isPlanVisible = subscription.isPlanNameDisplayed();
-			LoggerUtils.logInfo("TC_393 - STEP 2: Plan visible: " + isPlanVisible + " | Plan: " + planNameBefore);
-			Assert.assertTrue(isPlanVisible, "TC_393: Plan should remain active, so cancellation can be aborted");
+			LoggerUtils.logInfo("TC_393 - STEP 2: Plan before cancellation: " + planNameBefore);
 
-			LoggerUtils.logInfo("TC_393: Plan remains active (cancellation can be aborted)");
+			LoggerUtils.logStep(3, "Cancel the active plan");
+			subscription.cancelActivePlan();
+
+			LoggerUtils.logStep(4, "Verify the plan was cancelled");
+			boolean planCancelled = !subscription.isPlanNameDisplayed();
+			String planNameAfter = subscription.getPlanName();
+			LoggerUtils.logInfo("TC_393 - STEP 4: Plan cancelled: " + planCancelled);
+			Assert.assertTrue(planCancelled,
+					"TC_393: Plan should be marked as cancelled after the cancellation flow. Before: '" + planNameBefore
+							+ "', after: '" + planNameAfter + "'");
+
+			LoggerUtils.logInfo("TC_393: Plan successfully cancelled");
 
 			LoggerUtils.logTestEnd("TC_393", "PASSED");
 		} catch (SkipException e) {
@@ -284,12 +282,12 @@ public class SubscriptionManagementTests extends BaseTest {
 	// ==================== POST-CANCELLATION VERIFICATION ====================
 
 	/**
-	 * TC_394: Plan status after cancellation.
-	 * Test Flow: Open Subscription page -> Cancel if not already cancelled -> Verify cancelled status.
-	 * Expected: Plan status shows Cancelled / Active till expiry.
+	 * TC_394: Plan status after cancellation. Test Flow: Open Subscription page ->
+	 * Cancel if not already cancelled -> Verify cancelled status. Expected: Plan
+	 * status shows Cancelled / Active till expiry.
 	 */
-	@Test(priority = 394, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_394: Verify plan status after cancellation")
+	@Test(priority = 394, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_394: Verify plan status after cancellation")
 	public void TC394_VerifyStatusAfterCancellation() {
 		LoggerUtils.logTestStart("TC_394: Status After Cancellation");
 
@@ -326,12 +324,12 @@ public class SubscriptionManagementTests extends BaseTest {
 	}
 
 	/**
-	 * TC_395: User retains access until expiry.
-	 * Test Flow: Open Subscription page -> Verify the cancel button is not available.
-	 * Expected: Cancel button NOT available for a cancelled/expired plan.
+	 * TC_395: User retains access until expiry. Test Flow: Open Subscription page
+	 * -> Verify the cancel button is not available. Expected: Cancel button NOT
+	 * available for a cancelled/expired plan.
 	 */
-	@Test(priority = 395, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_395: Verify user retains access till expiry")
+	@Test(priority = 395, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_395: Verify user retains access till expiry")
 	public void TC395_VerifyAccessUntilExpiry() {
 		LoggerUtils.logTestStart("TC_395: Access Until Expiry");
 
@@ -357,12 +355,12 @@ public class SubscriptionManagementTests extends BaseTest {
 	}
 
 	/**
-	 * TC_396: User cannot select a new plan after cancellation.
-	 * Test Flow: Open Subscription page -> Verify cancel button not available.
-	 * Expected: Cancel button NOT available (new plan selection blocked post-cancel).
+	 * TC_396: User cannot select a new plan after cancellation. Test Flow: Open
+	 * Subscription page -> Verify cancel button not available. Expected: Cancel
+	 * button NOT available (new plan selection blocked post-cancel).
 	 */
-	@Test(priority = 396, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_396: Verify user cannot select new plan after cancel")
+	@Test(priority = 396, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_396: Verify user cannot select new plan after cancel")
 	public void TC396_VerifyCannotSelectNewPlanAfterCancel() {
 		LoggerUtils.logTestStart("TC_396: Cannot Select New Plan After Cancel");
 
@@ -388,12 +386,12 @@ public class SubscriptionManagementTests extends BaseTest {
 	}
 
 	/**
-	 * TC_397: UI disables plan selection after cancellation.
-	 * Test Flow: Open Subscription page -> Verify cancel button not available.
-	 * Expected: Cancel button NOT available (plan selection UI disabled).
+	 * TC_397: UI disables plan selection after cancellation. Test Flow: Open
+	 * Subscription page -> Verify cancel button not available. Expected: Cancel
+	 * button NOT available (plan selection UI disabled).
 	 */
-	@Test(priority = 397, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_397: Verify UI disables plan selection")
+	@Test(priority = 397, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_397: Verify UI disables plan selection")
 	public void TC397_VerifyPlanSelectionUIDisabled() {
 		LoggerUtils.logTestStart("TC_397: Plan Selection UI Disabled");
 
@@ -419,12 +417,12 @@ public class SubscriptionManagementTests extends BaseTest {
 	}
 
 	/**
-	 * TC_398: Backend restricts new subscription after cancellation.
-	 * Test Flow: Open Subscription page -> Verify cancel button not available.
-	 * Expected: Cancel button NOT available (backend restricts new subscription).
+	 * TC_398: Backend restricts new subscription after cancellation. Test Flow:
+	 * Open Subscription page -> Verify cancel button not available. Expected:
+	 * Cancel button NOT available (backend restricts new subscription).
 	 */
-	@Test(priority = 398, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_398: Verify backend restricts new subscription")
+	@Test(priority = 398, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_398: Verify backend restricts new subscription")
 	public void TC398_VerifyApiRestrictionAfterCancel() {
 		LoggerUtils.logTestStart("TC_398: API Restriction After Cancel");
 
@@ -450,12 +448,12 @@ public class SubscriptionManagementTests extends BaseTest {
 	}
 
 	/**
-	 * TC_399: User can select a new plan after expiry.
-	 * Test Flow: Open Subscription page -> Verify plan is expired -> Verify plan selection allowed.
-	 * Expected: Plan selection is allowed for an expired plan.
+	 * TC_399: User can select a new plan after expiry. Test Flow: Open Subscription
+	 * page -> Verify plan is expired -> Verify plan selection allowed. Expected:
+	 * Plan selection is allowed for an expired plan.
 	 */
-	@Test(priority = 399, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_399: Verify user can select new plan after expiry")
+	@Test(priority = 399, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_399: Verify user can select new plan after expiry")
 	public void TC399_VerifyCanSelectPlanAfterExpiry() {
 		LoggerUtils.logTestStart("TC_399: Can Select Plan After Expiry");
 
@@ -488,12 +486,12 @@ public class SubscriptionManagementTests extends BaseTest {
 	}
 
 	/**
-	 * TC_401: User cannot cancel twice.
-	 * Test Flow: Open Subscription page -> Verify cancel button not available.
-	 * Expected: Cancel button NOT available (second cancellation blocked).
+	 * TC_401: User cannot cancel twice. Test Flow: Open Subscription page -> Verify
+	 * cancel button not available. Expected: Cancel button NOT available (second
+	 * cancellation blocked).
 	 */
-	@Test(priority = 401, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_401: Verify user cannot cancel twice")
+	@Test(priority = 401, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_401: Verify user cannot cancel twice")
 	public void TC401_VerifyCannotCancelTwice() {
 		LoggerUtils.logTestStart("TC_401: Cannot Cancel Twice");
 
@@ -519,12 +517,12 @@ public class SubscriptionManagementTests extends BaseTest {
 	}
 
 	/**
-	 * TC_402: State persists after a page refresh.
-	 * Test Flow: Open Subscription page -> Verify cancel button not available.
-	 * Expected: Cancel button NOT available (status remains correct after refresh).
+	 * TC_402: State persists after a page refresh. Test Flow: Open Subscription
+	 * page -> Verify cancel button not available. Expected: Cancel button NOT
+	 * available (status remains correct after refresh).
 	 */
-	@Test(priority = 402, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_402: Verify state persists after refresh")
+	@Test(priority = 402, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_402: Verify state persists after refresh")
 	public void TC402_VerifyStatePersistsAfterRefresh() {
 		LoggerUtils.logTestStart("TC_402: State Persists After Refresh");
 
@@ -550,12 +548,12 @@ public class SubscriptionManagementTests extends BaseTest {
 	}
 
 	/**
-	 * TC_403: State after re-login.
-	 * Test Flow: Open Subscription page -> Verify cancel button not available.
-	 * Expected: Cancel button NOT available (correct status retained after re-login).
+	 * TC_403: State after re-login. Test Flow: Open Subscription page -> Verify
+	 * cancel button not available. Expected: Cancel button NOT available (correct
+	 * status retained after re-login).
 	 */
-	@Test(priority = 403, groups = {TestConstants.GROUP_FUNCTIONAL,TestConstants.GROUP_UI,TestConstants.GROUP_CONSUMER}, retryAnalyzer = RetryAnalyzer.class,
-			description = "TC_403: Verify state after re-login")
+	@Test(priority = 403, groups = { TestConstants.GROUP_FUNCTIONAL, TestConstants.GROUP_UI,
+			TestConstants.GROUP_CONSUMER }, retryAnalyzer = RetryAnalyzer.class, description = "TC_403: Verify state after re-login")
 	public void TC403_VerifyStateAfterRelogin() {
 		LoggerUtils.logTestStart("TC_403: State After Relogin");
 
@@ -580,5 +578,4 @@ public class SubscriptionManagementTests extends BaseTest {
 		}
 	}
 
-	// ==================== LOCAL VALIDATION HELPERS — see SubscriptionPage ====================
 }

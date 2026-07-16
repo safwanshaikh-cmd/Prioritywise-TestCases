@@ -1,0 +1,10 @@
+============================================================
+Test Log: SubscriptionManagementTests.TC394_VerifyStatusAfterCancellation
+Started: 2026-07-16 10:21:18
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SubscriptionManagementTests_TC394_VerifyStatusAfterCancellation_2026_07_16_10_21_18.log
+============================================================
+========== TEST STARTED: TC_394: Status After Cancellation ==========
+STEP 1: Open the Subscription page
+STEP 2: Verify a subscription plan is present
+INFO  TC_394 - STEP 2: Plan before: Active Plan
+STEP 3: Ensure the plan is cancelled

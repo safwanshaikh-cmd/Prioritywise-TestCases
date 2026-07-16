@@ -1,0 +1,13 @@
+============================================================
+Test Log: SubscriptionManagementTests.TC402_VerifyStatePersistsAfterRefresh
+Started: 2026-07-16 10:53:39
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SubscriptionManagementTests_TC402_VerifyStatePersistsAfterRefresh_2026_07_16_10_53_39.log
+============================================================
+========== TEST STARTED: TC_402: State Persists After Refresh ==========
+STEP 1: Open the Subscription page
+STEP 2: Verify the cancel button is not available
+INFO  TC_402 - STEP 2: Cancel button visible: false
+INFO  TC_402: Status remains correct
+========== TEST PASSED: TC_402 ==========
+============================================================
+Ended: 2026-07-16 10:54:15

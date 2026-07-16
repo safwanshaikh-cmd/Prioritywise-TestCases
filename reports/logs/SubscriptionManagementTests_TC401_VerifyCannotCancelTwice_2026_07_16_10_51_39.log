@@ -1,0 +1,13 @@
+============================================================
+Test Log: SubscriptionManagementTests.TC401_VerifyCannotCancelTwice
+Started: 2026-07-16 10:51:39
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SubscriptionManagementTests_TC401_VerifyCannotCancelTwice_2026_07_16_10_51_39.log
+============================================================
+========== TEST STARTED: TC_401: Cannot Cancel Twice ==========
+STEP 1: Open the Subscription page
+STEP 2: Verify the cancel button is not available
+INFO  TC_401 - STEP 2: Cancel button visible: false
+INFO  TC_401: Second cancellation not allowed
+========== TEST PASSED: TC_401 ==========
+============================================================
+Ended: 2026-07-16 10:52:15

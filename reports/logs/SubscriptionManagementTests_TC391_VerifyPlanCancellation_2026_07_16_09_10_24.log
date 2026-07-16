@@ -1,0 +1,14 @@
+============================================================
+Test Log: SubscriptionManagementTests.TC391_VerifyPlanCancellation
+Started: 2026-07-16 09:10:24
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\SubscriptionManagementTests_TC391_VerifyPlanCancellation_2026_07_16_09_10_24.log
+============================================================
+========== TEST STARTED: TC_391: Plan Cancellation ==========
+STEP 1: Open the Subscription page
+STEP 2: Verify an active plan exists before cancellation
+INFO  TC_391 - STEP 2: Plan before cancellation: Active Plan
+STEP 3: Cancel the active plan
+WARN  TC_391 - Test failed: Cancel flow stalled: reason-selection screen did not appear after clicking Continue to Cancel
+[SKIP] SubscriptionManagementTests :: TC391_VerifyPlanCancellation
+============================================================
+Ended: 2026-07-16 09:11:41

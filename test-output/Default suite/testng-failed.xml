@@ -8,7 +8,7 @@
           <include name="setup"/>
           <include name="tearDown"/>
           <include name="setup"/>
-          <include name="TC393_VerifyCancelCanBeDeclined"/>
+          <include name="TC399_VerifyCanSelectPlanAfterExpiry"/>
         </methods>
       </class> <!-- tests.SubscriptionManagementTests -->
     </classes>
