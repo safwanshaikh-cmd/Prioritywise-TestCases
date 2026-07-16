@@ -1,0 +1,17 @@
+============================================================
+Test Log: TransactionsTests.TC429_VerifyEmptySearchShowsDefaultList
+Started: 2026-07-16 13:11:03
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\TransactionsTests_TC429_VerifyEmptySearchShowsDefaultList_2026_07_16_13_11_03.log
+============================================================
+========== TEST STARTED: TC_429: Empty Search Shows Default List ==========
+STEP 1: Log in as registered user and navigate to the Transactions page
+INFO  Logged in as registered user
+INFO  Navigated to Transactions page
+INFO  Side menu remained open after navigation; continuing because Transaction History was reached
+STEP 2: Capture the initial transaction count
+INFO  TC_429 - STEP 2: initial transaction count: 1
+STEP 3: Clear the search input and verify the list is restored
+INFO  TC_429 - STEP 3: after-clear transaction count: 1
+========== TEST PASSED: TC_429 ==========
+============================================================
+Ended: 2026-07-16 13:11:37

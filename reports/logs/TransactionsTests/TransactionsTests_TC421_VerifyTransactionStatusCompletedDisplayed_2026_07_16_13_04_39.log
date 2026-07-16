@@ -1,0 +1,16 @@
+============================================================
+Test Log: TransactionsTests.TC421_VerifyTransactionStatusCompletedDisplayed
+Started: 2026-07-16 13:04:39
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\TransactionsTests_TC421_VerifyTransactionStatusCompletedDisplayed_2026_07_16_13_04_39.log
+============================================================
+========== TEST STARTED: TC_421: Status Badge Displayed ==========
+STEP 1: Log in as registered user and navigate to the Transactions page
+INFO  Logged in as registered user
+INFO  Navigated to Transactions page
+INFO  Side menu remained open after navigation; continuing because Transaction History was reached
+STEP 2: Verify the status badge on the first card
+INFO  TC_421 - STEP 2: status='Completed'
+INFO  TC_421: Status badge valid (status='Completed')
+========== TEST PASSED: TC_421 ==========
+============================================================
+Ended: 2026-07-16 13:05:11

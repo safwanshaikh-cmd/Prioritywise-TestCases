@@ -1,0 +1,14 @@
+============================================================
+Test Log: UploaderTests.TC458_ChapterSequenceOrder
+Started: 2026-07-16 16:13:22
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC458_ChapterSequenceOrder_2026_07_16_16_13_22.log
+============================================================
+========== TEST STARTED: TC_458: Chapter Sequence Order ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_458: Sequential chapter upload flow verified after saving valid book details with images
+========== TEST PASSED: TC_458 ==========
+============================================================
+Ended: 2026-07-16 16:14:52

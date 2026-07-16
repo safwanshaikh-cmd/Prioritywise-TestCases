@@ -1,0 +1,18 @@
+============================================================
+Test Log: TransactionsTests.TC439_VerifySpecialCharacterSearch
+Started: 2026-07-16 13:12:44
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\TransactionsTests_TC439_VerifySpecialCharacterSearch_2026_07_16_13_12_44.log
+============================================================
+========== TEST STARTED: TC_439: Special-Character Search ==========
+STEP 1: Log in as registered user and navigate to the Transactions page
+INFO  Logged in as registered user
+INFO  Navigated to Transactions page
+INFO  Side menu remained open after navigation; continuing because Transaction History was reached
+STEP 2: Search using special characters and verify the page stays responsive
+INFO  TC_439 - STEP 2: searched with chars='@#$%'
+STEP 3: Verify either the no-data message or an empty result set is rendered
+INFO  TC_439 - STEP 3: noDataMessage=true, resultCount=0
+INFO  TC_439: Special character search handled without crash
+========== TEST PASSED: TC_439 ==========
+============================================================
+Ended: 2026-07-16 13:13:32

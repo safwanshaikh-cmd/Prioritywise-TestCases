@@ -1,26 +1,44 @@
 package pages;
 
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
-import java.util.logging.Logger;
+import java.util.UUID;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.SkipException;
 
 import base.BasePage;
+import utils.ConfigReader;
+import utils.LoggerUtils;
 
 /**
  * Page object for Upload functionality. Handles book upload, chapter upload,
- * and related operations.
+ * listing/search/delete, and the file-resolution helpers used by the upload
+ * test data set. Follows the same conventions as {@code ChapterPage} /
+ * {@code ConsumerBookDetailsPage}: no {@code By} fields are declared inside
+ * tests, helpers return {@code boolean} / {@code String} / {@code int} /
+ * {@code List<String>}, and assertions live in the test class.
  */
 public class UploadPage extends BasePage {
 
-	private static final Logger LOGGER = Logger.getLogger(UploadPage.class.getName());
 	private final WebDriverWait pageWait;
+	private final LoginPage login;
+	private final DashboardPage dashboard;
+	private final CreatorSettingsPage creatorSettings;
+	private final ForCreatorPage forCreatorPage;
 
 	// Locators
 	private static final By UPLOAD_PAGE_READY = By.xpath(
@@ -99,9 +117,144 @@ public class UploadPage extends BasePage {
 	private static final By NO_DATA_MESSAGE = By.xpath(
 			"//*[contains(text(), 'No data') or contains(text(), 'No results') or contains(text(), 'Not found')]");
 
+	// Inline form validation error labels (one per form field). The error
+	// labels carry a data-testid like text_<field>_error and are rendered in
+	// red under each field when validation fails (e.g. text_language_error,
+	// text_country_error, text_summary_error). This locator matches the
+	// real DOM shape, unlike the broken `div.r-howw7u` selector used by
+	// CreatorSettingsPage.getValidationMessages.
+	private static final By INLINE_VALIDATION_ERRORS = By.xpath(
+			"//*[contains(@data-testid,'text_') and contains(@data-testid,'_error')]");
+
 	public UploadPage(WebDriver driver) {
 		super(driver);
 		this.pageWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		this.login = new LoginPage(driver);
+		this.dashboard = new DashboardPage(driver);
+		this.creatorSettings = new CreatorSettingsPage(driver);
+		this.forCreatorPage = new ForCreatorPage(driver);
+	}
+
+	// =================== Null-safe + wait helpers (mirrors ChapterPage / ConsumerBookDetailsPage) ===================
+
+	/** Returns {@code ""} for null inputs. */
+	public String safeString(String value) {
+		return value == null ? "" : value;
+	}
+
+	/** Trims + lower-cases a string. Returns {@code ""} on null. */
+	public String safeLowerUrl(String value) {
+		return safeString(value).toLowerCase(Locale.ROOT);
+	}
+
+	/**
+	 * Returns the current page URL lower-cased, or {@code ""} on failure.
+	 * Mirrors {@code ConsumerBookDetailsPage.getCurrentUrlSafely}.
+	 */
+	public String getCurrentUrlSafely() {
+		try {
+			String url = driver.getCurrentUrl();
+			return url == null ? "" : url.toLowerCase(Locale.ROOT);
+		} catch (Exception e) {
+			return "";
+		}
+	}
+
+	/** Sleep that rethrows {@link InterruptedException} as a runtime exception. */
+	public void waitQuietly(long millis) {
+		try {
+			Thread.sleep(millis);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			throw new RuntimeException("Interrupted while waiting " + millis + "ms", e);
+		}
+	}
+
+	/**
+	 * Open a new browser tab via JavaScript and switch the driver focus to it.
+	 * Returns the new tab's window handle. Mirrors the pattern used in
+	 * {@code ChapterPage.openSecondaryTab}.
+	 */
+	public String openNewTabAndSwitchToIt() {
+		Objects.requireNonNull((JavascriptExecutor) driver).executeScript(
+				"window.open('about:blank','_blank');");
+		List<String> handles = new java.util.ArrayList<>(driver.getWindowHandles());
+		String newHandle = handles.get(handles.size() - 1);
+		driver.switchTo().window(newHandle);
+		return newHandle;
+	}
+
+	// =================== Login helpers (moved from UploaderTests) ===================
+
+	/**
+	 * Log in as the uploader account. Credentials come from
+	 * {@code config.properties} via {@link ConfigReader}; falls back to
+	 * {@code login.validEmail} / {@code login.validPassword} when the uploader
+	 * keys are absent. Throws {@link org.testng.SkipException} if login cannot
+	 * complete, mirroring {@code ChapterPage.loginAsUploader}.
+	 */
+	public void loginAsUploader() {
+		try {
+			String email = ConfigReader.getProperty("uploader.email",
+					ConfigReader.getProperty("login.validEmail"));
+			String password = ConfigReader.getProperty("uploader.password",
+					ConfigReader.getProperty("login.validPassword"));
+			if (email == null || email.isBlank() || password == null || password.isBlank()) {
+				throw new SkipException(
+						"uploader.email / uploader.password missing from config.properties");
+			}
+			login.openLogin();
+			login.loginUser(email, password);
+			login.clickNextAfterLogin();
+			// Wait for the URL to leave the login screen — match the chapter-page
+			// pattern rather than guessing a route segment (the app lands on the
+			// base URL after login, not a /home URL).
+			boolean settled = wait.waitForFunction(currentDriver -> {
+				String url = currentDriver.getCurrentUrl();
+				if (url == null) {
+					return false;
+				}
+				String lower = url.toLowerCase(Locale.ROOT);
+				return !lower.contains("/login") && !lower.contains("signin");
+			}, Duration.ofSeconds(30));
+			if (!settled || login.isOnLoginPage()) {
+				throw new IllegalStateException(
+						"Uploader login flow did not move past the login page");
+			}
+			LoggerUtils.logInfo("Logged in as uploader");
+		} catch (org.testng.SkipException e) {
+			throw e;
+		} catch (Exception e) {
+			throw new org.testng.SkipException("Failed to login as uploader: "
+					+ safeString(e.getMessage()), e);
+		}
+	}
+
+	/**
+	 * Log in as the consumer account. Used by access-control tests that need
+	 * a non-uploader session.
+	 */
+	public void loginAsConsumer() {
+		try {
+			String email = ConfigReader.getProperty("consumer.email",
+					ConfigReader.getProperty("login.validEmail"));
+			String password = ConfigReader.getProperty("consumer.password",
+					ConfigReader.getProperty("login.validPassword"));
+			if (email == null || email.isBlank() || password == null || password.isBlank()) {
+				throw new SkipException(
+						"consumer.email / consumer.password missing from config.properties");
+			}
+			login.openLogin();
+			login.loginUser(email, password);
+			login.clickNextAfterLogin();
+			dashboard.waitForPageReady();
+			LoggerUtils.logInfo("Logged in as consumer");
+		} catch (org.testng.SkipException e) {
+			throw e;
+		} catch (Exception e) {
+			throw new org.testng.SkipException("Failed to login as consumer: "
+					+ safeString(e.getMessage()), e);
+		}
 	}
 
 	/**
@@ -121,9 +274,9 @@ public class UploadPage extends BasePage {
 	public void waitForUploadPageToLoad() {
 		try {
 			pageWait.until(ExpectedConditions.visibilityOfElementLocated(UPLOAD_PAGE_READY));
-			LOGGER.info("Upload page loaded successfully");
+			LoggerUtils.logInfo("Upload page loaded successfully");
 		} catch (Exception e) {
-			LOGGER.warning("Upload page ready state not found: " + e.getMessage());
+			LoggerUtils.logInfo("Upload page ready state not found: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -137,9 +290,9 @@ public class UploadPage extends BasePage {
 			WebElement titleInput = pageWait.until(ExpectedConditions.visibilityOfElementLocated(BOOK_TITLE_INPUT));
 			titleInput.clear();
 			titleInput.sendKeys(title);
-			LOGGER.info("Entered book title: " + title);
+			LoggerUtils.logInfo("Entered book title: " + safeString(title));
 		} catch (Exception e) {
-			LOGGER.severe("Failed to enter book title: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to enter book title: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -151,9 +304,9 @@ public class UploadPage extends BasePage {
 			WebElement descInput = driver.findElement(BOOK_DESCRIPTION_INPUT);
 			descInput.clear();
 			descInput.sendKeys(description);
-			LOGGER.info("Entered book description");
+			LoggerUtils.logInfo("Entered book description");
 		} catch (Exception e) {
-			LOGGER.warning("Failed to enter book description: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to enter book description: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -173,9 +326,9 @@ public class UploadPage extends BasePage {
 				WebElement option = driver.findElement(By.xpath("//*[contains(text(), '" + category + "')]"));
 				option.click();
 			}
-			LOGGER.info("Selected category: " + category);
+			LoggerUtils.logInfo("Selected category: " + safeString(category));
 		} catch (Exception e) {
-			LOGGER.warning("Failed to select category: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to select category: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -194,9 +347,9 @@ public class UploadPage extends BasePage {
 				WebElement option = driver.findElement(By.xpath("//*[contains(text(), '" + language + "')]"));
 				option.click();
 			}
-			LOGGER.info("Selected language: " + language);
+			LoggerUtils.logInfo("Selected language: " + safeString(language));
 		} catch (Exception e) {
-			LOGGER.warning("Failed to select language: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to select language: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -207,10 +360,10 @@ public class UploadPage extends BasePage {
 		try {
 			WebElement coverInput = driver.findElement(COVER_IMAGE_UPLOAD);
 			coverInput.sendKeys(imagePath);
-			LOGGER.info("Uploaded cover image: " + imagePath);
-			Thread.sleep(1000);
+			LoggerUtils.logInfo("Uploaded cover image: " + safeString(imagePath));
+			waitQuietly(1000);
 		} catch (Exception e) {
-			LOGGER.severe("Failed to upload cover image: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to upload cover image: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -221,10 +374,10 @@ public class UploadPage extends BasePage {
 		try {
 			WebElement fileInput = findBookFileInput();
 			fileInput.sendKeys(filePath);
-			LOGGER.info("Uploaded book file: " + filePath);
-			Thread.sleep(1000);
+			LoggerUtils.logInfo("Uploaded book file: " + safeString(filePath));
+			waitQuietly(1000);
 		} catch (Exception e) {
-			LOGGER.severe("Failed to upload book file: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to upload book file: " + safeString(e.getMessage()));
 			throw new RuntimeException("Unable to upload book file: " + filePath, e);
 		}
 	}
@@ -245,7 +398,7 @@ public class UploadPage extends BasePage {
 				}
 				Objects.requireNonNull((org.openqa.selenium.JavascriptExecutor) driver)
 						.executeScript("arguments[0].scrollIntoView({block:'center'}); arguments[0].click();", trigger);
-				Thread.sleep(500);
+				waitQuietly(500);
 
 				List<WebElement> refreshedInputs = driver.findElements(GENERIC_FILE_INPUTS);
 				WebElement newInput = findNewestUsableBookFileInput(existingInputs, refreshedInputs);
@@ -318,10 +471,10 @@ public class UploadPage extends BasePage {
 		try {
 			WebElement submitBtn = pageWait.until(ExpectedConditions.elementToBeClickable(SUBMIT_BUTTON));
 			submitBtn.click();
-			LOGGER.info("Clicked Submit button");
-			Thread.sleep(2000);
+			LoggerUtils.logInfo("Clicked Submit button");
+			waitQuietly(2000);
 		} catch (Exception e) {
-			LOGGER.severe("Failed to click Submit button: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to click Submit button: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -332,10 +485,10 @@ public class UploadPage extends BasePage {
 		try {
 			WebElement cancelBtn = driver.findElement(CANCEL_BUTTON);
 			cancelBtn.click();
-			LOGGER.info("Clicked Cancel button");
-			Thread.sleep(1000);
+			LoggerUtils.logInfo("Clicked Cancel button");
+			waitQuietly(1000);
 		} catch (Exception e) {
-			LOGGER.warning("Failed to click Cancel button: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to click Cancel button: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -349,9 +502,9 @@ public class UploadPage extends BasePage {
 			WebElement titleInput = driver.findElement(CHAPTER_TITLE_INPUT);
 			titleInput.clear();
 			titleInput.sendKeys(title);
-			LOGGER.info("Entered chapter title: " + title);
+			LoggerUtils.logInfo("Entered chapter title: " + safeString(title));
 		} catch (Exception e) {
-			LOGGER.warning("Failed to enter chapter title: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to enter chapter title: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -362,10 +515,10 @@ public class UploadPage extends BasePage {
 		try {
 			WebElement fileInput = driver.findElement(CHAPTER_FILE_UPLOAD);
 			fileInput.sendKeys(filePath);
-			LOGGER.info("Uploaded chapter file: " + filePath);
-			Thread.sleep(1000);
+			LoggerUtils.logInfo("Uploaded chapter file: " + safeString(filePath));
+			waitQuietly(1000);
 		} catch (Exception e) {
-			LOGGER.severe("Failed to upload chapter file: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to upload chapter file: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -377,9 +530,9 @@ public class UploadPage extends BasePage {
 			WebElement seqInput = driver.findElement(CHAPTER_SEQUENCE_INPUT);
 			seqInput.clear();
 			seqInput.sendKeys(String.valueOf(sequence));
-			LOGGER.info("Entered chapter sequence: " + sequence);
+			LoggerUtils.logInfo("Entered chapter sequence: " + sequence);
 		} catch (Exception e) {
-			LOGGER.warning("Failed to enter chapter sequence: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to enter chapter sequence: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -392,7 +545,7 @@ public class UploadPage extends BasePage {
 		try {
 			return driver.findElements(BOOK_CARD);
 		} catch (Exception e) {
-			LOGGER.warning("No uploaded books found: " + e.getMessage());
+			LoggerUtils.logInfo("No uploaded books found: " + safeString(e.getMessage()));
 			return List.of();
 		}
 	}
@@ -413,7 +566,7 @@ public class UploadPage extends BasePage {
 			WebElement titleElement = firstBook.findElement(BOOK_TITLE_IN_CARD);
 			return titleElement.getText().trim();
 		} catch (Exception e) {
-			LOGGER.warning("Could not get book title: " + e.getMessage());
+			LoggerUtils.logInfo("Could not get book title: " + safeString(e.getMessage()));
 			return "";
 		}
 	}
@@ -435,7 +588,7 @@ public class UploadPage extends BasePage {
 				}
 			}
 		} catch (Exception e) {
-			LOGGER.warning("Error checking book in list: " + e.getMessage());
+			LoggerUtils.logInfo("Error checking book in list: " + safeString(e.getMessage()));
 		}
 		return false;
 	}
@@ -448,10 +601,10 @@ public class UploadPage extends BasePage {
 			WebElement firstBook = getUploadedBooks().get(0);
 			WebElement deleteBtn = firstBook.findElement(DELETE_BOOK_BUTTON);
 			deleteBtn.click();
-			LOGGER.info("Clicked delete button on first book");
-			Thread.sleep(1000);
+			LoggerUtils.logInfo("Clicked delete button on first book");
+			waitQuietly(1000);
 		} catch (Exception e) {
-			LOGGER.warning("Failed to delete book: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to delete book: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -465,10 +618,10 @@ public class UploadPage extends BasePage {
 			WebElement searchInput = pageWait.until(ExpectedConditions.visibilityOfElementLocated(SEARCH_INPUT));
 			searchInput.clear();
 			searchInput.sendKeys(bookName);
-			LOGGER.info("Searched for book: " + bookName);
-			Thread.sleep(1000);
+			LoggerUtils.logInfo("Searched for book: " + safeString(bookName));
+			waitQuietly(1000);
 		} catch (Exception e) {
-			LOGGER.severe("Failed to search book: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to search book: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -479,10 +632,10 @@ public class UploadPage extends BasePage {
 		try {
 			WebElement searchInput = driver.findElement(SEARCH_INPUT);
 			searchInput.clear();
-			LOGGER.info("Cleared search input");
-			Thread.sleep(500);
+			LoggerUtils.logInfo("Cleared search input");
+			waitQuietly(500);
 		} catch (Exception e) {
-			LOGGER.warning("Failed to clear search: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to clear search: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -497,10 +650,10 @@ public class UploadPage extends BasePage {
 						categoryFilter);
 				select.selectByVisibleText(category);
 			}
-			LOGGER.info("Selected category filter: " + category);
-			Thread.sleep(500);
+			LoggerUtils.logInfo("Selected category filter: " + safeString(category));
+			waitQuietly(500);
 		} catch (Exception e) {
-			LOGGER.warning("Failed to select category filter: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to select category filter: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -515,10 +668,10 @@ public class UploadPage extends BasePage {
 						languageFilter);
 				select.selectByVisibleText(language);
 			}
-			LOGGER.info("Selected language filter: " + language);
-			Thread.sleep(500);
+			LoggerUtils.logInfo("Selected language filter: " + safeString(language));
+			waitQuietly(500);
 		} catch (Exception e) {
-			LOGGER.warning("Failed to select language filter: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to select language filter: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -529,10 +682,10 @@ public class UploadPage extends BasePage {
 		try {
 			WebElement clearBtn = driver.findElement(CLEAR_FILTERS_BUTTON);
 			clearBtn.click();
-			LOGGER.info("Cleared all filters");
-			Thread.sleep(1000);
+			LoggerUtils.logInfo("Cleared all filters");
+			waitQuietly(1000);
 		} catch (Exception e) {
-			LOGGER.warning("Failed to clear filters: " + e.getMessage());
+			LoggerUtils.logInfo("Failed to clear filters: " + safeString(e.getMessage()));
 		}
 	}
 
@@ -551,12 +704,42 @@ public class UploadPage extends BasePage {
 	}
 
 	/**
+	 * Return the visible inline form validation errors (e.g.
+	 * "Language selection is required", "Summary is required") as a list of
+	 * trimmed strings, in document order. Returns an empty list if no inline
+	 * errors are rendered.
+	 *
+	 * <p>Uses the actual DOM shape
+	 * ({@code data-testid='text_<field>_error'}) instead of the broken
+	 * CSS selector used by {@code CreatorSettingsPage.getValidationMessages}.
+	 */
+	public List<String> getValidationErrors() {
+		List<String> errors = new java.util.ArrayList<>();
+		try {
+			List<WebElement> elements = driver.findElements(INLINE_VALIDATION_ERRORS);
+			for (WebElement element : elements) {
+				try {
+					String text = safeString(element.getText()).trim();
+					if (!text.isEmpty() && element.isDisplayed()) {
+						errors.add(text);
+					}
+				} catch (Exception ignored) {
+					// Element may have re-rendered between read and check.
+				}
+			}
+		} catch (Exception e) {
+			LoggerUtils.logInfo("Could not read inline validation errors: " + safeString(e.getMessage()));
+		}
+		return errors;
+	}
+
+	/**
 	 * Get success message
 	 */
 	public String getSuccessMessage() {
 		try {
 			// Wait for any toast message to appear
-			Thread.sleep(1500);
+			waitQuietly(1500);
 			WebElement successElement = pageWait.until(ExpectedConditions.visibilityOfElementLocated(SUCCESS_MESSAGE));
 			String rawText = successElement.getText();
 			String text = rawText == null ? "" : rawText.trim();
@@ -571,13 +754,13 @@ public class UploadPage extends BasePage {
 			}
 			// Log all toast elements found for debugging
 			List<WebElement> toasts = driver.findElements(SUCCESS_MESSAGE);
-			LOGGER.info("Toast elements found: " + toasts.size());
+			LoggerUtils.logInfo("Toast elements found: " + toasts.size());
 			for (WebElement toast : toasts) {
-				LOGGER.info("Toast - text: [" + toast.getText() + "] innerText: [" + toast.getAttribute("innerText") + "] ariaLabel: [" + toast.getAttribute("aria-label") + "]");
+				LoggerUtils.logInfo("Toast - text: [" + safeString(toast.getText()) + "] innerText: [" + safeString(toast.getAttribute("innerText")) + "] ariaLabel: [" + safeString(toast.getAttribute("aria-label")) + "]");
 			}
 			return text;
 		} catch (Exception e) {
-			LOGGER.warning("No success message found: " + e.getMessage());
+			LoggerUtils.logInfo("No success message found: " + safeString(e.getMessage()));
 			return "";
 		}
 	}
@@ -598,5 +781,390 @@ public class UploadPage extends BasePage {
 	 */
 	public boolean hasBooks() {
 		return getBookCount() > 0;
+	}
+
+	// =================== Orchestration helpers (moved from UploaderTests) ===================
+
+	/**
+	 * Navigate from the post-login landing to the Upload page via the side
+	 * menu (For Creators → Add Book). Throws {@link IllegalStateException}
+	 * if the landing page does not stabilise within 30 seconds.
+	 */
+	public void navigateToUploadPage() {
+		try {
+			boolean landingReady = wait.waitForFunction(currentDriver -> {
+				return dashboard.waitForDashboardShell() || dashboard.isOnCreatorPage()
+						|| dashboard.isUploadPageOpened() || dashboard.isHeaderLogoVisible()
+						|| dashboard.isProfileIconVisible();
+			}, Duration.ofSeconds(30));
+			if (!landingReady) {
+				throw new IllegalStateException(
+						"Uploader navigation: Post-login landing page should be stable. Current URL: "
+								+ getCurrentUrlSafely());
+			}
+			LoggerUtils.logInfo("Uploader landing page is stable. Current URL: " + getCurrentUrlSafely());
+
+			creatorSettings.clickHamburgerMenu();
+			creatorSettings.clickForCreators();
+			creatorSettings.clickAddBook();
+
+			waitForUploadPageToLoad();
+			if (!isUploadPageDisplayed() && !dashboard.isUploadPageOpened()) {
+				throw new IllegalStateException(
+						"Uploader navigation: Upload page should open after clicking Add Book");
+			}
+			LoggerUtils.logInfo("Upload page load wait completed");
+		} catch (SkipException e) {
+			throw e;
+		} catch (Exception e) {
+			throw new IllegalStateException("Failed to navigate to Upload page: "
+					+ safeString(e.getMessage()), e);
+		}
+	}
+
+	/**
+	 * Open the For Creators listing page directly via URL.
+	 */
+	public void openForCreatorsListingPage() {
+		String baseUrl = ConfigReader.getProperty("url", "https://web-splay.acceses.com/");
+		if (!baseUrl.endsWith("/")) {
+			baseUrl = baseUrl + "/";
+		}
+		driver.get(baseUrl + "show_uploader_books");
+		forCreatorPage.waitForListingState();
+	}
+
+	/**
+	 * Open the For Creators listing page and click the first listed book's edit
+	 * control. Throws {@link SkipException} when the listing is empty.
+	 */
+	public void openFirstListedBookFromForCreators() {
+		openForCreatorsListingPage();
+		if (!forCreatorPage.hasBooks()) {
+			throw new SkipException("No listed books are available on the For Creators page.");
+		}
+		creatorSettings.clickEditFirstContent();
+	}
+
+	/**
+	 * Open an "Automation Book" via the header search box.
+	 */
+	public void openAutomationBookFromHeaderSearch() {
+		dashboard.waitForPageReady();
+		if (!dashboard.isSearchBarVisible()) {
+			throw new IllegalStateException("Header search bar should be visible for Automation Book search");
+		}
+		dashboard.submitSearch("Automation Book");
+		dashboard.printVisibleSearchResults();
+		if (!dashboard.clickFirstSearchResult()) {
+			throw new IllegalStateException(
+					"Automation Book search should open a matching book details page from the header search");
+		}
+		if (!dashboard.isBookDetailsPageVisible()) {
+			throw new IllegalStateException(
+					"Automation Book search should land on the book details page");
+		}
+		dashboard.waitForBookDataToLoad();
+	}
+
+	/**
+	 * Print the current book + chapter details to the test log. Used by
+	 * debugging-oriented tests that verify visible metadata.
+	 */
+	public void printBookAndChapterDetailsForTest(String testCaseId) {
+		LoggerUtils.logInfo("===== " + testCaseId + " Book And Chapter Details =====");
+		dashboard.printCurrentBookDetails();
+		LoggerUtils.logInfo("===== End " + testCaseId + " Book And Chapter Details =====");
+	}
+
+	/**
+	 * Read the current book title from the edit form, polling until the title
+	 * value is populated (the React Native Web edit form hydrates the title
+	 * input a moment after the form chrome renders, so a single read can
+	 * return empty even though the edit screen is fully open).
+	 *
+	 * <p>Returns the non-blank title within 10 seconds, or the last observed
+	 * value if the form never populates (so the assertion message carries
+	 * the actual empty title for debugging).
+	 */
+	public String getCurrentBookTitleAfterEdit() {
+		long deadline = System.currentTimeMillis() + Duration.ofSeconds(10).toMillis();
+		String lastSeen = "";
+		while (System.currentTimeMillis() < deadline) {
+			lastSeen = safeString(creatorSettings.getCurrentTitle()).trim();
+			if (!lastSeen.isEmpty()) {
+				return lastSeen;
+			}
+			waitQuietly(200);
+		}
+		return lastSeen;
+	}
+
+	/**
+	 * Fill the upload-form fields with valid data sourced from
+	 * {@code config.properties} (with sensible defaults). Configurable keys:
+	 * {@code uploadLanguage}, {@code uploadCountryCategory},
+	 * {@code uploadCategory}, {@code uploadCountry}, {@code uploadGenre}.
+	 */
+	public void fillValidBookDetails(String title, String summary) {
+		creatorSettings.waitForUploadForm();
+		creatorSettings.enterTitle(title);
+		creatorSettings.enterAuthor("Automation Tester");
+		creatorSettings.selectLanguage(ConfigReader.getProperty("uploadLanguage", "English"));
+		creatorSettings.selectCountryCategory(ConfigReader.getProperty("uploadCountryCategory", "Category B"));
+		creatorSettings.selectCategory(ConfigReader.getProperty("uploadCategory", "Art"));
+		creatorSettings.selectCountry(ConfigReader.getProperty("uploadCountry", "India"));
+		creatorSettings.selectGenre(ConfigReader.getProperty("uploadGenre", "Drama"));
+		creatorSettings.enterSummary(summary);
+	}
+
+	/**
+	 * Resolve portrait and landscape image paths and upload both. Throws
+	 * {@link SkipException} when either image is missing.
+	 */
+	public void uploadValidPortraitAndLandscapeImages() {
+		String portraitImagePath = resolvePortraitImagePath();
+		String landscapeImagePath = resolveLandscapeImagePath();
+		if (portraitImagePath.isBlank() || landscapeImagePath.isBlank()) {
+			throw new SkipException(
+					"Valid portrait and landscape JPG/PNG images are required via config or Downloads.");
+		}
+		creatorSettings.uploadBookImages(portraitImagePath, landscapeImagePath);
+		if (!creatorSettings.getPortraitCoverError().isBlank()) {
+			throw new IllegalStateException(
+					"Valid portrait image should upload without portrait validation error");
+		}
+		if (!creatorSettings.getLandscapeCoverError().isBlank()) {
+			throw new IllegalStateException(
+					"Valid landscape image should upload without landscape validation error");
+		}
+	}
+
+	/**
+	 * Drive the upload form through to the Audio chapter section:
+	 * fill valid book details → upload images → save → enter audio chapter
+	 * preparation mode.
+	 */
+	public void createValidBookAndReachAudioSection(String title, String summary) {
+		fillValidBookDetails(title, summary);
+		uploadValidPortraitAndLandscapeImages();
+		creatorSettings.clickSave();
+		creatorSettings.prepareForAudioChapterCreation();
+	}
+
+	/**
+	 * {@link #createValidBookAndReachAudioSection(String, String)} followed by
+	 * opening the Add Audio popup.
+	 */
+	public void createValidBookAndOpenAddAudio(String title, String summary) {
+		createValidBookAndReachAudioSection(title, summary);
+		creatorSettings.clickAddAudio();
+	}
+
+	/**
+	 * Full journey: log in → navigate to Upload → fill form → reach audio
+	 * section → open the For Creators listing. Returns the book title used.
+	 */
+	public String createValidBookAndOpenForCreatorsListing(String title, String summary) {
+		navigateToUploadPage();
+		createValidBookAndReachAudioSection(title, summary);
+		openForCreatorsListingPage();
+		return title;
+	}
+
+	// =================== File resolution helpers (moved from UploaderTests) ===================
+
+	/**
+	 * Returns a unique book title of the form {@code "Automation Book XXXXXX"}.
+	 */
+	public String createUniqueBookTitle() {
+		return "Automation Book " + UUID.randomUUID().toString().substring(0, 6);
+	}
+
+	/** Resolve a path from config, falling back to {@code user.dir}/{configKey}. */
+	public String resolveOptionalConfiguredPath(String configKey) {
+		String configuredPath = ConfigReader.getProperty(configKey);
+		if (configuredPath == null || configuredPath.isBlank()) {
+			return "";
+		}
+		Path directPath = Paths.get(configuredPath);
+		if (Files.exists(directPath)) {
+			return directPath.toString();
+		}
+		Path resolvedPath = Paths.get(System.getProperty("user.dir"), configuredPath);
+		if (Files.exists(resolvedPath)) {
+			return resolvedPath.toString();
+		}
+		throw new IllegalStateException("Configured file not found for " + configKey + ": "
+				+ configuredPath);
+	}
+
+	/** Resolve a portrait image path: config → Downloads first .png/.jpg/.jpeg. */
+	public String resolvePortraitImagePath() {
+		String configured = resolveOptionalConfiguredPath("uploadPortraitImagePath");
+		if (!configured.isBlank()) {
+			return configured;
+		}
+		return findFirstFileInDownloads(List.of(".png", ".jpg", ".jpeg"),
+				"Portrait image not configured. Continuing without image upload because no JPG/PNG was found in Downloads.");
+	}
+
+	/** Resolve a landscape image path: config → Downloads first .png/.jpg/.jpeg. */
+	public String resolveLandscapeImagePath() {
+		String configured = resolveOptionalConfiguredPath("uploadLandscapeImagePath");
+		if (!configured.isBlank()) {
+			return configured;
+		}
+		return findFirstFileInDownloads(List.of(".png", ".jpg", ".jpeg"),
+				"Landscape image not configured. Continuing without landscape image because no JPG/PNG was found in Downloads.");
+	}
+
+	/** Resolve an audio upload file path: config → Downloads first .mp3/.wav/.m4a/.aac. */
+	public String resolveAudioUploadFilePath() {
+		String configured = resolveOptionalConfiguredPath("uploadAudioFilePath");
+		if (!configured.isBlank()) {
+			return configured;
+		}
+		return findFirstFileInDownloads(List.of(".mp3", ".wav", ".m4a", ".aac"),
+				"Audio file not configured. Add uploadAudioFilePath or place an audio file in Downloads.");
+	}
+
+	/** Resolve an oversized audio file path: config → Downloads audio ≥ 500 MB → synthesise 501 MB MP3. */
+	public String resolveLargeAudioUploadFilePath() {
+		String configured = resolveOptionalConfiguredPath("uploadLargeAudioFilePath");
+		if (!configured.isBlank()) {
+			return configured;
+		}
+
+		Path downloadsDirectory = Paths.get(System.getProperty("user.home"), "Downloads");
+		if (Files.exists(downloadsDirectory)) {
+			try {
+				String discovered = Files.list(downloadsDirectory).filter(Files::isRegularFile)
+						.filter(path -> hasAnyExtension(path.getFileName().toString(),
+								List.of(".mp3", ".wav", ".m4a", ".aac")))
+						.filter(path -> isFileAtLeast(path, 500L * 1024L * 1024L))
+						.sorted(Comparator.comparing(Path::toString)).map(Path::toString).findFirst().orElse("");
+				if (!discovered.isBlank()) {
+					return discovered;
+				}
+			} catch (IOException e) {
+				LoggerUtils.logInfo("Unable to scan Downloads for oversized audio file: "
+						+ safeString(e.getMessage()));
+			}
+		}
+
+		try {
+			return createTemporaryLargeMp3File(501L * 1024L * 1024L).toString();
+		} catch (IOException e) {
+			LoggerUtils.logInfo("Unable to generate oversized MP3 test file: "
+					+ safeString(e.getMessage()));
+			return "";
+		}
+	}
+
+	/** Resolve a large image path: config → Downloads first image ≥ 5 MB. */
+	public String resolveLargeImagePath(String configKey) {
+		String configured = resolveOptionalConfiguredPath(configKey);
+		if (!configured.isBlank()) {
+			return configured;
+		}
+		return findLargeImageInDownloads();
+	}
+
+	/** Resolve an invalid upload file path (.exe/.txt/.bat/.sh) for negative tests. */
+	public String resolveInvalidUploadPath() {
+		String configured = resolveOptionalConfiguredPath("invalidUploadPath");
+		if (!configured.isBlank()) {
+			return configured;
+		}
+		String existing = findFirstFileInDownloads(List.of(".exe", ".txt", ".bat", ".sh"), null);
+		if (!existing.isBlank()) {
+			return existing;
+		}
+		try {
+			Path testExeFile = createDummyExeFile();
+			LoggerUtils.logInfo("Generated dummy .exe file for testing: " + testExeFile);
+			return testExeFile.toString();
+		} catch (IOException e) {
+			LoggerUtils.logInfo("Failed to generate dummy .exe file: " + safeString(e.getMessage()));
+			return "";
+		}
+	}
+
+	private String findLargeImageInDownloads() {
+		Path downloadsDirectory = Paths.get(System.getProperty("user.home"), "Downloads");
+		if (!Files.exists(downloadsDirectory)) {
+			return "";
+		}
+		try {
+			return Files.list(downloadsDirectory).filter(Files::isRegularFile)
+					.filter(path -> hasAnyExtension(path.getFileName().toString(), List.of(".png", ".jpg", ".jpeg")))
+					.filter(path -> isFileAtLeast(path, 5L * 1024L * 1024L))
+					.sorted(Comparator.comparing(Path::toString)).map(Path::toString).findFirst().orElse("");
+		} catch (IOException e) {
+			LoggerUtils.logInfo("Unable to scan Downloads for oversized image: "
+					+ safeString(e.getMessage()));
+			return "";
+		}
+	}
+
+	private String findFirstFileInDownloads(List<String> extensions, String missingMessage) {
+		Path downloadsDirectory = Paths.get(System.getProperty("user.home"), "Downloads");
+		if (!Files.exists(downloadsDirectory)) {
+			LoggerUtils.logInfo("Downloads directory not found at: " + downloadsDirectory);
+			return "";
+		}
+		try {
+			return Files.list(downloadsDirectory).filter(Files::isRegularFile)
+					.filter(path -> hasAnyExtension(path.getFileName().toString(), extensions))
+					.sorted(Comparator.comparing(Path::toString)).map(Path::toString).findFirst().orElseGet(() -> {
+						if (missingMessage != null) {
+							LoggerUtils.logInfo(missingMessage);
+						}
+						return "";
+					});
+		} catch (IOException e) {
+			LoggerUtils.logInfo("Unable to scan Downloads directory: " + safeString(e.getMessage()));
+			return "";
+		}
+	}
+
+	private boolean isFileAtLeast(Path path, long minBytes) {
+		try {
+			return Files.size(path) >= minBytes;
+		} catch (IOException e) {
+			return false;
+		}
+	}
+
+	private boolean hasAnyExtension(String fileName, List<String> extensions) {
+		String normalized = fileName.toLowerCase(Locale.ROOT);
+		for (String extension : extensions) {
+			if (normalized.endsWith(extension.toLowerCase(Locale.ROOT))) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private Path createDummyExeFile() throws IOException {
+		Path tempDir = Paths.get(System.getProperty("java.io.tmpdir"), "selenium-test-files");
+		Files.createDirectories(tempDir);
+		Path exeFile = tempDir.resolve("test-invalid-file.exe");
+		String dummyContent = "This is a dummy file for testing invalid file format validation.\n"
+				+ "This file is not a real executable and is only used for negative testing.\n"
+				+ "Test: " + UUID.randomUUID().toString();
+		Files.writeString(exeFile, dummyContent);
+		LoggerUtils.logInfo("Created dummy .exe file at: " + exeFile);
+		return exeFile;
+	}
+
+	private Path createTemporaryLargeMp3File(long sizeInBytes) throws IOException {
+		Path tempFile = Files.createTempFile("uploader-large-audio-", ".mp3");
+		try (RandomAccessFile largeFile = new RandomAccessFile(tempFile.toFile(), "rw")) {
+			largeFile.setLength(sizeInBytes);
+		}
+		tempFile.toFile().deleteOnExit();
+		return tempFile;
 	}
 }

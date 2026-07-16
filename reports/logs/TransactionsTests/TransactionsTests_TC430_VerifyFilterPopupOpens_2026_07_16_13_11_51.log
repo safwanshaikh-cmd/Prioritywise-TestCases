@@ -1,0 +1,15 @@
+============================================================
+Test Log: TransactionsTests.TC430_VerifyFilterPopupOpens
+Started: 2026-07-16 13:11:51
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\TransactionsTests_TC430_VerifyFilterPopupOpens_2026_07_16_13_11_51.log
+============================================================
+========== TEST STARTED: TC_430: Filter Popup Opens ==========
+STEP 1: Log in as registered user and navigate to the Transactions page
+INFO  Logged in as registered user
+INFO  Navigated to Transactions page
+INFO  Side menu remained open after navigation; continuing because Transaction History was reached
+STEP 2: Click the Filter button and verify the popup is displayed
+INFO  TC_430 - STEP 2: filter popup displayed: true
+========== TEST PASSED: TC_430 ==========
+============================================================
+Ended: 2026-07-16 13:12:25

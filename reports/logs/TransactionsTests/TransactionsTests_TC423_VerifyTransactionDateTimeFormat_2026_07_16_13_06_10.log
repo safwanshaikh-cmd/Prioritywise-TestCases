@@ -1,0 +1,16 @@
+============================================================
+Test Log: TransactionsTests.TC423_VerifyTransactionDateTimeFormat
+Started: 2026-07-16 13:06:10
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\TransactionsTests_TC423_VerifyTransactionDateTimeFormat_2026_07_16_13_06_10.log
+============================================================
+========== TEST STARTED: TC_423: Date / Time Format ==========
+STEP 1: Log in as registered user and navigate to the Transactions page
+INFO  Logged in as registered user
+INFO  Navigated to Transactions page
+INFO  Side menu remained open after navigation; continuing because Transaction History was reached
+STEP 2: Verify date and time on the first card
+INFO  TC_423 - STEP 2: date='2026-07-14', time='16:29:31'
+INFO  TC_423: Date/time format valid (date='2026-07-14', time='16:29:31')
+========== TEST PASSED: TC_423 ==========
+============================================================
+Ended: 2026-07-16 13:06:41

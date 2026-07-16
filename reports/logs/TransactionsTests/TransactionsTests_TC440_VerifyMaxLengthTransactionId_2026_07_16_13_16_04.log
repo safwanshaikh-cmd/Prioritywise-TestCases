@@ -1,0 +1,18 @@
+============================================================
+Test Log: TransactionsTests.TC440_VerifyMaxLengthTransactionId
+Started: 2026-07-16 13:16:04
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\TransactionsTests_TC440_VerifyMaxLengthTransactionId_2026_07_16_13_16_04.log
+============================================================
+========== TEST STARTED: TC_440: Max-Length Transaction ID ==========
+STEP 1: Log in as registered user and navigate to the Transactions page
+INFO  Logged in as registered user
+INFO  Navigated to Transactions page
+INFO  Side menu remained open after navigation; continuing because Transaction History was reached
+STEP 2: Search with a 50-character transaction ID
+INFO  TC_440 - STEP 2: testing with 50-character transaction ID
+STEP 3: Verify the page remains responsive after the long-input search
+INFO  TC_440 - STEP 3: resultCount=0
+INFO  TC_440: Max length transaction ID handled correctly
+========== TEST PASSED: TC_440 ==========
+============================================================
+Ended: 2026-07-16 13:16:47

@@ -1,0 +1,18 @@
+============================================================
+Test Log: TransactionsTests.TC419_VerifyTransactionsDisplayedInCardFormat
+Started: 2026-07-16 13:03:08
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\TransactionsTests_TC419_VerifyTransactionsDisplayedInCardFormat_2026_07_16_13_03_08.log
+============================================================
+========== TEST STARTED: TC_419: Transactions Displayed In Card Format ==========
+STEP 1: Log in as registered user and navigate to the Transactions page
+INFO  Logged in as registered user
+INFO  Navigated to Transactions page
+INFO  Side menu remained open after navigation; continuing because Transaction History was reached
+STEP 2: Verify the Transactions page is rendered with at least one card
+INFO  TC_419 - STEP 2: page displayed: true, has transactions: true, count: 1
+STEP 3: Verify the first transaction card carries plan, date, amount, and status
+INFO  TC_419 - STEP 3: plan='Gold', date='2026-07-14', amount='6.00', status='Completed'
+INFO  TC_419: Card rendered with all required fields (count=1)
+========== TEST PASSED: TC_419 ==========
+============================================================
+Ended: 2026-07-16 13:03:41

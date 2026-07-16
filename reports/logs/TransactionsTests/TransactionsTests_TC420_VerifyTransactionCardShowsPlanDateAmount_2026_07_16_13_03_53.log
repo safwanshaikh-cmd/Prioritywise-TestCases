@@ -1,0 +1,16 @@
+============================================================
+Test Log: TransactionsTests.TC420_VerifyTransactionCardShowsPlanDateAmount
+Started: 2026-07-16 13:03:53
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\TransactionsTests_TC420_VerifyTransactionCardShowsPlanDateAmount_2026_07_16_13_03_53.log
+============================================================
+========== TEST STARTED: TC_420: Card Shows Plan, Date, Amount ==========
+STEP 1: Log in as registered user and navigate to the Transactions page
+INFO  Logged in as registered user
+INFO  Navigated to Transactions page
+INFO  Side menu remained open after navigation; continuing because Transaction History was reached
+STEP 2: Verify the first card carries plan, date, and amount
+INFO  TC_420 - STEP 2: plan='Gold', date='2026-07-14', amount='6.00'
+INFO  TC_420: Plan, date, amount visible (plan='Gold')
+========== TEST PASSED: TC_420 ==========
+============================================================
+Ended: 2026-07-16 13:04:26

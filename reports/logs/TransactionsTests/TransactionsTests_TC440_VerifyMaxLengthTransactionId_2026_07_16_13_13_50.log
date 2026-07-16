@@ -1,0 +1,11 @@
+============================================================
+Test Log: TransactionsTests.TC440_VerifyMaxLengthTransactionId
+Started: 2026-07-16 13:13:50
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\TransactionsTests_TC440_VerifyMaxLengthTransactionId_2026_07_16_13_13_50.log
+============================================================
+========== TEST STARTED: TC_440: Max-Length Transaction ID ==========
+STEP 1: Log in as registered user and navigate to the Transactions page
+WARN  TC_440 - Test failed: Unable to locate a visible Login entry point on the current page.
+[SKIP] TransactionsTests :: TC440_VerifyMaxLengthTransactionId
+============================================================
+Ended: 2026-07-16 13:15:22

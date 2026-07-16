@@ -1,0 +1,32 @@
+============================================================
+Test Log: TransactionsTests.TC424_VerifyPaymentMethodDisplayed
+Started: 2026-07-16 13:06:54
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\TransactionsTests_TC424_VerifyPaymentMethodDisplayed_2026_07_16_13_06_54.log
+============================================================
+========== TEST STARTED: TC_424: Payment Method ==========
+STEP 1: Log in as registered user and navigate to the Transactions page
+INFO  Logged in as registered user
+INFO  Navigated to Transactions page
+INFO  Side menu remained open after navigation; continuing because Transaction History was reached
+STEP 2: Verify payment method on the first card
+INFO  TC_424 - STEP 2: method='Completed
+Gold
+2026-07-14
+16:29:31
+د.إ
+6.00
+Card payment
+1 Month
+Download Invoice'
+INFO  TC_424: Payment method valid (method='Completed
+Gold
+2026-07-14
+16:29:31
+د.إ
+6.00
+Card payment
+1 Month
+Download Invoice')
+========== TEST PASSED: TC_424 ==========
+============================================================
+Ended: 2026-07-16 13:07:26

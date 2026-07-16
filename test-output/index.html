@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\safwan\AppData\Local\Temp\testng-eclipse--2080415537\testng-customsuite.xml</span>
+                    <span>C:\Users\safwan\AppData\Local\Temp\testng-eclipse-540990701\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.SubscriptionManagementTests" class="method navigator-link" hash-for-method="TC403_VerifyStateAfterRelogin">TC403_VerifyStateAfterRelogin</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="tests.UploaderTests" class="method navigator-link" hash-for-method="TC469_PaginationForLargeData">TC469_PaginationForLargeData</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -121,16 +121,16 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">tests.SubscriptionManagementTests</span>
+              <span class="class-name">tests.UploaderTests</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="TC403_VerifyStateAfterRelogin">
-                  </a> <!-- TC403_VerifyStateAfterRelogin -->
-                  <span class="method-name">TC403_VerifyStateAfterRelogin</span>
+                  <a name="TC469_PaginationForLargeData">
+                  </a> <!-- TC469_PaginationForLargeData -->
+                  <span class="method-name">TC469_PaginationForLargeData</span>
                   <em>
-(TC_403: Verify state after re-login)                  </em>
+(TC_469: Verify paginationForLargeData)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -138,7 +138,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\safwan\AppData\Local\Temp\testng-eclipse--2080415537\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\safwan\AppData\Local\Temp\testng-eclipse-540990701\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -147,11 +147,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;tests.SubscriptionManagementTests&quot;&gt;
+      &lt;class name=&quot;tests.UploaderTests&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;TC403_VerifyStateAfterRelogin&quot;/&gt;
+          &lt;include name=&quot;TC469_PaginationForLargeData&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- tests.SubscriptionManagementTests --&gt;
+      &lt;/class&gt; &lt;!-- tests.UploaderTests --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -176,18 +176,10 @@
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="test-group">
-              <span class="test-group-name">consumer</span>
-              <br/>
-              <div class="method-in-group">
-                <span class="method-in-group-name">TC403_VerifyStateAfterRelogin</span>
-                <br/>
-              </div> <!-- method-in-group -->
-            </div> <!-- test-group -->
-            <div class="test-group">
               <span class="test-group-name">functional</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">TC403_VerifyStateAfterRelogin</span>
+                <span class="method-in-group-name">TC469_PaginationForLargeData</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -195,7 +187,15 @@
               <span class="test-group-name">ui</span>
               <br/>
               <div class="method-in-group">
-                <span class="method-in-group-name">TC403_VerifyStateAfterRelogin</span>
+                <span class="method-in-group-name">TC469_PaginationForLargeData</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+            <div class="test-group">
+              <span class="test-group-name">uploader</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">TC469_PaginationForLargeData</span>
                 <br/>
               </div> <!-- method-in-group -->
             </div> <!-- test-group -->
@@ -217,14 +217,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'TC403_VerifyStateAfterRelogin')
-data.setCell(0, 2, 'tests.SubscriptionManagementTests')
-data.setCell(0, 3, 35847);
+data.setCell(0, 1, 'TC469_PaginationForLargeData')
+data.setCell(0, 2, 'tests.UploaderTests')
+data.setCell(0, 3, 95015);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 35 seconds</span>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -239,39 +239,121 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">14 ignored methods</span>
+            <span class="header-content">55 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">tests.SubscriptionManagementTests</span>
+              <span class="ignored-class-name">tests.UploaderTests</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">TC393_VerifyCancelCanBeDeclined</span>
+                <span class="ignored-method-name">TC461_MultipleChaptersUpload</span>
                 <br/>
-                <span class="ignored-method-name">TC392_VerifyCancelConfirmationPopup</span>
+                <span class="ignored-method-name">TC458_ChapterSequenceOrder</span>
                 <br/>
-                <span class="ignored-method-name">TC390_VerifyCancelButtonVisible</span>
+                <span class="ignored-method-name">TC446_InvalidFileFormatValidation</span>
                 <br/>
-                <span class="ignored-method-name">TC395_VerifyAccessUntilExpiry</span>
+                <span class="ignored-method-name">TC451_CoverImageUpload</span>
                 <br/>
-                <span class="ignored-method-name">TC397_VerifyPlanSelectionUIDisabled</span>
+                <span class="ignored-method-name">TC481_NextFunctionality</span>
                 <br/>
-                <span class="ignored-method-name">TC388_VerifyActivePlanDisplayed</span>
+                <span class="ignored-method-name">TC444_BookUploadWithValidData</span>
                 <br/>
-                <span class="ignored-method-name">TC391_VerifyPlanCancellation</span>
+                <span class="ignored-method-name">TC471_ChaptersListDisplayed</span>
                 <br/>
-                <span class="ignored-method-name">TC389_VerifyPlanStatusCorrect</span>
+                <span class="ignored-method-name">TC480_InvalidFileFormatUpload</span>
                 <br/>
-                <span class="ignored-method-name">TC399_VerifyCanSelectPlanAfterExpiry</span>
+                <span class="ignored-method-name">TC455_ChapterMandatoryFieldsValidation</span>
                 <br/>
-                <span class="ignored-method-name">TC402_VerifyStatePersistsAfterRefresh</span>
+                <span class="ignored-method-name">TC502_DeleteWithActiveSubscription</span>
                 <br/>
-                <span class="ignored-method-name">TC398_VerifyApiRestrictionAfterCancel</span>
+                <span class="ignored-method-name">TC468_EmptySearchBehavior</span>
                 <br/>
-                <span class="ignored-method-name">TC401_VerifyCannotCancelTwice</span>
+                <span class="ignored-method-name">TC459_DuplicateChapterUploadAllowed</span>
                 <br/>
-                <span class="ignored-method-name">TC396_VerifyCannotSelectNewPlanAfterCancel</span>
+                <span class="ignored-method-name">TC474_EditPageLoads</span>
                 <br/>
-                <span class="ignored-method-name">TC394_VerifyStatusAfterCancellation</span>
+                <span class="ignored-method-name">TC445_MandatoryFieldValidation</span>
+                <br/>
+                <span class="ignored-method-name">TC486_DeleteBookCancel</span>
+                <br/>
+                <span class="ignored-method-name">TC454_ChapterUploadWithValidFile</span>
+                <br/>
+                <span class="ignored-method-name">TC511_MultipleClicksDelete</span>
+                <br/>
+                <span class="ignored-method-name">TC482_PartialUpdate</span>
+                <br/>
+                <span class="ignored-method-name">TC487_DeletePopupDisplayed</span>
+                <br/>
+                <span class="ignored-method-name">TC452_NetworkInterruptionDuringUpload</span>
+                <br/>
+                <span class="ignored-method-name">TC479_RequiredFieldsValidation</span>
+                <br/>
+                <span class="ignored-method-name">TC485_DeleteBookFunctionality</span>
+                <br/>
+                <span class="ignored-method-name">TC476_DescriptionEdit</span>
+                <br/>
+                <span class="ignored-method-name">TC483_SpecialCharactersHandling</span>
+                <br/>
+                <span class="ignored-method-name">TC460_SpecialCharactersInChapterTitle</span>
+                <br/>
+                <span class="ignored-method-name">TC457_ChapterMaxFileSizeValidation</span>
+                <br/>
+                <span class="ignored-method-name">TC443_UploadBookPageLoads</span>
+                <br/>
+                <span class="ignored-method-name">TC477_PortraitImageReplacement</span>
+                <br/>
+                <span class="ignored-method-name">TC464_UploadedBooksAreListed</span>
+                <br/>
+                <span class="ignored-method-name">TC501_DeleteWhileViewingInAnotherTab</span>
+                <br/>
+                <span class="ignored-method-name">TC504_DeleteFromSearchResults</span>
+                <br/>
+                <span class="ignored-method-name">TC505_SessionTimeoutDuringEdit</span>
+                <br/>
+                <span class="ignored-method-name">TC500_ConcurrentEditHandling</span>
+                <br/>
+                <span class="ignored-method-name">TC462_CancelUploadAction</span>
+                <br/>
+                <span class="ignored-method-name">TC465_BookDetailsDisplay</span>
+                <br/>
+                <span class="ignored-method-name">TC467_SearchInvalidBookShowsNoResult</span>
+                <br/>
+                <span class="ignored-method-name">TC489_DeleteWithNetworkFailure</span>
+                <br/>
+                <span class="ignored-method-name">TC484_DuplicateTitlePrevention</span>
+                <br/>
+                <span class="ignored-method-name">TC488_UnauthorizedDeleteAccessControl</span>
+                <br/>
+                <span class="ignored-method-name">TC447_MaxFileSizeValidation</span>
+                <br/>
+                <span class="ignored-method-name">TC448_BookTitleValidation</span>
+                <br/>
+                <span class="ignored-method-name">TC509_LargeDataDelete</span>
+                <br/>
+                <span class="ignored-method-name">TC466_SearchBookByName</span>
+                <br/>
+                <span class="ignored-method-name">TC513_NetworkInterruptionDuringDelete</span>
+                <br/>
+                <span class="ignored-method-name">TC512_APIFailureHandling</span>
+                <br/>
+                <span class="ignored-method-name">TC450_SpecialCharactersInTitle</span>
+                <br/>
+                <span class="ignored-method-name">TC510_LargeFileReplace</span>
+                <br/>
+                <span class="ignored-method-name">TC472_ChapterDetails</span>
+                <br/>
+                <span class="ignored-method-name">TC470_SpecialCharactersInSearch</span>
+                <br/>
+                <span class="ignored-method-name">TC503_LongDescriptionInput</span>
+                <br/>
+                <span class="ignored-method-name">TC456_InvalidAudioFormatRejection</span>
+                <br/>
+                <span class="ignored-method-name">TC475_TitleUpdateFunctionality</span>
+                <br/>
+                <span class="ignored-method-name">TC453_ChapterUploadScreenOpens</span>
+                <br/>
+                <span class="ignored-method-name">TC463_ChapterSummaryAcceptsValidInput</span>
+                <br/>
+                <span class="ignored-method-name">TC478_LandscapeImageReplacement</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -283,22 +365,18 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">tests.SubscriptionManagementTests</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">tests.UploaderTests</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setup</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
-              <div class="configuration-method before">
-                <span class="method-name">setup(public void tests.SubscriptionManagementTests.TC403_VerifyStateAfterRelogin())</span>
-                <span class="method-start">18207 ms</span>
-              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">TC403_VerifyStateAfterRelogin</span>
-                <span class="method-start">60019 ms</span>
+                <span class="method-name">TC469_PaginationForLargeData</span>
+                <span class="method-start">19481 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">95884 ms</span>
+                <span class="method-start">114504 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

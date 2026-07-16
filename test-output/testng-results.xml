@@ -2,44 +2,33 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-07-16T10:54:29 GST" name="Default suite" finished-at="2026-07-16T10:56:09 GST" duration-ms="100391">
+  <suite started-at="2026-07-16T17:16:09 GST" name="Default suite" finished-at="2026-07-16T17:18:09 GST" duration-ms="119505">
     <groups>
       <group name="functional">
-        <method signature="SubscriptionManagementTests.TC403_VerifyStateAfterRelogin()[pri:403, instance:tests.SubscriptionManagementTests@185a6e9]" name="TC403_VerifyStateAfterRelogin" class="tests.SubscriptionManagementTests"/>
+        <method signature="UploaderTests.TC469_PaginationForLargeData()[pri:469, instance:tests.UploaderTests@2aceadd4]" name="TC469_PaginationForLargeData" class="tests.UploaderTests"/>
       </group> <!-- functional -->
       <group name="ui">
-        <method signature="SubscriptionManagementTests.TC403_VerifyStateAfterRelogin()[pri:403, instance:tests.SubscriptionManagementTests@185a6e9]" name="TC403_VerifyStateAfterRelogin" class="tests.SubscriptionManagementTests"/>
+        <method signature="UploaderTests.TC469_PaginationForLargeData()[pri:469, instance:tests.UploaderTests@2aceadd4]" name="TC469_PaginationForLargeData" class="tests.UploaderTests"/>
       </group> <!-- ui -->
-      <group name="consumer">
-        <method signature="SubscriptionManagementTests.TC403_VerifyStateAfterRelogin()[pri:403, instance:tests.SubscriptionManagementTests@185a6e9]" name="TC403_VerifyStateAfterRelogin" class="tests.SubscriptionManagementTests"/>
-      </group> <!-- consumer -->
+      <group name="uploader">
+        <method signature="UploaderTests.TC469_PaginationForLargeData()[pri:469, instance:tests.UploaderTests@2aceadd4]" name="TC469_PaginationForLargeData" class="tests.UploaderTests"/>
+      </group> <!-- uploader -->
     </groups>
-    <test started-at="2026-07-16T10:54:29 GST" name="Default test" finished-at="2026-07-16T10:56:09 GST" duration-ms="100391">
-      <class name="tests.SubscriptionManagementTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-16T10:54:33 GST" name="setup" finished-at="2026-07-16T10:54:51 GST" duration-ms="18205" status="PASS">
+    <test started-at="2026-07-16T17:16:09 GST" name="Default test" finished-at="2026-07-16T17:18:09 GST" duration-ms="119505">
+      <class name="tests.UploaderTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.UploaderTests@2aceadd4]" started-at="2026-07-16T17:16:14 GST" name="setup" finished-at="2026-07-16T17:16:33 GST" duration-ms="19479" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="setup(java.lang.reflect.Method)[pri:0, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-16T10:54:51 GST" name="setup" finished-at="2026-07-16T10:55:33 GST" duration-ms="41812" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[public void tests.SubscriptionManagementTests.TC403_VerifyStateAfterRelogin()]]>
-              </value>
-            </param>
-          </params>
+        <test-method signature="TC469_PaginationForLargeData()[pri:469, instance:tests.UploaderTests@2aceadd4]" started-at="2026-07-16T17:16:33 GST" name="TC469_PaginationForLargeData" description="TC_469: Verify paginationForLargeData" finished-at="2026-07-16T17:18:08 GST" duration-ms="95015" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC403_VerifyStateAfterRelogin()[pri:403, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-16T10:55:33 GST" name="TC403_VerifyStateAfterRelogin" description="TC_403: Verify state after re-login" finished-at="2026-07-16T10:56:08 GST" duration-ms="35847" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC403_VerifyStateAfterRelogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.SubscriptionManagementTests@185a6e9]" started-at="2026-07-16T10:56:09 GST" name="tearDown" finished-at="2026-07-16T10:56:09 GST" duration-ms="554" status="PASS">
+        </test-method> <!-- TC469_PaginationForLargeData -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.UploaderTests@2aceadd4]" started-at="2026-07-16T17:18:08 GST" name="tearDown" finished-at="2026-07-16T17:18:09 GST" duration-ms="491" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- tests.SubscriptionManagementTests -->
+      </class> <!-- tests.UploaderTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

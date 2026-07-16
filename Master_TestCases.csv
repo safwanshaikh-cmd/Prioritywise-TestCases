@@ -374,66 +374,66 @@ TC_Number,Category,Class_Name,Method_Name,Description,Groups
 416,Favourites,FavouritesManagementTests,TC416_VerifyNetworkFailureHandling,TC_416: Verify behavior on API failure,"functional,ui,consumer"
 417,Favourites,FavouritesManagementTests,TC417_VerifyMaxFavouritesLimit,TC_417: Verify max favourites limit,"functional,ui,consumer"
 418,Favourites,FavouritesManagementTests,TC418_VerifyUIConsistency,TC_418: Verify UI elements,"functional,ui,consumer"
-419,Transactions,TransactionsTests,verifyTransactionsDisplayedInCardFormat,,
-420,Transactions,TransactionsTests,verifyTransactionCardShowsPlanDateAmount,,
-421,Transactions,TransactionsTests,verifyTransactionStatusCompletedDisplayed,,
-422,Transactions,TransactionsTests,verifyTransactionAmountDisplayed,,
-423,Transactions,TransactionsTests,verifyTransactionDateTimeFormat,,
-424,Transactions,TransactionsTests,verifyPaymentMethodDisplayed,,
-425,Transactions,TransactionsTests,verifySubscriptionDurationDisplayed,,
-426,Transactions,TransactionsTests,verifyInvoiceDownload,,
-427,Transactions,TransactionsTests,verifySearchByValidTransactionId,,
-428,Transactions,TransactionsTests,verifySearchInvalidIdShowsNoResult,,
-429,Transactions,TransactionsTests,verifyEmptySearchShowsDefaultList,,
-430,Transactions,TransactionsTests,verifyFilterPopupOpens,,
-439,Transactions,TransactionsTests,verifySpecialCharacterSearch,,
-440,Transactions,TransactionsTests,verifyMaxLengthTransactionId,,
-441,Transactions,TransactionsTests,verifyInvoiceDownloadErrorHandling,,
-443,Uploader,UploaderTests,verifyUploadBookPageLoads,,
-444,Uploader,UploaderTests,verifyBookUploadWithValidData,,
-445,Uploader,UploaderTests,verifyMandatoryFieldValidation,,
-446,Uploader,UploaderTests,verifyInvalidFileFormatValidation,,
-447,Uploader,UploaderTests,verifyMaxFileSizeValidation,,
-448,Uploader,UploaderTests,verifyBookTitleValidation,,
-450,Uploader,UploaderTests,verifySpecialCharactersInTitle,,
-451,Uploader,UploaderTests,verifyCoverImageUpload,,
-452,Uploader,UploaderTests,verifyNetworkInterruptionDuringUpload,,
-453,Uploader,UploaderTests,verifyChapterUploadScreenOpens,,
-454,Uploader,UploaderTests,verifyChapterUploadWithValidFile,,
-455,Uploader,UploaderTests,verifyChapterMandatoryFieldsValidation,,
-456,Uploader,UploaderTests,verifyInvalidAudioFormatRejection,,
-457,Uploader,UploaderTests,verifyChapterMaxFileSizeValidation,,
-458,Uploader,UploaderTests,verifyChapterSequenceOrder,,
-459,Uploader,UploaderTests,verifyDuplicateChapterUploadAllowed,,
-460,Uploader,UploaderTests,verifySpecialCharactersInChapterTitle,,
-461,Uploader,UploaderTests,verifyMultipleChaptersUpload,,
-462,Uploader,UploaderTests,verifyCancelUploadAction,,
-463,Uploader,UploaderTests,verifyChapterSummaryAcceptsValidInput,,
-464,Uploader,UploaderTests,verifyUploadedBooksAreListed,,
-465,Uploader,UploaderTests,verifyBookDetailsDisplay,,
-466,Uploader,UploaderTests,verifySearchBookByName,,
-467,Uploader,UploaderTests,verifySearchInvalidBookShowsNoResult,,
-468,Uploader,UploaderTests,verifyEmptySearchBehavior,,
-469,Uploader,UploaderTests,verifyPaginationForLargeData,,
-470,Uploader,UploaderTests,verifySpecialCharactersInSearch,,
-471,Uploader,UploaderTests,verifyChaptersListDisplayed,,
-472,Uploader,UploaderTests,verifyChapterDetails,,
-474,Uploader,UploaderTests,verifyEditPageLoads,,
-475,Uploader,UploaderTests,verifyTitleUpdateFunctionality,,
-476,Uploader,UploaderTests,verifyDescriptionEdit,,
-477,Uploader,UploaderTests,verifyPortraitImageReplacement,,
-478,Uploader,UploaderTests,verifyLandscapeImageReplacement,,
-479,Uploader,UploaderTests,verifyRequiredFieldsValidation,,
-480,Uploader,UploaderTests,verifyInvalidFileFormatUpload,,
-481,Uploader,UploaderTests,verifyNextFunctionality,,
-482,Uploader,UploaderTests,verifyPartialUpdate,,
-483,Uploader,UploaderTests,verifySpecialCharactersHandling,,
-484,Uploader,UploaderTests,verifyDuplicateTitlePrevention,,
-485,Uploader,UploaderTests,verifyDeleteBookFunctionality,,
-486,Uploader,UploaderTests,verifyDeleteBookCancel,,
-487,Uploader,UploaderTests,verifyDeletePopupDisplayed,,
-488,Uploader,UploaderTests,verifyUnauthorizedDeleteAccessControl,,
-489,Uploader,UploaderTests,verifyDeleteWithNetworkFailure,,
+419,Transactions,TransactionsTests,TC419_VerifyTransactionsDisplayedInCardFormat,TC_419: Verify transactions are displayed in card format,"functional,ui,consumer"
+420,Transactions,TransactionsTests,TC420_VerifyTransactionCardShowsPlanDateAmount,"TC_420: Verify transaction card shows plan, date and amount","functional,ui,consumer"
+421,Transactions,TransactionsTests,TC421_VerifyTransactionStatusCompletedDisplayed,TC_421: Verify transaction status badge is displayed,"functional,ui,consumer"
+422,Transactions,TransactionsTests,TC422_VerifyTransactionAmountDisplayed,TC_422: Verify transaction amount is displayed,"functional,ui,consumer"
+423,Transactions,TransactionsTests,TC423_VerifyTransactionDateTimeFormat,TC_423: Verify date and time format is correct,"functional,ui,consumer"
+424,Transactions,TransactionsTests,TC424_VerifyPaymentMethodDisplayed,TC_424: Verify payment method is displayed,"functional,ui,consumer"
+425,Transactions,TransactionsTests,TC425_VerifySubscriptionDurationDisplayed,TC_425: Verify subscription duration is displayed,"functional,ui,consumer"
+426,Transactions,TransactionsTests,TC426_VerifyInvoiceDownload,TC_426: Verify invoice download is triggered,"functional,ui,consumer"
+427,Transactions,TransactionsTests,TC427_VerifySearchByValidTransactionId,TC_427: Verify search by valid transaction ID,"functional,ui,consumer"
+428,Transactions,TransactionsTests,TC428_VerifySearchInvalidIdShowsNoResult,TC_428: Verify search by invalid ID shows no result,"functional,ui,consumer"
+429,Transactions,TransactionsTests,TC429_VerifyEmptySearchShowsDefaultList,TC_429: Verify empty search shows default list,"functional,ui,consumer"
+430,Transactions,TransactionsTests,TC430_VerifyFilterPopupOpens,TC_430: Verify filter popup opens,"functional,ui,consumer"
+439,Transactions,TransactionsTests,TC439_VerifySpecialCharacterSearch,TC_439: Verify special-character search is handled safely,"functional,ui,consumer"
+440,Transactions,TransactionsTests,TC440_VerifyMaxLengthTransactionId,TC_440: Verify max-length transaction ID is handled gracefully,"functional,ui,consumer"
+441,Transactions,TransactionsTests,TC441_VerifyInvoiceDownloadErrorHandling,TC_441: Verify invoice download error is handled gracefully,"functional,ui,consumer"
+443,Uploader,UploaderTests,TC443_UploadBookPageLoads,TC_443: Verify uploadBookPageLoads,"functional,ui,uploader"
+444,Uploader,UploaderTests,TC444_BookUploadWithValidData,TC_444: Verify bookUploadWithValidData,"functional,ui,uploader"
+445,Uploader,UploaderTests,TC445_MandatoryFieldValidation,TC_445: Verify mandatoryFieldValidation,"functional,ui,uploader"
+446,Uploader,UploaderTests,TC446_InvalidFileFormatValidation,TC_446: Verify invalidFileFormatValidation,"functional,ui,uploader"
+447,Uploader,UploaderTests,TC447_MaxFileSizeValidation,TC_447: Verify maxFileSizeValidation,"functional,ui,uploader"
+448,Uploader,UploaderTests,TC448_BookTitleValidation,TC_448: Verify bookTitleValidation,"functional,ui,uploader"
+450,Uploader,UploaderTests,TC450_SpecialCharactersInTitle,TC_450: Verify specialCharactersInTitle,"functional,ui,uploader"
+451,Uploader,UploaderTests,TC451_CoverImageUpload,TC_451: Verify coverImageUpload,"functional,ui,uploader"
+452,Uploader,UploaderTests,TC452_NetworkInterruptionDuringUpload,TC_452: Verify networkInterruptionDuringUpload,"functional,ui,uploader"
+453,Uploader,UploaderTests,TC453_ChapterUploadScreenOpens,TC_453: Verify chapterUploadScreenOpens,"functional,ui,uploader"
+454,Uploader,UploaderTests,TC454_ChapterUploadWithValidFile,TC_454: Verify chapterUploadWithValidFile,"functional,ui,uploader"
+455,Uploader,UploaderTests,TC455_ChapterMandatoryFieldsValidation,TC_455: Verify chapterMandatoryFieldsValidation,"functional,ui,uploader"
+456,Uploader,UploaderTests,TC456_InvalidAudioFormatRejection,TC_456: Verify invalidAudioFormatRejection,"functional,ui,uploader"
+457,Uploader,UploaderTests,TC457_ChapterMaxFileSizeValidation,TC_457: Verify chapterMaxFileSizeValidation,"functional,ui,uploader"
+458,Uploader,UploaderTests,TC458_ChapterSequenceOrder,TC_458: Verify chapterSequenceOrder,"functional,ui,uploader"
+459,Uploader,UploaderTests,TC459_DuplicateChapterUploadAllowed,TC_459: Verify duplicateChapterUploadAllowed,"functional,ui,uploader"
+460,Uploader,UploaderTests,TC460_SpecialCharactersInChapterTitle,TC_460: Verify specialCharactersInChapterTitle,"functional,ui,uploader"
+461,Uploader,UploaderTests,TC461_MultipleChaptersUpload,TC_461: Verify multipleChaptersUpload,"functional,ui,uploader"
+462,Uploader,UploaderTests,TC462_CancelUploadAction,TC_462: Verify cancelUploadAction,"functional,ui,uploader"
+463,Uploader,UploaderTests,TC463_ChapterSummaryAcceptsValidInput,TC_463: Verify chapterSummaryAcceptsValidInput,"functional,ui,uploader"
+464,Uploader,UploaderTests,TC464_UploadedBooksAreListed,TC_464: Verify uploadedBooksAreListed,"functional,ui,uploader"
+465,Uploader,UploaderTests,TC465_BookDetailsDisplay,TC_465: Verify bookDetailsDisplay,"functional,ui,uploader"
+466,Uploader,UploaderTests,TC466_SearchBookByName,TC_466: Verify searchBookByName,"functional,ui,uploader"
+467,Uploader,UploaderTests,TC467_SearchInvalidBookShowsNoResult,TC_467: Verify searchInvalidBookShowsNoResult,"functional,ui,uploader"
+468,Uploader,UploaderTests,TC468_EmptySearchBehavior,TC_468: Verify emptySearchBehavior,"functional,ui,uploader"
+469,Uploader,UploaderTests,TC469_PaginationForLargeData,TC_469: Verify paginationForLargeData,"functional,ui,uploader"
+470,Uploader,UploaderTests,TC470_SpecialCharactersInSearch,TC_470: Verify specialCharactersInSearch,"functional,ui,uploader"
+471,Uploader,UploaderTests,TC471_ChaptersListDisplayed,TC_471: Verify chaptersListDisplayed,"functional,ui,uploader"
+472,Uploader,UploaderTests,TC472_ChapterDetails,TC_472: Verify chapterDetails,"functional,ui,uploader"
+474,Uploader,UploaderTests,TC474_EditPageLoads,TC_474: Verify editPageLoads,"functional,ui,uploader"
+475,Uploader,UploaderTests,TC475_TitleUpdateFunctionality,TC_475: Verify titleUpdateFunctionality,"functional,ui,uploader"
+476,Uploader,UploaderTests,TC476_DescriptionEdit,TC_476: Verify descriptionEdit,"functional,ui,uploader"
+477,Uploader,UploaderTests,TC477_PortraitImageReplacement,TC_477: Verify portraitImageReplacement,"functional,ui,uploader"
+478,Uploader,UploaderTests,TC478_LandscapeImageReplacement,TC_478: Verify landscapeImageReplacement,"functional,ui,uploader"
+479,Uploader,UploaderTests,TC479_RequiredFieldsValidation,TC_479: Verify requiredFieldsValidation,"functional,ui,uploader"
+480,Uploader,UploaderTests,TC480_InvalidFileFormatUpload,TC_480: Verify invalidFileFormatUpload,"functional,ui,uploader"
+481,Uploader,UploaderTests,TC481_NextFunctionality,TC_481: Verify nextFunctionality,"functional,ui,uploader"
+482,Uploader,UploaderTests,TC482_PartialUpdate,TC_482: Verify partialUpdate,"functional,ui,uploader"
+483,Uploader,UploaderTests,TC483_SpecialCharactersHandling,TC_483: Verify specialCharactersHandling,"functional,ui,uploader"
+484,Uploader,UploaderTests,TC484_DuplicateTitlePrevention,TC_484: Verify duplicateTitlePrevention,"functional,ui,uploader"
+485,Uploader,UploaderTests,TC485_DeleteBookFunctionality,TC_485: Verify deleteBookFunctionality,"functional,ui,uploader"
+486,Uploader,UploaderTests,TC486_DeleteBookCancel,TC_486: Verify deleteBookCancel,"functional,ui,uploader"
+487,Uploader,UploaderTests,TC487_DeletePopupDisplayed,TC_487: Verify deletePopupDisplayed,"functional,ui,uploader"
+488,Uploader,UploaderTests,TC488_UnauthorizedDeleteAccessControl,TC_488: Verify unauthorizedDeleteAccessControl,"functional,ui,security"
+489,Uploader,UploaderTests,TC489_DeleteWithNetworkFailure,TC_489: Verify deleteWithNetworkFailure,"functional,ui,uploader"
 490,Chapter,ChapterTests,TC490_VerifyChapterEditScreenLoads,TC_490: Verify chapter edit screen loads with chapter details,"functional,ui,consumer"
 491,Chapter,ChapterTests,TC491_VerifyChapterTitleUpdate,TC_491: Verify chapter title can be updated,"functional,ui,consumer"
 492,Chapter,ChapterTests,TC492_VerifyChapterAudioUpdate,TC_492: Verify chapter audio can be updated,"functional,ui,consumer"
@@ -443,20 +443,20 @@ TC_Number,Category,Class_Name,Method_Name,Description,Groups
 496,Chapter,ChapterTests,TC496_VerifyChapterDeleteCancel,TC_496: Verify chapter delete cancel preserves chapter count,"functional,ui,consumer"
 497,Chapter,ChapterTests,TC497_VerifyFirstAndLastChapterDeletion,TC_497: Verify first and last chapter deletion boundary,"functional,ui,consumer"
 498,Chapter,ChapterTests,TC498_VerifyChapterDeleteAccessControl,TC_498: Verify chapter delete is restricted to owner,"functional,ui,security"
-500,Uploader,UploaderTests,verifyConcurrentEditHandling,,
-501,Uploader,UploaderTests,verifyDeleteWhileViewingInAnotherTab,,
-502,Uploader,UploaderTests,verifyDeleteWithActiveSubscription,,
-503,Uploader,UploaderTests,verifyLongDescriptionInput,,
-504,Uploader,UploaderTests,verifyDeleteFromSearchResults,,
-505,Uploader,UploaderTests,verifySessionTimeoutDuringEdit,,
+500,Uploader,UploaderTests,TC500_ConcurrentEditHandling,TC_500: Verify concurrentEditHandling,"functional,ui,uploader"
+501,Uploader,UploaderTests,TC501_DeleteWhileViewingInAnotherTab,TC_501: Verify deleteWhileViewingInAnotherTab,"functional,ui,uploader"
+502,Uploader,UploaderTests,TC502_DeleteWithActiveSubscription,TC_502: Verify deleteWithActiveSubscription,"functional,ui,uploader"
+503,Uploader,UploaderTests,TC503_LongDescriptionInput,TC_503: Verify longDescriptionInput,"functional,ui,uploader"
+504,Uploader,UploaderTests,TC504_DeleteFromSearchResults,TC_504: Verify deleteFromSearchResults,"functional,ui,uploader"
+505,Uploader,UploaderTests,TC505_SessionTimeoutDuringEdit,TC_505: Verify sessionTimeoutDuringEdit,"functional,ui,uploader"
 506,Chapter,ChapterTests,TC506_VerifyDeleteChapterDuringPlayback,TC_506: Verify chapter delete during playback stops playback and deletes chapter,"functional,ui,regression"
 507,Chapter,ChapterTests,TC507_VerifyEditDuringUpload,TC_507: Verify chapter edit during playback persists and player remains responsive,"functional,ui,regression"
 508,Chapter,ChapterTests,TC508_VerifyReorderAfterDelete,TC_508: Verify chapter sequence auto-adjusts after deleting a middle chapter,"functional,ui,regression"
-509,Uploader,UploaderTests,verifyLargeDataDelete,,
-510,Uploader,UploaderTests,verifyLargeFileReplace,,
-511,Uploader,UploaderTests,verifyMultipleClicksDelete,,
-512,Uploader,UploaderTests,verifyAPIFailureHandling,,
-513,Uploader,UploaderTests,verifyNetworkInterruptionDuringDelete,,
+509,Uploader,UploaderTests,TC509_LargeDataDelete,TC_509: Verify largeDataDelete,"functional,ui,uploader"
+510,Uploader,UploaderTests,TC510_LargeFileReplace,TC_510: Verify largeFileReplace,"functional,ui,uploader"
+511,Uploader,UploaderTests,TC511_MultipleClicksDelete,TC_511: Verify multipleClicksDelete,"functional,ui,uploader"
+512,Uploader,UploaderTests,TC512_APIFailureHandling,TC_512: Verify aPIFailureHandling,"functional,ui,uploader"
+513,Uploader,UploaderTests,TC513_NetworkInterruptionDuringDelete,TC_513: Verify networkInterruptionDuringDelete,"functional,ui,uploader"
 514,About/Contact,AboutUsContactUsTests,TC514_VerifyAboutUsNavigation,TC_514: Verify About Us page loads successfully when navigated from sidebar,"functional,ui,consumer"
 515,About/Contact,AboutUsContactUsTests,TC515_VerifyAboutUsContent,TC_515: Verify About Us page displays visible and readable content,"functional,ui,consumer"
 516,About/Contact,AboutUsContactUsTests,TC516_VerifyAboutUsPageRefresh,TC_516: Verify About Us page reloads successfully on refresh,"functional,ui,regression"

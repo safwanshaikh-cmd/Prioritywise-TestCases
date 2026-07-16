@@ -1,0 +1,14 @@
+============================================================
+Test Log: UploaderTests.TC459_DuplicateChapterUploadAllowed
+Started: 2026-07-16 16:15:45
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC459_DuplicateChapterUploadAllowed_2026_07_16_16_15_45.log
+============================================================
+========== TEST STARTED: TC_459: Duplicate Chapter Upload Allowed ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_459: Duplicate chapter upload allowed after saving valid book details with images
+========== TEST PASSED: TC_459 ==========
+============================================================
+Ended: 2026-07-16 16:17:17

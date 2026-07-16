@@ -3,14 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.SubscriptionManagementTests">
+      <class name="tests.UploaderTests">
         <methods>
-          <include name="setup"/>
           <include name="tearDown"/>
           <include name="setup"/>
-          <include name="TC399_VerifyCanSelectPlanAfterExpiry"/>
+          <include name="TC464_UploadedBooksAreListed"/>
         </methods>
-      </class> <!-- tests.SubscriptionManagementTests -->
+      </class> <!-- tests.UploaderTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

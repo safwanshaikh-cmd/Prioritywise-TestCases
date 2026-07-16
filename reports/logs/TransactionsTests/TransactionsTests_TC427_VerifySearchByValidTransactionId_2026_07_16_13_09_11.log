@@ -1,0 +1,17 @@
+============================================================
+Test Log: TransactionsTests.TC427_VerifySearchByValidTransactionId
+Started: 2026-07-16 13:09:11
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\TransactionsTests_TC427_VerifySearchByValidTransactionId_2026_07_16_13_09_11.log
+============================================================
+========== TEST STARTED: TC_427: Search By Valid Transaction ID ==========
+STEP 1: Log in as registered user and navigate to the Transactions page
+INFO  Logged in as registered user
+INFO  Navigated to Transactions page
+INFO  Side menu remained open after navigation; continuing because Transaction History was reached
+STEP 2: Search for a transaction by typing 'Gold'
+INFO  TC_427 - STEP 2: searched with id='Gold'
+STEP 3: Verify the page is responsive and either shows matches or the no-data message
+INFO  TC_427 - STEP 3: hasResults=true, noDataMessage=false
+========== TEST PASSED: TC_427 ==========
+============================================================
+Ended: 2026-07-16 13:09:51

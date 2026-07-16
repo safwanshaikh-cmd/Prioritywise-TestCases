@@ -1,0 +1,16 @@
+============================================================
+Test Log: TransactionsTests.TC425_VerifySubscriptionDurationDisplayed
+Started: 2026-07-16 13:07:40
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\TransactionsTests_TC425_VerifySubscriptionDurationDisplayed_2026_07_16_13_07_40.log
+============================================================
+========== TEST STARTED: TC_425: Subscription Duration ==========
+STEP 1: Log in as registered user and navigate to the Transactions page
+INFO  Logged in as registered user
+INFO  Navigated to Transactions page
+INFO  Side menu remained open after navigation; continuing because Transaction History was reached
+STEP 2: Verify duration on the first card
+INFO  TC_425 - STEP 2: duration='1 Month'
+INFO  TC_425: Duration valid (duration='1 Month')
+========== TEST PASSED: TC_425 ==========
+============================================================
+Ended: 2026-07-16 13:08:12
