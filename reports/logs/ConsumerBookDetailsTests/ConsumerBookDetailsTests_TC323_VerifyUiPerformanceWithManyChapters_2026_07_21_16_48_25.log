@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC323_VerifyUiPerformanceWithManyChapters
+Started: 2026-07-21 16:48:25
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC323_VerifyUiPerformanceWithManyChapters_2026_07_21_16_48_25.log
+============================================================
+========== TEST STARTED: TC_323: UI Performance With Many Chapters ==========
+STEP 1: Open book details from dashboard
+STEP 2: Check chapter count
+INFO  Large chapter dataset is not available. Current visible chapter count: 3
+========== TEST SKIPPED - Insufficient chapter count: TC_323 ==========
+============================================================
+Ended: 2026-07-21 16:48:44

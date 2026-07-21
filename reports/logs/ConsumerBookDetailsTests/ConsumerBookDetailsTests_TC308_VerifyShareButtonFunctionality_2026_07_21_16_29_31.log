@@ -1,0 +1,13 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC308_VerifyShareButtonFunctionality
+Started: 2026-07-21 16:29:31
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC308_VerifyShareButtonFunctionality_2026_07_21_16_29_31.log
+============================================================
+========== TEST STARTED: TC_308: Share Button Functionality ==========
+STEP 1: Open book details from dashboard
+STEP 2: Check if Share button is visible
+STEP 3: Click Share and verify options
+INFO  TC_308: Share options opened: true
+========== TEST PASSED: TC_308 ==========
+============================================================
+Ended: 2026-07-21 16:29:59

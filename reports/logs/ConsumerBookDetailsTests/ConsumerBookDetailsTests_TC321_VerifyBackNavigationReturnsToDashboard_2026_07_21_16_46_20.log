@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC321_VerifyBackNavigationReturnsToDashboard
+Started: 2026-07-21 16:46:20
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC321_VerifyBackNavigationReturnsToDashboard_2026_07_21_16_46_20.log
+============================================================
+========== TEST STARTED: TC_321: Back Navigation Returns To Dashboard ==========
+STEP 1: Open book details from dashboard
+STEP 2: Click back button and verify
+INFO  TC_321: Returned to dashboard: true
+========== TEST PASSED: TC_321 ==========
+============================================================
+Ended: 2026-07-21 16:46:45

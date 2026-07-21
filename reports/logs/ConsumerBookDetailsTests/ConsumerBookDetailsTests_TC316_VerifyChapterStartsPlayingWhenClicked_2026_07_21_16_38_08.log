@@ -1,0 +1,13 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC316_VerifyChapterStartsPlayingWhenClicked
+Started: 2026-07-21 16:38:08
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC316_VerifyChapterStartsPlayingWhenClicked_2026_07_21_16_38_08.log
+============================================================
+========== TEST STARTED: TC_316: Chapter Starts Playing When Clicked ==========
+STEP 1: Open book details from dashboard
+STEP 2: Check if chapters are visible
+STEP 3: Click first chapter and verify player
+INFO  TC_316: Chapter playback started: true
+========== TEST PASSED: TC_316 ==========
+============================================================
+Ended: 2026-07-21 16:38:30

@@ -1,0 +1,16 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC319_VerifyReportOptionWorks
+Started: 2026-07-21 16:44:01
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC319_VerifyReportOptionWorks_2026_07_21_16_44_01.log
+============================================================
+========== TEST STARTED: TC_319: Report Option Works ==========
+STEP 1: Open book details from dashboard
+STEP 2: Check if Report option is visible
+STEP 3: Report book as inappropriate content
+INFO  TC_319 - Report outcome: already_reported (server returned duplicate-protection message)
+INFO  TC_319: Report outcome = already_reported | observed message: …ssful  EN Report Content Brain At Work Report received — thank you for taking the time! 💛 Thank you for your feedback! We'll review y…
+STEP 4: Click Continue Listening to dismiss confirmation (skipped on already-reported path)
+INFO  TC_319: Continue Listening step skipped — book was already reported (no fresh confirmation to dismiss)
+========== TEST PASSED: TC_319 ==========
+============================================================
+Ended: 2026-07-21 16:44:30

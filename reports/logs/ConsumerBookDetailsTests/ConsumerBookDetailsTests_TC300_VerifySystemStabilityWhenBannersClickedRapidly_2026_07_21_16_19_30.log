@@ -1,0 +1,10 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC300_VerifySystemStabilityWhenBannersClickedRapidly
+Started: 2026-07-21 16:19:30
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC300_VerifySystemStabilityWhenBannersClickedRapidly_2026_07_21_16_19_30.log
+============================================================
+========== TEST STARTED: TC_300: System Stability When Banners Clicked Rapidly ==========
+STEP 1: Wait for dashboard to be ready
+[SKIP] ConsumerBookDetailsTests :: TC300_VerifySystemStabilityWhenBannersClickedRapidly
+============================================================
+Ended: 2026-07-21 16:19:40

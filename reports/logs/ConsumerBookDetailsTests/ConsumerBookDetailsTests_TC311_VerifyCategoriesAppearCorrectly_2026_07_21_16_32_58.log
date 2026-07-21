@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC311_VerifyCategoriesAppearCorrectly
+Started: 2026-07-21 16:32:58
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC311_VerifyCategoriesAppearCorrectly_2026_07_21_16_32_58.log
+============================================================
+========== TEST STARTED: TC_311: Categories Appear Correctly ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Navigate to Art category
+INFO  Art category is not available on the current dashboard state.
+========== TEST SKIPPED - Category not available: TC_311 ==========
+============================================================
+Ended: 2026-07-21 16:33:10

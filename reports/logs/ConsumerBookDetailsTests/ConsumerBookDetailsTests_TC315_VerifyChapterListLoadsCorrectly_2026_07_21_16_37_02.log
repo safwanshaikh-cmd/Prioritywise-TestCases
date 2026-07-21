@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC315_VerifyChapterListLoadsCorrectly
+Started: 2026-07-21 16:37:02
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC315_VerifyChapterListLoadsCorrectly_2026_07_21_16_37_02.log
+============================================================
+========== TEST STARTED: TC_315: Chapter List Loads Correctly ==========
+STEP 1: Open book details from dashboard
+STEP 2: Verify chapters are displayed
+INFO  TC_315: Chapters visible - true, Count - 4
+========== TEST PASSED: TC_315 ==========
+============================================================
+Ended: 2026-07-21 16:37:21

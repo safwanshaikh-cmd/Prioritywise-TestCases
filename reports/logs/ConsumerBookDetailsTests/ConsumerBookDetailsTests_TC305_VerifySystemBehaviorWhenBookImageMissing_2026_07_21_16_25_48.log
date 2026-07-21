@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC305_VerifySystemBehaviorWhenBookImageMissing
+Started: 2026-07-21 16:25:48
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC305_VerifySystemBehaviorWhenBookImageMissing_2026_07_21_16_25_48.log
+============================================================
+========== TEST STARTED: TC_305: System Behavior When Book Image Missing ==========
+STEP 1: Open book details from dashboard
+STEP 2: Check if current book has cover image
+INFO  Current book has a valid cover image, so the missing-image state is not available.
+========== TEST SKIPPED - Cover exists: TC_305 ==========
+============================================================
+Ended: 2026-07-21 16:26:09

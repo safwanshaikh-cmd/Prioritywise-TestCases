@@ -1,0 +1,13 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC303_VerifySystemHandlesManyBannersSmoothly
+Started: 2026-07-21 16:23:45
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC303_VerifySystemHandlesManyBannersSmoothly_2026_07_21_16_23_45.log
+============================================================
+========== TEST STARTED: TC_303: System Handles Many Banners Smoothly ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Check visible banner count
+STEP 3: Verify dashboard remains stable with many banners configured
+INFO  TC_303: rendered=true, bannerCount=6, dashboardStable=true, carouselResponsive=false, autoRotated=false
+========== TEST PASSED: TC_303 ==========
+============================================================
+Ended: 2026-07-21 16:23:59

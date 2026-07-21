@@ -1,252 +1,352 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="24" passed="22" failed="0" skipped="2">
+<testng-results retried="2" ignored="2" total="44" passed="40" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-07-21T15:20:32 GST" name="Default suite" finished-at="2026-07-21T15:58:23 GST" duration-ms="2271544">
+  <suite started-at="2026-07-21T16:00:46 GST" name="Default suite" finished-at="2026-07-21T16:48:44 GST" duration-ms="2878619">
     <groups>
-      <group name="security">
-        <method signature="AudioPlayerTests.TC346_VerifyFreeUserCanListenToOnlyOneBook()[pri:346, instance:tests.AudioPlayerTests@7eac9008]" name="TC346_VerifyFreeUserCanListenToOnlyOneBook" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC347_VerifyFreeUserCanOnlyListenToFirstBookFully()[pri:347, instance:tests.AudioPlayerTests@7eac9008]" name="TC347_VerifyFreeUserCanOnlyListenToFirstBookFully" class="tests.AudioPlayerTests"/>
-      </group> <!-- security -->
       <group name="functional">
-        <method signature="AudioPlayerTests.TC324_VerifyAudioStartsWhenClickingPlayButton()[pri:324, instance:tests.AudioPlayerTests@7eac9008]" name="TC324_VerifyAudioStartsWhenClickingPlayButton" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC325_VerifyAudioPausesWhenPauseButtonClicked()[pri:325, instance:tests.AudioPlayerTests@7eac9008]" name="TC325_VerifyAudioPausesWhenPauseButtonClicked" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC326_VerifyAudioResumesFromPausedPosition()[pri:326, instance:tests.AudioPlayerTests@7eac9008]" name="TC326_VerifyAudioResumesFromPausedPosition" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC327_VerifyUserCanSkipForward30Seconds()[pri:327, instance:tests.AudioPlayerTests@7eac9008]" name="TC327_VerifyUserCanSkipForward30Seconds" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC328_VerifyUserCanRewind30Seconds()[pri:328, instance:tests.AudioPlayerTests@7eac9008]" name="TC328_VerifyUserCanRewind30Seconds" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC329_VerifyForwardButtonBehaviorNearAudioEnd()[pri:329, instance:tests.AudioPlayerTests@7eac9008]" name="TC329_VerifyForwardButtonBehaviorNearAudioEnd" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC330_VerifyRewindBehaviorAtAudioStart()[pri:330, instance:tests.AudioPlayerTests@7eac9008]" name="TC330_VerifyRewindBehaviorAtAudioStart" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC331_VerifyClickingNextChapterPlaysNextChapter()[pri:331, instance:tests.AudioPlayerTests@7eac9008]" name="TC331_VerifyClickingNextChapterPlaysNextChapter" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC332_VerifyPreviousChapterNavigation()[pri:332, instance:tests.AudioPlayerTests@7eac9008]" name="TC332_VerifyPreviousChapterNavigation" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC333_VerifyPreviousButtonBehaviorOnFirstChapter()[pri:333, instance:tests.AudioPlayerTests@7eac9008]" name="TC333_VerifyPreviousButtonBehaviorOnFirstChapter" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC334_VerifyUserCanChangePlaybackSpeed()[pri:334, instance:tests.AudioPlayerTests@7eac9008]" name="TC334_VerifyUserCanChangePlaybackSpeed" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC335_VerifyMinimumSpeedSelection()[pri:335, instance:tests.AudioPlayerTests@7eac9008]" name="TC335_VerifyMinimumSpeedSelection" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC336_VerifyMaximumSpeedSelection()[pri:336, instance:tests.AudioPlayerTests@7eac9008]" name="TC336_VerifyMaximumSpeedSelection" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC337_VerifyVolumeSliderIncreasesAudioLevel()[pri:337, instance:tests.AudioPlayerTests@7eac9008]" name="TC337_VerifyVolumeSliderIncreasesAudioLevel" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC338_VerifyVolumeSliderDecreasesAudioLevel()[pri:338, instance:tests.AudioPlayerTests@7eac9008]" name="TC338_VerifyVolumeSliderDecreasesAudioLevel" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC339_VerifyUserCanMuteAudio()[pri:339, instance:tests.AudioPlayerTests@7eac9008]" name="TC339_VerifyUserCanMuteAudio" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC341_VerifyUserCanSeekForwardViaProgressBar()[pri:341, instance:tests.AudioPlayerTests@7eac9008]" name="TC341_VerifyUserCanSeekForwardViaProgressBar" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC342_VerifyUserCanSeekBackwardViaProgressBar()[pri:342, instance:tests.AudioPlayerTests@7eac9008]" name="TC342_VerifyUserCanSeekBackwardViaProgressBar" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength()[pri:343, instance:tests.AudioPlayerTests@7eac9008]" name="TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC344_VerifySubscribedUserCanListenToBook()[pri:344, instance:tests.AudioPlayerTests@7eac9008]" name="TC344_VerifySubscribedUserCanListenToBook" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC345_VerifySubscribedUserCanListenToMultipleBooks()[pri:345, instance:tests.AudioPlayerTests@7eac9008]" name="TC345_VerifySubscribedUserCanListenToMultipleBooks" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC346_VerifyFreeUserCanListenToOnlyOneBook()[pri:346, instance:tests.AudioPlayerTests@7eac9008]" name="TC346_VerifyFreeUserCanListenToOnlyOneBook" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC347_VerifyFreeUserCanOnlyListenToFirstBookFully()[pri:347, instance:tests.AudioPlayerTests@7eac9008]" name="TC347_VerifyFreeUserCanOnlyListenToFirstBookFully" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC350_VerifyPlaybackControlsWorkForSubscribedUsers()[pri:350, instance:tests.AudioPlayerTests@7eac9008]" name="TC350_VerifyPlaybackControlsWorkForSubscribedUsers" class="tests.AudioPlayerTests"/>
+        <method signature="ConsumerBookDetailsTests.TC284_VerifyBannerImagesAreVisibleOnDashboard()[pri:284, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC284_VerifyBannerImagesAreVisibleOnDashboard" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC285_VerifyBannerImagesScrollAutomatically()[pri:285, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC285_VerifyBannerImagesScrollAutomatically" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC286_VerifyUserCanManuallyScrollBanners()[pri:286, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC286_VerifyUserCanManuallyScrollBanners" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC287_VerifyClickingBannerOpensCorrespondingBookDetails()[pri:287, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC287_VerifyClickingBannerOpensCorrespondingBookDetails" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC288_VerifyCorrectBookOpensWhenBannerClicked()[pri:288, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC288_VerifyCorrectBookOpensWhenBannerClicked" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC289_VerifyBookReviewsDisplayedOnBookDetailsPage()[pri:289, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC289_VerifyBookReviewsDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC290_VerifyEpisodesListDisplayedOnBookDetailsPage()[pri:290, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC290_VerifyEpisodesListDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC291_VerifyDurationDisplayedForEpisodesOrBook()[pri:291, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC291_VerifyDurationDisplayedForEpisodesOrBook" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC292_VerifyRatingInformationDisplayedOnBookDetailsPage()[pri:292, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC292_VerifyRatingInformationDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC293_VerifyUserCanAccessReportOption()[pri:293, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC293_VerifyUserCanAccessReportOption" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC294_VerifyAssignedCategoriesDisplayedOnBookDetailsPage()[pri:294, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC294_VerifyAssignedCategoriesDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC295_VerifyBookSummaryDisplayedOnBookDetailsPage()[pri:295, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC295_VerifyBookSummaryDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC296_VerifyAvailableChaptersListedOnBookDetailsPage()[pri:296, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC296_VerifyAvailableChaptersListedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC297_VerifyBehaviorWhenNoBannersExist()[pri:297, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC297_VerifyBehaviorWhenNoBannersExist" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC298_VerifyBehaviorWhenNoReviewsExist()[pri:298, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC298_VerifyBehaviorWhenNoReviewsExist" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC299_VerifyBehaviorWhenNoEpisodesExist()[pri:299, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC299_VerifyBehaviorWhenNoEpisodesExist" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC300_VerifySystemStabilityWhenBannersClickedRapidly()[pri:300, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC300_VerifySystemStabilityWhenBannersClickedRapidly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork()[pri:301, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC302_VerifyScrollingWorksWithOnlyOneBanner()[pri:302, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC302_VerifyScrollingWorksWithOnlyOneBanner" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC303_VerifySystemHandlesManyBannersSmoothly()[pri:303, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC303_VerifySystemHandlesManyBannersSmoothly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC304_VerifyBookCoverImageLoadsProperly()[pri:304, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC304_VerifyBookCoverImageLoadsProperly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC305_VerifySystemBehaviorWhenBookImageMissing()[pri:305, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC305_VerifySystemBehaviorWhenBookImageMissing" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC306_VerifyAudioStartsWhenClickingPlayAudio()[pri:306, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC306_VerifyAudioStartsWhenClickingPlayAudio" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC307_VerifyUserCanPausePlayingAudio()[pri:307, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC307_VerifyUserCanPausePlayingAudio" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC308_VerifyShareButtonFunctionality()[pri:308, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC308_VerifyShareButtonFunctionality" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC309_VerifyUserCanLikeABook()[pri:309, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC309_VerifyUserCanLikeABook" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC310_VerifyUserCanUnlikeABook()[pri:310, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC310_VerifyUserCanUnlikeABook" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC311_VerifyCategoriesAppearCorrectly()[pri:311, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC311_VerifyCategoriesAppearCorrectly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC312_VerifyClickingCategoryNavigatesToCategoryPage()[pri:312, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC312_VerifyClickingCategoryNavigatesToCategoryPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC313_VerifySummaryContentLoads()[pri:313, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC313_VerifySummaryContentLoads" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC314_VerifyUiWhenSummaryIsMissing()[pri:314, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC314_VerifyUiWhenSummaryIsMissing" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC315_VerifyChapterListLoadsCorrectly()[pri:315, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC315_VerifyChapterListLoadsCorrectly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC316_VerifyChapterStartsPlayingWhenClicked()[pri:316, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC316_VerifyChapterStartsPlayingWhenClicked" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC317_VerifyUiWhenNoChaptersAvailable()[pri:317, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC317_VerifyUiWhenNoChaptersAvailable" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC318_VerifyChapterDurationDisplay()[pri:318, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC318_VerifyChapterDurationDisplay" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC319_VerifyReportOptionWorks()[pri:319, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC319_VerifyReportOptionWorks" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC320_VerifyDuplicateReportHandling()[pri:320, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC320_VerifyDuplicateReportHandling" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC321_VerifyBackNavigationReturnsToDashboard()[pri:321, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC321_VerifyBackNavigationReturnsToDashboard" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC322_VerifyUiWithLongBookTitles()[pri:322, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC322_VerifyUiWithLongBookTitles" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC323_VerifyUiPerformanceWithManyChapters()[pri:323, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC323_VerifyUiPerformanceWithManyChapters" class="tests.ConsumerBookDetailsTests"/>
       </group> <!-- functional -->
+      <group name="performance">
+        <method signature="ConsumerBookDetailsTests.TC300_VerifySystemStabilityWhenBannersClickedRapidly()[pri:300, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC300_VerifySystemStabilityWhenBannersClickedRapidly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork()[pri:301, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC303_VerifySystemHandlesManyBannersSmoothly()[pri:303, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC303_VerifySystemHandlesManyBannersSmoothly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC323_VerifyUiPerformanceWithManyChapters()[pri:323, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC323_VerifyUiPerformanceWithManyChapters" class="tests.ConsumerBookDetailsTests"/>
+      </group> <!-- performance -->
       <group name="ui">
-        <method signature="AudioPlayerTests.TC324_VerifyAudioStartsWhenClickingPlayButton()[pri:324, instance:tests.AudioPlayerTests@7eac9008]" name="TC324_VerifyAudioStartsWhenClickingPlayButton" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC325_VerifyAudioPausesWhenPauseButtonClicked()[pri:325, instance:tests.AudioPlayerTests@7eac9008]" name="TC325_VerifyAudioPausesWhenPauseButtonClicked" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC326_VerifyAudioResumesFromPausedPosition()[pri:326, instance:tests.AudioPlayerTests@7eac9008]" name="TC326_VerifyAudioResumesFromPausedPosition" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC327_VerifyUserCanSkipForward30Seconds()[pri:327, instance:tests.AudioPlayerTests@7eac9008]" name="TC327_VerifyUserCanSkipForward30Seconds" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC328_VerifyUserCanRewind30Seconds()[pri:328, instance:tests.AudioPlayerTests@7eac9008]" name="TC328_VerifyUserCanRewind30Seconds" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC329_VerifyForwardButtonBehaviorNearAudioEnd()[pri:329, instance:tests.AudioPlayerTests@7eac9008]" name="TC329_VerifyForwardButtonBehaviorNearAudioEnd" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC330_VerifyRewindBehaviorAtAudioStart()[pri:330, instance:tests.AudioPlayerTests@7eac9008]" name="TC330_VerifyRewindBehaviorAtAudioStart" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC331_VerifyClickingNextChapterPlaysNextChapter()[pri:331, instance:tests.AudioPlayerTests@7eac9008]" name="TC331_VerifyClickingNextChapterPlaysNextChapter" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC332_VerifyPreviousChapterNavigation()[pri:332, instance:tests.AudioPlayerTests@7eac9008]" name="TC332_VerifyPreviousChapterNavigation" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC333_VerifyPreviousButtonBehaviorOnFirstChapter()[pri:333, instance:tests.AudioPlayerTests@7eac9008]" name="TC333_VerifyPreviousButtonBehaviorOnFirstChapter" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC334_VerifyUserCanChangePlaybackSpeed()[pri:334, instance:tests.AudioPlayerTests@7eac9008]" name="TC334_VerifyUserCanChangePlaybackSpeed" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC335_VerifyMinimumSpeedSelection()[pri:335, instance:tests.AudioPlayerTests@7eac9008]" name="TC335_VerifyMinimumSpeedSelection" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC336_VerifyMaximumSpeedSelection()[pri:336, instance:tests.AudioPlayerTests@7eac9008]" name="TC336_VerifyMaximumSpeedSelection" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC337_VerifyVolumeSliderIncreasesAudioLevel()[pri:337, instance:tests.AudioPlayerTests@7eac9008]" name="TC337_VerifyVolumeSliderIncreasesAudioLevel" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC338_VerifyVolumeSliderDecreasesAudioLevel()[pri:338, instance:tests.AudioPlayerTests@7eac9008]" name="TC338_VerifyVolumeSliderDecreasesAudioLevel" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC339_VerifyUserCanMuteAudio()[pri:339, instance:tests.AudioPlayerTests@7eac9008]" name="TC339_VerifyUserCanMuteAudio" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC341_VerifyUserCanSeekForwardViaProgressBar()[pri:341, instance:tests.AudioPlayerTests@7eac9008]" name="TC341_VerifyUserCanSeekForwardViaProgressBar" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC342_VerifyUserCanSeekBackwardViaProgressBar()[pri:342, instance:tests.AudioPlayerTests@7eac9008]" name="TC342_VerifyUserCanSeekBackwardViaProgressBar" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength()[pri:343, instance:tests.AudioPlayerTests@7eac9008]" name="TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC344_VerifySubscribedUserCanListenToBook()[pri:344, instance:tests.AudioPlayerTests@7eac9008]" name="TC344_VerifySubscribedUserCanListenToBook" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC345_VerifySubscribedUserCanListenToMultipleBooks()[pri:345, instance:tests.AudioPlayerTests@7eac9008]" name="TC345_VerifySubscribedUserCanListenToMultipleBooks" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC346_VerifyFreeUserCanListenToOnlyOneBook()[pri:346, instance:tests.AudioPlayerTests@7eac9008]" name="TC346_VerifyFreeUserCanListenToOnlyOneBook" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC347_VerifyFreeUserCanOnlyListenToFirstBookFully()[pri:347, instance:tests.AudioPlayerTests@7eac9008]" name="TC347_VerifyFreeUserCanOnlyListenToFirstBookFully" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC350_VerifyPlaybackControlsWorkForSubscribedUsers()[pri:350, instance:tests.AudioPlayerTests@7eac9008]" name="TC350_VerifyPlaybackControlsWorkForSubscribedUsers" class="tests.AudioPlayerTests"/>
+        <method signature="ConsumerBookDetailsTests.TC284_VerifyBannerImagesAreVisibleOnDashboard()[pri:284, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC284_VerifyBannerImagesAreVisibleOnDashboard" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC285_VerifyBannerImagesScrollAutomatically()[pri:285, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC285_VerifyBannerImagesScrollAutomatically" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC286_VerifyUserCanManuallyScrollBanners()[pri:286, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC286_VerifyUserCanManuallyScrollBanners" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC287_VerifyClickingBannerOpensCorrespondingBookDetails()[pri:287, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC287_VerifyClickingBannerOpensCorrespondingBookDetails" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC288_VerifyCorrectBookOpensWhenBannerClicked()[pri:288, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC288_VerifyCorrectBookOpensWhenBannerClicked" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC289_VerifyBookReviewsDisplayedOnBookDetailsPage()[pri:289, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC289_VerifyBookReviewsDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC290_VerifyEpisodesListDisplayedOnBookDetailsPage()[pri:290, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC290_VerifyEpisodesListDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC291_VerifyDurationDisplayedForEpisodesOrBook()[pri:291, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC291_VerifyDurationDisplayedForEpisodesOrBook" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC292_VerifyRatingInformationDisplayedOnBookDetailsPage()[pri:292, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC292_VerifyRatingInformationDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC293_VerifyUserCanAccessReportOption()[pri:293, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC293_VerifyUserCanAccessReportOption" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC294_VerifyAssignedCategoriesDisplayedOnBookDetailsPage()[pri:294, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC294_VerifyAssignedCategoriesDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC295_VerifyBookSummaryDisplayedOnBookDetailsPage()[pri:295, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC295_VerifyBookSummaryDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC296_VerifyAvailableChaptersListedOnBookDetailsPage()[pri:296, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC296_VerifyAvailableChaptersListedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC297_VerifyBehaviorWhenNoBannersExist()[pri:297, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC297_VerifyBehaviorWhenNoBannersExist" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC298_VerifyBehaviorWhenNoReviewsExist()[pri:298, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC298_VerifyBehaviorWhenNoReviewsExist" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC299_VerifyBehaviorWhenNoEpisodesExist()[pri:299, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC299_VerifyBehaviorWhenNoEpisodesExist" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC300_VerifySystemStabilityWhenBannersClickedRapidly()[pri:300, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC300_VerifySystemStabilityWhenBannersClickedRapidly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork()[pri:301, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC302_VerifyScrollingWorksWithOnlyOneBanner()[pri:302, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC302_VerifyScrollingWorksWithOnlyOneBanner" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC303_VerifySystemHandlesManyBannersSmoothly()[pri:303, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC303_VerifySystemHandlesManyBannersSmoothly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC304_VerifyBookCoverImageLoadsProperly()[pri:304, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC304_VerifyBookCoverImageLoadsProperly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC305_VerifySystemBehaviorWhenBookImageMissing()[pri:305, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC305_VerifySystemBehaviorWhenBookImageMissing" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC306_VerifyAudioStartsWhenClickingPlayAudio()[pri:306, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC306_VerifyAudioStartsWhenClickingPlayAudio" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC307_VerifyUserCanPausePlayingAudio()[pri:307, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC307_VerifyUserCanPausePlayingAudio" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC308_VerifyShareButtonFunctionality()[pri:308, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC308_VerifyShareButtonFunctionality" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC309_VerifyUserCanLikeABook()[pri:309, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC309_VerifyUserCanLikeABook" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC310_VerifyUserCanUnlikeABook()[pri:310, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC310_VerifyUserCanUnlikeABook" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC311_VerifyCategoriesAppearCorrectly()[pri:311, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC311_VerifyCategoriesAppearCorrectly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC312_VerifyClickingCategoryNavigatesToCategoryPage()[pri:312, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC312_VerifyClickingCategoryNavigatesToCategoryPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC313_VerifySummaryContentLoads()[pri:313, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC313_VerifySummaryContentLoads" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC314_VerifyUiWhenSummaryIsMissing()[pri:314, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC314_VerifyUiWhenSummaryIsMissing" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC315_VerifyChapterListLoadsCorrectly()[pri:315, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC315_VerifyChapterListLoadsCorrectly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC316_VerifyChapterStartsPlayingWhenClicked()[pri:316, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC316_VerifyChapterStartsPlayingWhenClicked" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC317_VerifyUiWhenNoChaptersAvailable()[pri:317, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC317_VerifyUiWhenNoChaptersAvailable" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC318_VerifyChapterDurationDisplay()[pri:318, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC318_VerifyChapterDurationDisplay" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC319_VerifyReportOptionWorks()[pri:319, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC319_VerifyReportOptionWorks" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC320_VerifyDuplicateReportHandling()[pri:320, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC320_VerifyDuplicateReportHandling" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC321_VerifyBackNavigationReturnsToDashboard()[pri:321, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC321_VerifyBackNavigationReturnsToDashboard" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC322_VerifyUiWithLongBookTitles()[pri:322, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC322_VerifyUiWithLongBookTitles" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC323_VerifyUiPerformanceWithManyChapters()[pri:323, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC323_VerifyUiPerformanceWithManyChapters" class="tests.ConsumerBookDetailsTests"/>
       </group> <!-- ui -->
-      <group name="regression">
-        <method signature="AudioPlayerTests.TC350_VerifyPlaybackControlsWorkForSubscribedUsers()[pri:350, instance:tests.AudioPlayerTests@7eac9008]" name="TC350_VerifyPlaybackControlsWorkForSubscribedUsers" class="tests.AudioPlayerTests"/>
-      </group> <!-- regression -->
       <group name="consumer">
-        <method signature="AudioPlayerTests.TC324_VerifyAudioStartsWhenClickingPlayButton()[pri:324, instance:tests.AudioPlayerTests@7eac9008]" name="TC324_VerifyAudioStartsWhenClickingPlayButton" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC325_VerifyAudioPausesWhenPauseButtonClicked()[pri:325, instance:tests.AudioPlayerTests@7eac9008]" name="TC325_VerifyAudioPausesWhenPauseButtonClicked" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC326_VerifyAudioResumesFromPausedPosition()[pri:326, instance:tests.AudioPlayerTests@7eac9008]" name="TC326_VerifyAudioResumesFromPausedPosition" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC327_VerifyUserCanSkipForward30Seconds()[pri:327, instance:tests.AudioPlayerTests@7eac9008]" name="TC327_VerifyUserCanSkipForward30Seconds" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC328_VerifyUserCanRewind30Seconds()[pri:328, instance:tests.AudioPlayerTests@7eac9008]" name="TC328_VerifyUserCanRewind30Seconds" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC329_VerifyForwardButtonBehaviorNearAudioEnd()[pri:329, instance:tests.AudioPlayerTests@7eac9008]" name="TC329_VerifyForwardButtonBehaviorNearAudioEnd" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC330_VerifyRewindBehaviorAtAudioStart()[pri:330, instance:tests.AudioPlayerTests@7eac9008]" name="TC330_VerifyRewindBehaviorAtAudioStart" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC331_VerifyClickingNextChapterPlaysNextChapter()[pri:331, instance:tests.AudioPlayerTests@7eac9008]" name="TC331_VerifyClickingNextChapterPlaysNextChapter" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC332_VerifyPreviousChapterNavigation()[pri:332, instance:tests.AudioPlayerTests@7eac9008]" name="TC332_VerifyPreviousChapterNavigation" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC333_VerifyPreviousButtonBehaviorOnFirstChapter()[pri:333, instance:tests.AudioPlayerTests@7eac9008]" name="TC333_VerifyPreviousButtonBehaviorOnFirstChapter" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC334_VerifyUserCanChangePlaybackSpeed()[pri:334, instance:tests.AudioPlayerTests@7eac9008]" name="TC334_VerifyUserCanChangePlaybackSpeed" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC335_VerifyMinimumSpeedSelection()[pri:335, instance:tests.AudioPlayerTests@7eac9008]" name="TC335_VerifyMinimumSpeedSelection" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC336_VerifyMaximumSpeedSelection()[pri:336, instance:tests.AudioPlayerTests@7eac9008]" name="TC336_VerifyMaximumSpeedSelection" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC337_VerifyVolumeSliderIncreasesAudioLevel()[pri:337, instance:tests.AudioPlayerTests@7eac9008]" name="TC337_VerifyVolumeSliderIncreasesAudioLevel" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC338_VerifyVolumeSliderDecreasesAudioLevel()[pri:338, instance:tests.AudioPlayerTests@7eac9008]" name="TC338_VerifyVolumeSliderDecreasesAudioLevel" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC339_VerifyUserCanMuteAudio()[pri:339, instance:tests.AudioPlayerTests@7eac9008]" name="TC339_VerifyUserCanMuteAudio" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC341_VerifyUserCanSeekForwardViaProgressBar()[pri:341, instance:tests.AudioPlayerTests@7eac9008]" name="TC341_VerifyUserCanSeekForwardViaProgressBar" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC342_VerifyUserCanSeekBackwardViaProgressBar()[pri:342, instance:tests.AudioPlayerTests@7eac9008]" name="TC342_VerifyUserCanSeekBackwardViaProgressBar" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength()[pri:343, instance:tests.AudioPlayerTests@7eac9008]" name="TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC344_VerifySubscribedUserCanListenToBook()[pri:344, instance:tests.AudioPlayerTests@7eac9008]" name="TC344_VerifySubscribedUserCanListenToBook" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC345_VerifySubscribedUserCanListenToMultipleBooks()[pri:345, instance:tests.AudioPlayerTests@7eac9008]" name="TC345_VerifySubscribedUserCanListenToMultipleBooks" class="tests.AudioPlayerTests"/>
-        <method signature="AudioPlayerTests.TC350_VerifyPlaybackControlsWorkForSubscribedUsers()[pri:350, instance:tests.AudioPlayerTests@7eac9008]" name="TC350_VerifyPlaybackControlsWorkForSubscribedUsers" class="tests.AudioPlayerTests"/>
+        <method signature="ConsumerBookDetailsTests.TC284_VerifyBannerImagesAreVisibleOnDashboard()[pri:284, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC284_VerifyBannerImagesAreVisibleOnDashboard" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC285_VerifyBannerImagesScrollAutomatically()[pri:285, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC285_VerifyBannerImagesScrollAutomatically" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC286_VerifyUserCanManuallyScrollBanners()[pri:286, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC286_VerifyUserCanManuallyScrollBanners" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC287_VerifyClickingBannerOpensCorrespondingBookDetails()[pri:287, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC287_VerifyClickingBannerOpensCorrespondingBookDetails" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC288_VerifyCorrectBookOpensWhenBannerClicked()[pri:288, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC288_VerifyCorrectBookOpensWhenBannerClicked" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC289_VerifyBookReviewsDisplayedOnBookDetailsPage()[pri:289, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC289_VerifyBookReviewsDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC290_VerifyEpisodesListDisplayedOnBookDetailsPage()[pri:290, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC290_VerifyEpisodesListDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC291_VerifyDurationDisplayedForEpisodesOrBook()[pri:291, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC291_VerifyDurationDisplayedForEpisodesOrBook" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC292_VerifyRatingInformationDisplayedOnBookDetailsPage()[pri:292, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC292_VerifyRatingInformationDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC293_VerifyUserCanAccessReportOption()[pri:293, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC293_VerifyUserCanAccessReportOption" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC294_VerifyAssignedCategoriesDisplayedOnBookDetailsPage()[pri:294, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC294_VerifyAssignedCategoriesDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC295_VerifyBookSummaryDisplayedOnBookDetailsPage()[pri:295, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC295_VerifyBookSummaryDisplayedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC296_VerifyAvailableChaptersListedOnBookDetailsPage()[pri:296, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC296_VerifyAvailableChaptersListedOnBookDetailsPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC297_VerifyBehaviorWhenNoBannersExist()[pri:297, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC297_VerifyBehaviorWhenNoBannersExist" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC298_VerifyBehaviorWhenNoReviewsExist()[pri:298, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC298_VerifyBehaviorWhenNoReviewsExist" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC299_VerifyBehaviorWhenNoEpisodesExist()[pri:299, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC299_VerifyBehaviorWhenNoEpisodesExist" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC300_VerifySystemStabilityWhenBannersClickedRapidly()[pri:300, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC300_VerifySystemStabilityWhenBannersClickedRapidly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork()[pri:301, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC302_VerifyScrollingWorksWithOnlyOneBanner()[pri:302, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC302_VerifyScrollingWorksWithOnlyOneBanner" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC303_VerifySystemHandlesManyBannersSmoothly()[pri:303, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC303_VerifySystemHandlesManyBannersSmoothly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC304_VerifyBookCoverImageLoadsProperly()[pri:304, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC304_VerifyBookCoverImageLoadsProperly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC305_VerifySystemBehaviorWhenBookImageMissing()[pri:305, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC305_VerifySystemBehaviorWhenBookImageMissing" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC306_VerifyAudioStartsWhenClickingPlayAudio()[pri:306, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC306_VerifyAudioStartsWhenClickingPlayAudio" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC307_VerifyUserCanPausePlayingAudio()[pri:307, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC307_VerifyUserCanPausePlayingAudio" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC308_VerifyShareButtonFunctionality()[pri:308, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC308_VerifyShareButtonFunctionality" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC309_VerifyUserCanLikeABook()[pri:309, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC309_VerifyUserCanLikeABook" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC310_VerifyUserCanUnlikeABook()[pri:310, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC310_VerifyUserCanUnlikeABook" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC311_VerifyCategoriesAppearCorrectly()[pri:311, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC311_VerifyCategoriesAppearCorrectly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC312_VerifyClickingCategoryNavigatesToCategoryPage()[pri:312, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC312_VerifyClickingCategoryNavigatesToCategoryPage" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC313_VerifySummaryContentLoads()[pri:313, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC313_VerifySummaryContentLoads" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC314_VerifyUiWhenSummaryIsMissing()[pri:314, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC314_VerifyUiWhenSummaryIsMissing" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC315_VerifyChapterListLoadsCorrectly()[pri:315, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC315_VerifyChapterListLoadsCorrectly" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC316_VerifyChapterStartsPlayingWhenClicked()[pri:316, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC316_VerifyChapterStartsPlayingWhenClicked" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC317_VerifyUiWhenNoChaptersAvailable()[pri:317, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC317_VerifyUiWhenNoChaptersAvailable" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC318_VerifyChapterDurationDisplay()[pri:318, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC318_VerifyChapterDurationDisplay" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC319_VerifyReportOptionWorks()[pri:319, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC319_VerifyReportOptionWorks" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC320_VerifyDuplicateReportHandling()[pri:320, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC320_VerifyDuplicateReportHandling" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC321_VerifyBackNavigationReturnsToDashboard()[pri:321, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC321_VerifyBackNavigationReturnsToDashboard" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC322_VerifyUiWithLongBookTitles()[pri:322, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC322_VerifyUiWithLongBookTitles" class="tests.ConsumerBookDetailsTests"/>
+        <method signature="ConsumerBookDetailsTests.TC323_VerifyUiPerformanceWithManyChapters()[pri:323, instance:tests.ConsumerBookDetailsTests@7c6908d7]" name="TC323_VerifyUiPerformanceWithManyChapters" class="tests.ConsumerBookDetailsTests"/>
       </group> <!-- consumer -->
     </groups>
-    <test started-at="2026-07-21T15:20:32 GST" name="Default test" finished-at="2026-07-21T15:58:23 GST" duration-ms="2271544">
-      <class name="tests.AudioPlayerTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:20:36 GST" name="setup" finished-at="2026-07-21T15:20:54 GST" duration-ms="18001" status="PASS">
+    <test started-at="2026-07-21T16:00:46 GST" name="Default test" finished-at="2026-07-21T16:48:44 GST" duration-ms="2878619">
+      <class name="tests.ConsumerBookDetailsTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:00:50 GST" name="setup" finished-at="2026-07-21T16:01:38 GST" duration-ms="48132" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC324_VerifyAudioStartsWhenClickingPlayButton()[pri:324, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:20:54 GST" name="TC324_VerifyAudioStartsWhenClickingPlayButton" description="TC_324: Verify audio starts when clicking Play button" finished-at="2026-07-21T15:22:02 GST" duration-ms="68716" status="PASS">
+        <test-method signature="TC284_VerifyBannerImagesAreVisibleOnDashboard()[pri:284, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:01:38 GST" name="TC284_VerifyBannerImagesAreVisibleOnDashboard" description="TC_284: Verify banner images are visible on dashboard" finished-at="2026-07-21T16:01:41 GST" duration-ms="2650" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC324_VerifyAudioStartsWhenClickingPlayButton -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:22:02 GST" name="tearDown" finished-at="2026-07-21T15:22:03 GST" duration-ms="504" status="PASS">
+        </test-method> <!-- TC284_VerifyBannerImagesAreVisibleOnDashboard -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:01:41 GST" name="tearDown" finished-at="2026-07-21T16:01:41 GST" duration-ms="510" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:22:03 GST" name="setup" finished-at="2026-07-21T15:22:17 GST" duration-ms="14079" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:01:41 GST" name="setup" finished-at="2026-07-21T16:02:21 GST" duration-ms="39899" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC325_VerifyAudioPausesWhenPauseButtonClicked()[pri:325, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:22:17 GST" name="TC325_VerifyAudioPausesWhenPauseButtonClicked" description="TC_325: Verify audio pauses when Pause button is clicked" finished-at="2026-07-21T15:23:31 GST" duration-ms="73768" status="PASS">
+        <test-method signature="TC285_VerifyBannerImagesScrollAutomatically()[pri:285, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:02:21 GST" name="TC285_VerifyBannerImagesScrollAutomatically" description="TC_285: Verify banner images scroll automatically" finished-at="2026-07-21T16:02:36 GST" duration-ms="14798" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC325_VerifyAudioPausesWhenPauseButtonClicked -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:23:31 GST" name="tearDown" finished-at="2026-07-21T15:23:31 GST" duration-ms="475" status="PASS">
+        </test-method> <!-- TC285_VerifyBannerImagesScrollAutomatically -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:02:36 GST" name="tearDown" finished-at="2026-07-21T16:02:37 GST" duration-ms="489" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:23:31 GST" name="setup" finished-at="2026-07-21T15:23:45 GST" duration-ms="13569" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:02:37 GST" name="setup" finished-at="2026-07-21T16:03:20 GST" duration-ms="43158" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC326_VerifyAudioResumesFromPausedPosition()[pri:326, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:23:45 GST" name="TC326_VerifyAudioResumesFromPausedPosition" description="TC_326: Verify audio resumes from paused position" finished-at="2026-07-21T15:25:01 GST" duration-ms="76255" status="PASS">
+        <test-method signature="TC286_VerifyUserCanManuallyScrollBanners()[pri:286, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:03:20 GST" name="TC286_VerifyUserCanManuallyScrollBanners" description="TC_286: Verify user can manually scroll banners" finished-at="2026-07-21T16:03:34 GST" duration-ms="14549" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC326_VerifyAudioResumesFromPausedPosition -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:25:01 GST" name="tearDown" finished-at="2026-07-21T15:25:02 GST" duration-ms="513" status="PASS">
+        </test-method> <!-- TC286_VerifyUserCanManuallyScrollBanners -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:03:34 GST" name="tearDown" finished-at="2026-07-21T16:03:35 GST" duration-ms="439" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:25:02 GST" name="setup" finished-at="2026-07-21T15:25:13 GST" duration-ms="11700" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:03:35 GST" name="setup" finished-at="2026-07-21T16:04:15 GST" duration-ms="40017" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC327_VerifyUserCanSkipForward30Seconds()[pri:327, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:25:13 GST" name="TC327_VerifyUserCanSkipForward30Seconds" description="TC_327: Verify user can skip forward 30 seconds" finished-at="2026-07-21T15:26:25 GST" duration-ms="71636" status="PASS">
+        <test-method signature="TC287_VerifyClickingBannerOpensCorrespondingBookDetails()[pri:287, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:04:15 GST" name="TC287_VerifyClickingBannerOpensCorrespondingBookDetails" description="TC_287: Verify clicking banner opens corresponding book details" finished-at="2026-07-21T16:04:39 GST" duration-ms="24445" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC327_VerifyUserCanSkipForward30Seconds -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:26:25 GST" name="tearDown" finished-at="2026-07-21T15:26:25 GST" duration-ms="473" status="PASS">
+        </test-method> <!-- TC287_VerifyClickingBannerOpensCorrespondingBookDetails -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:04:39 GST" name="tearDown" finished-at="2026-07-21T16:04:40 GST" duration-ms="471" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:26:25 GST" name="setup" finished-at="2026-07-21T15:26:39 GST" duration-ms="13342" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:04:40 GST" name="setup" finished-at="2026-07-21T16:05:20 GST" duration-ms="40460" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC328_VerifyUserCanRewind30Seconds()[pri:328, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:26:39 GST" name="TC328_VerifyUserCanRewind30Seconds" description="TC_328: Verify user can rewind 30 seconds" finished-at="2026-07-21T15:27:57 GST" duration-ms="78401" status="PASS">
+        <test-method signature="TC288_VerifyCorrectBookOpensWhenBannerClicked()[pri:288, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:05:20 GST" name="TC288_VerifyCorrectBookOpensWhenBannerClicked" description="TC_288: Verify correct book opens when banner is clicked" finished-at="2026-07-21T16:05:38 GST" duration-ms="18252" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC328_VerifyUserCanRewind30Seconds -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:27:57 GST" name="tearDown" finished-at="2026-07-21T15:27:58 GST" duration-ms="491" status="PASS">
+        </test-method> <!-- TC288_VerifyCorrectBookOpensWhenBannerClicked -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:05:38 GST" name="tearDown" finished-at="2026-07-21T16:05:39 GST" duration-ms="458" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:27:58 GST" name="setup" finished-at="2026-07-21T15:28:10 GST" duration-ms="12479" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:05:39 GST" name="setup" finished-at="2026-07-21T16:06:21 GST" duration-ms="42441" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC329_VerifyForwardButtonBehaviorNearAudioEnd()[pri:329, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:28:10 GST" name="TC329_VerifyForwardButtonBehaviorNearAudioEnd" description="TC_329: Verify Forward 30 near audio end stops at duration or completes playback without overshooting" finished-at="2026-07-21T15:29:26 GST" duration-ms="75498" status="PASS">
+        <test-method signature="TC289_VerifyBookReviewsDisplayedOnBookDetailsPage()[pri:289, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:06:21 GST" name="TC289_VerifyBookReviewsDisplayedOnBookDetailsPage" description="TC_289: Verify book reviews are displayed on book details page" finished-at="2026-07-21T16:06:43 GST" duration-ms="21208" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC329_VerifyForwardButtonBehaviorNearAudioEnd -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:29:26 GST" name="tearDown" finished-at="2026-07-21T15:29:26 GST" duration-ms="460" status="PASS">
+        </test-method> <!-- TC289_VerifyBookReviewsDisplayedOnBookDetailsPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:06:43 GST" name="tearDown" finished-at="2026-07-21T16:06:43 GST" duration-ms="473" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:29:26 GST" name="setup" finished-at="2026-07-21T15:29:40 GST" duration-ms="13757" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:06:43 GST" name="setup" finished-at="2026-07-21T16:07:21 GST" duration-ms="37891" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC330_VerifyRewindBehaviorAtAudioStart()[pri:330, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:29:40 GST" name="TC330_VerifyRewindBehaviorAtAudioStart" description="TC_330: Verify rewind behavior at audio start" finished-at="2026-07-21T15:30:54 GST" duration-ms="74042" status="PASS">
+        <test-method signature="TC290_VerifyEpisodesListDisplayedOnBookDetailsPage()[pri:290, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:07:21 GST" name="TC290_VerifyEpisodesListDisplayedOnBookDetailsPage" description="TC_290: Verify episodes list is displayed on book details page" finished-at="2026-07-21T16:07:46 GST" duration-ms="25119" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC330_VerifyRewindBehaviorAtAudioStart -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:30:54 GST" name="tearDown" finished-at="2026-07-21T15:30:54 GST" duration-ms="481" status="PASS">
+        </test-method> <!-- TC290_VerifyEpisodesListDisplayedOnBookDetailsPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:07:46 GST" name="tearDown" finished-at="2026-07-21T16:07:47 GST" duration-ms="569" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:30:54 GST" name="setup" finished-at="2026-07-21T15:31:09 GST" duration-ms="14485" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:07:47 GST" name="setup" finished-at="2026-07-21T16:08:27 GST" duration-ms="40771" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC331_VerifyClickingNextChapterPlaysNextChapter()[pri:331, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:31:09 GST" name="TC331_VerifyClickingNextChapterPlaysNextChapter" description="TC_331: Verify clicking next chapter plays the next chapter" finished-at="2026-07-21T15:32:22 GST" duration-ms="72944" status="PASS">
+        <test-method signature="TC291_VerifyDurationDisplayedForEpisodesOrBook()[pri:291, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:08:27 GST" name="TC291_VerifyDurationDisplayedForEpisodesOrBook" description="TC_291: Verify duration is displayed for episodes or book" finished-at="2026-07-21T16:08:51 GST" duration-ms="23453" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC331_VerifyClickingNextChapterPlaysNextChapter -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:32:22 GST" name="tearDown" finished-at="2026-07-21T15:32:22 GST" duration-ms="472" status="PASS">
+        </test-method> <!-- TC291_VerifyDurationDisplayedForEpisodesOrBook -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:08:51 GST" name="tearDown" finished-at="2026-07-21T16:08:51 GST" duration-ms="456" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:32:22 GST" name="setup" finished-at="2026-07-21T15:32:36 GST" duration-ms="13484" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:08:51 GST" name="setup" finished-at="2026-07-21T16:09:32 GST" duration-ms="40593" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC332_VerifyPreviousChapterNavigation()[pri:332, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:32:36 GST" name="TC332_VerifyPreviousChapterNavigation" description="TC_332: Verify previous chapter navigation returns to earlier chapter" finished-at="2026-07-21T15:33:55 GST" duration-ms="79211" status="PASS">
+        <test-method signature="TC292_VerifyRatingInformationDisplayedOnBookDetailsPage()[pri:292, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:09:32 GST" name="TC292_VerifyRatingInformationDisplayedOnBookDetailsPage" description="TC_292: Verify rating information is displayed on book details page" finished-at="2026-07-21T16:09:53 GST" duration-ms="20799" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC332_VerifyPreviousChapterNavigation -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:33:55 GST" name="tearDown" finished-at="2026-07-21T15:33:56 GST" duration-ms="595" status="PASS">
+        </test-method> <!-- TC292_VerifyRatingInformationDisplayedOnBookDetailsPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:09:53 GST" name="tearDown" finished-at="2026-07-21T16:09:53 GST" duration-ms="492" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:33:56 GST" name="setup" finished-at="2026-07-21T15:34:09 GST" duration-ms="13471" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:09:53 GST" name="setup" finished-at="2026-07-21T16:10:37 GST" duration-ms="43278" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC333_VerifyPreviousButtonBehaviorOnFirstChapter()[pri:333, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:34:09 GST" name="TC333_VerifyPreviousButtonBehaviorOnFirstChapter" description="TC_333: Verify previous button behavior on first chapter" finished-at="2026-07-21T15:35:25 GST" duration-ms="75518" status="PASS">
+        <test-method signature="TC293_VerifyUserCanAccessReportOption()[pri:293, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:10:37 GST" name="TC293_VerifyUserCanAccessReportOption" description="TC_293: Verify user can access report option" finished-at="2026-07-21T16:10:56 GST" duration-ms="19022" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC333_VerifyPreviousButtonBehaviorOnFirstChapter -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:35:25 GST" name="tearDown" finished-at="2026-07-21T15:35:25 GST" duration-ms="475" status="PASS">
+        </test-method> <!-- TC293_VerifyUserCanAccessReportOption -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:10:56 GST" name="tearDown" finished-at="2026-07-21T16:10:56 GST" duration-ms="494" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:35:25 GST" name="setup" finished-at="2026-07-21T15:35:39 GST" duration-ms="13944" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:10:56 GST" name="setup" finished-at="2026-07-21T16:11:37 GST" duration-ms="40604" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC334_VerifyUserCanChangePlaybackSpeed()[pri:334, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:35:39 GST" name="TC334_VerifyUserCanChangePlaybackSpeed" description="TC_334: Verify user can change playback speed" finished-at="2026-07-21T15:36:54 GST" duration-ms="74999" status="PASS">
+        <test-method signature="TC294_VerifyAssignedCategoriesDisplayedOnBookDetailsPage()[pri:294, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:11:37 GST" name="TC294_VerifyAssignedCategoriesDisplayedOnBookDetailsPage" description="TC_294: Verify assigned categories are displayed on book details page" finished-at="2026-07-21T16:11:56 GST" duration-ms="18948" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC334_VerifyUserCanChangePlaybackSpeed -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:36:54 GST" name="tearDown" finished-at="2026-07-21T15:36:55 GST" duration-ms="501" status="PASS">
+        </test-method> <!-- TC294_VerifyAssignedCategoriesDisplayedOnBookDetailsPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:11:56 GST" name="tearDown" finished-at="2026-07-21T16:11:56 GST" duration-ms="460" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:36:55 GST" name="setup" finished-at="2026-07-21T15:37:10 GST" duration-ms="15858" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:11:56 GST" name="setup" finished-at="2026-07-21T16:12:39 GST" duration-ms="43094" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC335_VerifyMinimumSpeedSelection()[pri:335, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:37:10 GST" name="TC335_VerifyMinimumSpeedSelection" description="TC_335: Verify minimum speed selection (0.5x)" finished-at="2026-07-21T15:38:30 GST" duration-ms="79864" status="PASS">
+        <test-method signature="TC295_VerifyBookSummaryDisplayedOnBookDetailsPage()[pri:295, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:12:39 GST" name="TC295_VerifyBookSummaryDisplayedOnBookDetailsPage" description="TC_295: Verify book summary is displayed on book details page" finished-at="2026-07-21T16:13:01 GST" duration-ms="21613" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC335_VerifyMinimumSpeedSelection -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:38:30 GST" name="tearDown" finished-at="2026-07-21T15:38:31 GST" duration-ms="502" status="PASS">
+        </test-method> <!-- TC295_VerifyBookSummaryDisplayedOnBookDetailsPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:13:01 GST" name="tearDown" finished-at="2026-07-21T16:13:01 GST" duration-ms="566" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:38:31 GST" name="setup" finished-at="2026-07-21T15:38:46 GST" duration-ms="15136" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:13:01 GST" name="setup" finished-at="2026-07-21T16:13:45 GST" duration-ms="43402" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC336_VerifyMaximumSpeedSelection()[pri:336, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:38:46 GST" name="TC336_VerifyMaximumSpeedSelection" description="TC_336: Verify maximum speed selection (2x)" finished-at="2026-07-21T15:40:21 GST" duration-ms="95161" status="SKIP">
-          <exception class="org.testng.SkipException">
+        <test-method signature="TC296_VerifyAvailableChaptersListedOnBookDetailsPage()[pri:296, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:13:45 GST" name="TC296_VerifyAvailableChaptersListedOnBookDetailsPage" description="TC_296: Verify available chapters are listed on book details page" finished-at="2026-07-21T16:14:06 GST" duration-ms="21525" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC296_VerifyAvailableChaptersListedOnBookDetailsPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:14:06 GST" name="tearDown" finished-at="2026-07-21T16:14:07 GST" duration-ms="490" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:14:07 GST" name="setup" finished-at="2026-07-21T16:14:46 GST" duration-ms="39043" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC297_VerifyBehaviorWhenNoBannersExist()[pri:297, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:14:46 GST" name="TC297_VerifyBehaviorWhenNoBannersExist" description="TC_297: Verify system behavior when no banners exist" finished-at="2026-07-21T16:14:48 GST" duration-ms="2485" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC297_VerifyBehaviorWhenNoBannersExist -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:14:48 GST" name="tearDown" finished-at="2026-07-21T16:14:49 GST" duration-ms="511" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:14:49 GST" name="setup" finished-at="2026-07-21T16:15:32 GST" duration-ms="43083" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC298_VerifyBehaviorWhenNoReviewsExist()[pri:298, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:15:32 GST" name="TC298_VerifyBehaviorWhenNoReviewsExist" description="TC_298: Verify behavior when no reviews exist" finished-at="2026-07-21T16:15:57 GST" duration-ms="25025" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC298_VerifyBehaviorWhenNoReviewsExist -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:15:57 GST" name="tearDown" finished-at="2026-07-21T16:15:57 GST" duration-ms="492" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:15:57 GST" name="setup" finished-at="2026-07-21T16:16:43 GST" duration-ms="45142" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC299_VerifyBehaviorWhenNoEpisodesExist()[pri:299, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:16:43 GST" name="TC299_VerifyBehaviorWhenNoEpisodesExist" description="TC_299: Verify behavior when no episodes exist" finished-at="2026-07-21T16:17:04 GST" duration-ms="21851" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC299_VerifyBehaviorWhenNoEpisodesExist -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:17:04 GST" name="tearDown" finished-at="2026-07-21T16:17:05 GST" duration-ms="484" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:17:05 GST" name="setup" finished-at="2026-07-21T16:19:30 GST" duration-ms="144862" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method retried="true" signature="TC300_VerifySystemStabilityWhenBannersClickedRapidly()[pri:300, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:19:30 GST" name="TC300_VerifySystemStabilityWhenBannersClickedRapidly" description="TC_300: Verify system stability when banners are clicked rapidly" finished-at="2026-07-21T16:19:40 GST" duration-ms="10163" status="SKIP">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[Player surface did not become visible on book details page.]]>
+              <![CDATA[Dashboard shell should be ready before proceeding. expected [true] but found [false]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.testng.SkipException: Player surface did not become visible on book details page.
-at tests.AudioPlayerTests.openAnyDashboardBookAndWaitForPlayer(AudioPlayerTests.java:129)
-at tests.AudioPlayerTests.TC336_VerifyMaximumSpeedSelection(AudioPlayerTests.java:748)
+              <![CDATA[java.lang.AssertionError: Dashboard shell should be ready before proceeding. expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at pages.ConsumerBookDetailsPage.waitForDashboardReady(ConsumerBookDetailsPage.java:102)
+at tests.ConsumerBookDetailsTests.TC300_VerifySystemStabilityWhenBannersClickedRapidly(ConsumerBookDetailsTests.java:669)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
@@ -275,99 +375,259 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.testng.SkipException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC336_VerifyMaximumSpeedSelection -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:40:21 GST" name="tearDown" finished-at="2026-07-21T15:40:21 GST" duration-ms="448" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:40:21 GST" name="setup" finished-at="2026-07-21T15:40:34 GST" duration-ms="12653" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="TC337_VerifyVolumeSliderIncreasesAudioLevel()[pri:337, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:40:34 GST" name="TC337_VerifyVolumeSliderIncreasesAudioLevel" description="TC_337: Verify volume slider increases audio level" finished-at="2026-07-21T15:41:54 GST" duration-ms="79730" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC337_VerifyVolumeSliderIncreasesAudioLevel -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:41:54 GST" name="tearDown" finished-at="2026-07-21T15:41:54 GST" duration-ms="510" status="PASS">
+        </test-method> <!-- TC300_VerifySystemStabilityWhenBannersClickedRapidly -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:19:40 GST" name="tearDown" finished-at="2026-07-21T16:19:40 GST" duration-ms="453" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:41:54 GST" name="setup" finished-at="2026-07-21T15:42:08 GST" duration-ms="13149" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:19:40 GST" name="setup" finished-at="2026-07-21T16:20:21 GST" duration-ms="40611" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC338_VerifyVolumeSliderDecreasesAudioLevel()[pri:338, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:42:08 GST" name="TC338_VerifyVolumeSliderDecreasesAudioLevel" description="TC_338: Verify volume slider decreases audio level" finished-at="2026-07-21T15:43:26 GST" duration-ms="78836" status="PASS">
+        <test-method signature="TC300_VerifySystemStabilityWhenBannersClickedRapidly()[pri:300, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:20:21 GST" name="TC300_VerifySystemStabilityWhenBannersClickedRapidly" description="TC_300: Verify system stability when banners are clicked rapidly" finished-at="2026-07-21T16:21:25 GST" duration-ms="63923" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC338_VerifyVolumeSliderDecreasesAudioLevel -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:43:26 GST" name="tearDown" finished-at="2026-07-21T15:43:27 GST" duration-ms="495" status="PASS">
+        </test-method> <!-- TC300_VerifySystemStabilityWhenBannersClickedRapidly -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:21:25 GST" name="tearDown" finished-at="2026-07-21T16:21:25 GST" duration-ms="460" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:43:27 GST" name="setup" finished-at="2026-07-21T15:43:40 GST" duration-ms="12641" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:21:25 GST" name="setup" finished-at="2026-07-21T16:22:05 GST" duration-ms="39447" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC339_VerifyUserCanMuteAudio()[pri:339, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:43:40 GST" name="TC339_VerifyUserCanMuteAudio" description="TC_339: Verify user can mute audio" finished-at="2026-07-21T15:44:51 GST" duration-ms="71485" status="PASS">
+        <test-method signature="TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork()[pri:301, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:22:05 GST" name="TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork" description="TC_301: Verify banner loads correctly on slow network using CDP" finished-at="2026-07-21T16:22:22 GST" duration-ms="17505" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC339_VerifyUserCanMuteAudio -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:44:51 GST" name="tearDown" finished-at="2026-07-21T15:44:52 GST" duration-ms="532" status="PASS">
+        </test-method> <!-- TC301_VerifyBannerLoadsCorrectlyOnSlowNetwork -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:22:22 GST" name="tearDown" finished-at="2026-07-21T16:22:23 GST" duration-ms="534" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:44:52 GST" name="setup" finished-at="2026-07-21T15:45:06 GST" duration-ms="14146" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:22:23 GST" name="setup" finished-at="2026-07-21T16:23:05 GST" duration-ms="42283" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC341_VerifyUserCanSeekForwardViaProgressBar()[pri:341, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:45:06 GST" name="TC341_VerifyUserCanSeekForwardViaProgressBar" description="TC_341: Verify user can seek forward via progress bar" finished-at="2026-07-21T15:46:19 GST" duration-ms="73145" status="PASS">
+        <test-method signature="TC302_VerifyScrollingWorksWithOnlyOneBanner()[pri:302, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:23:05 GST" name="TC302_VerifyScrollingWorksWithOnlyOneBanner" description="TC_302: Verify scrolling works correctly with only one banner" finished-at="2026-07-21T16:23:08 GST" duration-ms="2432" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC341_VerifyUserCanSeekForwardViaProgressBar -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:46:19 GST" name="tearDown" finished-at="2026-07-21T15:46:19 GST" duration-ms="509" status="PASS">
+        </test-method> <!-- TC302_VerifyScrollingWorksWithOnlyOneBanner -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:23:08 GST" name="tearDown" finished-at="2026-07-21T16:23:08 GST" duration-ms="485" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:46:19 GST" name="setup" finished-at="2026-07-21T15:46:33 GST" duration-ms="14141" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:23:08 GST" name="setup" finished-at="2026-07-21T16:23:45 GST" duration-ms="37036" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC342_VerifyUserCanSeekBackwardViaProgressBar()[pri:342, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:46:33 GST" name="TC342_VerifyUserCanSeekBackwardViaProgressBar" description="TC_342: Verify user can seek backward via progress bar" finished-at="2026-07-21T15:47:54 GST" duration-ms="80034" status="PASS">
+        <test-method signature="TC303_VerifySystemHandlesManyBannersSmoothly()[pri:303, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:23:45 GST" name="TC303_VerifySystemHandlesManyBannersSmoothly" description="TC_303: Verify system handles many banners smoothly" finished-at="2026-07-21T16:23:59 GST" duration-ms="13836" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC342_VerifyUserCanSeekBackwardViaProgressBar -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:47:54 GST" name="tearDown" finished-at="2026-07-21T15:47:54 GST" duration-ms="504" status="PASS">
+        </test-method> <!-- TC303_VerifySystemHandlesManyBannersSmoothly -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:23:59 GST" name="tearDown" finished-at="2026-07-21T16:23:59 GST" duration-ms="453" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:47:54 GST" name="setup" finished-at="2026-07-21T15:48:04 GST" duration-ms="10115" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:23:59 GST" name="setup" finished-at="2026-07-21T16:24:47 GST" duration-ms="47690" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength()[pri:343, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:48:04 GST" name="TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength" description="TC_343: Verify seek behavior when dragged beyond audio length" finished-at="2026-07-21T15:50:39 GST" duration-ms="154501" status="SKIP">
-          <exception class="org.testng.SkipException">
+        <test-method signature="TC304_VerifyBookCoverImageLoadsProperly()[pri:304, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:24:47 GST" name="TC304_VerifyBookCoverImageLoadsProperly" description="TC_304: Verify book cover image loads properly" finished-at="2026-07-21T16:25:07 GST" duration-ms="20193" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC304_VerifyBookCoverImageLoadsProperly -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:25:07 GST" name="tearDown" finished-at="2026-07-21T16:25:08 GST" duration-ms="491" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:25:08 GST" name="setup" finished-at="2026-07-21T16:25:48 GST" duration-ms="40591" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC305_VerifySystemBehaviorWhenBookImageMissing()[pri:305, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:25:48 GST" name="TC305_VerifySystemBehaviorWhenBookImageMissing" description="TC_305: Verify system behavior when book image is missing" finished-at="2026-07-21T16:26:09 GST" duration-ms="20438" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC305_VerifySystemBehaviorWhenBookImageMissing -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:26:09 GST" name="tearDown" finished-at="2026-07-21T16:26:09 GST" duration-ms="469" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:26:09 GST" name="setup" finished-at="2026-07-21T16:26:52 GST" duration-ms="42943" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC306_VerifyAudioStartsWhenClickingPlayAudio()[pri:306, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:26:52 GST" name="TC306_VerifyAudioStartsWhenClickingPlayAudio" description="TC_306: Verify audio starts when clicking Play Audio" finished-at="2026-07-21T16:27:26 GST" duration-ms="34129" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC306_VerifyAudioStartsWhenClickingPlayAudio -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:27:26 GST" name="tearDown" finished-at="2026-07-21T16:27:27 GST" duration-ms="531" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:27:27 GST" name="setup" finished-at="2026-07-21T16:28:07 GST" duration-ms="40159" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC307_VerifyUserCanPausePlayingAudio()[pri:307, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:28:07 GST" name="TC307_VerifyUserCanPausePlayingAudio" description="TC_307: Verify user can pause playing audio" finished-at="2026-07-21T16:28:47 GST" duration-ms="39996" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC307_VerifyUserCanPausePlayingAudio -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:28:47 GST" name="tearDown" finished-at="2026-07-21T16:28:48 GST" duration-ms="541" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:28:48 GST" name="setup" finished-at="2026-07-21T16:29:31 GST" duration-ms="43913" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC308_VerifyShareButtonFunctionality()[pri:308, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:29:31 GST" name="TC308_VerifyShareButtonFunctionality" description="TC_308: Verify share button functionality" finished-at="2026-07-21T16:29:59 GST" duration-ms="27597" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC308_VerifyShareButtonFunctionality -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:29:59 GST" name="tearDown" finished-at="2026-07-21T16:30:00 GST" duration-ms="522" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:30:00 GST" name="setup" finished-at="2026-07-21T16:30:44 GST" duration-ms="44825" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC309_VerifyUserCanLikeABook()[pri:309, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:30:44 GST" name="TC309_VerifyUserCanLikeABook" description="TC_309: Verify user can like a book" finished-at="2026-07-21T16:31:05 GST" duration-ms="20520" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC309_VerifyUserCanLikeABook -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:31:05 GST" name="tearDown" finished-at="2026-07-21T16:31:05 GST" duration-ms="508" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:31:05 GST" name="setup" finished-at="2026-07-21T16:31:53 GST" duration-ms="47588" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC310_VerifyUserCanUnlikeABook()[pri:310, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:31:53 GST" name="TC310_VerifyUserCanUnlikeABook" description="TC_310: Verify user can unlike a book" finished-at="2026-07-21T16:32:16 GST" duration-ms="22522" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC310_VerifyUserCanUnlikeABook -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:32:16 GST" name="tearDown" finished-at="2026-07-21T16:32:16 GST" duration-ms="512" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:32:16 GST" name="setup" finished-at="2026-07-21T16:32:58 GST" duration-ms="41672" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC311_VerifyCategoriesAppearCorrectly()[pri:311, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:32:58 GST" name="TC311_VerifyCategoriesAppearCorrectly" description="TC_311: Verify categories appear correctly on book details" finished-at="2026-07-21T16:33:10 GST" duration-ms="12267" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC311_VerifyCategoriesAppearCorrectly -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:33:10 GST" name="tearDown" finished-at="2026-07-21T16:33:11 GST" duration-ms="509" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:33:11 GST" name="setup" finished-at="2026-07-21T16:33:53 GST" duration-ms="42546" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC312_VerifyClickingCategoryNavigatesToCategoryPage()[pri:312, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:33:53 GST" name="TC312_VerifyClickingCategoryNavigatesToCategoryPage" description="TC_312: Verify clicking category navigates to category page" finished-at="2026-07-21T16:34:05 GST" duration-ms="12299" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC312_VerifyClickingCategoryNavigatesToCategoryPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:34:05 GST" name="tearDown" finished-at="2026-07-21T16:34:06 GST" duration-ms="564" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:34:06 GST" name="setup" finished-at="2026-07-21T16:34:52 GST" duration-ms="45759" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC313_VerifySummaryContentLoads()[pri:313, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:34:52 GST" name="TC313_VerifySummaryContentLoads" description="TC_313: Verify summary content loads" finished-at="2026-07-21T16:35:14 GST" duration-ms="22468" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC313_VerifySummaryContentLoads -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:35:14 GST" name="tearDown" finished-at="2026-07-21T16:35:15 GST" duration-ms="512" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:35:15 GST" name="setup" finished-at="2026-07-21T16:35:59 GST" duration-ms="44080" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC314_VerifyUiWhenSummaryIsMissing()[pri:314, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:35:59 GST" name="TC314_VerifyUiWhenSummaryIsMissing" description="TC_314: Verify UI behavior when summary is missing" finished-at="2026-07-21T16:36:18 GST" duration-ms="18734" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC314_VerifyUiWhenSummaryIsMissing -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:36:18 GST" name="tearDown" finished-at="2026-07-21T16:36:18 GST" duration-ms="480" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:36:18 GST" name="setup" finished-at="2026-07-21T16:37:02 GST" duration-ms="44178" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC315_VerifyChapterListLoadsCorrectly()[pri:315, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:37:02 GST" name="TC315_VerifyChapterListLoadsCorrectly" description="TC_315: Verify chapter list loads correctly" finished-at="2026-07-21T16:37:21 GST" duration-ms="18413" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC315_VerifyChapterListLoadsCorrectly -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:37:21 GST" name="tearDown" finished-at="2026-07-21T16:37:21 GST" duration-ms="507" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:37:21 GST" name="setup" finished-at="2026-07-21T16:38:08 GST" duration-ms="46655" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC316_VerifyChapterStartsPlayingWhenClicked()[pri:316, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:38:08 GST" name="TC316_VerifyChapterStartsPlayingWhenClicked" description="TC_316: Verify chapter starts playing when clicked" finished-at="2026-07-21T16:38:30 GST" duration-ms="22151" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC316_VerifyChapterStartsPlayingWhenClicked -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:38:30 GST" name="tearDown" finished-at="2026-07-21T16:38:30 GST" duration-ms="506" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:38:30 GST" name="setup" finished-at="2026-07-21T16:39:16 GST" duration-ms="45429" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC317_VerifyUiWhenNoChaptersAvailable()[pri:317, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:39:16 GST" name="TC317_VerifyUiWhenNoChaptersAvailable" description="TC_317: Verify UI behavior when no chapters are available" finished-at="2026-07-21T16:39:35 GST" duration-ms="19459" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC317_VerifyUiWhenNoChaptersAvailable -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:39:35 GST" name="tearDown" finished-at="2026-07-21T16:39:36 GST" duration-ms="555" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:39:36 GST" name="setup" finished-at="2026-07-21T16:40:22 GST" duration-ms="46074" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC318_VerifyChapterDurationDisplay()[pri:318, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:40:22 GST" name="TC318_VerifyChapterDurationDisplay" description="TC_318: Verify chapter duration is displayed" finished-at="2026-07-21T16:40:43 GST" duration-ms="20895" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC318_VerifyChapterDurationDisplay -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:40:43 GST" name="tearDown" finished-at="2026-07-21T16:40:43 GST" duration-ms="518" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:40:43 GST" name="setup" finished-at="2026-07-21T16:43:11 GST" duration-ms="147776" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method retried="true" signature="TC319_VerifyReportOptionWorks()[pri:319, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:43:11 GST" name="TC319_VerifyReportOptionWorks" description="TC_319: Verify report option works correctly" finished-at="2026-07-21T16:43:21 GST" duration-ms="10179" status="SKIP">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[Could not login as advanced audio user: Expected condition failed: waiting for tests.AudioPlayerTests$$Lambda/0x000002abc04073a8@47616e24
-(tried for 30 seconds with 500 milliseconds interval)
-Build info: version: '4.41.0', revision: '9fc754f'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.128, chrome: {chromedriverVersion: 150.0.7871.124 (9261fd0a595..., userDataDir: C:\Users\safwan\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51610}, goog:processID: 20100, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51610/devtoo..., se:cdpVersion: 150.0.7871.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: d811fe63bfa6c79365a20f459f961372]]>
+              <![CDATA[Dashboard shell should be ready before proceeding. expected [true] but found [false]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.testng.SkipException: Could not login as advanced audio user: Expected condition failed: waiting for tests.AudioPlayerTests$$Lambda/0x000002abc04073a8@47616e24
-(tried for 30 seconds with 500 milliseconds interval)
-Build info: version: '4.41.0', revision: '9fc754f'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.128, chrome: {chromedriverVersion: 150.0.7871.124 (9261fd0a595..., userDataDir: C:\Users\safwan\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51610}, goog:processID: 20100, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51610/devtoo..., se:cdpVersion: 150.0.7871.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: d811fe63bfa6c79365a20f459f961372
-at tests.AudioPlayerTests.loginAsAdvancedAudioUser(AudioPlayerTests.java:88)
-at tests.AudioPlayerTests.TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength(AudioPlayerTests.java:1012)
+              <![CDATA[java.lang.AssertionError: Dashboard shell should be ready before proceeding. expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at pages.ConsumerBookDetailsPage.waitForDashboardReady(ConsumerBookDetailsPage.java:102)
+at pages.ConsumerBookDetailsPage.openBookDetailsFromDashboard(ConsumerBookDetailsPage.java:116)
+at tests.ConsumerBookDetailsTests.TC319_VerifyReportOptionWorks(ConsumerBookDetailsTests.java:1476)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
@@ -394,88 +654,77 @@ at org.testng.TestNG.run(TestNG.java:1101)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for tests.AudioPlayerTests$$Lambda/0x000002abc04073a8@47616e24
-(tried for 30 seconds with 500 milliseconds interval)
-Build info: version: '4.41.0', revision: '9fc754f'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.128, chrome: {chromedriverVersion: 150.0.7871.124 (9261fd0a595..., userDataDir: C:\Users\safwan\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51610}, goog:processID: 20100, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51610/devtoo..., se:cdpVersion: 150.0.7871.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: d811fe63bfa6c79365a20f459f961372
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:85)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:233)
-at tests.AudioPlayerTests.loginAsAdvancedAudioUser(AudioPlayerTests.java:80)
-... 27 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.testng.SkipException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:50:39 GST" name="tearDown" finished-at="2026-07-21T15:50:39 GST" duration-ms="487" status="PASS">
+        </test-method> <!-- TC319_VerifyReportOptionWorks -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:43:21 GST" name="tearDown" finished-at="2026-07-21T16:43:22 GST" duration-ms="526" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:50:39 GST" name="setup" finished-at="2026-07-21T15:50:55 GST" duration-ms="15666" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:43:22 GST" name="setup" finished-at="2026-07-21T16:44:01 GST" duration-ms="39614" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC344_VerifySubscribedUserCanListenToBook()[pri:344, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:50:55 GST" name="TC344_VerifySubscribedUserCanListenToBook" description="TC_344: Verify subscribed user can listen to book" finished-at="2026-07-21T15:52:03 GST" duration-ms="68077" status="PASS">
+        <test-method signature="TC319_VerifyReportOptionWorks()[pri:319, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:44:01 GST" name="TC319_VerifyReportOptionWorks" description="TC_319: Verify report option works correctly" finished-at="2026-07-21T16:44:30 GST" duration-ms="28216" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC344_VerifySubscribedUserCanListenToBook -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:52:03 GST" name="tearDown" finished-at="2026-07-21T15:52:03 GST" duration-ms="496" status="PASS">
+        </test-method> <!-- TC319_VerifyReportOptionWorks -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:44:30 GST" name="tearDown" finished-at="2026-07-21T16:44:30 GST" duration-ms="541" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:52:03 GST" name="setup" finished-at="2026-07-21T15:52:16 GST" duration-ms="12465" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:44:30 GST" name="setup" finished-at="2026-07-21T16:45:13 GST" duration-ms="43241" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC345_VerifySubscribedUserCanListenToMultipleBooks()[pri:345, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:52:16 GST" name="TC345_VerifySubscribedUserCanListenToMultipleBooks" description="TC_345: Verify subscribed user can listen to multiple books" finished-at="2026-07-21T15:53:58 GST" duration-ms="102621" status="PASS">
+        <test-method signature="TC320_VerifyDuplicateReportHandling()[pri:320, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:45:13 GST" name="TC320_VerifyDuplicateReportHandling" description="TC_320: Verify duplicate report is handled correctly" finished-at="2026-07-21T16:45:39 GST" duration-ms="25936" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC345_VerifySubscribedUserCanListenToMultipleBooks -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:53:58 GST" name="tearDown" finished-at="2026-07-21T15:53:59 GST" duration-ms="518" status="PASS">
+        </test-method> <!-- TC320_VerifyDuplicateReportHandling -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:45:39 GST" name="tearDown" finished-at="2026-07-21T16:45:40 GST" duration-ms="493" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:53:59 GST" name="setup" finished-at="2026-07-21T15:54:12 GST" duration-ms="12678" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:45:40 GST" name="setup" finished-at="2026-07-21T16:46:20 GST" duration-ms="40558" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC346_VerifyFreeUserCanListenToOnlyOneBook()[pri:346, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:54:12 GST" name="TC346_VerifyFreeUserCanListenToOnlyOneBook" description="TC_346: Verify free user is redirected to payments after trying to listen to the second chapter" finished-at="2026-07-21T15:55:26 GST" duration-ms="74136" status="PASS">
+        <test-method signature="TC321_VerifyBackNavigationReturnsToDashboard()[pri:321, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:46:20 GST" name="TC321_VerifyBackNavigationReturnsToDashboard" description="TC_321: Verify back navigation returns to dashboard" finished-at="2026-07-21T16:46:45 GST" duration-ms="24508" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC346_VerifyFreeUserCanListenToOnlyOneBook -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:55:26 GST" name="tearDown" finished-at="2026-07-21T15:55:26 GST" duration-ms="537" status="PASS">
+        </test-method> <!-- TC321_VerifyBackNavigationReturnsToDashboard -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:46:45 GST" name="tearDown" finished-at="2026-07-21T16:46:45 GST" duration-ms="470" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:55:26 GST" name="setup" finished-at="2026-07-21T15:55:39 GST" duration-ms="12192" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:46:45 GST" name="setup" finished-at="2026-07-21T16:47:26 GST" duration-ms="40614" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC347_VerifyFreeUserCanOnlyListenToFirstBookFully()[pri:347, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:55:39 GST" name="TC347_VerifyFreeUserCanOnlyListenToFirstBookFully" description="TC_347: Verify free user can listen only to the first chapter" finished-at="2026-07-21T15:56:49 GST" duration-ms="70850" status="PASS">
+        <test-method signature="TC322_VerifyUiWithLongBookTitles()[pri:322, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:47:26 GST" name="TC322_VerifyUiWithLongBookTitles" description="TC_322: Verify UI handles long book titles correctly" finished-at="2026-07-21T16:47:45 GST" duration-ms="19184" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC347_VerifyFreeUserCanOnlyListenToFirstBookFully -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:56:49 GST" name="tearDown" finished-at="2026-07-21T15:56:50 GST" duration-ms="486" status="PASS">
+        </test-method> <!-- TC322_VerifyUiWithLongBookTitles -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:47:45 GST" name="tearDown" finished-at="2026-07-21T16:47:46 GST" duration-ms="476" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:56:50 GST" name="setup" finished-at="2026-07-21T15:57:02 GST" duration-ms="11974" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:47:46 GST" name="setup" finished-at="2026-07-21T16:48:25 GST" duration-ms="38876" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC350_VerifyPlaybackControlsWorkForSubscribedUsers()[pri:350, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:57:02 GST" name="TC350_VerifyPlaybackControlsWorkForSubscribedUsers" description="TC_350: Verify playback controls work for subscribed users" finished-at="2026-07-21T15:58:23 GST" duration-ms="81072" status="PASS">
+        <test-method signature="TC323_VerifyUiPerformanceWithManyChapters()[pri:323, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:48:25 GST" name="TC323_VerifyUiPerformanceWithManyChapters" description="TC_323: Verify UI performance with many chapters" finished-at="2026-07-21T16:48:44 GST" duration-ms="19168" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC350_VerifyPlaybackControlsWorkForSubscribedUsers -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:58:23 GST" name="tearDown" finished-at="2026-07-21T15:58:23 GST" duration-ms="543" status="PASS">
+        </test-method> <!-- TC323_VerifyUiPerformanceWithManyChapters -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.ConsumerBookDetailsTests@7c6908d7]" started-at="2026-07-21T16:48:44 GST" name="tearDown" finished-at="2026-07-21T16:48:44 GST" duration-ms="517" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- tests.AudioPlayerTests -->
+      </class> <!-- tests.ConsumerBookDetailsTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

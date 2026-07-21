@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC322_VerifyUiWithLongBookTitles
+Started: 2026-07-21 16:47:26
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC322_VerifyUiWithLongBookTitles_2026_07_21_16_47_26.log
+============================================================
+========== TEST STARTED: TC_322: UI With Long Book Titles ==========
+STEP 1: Open book details from dashboard
+STEP 2: Check if current book has long title
+INFO  Current book title is not long enough to validate long-title behavior.
+========== TEST SKIPPED - Title not long enough: TC_322 ==========
+============================================================
+Ended: 2026-07-21 16:47:45

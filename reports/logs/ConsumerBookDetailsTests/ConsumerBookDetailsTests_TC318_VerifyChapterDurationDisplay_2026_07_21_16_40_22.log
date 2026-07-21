@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC318_VerifyChapterDurationDisplay
+Started: 2026-07-21 16:40:22
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC318_VerifyChapterDurationDisplay_2026_07_21_16_40_22.log
+============================================================
+========== TEST STARTED: TC_318: Chapter Duration Display ==========
+STEP 1: Open book details from dashboard
+STEP 2: Verify duration information
+INFO  TC_318: Durations visible - true
+========== TEST PASSED: TC_318 ==========
+============================================================
+Ended: 2026-07-21 16:40:43

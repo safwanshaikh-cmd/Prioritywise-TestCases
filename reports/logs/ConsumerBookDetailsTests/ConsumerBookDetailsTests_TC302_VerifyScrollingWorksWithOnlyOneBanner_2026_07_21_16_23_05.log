@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC302_VerifyScrollingWorksWithOnlyOneBanner
+Started: 2026-07-21 16:23:05
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC302_VerifyScrollingWorksWithOnlyOneBanner_2026_07_21_16_23_05.log
+============================================================
+========== TEST STARTED: TC_302: Scrolling Works With Only One Banner ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Check visible banner count
+INFO  Single-banner state is not available. Current visible banner count: 6
+========== TEST SKIPPED - Wrong banner count: TC_302 ==========
+============================================================
+Ended: 2026-07-21 16:23:08
