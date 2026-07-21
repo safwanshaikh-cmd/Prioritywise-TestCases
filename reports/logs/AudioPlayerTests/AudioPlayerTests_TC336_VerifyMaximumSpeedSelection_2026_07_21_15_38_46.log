@@ -1,0 +1,14 @@
+============================================================
+Test Log: AudioPlayerTests.TC336_VerifyMaximumSpeedSelection
+Started: 2026-07-21 15:38:46
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC336_VerifyMaximumSpeedSelection_2026_07_21_15_38_46.log
+============================================================
+========== TEST STARTED: TC_336: Maximum Speed Selection ==========
+STEP 1: Log in as advanced audio user
+INFO  Logged in as advanced audio user
+INFO  TC_336 - STEP 1: Logged in as advanced audio user
+STEP 2: Open a book from dashboard
+WARN  TC_336 - Test failed: Player surface did not become visible on book details page.
+[SKIP] AudioPlayerTests :: TC336_VerifyMaximumSpeedSelection
+============================================================
+Ended: 2026-07-21 15:40:21

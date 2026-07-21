@@ -1,0 +1,21 @@
+============================================================
+Test Log: UploaderTests.TC478_LandscapeImageReplacement
+Started: 2026-07-21 12:48:38
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC478_LandscapeImageReplacement_2026_07_21_12_48_38.log
+============================================================
+========== TEST STARTED: TC_478: Landscape Image Replacement ==========
+INFO  Logged in as uploader
+INFO  TC_478 - OLD Landscape Image: Replacing with new image
+INFO  No success message found: Expected condition failed: waiting for visibility of element found by By.xpath: //*[@data-testid='toastText1' or @data-testid='toastText2' or contains(@data-testid,'toast') or contains(@class, 'success') or contains(@class, 'message')]
+(tried for 15 seconds with 500 milliseconds interval)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.128, chrome: {chromedriverVersion: 150.0.7871.124 (9261fd0a595..., userDataDir: C:\Users\safwan\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54852}, goog:processID: 7636, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54852/devtoo..., se:cdpVersion: 150.0.7871.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: f7e91611b36efb4f9ca2dee6dfb134ef
+INFO  TC_478 - SUCCESS MESSAGE: 
+INFO  TC_478 - NEW Landscape Image: C:\Users\safwan\Downloads\Landscape.jpg
+INFO  TC_478: Landscape image replacement verified successfully
+========== TEST PASSED: TC_478 ==========
+============================================================
+Ended: 2026-07-21 12:50:07

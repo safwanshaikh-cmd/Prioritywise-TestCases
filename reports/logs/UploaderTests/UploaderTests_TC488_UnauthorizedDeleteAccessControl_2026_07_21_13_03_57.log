@@ -1,0 +1,17 @@
+============================================================
+Test Log: UploaderTests.TC488_UnauthorizedDeleteAccessControl
+Started: 2026-07-21 13:03:57
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC488_UnauthorizedDeleteAccessControl_2026_07_21_13_03_57.log
+============================================================
+========== TEST STARTED: TC_488: Unauthorized Delete Access Control ==========
+INFO  Logged in as uploader
+INFO  TC_488 - STEP 1: Navigating to existing Pending books as uploader
+INFO  TC_488 - Existing uploader book selected for access-control check: 'Automation Book 297e67'
+INFO  Logged in as consumer
+INFO  TC_488 - SECURITY TEST: Consumer attempting to access uploader delete flow
+INFO  TC_488 - SECURITY ISSUE: Consumer was able to click delete button on uploader's book
+INFO  TC_488 - RESULT: Access control NOT properly enforced - consumer can delete uploader's book
+INFO  TC_488: Unauthorized delete access control test completed
+========== TEST PASSED: TC_488 ==========
+============================================================
+Ended: 2026-07-21 13:05:48

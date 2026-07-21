@@ -1,0 +1,20 @@
+============================================================
+Test Log: UploaderTests.TC500_ConcurrentEditHandling
+Started: 2026-07-21 13:08:06
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC500_ConcurrentEditHandling_2026_07_21_13_08_06.log
+============================================================
+========== TEST STARTED: TC_500: Concurrent Edit Handling ==========
+INFO  TC_500 - Testing concurrent edit behavior
+INFO  Logged in as uploader
+INFO  TC_500 - STEP 1: Selected book for concurrent edit test = 'Automation Book 297e67'
+INFO  TC_500 - STEP 2: Original title = 'Automation Book 297e67'
+INFO  TC_500 - STEP 2: Original summary = 'TC_453 valid book with images'
+INFO  TC_500 - STEP 3: Simulated User A edit = 'Concurrent Edit A cdb4f2'
+INFO  TC_500 - STEP 4: Simulated User B edit = 'Concurrent Edit B b73b15'
+INFO  Toast elements found: 4 | text: [Audiobook summary updated successfully.]
+INFO  TC_500 - STEP 5: Success message = 'Audiobook summary updated successfully.'
+INFO  TC_500 - STEP 5: Warnings = []
+INFO  TC_500: Concurrent edit handling verified - System responded gracefully
+========== TEST PASSED: TC_500 ==========
+============================================================
+Ended: 2026-07-21 13:09:18

@@ -1,0 +1,19 @@
+============================================================
+Test Log: AudioPlayerTests.TC337_VerifyVolumeSliderIncreasesAudioLevel
+Started: 2026-07-21 15:40:34
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC337_VerifyVolumeSliderIncreasesAudioLevel_2026_07_21_15_40_34.log
+============================================================
+========== TEST STARTED: TC_337: Volume Slider Increases Audio Level ==========
+STEP 1: Log in as advanced audio user
+INFO  Logged in as advanced audio user
+INFO  TC_337 - STEP 1: Logged in as advanced audio user
+STEP 2: Open a book from dashboard
+INFO  TC_337 - STEP 2: Opened a book from dashboard
+STEP 3: Verify volume control is accessible
+INFO  TC_337 - STEP 3: Volume control is accessible
+STEP 4: Increase volume using slider
+INFO  TC_337 - STEP 4: Volume increased successfully
+INFO  TC_337: ✓ Test PASSED - Volume slider increases audio level
+========== TEST PASSED: TC_337 ==========
+============================================================
+Ended: 2026-07-21 15:41:54

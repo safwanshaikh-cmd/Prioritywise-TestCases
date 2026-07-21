@@ -1,0 +1,22 @@
+============================================================
+Test Log: UploaderTests.TC503_LongDescriptionInput
+Started: 2026-07-21 13:14:18
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC503_LongDescriptionInput_2026_07_21_13_14_18.log
+============================================================
+========== TEST STARTED: TC_503: Long Description Input ==========
+INFO  TC_503 - Testing large text handling in summary field
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_503 - STEP 1: Generated description length = 16140 characters
+INFO  TC_503 - STEP 2: Entered long description successfully
+INFO  Toast elements found: 4 | text: [Audiobook summary uploaded successfully.]
+INFO  TC_503 - STEP 3: Still on form = false
+INFO  TC_503 - STEP 3: Success message = 'Audiobook summary uploaded successfully.'
+INFO  TC_503 - STEP 3: Errors = []
+INFO  TC_503 - RESULT: System handled long input successfully
+INFO  TC_503: Long description input verified - System handled gracefully
+========== TEST PASSED: TC_503 ==========
+============================================================
+Ended: 2026-07-21 13:15:41

@@ -1,0 +1,13 @@
+============================================================
+Test Log: UploaderTests.TC471_ChaptersListDisplayed
+Started: 2026-07-21 12:41:50
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC471_ChaptersListDisplayed_2026_07_21_12_41_50.log
+============================================================
+========== TEST STARTED: TC_471: Chapters List Displayed ==========
+INFO  Logged in as consumer
+INFO  ===== TC_471 Book And Chapter Details =====
+INFO  ===== End TC_471 Book And Chapter Details =====
+INFO  TC_471: Chapter list displayed for book opened from the Dashboard
+========== TEST PASSED: TC_471 ==========
+============================================================
+Ended: 2026-07-21 12:42:37

@@ -1,0 +1,13 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC285_VerifyBannerImagesScrollAutomatically
+Started: 2026-07-21 16:02:21
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC285_VerifyBannerImagesScrollAutomatically_2026_07_21_16_02_21.log
+============================================================
+========== TEST STARTED: TC_285: Banner Images Scroll Automatically ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Check if multi-banner scenario is available
+STEP 3: Verify banner auto-rotation or stability
+INFO  TC_285: Banner auto-rotated: false
+========== TEST PASSED: TC_285 ==========
+============================================================
+Ended: 2026-07-21 16:02:36

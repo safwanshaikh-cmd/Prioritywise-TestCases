@@ -1,0 +1,17 @@
+============================================================
+Test Log: UploaderTests.TC505_SessionTimeoutDuringEdit
+Started: 2026-07-21 13:18:41
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC505_SessionTimeoutDuringEdit_2026_07_21_13_18_41.log
+============================================================
+========== TEST STARTED: TC_505: Session Timeout During Edit ==========
+INFO  TC_505 - Testing session timeout behavior during edit
+INFO  Logged in as uploader
+INFO  TC_505 - STEP 1: Original title = 'Concurrent Edit B b73b15'
+INFO  TC_505 - STEP 2: Modified title = 'Session Timeout Test 70f984'
+INFO  TC_505 - STEP 3: Logged out to simulate session timeout
+INFO  TC_505 - STEP 4: Current URL = 'https://web-splay.acceses.com/login'
+INFO  TC_505 - STEP 4: Is on login page = true
+INFO  TC_505: Session timeout verified - User redirected to login
+========== TEST PASSED: TC_505 ==========
+============================================================
+Ended: 2026-07-21 13:19:23

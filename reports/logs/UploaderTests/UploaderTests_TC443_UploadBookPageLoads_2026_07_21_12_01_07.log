@@ -1,0 +1,14 @@
+============================================================
+Test Log: UploaderTests.TC443_UploadBookPageLoads
+Started: 2026-07-21 12:01:07
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC443_UploadBookPageLoads_2026_07_21_12_01_07.log
+============================================================
+========== TEST STARTED: TC_443: Upload Book Page Loads ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_443: Upload book page loaded successfully
+========== TEST PASSED: TC_443 ==========
+============================================================
+Ended: 2026-07-21 12:01:43

@@ -1,6 +1,7 @@
 package pages;
 
 import java.net.URI;
+import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -445,7 +446,12 @@ public class LoginPage extends BasePage {
 		for (String candidatePath : candidatePaths) {
 			try {
 				driver.get(buildCandidateUrl(configuredUrl, candidatePath));
-				if (isOnLoginPage()) {
+				// The login form can lag behind navigation (SPA hydration). A bare
+				// isOnLoginPage() only waits ~3s, which intermittently misses the
+				// first paint and wrongly rejects a valid route (seen on /login).
+				// Wait explicitly for the email field to render before deciding.
+				boolean formRendered = wait.waitForElementVisible(EMAIL_FIELD, Duration.ofSeconds(10)) != null;
+				if (formRendered && isOnLoginPage()) {
 					LOGGER.info("Opened login page via direct route: " + candidatePath);
 					return true;
 				}

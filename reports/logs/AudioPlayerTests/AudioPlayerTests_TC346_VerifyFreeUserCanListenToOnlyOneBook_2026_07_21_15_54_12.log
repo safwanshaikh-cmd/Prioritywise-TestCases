@@ -1,0 +1,19 @@
+============================================================
+Test Log: AudioPlayerTests.TC346_VerifyFreeUserCanListenToOnlyOneBook
+Started: 2026-07-21 15:54:12
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC346_VerifyFreeUserCanListenToOnlyOneBook_2026_07_21_15_54_12.log
+============================================================
+========== TEST STARTED: TC_346: Free User Can Listen To Only One Book ==========
+STEP 1: Log in as free user
+INFO  Logged in as free user
+INFO  TC_346 - STEP 1: Logged in as free user
+STEP 2: Collect trending books from dashboard
+INFO  TC_346 - STEP 2: Opened book from trending list
+STEP 3: Verify multiple chapters available
+INFO  TC_346 - STEP 3: Multiple chapters confirmed
+STEP 4: Try to play second chapter and verify payments redirect
+INFO  TC_346 - STEP 4: Payments redirect verified
+INFO  TC_346: ✓ Test PASSED - Free user redirected to payments for second chapter
+========== TEST PASSED: TC_346 ==========
+============================================================
+Ended: 2026-07-21 15:55:26

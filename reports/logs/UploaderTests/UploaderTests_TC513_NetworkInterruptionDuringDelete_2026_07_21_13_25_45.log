@@ -1,0 +1,16 @@
+============================================================
+Test Log: UploaderTests.TC513_NetworkInterruptionDuringDelete
+Started: 2026-07-21 13:25:45
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC513_NetworkInterruptionDuringDelete_2026_07_21_13_25_45.log
+============================================================
+========== TEST STARTED: TC_513: Network Interruption During Delete ==========
+INFO  TC_513 - Testing network interruption during delete
+INFO  Logged in as uploader
+INFO  TC_513 - STEP 1: Book count before = 17
+INFO  TC_513 - STEP 2: Delete dialog shown = true
+INFO  TC_513 - STEP 3: Book count after cancel = 17
+INFO  TC_513 - RESULT: Network interruption scenario - delete can be cancelled safely
+INFO  TC_513: Network interruption handling verified (manual network manipulation required for full test)
+========== TEST PASSED: TC_513 ==========
+============================================================
+Ended: 2026-07-21 13:26:26

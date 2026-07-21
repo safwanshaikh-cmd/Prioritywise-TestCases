@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC289_VerifyBookReviewsDisplayedOnBookDetailsPage
+Started: 2026-07-21 16:06:21
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC289_VerifyBookReviewsDisplayedOnBookDetailsPage_2026_07_21_16_06_21.log
+============================================================
+========== TEST STARTED: TC_289: Book Reviews Displayed On Book Details Page ==========
+STEP 1: Open book details from dashboard
+STEP 2: Open reviews and verify navigation
+INFO  TC_289: Reviews opened: true
+========== TEST PASSED: TC_289 ==========
+============================================================
+Ended: 2026-07-21 16:06:43

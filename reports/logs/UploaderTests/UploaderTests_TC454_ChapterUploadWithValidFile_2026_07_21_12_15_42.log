@@ -1,0 +1,14 @@
+============================================================
+Test Log: UploaderTests.TC454_ChapterUploadWithValidFile
+Started: 2026-07-21 12:15:42
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC454_ChapterUploadWithValidFile_2026_07_21_12_15_42.log
+============================================================
+========== TEST STARTED: TC_454: Chapter Upload With Valid File ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_454: Valid chapter audio upload verified after saving valid book details with images
+========== TEST PASSED: TC_454 ==========
+============================================================
+Ended: 2026-07-21 12:17:01

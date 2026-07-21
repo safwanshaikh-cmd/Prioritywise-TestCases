@@ -1,0 +1,19 @@
+============================================================
+Test Log: AudioPlayerTests.TC341_VerifyUserCanSeekForwardViaProgressBar
+Started: 2026-07-21 15:45:06
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC341_VerifyUserCanSeekForwardViaProgressBar_2026_07_21_15_45_06.log
+============================================================
+========== TEST STARTED: TC_341: User Can Seek Forward Via Progress Bar ==========
+STEP 1: Log in as advanced audio user
+INFO  Logged in as advanced audio user
+INFO  TC_341 - STEP 1: Logged in as advanced audio user
+STEP 2: Open a book from dashboard
+INFO  TC_341 - STEP 2: Opened a book from dashboard
+STEP 3: Start audio playback
+INFO  TC_341 - STEP 3: Audio playback started and progressing
+STEP 4: Seek forward via progress bar
+INFO  TC_341 - STEP 4: Seek forward completed
+INFO  TC_341: ✓ Test PASSED - User can seek forward via progress bar
+========== TEST PASSED: TC_341 ==========
+============================================================
+Ended: 2026-07-21 15:46:19

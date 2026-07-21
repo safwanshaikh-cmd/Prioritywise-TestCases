@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC292_VerifyRatingInformationDisplayedOnBookDetailsPage
+Started: 2026-07-21 16:09:32
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC292_VerifyRatingInformationDisplayedOnBookDetailsPage_2026_07_21_16_09_32.log
+============================================================
+========== TEST STARTED: TC_292: Rating Information Displayed On Book Details Page ==========
+STEP 1: Open book details from dashboard
+STEP 2: Verify ratings or page stability
+INFO  TC_292: Ratings displayed - false
+========== TEST PASSED: TC_292 ==========
+============================================================
+Ended: 2026-07-21 16:09:53

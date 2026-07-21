@@ -1,0 +1,20 @@
+============================================================
+Test Log: AudioPlayerTests.TC327_VerifyUserCanSkipForward30Seconds
+Started: 2026-07-21 15:25:13
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC327_VerifyUserCanSkipForward30Seconds_2026_07_21_15_25_13.log
+============================================================
+========== TEST STARTED: TC_327: User Can Skip Forward 30 Seconds ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_327 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_327 - STEP 2: Opened a book from dashboard
+STEP 3: Start audio playback
+INFO  TC_327 - STEP 3: Audio playback started
+INFO  TC_327 - STEP 3: Time before skip: 00:01
+STEP 4: Click forward 30 button
+INFO  TC_327 - STEP 4: Forward 30 button clicked
+INFO  TC_327: ✓ Test PASSED - User can skip forward 30 seconds
+========== TEST PASSED: TC_327 ==========
+============================================================
+Ended: 2026-07-21 15:26:25

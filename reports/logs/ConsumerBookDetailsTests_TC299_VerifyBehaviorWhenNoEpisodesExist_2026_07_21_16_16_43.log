@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC299_VerifyBehaviorWhenNoEpisodesExist
+Started: 2026-07-21 16:16:43
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC299_VerifyBehaviorWhenNoEpisodesExist_2026_07_21_16_16_43.log
+============================================================
+========== TEST STARTED: TC_299: Behavior When No Episodes Exist ==========
+STEP 1: Open book details from dashboard
+STEP 2: Check if current book has episodes
+INFO  Current book has episodes, so the no-episodes state is not available.
+========== TEST SKIPPED - Episodes exist: TC_299 ==========
+============================================================
+Ended: 2026-07-21 16:17:04

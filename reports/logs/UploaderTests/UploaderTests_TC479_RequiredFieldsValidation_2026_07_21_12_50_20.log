@@ -1,0 +1,14 @@
+============================================================
+Test Log: UploaderTests.TC479_RequiredFieldsValidation
+Started: 2026-07-21 12:50:20
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC479_RequiredFieldsValidation_2026_07_21_12_50_20.log
+============================================================
+========== TEST STARTED: TC_479: Required Fields Validation ==========
+INFO  Logged in as uploader
+INFO  TC_479 - OLD Title: Updated Book 936bad
+INFO  TC_479 - VALIDATION ERROR: 
+INFO  TC_479 - VALIDATION MESSAGES: [Title is required and cannot be empty]
+INFO  TC_479: Required fields validation verified - Validation messages displayed
+========== TEST PASSED: TC_479 ==========
+============================================================
+Ended: 2026-07-21 12:51:06

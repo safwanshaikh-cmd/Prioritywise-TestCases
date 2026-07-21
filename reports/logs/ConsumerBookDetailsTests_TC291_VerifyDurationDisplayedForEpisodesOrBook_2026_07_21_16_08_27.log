@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC291_VerifyDurationDisplayedForEpisodesOrBook
+Started: 2026-07-21 16:08:27
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC291_VerifyDurationDisplayedForEpisodesOrBook_2026_07_21_16_08_27.log
+============================================================
+========== TEST STARTED: TC_291: Duration Displayed For Episodes Or Book ==========
+STEP 1: Open book details from dashboard
+STEP 2: Verify duration information
+INFO  TC_291: Durations visible - true
+========== TEST PASSED: TC_291 ==========
+============================================================
+Ended: 2026-07-21 16:08:51

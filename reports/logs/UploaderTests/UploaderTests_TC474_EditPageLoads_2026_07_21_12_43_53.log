@@ -1,0 +1,16 @@
+============================================================
+Test Log: UploaderTests.TC474_EditPageLoads
+Started: 2026-07-21 12:43:53
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC474_EditPageLoads_2026_07_21_12_43_53.log
+============================================================
+========== TEST STARTED: TC_474: Edit Page Loads ==========
+INFO  Logged in as uploader
+INFO  TC_474 - BEFORE: Navigating to For Creators listing
+INFO  TC_474 - Books in Pending filter: 17
+INFO  TC_474 - AFTER: Edit page loaded successfully
+INFO  TC_474 - Current Title: Duplicate Test Book
+INFO  TC_474 - Current Summary: First upload attempt for duplicate title validation
+INFO  TC_474: Edit page loads successfully verified
+========== TEST PASSED: TC_474 ==========
+============================================================
+Ended: 2026-07-21 12:44:32

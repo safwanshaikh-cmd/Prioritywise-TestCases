@@ -1,0 +1,18 @@
+============================================================
+Test Log: UploaderTests.TC511_MultipleClicksDelete
+Started: 2026-07-21 13:22:53
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC511_MultipleClicksDelete_2026_07_21_13_22_53.log
+============================================================
+========== TEST STARTED: TC_511: Multiple Clicks Delete ==========
+INFO  TC_511 - Testing double-click prevention on delete
+INFO  Logged in as uploader
+INFO  TC_511 - STEP 1: Book count before delete = 17
+INFO  TC_511 - STEP 1: Book selected for double-click delete = 'Automation Book 568b9b'
+INFO  TC_511 - STEP 2: Delete confirmation dialog shown = true
+INFO  TC_511 - STEP 3: Book count after delete = 17
+INFO  TC_511 - STEP 3: Book still visible after delete = false
+INFO  TC_511 - STEP 3: No data shown after delete search = true
+INFO  TC_511: Multiple clicks delete verified - Duplicate prevented
+========== TEST PASSED: TC_511 ==========
+============================================================
+Ended: 2026-07-21 13:23:56

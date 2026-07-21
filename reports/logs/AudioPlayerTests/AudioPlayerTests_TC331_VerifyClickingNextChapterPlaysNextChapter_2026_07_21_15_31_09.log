@@ -1,0 +1,21 @@
+============================================================
+Test Log: AudioPlayerTests.TC331_VerifyClickingNextChapterPlaysNextChapter
+Started: 2026-07-21 15:31:09
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC331_VerifyClickingNextChapterPlaysNextChapter_2026_07_21_15_31_09.log
+============================================================
+========== TEST STARTED: TC_331: Clicking Next Chapter Plays Next Chapter ==========
+STEP 1: Log in as advanced audio user (multi-chapter book required)
+INFO  Logged in as advanced audio user
+INFO  TC_331 - STEP 1: Logged in as advanced audio user
+STEP 2: Open a book from dashboard
+INFO  TC_331 - STEP 2: Opened a book from dashboard
+STEP 3: Verify multiple chapters are available
+INFO  TC_331 - STEP 3: Multiple chapters confirmed
+STEP 4: Start audio playback
+INFO  TC_331 - STEP 4: Current chapter: 9-pressure mein dima...
+STEP 5: Click next chapter button
+INFO  TC_331 - STEP 5: New chapter: Chapter 2
+INFO  TC_331: ✓ Test PASSED - Next chapter plays correctly
+========== TEST PASSED: TC_331 ==========
+============================================================
+Ended: 2026-07-21 15:32:22

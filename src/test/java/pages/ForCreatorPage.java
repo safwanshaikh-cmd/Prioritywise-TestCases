@@ -178,15 +178,8 @@ public class ForCreatorPage {
 	}
 
 	public void printBookDetailsForFilter(String filterName, List<String> titles) {
+		// Print only the count, not individual book names.
 		LOGGER.log(Level.INFO, "{0} filter - Total Books Found: {1}", new Object[] { filterName, titles.size() });
-		if (titles.isEmpty()) {
-			LOGGER.log(Level.INFO, "{0} filter - No books found", filterName);
-			return;
-		}
-
-		for (String title : titles) {
-			LOGGER.log(Level.INFO, "{0} filter - Book Title: {1}", new Object[] { filterName, title });
-		}
 	}
 
 	public List<String> getBookTitlesForFilter(String... visibleTexts) {
@@ -473,9 +466,9 @@ public class ForCreatorPage {
 				String titleText = title.getText();
 				String messageText = message.getText();
 
-				LOGGER.log(Level.INFO, "Delete Dialog Title: '" + titleText + "'");
-				LOGGER.log(Level.INFO, "Delete Dialog Message: '" + messageText + "'");
-
+				// Do NOT log titleText/messageText here: these locators can resolve to
+				// a broad container whose getText() returns the entire page (every book
+				// row), flooding the log. Detection below is enough.
 				return (isDisplayed || hasConfirmButton || hasCancelButton) && titleText.contains("Remove")
 						&& messageText.contains("Are you sure");
 			} catch (Exception e) {

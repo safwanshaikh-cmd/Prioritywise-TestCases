@@ -1,0 +1,11 @@
+============================================================
+Test Log: UploaderTests.TC466_SearchBookByName
+Started: 2026-07-21 12:34:44
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC466_SearchBookByName_2026_07_21_12_34_44.log
+============================================================
+========== TEST STARTED: TC_466: Search Book By Name ==========
+INFO  Logged in as uploader
+INFO  TC_466: Search by book name is working using an existing title from the For Creators page search box
+========== TEST PASSED: TC_466 ==========
+============================================================
+Ended: 2026-07-21 12:35:30

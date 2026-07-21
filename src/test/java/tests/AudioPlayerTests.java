@@ -30,10 +30,10 @@ import utils.LoggerUtils;
  */
 public class AudioPlayerTests extends BaseTest {
 
-	private static final String AUDIO_ADVANCED_EMAIL = "safwan.shaikh+041@11axis.com";
+	private static final String AUDIO_ADVANCED_EMAIL = "safwan.s11axis+0098@gmail.com";
 	private static final String AUDIO_ADVANCED_PASSWORD = "Password@123";
-	private static final String FREE_USER_EMAIL = "safwan.shaikh+040@11axis.com";
-	private static final String FREE_USER_PASSWORD = "Password@123";
+	private static final String FREE_USER_EMAIL = "safwan.shaikh+012@11axis.com";
+	private static final String FREE_USER_PASSWORD = "Pbdev@123";
 
 	private LoginPage login;
 	private DashboardPage dashboard;
@@ -372,14 +372,17 @@ public class AudioPlayerTests extends BaseTest {
 				throw new SkipException("TC_328: Selected dashboard book is gated for playback.");
 			}
 
-			LoggerUtils.logStep(3, "Start audio playback and move forward first");
-			Assert.assertTrue(player.clickPlayAudio(), "TC_328 setup: expected playback to start.");
+			LoggerUtils.logStep(3, "Start audio playback");
+			Assert.assertTrue(player.clickPlayAudio(), "TC_328 setup: expected playback to start before rewind.");
+			// Seed forward first so there is headroom to rewind back by 30s.
 			Assert.assertTrue(player.validateForward30(), "TC_328 setup: expected forward to work first.");
-			String timeAfterForward = player.getCurrentTime();
-			LoggerUtils.logInfo("TC_328 - STEP 3: Moved forward first, time: " + timeAfterForward);
+			LoggerUtils.logInfo("TC_328 - STEP 3: Audio playback started");
+
+			String timeBeforeRewind = player.getCurrentTime();
+			LoggerUtils.logInfo("TC_328 - STEP 3: Time before rewind: " + timeBeforeRewind);
 
 			LoggerUtils.logStep(4, "Click backward 30 button");
-			Assert.assertTrue(player.validateBackward30(), "TC_328: expected time to decrease after backward.");
+			Assert.assertTrue(player.validateBackward30(), "TC_328: expected time to decrease after backward skip.");
 			LoggerUtils.logInfo("TC_328 - STEP 4: Backward 30 button clicked");
 
 			Assert.assertTrue(player.isPlaybackProgressing(), "TC_328: Audio should continue playing after rewind");
@@ -563,12 +566,13 @@ public class AudioPlayerTests extends BaseTest {
 			}
 			LoggerUtils.logInfo("TC_332 - STEP 3: Multiple chapters confirmed");
 
-			LoggerUtils.logStep(4, "Start audio playback and move to next chapter");
+			LoggerUtils.logStep(4, "Start audio playback");
 			Assert.assertTrue(player.clickPlayAudio(), "TC_332 setup: expected playback to start.");
+			// Seed forward first so there is an earlier chapter to return to.
 			Assert.assertTrue(player.validateChapterChange(true),
 					"TC_332 setup: expected next chapter to work first.");
 			String nextChapter = player.getCurrentChapterTitle();
-			LoggerUtils.logInfo("TC_332 - STEP 4: Moved to next chapter: " + nextChapter);
+			LoggerUtils.logInfo("TC_332 - STEP 4: Current chapter: " + nextChapter);
 
 			LoggerUtils.logStep(5, "Click previous chapter button");
 			Assert.assertTrue(player.validateChapterChange(false),
@@ -576,8 +580,8 @@ public class AudioPlayerTests extends BaseTest {
 			String prevChapter = player.getCurrentChapterTitle();
 			LoggerUtils.logInfo("TC_332 - STEP 5: Returned to chapter: " + prevChapter);
 
-			boolean returnedToEarlier = !nextChapter.equals(prevChapter);
-			Assert.assertTrue(returnedToEarlier, "TC_332: Should return to earlier chapter");
+			boolean returnedToEarlier = !nextChapter.equals(prevChapter) && !"N/A".equals(prevChapter);
+			Assert.assertTrue(returnedToEarlier, "TC_332: Chapter should return to earlier chapter");
 			LoggerUtils.logInfo("TC_332: ✓ Test PASSED - Previous chapter navigation works");
 
 			LoggerUtils.logTestEnd("TC_332", "PASSED");

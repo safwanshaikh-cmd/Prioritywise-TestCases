@@ -1,0 +1,15 @@
+============================================================
+Test Log: UploaderTests.TC450_SpecialCharactersInTitle
+Started: 2026-07-21 12:11:03
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC450_SpecialCharactersInTitle_2026_07_21_12_11_03.log
+============================================================
+========== TEST STARTED: TC_450: Special Characters In Title ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_450: Special characters in title: @#$%
+INFO  TC_450: Special characters accepted or sanitized
+========== TEST PASSED: TC_450 ==========
+============================================================
+Ended: 2026-07-21 12:11:41

@@ -1,0 +1,11 @@
+============================================================
+Test Log: UploaderTests.TC470_SearchBookWithSpecialCharacters
+Started: 2026-07-21 12:40:43
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC470_SearchBookWithSpecialCharacters_2026_07_21_12_40_43.log
+============================================================
+========== TEST STARTED: TC_470: Search Book With Special Characters ==========
+INFO  Logged in as uploader
+INFO  TC_470: Special-character search (@#$%) is handled gracefully through the For Creators page search box
+========== TEST PASSED: TC_470 ==========
+============================================================
+Ended: 2026-07-21 12:41:36

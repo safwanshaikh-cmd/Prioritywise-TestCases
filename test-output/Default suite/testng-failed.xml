@@ -3,13 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.UploaderTests">
+      <class name="tests.AudioPlayerTests">
         <methods>
           <include name="tearDown"/>
           <include name="setup"/>
-          <include name="TC464_UploadedBooksAreListed"/>
+          <include name="TC336_VerifyMaximumSpeedSelection"/>
+          <include name="TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength"/>
         </methods>
-      </class> <!-- tests.UploaderTests -->
+      </class> <!-- tests.AudioPlayerTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

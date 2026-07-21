@@ -1,0 +1,35 @@
+============================================================
+Test Log: UploaderTests.TC485_DeleteBookFunctionality
+Started: 2026-07-21 13:00:15
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC485_DeleteBookFunctionality_2026_07_21_13_00_15.log
+============================================================
+========== TEST STARTED: TC_485: Delete Book Functionality ==========
+INFO  Logged in as uploader
+INFO  TC_485 - STEP 1: Navigating to For Creators page
+INFO  TC_485 - STEP 1: Pending filter selected
+INFO  TC_485 - STEP 2: Number of books BEFORE deletion = 17
+INFO  TC_485 - STEP 3: Book to be deleted = 'Re-Enter Test a9cbb9'
+INFO  TC_485 - ========== BOOK DETAILS BEFORE DELETION ==========
+INFO  TC_485 - Book Title: 'Re-Enter Test a9cbb9'
+INFO  TC_485 - Book Position: First book in listing
+INFO  TC_485 - Total Books in Pending: 17
+INFO  TC_485 - Filter Applied: Pending
+INFO  TC_485 - =================================================
+INFO  TC_485 - STEP 4: Clicking Delete button on first book
+INFO  TC_485 - Delete confirmation dialog displayed: true
+INFO  TC_485 - ========== DELETE CONFIRMATION DIALOG ==========
+INFO  TC_485 - Dialog Title: 'Remove From Library'
+INFO  TC_485 - Dialog Message: 'Are you sure you want to remove this Book from Library?'
+INFO  TC_485 - Available Buttons: OK, Cancel
+INFO  TC_485 - Action Selected: OK (Confirm deletion)
+INFO  TC_485 - ===============================================
+INFO  TC_485 - STEP 4: Delete confirmed - Book deletion in progress
+INFO  TC_485 - ========== DELETION SUMMARY ==========
+INFO  TC_485 - Deleted Book Name: 'Re-Enter Test a9cbb9'
+INFO  TC_485 - Book still present in listing: false
+INFO  TC_485 - ======================================
+INFO  TC_485 - FINAL VERIFICATION: Book successfully deleted
+INFO  TC_485: Delete book functionality verified - Book 'Re-Enter Test a9cbb9' no longer appears in the listing
+========== TEST PASSED: TC_485 ==========
+============================================================
+Ended: 2026-07-21 13:00:55

@@ -247,15 +247,23 @@ public class DashboardPage extends BasePage {
 			"//*[contains(translate(normalize-space(.),'NO SUMMARY AVAILABLE','no summary available'),'no summary available')"
 					+ " or contains(translate(normalize-space(.),'SUMMARY NOT AVAILABLE','summary not available'),'summary not available')"
 					+ " or contains(translate(normalize-space(.),'NO DESCRIPTION','no description'),'no description')]");
+	// A real chapter/episode row renders as <div tabindex='0'> containing a bold
+	// title (class token r-fontWeight-majxgm) and a dimmed duration (r-opacity-icoktb,
+	// e.g. "00:06:26"). NOTE: the generated RN-web classes carry a style-prop prefix
+	// (r-fontWeight-majxgm, NOT r-majxgm; r-opacity-icoktb, NOT r-icoktb) — matching
+	// the shorter token silently finds nothing.
 	private static final By CHAPTER_ITEMS = By.xpath("//*[@data-testid='chapter_item']"
 			+ " | //*[contains(translate(@class,'CHAPTER','chapter'),'chapter')]"
-			+ " | //div[normalize-space()='Available Chapters']/ancestor::div[contains(@class,'css-g5y9jx')][1]/following-sibling::div//div[@tabindex='0']");
+			+ " | //div[@tabindex='0'][.//div[contains(@class,'r-fontWeight-majxgm')]"
+			+ " and .//div[contains(@class,'r-opacity-icoktb')]]");
 	private static final By CHAPTER_TITLE_LABELS = By.xpath(
-			"//div[normalize-space()='Available Chapters']/ancestor::div[contains(@class,'css-g5y9jx')][1]/following-sibling::div//div[contains(@class,'r-majxgm')]"
-					+ " | //*[@data-testid='chapter_item']//*[self::div or self::span][1]");
+			"//*[@data-testid='chapter_item']//*[self::div or self::span][1]"
+					+ " | //div[@tabindex='0'][.//div[contains(@class,'r-opacity-icoktb')]]"
+					+ "//div[contains(@class,'r-fontWeight-majxgm')]");
 	private static final By CHAPTER_DURATION_LABELS = By.xpath(
-			"//div[normalize-space()='Available Chapters']/ancestor::div[contains(@class,'css-g5y9jx')][1]/following-sibling::div//div[contains(@class,'r-icoktb')]"
-					+ " | //*[@data-testid='chapter_item']//*[contains(normalize-space(.),':')]");
+			"//*[@data-testid='chapter_item']//*[contains(normalize-space(.),':')]"
+					+ " | //div[@tabindex='0'][.//div[contains(@class,'r-fontWeight-majxgm')]]"
+					+ "//div[contains(@class,'r-opacity-icoktb')]");
 	private static final By BACK_BUTTON = By.xpath("//*[self::button or @role='button' or @tabindex='0']"
 			+ "[contains(translate(@aria-label,'BACK','back'),'back')"
 			+ " or contains(translate(normalize-space(.),'BACK','back'),'back')"
@@ -2850,7 +2858,179 @@ public class DashboardPage extends BasePage {
 			}
 		}
 
+		if (!chapterDetails.isEmpty()) {
+			return chapterDetails;
+		}
+
+		LOGGER.log(Level.INFO, "getVisibleChapterDetails: Selenium path returned 0 rows — trying JS fallback");
+
+		// Final fallback: Selenium's findVisibleElements relies on isDisplayed(),
+		// which returns false for elements that exist in the DOM but are off-screen
+		// (no scroll yet) or hidden by an ancestor with display:none on a transient
+		// state. The "Available Chapters" rows on books like "The Golem" can fall
+		// into that bucket. Use a JS querySelectorAll directly — bypassing
+		// isDisplayed — and verify display via computed style.
+		try {
+			// NOTE: document.querySelectorAll accepts CSS selectors ONLY — never
+			// XPath. Chapter/episode rows render as <div tabindex="0"> holding a
+			// bold title (r-fontWeight-majxgm) and a dimmed duration
+			// (r-opacity-icoktb). Match that structure directly with CSS rather
+			// than relying on an "Available Chapters" header that may be absent.
+			Object jsResult = ((JavascriptExecutor) driver).executeScript(
+				"const rows = Array.from(document.querySelectorAll('div[tabindex=\"0\"]'))"
+				+ "  .filter(r => r.querySelector('div[class*=\"r-fontWeight-majxgm\"]'));"
+				+ "return rows.map(r => {"
+				+ "  const title = r.querySelector('div[class*=\"r-fontWeight-majxgm\"]');"
+				+ "  const dur = r.querySelector('div[class*=\"r-opacity-icoktb\"]');"
+				+ "  const t = title ? (title.textContent||'').trim() : '';"
+				+ "  const d = dur ? (dur.textContent||'').trim() : '';"
+				+ "  return d ? t + ' - ' + d : t;"
+				+ "}).filter(t => t);"
+			);
+			if (jsResult instanceof List<?>) {
+				LOGGER.log(Level.INFO, "getVisibleChapterDetails: JS fallback returned {0} entry(ies)",
+						((List<?>) jsResult).size());
+				for (Object t : (List<?>) jsResult) {
+					String text = String.valueOf(t).trim();
+					if (!text.isBlank()) {
+						chapterDetails.add(text);
+					}
+				}
+			} else {
+				LOGGER.log(Level.WARNING,
+						"getVisibleChapterDetails: JS fallback returned non-list result: {0}",
+						jsResult == null ? "null" : jsResult.getClass().getSimpleName());
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "getVisibleChapterDetails: JS fallback failed: {0}", e.getMessage());
+		}
+
+		// Some books (e.g. "Brain At Work") render their content under an
+		// "Episodes" section rather than "Chapters". If no chapters were found,
+		// fall through to the episode enumeration so callers get the real list
+		// instead of an empty result.
+		if (chapterDetails.isEmpty()) {
+			List<String> episodeDetails = getVisibleEpisodeDetails();
+			if (!episodeDetails.isEmpty()) {
+				LOGGER.log(Level.INFO,
+						"getVisibleChapterDetails: no chapters found — returning {0} episode(s) instead",
+						episodeDetails.size());
+				return episodeDetails;
+			}
+		}
+
 		return chapterDetails;
+	}
+
+	/**
+	 * Enumerate visible episode items as {@code "Name - Duration"} strings.
+	 * <p>
+	 * Some book details pages render the chapter list under a section labelled
+	 * "Episodes" (rather than "Chapters"), and the episode items themselves
+	 * expose no {@code data-testid}. This helper walks every visible episode
+	 * item via {@link #EPISODE_ITEMS}, grabs its text, and pairs any
+	 * duration-looking token (matches {@link #DURATION_LABELS}) as a
+	 * {@code "Name - Duration"} entry — the same shape {@link #getVisibleChapterDetails()}
+	 * returns. Used by TC_472 ("The Golem") which the server labels as episodes.
+	 */
+	public List<String> getVisibleEpisodeDetails() {
+		List<String> episodeDetails = new ArrayList<>();
+		List<WebElement> episodes = findVisibleElements(EPISODE_ITEMS);
+		if (!episodes.isEmpty()) {
+			for (WebElement episode : episodes) {
+				String text = normalizeVisibleText(episode);
+				if (text.isBlank()) {
+					continue;
+				}
+
+				List<WebElement> innerDurations = episode.findElements(DURATION_LABELS);
+				String duration = innerDurations.isEmpty() ? "" : normalizeVisibleText(innerDurations.get(0));
+				String name = text;
+
+				if (!duration.isBlank()) {
+					int durationIdx = text.toLowerCase().indexOf(duration.toLowerCase());
+					if (durationIdx > 0) {
+						name = text.substring(0, durationIdx).trim();
+					}
+				}
+
+				episodeDetails.add(duration.isBlank() ? name : name + " - " + duration);
+			}
+			return episodeDetails;
+		}
+
+		// Fallback: scan the page for visible leaf rows that look like episodes
+		// (i.e. contain a duration token) under a section labelled
+		// "Episodes"/"Available Episodes"/"Chapters"/"Available Chapters".
+		// Real episode rows render as <div tabindex='0'> with text like
+		// "Episode 1 12:34" or "Episode 1 | 12:34"; chrome buttons like "Report"
+		// happen to also live under the same ancestor but lack a duration token,
+		// so we filter on duration presence rather than tabindex alone.
+		try {
+			Object result = ((JavascriptExecutor) driver).executeScript(
+				"const isVisible = el => {"
+				+ "  const r = el.getBoundingClientRect();"
+				+ "  const s = window.getComputedStyle(el);"
+				+ "  return r.width > 0 && r.height > 0"
+				+ "      && s.display !== 'none' && s.visibility !== 'hidden'"
+				+ "      && parseFloat(s.opacity || '1') > 0;"
+				+ "};"
+				+ "const durationRe = /\\\\b\\\\d{1,3}:\\\\d{2}(?::\\\\d{2})?\\\\b|\\\\b\\\\d+\\\\s*(?:min|m|sec|s|hr|h)\\\\b/i;"
+				+ "const headerLabels = new Set(['episodes','available episodes','chapters','available chapters']);"
+				+ "const header = Array.from(document.querySelectorAll('div,span,h2,h3,h4')).find(el => {"
+				+ "  const t = (el.textContent || '').trim().toLowerCase();"
+				+ "  return headerLabels.has(t) && isVisible(el);"
+				+ "});"
+				+ "if (!header) return [];"
+				+ "let container = header;"
+				+ "let best = [];"
+				+ "for (let depth = 0; depth < 6 && container; depth++) {"
+				+ "  const rows = Array.from(container.querySelectorAll('div[tabindex=\"0\"], div[role=\"button\"], a'))"
+				+ "    .filter(isVisible);"
+				+ "  const episodes = rows.map(r => (r.textContent || '').trim())"
+				+ "    .filter(t => t && t.length < 200 && durationRe.test(t));"
+				+ "  if (episodes.length > best.length) best = episodes;"
+				+ "  if (episodes.length >= 5) break;"
+				+ "  container = container.parentElement;"
+				+ "}"
+				+ "return best;"
+			);
+			if (result instanceof List<?>) {
+				LOGGER.log(Level.INFO, "getVisibleEpisodeDetails: JS fallback found {0} row(s)",
+						((List<?>) result).size());
+				for (Object row : (List<?>) result) {
+					String text = String.valueOf(row).trim();
+					if (text.isBlank()) {
+						continue;
+					}
+
+					String duration = "";
+					String name = text;
+
+					java.util.regex.Matcher colon = java.util.regex.Pattern
+							.compile("\\b\\d{1,3}:\\d{2}(?::\\d{2})?\\b").matcher(text);
+					java.util.regex.Matcher minSec = java.util.regex.Pattern
+							.compile("\\b\\d+\\s*(?:min|m|sec|s|hr|h)\\b", java.util.regex.Pattern.CASE_INSENSITIVE)
+							.matcher(text);
+					java.util.regex.Matcher hit = colon.find() ? colon : (minSec.find() ? minSec : null);
+					if (hit != null) {
+						duration = hit.group().trim();
+						name = (text.substring(0, hit.start()) + text.substring(hit.end())).trim();
+						name = name.replaceAll("^\\s*[|·•\\\\/-]\\s*|\\s*[|·•\\\\/-]\\s*$", "").trim();
+						if (name.isBlank()) {
+							name = text;
+						}
+					}
+
+					LOGGER.log(Level.FINE, "getVisibleEpisodeDetails: row -> name=\"{0}\" duration=\"{1}\"",
+							new Object[] { name, duration });
+					episodeDetails.add(duration.isBlank() ? name : name + " - " + duration);
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.log(Level.FINE, "JS-based episode enumeration failed: {0}", e.getMessage());
+		}
+		return episodeDetails;
 	}
 
 	public void printCurrentBookDetails() {
@@ -5217,15 +5397,16 @@ public class DashboardPage extends BasePage {
 		String startingUrl = getCurrentUrl();
 		WebElement firstResult = results.get(0);
 
-		// Find the actual clickable container - look for div with border-radius (card style)
+		// Prefer the search result element itself. Only fall back to a card div
+		// that is a descendant/ancestor of the result — NOT the first border-radius
+		// div on the whole page (that grabbed an unrelated element).
 		WebElement clickTarget = firstResult;
 		try {
-			List<WebElement> cards = findVisibleElements(
-				By.xpath("//div[contains(@style,'border-radius: 8px')]")
-			);
-			if (!cards.isEmpty()) {
+			List<WebElement> cards = firstResult.findElements(
+				By.xpath(".//div[contains(@style,'border-radius: 8px')] | ./ancestor-or-self::div[contains(@style,'border-radius: 8px')]"));
+			if (!cards.isEmpty() && cards.get(0).isDisplayed()) {
 				clickTarget = cards.get(0);
-				LOGGER.info("Found clickable card div with border-radius");
+				LOGGER.info("Found clickable card div within the search result");
 			}
 		} catch (Exception ignored) {}
 
@@ -5233,13 +5414,14 @@ public class DashboardPage extends BasePage {
 		scrollIntoView(clickTarget);
 		waitForMilliseconds(800);
 
-		// Use Actions with specific coordinates in center
+		// Click the element. NOTE: Actions.moveToElement(el, x, y) measures the
+		// offset from the element's CENTER — passing width/2,height/2 lands on the
+		// bottom-right corner (an inert gap), which is why the click did nothing.
+		// Move to the element center (no offset) instead, with a JS-click fallback.
 		try {
-			int centerX = clickTarget.getSize().getWidth() / 2;
-			int centerY = clickTarget.getSize().getHeight() / 2;
 			org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(driver);
-			actions.moveToElement(clickTarget, centerX, centerY).pause(300).click().perform();
-			LOGGER.info("Clicked using Actions with center coordinates: " + centerX + "," + centerY);
+			actions.moveToElement(clickTarget).pause(300).click().perform();
+			LOGGER.info("Clicked search result at element center");
 		} catch (Exception actionsEx) {
 			LOGGER.warning("Actions click failed: " + actionsEx.getMessage());
 			clickWithJS(clickTarget);

@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC295_VerifyBookSummaryDisplayedOnBookDetailsPage
+Started: 2026-07-21 16:12:39
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC295_VerifyBookSummaryDisplayedOnBookDetailsPage_2026_07_21_16_12_39.log
+============================================================
+========== TEST STARTED: TC_295: Book Summary Displayed On Book Details Page ==========
+STEP 1: Open book details from dashboard
+STEP 2: Verify summary or empty state
+INFO  TC_295: Summary visible - true, Empty message - false
+========== TEST PASSED: TC_295 ==========
+============================================================
+Ended: 2026-07-21 16:13:01

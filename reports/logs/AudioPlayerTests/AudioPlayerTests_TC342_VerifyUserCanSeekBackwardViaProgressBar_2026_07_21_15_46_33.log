@@ -1,0 +1,21 @@
+============================================================
+Test Log: AudioPlayerTests.TC342_VerifyUserCanSeekBackwardViaProgressBar
+Started: 2026-07-21 15:46:33
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC342_VerifyUserCanSeekBackwardViaProgressBar_2026_07_21_15_46_33.log
+============================================================
+========== TEST STARTED: TC_342: User Can Seek Backward Via Progress Bar ==========
+STEP 1: Log in as advanced audio user
+INFO  Logged in as advanced audio user
+INFO  TC_342 - STEP 1: Logged in as advanced audio user
+STEP 2: Open a book from dashboard
+INFO  TC_342 - STEP 2: Opened a book from dashboard
+STEP 3: Start audio playback
+INFO  TC_342 - STEP 3: Audio playback started and progressing
+STEP 4: Seek forward first to create playback position
+INFO  TC_342 - STEP 4: Forward seek completed
+STEP 5: Seek backward via progress bar
+INFO  TC_342 - STEP 5: Seek backward completed
+INFO  TC_342: ✓ Test PASSED - User can seek backward via progress bar
+========== TEST PASSED: TC_342 ==========
+============================================================
+Ended: 2026-07-21 15:47:54

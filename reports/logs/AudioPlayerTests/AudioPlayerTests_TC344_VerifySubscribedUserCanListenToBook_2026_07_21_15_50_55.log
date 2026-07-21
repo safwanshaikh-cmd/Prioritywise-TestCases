@@ -1,0 +1,17 @@
+============================================================
+Test Log: AudioPlayerTests.TC344_VerifySubscribedUserCanListenToBook
+Started: 2026-07-21 15:50:55
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC344_VerifySubscribedUserCanListenToBook_2026_07_21_15_50_55.log
+============================================================
+========== TEST STARTED: TC_344: Subscribed User Can Listen To Book ==========
+STEP 1: Log in as subscribed user (advanced audio user)
+INFO  Logged in as advanced audio user
+INFO  TC_344 - STEP 1: Logged in as subscribed user
+STEP 2: Open a book from dashboard
+INFO  TC_344 - STEP 2: Opened a book from dashboard
+STEP 3: Verify subscribed user can play audio
+INFO  TC_344 - STEP 3: Subscribed user can play audio
+INFO  TC_344: ✓ Test PASSED - Subscribed user can listen to book
+========== TEST PASSED: TC_344 ==========
+============================================================
+Ended: 2026-07-21 15:52:03

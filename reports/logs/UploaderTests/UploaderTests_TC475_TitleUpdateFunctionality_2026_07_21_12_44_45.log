@@ -1,0 +1,15 @@
+============================================================
+Test Log: UploaderTests.TC475_TitleUpdateFunctionality
+Started: 2026-07-21 12:44:45
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC475_TitleUpdateFunctionality_2026_07_21_12_44_45.log
+============================================================
+========== TEST STARTED: TC_475: Title Update Functionality ==========
+INFO  Logged in as uploader
+INFO  TC_475 - BEFORE: Original title = Duplicate Test Book
+INFO  Toast elements found: 4 | text: [Audiobook summary updated successfully.]
+INFO  TC_475 - AFTER: Updated title = Updated Book 936bad
+INFO  TC_475 - SUCCESS MESSAGE: Audiobook summary updated successfully.
+INFO  TC_475: Title update functionality verified
+========== TEST PASSED: TC_475 ==========
+============================================================
+Ended: 2026-07-21 12:45:33

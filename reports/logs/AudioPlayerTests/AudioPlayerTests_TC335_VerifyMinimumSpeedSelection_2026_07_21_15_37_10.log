@@ -1,0 +1,19 @@
+============================================================
+Test Log: AudioPlayerTests.TC335_VerifyMinimumSpeedSelection
+Started: 2026-07-21 15:37:10
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC335_VerifyMinimumSpeedSelection_2026_07_21_15_37_10.log
+============================================================
+========== TEST STARTED: TC_335: Minimum Speed Selection ==========
+STEP 1: Log in as advanced audio user
+INFO  Logged in as advanced audio user
+INFO  TC_335 - STEP 1: Logged in as advanced audio user
+STEP 2: Open a book from dashboard
+INFO  TC_335 - STEP 2: Opened a book from dashboard
+STEP 3: Start audio playback
+INFO  TC_335 - STEP 3: Audio playback started
+STEP 4: Change playback speed to 0.5x
+INFO  TC_335 - STEP 4: Playback speed changed to 0.5x
+INFO  TC_335: ✓ Test PASSED - Minimum speed selection works
+========== TEST PASSED: TC_335 ==========
+============================================================
+Ended: 2026-07-21 15:38:30

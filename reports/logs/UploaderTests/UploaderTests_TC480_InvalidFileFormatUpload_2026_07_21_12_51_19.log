@@ -1,0 +1,17 @@
+============================================================
+Test Log: UploaderTests.TC480_InvalidFileFormatUpload
+Started: 2026-07-21 12:51:19
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC480_InvalidFileFormatUpload_2026_07_21_12_51_19.log
+============================================================
+========== TEST STARTED: TC_480: Invalid File Format Upload ==========
+INFO  Logged in as uploader
+INFO  TC_480 - BEFORE: Attempting to upload invalid file format: C:\Users\safwan\Downloads\Chatbox-1.21.1-Setup.exe
+INFO  TC_480 - ACTION: Uploading .exe through the Portrait image uploader
+INFO  TC_480 - AFTER: Invalid image upload attempted
+INFO  TC_480 - PORTRAIT COVER ERROR: 
+INFO  TC_480 - ERROR MESSAGE: 
+INFO  TC_480 - VALIDATION MESSAGES: []
+INFO  TC_480: Invalid file format validation verified - System rejects .exe on portrait upload
+========== TEST PASSED: TC_480 ==========
+============================================================
+Ended: 2026-07-21 12:52:35

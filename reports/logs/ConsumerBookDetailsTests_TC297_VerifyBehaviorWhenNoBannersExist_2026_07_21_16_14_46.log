@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC297_VerifyBehaviorWhenNoBannersExist
+Started: 2026-07-21 16:14:46
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC297_VerifyBehaviorWhenNoBannersExist_2026_07_21_16_14_46.log
+============================================================
+========== TEST STARTED: TC_297: Behavior When No Banners Exist ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Verify dashboard stability without banners
+INFO  TC_297: Banners visible - true, Dashboard stable - true
+========== TEST PASSED: TC_297 ==========
+============================================================
+Ended: 2026-07-21 16:14:48

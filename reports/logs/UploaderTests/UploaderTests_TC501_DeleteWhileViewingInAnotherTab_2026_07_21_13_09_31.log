@@ -1,0 +1,33 @@
+============================================================
+Test Log: UploaderTests.TC501_DeleteWhileViewingInAnotherTab
+Started: 2026-07-21 13:09:31
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC501_DeleteWhileViewingInAnotherTab_2026_07_21_13_09_31.log
+============================================================
+========== TEST STARTED: TC_501: Delete While Viewing In Another Tab ==========
+INFO  TC_501 - Testing delete while book is open in another tab
+INFO  Logged in as uploader
+INFO  TC_501 - STEP 1: Target book selected from Approved list = 'Automation Book a30727'
+INFO  TC_501 - STEP 2: Playback started on viewing tab = true
+INFO  TC_501 - STEP 2: Viewing tab URL = 'https://web-splay.acceses.com/book_detail/416/automation-book-a30727'
+INFO  adminTab handle = E415334A620D2EFC1CC034A8B143A34C
+INFO  TC_501 - STEP 3: Opened second tab for admin deletion
+INFO  TC_501 - STEP 4: Approved-filter count before deletion = 1
+INFO  No success message found: Expected condition failed: waiting for visibility of element found by By.xpath: //*[@data-testid='toastText1' or @data-testid='toastText2' or contains(@data-testid,'toast') or contains(@class, 'success') or contains(@class, 'message')]
+(tried for 15 seconds with 500 milliseconds interval)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.128, chrome: {chromedriverVersion: 150.0.7871.124 (9261fd0a595..., userDataDir: C:\Users\safwan\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57753}, goog:processID: 20952, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57753/devtoo..., se:cdpVersion: 150.0.7871.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: e075a39fc5b4060852b174968a1f66df
+INFO  TC_501 - STEP 4: Delete success message = ''
+INFO  TC_501 - STEP 4: Approved-filter count after deletion = 0
+INFO  TC_501 - STEP 4: Book still visible after deletion = false
+INFO  TC_501 - STEP 5: Current URL after delete = 'https://web-splay.acceses.com/book_detail/416/automation-book-a30727'
+INFO  TC_501 - STEP 5: Redirected away from original book page = false
+INFO  TC_501 - STEP 5: Dashboard visible after delete = false
+INFO  TC_501 - STEP 5: Book details still visible after delete = true
+INFO  TC_501 - STEP 5: Play button still visible after delete = false
+INFO  TC_501: Delete while viewing verified for 'Automation Book a30727'
+========== TEST PASSED: TC_501 ==========
+============================================================
+Ended: 2026-07-21 13:12:11

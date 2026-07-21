@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC293_VerifyUserCanAccessReportOption
+Started: 2026-07-21 16:10:37
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC293_VerifyUserCanAccessReportOption_2026_07_21_16_10_37.log
+============================================================
+========== TEST STARTED: TC_293: User Can Access Report Option ==========
+STEP 1: Open book details from dashboard
+STEP 2: Verify report option visibility
+INFO  TC_293: Report option visible - true
+========== TEST PASSED: TC_293 ==========
+============================================================
+Ended: 2026-07-21 16:10:56

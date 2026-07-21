@@ -27,6 +27,21 @@ public class AudioPlayerPage extends BasePage {
 	private static final Duration SHORT_TIMEOUT = Duration.ofSeconds(1);
 	private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(4);
 
+	// The player mounts several <audio> elements (chapter previews, a hidden
+	// pre-buffer, the live one). document.querySelector('audio') returns the FIRST
+	// in DOM order, which is often a stale/idle element frozen at 14s or parked at
+	// the full duration (04:05). Reading any such element gives a number that never
+	// matches the on-screen timer. So this snippet returns an element ONLY when it
+	// is genuinely playing (!paused && !ended); when nothing is playing it returns
+	// null, letting getCurrentTime() fall through to the visible position label,
+	// which is the source of truth (it moves correctly by hand). Assign the picked
+	// element to `a` and read the property you need after it.
+	private static final String ACTIVE_AUDIO_JS =
+			"const els=[...document.querySelectorAll('audio')];"
+			+ "if(!els.length)return null;"
+			+ "let a=els.find(e=>!e.paused && !e.ended);"
+			+ "if(!a)return null;";
+
 	private static final By PLAY_AUDIO_BUTTON = By
 			.xpath("//div[text()='Play Audio']" + " | //*[self::button or @role='button' or @tabindex='0']"
 					+ "[contains(translate(normalize-space(.),'PLAY AUDIO','play audio'),'play audio')"
@@ -43,15 +58,27 @@ public class AudioPlayerPage extends BasePage {
 					+ " | //*[self::button or @role='button' or @tabindex='0'][contains(translate(@aria-label,'PAUSE','pause'),'pause')]");
 	private static final By FORWARD_30_BUTTON = By
 			.xpath("//img[contains(@src,'ic_forward_30')]/ancestor::div[@tabindex='0'][1]"
+					+ " | //div[contains(@style,'ic_forward_30')]/ancestor::div[@tabindex='0'][1]"
+					+ " | //img[contains(@src,'ic_forward_30')]/ancestor::div[1]"
+					+ " | //div[contains(@style,'ic_forward_30')]/parent::div"
 					+ " | //*[self::button or @role='button' or @tabindex='0'][contains(translate(@aria-label,'FORWARD','forward'),'forward') or contains(translate(@aria-label,'SKIP','skip'),'skip') or contains(translate(normalize-space(.),'30S','30s'),'30s')]");
 	private static final By BACKWARD_30_BUTTON = By
 			.xpath("//img[contains(@src,'ic_prev_30')]/ancestor::div[@tabindex='0'][1]"
+					+ " | //div[contains(@style,'ic_prev_30')]/ancestor::div[@tabindex='0'][1]"
+					+ " | //img[contains(@src,'ic_prev_30')]/ancestor::div[1]"
+					+ " | //div[contains(@style,'ic_prev_30')]/parent::div"
 					+ " | //*[self::button or @role='button' or @tabindex='0'][contains(translate(@aria-label,'REWIND','rewind'),'rewind') or contains(translate(@aria-label,'BACKWARD','backward'),'backward') or contains(translate(normalize-space(.),'-30S','-30s'),'-30s')]");
 	private static final By NEXT_CHAPTER_BUTTON = By
 			.xpath("//img[contains(@src,'ic_next')]/ancestor::div[@tabindex='0'][1]"
+					+ " | //div[contains(@style,'ic_next')]/ancestor::div[@tabindex='0'][1]"
+					+ " | //img[contains(@src,'ic_next')]/ancestor::div[1]"
+					+ " | //div[contains(@style,'ic_next')]/parent::div"
 					+ " | //*[self::button or @role='button' or @tabindex='0'][contains(translate(@aria-label,'NEXT','next'),'next') or contains(translate(normalize-space(.),'NEXT CHAPTER','next chapter'),'next chapter')]");
 	private static final By PREVIOUS_CHAPTER_BUTTON = By
 			.xpath("//img[contains(@src,'ic_previous')]/ancestor::div[@tabindex='0'][1]"
+					+ " | //div[contains(@style,'ic_previous')]/ancestor::div[@tabindex='0'][1]"
+					+ " | //img[contains(@src,'ic_previous')]/ancestor::div[1]"
+					+ " | //div[contains(@style,'ic_previous')]/parent::div"
 					+ " | //*[self::button or @role='button' or @tabindex='0'][contains(translate(@aria-label,'PREVIOUS','previous'),'previous') or contains(translate(normalize-space(.),'PREVIOUS CHAPTER','previous chapter'),'previous chapter')]");
 	private static final By SPEED_CONTROL_BUTTON = By.xpath(
 			"//select | //*[self::button or @role='button' or @tabindex='0'][contains(translate(normalize-space(.),'1X','1x'),'1x') or contains(translate(normalize-space(.),'SPEED','speed'),'speed') or contains(translate(@aria-label,'SPEED','speed'),'speed')]");
@@ -73,14 +100,33 @@ public class AudioPlayerPage extends BasePage {
 	private static final By CURRENT_POSITION_LABEL = By.xpath(
 			"(//*[@role='slider']/ancestor::div[contains(@style,'flex-direction: row')][1]/div[(string-length(normalize-space(.))=5 and substring(normalize-space(.),3,1)=':') or (string-length(normalize-space(.))=8 and substring(normalize-space(.),3,1)=':' and substring(normalize-space(.),6,1)=':')])[1]"
 					+ " | //*[contains(@class,'time') or contains(@class,'position') or contains(@class,'current')][self::div or self::span][contains(normalize-space(.),':')]");
+	// The now-playing block is a <div tabindex="0"> (flex row) containing the cover
+	// image (src has /covers/) followed by a two-line text block:
+	//   line 1 (dir=auto) = BOOK title  (e.g. "Brain At Work")
+	//   line 2 (dir=auto) = current CHAPTER/track  (e.g. "9-pressure mein dima...")
+	// So the now-playing chapter is the 2nd dir=auto text node in that row. The old
+	// contains(@class,'chapter'|'title') locator matched nothing (RN-web classes are
+	// hashes), and matching the first bold node grabbed an unrelated static label.
 	private static final By CURRENT_CHAPTER_TITLE = By.xpath(
-			"//*[contains(@class,'chapter') or contains(@class,'title')][self::div or self::span or self::h1 or self::h2 or self::h3]");
+			"//*[@data-testid='current_chapter' or @data-testid='now_playing']"
+					+ " | //div[@tabindex='0'][.//img[contains(@src,'/covers/')]]"
+					+ "//div[@dir='auto'][2]");
 	private static final By PLAYER_SENTINEL = By.xpath(
 			"//*[contains(text(),'File Example Mp3')] | //*[@data-testid='progress_bar'] | //*[contains(translate(normalize-space(.),'PLAY AUDIO','play audio'),'play audio')]");
+	// A chapter/episode row renders as <div tabindex='0'> containing a bold title
+	// (class token r-fontWeight-majxgm) and a dimmed duration (r-opacity-icoktb).
+	// NOTE: the generated RN-web classes carry a style-prop prefix
+	// (css-view-g5y9jx / r-fontWeight-majxgm, NOT css-g5y9jx / r-majxgm) and the
+	// "Available Chapters" header is not always present, so matching on those
+	// silently finds nothing. Match the row structure directly instead.
 	private static final By CHAPTER_ITEMS = By.xpath(
-			"//div[normalize-space()='Available Chapters']/ancestor::div[contains(@class,'css-g5y9jx')][1]/following-sibling::div//*[@tabindex='0'] | //*[@data-testid='chapter_item'] | //*[@data-testid='episode_item']");
+			"//*[@data-testid='chapter_item'] | //*[@data-testid='episode_item']"
+					+ " | //div[@tabindex='0'][.//div[contains(@class,'r-fontWeight-majxgm')]"
+					+ " and .//div[contains(@class,'r-opacity-icoktb')]]");
 	private static final By CHAPTER_DURATION_LABELS = By.xpath(
-			"//div[normalize-space()='Available Chapters']/ancestor::div[contains(@class,'css-g5y9jx')][1]/following-sibling::div//*[contains(normalize-space(.),':')] | //*[@data-testid='chapter_item']//*[contains(normalize-space(.),':')]");
+			"//*[@data-testid='chapter_item']//*[contains(normalize-space(.),':')]"
+					+ " | //div[@tabindex='0'][.//div[contains(@class,'r-fontWeight-majxgm')]]"
+					+ "//div[contains(@class,'r-opacity-icoktb')]");
 	private static final By SUBSCRIPTION_GATE = By.xpath(
 			"//*[contains(translate(normalize-space(.),'UPGRADE','upgrade'),'upgrade') or contains(translate(normalize-space(.),'PREMIUM','premium'),'premium') or contains(translate(normalize-space(.),'SUBSCRIBE','subscribe'),'subscribe') or contains(translate(normalize-space(.),'START LISTENING','start listening'),'start listening') or contains(translate(normalize-space(.),'LISTEN 1 BOOK ONLY','listen 1 book only'),'listen 1 book only')]");
 	private static final By FREE_USER_LIMIT_MESSAGE = By.xpath(
@@ -157,25 +203,37 @@ public class AudioPlayerPage extends BasePage {
 	public String getCurrentTime() {
 		try {
 			Double current = readDoubleFromAnyContext(
-					"const audio=document.querySelector('audio');if(!audio||Number.isNaN(audio.currentTime))return null;return audio.currentTime;");
+					ACTIVE_AUDIO_JS + "if(!a||Number.isNaN(a.currentTime))return null;return a.currentTime;");
 			if (current != null) {
 				return formatSeconds((int) Math.floor(current));
 			}
-			String viewportTime = readStringFromAnyContext("const pattern=/^(?:\\d{1,2}:)?\\d{1,2}:\\d{2}$/;"
-					+ "const candidates=[...document.querySelectorAll('body *')].map(el=>{"
-					+ "  const text=(el.textContent||'').replace(/\\s+/g,' ').trim();"
-					+ "  const rect=el.getBoundingClientRect();"
-					+ "  const style=getComputedStyle(el);"
-					+ "  return {text,rect,style};"
-					+ "}).filter(item=>pattern.test(item.text)"
-					+ "  && item.rect.width > 0 && item.rect.width < 90"
-					+ "  && item.rect.height > 0 && item.rect.height < 45"
-					+ "  && item.style.visibility !== 'hidden' && item.style.display !== 'none');"
-					+ "const lower=candidates.filter(item=>item.rect.top > innerHeight * 0.55);"
-					+ "const left=lower.filter(item=>item.rect.left < innerWidth / 2);"
-					+ "const pool=left.length ? left : (lower.length ? lower : candidates);"
-					+ "pool.sort((a,b)=>b.rect.top-a.rect.top || a.rect.left-b.rect.left);"
-					+ "return pool.length ? pool[0].text : null;");
+			String viewportTime = readStringFromAnyContext(
+					"const pattern=/^(?:\\d{1,2}:)?\\d{1,2}:\\d{2}$/;"
+					+ "const cands=[...document.querySelectorAll('body *')].filter(el=>{"
+					+ "  if(el.children.length!==0)return false;"
+					+ "  const t=(el.textContent||'').replace(/\\s+/g,' ').trim();"
+					+ "  const r=el.getBoundingClientRect();"
+					+ "  const s=getComputedStyle(el);"
+					+ "  return pattern.test(t) && r.width>0 && r.width<90 && r.height>0 && r.height<45"
+					+ "    && s.visibility!=='hidden' && s.display!=='none';"
+					+ "}).map(el=>{const r=el.getBoundingClientRect();"
+					+ "  return {t:el.textContent.replace(/\\s+/g,' ').trim(),x:r.left,y:r.top};});"
+					+ "if(!cands.length)return null;"
+					// Group candidates into horizontal rows (same y within 10px).
+					+ "const rows=[];"
+					+ "cands.forEach(c=>{let row=rows.find(R=>Math.abs(R.y-c.y)<10);"
+					+ "  if(!row){row={y:c.y,items:[]};rows.push(row);}row.items.push(c);});"
+					// The player scrubber row is the one whose two labels (elapsed on the
+					// left, duration on the right) are spread widest across the viewport.
+					+ "const bar=rows.filter(R=>R.items.length>=2)"
+					+ "  .map(R=>{const xs=R.items.map(i=>i.x);"
+					+ "    return {R,spread:Math.max(...xs)-Math.min(...xs)};})"
+					+ "  .sort((a,b)=>b.spread-a.spread)[0];"
+					+ "if(bar && bar.spread > innerWidth*0.3){"
+					+ "  const left=bar.R.items.slice().sort((a,b)=>a.x-b.x)[0];"
+					+ "  return left.t;"    // elapsed = left-most label of the widest row
+					+ "}"
+					+ "return null;");
 			if (viewportTime != null && !viewportTime.isBlank()) {
 				return viewportTime;
 			}
@@ -232,11 +290,11 @@ public class AudioPlayerPage extends BasePage {
 			return false;
 		}
 		String before = normalizePrePlayTime(getCurrentTime());
-		LOGGER.log(Level.INFO, "Before Play: {0}", before);
+		LOGGER.log(Level.FINE, "Before Play: {0}", before);
 		clickPlayButton(play);
 		boolean started = waitForPlaybackToStabilize(Duration.ofSeconds(6));
 		String after = getCurrentTime();
-		LOGGER.log(Level.INFO, "After Play: {0}", after);
+		LOGGER.log(Level.FINE, "After Play: {0}", after);
 		return started;
 	}
 
@@ -973,7 +1031,7 @@ public class AudioPlayerPage extends BasePage {
 
 	private boolean isAudioPaused() {
 		Boolean paused = readBooleanFromAnyContext(
-				"const audio=document.querySelector('audio');if(!audio)return null;return audio.paused;");
+				ACTIVE_AUDIO_JS + "if(!a)return null;return a.paused;");
 		if (Boolean.FALSE.equals(paused)) {
 			return false;
 		}
@@ -982,7 +1040,7 @@ public class AudioPlayerPage extends BasePage {
 
 	private boolean isMediaElementPlaying() {
 		Boolean playing = readBooleanFromAnyContext(
-				"const audio=document.querySelector('audio');if(!audio)return null;return !audio.paused && !audio.ended;");
+				ACTIVE_AUDIO_JS + "if(!a)return null;return !a.paused && !a.ended;");
 		return Boolean.TRUE.equals(playing);
 	}
 
@@ -1023,7 +1081,11 @@ public class AudioPlayerPage extends BasePage {
 
 	private Boolean waitForMediaPlaybackEvent(Duration timeout) {
 		Object result = executeAsyncInAnyContext("const maxWait = arguments[0];"
-				+ "const done = arguments[arguments.length - 1];" + "const audio = document.querySelector('audio');"
+				+ "const done = arguments[arguments.length - 1];"
+				+ "const els=[...document.querySelectorAll('audio')];"
+				+ "let audio=els.find(e=>!e.paused && !e.ended && e.currentTime>0);"
+				+ "if(!audio){audio=els.filter(e=>!Number.isNaN(e.currentTime)).sort((x,y)=>(y.currentTime||0)-(x.currentTime||0))[0];}"
+				+ "if(!audio)audio=els[0];"
 				+ "if (!audio) { done(null); return; }"
 				+ "if (audio.readyState >= 2 && !audio.paused && !audio.ended) { done(true); return; }"
 				+ "let finished = false;" + "let timer = null;" + "const cleanup = () => {"
@@ -1419,7 +1481,7 @@ public class AudioPlayerPage extends BasePage {
 
 	private int readDurationSeconds() {
 		Double duration = readDoubleFromAnyContext(
-				"const audio=document.querySelector('audio');if(!audio||Number.isNaN(audio.duration))return null;return audio.duration;");
+				ACTIVE_AUDIO_JS + "if(!a||Number.isNaN(a.duration))return null;return a.duration;");
 		if (duration != null && duration > 0) {
 			return (int) Math.floor(duration);
 		}
@@ -1428,7 +1490,7 @@ public class AudioPlayerPage extends BasePage {
 
 	private double readPlaybackRate() {
 		Double rate = readDoubleFromAnyContext(
-				"const audio=document.querySelector('audio');if(!audio)return null;return audio.playbackRate;");
+				ACTIVE_AUDIO_JS + "if(!a)return null;return a.playbackRate;");
 		if (rate != null) {
 			return rate;
 		}
@@ -1454,14 +1516,14 @@ public class AudioPlayerPage extends BasePage {
 
 	private Double readMediaVolumeValue() {
 		Double volume = readDoubleFromAnyContext(
-				"const audio=document.querySelector('audio');if(!audio||Number.isNaN(audio.volume))return null;return audio.volume;");
+				ACTIVE_AUDIO_JS + "if(!a||Number.isNaN(a.volume))return null;return a.volume;");
 		return volume;
 	}
 
 	private boolean setMediaVolume(double targetVolume) {
 		double boundedTarget = Math.max(0, Math.min(1, targetVolume));
-		Object result = executeInAnyContext("const audio=document.querySelector('audio');" + "if(!audio)return null;"
-				+ "audio.muted=false;" + "audio.volume=" + boundedTarget + ";" + "return audio.volume;");
+		Object result = executeInAnyContext(ACTIVE_AUDIO_JS + "if(!a)return null;"
+				+ "a.muted=false;" + "a.volume=" + boundedTarget + ";" + "return a.volume;");
 		return result instanceof Number && Math.abs(((Number) result).doubleValue() - boundedTarget) < 0.05;
 	}
 
@@ -1788,7 +1850,7 @@ public class AudioPlayerPage extends BasePage {
 		}
 
 		Double current = readDoubleFromAnyContext(
-				"const audio=document.querySelector('audio');if(!audio||Number.isNaN(audio.currentTime))return null;return audio.currentTime;");
+				ACTIVE_AUDIO_JS + "if(!a||Number.isNaN(a.currentTime))return null;return a.currentTime;");
 		if (current != null && current <= 0.5) {
 			return "00:00";
 		}

@@ -1,0 +1,16 @@
+============================================================
+Test Log: UploaderTests.TC476_DescriptionEdit
+Started: 2026-07-21 12:45:46
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC476_DescriptionEdit_2026_07_21_12_45_46.log
+============================================================
+========== TEST STARTED: TC_476: Description Edit ==========
+INFO  Logged in as uploader
+INFO  TC_476 - OLD Description: 
+INFO  Toast elements found: 4 | text: [Audiobook summary updated successfully.]
+INFO  TC_476 - SUCCESS MESSAGE: Audiobook summary updated successfully.
+INFO  TC_476 - NEW Description: Updated description b910b3
+INFO  TC_476 - VERIFICATION: Description updated successfully - Success message captured
+INFO  TC_476: Description edit verified successfully
+========== TEST PASSED: TC_476 ==========
+============================================================
+Ended: 2026-07-21 12:46:40

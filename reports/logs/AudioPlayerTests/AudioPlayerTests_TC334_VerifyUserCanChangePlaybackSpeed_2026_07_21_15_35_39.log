@@ -1,0 +1,19 @@
+============================================================
+Test Log: AudioPlayerTests.TC334_VerifyUserCanChangePlaybackSpeed
+Started: 2026-07-21 15:35:39
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC334_VerifyUserCanChangePlaybackSpeed_2026_07_21_15_35_39.log
+============================================================
+========== TEST STARTED: TC_334: User Can Change Playback Speed ==========
+STEP 1: Log in as advanced audio user
+INFO  Logged in as advanced audio user
+INFO  TC_334 - STEP 1: Logged in as advanced audio user
+STEP 2: Open a book from dashboard
+INFO  TC_334 - STEP 2: Opened a book from dashboard
+STEP 3: Start audio playback
+INFO  TC_334 - STEP 3: Audio playback started
+STEP 4: Change playback speed to 1.5x
+INFO  TC_334 - STEP 4: Playback speed changed to 1.5x
+INFO  TC_334: ✓ Test PASSED - User can change playback speed
+========== TEST PASSED: TC_334 ==========
+============================================================
+Ended: 2026-07-21 15:36:54

@@ -1,0 +1,13 @@
+============================================================
+Test Log: UploaderTests.TC481_NextFunctionality
+Started: 2026-07-21 12:52:49
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC481_NextFunctionality_2026_07_21_12_52_49.log
+============================================================
+========== TEST STARTED: TC_481: Next Functionality ==========
+INFO  Logged in as uploader
+INFO  TC_481 - CURRENT PAGE: Edit Book Details page
+INFO  TC_481 - NAVIGATED TO: Add Audio Page = true
+INFO  TC_481: Next functionality verified - Successfully navigated to Add Audio Page
+========== TEST PASSED: TC_481 ==========
+============================================================
+Ended: 2026-07-21 12:53:34

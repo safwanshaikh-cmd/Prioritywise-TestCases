@@ -752,12 +752,11 @@ public class UploadPage extends BasePage {
 				String textContent = successElement.getAttribute("textContent");
 				text = textContent == null ? "" : textContent.trim();
 			}
-			// Log all toast elements found for debugging
+			// Log the toast once (the app renders several duplicate toast nodes;
+			// they all carry the same text, so logging each is just noise).
 			List<WebElement> toasts = driver.findElements(SUCCESS_MESSAGE);
-			LoggerUtils.logInfo("Toast elements found: " + toasts.size());
-			for (WebElement toast : toasts) {
-				LoggerUtils.logInfo("Toast - text: [" + safeString(toast.getText()) + "] innerText: [" + safeString(toast.getAttribute("innerText")) + "] ariaLabel: [" + safeString(toast.getAttribute("aria-label")) + "]");
-			}
+			LoggerUtils.logInfo("Toast elements found: " + toasts.size()
+					+ " | text: [" + text + "]");
 			return text;
 		} catch (Exception e) {
 			LoggerUtils.logInfo("No success message found: " + safeString(e.getMessage()));
@@ -854,7 +853,7 @@ public class UploadPage extends BasePage {
 		if (!dashboard.isSearchBarVisible()) {
 			throw new IllegalStateException("Header search bar should be visible for Automation Book search");
 		}
-		dashboard.submitSearch("Automation Book");
+		dashboard.submitSearch("The Golem");
 		dashboard.printVisibleSearchResults();
 		if (!dashboard.clickFirstSearchResult()) {
 			throw new IllegalStateException(

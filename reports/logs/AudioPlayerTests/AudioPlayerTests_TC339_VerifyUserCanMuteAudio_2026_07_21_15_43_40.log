@@ -1,0 +1,19 @@
+============================================================
+Test Log: AudioPlayerTests.TC339_VerifyUserCanMuteAudio
+Started: 2026-07-21 15:43:40
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC339_VerifyUserCanMuteAudio_2026_07_21_15_43_40.log
+============================================================
+========== TEST STARTED: TC_339: User Can Mute Audio ==========
+STEP 1: Log in as advanced audio user
+INFO  Logged in as advanced audio user
+INFO  TC_339 - STEP 1: Logged in as advanced audio user
+STEP 2: Open a book from dashboard
+INFO  TC_339 - STEP 2: Opened a book from dashboard
+STEP 3: Start audio playback
+INFO  TC_339 - STEP 3: Audio playback started
+STEP 4: Toggle mute
+INFO  TC_339 - STEP 4: Mute toggled successfully
+INFO  TC_339: ✓ Test PASSED - User can mute audio
+========== TEST PASSED: TC_339 ==========
+============================================================
+Ended: 2026-07-21 15:44:51

@@ -1,0 +1,19 @@
+============================================================
+Test Log: AudioPlayerTests.TC325_VerifyAudioPausesWhenPauseButtonClicked
+Started: 2026-07-21 15:22:17
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC325_VerifyAudioPausesWhenPauseButtonClicked_2026_07_21_15_22_17.log
+============================================================
+========== TEST STARTED: TC_325: Audio Pauses When Pause Button Clicked ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_325 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_325 - STEP 2: Opened a book from dashboard
+STEP 3: Start audio playback
+INFO  TC_325 - STEP 3: Audio initially playing: true
+STEP 4: Click pause button
+INFO  TC_325 - STEP 4: Pause button clicked, audio paused: true
+INFO  TC_325: ✓ Test PASSED - Audio pauses when Pause button is clicked
+========== TEST PASSED: TC_325 ==========
+============================================================
+Ended: 2026-07-21 15:23:31

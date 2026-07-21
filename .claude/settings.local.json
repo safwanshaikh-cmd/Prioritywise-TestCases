@@ -141,7 +141,8 @@
       "Bash(javac.exe -d /tmp/tc391-check @compile-argfile.txt)",
       "Bash(\"/mnt/c/Program Files/Java/jdk-25.0.2/bin/javac.exe\" @\"C:\\\\Users\\\\safwan\\\\eclipse-workspace\\\\Prioritywise-TestCases\\\\target\\\\javac_args.txt\")",
       "Bash(awk -F',' 'NR>1 {print $1}' /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/Master_TestCases.csv)",
-      "Bash(awk -F',' 'NR>1 {print $3}' /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/Master_TestCases.csv)"
+      "Bash(awk -F',' 'NR>1 {print $3}' /mnt/c/Users/safwan/eclipse-workspace/Prioritywise-TestCases/Master_TestCases.csv)",
+      "Bash(JAVA_HOME=\"/mnt/c/Program Files/Java/jdk-25.0.2\" \"/mnt/c/Program Files/apache-maven-3.9.12/bin/mvn\" -q test-compile -o)"
     ]
   }
 }

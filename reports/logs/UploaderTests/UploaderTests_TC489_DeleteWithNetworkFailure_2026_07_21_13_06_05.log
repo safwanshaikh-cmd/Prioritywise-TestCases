@@ -1,0 +1,18 @@
+============================================================
+Test Log: UploaderTests.TC489_DeleteWithNetworkFailure
+Started: 2026-07-21 13:06:05
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC489_DeleteWithNetworkFailure_2026_07_21_13_06_05.log
+============================================================
+========== TEST STARTED: TC_489: Delete With Network Failure ==========
+INFO  Logged in as uploader
+INFO  TC_489 - STEP 1: Navigating to existing Pending books
+INFO  TC_489 - STEP 2: Existing book selected for confirmation validation = 'Automation Book 297e67'
+INFO  TC_489 - STEP 2: Book count before opening popup = 18
+INFO  TC_489 - STEP 3: Clicking Delete on the first existing Pending book
+INFO  TC_489 - STEP 4: Delete confirmation dialog displayed = true
+INFO  TC_489 - STEP 5: Canceling delete after confirmation validation
+INFO  TC_489 - STEP 6: Book count after cancel = 17
+INFO  TC_489 - STEP 6: First visible book after cancel = 'Automation Book 297e67'
+[SKIP] UploaderTests :: TC489_DeleteWithNetworkFailure
+============================================================
+Ended: 2026-07-21 13:06:51

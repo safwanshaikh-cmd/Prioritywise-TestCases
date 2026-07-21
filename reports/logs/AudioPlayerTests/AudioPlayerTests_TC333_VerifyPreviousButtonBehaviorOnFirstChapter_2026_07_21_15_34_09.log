@@ -1,0 +1,21 @@
+============================================================
+Test Log: AudioPlayerTests.TC333_VerifyPreviousButtonBehaviorOnFirstChapter
+Started: 2026-07-21 15:34:09
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC333_VerifyPreviousButtonBehaviorOnFirstChapter_2026_07_21_15_34_09.log
+============================================================
+========== TEST STARTED: TC_333: Previous Button Behavior On First Chapter ==========
+STEP 1: Log in as advanced audio user (multi-chapter book required)
+INFO  Logged in as advanced audio user
+INFO  TC_333 - STEP 1: Logged in as advanced audio user
+STEP 2: Open a book from dashboard
+INFO  TC_333 - STEP 2: Opened a book from dashboard
+STEP 3: Verify multiple chapters are available
+INFO  TC_333 - STEP 3: Multiple chapters confirmed
+STEP 4: Start audio playback from first chapter
+INFO  TC_333 - STEP 4: Current chapter: 12-ummiyedein aur di...
+STEP 5: Verify previous on first chapter behavior
+INFO  TC_333 - STEP 5: Previous on first chapter handled correctly
+INFO  TC_333: ✓ Test PASSED - Previous on first chapter keeps player stable
+========== TEST PASSED: TC_333 ==========
+============================================================
+Ended: 2026-07-21 15:35:25

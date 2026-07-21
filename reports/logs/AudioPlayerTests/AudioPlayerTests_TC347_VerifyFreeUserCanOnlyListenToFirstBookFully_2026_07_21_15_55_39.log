@@ -1,0 +1,21 @@
+============================================================
+Test Log: AudioPlayerTests.TC347_VerifyFreeUserCanOnlyListenToFirstBookFully
+Started: 2026-07-21 15:55:39
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC347_VerifyFreeUserCanOnlyListenToFirstBookFully_2026_07_21_15_55_39.log
+============================================================
+========== TEST STARTED: TC_347: Free User Can Only Listen To First Book Fully ==========
+STEP 1: Log in as free user
+INFO  Logged in as free user
+INFO  TC_347 - STEP 1: Logged in as free user
+STEP 2: Collect trending books from dashboard
+INFO  TC_347 - STEP 2: Opened book from trending list
+STEP 3: Verify multiple chapters available
+INFO  TC_347 - STEP 3: Multiple chapters confirmed
+STEP 4: Verify first chapter plays for free user
+INFO  TC_347 - STEP 4: First chapter plays successfully
+STEP 5: Try to play second chapter and verify payments redirect
+INFO  TC_347 - STEP 5: Second chapter redirect verified
+INFO  TC_347: ✓ Test PASSED - Free user can only listen to first chapter
+========== TEST PASSED: TC_347 ==========
+============================================================
+Ended: 2026-07-21 15:56:49

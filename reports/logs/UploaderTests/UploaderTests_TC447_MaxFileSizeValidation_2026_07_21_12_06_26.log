@@ -1,0 +1,14 @@
+============================================================
+Test Log: UploaderTests.TC447_MaxFileSizeValidation
+Started: 2026-07-21 12:06:26
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC447_MaxFileSizeValidation_2026_07_21_12_06_26.log
+============================================================
+========== TEST STARTED: TC_447: Max File Size Validation ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_447: Oversized image validation - Portrait error: Portrait image is 9.45MB. Maximum allowed size is 5MB, Image errors: [Portrait image is 9.45MB. Maximum allowed size is 5MB, Landscape image is 7.63MB. Maximum allowed size is 5 MB], Generic error: 
+========== TEST PASSED: TC_447 ==========
+============================================================
+Ended: 2026-07-21 12:07:42

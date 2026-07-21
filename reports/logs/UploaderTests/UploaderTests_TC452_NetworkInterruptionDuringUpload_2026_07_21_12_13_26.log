@@ -1,0 +1,15 @@
+============================================================
+Test Log: UploaderTests.TC452_NetworkInterruptionDuringUpload
+Started: 2026-07-21 12:13:26
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC452_NetworkInterruptionDuringUpload_2026_07_21_12_13_26.log
+============================================================
+========== TEST STARTED: TC_452: Network Interruption During Upload ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_452: Network interruption during upload
+INFO  TC_452: Note: Edge case - requires network manipulation to test
+========== TEST PASSED: TC_452 ==========
+============================================================
+Ended: 2026-07-21 12:13:58

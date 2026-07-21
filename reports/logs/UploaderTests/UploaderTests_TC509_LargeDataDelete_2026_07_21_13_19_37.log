@@ -1,0 +1,25 @@
+============================================================
+Test Log: UploaderTests.TC509_LargeDataDelete
+Started: 2026-07-21 13:19:37
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC509_LargeDataDelete_2026_07_21_13_19_37.log
+============================================================
+========== TEST STARTED: TC_509: Large Data Delete ==========
+INFO  TC_509 - Testing deletion of book with large number of chapters
+INFO  Logged in as uploader
+INFO  TC_509 - STEP 1: Selected book for large delete test = 'Concurrent Edit B b73b15'
+INFO  TC_509 - STEP 2: Chapter count = 0
+INFO  TC_509 - STEP 3: Delete duration = 1589 ms
+INFO  No success message found: Expected condition failed: waiting for visibility of element found by By.xpath: //*[@data-testid='toastText1' or @data-testid='toastText2' or contains(@data-testid,'toast') or contains(@class, 'success') or contains(@class, 'message')]
+(tried for 15 seconds with 500 milliseconds interval)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.128, chrome: {chromedriverVersion: 150.0.7871.124 (9261fd0a595..., userDataDir: C:\Users\safwan\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54426}, goog:processID: 6804, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:54426/devtoo..., se:cdpVersion: 150.0.7871.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: a7c26998a24cc582fc667316d7019b0d
+INFO  TC_509 - STEP 4: Book count before = 17
+INFO  TC_509 - STEP 4: Book count after = 10
+INFO  TC_509 - STEP 4: Success message = ''
+INFO  TC_509: Large data delete verified - System handled efficiently
+========== TEST PASSED: TC_509 ==========
+============================================================
+Ended: 2026-07-21 13:20:58

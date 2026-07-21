@@ -1,0 +1,14 @@
+============================================================
+Test Log: UploaderTests.TC445_MandatoryFieldValidation
+Started: 2026-07-21 12:03:47
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC445_MandatoryFieldValidation_2026_07_21_12_03_47.log
+============================================================
+========== TEST STARTED: TC_445: Mandatory Field Validation ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_445: Mandatory field validation verified
+========== TEST PASSED: TC_445 ==========
+============================================================
+Ended: 2026-07-21 12:04:21

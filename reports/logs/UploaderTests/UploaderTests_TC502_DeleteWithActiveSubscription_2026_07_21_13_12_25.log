@@ -1,0 +1,16 @@
+============================================================
+Test Log: UploaderTests.TC502_DeleteWithActiveSubscription
+Started: 2026-07-21 13:12:25
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC502_DeleteWithActiveSubscription_2026_07_21_13_12_25.log
+============================================================
+========== TEST STARTED: TC_502: Delete With Active Subscription ==========
+INFO  TC_502 - Testing that uploader cannot delete books added by another author
+INFO  Logged in as uploader
+INFO  TC_502 - STEP 1: Found in Approved filter = false
+INFO  TC_502 - STEP 2: Found in Pending filter = false
+INFO  TC_502 - STEP 3: Found in Rejected filter = false
+INFO  Uploader should not able to delete the book which are added by another author
+INFO  TC_502: Verified uploader cannot delete books added by another author
+========== TEST PASSED: TC_502 ==========
+============================================================
+Ended: 2026-07-21 13:14:03

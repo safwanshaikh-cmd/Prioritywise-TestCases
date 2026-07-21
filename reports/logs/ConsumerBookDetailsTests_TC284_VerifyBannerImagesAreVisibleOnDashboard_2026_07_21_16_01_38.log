@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC284_VerifyBannerImagesAreVisibleOnDashboard
+Started: 2026-07-21 16:01:38
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC284_VerifyBannerImagesAreVisibleOnDashboard_2026_07_21_16_01_38.log
+============================================================
+========== TEST STARTED: TC_284: Banner Images Are Visible On Dashboard ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Verify banner images are visible
+INFO  TC_284: Banner images visible: true
+========== TEST PASSED: TC_284 ==========
+============================================================
+Ended: 2026-07-21 16:01:41

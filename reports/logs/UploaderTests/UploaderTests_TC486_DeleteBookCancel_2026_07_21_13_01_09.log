@@ -1,0 +1,18 @@
+============================================================
+Test Log: UploaderTests.TC486_DeleteBookCancel
+Started: 2026-07-21 13:01:09
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC486_DeleteBookCancel_2026_07_21_13_01_09.log
+============================================================
+========== TEST STARTED: TC_486: Delete Book Cancel ==========
+INFO  Logged in as uploader
+INFO  TC_486 - STEP 1: Navigating to For Creators page
+INFO  TC_486 - STEP 1: Pending filter selected
+INFO  TC_486 - STEP 2: Number of books BEFORE cancel delete = 16
+INFO  TC_486 - STEP 3: Book selected for cancel delete = 'Automation Book 297e67'
+INFO  TC_486 - STEP 4: Clicking Delete button on first book
+INFO  TC_486 - Delete confirmation dialog displayed: true
+INFO  TC_486 - STEP 4: Clicking Cancel on delete confirmation popup
+INFO  TC_486 - STEP 5: Number of books AFTER cancel delete = 17
+[SKIP] UploaderTests :: TC486_DeleteBookCancel
+============================================================
+Ended: 2026-07-21 13:01:53

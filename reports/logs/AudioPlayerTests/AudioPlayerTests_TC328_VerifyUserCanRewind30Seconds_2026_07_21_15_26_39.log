@@ -1,0 +1,20 @@
+============================================================
+Test Log: AudioPlayerTests.TC328_VerifyUserCanRewind30Seconds
+Started: 2026-07-21 15:26:39
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC328_VerifyUserCanRewind30Seconds_2026_07_21_15_26_39.log
+============================================================
+========== TEST STARTED: TC_328: User Can Rewind 30 Seconds ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_328 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_328 - STEP 2: Opened a book from dashboard
+STEP 3: Start audio playback
+INFO  TC_328 - STEP 3: Audio playback started
+INFO  TC_328 - STEP 3: Time before rewind: 00:34
+STEP 4: Click backward 30 button
+INFO  TC_328 - STEP 4: Backward 30 button clicked
+INFO  TC_328: ✓ Test PASSED - User can rewind 30 seconds
+========== TEST PASSED: TC_328 ==========
+============================================================
+Ended: 2026-07-21 15:27:57

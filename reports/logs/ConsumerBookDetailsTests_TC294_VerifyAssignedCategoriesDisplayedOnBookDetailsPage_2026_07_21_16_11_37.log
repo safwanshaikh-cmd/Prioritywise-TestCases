@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC294_VerifyAssignedCategoriesDisplayedOnBookDetailsPage
+Started: 2026-07-21 16:11:37
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC294_VerifyAssignedCategoriesDisplayedOnBookDetailsPage_2026_07_21_16_11_37.log
+============================================================
+========== TEST STARTED: TC_294: Assigned Categories Displayed On Book Details Page ==========
+STEP 1: Open book details from dashboard
+STEP 2: Verify categories or page stability
+INFO  TC_294: Categories visible - true
+========== TEST PASSED: TC_294 ==========
+============================================================
+Ended: 2026-07-21 16:11:56

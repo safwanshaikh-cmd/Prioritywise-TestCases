@@ -1,0 +1,14 @@
+============================================================
+Test Log: UploaderTests.TC453_ChapterUploadScreenOpens
+Started: 2026-07-21 12:14:13
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC453_ChapterUploadScreenOpens_2026_07_21_12_14_13.log
+============================================================
+========== TEST STARTED: TC_453: Chapter Upload Screen Opens ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_453: Add Audio screen opened after saving valid book details with valid images
+========== TEST PASSED: TC_453 ==========
+============================================================
+Ended: 2026-07-21 12:15:30

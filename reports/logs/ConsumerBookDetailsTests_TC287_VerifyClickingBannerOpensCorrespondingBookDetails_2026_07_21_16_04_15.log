@@ -1,0 +1,15 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC287_VerifyClickingBannerOpensCorrespondingBookDetails
+Started: 2026-07-21 16:04:15
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC287_VerifyClickingBannerOpensCorrespondingBookDetails_2026_07_21_16_04_15.log
+============================================================
+========== TEST STARTED: TC_287: Clicking Banner Opens Corresponding Book Details ==========
+STEP 1: Wait for dashboard to be ready
+STEP 2: Check if banner section is visible
+STEP 3: Check if banner has clickable target
+STEP 4: Click banner and open details
+INFO  TC_287 - STEP: Banner click opened a destination page
+INFO  TC_287: Banner click opened destination: true
+========== TEST PASSED: TC_287 ==========
+============================================================
+Ended: 2026-07-21 16:04:39

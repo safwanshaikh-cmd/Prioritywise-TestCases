@@ -68,6 +68,9 @@ public class CreatorSettingsPage {
 			.cssSelector("input[type='file'][accept*='image'], input[accept*='image'], input[type='file']");
 	private static final By PORTRAIT_COVER_ERROR = By.cssSelector("[data-testid='text_portrait_cover_error']");
 	private static final By LANDSCAPE_COVER_ERROR = By.cssSelector("[data-testid='text_landscape_cover_error']");
+	// Inline title validation warning shown below the title field, e.g.
+	// "Title should not contain special characters".
+	private static final By TITLE_ERROR = By.cssSelector("[data-testid='text_title_error']");
 	private static final By WARNING_ELEMENTS = By
 			.xpath("//*[contains(@data-testid,'error') or @data-testid='toastText1' or @data-testid='toastText2']");
 	private static final By AUDIO_UPLOAD_SCREEN = By.cssSelector("[data-testid='screen_upload_audio_file']");
@@ -307,23 +310,43 @@ public class CreatorSettingsPage {
 			summaryInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
 			summaryInput.clear();
 			if (safeSummary.length() > 4000) {
-				js.executeScript(
-						"const el = arguments[0]; const value = arguments[1];"
-								+ "if ('value' in el) { el.value = value; }" + "else { el.textContent = value; }"
-								+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
-								+ "el.dispatchEvent(new Event('change', { bubbles: true }));",
-						summaryInput, safeSummary);
+				setReactInputValue(summaryInput, safeSummary);
 			} else {
 				summaryInput.sendKeys(safeSummary);
 			}
 		} catch (Exception e) {
-			js.executeScript("const el = arguments[0]; const value = arguments[1];"
-					+ "if ('value' in el) { el.value = value; }" + "else { el.textContent = value; }"
-					+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
-					+ "el.dispatchEvent(new Event('change', { bubbles: true }));", summaryInput, safeSummary);
+			setReactInputValue(summaryInput, safeSummary);
 		}
 
 		LOGGER.log(Level.INFO, "Entered book summary");
+	}
+
+	/**
+	 * Set a value on a React-controlled input/textarea. Assigning el.value directly
+	 * does NOT work for React: it tracks the value via its own property descriptor
+	 * and resets the field on the next render. We must call the NATIVE value setter
+	 * (from the prototype) so React's value tracker sees the change, then dispatch
+	 * an input event to trigger onChange. Falls back to a plain assignment for
+	 * non-React (contenteditable) fields.
+	 */
+	private void setReactInputValue(WebElement element, String value) {
+		js.executeScript(
+			"const el = arguments[0]; const value = arguments[1];"
+			+ "const proto = el.tagName === 'TEXTAREA'"
+			+ "  ? window.HTMLTextAreaElement.prototype"
+			+ "  : window.HTMLInputElement.prototype;"
+			+ "const setter = Object.getOwnPropertyDescriptor(proto, 'value')"
+			+ "  && Object.getOwnPropertyDescriptor(proto, 'value').set;"
+			+ "if (setter && 'value' in el) {"
+			+ "  setter.call(el, value);"
+			+ "} else if ('value' in el) {"
+			+ "  el.value = value;"
+			+ "} else {"
+			+ "  el.textContent = value;"
+			+ "}"
+			+ "el.dispatchEvent(new Event('input', { bubbles: true }));"
+			+ "el.dispatchEvent(new Event('change', { bubbles: true }));",
+			element, value);
 	}
 
 	public void selectLanguage(String language) {
@@ -610,6 +633,61 @@ public class CreatorSettingsPage {
 		} else {
 			LOGGER.log(Level.INFO, "No visible warnings were captured");
 		}
+	}
+
+	/**
+	 * Wait for and return the inline title validation warning shown below the title
+	 * field (data-testid='text_title_error'), e.g. "Title should not contain
+	 * special characters". Returns "" if no title warning appears within the wait.
+	 */
+	public String waitForTitleError() {
+		try {
+			return new WebDriverWait(driver, Duration.ofSeconds(5)).until(d -> {
+				String error = getVisibleErrorText(TITLE_ERROR);
+				return error == null || error.isBlank() ? null : error;
+			});
+		} catch (TimeoutException e) {
+			return getVisibleErrorText(TITLE_ERROR);
+		}
+	}
+
+	/**
+	 * Return the visible inline warning/validation text (e.g. the special-character
+	 * warning shown under the title field). Waits briefly for a warning to render,
+	 * then joins all visible warning messages. Returns "" when none are shown.
+	 */
+	public String getVisibleWarningText() {
+		try {
+			new WebDriverWait(driver, Duration.ofSeconds(5)).until(d -> {
+				for (WebElement el : d.findElements(WARNING_ELEMENTS)) {
+					try {
+						if (el.isDisplayed() && el.getText() != null && !el.getText().trim().isEmpty()) {
+							return true;
+						}
+					} catch (Exception ignore) {
+						// keep polling
+					}
+				}
+				return false;
+			});
+		} catch (TimeoutException e) {
+			// fall through — return whatever (if anything) is present now
+		}
+
+		List<String> messages = new ArrayList<>();
+		for (WebElement element : driver.findElements(WARNING_ELEMENTS)) {
+			try {
+				if (element.isDisplayed()) {
+					String text = element.getText();
+					if (text != null && !text.trim().isEmpty() && !messages.contains(text.trim())) {
+						messages.add(text.trim());
+					}
+				}
+			} catch (Exception e) {
+				// Ignore transient elements
+			}
+		}
+		return String.join(" | ", messages);
 	}
 
 	public List<String> getValidationMessages() {

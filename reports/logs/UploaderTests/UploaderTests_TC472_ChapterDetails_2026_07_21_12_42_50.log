@@ -1,0 +1,17 @@
+============================================================
+Test Log: UploaderTests.TC472_ChapterDetails
+Started: 2026-07-21 12:42:50
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC472_ChapterDetails_2026_07_21_12_42_50.log
+============================================================
+========== TEST STARTED: TC_472: Chapter Details ==========
+INFO  Logged in as consumer
+STEP 1: Search 'The Golem' via the header search
+STEP 2: Click on the matching book from search results
+STEP 3: Read the chapter list from the book details page
+INFO  ===== TC_472 Book And Chapter Details =====
+INFO  ===== End TC_472 Book And Chapter Details =====
+STEP 4: Verify each chapter displays both a name and a duration
+INFO  TC_472: Chapter list retrieved for 'The Golem' after search → click → book details flow
+========== TEST PASSED: TC_472 ==========
+============================================================
+Ended: 2026-07-21 12:43:40

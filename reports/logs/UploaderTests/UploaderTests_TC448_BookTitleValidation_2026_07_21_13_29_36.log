@@ -1,0 +1,14 @@
+============================================================
+Test Log: UploaderTests.TC448_BookTitleValidation
+Started: 2026-07-21 13:29:36
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC448_BookTitleValidation_2026_07_21_13_29_36.log
+============================================================
+========== TEST STARTED: TC_448: Book Title Validation ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_448: Book title accepts valid input: Automation Book a77e15
+========== TEST PASSED: TC_448 ==========
+============================================================
+Ended: 2026-07-21 13:30:13

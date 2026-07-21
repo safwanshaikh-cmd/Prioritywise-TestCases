@@ -1,0 +1,11 @@
+============================================================
+Test Log: UploaderTests.TC467_SearchInvalidBookShowsNoResult
+Started: 2026-07-21 12:35:44
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC467_SearchInvalidBookShowsNoResult_2026_07_21_12_35_44.log
+============================================================
+========== TEST STARTED: TC_467: Search Invalid Book Shows No Result ==========
+INFO  Logged in as uploader
+INFO  TC_467: Invalid book search is handled through the For Creators page search box
+========== TEST PASSED: TC_467 ==========
+============================================================
+Ended: 2026-07-21 12:36:33

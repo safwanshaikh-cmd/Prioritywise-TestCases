@@ -1,0 +1,14 @@
+============================================================
+Test Log: UploaderTests.TC446_InvalidFileFormatValidation
+Started: 2026-07-21 12:04:37
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC446_InvalidFileFormatValidation_2026_07_21_12_04_37.log
+============================================================
+========== TEST STARTED: TC_446: Invalid File Format Validation ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_446: Invalid file format validation - Error message: 
+========== TEST PASSED: TC_446 ==========
+============================================================
+Ended: 2026-07-21 12:06:09

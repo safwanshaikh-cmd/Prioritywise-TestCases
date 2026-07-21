@@ -1,0 +1,19 @@
+============================================================
+Test Log: AudioPlayerTests.TC324_VerifyAudioStartsWhenClickingPlayButton
+Started: 2026-07-21 15:20:54
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC324_VerifyAudioStartsWhenClickingPlayButton_2026_07_21_15_20_54.log
+============================================================
+========== TEST STARTED: TC_324: Audio Starts When Clicking Play Button ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_324 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_324 - STEP 2: Opened a book from dashboard
+STEP 3: Click play button
+INFO  TC_324 - STEP 3: Play button clicked
+STEP 4: Verify audio playback started
+INFO  TC_324 - STEP 4: Audio playing: true
+INFO  TC_324: ✓ Test PASSED - Audio starts when clicking Play button
+========== TEST PASSED: TC_324 ==========
+============================================================
+Ended: 2026-07-21 15:22:02

@@ -1,0 +1,17 @@
+============================================================
+Test Log: UploaderTests.TC504_DeleteFromSearchResults
+Started: 2026-07-21 13:36:42
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC504_DeleteFromSearchResults_2026_07_21_13_36_42.log
+============================================================
+========== TEST STARTED: TC_504: Delete From Search Results ==========
+INFO  TC_504 - Testing delete from search results
+INFO  Logged in as uploader
+INFO  TC_504 - STEP 1: Initial book count = 15
+INFO  TC_504 - STEP 2: Book to delete from listing/search = 'Automation Book ecd69e'
+INFO  TC_504 - STEP 3: Book count after deletion = 0
+INFO  TC_504 - STEP 4: Book still visible after delete = false
+INFO  TC_504 - STEP 4: No data state after delete search = true
+INFO  TC_504: Delete from search results verified
+========== TEST PASSED: TC_504 ==========
+============================================================
+Ended: 2026-07-21 13:38:01

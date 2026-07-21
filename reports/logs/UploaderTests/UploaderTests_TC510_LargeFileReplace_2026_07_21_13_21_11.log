@@ -1,0 +1,24 @@
+============================================================
+Test Log: UploaderTests.TC510_LargeFileReplace
+Started: 2026-07-21 13:21:11
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC510_LargeFileReplace_2026_07_21_13_21_11.log
+============================================================
+========== TEST STARTED: TC_510: Large File Replace ==========
+INFO  TC_510 - Testing large file replacement
+INFO  Logged in as uploader
+INFO  TC_510 - STEP 1: Large file path = 'C:\Users\safwan\Downloads\5 MB.jpg'
+INFO  TC_510 - STEP 2: Upload duration = 27736 ms
+INFO  No success message found: Expected condition failed: waiting for visibility of element found by By.xpath: //*[@data-testid='toastText1' or @data-testid='toastText2' or contains(@data-testid,'toast') or contains(@class, 'success') or contains(@class, 'message')]
+(tried for 15 seconds with 500 milliseconds interval)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.128, chrome: {chromedriverVersion: 150.0.7871.124 (9261fd0a595..., userDataDir: C:\Users\safwan\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:55418}, goog:processID: 20448, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:55418/devtoo..., se:cdpVersion: 150.0.7871.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 789a191edd038c41ddb0067847cd0efd
+INFO  TC_510 - STEP 3: Success message = ''
+INFO  TC_510 - STEP 3: Errors = []
+INFO  TC_510 - RESULT: Large file processed successfully
+INFO  TC_510: Large file replacement verified
+========== TEST PASSED: TC_510 ==========
+============================================================
+Ended: 2026-07-21 13:22:40

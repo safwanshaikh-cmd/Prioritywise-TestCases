@@ -1,0 +1,21 @@
+============================================================
+Test Log: AudioPlayerTests.TC345_VerifySubscribedUserCanListenToMultipleBooks
+Started: 2026-07-21 15:52:16
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC345_VerifySubscribedUserCanListenToMultipleBooks_2026_07_21_15_52_16.log
+============================================================
+========== TEST STARTED: TC_345: Subscribed User Can Listen To Multiple Books ==========
+STEP 1: Log in as subscribed user
+INFO  Logged in as advanced audio user
+INFO  TC_345 - STEP 1: Logged in as subscribed user
+STEP 2: Collect at least two playable books from dashboard
+INFO  TC_345 - STEP 2: Collected 2 playable books
+STEP 3: Open first book and verify playback
+INFO  TC_345 - STEP 3: First book plays successfully
+STEP 4: Return to dashboard
+INFO  TC_345 - STEP 4: Returned to dashboard
+STEP 5: Open second book and verify playback
+INFO  TC_345 - STEP 5: Second book plays successfully
+INFO  TC_345: ✓ Test PASSED - Subscribed user can listen to multiple books
+========== TEST PASSED: TC_345 ==========
+============================================================
+Ended: 2026-07-21 15:53:58

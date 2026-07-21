@@ -1,0 +1,14 @@
+============================================================
+Test Log: UploaderTests.TC456_InvalidAudioFormatRejection
+Started: 2026-07-21 12:18:45
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC456_InvalidAudioFormatRejection_2026_07_21_12_18_45.log
+============================================================
+========== TEST STARTED: TC_456: Invalid Audio Format Rejection ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_456: Invalid audio format rejection checked after saving valid book details with images
+========== TEST PASSED: TC_456 ==========
+============================================================
+Ended: 2026-07-21 12:20:07

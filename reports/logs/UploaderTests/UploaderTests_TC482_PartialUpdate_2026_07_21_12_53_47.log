@@ -1,0 +1,18 @@
+============================================================
+Test Log: UploaderTests.TC482_PartialUpdate
+Started: 2026-07-21 12:53:47
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC482_PartialUpdate_2026_07_21_12_53_47.log
+============================================================
+========== TEST STARTED: TC_482: Partial Update ==========
+INFO  Logged in as uploader
+INFO  TC_482 - OLD Title: Updated Book 936bad
+INFO  TC_482 - OLD Summary: Updated description b910b3
+INFO  Toast elements found: 4 | text: [Audiobook summary updated successfully.]
+INFO  TC_482 - SUCCESS MESSAGE: Audiobook summary updated successfully.
+INFO  TC_482 - NEW Title: Partial Update d77a25
+INFO  TC_482 - SUMMARY: Should remain unchanged
+INFO  TC_482 - VERIFICATION: Only modified field (title) updated successfully = true
+INFO  TC_482: Partial update verified - Only title field updated successfully
+========== TEST PASSED: TC_482 ==========
+============================================================
+Ended: 2026-07-21 12:54:43

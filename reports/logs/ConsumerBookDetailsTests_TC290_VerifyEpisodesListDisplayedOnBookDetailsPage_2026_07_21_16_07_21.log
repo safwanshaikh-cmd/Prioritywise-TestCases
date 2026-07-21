@@ -1,0 +1,12 @@
+============================================================
+Test Log: ConsumerBookDetailsTests.TC290_VerifyEpisodesListDisplayedOnBookDetailsPage
+Started: 2026-07-21 16:07:21
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\ConsumerBookDetailsTests_TC290_VerifyEpisodesListDisplayedOnBookDetailsPage_2026_07_21_16_07_21.log
+============================================================
+========== TEST STARTED: TC_290: Episodes List Displayed On Book Details Page ==========
+STEP 1: Open book details from dashboard
+STEP 2: Verify episodes or empty state
+INFO  TC_290: Episodes visible - true, No episodes message - false
+========== TEST PASSED: TC_290 ==========
+============================================================
+Ended: 2026-07-21 16:07:46

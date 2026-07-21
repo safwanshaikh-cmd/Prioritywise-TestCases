@@ -1,34 +1,481 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="24" passed="22" failed="0" skipped="2">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-07-16T17:16:09 GST" name="Default suite" finished-at="2026-07-16T17:18:09 GST" duration-ms="119505">
+  <suite started-at="2026-07-21T15:20:32 GST" name="Default suite" finished-at="2026-07-21T15:58:23 GST" duration-ms="2271544">
     <groups>
+      <group name="security">
+        <method signature="AudioPlayerTests.TC346_VerifyFreeUserCanListenToOnlyOneBook()[pri:346, instance:tests.AudioPlayerTests@7eac9008]" name="TC346_VerifyFreeUserCanListenToOnlyOneBook" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC347_VerifyFreeUserCanOnlyListenToFirstBookFully()[pri:347, instance:tests.AudioPlayerTests@7eac9008]" name="TC347_VerifyFreeUserCanOnlyListenToFirstBookFully" class="tests.AudioPlayerTests"/>
+      </group> <!-- security -->
       <group name="functional">
-        <method signature="UploaderTests.TC469_PaginationForLargeData()[pri:469, instance:tests.UploaderTests@2aceadd4]" name="TC469_PaginationForLargeData" class="tests.UploaderTests"/>
+        <method signature="AudioPlayerTests.TC324_VerifyAudioStartsWhenClickingPlayButton()[pri:324, instance:tests.AudioPlayerTests@7eac9008]" name="TC324_VerifyAudioStartsWhenClickingPlayButton" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC325_VerifyAudioPausesWhenPauseButtonClicked()[pri:325, instance:tests.AudioPlayerTests@7eac9008]" name="TC325_VerifyAudioPausesWhenPauseButtonClicked" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC326_VerifyAudioResumesFromPausedPosition()[pri:326, instance:tests.AudioPlayerTests@7eac9008]" name="TC326_VerifyAudioResumesFromPausedPosition" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC327_VerifyUserCanSkipForward30Seconds()[pri:327, instance:tests.AudioPlayerTests@7eac9008]" name="TC327_VerifyUserCanSkipForward30Seconds" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC328_VerifyUserCanRewind30Seconds()[pri:328, instance:tests.AudioPlayerTests@7eac9008]" name="TC328_VerifyUserCanRewind30Seconds" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC329_VerifyForwardButtonBehaviorNearAudioEnd()[pri:329, instance:tests.AudioPlayerTests@7eac9008]" name="TC329_VerifyForwardButtonBehaviorNearAudioEnd" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC330_VerifyRewindBehaviorAtAudioStart()[pri:330, instance:tests.AudioPlayerTests@7eac9008]" name="TC330_VerifyRewindBehaviorAtAudioStart" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC331_VerifyClickingNextChapterPlaysNextChapter()[pri:331, instance:tests.AudioPlayerTests@7eac9008]" name="TC331_VerifyClickingNextChapterPlaysNextChapter" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC332_VerifyPreviousChapterNavigation()[pri:332, instance:tests.AudioPlayerTests@7eac9008]" name="TC332_VerifyPreviousChapterNavigation" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC333_VerifyPreviousButtonBehaviorOnFirstChapter()[pri:333, instance:tests.AudioPlayerTests@7eac9008]" name="TC333_VerifyPreviousButtonBehaviorOnFirstChapter" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC334_VerifyUserCanChangePlaybackSpeed()[pri:334, instance:tests.AudioPlayerTests@7eac9008]" name="TC334_VerifyUserCanChangePlaybackSpeed" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC335_VerifyMinimumSpeedSelection()[pri:335, instance:tests.AudioPlayerTests@7eac9008]" name="TC335_VerifyMinimumSpeedSelection" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC336_VerifyMaximumSpeedSelection()[pri:336, instance:tests.AudioPlayerTests@7eac9008]" name="TC336_VerifyMaximumSpeedSelection" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC337_VerifyVolumeSliderIncreasesAudioLevel()[pri:337, instance:tests.AudioPlayerTests@7eac9008]" name="TC337_VerifyVolumeSliderIncreasesAudioLevel" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC338_VerifyVolumeSliderDecreasesAudioLevel()[pri:338, instance:tests.AudioPlayerTests@7eac9008]" name="TC338_VerifyVolumeSliderDecreasesAudioLevel" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC339_VerifyUserCanMuteAudio()[pri:339, instance:tests.AudioPlayerTests@7eac9008]" name="TC339_VerifyUserCanMuteAudio" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC341_VerifyUserCanSeekForwardViaProgressBar()[pri:341, instance:tests.AudioPlayerTests@7eac9008]" name="TC341_VerifyUserCanSeekForwardViaProgressBar" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC342_VerifyUserCanSeekBackwardViaProgressBar()[pri:342, instance:tests.AudioPlayerTests@7eac9008]" name="TC342_VerifyUserCanSeekBackwardViaProgressBar" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength()[pri:343, instance:tests.AudioPlayerTests@7eac9008]" name="TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC344_VerifySubscribedUserCanListenToBook()[pri:344, instance:tests.AudioPlayerTests@7eac9008]" name="TC344_VerifySubscribedUserCanListenToBook" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC345_VerifySubscribedUserCanListenToMultipleBooks()[pri:345, instance:tests.AudioPlayerTests@7eac9008]" name="TC345_VerifySubscribedUserCanListenToMultipleBooks" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC346_VerifyFreeUserCanListenToOnlyOneBook()[pri:346, instance:tests.AudioPlayerTests@7eac9008]" name="TC346_VerifyFreeUserCanListenToOnlyOneBook" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC347_VerifyFreeUserCanOnlyListenToFirstBookFully()[pri:347, instance:tests.AudioPlayerTests@7eac9008]" name="TC347_VerifyFreeUserCanOnlyListenToFirstBookFully" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC350_VerifyPlaybackControlsWorkForSubscribedUsers()[pri:350, instance:tests.AudioPlayerTests@7eac9008]" name="TC350_VerifyPlaybackControlsWorkForSubscribedUsers" class="tests.AudioPlayerTests"/>
       </group> <!-- functional -->
       <group name="ui">
-        <method signature="UploaderTests.TC469_PaginationForLargeData()[pri:469, instance:tests.UploaderTests@2aceadd4]" name="TC469_PaginationForLargeData" class="tests.UploaderTests"/>
+        <method signature="AudioPlayerTests.TC324_VerifyAudioStartsWhenClickingPlayButton()[pri:324, instance:tests.AudioPlayerTests@7eac9008]" name="TC324_VerifyAudioStartsWhenClickingPlayButton" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC325_VerifyAudioPausesWhenPauseButtonClicked()[pri:325, instance:tests.AudioPlayerTests@7eac9008]" name="TC325_VerifyAudioPausesWhenPauseButtonClicked" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC326_VerifyAudioResumesFromPausedPosition()[pri:326, instance:tests.AudioPlayerTests@7eac9008]" name="TC326_VerifyAudioResumesFromPausedPosition" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC327_VerifyUserCanSkipForward30Seconds()[pri:327, instance:tests.AudioPlayerTests@7eac9008]" name="TC327_VerifyUserCanSkipForward30Seconds" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC328_VerifyUserCanRewind30Seconds()[pri:328, instance:tests.AudioPlayerTests@7eac9008]" name="TC328_VerifyUserCanRewind30Seconds" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC329_VerifyForwardButtonBehaviorNearAudioEnd()[pri:329, instance:tests.AudioPlayerTests@7eac9008]" name="TC329_VerifyForwardButtonBehaviorNearAudioEnd" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC330_VerifyRewindBehaviorAtAudioStart()[pri:330, instance:tests.AudioPlayerTests@7eac9008]" name="TC330_VerifyRewindBehaviorAtAudioStart" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC331_VerifyClickingNextChapterPlaysNextChapter()[pri:331, instance:tests.AudioPlayerTests@7eac9008]" name="TC331_VerifyClickingNextChapterPlaysNextChapter" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC332_VerifyPreviousChapterNavigation()[pri:332, instance:tests.AudioPlayerTests@7eac9008]" name="TC332_VerifyPreviousChapterNavigation" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC333_VerifyPreviousButtonBehaviorOnFirstChapter()[pri:333, instance:tests.AudioPlayerTests@7eac9008]" name="TC333_VerifyPreviousButtonBehaviorOnFirstChapter" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC334_VerifyUserCanChangePlaybackSpeed()[pri:334, instance:tests.AudioPlayerTests@7eac9008]" name="TC334_VerifyUserCanChangePlaybackSpeed" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC335_VerifyMinimumSpeedSelection()[pri:335, instance:tests.AudioPlayerTests@7eac9008]" name="TC335_VerifyMinimumSpeedSelection" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC336_VerifyMaximumSpeedSelection()[pri:336, instance:tests.AudioPlayerTests@7eac9008]" name="TC336_VerifyMaximumSpeedSelection" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC337_VerifyVolumeSliderIncreasesAudioLevel()[pri:337, instance:tests.AudioPlayerTests@7eac9008]" name="TC337_VerifyVolumeSliderIncreasesAudioLevel" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC338_VerifyVolumeSliderDecreasesAudioLevel()[pri:338, instance:tests.AudioPlayerTests@7eac9008]" name="TC338_VerifyVolumeSliderDecreasesAudioLevel" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC339_VerifyUserCanMuteAudio()[pri:339, instance:tests.AudioPlayerTests@7eac9008]" name="TC339_VerifyUserCanMuteAudio" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC341_VerifyUserCanSeekForwardViaProgressBar()[pri:341, instance:tests.AudioPlayerTests@7eac9008]" name="TC341_VerifyUserCanSeekForwardViaProgressBar" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC342_VerifyUserCanSeekBackwardViaProgressBar()[pri:342, instance:tests.AudioPlayerTests@7eac9008]" name="TC342_VerifyUserCanSeekBackwardViaProgressBar" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength()[pri:343, instance:tests.AudioPlayerTests@7eac9008]" name="TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC344_VerifySubscribedUserCanListenToBook()[pri:344, instance:tests.AudioPlayerTests@7eac9008]" name="TC344_VerifySubscribedUserCanListenToBook" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC345_VerifySubscribedUserCanListenToMultipleBooks()[pri:345, instance:tests.AudioPlayerTests@7eac9008]" name="TC345_VerifySubscribedUserCanListenToMultipleBooks" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC346_VerifyFreeUserCanListenToOnlyOneBook()[pri:346, instance:tests.AudioPlayerTests@7eac9008]" name="TC346_VerifyFreeUserCanListenToOnlyOneBook" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC347_VerifyFreeUserCanOnlyListenToFirstBookFully()[pri:347, instance:tests.AudioPlayerTests@7eac9008]" name="TC347_VerifyFreeUserCanOnlyListenToFirstBookFully" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC350_VerifyPlaybackControlsWorkForSubscribedUsers()[pri:350, instance:tests.AudioPlayerTests@7eac9008]" name="TC350_VerifyPlaybackControlsWorkForSubscribedUsers" class="tests.AudioPlayerTests"/>
       </group> <!-- ui -->
-      <group name="uploader">
-        <method signature="UploaderTests.TC469_PaginationForLargeData()[pri:469, instance:tests.UploaderTests@2aceadd4]" name="TC469_PaginationForLargeData" class="tests.UploaderTests"/>
-      </group> <!-- uploader -->
+      <group name="regression">
+        <method signature="AudioPlayerTests.TC350_VerifyPlaybackControlsWorkForSubscribedUsers()[pri:350, instance:tests.AudioPlayerTests@7eac9008]" name="TC350_VerifyPlaybackControlsWorkForSubscribedUsers" class="tests.AudioPlayerTests"/>
+      </group> <!-- regression -->
+      <group name="consumer">
+        <method signature="AudioPlayerTests.TC324_VerifyAudioStartsWhenClickingPlayButton()[pri:324, instance:tests.AudioPlayerTests@7eac9008]" name="TC324_VerifyAudioStartsWhenClickingPlayButton" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC325_VerifyAudioPausesWhenPauseButtonClicked()[pri:325, instance:tests.AudioPlayerTests@7eac9008]" name="TC325_VerifyAudioPausesWhenPauseButtonClicked" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC326_VerifyAudioResumesFromPausedPosition()[pri:326, instance:tests.AudioPlayerTests@7eac9008]" name="TC326_VerifyAudioResumesFromPausedPosition" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC327_VerifyUserCanSkipForward30Seconds()[pri:327, instance:tests.AudioPlayerTests@7eac9008]" name="TC327_VerifyUserCanSkipForward30Seconds" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC328_VerifyUserCanRewind30Seconds()[pri:328, instance:tests.AudioPlayerTests@7eac9008]" name="TC328_VerifyUserCanRewind30Seconds" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC329_VerifyForwardButtonBehaviorNearAudioEnd()[pri:329, instance:tests.AudioPlayerTests@7eac9008]" name="TC329_VerifyForwardButtonBehaviorNearAudioEnd" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC330_VerifyRewindBehaviorAtAudioStart()[pri:330, instance:tests.AudioPlayerTests@7eac9008]" name="TC330_VerifyRewindBehaviorAtAudioStart" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC331_VerifyClickingNextChapterPlaysNextChapter()[pri:331, instance:tests.AudioPlayerTests@7eac9008]" name="TC331_VerifyClickingNextChapterPlaysNextChapter" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC332_VerifyPreviousChapterNavigation()[pri:332, instance:tests.AudioPlayerTests@7eac9008]" name="TC332_VerifyPreviousChapterNavigation" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC333_VerifyPreviousButtonBehaviorOnFirstChapter()[pri:333, instance:tests.AudioPlayerTests@7eac9008]" name="TC333_VerifyPreviousButtonBehaviorOnFirstChapter" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC334_VerifyUserCanChangePlaybackSpeed()[pri:334, instance:tests.AudioPlayerTests@7eac9008]" name="TC334_VerifyUserCanChangePlaybackSpeed" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC335_VerifyMinimumSpeedSelection()[pri:335, instance:tests.AudioPlayerTests@7eac9008]" name="TC335_VerifyMinimumSpeedSelection" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC336_VerifyMaximumSpeedSelection()[pri:336, instance:tests.AudioPlayerTests@7eac9008]" name="TC336_VerifyMaximumSpeedSelection" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC337_VerifyVolumeSliderIncreasesAudioLevel()[pri:337, instance:tests.AudioPlayerTests@7eac9008]" name="TC337_VerifyVolumeSliderIncreasesAudioLevel" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC338_VerifyVolumeSliderDecreasesAudioLevel()[pri:338, instance:tests.AudioPlayerTests@7eac9008]" name="TC338_VerifyVolumeSliderDecreasesAudioLevel" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC339_VerifyUserCanMuteAudio()[pri:339, instance:tests.AudioPlayerTests@7eac9008]" name="TC339_VerifyUserCanMuteAudio" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC341_VerifyUserCanSeekForwardViaProgressBar()[pri:341, instance:tests.AudioPlayerTests@7eac9008]" name="TC341_VerifyUserCanSeekForwardViaProgressBar" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC342_VerifyUserCanSeekBackwardViaProgressBar()[pri:342, instance:tests.AudioPlayerTests@7eac9008]" name="TC342_VerifyUserCanSeekBackwardViaProgressBar" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength()[pri:343, instance:tests.AudioPlayerTests@7eac9008]" name="TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC344_VerifySubscribedUserCanListenToBook()[pri:344, instance:tests.AudioPlayerTests@7eac9008]" name="TC344_VerifySubscribedUserCanListenToBook" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC345_VerifySubscribedUserCanListenToMultipleBooks()[pri:345, instance:tests.AudioPlayerTests@7eac9008]" name="TC345_VerifySubscribedUserCanListenToMultipleBooks" class="tests.AudioPlayerTests"/>
+        <method signature="AudioPlayerTests.TC350_VerifyPlaybackControlsWorkForSubscribedUsers()[pri:350, instance:tests.AudioPlayerTests@7eac9008]" name="TC350_VerifyPlaybackControlsWorkForSubscribedUsers" class="tests.AudioPlayerTests"/>
+      </group> <!-- consumer -->
     </groups>
-    <test started-at="2026-07-16T17:16:09 GST" name="Default test" finished-at="2026-07-16T17:18:09 GST" duration-ms="119505">
-      <class name="tests.UploaderTests">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.UploaderTests@2aceadd4]" started-at="2026-07-16T17:16:14 GST" name="setup" finished-at="2026-07-16T17:16:33 GST" duration-ms="19479" status="PASS">
+    <test started-at="2026-07-21T15:20:32 GST" name="Default test" finished-at="2026-07-21T15:58:23 GST" duration-ms="2271544">
+      <class name="tests.AudioPlayerTests">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:20:36 GST" name="setup" finished-at="2026-07-21T15:20:54 GST" duration-ms="18001" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="TC469_PaginationForLargeData()[pri:469, instance:tests.UploaderTests@2aceadd4]" started-at="2026-07-16T17:16:33 GST" name="TC469_PaginationForLargeData" description="TC_469: Verify paginationForLargeData" finished-at="2026-07-16T17:18:08 GST" duration-ms="95015" status="PASS">
+        <test-method signature="TC324_VerifyAudioStartsWhenClickingPlayButton()[pri:324, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:20:54 GST" name="TC324_VerifyAudioStartsWhenClickingPlayButton" description="TC_324: Verify audio starts when clicking Play button" finished-at="2026-07-21T15:22:02 GST" duration-ms="68716" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC469_PaginationForLargeData -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.UploaderTests@2aceadd4]" started-at="2026-07-16T17:18:08 GST" name="tearDown" finished-at="2026-07-16T17:18:09 GST" duration-ms="491" status="PASS">
+        </test-method> <!-- TC324_VerifyAudioStartsWhenClickingPlayButton -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:22:02 GST" name="tearDown" finished-at="2026-07-21T15:22:03 GST" duration-ms="504" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- tests.UploaderTests -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:22:03 GST" name="setup" finished-at="2026-07-21T15:22:17 GST" duration-ms="14079" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC325_VerifyAudioPausesWhenPauseButtonClicked()[pri:325, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:22:17 GST" name="TC325_VerifyAudioPausesWhenPauseButtonClicked" description="TC_325: Verify audio pauses when Pause button is clicked" finished-at="2026-07-21T15:23:31 GST" duration-ms="73768" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC325_VerifyAudioPausesWhenPauseButtonClicked -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:23:31 GST" name="tearDown" finished-at="2026-07-21T15:23:31 GST" duration-ms="475" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:23:31 GST" name="setup" finished-at="2026-07-21T15:23:45 GST" duration-ms="13569" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC326_VerifyAudioResumesFromPausedPosition()[pri:326, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:23:45 GST" name="TC326_VerifyAudioResumesFromPausedPosition" description="TC_326: Verify audio resumes from paused position" finished-at="2026-07-21T15:25:01 GST" duration-ms="76255" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC326_VerifyAudioResumesFromPausedPosition -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:25:01 GST" name="tearDown" finished-at="2026-07-21T15:25:02 GST" duration-ms="513" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:25:02 GST" name="setup" finished-at="2026-07-21T15:25:13 GST" duration-ms="11700" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC327_VerifyUserCanSkipForward30Seconds()[pri:327, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:25:13 GST" name="TC327_VerifyUserCanSkipForward30Seconds" description="TC_327: Verify user can skip forward 30 seconds" finished-at="2026-07-21T15:26:25 GST" duration-ms="71636" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC327_VerifyUserCanSkipForward30Seconds -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:26:25 GST" name="tearDown" finished-at="2026-07-21T15:26:25 GST" duration-ms="473" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:26:25 GST" name="setup" finished-at="2026-07-21T15:26:39 GST" duration-ms="13342" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC328_VerifyUserCanRewind30Seconds()[pri:328, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:26:39 GST" name="TC328_VerifyUserCanRewind30Seconds" description="TC_328: Verify user can rewind 30 seconds" finished-at="2026-07-21T15:27:57 GST" duration-ms="78401" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC328_VerifyUserCanRewind30Seconds -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:27:57 GST" name="tearDown" finished-at="2026-07-21T15:27:58 GST" duration-ms="491" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:27:58 GST" name="setup" finished-at="2026-07-21T15:28:10 GST" duration-ms="12479" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC329_VerifyForwardButtonBehaviorNearAudioEnd()[pri:329, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:28:10 GST" name="TC329_VerifyForwardButtonBehaviorNearAudioEnd" description="TC_329: Verify Forward 30 near audio end stops at duration or completes playback without overshooting" finished-at="2026-07-21T15:29:26 GST" duration-ms="75498" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC329_VerifyForwardButtonBehaviorNearAudioEnd -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:29:26 GST" name="tearDown" finished-at="2026-07-21T15:29:26 GST" duration-ms="460" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:29:26 GST" name="setup" finished-at="2026-07-21T15:29:40 GST" duration-ms="13757" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC330_VerifyRewindBehaviorAtAudioStart()[pri:330, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:29:40 GST" name="TC330_VerifyRewindBehaviorAtAudioStart" description="TC_330: Verify rewind behavior at audio start" finished-at="2026-07-21T15:30:54 GST" duration-ms="74042" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC330_VerifyRewindBehaviorAtAudioStart -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:30:54 GST" name="tearDown" finished-at="2026-07-21T15:30:54 GST" duration-ms="481" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:30:54 GST" name="setup" finished-at="2026-07-21T15:31:09 GST" duration-ms="14485" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC331_VerifyClickingNextChapterPlaysNextChapter()[pri:331, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:31:09 GST" name="TC331_VerifyClickingNextChapterPlaysNextChapter" description="TC_331: Verify clicking next chapter plays the next chapter" finished-at="2026-07-21T15:32:22 GST" duration-ms="72944" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC331_VerifyClickingNextChapterPlaysNextChapter -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:32:22 GST" name="tearDown" finished-at="2026-07-21T15:32:22 GST" duration-ms="472" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:32:22 GST" name="setup" finished-at="2026-07-21T15:32:36 GST" duration-ms="13484" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC332_VerifyPreviousChapterNavigation()[pri:332, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:32:36 GST" name="TC332_VerifyPreviousChapterNavigation" description="TC_332: Verify previous chapter navigation returns to earlier chapter" finished-at="2026-07-21T15:33:55 GST" duration-ms="79211" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC332_VerifyPreviousChapterNavigation -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:33:55 GST" name="tearDown" finished-at="2026-07-21T15:33:56 GST" duration-ms="595" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:33:56 GST" name="setup" finished-at="2026-07-21T15:34:09 GST" duration-ms="13471" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC333_VerifyPreviousButtonBehaviorOnFirstChapter()[pri:333, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:34:09 GST" name="TC333_VerifyPreviousButtonBehaviorOnFirstChapter" description="TC_333: Verify previous button behavior on first chapter" finished-at="2026-07-21T15:35:25 GST" duration-ms="75518" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC333_VerifyPreviousButtonBehaviorOnFirstChapter -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:35:25 GST" name="tearDown" finished-at="2026-07-21T15:35:25 GST" duration-ms="475" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:35:25 GST" name="setup" finished-at="2026-07-21T15:35:39 GST" duration-ms="13944" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC334_VerifyUserCanChangePlaybackSpeed()[pri:334, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:35:39 GST" name="TC334_VerifyUserCanChangePlaybackSpeed" description="TC_334: Verify user can change playback speed" finished-at="2026-07-21T15:36:54 GST" duration-ms="74999" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC334_VerifyUserCanChangePlaybackSpeed -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:36:54 GST" name="tearDown" finished-at="2026-07-21T15:36:55 GST" duration-ms="501" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:36:55 GST" name="setup" finished-at="2026-07-21T15:37:10 GST" duration-ms="15858" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC335_VerifyMinimumSpeedSelection()[pri:335, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:37:10 GST" name="TC335_VerifyMinimumSpeedSelection" description="TC_335: Verify minimum speed selection (0.5x)" finished-at="2026-07-21T15:38:30 GST" duration-ms="79864" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC335_VerifyMinimumSpeedSelection -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:38:30 GST" name="tearDown" finished-at="2026-07-21T15:38:31 GST" duration-ms="502" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:38:31 GST" name="setup" finished-at="2026-07-21T15:38:46 GST" duration-ms="15136" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC336_VerifyMaximumSpeedSelection()[pri:336, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:38:46 GST" name="TC336_VerifyMaximumSpeedSelection" description="TC_336: Verify maximum speed selection (2x)" finished-at="2026-07-21T15:40:21 GST" duration-ms="95161" status="SKIP">
+          <exception class="org.testng.SkipException">
+            <message>
+              <![CDATA[Player surface did not become visible on book details page.]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.SkipException: Player surface did not become visible on book details page.
+at tests.AudioPlayerTests.openAnyDashboardBookAndWaitForPlayer(AudioPlayerTests.java:129)
+at tests.AudioPlayerTests.TC336_VerifyMaximumSpeedSelection(AudioPlayerTests.java:748)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC336_VerifyMaximumSpeedSelection -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:40:21 GST" name="tearDown" finished-at="2026-07-21T15:40:21 GST" duration-ms="448" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:40:21 GST" name="setup" finished-at="2026-07-21T15:40:34 GST" duration-ms="12653" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC337_VerifyVolumeSliderIncreasesAudioLevel()[pri:337, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:40:34 GST" name="TC337_VerifyVolumeSliderIncreasesAudioLevel" description="TC_337: Verify volume slider increases audio level" finished-at="2026-07-21T15:41:54 GST" duration-ms="79730" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC337_VerifyVolumeSliderIncreasesAudioLevel -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:41:54 GST" name="tearDown" finished-at="2026-07-21T15:41:54 GST" duration-ms="510" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:41:54 GST" name="setup" finished-at="2026-07-21T15:42:08 GST" duration-ms="13149" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC338_VerifyVolumeSliderDecreasesAudioLevel()[pri:338, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:42:08 GST" name="TC338_VerifyVolumeSliderDecreasesAudioLevel" description="TC_338: Verify volume slider decreases audio level" finished-at="2026-07-21T15:43:26 GST" duration-ms="78836" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC338_VerifyVolumeSliderDecreasesAudioLevel -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:43:26 GST" name="tearDown" finished-at="2026-07-21T15:43:27 GST" duration-ms="495" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:43:27 GST" name="setup" finished-at="2026-07-21T15:43:40 GST" duration-ms="12641" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC339_VerifyUserCanMuteAudio()[pri:339, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:43:40 GST" name="TC339_VerifyUserCanMuteAudio" description="TC_339: Verify user can mute audio" finished-at="2026-07-21T15:44:51 GST" duration-ms="71485" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC339_VerifyUserCanMuteAudio -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:44:51 GST" name="tearDown" finished-at="2026-07-21T15:44:52 GST" duration-ms="532" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:44:52 GST" name="setup" finished-at="2026-07-21T15:45:06 GST" duration-ms="14146" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC341_VerifyUserCanSeekForwardViaProgressBar()[pri:341, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:45:06 GST" name="TC341_VerifyUserCanSeekForwardViaProgressBar" description="TC_341: Verify user can seek forward via progress bar" finished-at="2026-07-21T15:46:19 GST" duration-ms="73145" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC341_VerifyUserCanSeekForwardViaProgressBar -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:46:19 GST" name="tearDown" finished-at="2026-07-21T15:46:19 GST" duration-ms="509" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:46:19 GST" name="setup" finished-at="2026-07-21T15:46:33 GST" duration-ms="14141" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC342_VerifyUserCanSeekBackwardViaProgressBar()[pri:342, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:46:33 GST" name="TC342_VerifyUserCanSeekBackwardViaProgressBar" description="TC_342: Verify user can seek backward via progress bar" finished-at="2026-07-21T15:47:54 GST" duration-ms="80034" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC342_VerifyUserCanSeekBackwardViaProgressBar -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:47:54 GST" name="tearDown" finished-at="2026-07-21T15:47:54 GST" duration-ms="504" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:47:54 GST" name="setup" finished-at="2026-07-21T15:48:04 GST" duration-ms="10115" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength()[pri:343, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:48:04 GST" name="TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength" description="TC_343: Verify seek behavior when dragged beyond audio length" finished-at="2026-07-21T15:50:39 GST" duration-ms="154501" status="SKIP">
+          <exception class="org.testng.SkipException">
+            <message>
+              <![CDATA[Could not login as advanced audio user: Expected condition failed: waiting for tests.AudioPlayerTests$$Lambda/0x000002abc04073a8@47616e24
+(tried for 30 seconds with 500 milliseconds interval)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.128, chrome: {chromedriverVersion: 150.0.7871.124 (9261fd0a595..., userDataDir: C:\Users\safwan\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51610}, goog:processID: 20100, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51610/devtoo..., se:cdpVersion: 150.0.7871.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d811fe63bfa6c79365a20f459f961372]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.SkipException: Could not login as advanced audio user: Expected condition failed: waiting for tests.AudioPlayerTests$$Lambda/0x000002abc04073a8@47616e24
+(tried for 30 seconds with 500 milliseconds interval)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.128, chrome: {chromedriverVersion: 150.0.7871.124 (9261fd0a595..., userDataDir: C:\Users\safwan\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51610}, goog:processID: 20100, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51610/devtoo..., se:cdpVersion: 150.0.7871.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d811fe63bfa6c79365a20f459f961372
+at tests.AudioPlayerTests.loginAsAdvancedAudioUser(AudioPlayerTests.java:88)
+at tests.AudioPlayerTests.TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength(AudioPlayerTests.java:1012)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:819)
+at org.testng.TestRunner.run(TestRunner.java:619)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+at org.testng.TestNG.runSuites(TestNG.java:1134)
+at org.testng.TestNG.run(TestNG.java:1101)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for tests.AudioPlayerTests$$Lambda/0x000002abc04073a8@47616e24
+(tried for 30 seconds with 500 milliseconds interval)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.128, chrome: {chromedriverVersion: 150.0.7871.124 (9261fd0a595..., userDataDir: C:\Users\safwan\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51610}, goog:processID: 20100, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51610/devtoo..., se:cdpVersion: 150.0.7871.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d811fe63bfa6c79365a20f459f961372
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:85)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:233)
+at tests.AudioPlayerTests.loginAsAdvancedAudioUser(AudioPlayerTests.java:80)
+... 27 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.SkipException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:50:39 GST" name="tearDown" finished-at="2026-07-21T15:50:39 GST" duration-ms="487" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:50:39 GST" name="setup" finished-at="2026-07-21T15:50:55 GST" duration-ms="15666" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC344_VerifySubscribedUserCanListenToBook()[pri:344, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:50:55 GST" name="TC344_VerifySubscribedUserCanListenToBook" description="TC_344: Verify subscribed user can listen to book" finished-at="2026-07-21T15:52:03 GST" duration-ms="68077" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC344_VerifySubscribedUserCanListenToBook -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:52:03 GST" name="tearDown" finished-at="2026-07-21T15:52:03 GST" duration-ms="496" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:52:03 GST" name="setup" finished-at="2026-07-21T15:52:16 GST" duration-ms="12465" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC345_VerifySubscribedUserCanListenToMultipleBooks()[pri:345, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:52:16 GST" name="TC345_VerifySubscribedUserCanListenToMultipleBooks" description="TC_345: Verify subscribed user can listen to multiple books" finished-at="2026-07-21T15:53:58 GST" duration-ms="102621" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC345_VerifySubscribedUserCanListenToMultipleBooks -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:53:58 GST" name="tearDown" finished-at="2026-07-21T15:53:59 GST" duration-ms="518" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:53:59 GST" name="setup" finished-at="2026-07-21T15:54:12 GST" duration-ms="12678" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC346_VerifyFreeUserCanListenToOnlyOneBook()[pri:346, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:54:12 GST" name="TC346_VerifyFreeUserCanListenToOnlyOneBook" description="TC_346: Verify free user is redirected to payments after trying to listen to the second chapter" finished-at="2026-07-21T15:55:26 GST" duration-ms="74136" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC346_VerifyFreeUserCanListenToOnlyOneBook -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:55:26 GST" name="tearDown" finished-at="2026-07-21T15:55:26 GST" duration-ms="537" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:55:26 GST" name="setup" finished-at="2026-07-21T15:55:39 GST" duration-ms="12192" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC347_VerifyFreeUserCanOnlyListenToFirstBookFully()[pri:347, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:55:39 GST" name="TC347_VerifyFreeUserCanOnlyListenToFirstBookFully" description="TC_347: Verify free user can listen only to the first chapter" finished-at="2026-07-21T15:56:49 GST" duration-ms="70850" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC347_VerifyFreeUserCanOnlyListenToFirstBookFully -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:56:49 GST" name="tearDown" finished-at="2026-07-21T15:56:50 GST" duration-ms="486" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:56:50 GST" name="setup" finished-at="2026-07-21T15:57:02 GST" duration-ms="11974" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="TC350_VerifyPlaybackControlsWorkForSubscribedUsers()[pri:350, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:57:02 GST" name="TC350_VerifyPlaybackControlsWorkForSubscribedUsers" description="TC_350: Verify playback controls work for subscribed users" finished-at="2026-07-21T15:58:23 GST" duration-ms="81072" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC350_VerifyPlaybackControlsWorkForSubscribedUsers -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.AudioPlayerTests@7eac9008]" started-at="2026-07-21T15:58:23 GST" name="tearDown" finished-at="2026-07-21T15:58:23 GST" duration-ms="543" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- tests.AudioPlayerTests -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

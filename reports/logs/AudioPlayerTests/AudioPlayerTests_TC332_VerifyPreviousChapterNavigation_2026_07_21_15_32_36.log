@@ -1,0 +1,21 @@
+============================================================
+Test Log: AudioPlayerTests.TC332_VerifyPreviousChapterNavigation
+Started: 2026-07-21 15:32:36
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC332_VerifyPreviousChapterNavigation_2026_07_21_15_32_36.log
+============================================================
+========== TEST STARTED: TC_332: Previous Chapter Navigation ==========
+STEP 1: Log in as advanced audio user (multi-chapter book required)
+INFO  Logged in as advanced audio user
+INFO  TC_332 - STEP 1: Logged in as advanced audio user
+STEP 2: Open a book from dashboard
+INFO  TC_332 - STEP 2: Opened a book from dashboard
+STEP 3: Verify multiple chapters are available
+INFO  TC_332 - STEP 3: Multiple chapters confirmed
+STEP 4: Start audio playback
+INFO  TC_332 - STEP 4: Current chapter: Cahpter 1
+STEP 5: Click previous chapter button
+INFO  TC_332 - STEP 5: Returned to chapter: 12-ummiyedein aur di...
+INFO  TC_332: ✓ Test PASSED - Previous chapter navigation works
+========== TEST PASSED: TC_332 ==========
+============================================================
+Ended: 2026-07-21 15:33:55

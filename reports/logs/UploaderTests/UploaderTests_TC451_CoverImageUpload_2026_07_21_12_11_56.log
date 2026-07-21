@@ -1,0 +1,14 @@
+============================================================
+Test Log: UploaderTests.TC451_CoverImageUpload
+Started: 2026-07-21 12:11:56
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC451_CoverImageUpload_2026_07_21_12_11_56.log
+============================================================
+========== TEST STARTED: TC_451: Cover Image Upload ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_451: Valid portrait and landscape image upload verified
+========== TEST PASSED: TC_451 ==========
+============================================================
+Ended: 2026-07-21 12:13:09

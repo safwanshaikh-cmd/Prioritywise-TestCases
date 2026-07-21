@@ -1,0 +1,21 @@
+============================================================
+Test Log: UploaderTests.TC512_APIFailureHandling
+Started: 2026-07-21 13:24:09
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC512_APIFailureHandling_2026_07_21_13_24_09.log
+============================================================
+========== TEST STARTED: TC_512: A P I Failure Handling ==========
+INFO  TC_512 - Testing API failure handling during save
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_512 - STEP 1: Book details filled for API failure test
+INFO  Toast elements found: 4 | text: [Audiobook summary uploaded successfully.]
+INFO  TC_512 - STEP 2: Success message = 'Audiobook summary uploaded successfully.'
+INFO  TC_512 - STEP 2: Errors = []
+INFO  TC_512 - STEP 2: Warnings = []
+INFO  TC_512 - RESULT: Save completed successfully (no API failure)
+INFO  TC_512: API failure handling verified
+========== TEST PASSED: TC_512 ==========
+============================================================
+Ended: 2026-07-21 13:25:32

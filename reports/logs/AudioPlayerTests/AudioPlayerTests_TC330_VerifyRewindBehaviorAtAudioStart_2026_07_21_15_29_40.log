@@ -1,0 +1,19 @@
+============================================================
+Test Log: AudioPlayerTests.TC330_VerifyRewindBehaviorAtAudioStart
+Started: 2026-07-21 15:29:40
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC330_VerifyRewindBehaviorAtAudioStart_2026_07_21_15_29_40.log
+============================================================
+========== TEST STARTED: TC_330: Rewind Behavior At Audio Start ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_330 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_330 - STEP 2: Opened a book from dashboard
+STEP 3: Start audio playback
+INFO  TC_330 - STEP 3: Time at start: 00:02
+STEP 4: Verify backward at start behavior
+INFO  TC_330 - STEP 4: Backward at start handled correctly
+INFO  TC_330: ✓ Test PASSED - Backward at start keeps time at or above zero
+========== TEST PASSED: TC_330 ==========
+============================================================
+Ended: 2026-07-21 15:30:54

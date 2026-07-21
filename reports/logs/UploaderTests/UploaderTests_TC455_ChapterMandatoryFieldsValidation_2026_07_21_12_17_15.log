@@ -1,0 +1,14 @@
+============================================================
+Test Log: UploaderTests.TC455_ChapterMandatoryFieldsValidation
+Started: 2026-07-21 12:17:15
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC455_ChapterMandatoryFieldsValidation_2026_07_21_12_17_15.log
+============================================================
+========== TEST STARTED: TC_455: Chapter Mandatory Fields Validation ==========
+INFO  Logged in as uploader
+INFO  Uploader landing page is stable. Current URL: https://web-splay.acceses.com/
+INFO  Upload page loaded successfully
+INFO  Upload page load wait completed
+INFO  TC_455: Chapter mandatory field validation checked after saving valid book details with images
+========== TEST PASSED: TC_455 ==========
+============================================================
+Ended: 2026-07-21 12:18:33

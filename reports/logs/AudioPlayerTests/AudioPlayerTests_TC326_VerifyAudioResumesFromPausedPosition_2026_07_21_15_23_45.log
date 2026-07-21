@@ -1,0 +1,21 @@
+============================================================
+Test Log: AudioPlayerTests.TC326_VerifyAudioResumesFromPausedPosition
+Started: 2026-07-21 15:23:45
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC326_VerifyAudioResumesFromPausedPosition_2026_07_21_15_23_45.log
+============================================================
+========== TEST STARTED: TC_326: Audio Resumes From Paused Position ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_326 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_326 - STEP 2: Opened a book from dashboard
+STEP 3: Start audio playback
+INFO  TC_326 - STEP 3: Audio initially playing: true
+STEP 4: Pause audio playback
+INFO  TC_326 - STEP 4: Audio paused: true, time: 00:02
+STEP 5: Resume audio playback
+INFO  TC_326 - STEP 5: Audio resumed: true
+INFO  TC_326: ✓ Test PASSED - Audio resumes from paused position
+========== TEST PASSED: TC_326 ==========
+============================================================
+Ended: 2026-07-21 15:25:01

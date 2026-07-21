@@ -1,0 +1,25 @@
+============================================================
+Test Log: UploaderTests.TC484_DuplicateTitlePrevention
+Started: 2026-07-21 12:58:44
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC484_DuplicateTitlePrevention_2026_07_21_12_58_44.log
+============================================================
+========== TEST STARTED: TC_484: Duplicate Title Prevention ==========
+INFO  Logged in as uploader
+INFO  TC_484 - FIRST EDIT - ORIGINAL Title: Partial Update d77a25
+INFO  TC_484 - FIRST EDIT - UPDATING Title to: Re-Enter Test a9cbb9
+INFO  Toast elements found: 4 | text: [Audiobook summary updated successfully.]
+INFO  TC_484 - FIRST EDIT - SUCCESS MESSAGE: Audiobook summary updated successfully.
+INFO  TC_484 - SECOND EDIT - Re-opening same book for edit
+INFO  TC_484 - SECOND EDIT - Attempt 1 - Current Title: 'Re-Enter Test a9cbb9'
+INFO  TC_484 - SECOND EDIT - Title matched on attempt 1
+INFO  TC_484 - SECOND EDIT - Final Current Title Before Re-Enter: 'Re-Enter Test a9cbb9'
+INFO  TC_484 - SECOND EDIT - Expected Title: 'Re-Enter Test a9cbb9'
+INFO  TC_484 - SECOND EDIT - Re-entering SAME title: Re-Enter Test a9cbb9
+INFO  Toast elements found: 4 | text: [Audiobook summary updated successfully.]
+INFO  TC_484 - SECOND EDIT - SUCCESS MESSAGE: Audiobook summary updated successfully.
+INFO  TC_484 - SECOND EDIT - ERROR MESSAGE: Audiobook summary updated successfully.
+INFO  TC_484 - FINAL VERIFICATION - Title found in listing: true
+INFO  TC_484: Re-enter same title test verified - Title successfully updated and persisted
+========== TEST PASSED: TC_484 ==========
+============================================================
+Ended: 2026-07-21 13:00:02

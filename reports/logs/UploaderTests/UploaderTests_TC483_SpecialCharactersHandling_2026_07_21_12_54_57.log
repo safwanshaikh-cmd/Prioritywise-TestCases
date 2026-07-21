@@ -1,0 +1,15 @@
+============================================================
+Test Log: UploaderTests.TC483_SpecialCharactersHandling
+Started: 2026-07-21 12:54:57
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC483_SpecialCharactersHandling_2026_07_21_12_54_57.log
+============================================================
+========== TEST STARTED: TC_483: Special Characters Handling ==========
+INFO  Logged in as uploader
+INFO  TC_483 - OLD Title: Partial Update d77a25
+INFO  TC_483 - NEW Title with special chars: Test@#$%^&*() 95c6
+INFO  TC_483 - WARNING MESSAGE (below tab): Title should not contain special characters
+INFO  TC_483 - VERIFICATION: warning shown = true, handled without crash = true
+INFO  TC_483: Special characters handling verified
+========== TEST PASSED: TC_483 ==========
+============================================================
+Ended: 2026-07-21 12:55:50

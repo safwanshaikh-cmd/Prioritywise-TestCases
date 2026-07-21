@@ -1,0 +1,17 @@
+============================================================
+Test Log: AudioPlayerTests.TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength
+Started: 2026-07-21 15:48:04
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength_2026_07_21_15_48_04.log
+============================================================
+========== TEST STARTED: TC_343: Seek Behavior When Dragged Beyond Audio Length ==========
+STEP 1: Log in as advanced audio user
+WARN  TC_343 - Test failed: Could not login as advanced audio user: Expected condition failed: waiting for tests.AudioPlayerTests$$Lambda/0x000002abc04073a8@47616e24
+(tried for 30 seconds with 500 milliseconds interval)
+Build info: version: '4.41.0', revision: '9fc754f'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 150.0.7871.128, chrome: {chromedriverVersion: 150.0.7871.124 (9261fd0a595..., userDataDir: C:\Users\safwan\AppData\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51610}, goog:processID: 20100, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:51610/devtoo..., se:cdpVersion: 150.0.7871.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d811fe63bfa6c79365a20f459f961372
+[SKIP] AudioPlayerTests :: TC343_VerifySeekBehaviorWhenDraggedBeyondAudioLength
+============================================================
+Ended: 2026-07-21 15:50:39

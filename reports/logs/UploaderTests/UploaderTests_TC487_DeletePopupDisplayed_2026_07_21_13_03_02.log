@@ -1,0 +1,16 @@
+============================================================
+Test Log: UploaderTests.TC487_DeletePopupDisplayed
+Started: 2026-07-21 13:03:02
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\UploaderTests_TC487_DeletePopupDisplayed_2026_07_21_13_03_02.log
+============================================================
+========== TEST STARTED: TC_487: Delete Popup Displayed ==========
+INFO  Logged in as uploader
+INFO  TC_487 - STEP 1: Navigating to For Creators page
+INFO  TC_487 - STEP 1: Pending filter selected
+INFO  TC_487 - STEP 2: Book selected for popup verification = 'Automation Book 297e67'
+INFO  TC_487 - ACTION: Clicking delete button
+INFO  TC_487 - VERIFICATION: Delete confirmation dialog displayed = true
+INFO  TC_487: Delete popup verification completed on existing Pending book
+========== TEST PASSED: TC_487 ==========
+============================================================
+Ended: 2026-07-21 13:03:45

@@ -1,0 +1,25 @@
+============================================================
+Test Log: AudioPlayerTests.TC350_VerifyPlaybackControlsWorkForSubscribedUsers
+Started: 2026-07-21 15:57:02
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC350_VerifyPlaybackControlsWorkForSubscribedUsers_2026_07_21_15_57_02.log
+============================================================
+========== TEST STARTED: TC_350: Playback Controls Work For Subscribed Users ==========
+STEP 1: Log in as subscribed user
+INFO  Logged in as advanced audio user
+INFO  TC_350 - STEP 1: Logged in as subscribed user
+STEP 2: Open a book from dashboard
+INFO  TC_350 - STEP 2: Opened a book from dashboard
+STEP 3: Verify play control
+INFO  TC_350 - STEP 3: Play control verified
+STEP 4: Verify pause control
+INFO  TC_350 - STEP 4: Pause control verified
+STEP 5: Verify resume control
+INFO  TC_350 - STEP 5: Resume control verified
+STEP 6: Verify forward control
+INFO  TC_350 - STEP 6: Forward control verified
+STEP 7: Verify backward control
+INFO  TC_350 - STEP 7: Backward control verified
+INFO  TC_350: ✓ Test PASSED - All playback controls work for subscribed users
+========== TEST PASSED: TC_350 ==========
+============================================================
+Ended: 2026-07-21 15:58:23

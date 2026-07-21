@@ -1,0 +1,19 @@
+============================================================
+Test Log: AudioPlayerTests.TC329_VerifyForwardButtonBehaviorNearAudioEnd
+Started: 2026-07-21 15:28:10
+Log file: C:\Users\safwan\eclipse-workspace\Prioritywise-TestCases\reports\logs\AudioPlayerTests_TC329_VerifyForwardButtonBehaviorNearAudioEnd_2026_07_21_15_28_10.log
+============================================================
+========== TEST STARTED: TC_329: Forward Button Behavior Near Audio End ==========
+STEP 1: Log in as registered user
+INFO  Logged in as registered user
+INFO  TC_329 - STEP 1: Logged in as registered user
+STEP 2: Open a book from dashboard
+INFO  TC_329 - STEP 2: Opened a book from dashboard
+STEP 3: Start audio playback
+INFO  TC_329 - STEP 3: Audio playback started
+STEP 4: Verify forward near end behavior
+INFO  TC_329 - STEP 4: Forward near end handled correctly
+INFO  TC_329: ✓ Test PASSED - Forward near end stops at duration
+========== TEST PASSED: TC_329 ==========
+============================================================
+Ended: 2026-07-21 15:29:26
